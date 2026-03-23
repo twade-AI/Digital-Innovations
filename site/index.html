@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Innovations — KS5 Course</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand" onclick="showSection('home')">
+        <span class="brand-icon">⚡</span>
+        <span class="brand-text">Digital Innovations</span>
+      </a>
+      <div class="nav-links">
+        <a href="#" class="nav-link active" data-section="home" onclick="showSection('home')">Home</a>
+        <a href="#" class="nav-link" data-section="units" onclick="showSection('units')">Units</a>
+        <a href="#" class="nav-link" data-section="resources" onclick="showSection('resources')">Resources</a>
+        <a href="#" class="nav-link" data-section="progress" onclick="showSection('progress')">My Progress</a>
+      </div>
+      <div class="nav-search">
+        <input type="text" id="searchInput" placeholder="Search lessons..." oninput="handleSearch(this.value)">
+        <div id="searchResults" class="search-results"></div>
+      </div>
+      <button class="mobile-toggle" onclick="toggleMobileNav()" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+
+  <!-- Hero / Home Section -->
+  <section id="section-home" class="section active">
+    <div class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">KS5 — Ages 16-18</div>
+        <h1>Digital Innovations</h1>
+        <p class="hero-sub">Explore AI, ethics, prompt engineering, policy, and build your own capstone project. 44 lessons across 6 units — from foundations to the future.</p>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-num">44</span>
+            <span class="stat-label">Lessons</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">6</span>
+            <span class="stat-label">Units</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">19</span>
+            <span class="stat-label">Resources</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num" id="progressPercent">0%</span>
+            <span class="stat-label">Complete</span>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="showSection('units')">Start Learning</button>
+          <button class="btn btn-secondary" onclick="showSection('resources')">Browse Resources</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="orbit-ring">
+          <div class="orbit-item" style="--i:0">🤖</div>
+          <div class="orbit-item" style="--i:1">⚖️</div>
+          <div class="orbit-item" style="--i:2">🧠</div>
+          <div class="orbit-item" style="--i:3">🔒</div>
+          <div class="orbit-item" style="--i:4">🌍</div>
+          <div class="orbit-item" style="--i:5">💡</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Course Overview Cards -->
+    <div class="overview-grid">
+      <div class="overview-card" onclick="showSection('units'); scrollToUnit(0)">
+        <div class="oc-icon">🧠</div>
+        <h3>Unit 1</h3>
+        <p>Foundations of AI</p>
+        <span class="oc-count">8 lessons</span>
+      </div>
+      <div class="overview-card" onclick="showSection('units'); scrollToUnit(1)">
+        <div class="oc-icon">✍️</div>
+        <h3>Unit 2</h3>
+        <p>Prompt Engineering & Research</p>
+        <span class="oc-count">4 lessons</span>
+      </div>
+      <div class="overview-card" onclick="showSection('units'); scrollToUnit(2)">
+        <div class="oc-icon">🌐</div>
+        <h3>Unit 3</h3>
+        <p>AI & Society</p>
+        <span class="oc-count">4 lessons</span>
+      </div>
+      <div class="overview-card" onclick="showSection('units'); scrollToUnit(3)">
+        <div class="oc-icon">📜</div>
+        <h3>Unit 4</h3>
+        <p>Policy & Governance</p>
+        <span class="oc-count">4 lessons</span>
+      </div>
+      <div class="overview-card" onclick="showSection('units'); scrollToUnit(4)">
+        <div class="oc-icon">🚀</div>
+        <h3>Unit 5</h3>
+        <p>Capstone Project</p>
+        <span class="oc-count">16 lessons</span>
+      </div>
+      <div class="overview-card" onclick="showSection('units'); scrollToUnit(5)">
+        <div class="oc-icon">🎤</div>
+        <h3>Unit 6</h3>
+        <p>Presentations & Reflection</p>
+        <span class="oc-count">8 lessons</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Units Section -->
+  <section id="section-units" class="section">
+    <div class="section-header">
+      <h2>Course Units</h2>
+      <p>Click any lesson to expand its details. Track your progress as you go.</p>
+    </div>
+    <div id="unitsContainer" class="units-container"></div>
+  </section>
+
+  <!-- Resources Section -->
+  <section id="section-resources" class="section">
+    <div class="section-header">
+      <h2>Resources Library</h2>
+      <p>Downloadable templates, frameworks, debate packs, and assessment tools.</p>
+    </div>
+    <div class="resource-filters">
+      <button class="filter-btn active" onclick="filterResources('all')">All</button>
+      <button class="filter-btn" onclick="filterResources('template')">Templates</button>
+      <button class="filter-btn" onclick="filterResources('framework')">Frameworks</button>
+      <button class="filter-btn" onclick="filterResources('assessment')">Assessment</button>
+      <button class="filter-btn" onclick="filterResources('debate')">Debate</button>
+      <button class="filter-btn" onclick="filterResources('reference')">Reference</button>
+    </div>
+    <div id="resourcesGrid" class="resources-grid"></div>
+  </section>
+
+  <!-- Progress Section -->
+  <section id="section-progress" class="section">
+    <div class="section-header">
+      <h2>My Progress</h2>
+      <p>Track your journey through the course. Your progress is saved locally.</p>
+    </div>
+    <div class="progress-dashboard">
+      <div class="progress-ring-container">
+        <svg class="progress-ring" viewBox="0 0 200 200">
+          <circle class="progress-ring-bg" cx="100" cy="100" r="85" />
+          <circle class="progress-ring-fill" id="progressRingFill" cx="100" cy="100" r="85" />
+        </svg>
+        <div class="progress-ring-text">
+          <span id="progressRingPercent">0%</span>
+          <small>complete</small>
+        </div>
+      </div>
+      <div class="progress-stats">
+        <div class="ps-item">
+          <span class="ps-num" id="lessonsCompleted">0</span>
+          <span class="ps-label">Lessons Done</span>
+        </div>
+        <div class="ps-item">
+          <span class="ps-num" id="lessonsRemaining">44</span>
+          <span class="ps-label">Remaining</span>
+        </div>
+        <div class="ps-item">
+          <span class="ps-num" id="currentStreak">0</span>
+          <span class="ps-label">Day Streak</span>
+        </div>
+      </div>
+    </div>
+    <div id="progressByUnit" class="progress-by-unit"></div>
+    <div class="progress-actions">
+      <button class="btn btn-secondary" onclick="resetProgress()">Reset Progress</button>
+    </div>
+  </section>
+
+  <!-- Lesson Detail Modal -->
+  <div id="lessonModal" class="modal" onclick="if(event.target===this)closeModal()">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Digital Innovations AEP &bull; Built for KS5 learners</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
