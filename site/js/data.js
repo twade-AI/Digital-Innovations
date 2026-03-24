@@ -177,7 +177,7 @@ function generateSlides(lesson, unit) {
     type: 'hook',
     title: lesson.title,
     body: lesson.desc,
-    unitLabel: \`Unit \${unit.id + 1}: \${unit.title}\`
+    unitLabel: 'Unit ' + (unit.id + 1) + ': ' + unit.title
   });
 
   // Slide 2-N: One concept slide per objective
@@ -185,7 +185,7 @@ function generateSlides(lesson, unit) {
     slides.push({
       type: 'concept',
       title: obj,
-      body: \`Explore this learning objective through guided discussion, examples, and activities.\`,
+      body: 'Explore this learning objective through guided discussion, examples, and activities.',
       index: i + 1,
       total: lesson.objectives.length
     });
@@ -197,7 +197,7 @@ function generateSlides(lesson, unit) {
     title: 'Discussion & Reflection',
     questions: lesson.objectives.map((obj, i) => ({
       num: i + 1,
-      text: \`How does "\${obj.toLowerCase()}" connect to your own experience?\`
+      text: 'How does "' + obj.toLowerCase() + '" connect to your own experience?'
     }))
   });
 
