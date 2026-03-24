@@ -116,3 +116,101 @@ const RESOURCES = [
   { id:"r18", title:"AI Environmental Impact Factsheet",     cat:"reference",  desc:"Data-driven factsheet on the environmental cost of training and running AI models." },
   { id:"r19", title:"Viva Voce Question Bank",               cat:"assessment", desc:"Bank of viva voce questions spanning all course themes and project areas." },
 ];
+
+/* ── Resource Full Content ─────────────────────── */
+const RESOURCE_CONTENT = {
+  r1: `<h4>Capstone Project Brief</h4>
+<div class="resource-template-section"><h5>Project Title</h5><textarea class="resource-field" rows="2" placeholder="Enter your project title..."></textarea></div>
+<div class="resource-template-section"><h5>Problem Statement</h5><textarea class="resource-field" rows="4" placeholder="What problem does your project address?"></textarea></div>
+<div class="resource-template-section"><h5>Target Audience</h5><textarea class="resource-field" rows="3" placeholder="Who will use or benefit from this?"></textarea></div>
+<div class="resource-template-section"><h5>Key Deliverables</h5><textarea class="resource-field" rows="4" placeholder="List your main deliverables..."></textarea></div>
+<div class="resource-template-section"><h5>Success Criteria</h5><textarea class="resource-field" rows="3" placeholder="How will you measure success?"></textarea></div>`,
+
+  r6: `<h4>Sprint Diary</h4>
+<div class="resource-template-section"><h5>Sprint Goal</h5><textarea class="resource-field" rows="2" placeholder="What is the goal for this sprint?"></textarea></div>
+<div class="resource-template-section"><h5>Tasks Completed</h5><textarea class="resource-field" rows="4" placeholder="What did you accomplish?"></textarea></div>
+<div class="resource-template-section"><h5>Blockers & Challenges</h5><textarea class="resource-field" rows="3" placeholder="What slowed you down?"></textarea></div>
+<div class="resource-template-section"><h5>Reflections</h5><textarea class="resource-field" rows="3" placeholder="What did you learn?"></textarea></div>`,
+
+  r9: `<h4>Ethics Audit Checklist</h4>
+<p>Work through each area and assess your project honestly.</p>
+<ul>
+<li><strong>Data Privacy</strong> — Does your project collect, store or process personal data? Are users informed?</li>
+<li><strong>Bias & Fairness</strong> — Could your system produce biased outcomes? Have you tested with diverse inputs?</li>
+<li><strong>Transparency</strong> — Can users understand how your system works and makes decisions?</li>
+<li><strong>Accountability</strong> — Who is responsible if something goes wrong?</li>
+<li><strong>Environmental Impact</strong> — Have you considered the computational cost?</li>
+<li><strong>Accessibility</strong> — Is your project accessible to users with different needs?</li>
+<li><strong>Misinformation Risk</strong> — Could your system generate or amplify false information?</li>
+</ul>`,
+
+  r17: `<h4>PTFC Framework</h4>
+<p>Use this framework to structure effective AI prompts:</p>
+<ul>
+<li><strong>P — Persona:</strong> Who should the AI act as? (e.g. "You are an experienced science teacher")</li>
+<li><strong>T — Task:</strong> What exactly should the AI do? Be specific and measurable.</li>
+<li><strong>F — Format:</strong> How should the output be structured? (e.g. bullet points, table, essay)</li>
+<li><strong>C — Constraints:</strong> What limits or rules apply? (e.g. word count, reading level, tone)</li>
+</ul>
+<div class="resource-template-section"><h5>Practice: Build a Prompt</h5>
+<label style="font-size:.8rem;color:var(--text-muted)">Persona</label><input class="resource-field" placeholder="You are a...">
+<label style="font-size:.8rem;color:var(--text-muted);margin-top:8px;display:block">Task</label><input class="resource-field" placeholder="Create / Explain / Analyse...">
+<label style="font-size:.8rem;color:var(--text-muted);margin-top:8px;display:block">Format</label><input class="resource-field" placeholder="As a table / In 3 paragraphs...">
+<label style="font-size:.8rem;color:var(--text-muted);margin-top:8px;display:block">Constraints</label><input class="resource-field" placeholder="Max 200 words / Year 12 reading level...">
+</div>`,
+};
+
+/* ── Lesson Slide Content ──────────────────────── */
+/* Each lesson can have auto-generated slides based on its data.
+   Slides are arrays of objects: { type, title, content }
+   Types: hook, concept, example, discussion, activity, summary */
+
+const LESSON_SLIDES = {};
+
+function generateSlides(lesson, unit) {
+  if (LESSON_SLIDES[lesson.id]) return LESSON_SLIDES[lesson.id];
+
+  const slides = [];
+
+  // Slide 1: Hook
+  slides.push({
+    type: 'hook',
+    title: lesson.title,
+    body: lesson.desc,
+    unitLabel: \`Unit \${unit.id + 1}: \${unit.title}\`
+  });
+
+  // Slide 2-N: One concept slide per objective
+  lesson.objectives.forEach((obj, i) => {
+    slides.push({
+      type: 'concept',
+      title: obj,
+      body: \`Explore this learning objective through guided discussion, examples, and activities.\`,
+      index: i + 1,
+      total: lesson.objectives.length
+    });
+  });
+
+  // Discussion slide
+  slides.push({
+    type: 'discussion',
+    title: 'Discussion & Reflection',
+    questions: lesson.objectives.map((obj, i) => ({
+      num: i + 1,
+      text: \`How does "\${obj.toLowerCase()}" connect to your own experience?\`
+    }))
+  });
+
+  // Summary slide
+  slides.push({
+    type: 'summary',
+    title: 'Key Takeaways',
+    points: lesson.objectives.map(obj => ({
+      icon: '💡',
+      text: obj
+    }))
+  });
+
+  LESSON_SLIDES[lesson.id] = slides;
+  return slides;
+}
