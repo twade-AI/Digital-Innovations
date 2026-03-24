@@ -125,33 +125,152 @@ function findLesson(id) {
   return null;
 }
 
+let currentSlideIndex = 0;
+let currentSlides = [];
+let currentLessonId = null;
+
 function openLesson(id) {
   const found = findLesson(id);
   if (!found) return;
   const { lesson, unit } = found;
-  const done = completedLessons.has(id);
+  const slides = generateSlides(lesson, unit);
+  currentSlides = slides;
+  currentLessonId = id;
+  currentSlideIndex = 0;
+
+  const modal = document.getElementById('lessonModal');
+  modal.classList.add('modal--lesson');
+
   document.getElementById('modalBody').innerHTML = `
-    <div class="modal-unit">Unit ${unit.id + 1}: ${unit.title}</div>
-    <h2>Lesson ${lesson.id}: ${lesson.title}</h2>
-    <p class="modal-desc">${lesson.desc}</p>
-    <div class="modal-meta">
-      ${lesson.tags.map(t => `<span class="modal-tag">${t}</span>`).join('')}
+    <div class="lv-header">
+      <div class="lv-meta">
+        <span class="lv-unit-label">Unit ${unit.id + 1}: ${unit.title}</span>
+        <span class="lv-slide-count">Slide <span id="lvSlideNum">1</span> of ${slides.length}</span>
+      </div>
+      <div class="lv-progress-track">
+        <div class="lv-progress-fill" id="lvProgressFill" style="width:${100/slides.length}%"></div>
+      </div>
     </div>
-    <div class="modal-objectives">
-      <h4>Learning Objectives</h4>
-      <ul>${lesson.objectives.map(o => `<li>${o}</li>`).join('')}</ul>
-    </div>
-    <div class="modal-actions">
-      <button class="btn ${done ? 'btn-secondary' : 'btn-primary'}" onclick="toggleLesson(${id});openLesson(${id})">
-        ${done ? '✓ Completed — Undo' : 'Mark as Complete'}
-      </button>
-      <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+    <div class="lv-slide-area" id="lvSlideArea"></div>
+    <div class="lv-footer">
+      <button class="btn btn-secondary" id="lvPrev" onclick="navigateSlide(-1)">← Back</button>
+      <button class="btn btn-primary" id="lvNext" onclick="navigateSlide(1)">Next →</button>
     </div>`;
-  document.getElementById('lessonModal').classList.add('open');
+
+  renderSlide(0);
+  modal.classList.add('open');
+}
+
+function renderSlide(index) {
+  const slide = currentSlides[index];
+  const area = document.getElementById('lvSlideArea');
+  const done = completedLessons.has(currentLessonId);
+
+  let html = '';
+
+  switch (slide.type) {
+    case 'hook':
+      html = `
+        <div class="slide-hook">
+          <span class="slide-badge badge-hook">Opening</span>
+          <div class="slide-title">${slide.title}</div>
+          <div class="hook-body">${slide.body}</div>
+          <div class="interactive-wrapper" style="margin-top:24px">
+            <div class="interactive-label">🏷️ Tags</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              ${findLesson(currentLessonId).lesson.tags.map(t => `<span class="modal-tag">${t}</span>`).join('')}
+            </div>
+          </div>
+        </div>`;
+      break;
+
+    case 'concept':
+      html = `
+        <div class="slide-concept">
+          <span class="slide-badge badge-concept">Concept ${slide.index}/${slide.total}</span>
+          <div class="slide-title">${slide.title}</div>
+          <div class="concept-body">${slide.body}</div>
+          <div class="concept-callout">
+            <strong>Learning focus:</strong> ${slide.title}
+          </div>
+        </div>`;
+      break;
+
+    case 'discussion':
+      html = `
+        <div class="slide-discussion">
+          <span class="slide-badge badge-discussion">Discussion</span>
+          <div class="slide-title">${slide.title}</div>
+          <div class="disc-intro">Discuss these questions with a partner or reflect on them individually.</div>
+          <div class="disc-questions">
+            ${slide.questions.map(q => `
+              <div class="disc-q" onclick="this.classList.toggle('discussed')">
+                <span class="disc-q-num">${q.num}</span>
+                <span class="disc-q-text">${q.text}</span>
+              </div>`).join('')}
+          </div>
+          <div class="interactive-wrapper" style="margin-top:24px">
+            <div class="interactive-label">✏️ Reflection</div>
+            <div class="reflection-prompt">Write your thoughts on the questions above.</div>
+            <textarea class="reflection-textarea" placeholder="Type your reflection here..."></textarea>
+          </div>
+        </div>`;
+      break;
+
+    case 'summary':
+      html = `
+        <div class="slide-summary">
+          <span class="slide-badge badge-summary">Summary</span>
+          <div class="slide-title">${slide.title}</div>
+          <div class="summary-intro">Here's what you should take away from this lesson:</div>
+          <div class="summary-points">
+            ${slide.points.map(p => `
+              <div class="summary-point">
+                <span class="sp-icon">${p.icon}</span>
+                <span class="sp-text"><strong>${p.text}</strong></span>
+              </div>`).join('')}
+          </div>
+          <div style="margin-top:24px;text-align:center">
+            <button class="btn ${done ? 'btn-secondary' : 'btn-primary'}" onclick="toggleLesson(${currentLessonId});renderSlide(${index})">
+              ${done ? '✓ Completed — Undo' : '✓ Mark as Complete'}
+            </button>
+          </div>
+        </div>`;
+      break;
+  }
+
+  area.innerHTML = html;
+  area.scrollTop = 0;
+
+  // Update footer nav
+  document.getElementById('lvSlideNum').textContent = index + 1;
+  document.getElementById('lvProgressFill').style.width = ((index + 1) / currentSlides.length * 100) + '%';
+  document.getElementById('lvPrev').style.visibility = index === 0 ? 'hidden' : 'visible';
+
+  const nextBtn = document.getElementById('lvNext');
+  if (index === currentSlides.length - 1) {
+    nextBtn.textContent = 'Close';
+    nextBtn.onclick = () => closeModal();
+  } else {
+    nextBtn.textContent = 'Next →';
+    nextBtn.onclick = () => navigateSlide(1);
+  }
+}
+
+function navigateSlide(dir) {
+  const newIndex = currentSlideIndex + dir;
+  if (newIndex < 0 || newIndex >= currentSlides.length) return;
+  currentSlideIndex = newIndex;
+  renderSlide(currentSlideIndex);
 }
 
 function closeModal() {
-  document.getElementById('lessonModal').classList.remove('open');
+  const modal = document.getElementById('lessonModal');
+  modal.classList.remove('open');
+  modal.classList.remove('modal--lesson');
+  currentSlides = [];
+  currentLessonId = null;
+  currentSlideIndex = 0;
 }
 
 /* ── Resources Rendering ───────────────────────── */
@@ -268,7 +387,11 @@ document.addEventListener('DOMContentLoaded', () => {
   updateHomeStats();
 });
 
-// Keyboard shortcut: Escape closes modal
+// Keyboard shortcuts: Escape closes modal, arrows navigate slides
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeModal();
+  if (currentSlides.length > 0) {
+    if (e.key === 'ArrowRight') navigateSlide(1);
+    if (e.key === 'ArrowLeft') navigateSlide(-1);
+  }
 });
