@@ -129,114 +129,170 @@ let currentSlideIndex = 0;
 let currentSlides = [];
 let currentLessonId = null;
 
+function getLessonSlides(id, lesson, unit) {
+  // Try curated slides first, then fallback to generated
+  var all = Object.assign({}, (typeof SLIDES_U1U2 !== 'undefined' ? SLIDES_U1U2 : {}),
+                               (typeof SLIDES_U3U4 !== 'undefined' ? SLIDES_U3U4 : {}),
+                               (typeof SLIDES_U5U6 !== 'undefined' ? SLIDES_U5U6 : {}));
+  if (all[id]) return all[id];
+  return generateSlides(lesson, unit);
+}
+
+function renderResourceLinks(lesson) {
+  if (!lesson.resources || lesson.resources.length === 0) return '';
+  var cards = lesson.resources.map(function(rid) {
+    var r = RESOURCES.find(function(x) { return x.id === rid; });
+    if (!r) return '';
+    return '<div class="disc-q" onclick="closeModal();setTimeout(function(){openResource(\'' + r.id + '\')},200)" style="cursor:pointer">' +
+      '<span class="disc-q-num" style="font-size:.9rem">📎</span>' +
+      '<span class="disc-q-text"><strong>' + r.title + '</strong><br><span style="font-size:.8rem;color:var(--text-dim)">' + r.desc + '</span></span>' +
+    '</div>';
+  }).join('');
+  return '<div class="interactive-wrapper" style="margin-top:24px">' +
+    '<div class="interactive-label">📚 Linked Resources</div>' +
+    '<div class="disc-questions">' + cards + '</div>' +
+  '</div>';
+}
+
 function openLesson(id) {
-  const found = findLesson(id);
+  var found = findLesson(id);
   if (!found) return;
-  const { lesson, unit } = found;
-  const slides = generateSlides(lesson, unit);
+  var lesson = found.lesson;
+  var unit = found.unit;
+  var slides = getLessonSlides(id, lesson, unit);
   currentSlides = slides;
   currentLessonId = id;
   currentSlideIndex = 0;
 
-  const modal = document.getElementById('lessonModal');
+  var modal = document.getElementById('lessonModal');
   modal.classList.add('modal--lesson');
 
-  document.getElementById('modalBody').innerHTML = `
-    <div class="lv-header">
-      <div class="lv-meta">
-        <span class="lv-unit-label">Unit ${unit.id + 1}: ${unit.title}</span>
-        <span class="lv-slide-count">Slide <span id="lvSlideNum">1</span> of ${slides.length}</span>
-      </div>
-      <div class="lv-progress-track">
-        <div class="lv-progress-fill" id="lvProgressFill" style="width:${100/slides.length}%"></div>
-      </div>
-    </div>
-    <div class="lv-slide-area" id="lvSlideArea"></div>
-    <div class="lv-footer">
-      <button class="btn btn-secondary" id="lvPrev" onclick="navigateSlide(-1)">← Back</button>
-      <button class="btn btn-primary" id="lvNext" onclick="navigateSlide(1)">Next →</button>
-    </div>`;
+  document.getElementById('modalBody').innerHTML =
+    '<div class="lv-header">' +
+      '<div class="lv-meta">' +
+        '<span class="lv-unit-label">Unit ' + (unit.id + 1) + ': ' + unit.title + '</span>' +
+        '<span class="lv-slide-count">Slide <span id="lvSlideNum">1</span> of ' + slides.length + '</span>' +
+      '</div>' +
+      '<div class="lv-progress-track">' +
+        '<div class="lv-progress-fill" id="lvProgressFill" style="width:' + (100/slides.length) + '%"></div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="lv-slide-area" id="lvSlideArea"></div>' +
+    '<div class="lv-footer">' +
+      '<button class="btn btn-secondary" id="lvPrev" onclick="navigateSlide(-1)">&#8592; Back</button>' +
+      '<button class="btn btn-primary" id="lvNext" onclick="navigateSlide(1)">Next &#8594;</button>' +
+    '</div>';
 
   renderSlide(0);
   modal.classList.add('open');
 }
 
 function renderSlide(index) {
-  const slide = currentSlides[index];
-  const area = document.getElementById('lvSlideArea');
-  const done = completedLessons.has(currentLessonId);
+  var slide = currentSlides[index];
+  var area = document.getElementById('lvSlideArea');
+  var done = completedLessons.has(currentLessonId);
+  var found = findLesson(currentLessonId);
+  var lesson = found ? found.lesson : null;
 
-  let html = '';
+  var html = '';
 
-  switch (slide.type) {
-    case 'hook':
-      html = `
-        <div class="slide-hook">
-          <span class="slide-badge badge-hook">Opening</span>
-          <div class="slide-title">${slide.title}</div>
-          <div class="hook-body">${slide.body}</div>
-          <div class="interactive-wrapper" style="margin-top:24px">
-            <div class="interactive-label">🏷️ Tags</div>
-            <div style="display:flex;gap:8px;flex-wrap:wrap">
-              ${findLesson(currentLessonId).lesson.tags.map(t => `<span class="modal-tag">${t}</span>`).join('')}
-            </div>
-          </div>
-        </div>`;
-      break;
+  if (slide.type === 'hook') {
+    var tagHtml = lesson ? lesson.tags.map(function(t) { return '<span class="modal-tag">' + t + '</span>'; }).join('') : '';
+    html = '<div class="slide-hook">' +
+      '<span class="slide-badge badge-hook">Opening</span>' +
+      '<div class="slide-title">' + slide.title + '</div>' +
+      '<div class="hook-body">' + slide.body + '</div>' +
+      '<div class="interactive-wrapper" style="margin-top:24px">' +
+        '<div class="interactive-label">&#127991;&#65039; Tags</div>' +
+        '<div style="display:flex;gap:8px;flex-wrap:wrap">' + tagHtml + '</div>' +
+      '</div>' +
+    '</div>';
+  }
 
-    case 'concept':
-      html = `
-        <div class="slide-concept">
-          <span class="slide-badge badge-concept">Concept ${slide.index}/${slide.total}</span>
-          <div class="slide-title">${slide.title}</div>
-          <div class="concept-body">${slide.body}</div>
-          <div class="concept-callout">
-            <strong>Learning focus:</strong> ${slide.title}
-          </div>
-        </div>`;
-      break;
+  else if (slide.type === 'concept') {
+    var bulletsHtml = '';
+    if (slide.bullets && slide.bullets.length > 0) {
+      bulletsHtml = '<ul class="concept-bullets">' +
+        slide.bullets.map(function(b) { return '<li>' + b + '</li>'; }).join('') +
+      '</ul>';
+    }
+    var calloutHtml = '';
+    if (slide.callout) {
+      calloutHtml = '<div class="concept-callout"><strong>Key insight:</strong> ' + slide.callout + '</div>';
+    } else if (slide.title) {
+      calloutHtml = '<div class="concept-callout"><strong>Learning focus:</strong> ' + slide.title + '</div>';
+    }
+    var indexLabel = slide.index ? 'Concept ' + slide.index + '/' + slide.total : 'Concept';
+    html = '<div class="slide-concept">' +
+      '<span class="slide-badge badge-concept">' + indexLabel + '</span>' +
+      '<div class="slide-title">' + slide.title + '</div>' +
+      '<div class="concept-body">' + slide.body + '</div>' +
+      bulletsHtml +
+      calloutHtml +
+    '</div>';
+  }
 
-    case 'discussion':
-      html = `
-        <div class="slide-discussion">
-          <span class="slide-badge badge-discussion">Discussion</span>
-          <div class="slide-title">${slide.title}</div>
-          <div class="disc-intro">Discuss these questions with a partner or reflect on them individually.</div>
-          <div class="disc-questions">
-            ${slide.questions.map(q => `
-              <div class="disc-q" onclick="this.classList.toggle('discussed')">
-                <span class="disc-q-num">${q.num}</span>
-                <span class="disc-q-text">${q.text}</span>
-              </div>`).join('')}
-          </div>
-          <div class="interactive-wrapper" style="margin-top:24px">
-            <div class="interactive-label">✏️ Reflection</div>
-            <div class="reflection-prompt">Write your thoughts on the questions above.</div>
-            <textarea class="reflection-textarea" placeholder="Type your reflection here..."></textarea>
-          </div>
-        </div>`;
-      break;
+  else if (slide.type === 'activity') {
+    var stepsHtml = '';
+    if (slide.steps && slide.steps.length > 0) {
+      stepsHtml = '<ol style="list-style:none;counter-reset:step;display:flex;flex-direction:column;gap:10px;margin-top:16px">' +
+        slide.steps.map(function(s) {
+          return '<li style="counter-increment:step;display:flex;align-items:flex-start;gap:12px;font-size:.93rem;color:var(--text-muted);line-height:1.5">' +
+            '<span style="min-width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0">' + '</span>' +
+            s +
+          '</li>';
+        }).join('') +
+      '</ol>';
+    }
+    html = '<div class="slide-concept">' +
+      '<span class="slide-badge badge-activity">Activity</span>' +
+      '<div class="slide-title">' + slide.title + '</div>' +
+      '<div class="concept-body">' + slide.instructions + '</div>' +
+      stepsHtml +
+    '</div>';
+  }
 
-    case 'summary':
-      html = `
-        <div class="slide-summary">
-          <span class="slide-badge badge-summary">Summary</span>
-          <div class="slide-title">${slide.title}</div>
-          <div class="summary-intro">Here's what you should take away from this lesson:</div>
-          <div class="summary-points">
-            ${slide.points.map(p => `
-              <div class="summary-point">
-                <span class="sp-icon">${p.icon}</span>
-                <span class="sp-text"><strong>${p.text}</strong></span>
-              </div>`).join('')}
-          </div>
-          <div style="margin-top:24px;text-align:center">
-            <button class="btn ${done ? 'btn-secondary' : 'btn-primary'}" onclick="toggleLesson(${currentLessonId});renderSlide(${index})">
-              ${done ? '✓ Completed — Undo' : '✓ Mark as Complete'}
-            </button>
-          </div>
-        </div>`;
-      break;
+  else if (slide.type === 'discussion') {
+    var qHtml = slide.questions.map(function(q) {
+      return '<div class="disc-q" onclick="this.classList.toggle(\'discussed\')">' +
+        '<span class="disc-q-num">' + q.num + '</span>' +
+        '<span class="disc-q-text">' + q.text + '</span>' +
+      '</div>';
+    }).join('');
+    html = '<div class="slide-discussion">' +
+      '<span class="slide-badge badge-discussion">Discussion</span>' +
+      '<div class="slide-title">' + slide.title + '</div>' +
+      '<div class="disc-intro">Discuss these questions with a partner or reflect on them individually.</div>' +
+      '<div class="disc-questions">' + qHtml + '</div>' +
+      '<div class="interactive-wrapper" style="margin-top:24px">' +
+        '<div class="interactive-label">&#9998;&#65039; Reflection</div>' +
+        '<div class="reflection-prompt">Write your thoughts on the questions above.</div>' +
+        '<textarea class="reflection-textarea" placeholder="Type your reflection here..."></textarea>' +
+      '</div>' +
+    '</div>';
+  }
+
+  else if (slide.type === 'summary') {
+    var pointsHtml = slide.points.map(function(p) {
+      var label = p.label ? '<strong>' + p.label + '</strong> — ' + p.text : '<strong>' + p.text + '</strong>';
+      return '<div class="summary-point">' +
+        '<span class="sp-icon">' + p.icon + '</span>' +
+        '<span class="sp-text">' + label + '</span>' +
+      '</div>';
+    }).join('');
+    var resourceHtml = lesson ? renderResourceLinks(lesson) : '';
+    html = '<div class="slide-summary">' +
+      '<span class="slide-badge badge-summary">Summary</span>' +
+      '<div class="slide-title">' + slide.title + '</div>' +
+      '<div class="summary-intro">Here\'s what you should take away from this lesson:</div>' +
+      '<div class="summary-points">' + pointsHtml + '</div>' +
+      resourceHtml +
+      '<div style="margin-top:24px;text-align:center">' +
+        '<button class="btn ' + (done ? 'btn-secondary' : 'btn-primary') + '" onclick="toggleLesson(' + currentLessonId + ');renderSlide(' + index + ')">' +
+          (done ? '&#10003; Completed — Undo' : '&#10003; Mark as Complete') +
+        '</button>' +
+      '</div>' +
+    '</div>';
   }
 
   area.innerHTML = html;
@@ -247,13 +303,13 @@ function renderSlide(index) {
   document.getElementById('lvProgressFill').style.width = ((index + 1) / currentSlides.length * 100) + '%';
   document.getElementById('lvPrev').style.visibility = index === 0 ? 'hidden' : 'visible';
 
-  const nextBtn = document.getElementById('lvNext');
+  var nextBtn = document.getElementById('lvNext');
   if (index === currentSlides.length - 1) {
-    nextBtn.textContent = 'Close';
-    nextBtn.onclick = () => closeModal();
+    nextBtn.innerHTML = 'Close';
+    nextBtn.onclick = function() { closeModal(); };
   } else {
-    nextBtn.textContent = 'Next →';
-    nextBtn.onclick = () => navigateSlide(1);
+    nextBtn.innerHTML = 'Next &#8594;';
+    nextBtn.onclick = function() { navigateSlide(1); };
   }
 }
 
@@ -274,16 +330,36 @@ function closeModal() {
 }
 
 /* ── Resources Rendering ───────────────────────── */
+function findLessonsForResource(rid) {
+  var matches = [];
+  UNITS.forEach(function(u) {
+    u.lessons.forEach(function(l) {
+      if (l.resources && l.resources.indexOf(rid) !== -1) {
+        matches.push('L' + l.id);
+      }
+    });
+  });
+  return matches;
+}
+
 function renderResources(filter) {
   currentFilter = filter || 'all';
-  const items = currentFilter === 'all' ? RESOURCES : RESOURCES.filter(r => r.cat === currentFilter);
-  document.getElementById('resourcesGrid').innerHTML = items.map(r => `
-    <div class="resource-card" onclick="openResource('${r.id}')">
-      <span class="rc-type" data-cat="${r.cat}">${r.cat}</span>
-      <h4>${r.title}</h4>
-      <p>${r.desc}</p>
-    </div>`).join('');
-  document.querySelectorAll('.filter-btn').forEach(b => {
+  var items = currentFilter === 'all' ? RESOURCES : RESOURCES.filter(function(r) { return r.cat === currentFilter; });
+  document.getElementById('resourcesGrid').innerHTML = items.map(function(r) {
+    var linkedLessons = findLessonsForResource(r.id);
+    var linkedHtml = linkedLessons.length > 0
+      ? '<div style="margin-top:8px;display:flex;gap:4px;flex-wrap:wrap">' +
+          linkedLessons.map(function(l) { return '<span style="font-size:.7rem;background:rgba(99,102,241,.15);color:var(--primary-light);padding:2px 8px;border-radius:999px">' + l + '</span>'; }).join('') +
+        '</div>'
+      : '';
+    return '<div class="resource-card" onclick="openResource(\'' + r.id + '\')">' +
+      '<span class="rc-type" data-cat="' + r.cat + '">' + r.cat + '</span>' +
+      '<h4>' + r.title + '</h4>' +
+      '<p>' + r.desc + '</p>' +
+      linkedHtml +
+    '</div>';
+  }).join('');
+  document.querySelectorAll('.filter-btn').forEach(function(b) {
     b.classList.toggle('active', b.textContent.toLowerCase() === currentFilter);
   });
 }
