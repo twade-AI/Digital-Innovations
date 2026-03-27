@@ -158,6 +158,500 @@ const RESOURCE_CONTENT = {
 <label style="font-size:.8rem;color:var(--text-muted);margin-top:8px;display:block">Format</label><input class="resource-field" placeholder="As a table / In 3 paragraphs...">
 <label style="font-size:.8rem;color:var(--text-muted);margin-top:8px;display:block">Constraints</label><input class="resource-field" placeholder="Max 200 words / Year 12 reading level...">
 </div>`,
+
+  r2: `<h4>Pitch Deck Structure Guide</h4>
+<p>Build your pitch deck slide-by-slide. Each section below maps to one slide in your presentation.</p>
+<div class="resource-template-section"><h5>Slide 1 — Hook / Problem</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Open with a striking statistic, question or story that makes the problem feel real. One sentence max.</p>
+<textarea class="resource-field" rows="2" placeholder="e.g. &quot;Every year, 800,000 students fail to access the mental health support they need...&quot;"></textarea></div>
+<div class="resource-template-section"><h5>Slide 2 — Your Solution</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Describe your project in plain language. What does it do? How does it work?</p>
+<textarea class="resource-field" rows="3" placeholder="Our project is... It works by... The key feature is..."></textarea></div>
+<div class="resource-template-section"><h5>Slide 3 — Target Audience</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Who will use this? Be specific — age, context, needs.</p>
+<textarea class="resource-field" rows="2" placeholder="Primary users: ... Secondary stakeholders: ..."></textarea></div>
+<div class="resource-template-section"><h5>Slide 4 — Demo / Screenshot</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Describe what you will show — a live demo, walkthrough, or key screenshot. Note the 2–3 features to highlight.</p>
+<textarea class="resource-field" rows="3" placeholder="We will demo... The key interactions to show are... We will highlight..."></textarea></div>
+<div class="resource-template-section"><h5>Slide 5 — Ethical Considerations</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">What ethical risks exist and how have you addressed them? Panels expect this.</p>
+<textarea class="resource-field" rows="3" placeholder="Key risks identified: ... Mitigations built in: ... Trade-offs accepted: ..."></textarea></div>
+<div class="resource-template-section"><h5>Slide 6 — What We Learned</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Reflect on the build process. What surprised you? What would you do differently?</p>
+<textarea class="resource-field" rows="3" placeholder="Biggest technical challenge: ... Most important lesson: ... If we had more time: ..."></textarea></div>
+<div class="resource-template-section"><h5>Slide 7 — Q&amp;A Preparation</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Anticipate the three toughest questions you could be asked and draft your answers.</p>
+<textarea class="resource-field" rows="4" placeholder="Q1: ... A: ...\nQ2: ... A: ...\nQ3: ... A: ..."></textarea></div>`,
+
+  r3: `<h4>Prompt Iteration Log</h4>
+<p>Log each version of your prompt here. Tracking iterations helps you understand what works and why.</p>
+<div class="resource-template-section"><h5>Task / Goal</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">What are you trying to get the AI to produce?</p>
+<textarea class="resource-field" rows="2" placeholder="e.g. Write a paragraph explaining neural networks to a Year 9 student..."></textarea></div>
+<div class="resource-template-section"><h5>Iteration 1</h5>
+<label style="font-size:.8rem;color:var(--text-muted)">Prompt used</label>
+<textarea class="resource-field" rows="2" placeholder="Paste your first prompt here..."></textarea>
+<label style="font-size:.8rem;color:var(--text-muted);margin-top:8px;display:block">Output quality (1–5) &amp; notes</label>
+<input class="resource-field" placeholder="Score: _/5 — What was good? What was missing?"></div>
+<div class="resource-template-section"><h5>Iteration 2</h5>
+<label style="font-size:.8rem;color:var(--text-muted)">What you changed and why</label>
+<input class="resource-field" placeholder="I added / removed / changed... because...">
+<label style="font-size:.8rem;color:var(--text-muted);margin-top:8px;display:block">Prompt used</label>
+<textarea class="resource-field" rows="2" placeholder="Paste your revised prompt here..."></textarea>
+<label style="font-size:.8rem;color:var(--text-muted);margin-top:8px;display:block">Output quality (1–5) &amp; notes</label>
+<input class="resource-field" placeholder="Score: _/5 — Improvement? New problems?"></div>
+<div class="resource-template-section"><h5>Iteration 3</h5>
+<label style="font-size:.8rem;color:var(--text-muted)">What you changed and why</label>
+<input class="resource-field" placeholder="I added / removed / changed... because...">
+<label style="font-size:.8rem;color:var(--text-muted);margin-top:8px;display:block">Prompt used</label>
+<textarea class="resource-field" rows="2" placeholder="Paste your revised prompt here..."></textarea>
+<label style="font-size:.8rem;color:var(--text-muted);margin-top:8px;display:block">Output quality (1–5) &amp; notes</label>
+<input class="resource-field" placeholder="Score: _/5 — Improvement? New problems?"></div>
+<div class="resource-template-section"><h5>Final Reflection</h5>
+<textarea class="resource-field" rows="3" placeholder="What made the biggest difference across iterations? What prompt engineering principle did you discover?"></textarea></div>`,
+
+  r4: `<h4>Reflective Essay Guide</h4>
+<p>Use this framework to write a structured reflective essay on your AI learning journey. Aim for 600–900 words.</p>
+<ul>
+<li><strong>Introduction:</strong> Set the scene — where were you when this course began? What did you think AI was?</li>
+<li><strong>Key Turning Point:</strong> Identify the lesson, activity or moment that most changed your thinking.</li>
+<li><strong>Critical Incident:</strong> Describe one specific thing you built, said or did. Use concrete detail.</li>
+<li><strong>Analysis:</strong> Why did this matter? Connect it to wider themes (ethics, society, your future).</li>
+<li><strong>Conclusion:</strong> Where are you now? What will you do differently because of this course?</li>
+</ul>
+<div class="resource-template-section"><h5>Introduction Draft</h5>
+<textarea class="resource-field" rows="4" placeholder="Before this course, I thought AI was... My relationship with AI tools was... I expected this course would..."></textarea></div>
+<div class="resource-template-section"><h5>Key Turning Point</h5>
+<textarea class="resource-field" rows="3" placeholder="The lesson / activity that most changed my thinking was... because..."></textarea></div>
+<div class="resource-template-section"><h5>Critical Incident (What happened?)</h5>
+<textarea class="resource-field" rows="4" placeholder="Describe the specific moment in detail: what you did, what the AI produced, how you felt, what you noticed..."></textarea></div>
+<div class="resource-template-section"><h5>Analysis (Why did it matter?)</h5>
+<textarea class="resource-field" rows="4" placeholder="This matters because... It connects to the wider theme of... In terms of my future..."></textarea></div>
+<div class="resource-template-section"><h5>Conclusion — Your Position Now</h5>
+<textarea class="resource-field" rows="3" placeholder="My view of AI has changed from... to... Going forward, I will... The most important thing I am taking away is..."></textarea></div>
+<div class="resource-template-section"><h5>Useful Sentence Starters</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">This made me realise... / I was surprised to find... / Contrary to my initial assumption... / What struck me most was... / In hindsight... / I now understand that...</p></div>`,
+
+  r5: `<h4>Skills Audit Template</h4>
+<p>Rate yourself honestly in each area using the scale: <strong>1 = Novice</strong> | <strong>2 = Developing</strong> | <strong>3 = Competent</strong> | <strong>4 = Proficient</strong> | <strong>5 = Expert</strong></p>
+<div class="resource-template-section"><h5>AI Literacy Skills</h5>
+<ul>
+<li>Understanding how LLMs work (training, tokens, temperature) — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Identifying AI strengths, limitations and failure modes — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Evaluating AI-generated content critically — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Applying ethical frameworks to AI use — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+</ul></div>
+<div class="resource-template-section"><h5>Prompt Engineering Skills</h5>
+<ul>
+<li>Writing clear, structured prompts (PTFC framework) — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Iterating prompts to improve outputs — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Using AI for research and fact-checking — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Maintaining academic integrity when using AI — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+</ul></div>
+<div class="resource-template-section"><h5>Technical &amp; Project Skills</h5>
+<ul>
+<li>Planning and managing a project (sprints, milestones) — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Building / prototyping an AI-powered tool — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Testing and debugging systematically — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Documenting decisions and trade-offs — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+</ul></div>
+<div class="resource-template-section"><h5>Professional Skills</h5>
+<ul>
+<li>Communicating technical ideas clearly — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Giving and receiving constructive feedback — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Presenting confidently to an audience — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Adapting to new tools and challenges — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+</ul></div>
+<div class="resource-template-section"><h5>Priority Development Areas</h5>
+<textarea class="resource-field" rows="3" placeholder="Based on my ratings, the 3 areas I most want to develop are... I will work on these by..."></textarea></div>`,
+
+  r14: `<h4>Copyright Debate Brief</h4>
+<p>This debate asks: <em>"AI-generated creative works should receive the same copyright protection as human-created works."</em> Use the role cards below to prepare your position.</p>
+<div class="resource-template-section"><h5>Background: The Legal Landscape</h5>
+<ul>
+<li>Current UK and US copyright law requires a human author — AI alone cannot hold copyright.</li>
+<li>The US Copyright Office has ruled that purely AI-generated images are not copyrightable (Thaler v. Vidal, 2023).</li>
+<li>The EU AI Act requires transparency labelling for AI-generated content but does not resolve ownership.</li>
+<li>Key tension: if AI outputs cannot be copyrighted, who profits — or who is protected?</li>
+</ul></div>
+<div class="resource-template-section"><h5>Role Card A — Technology Companies</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">You represent a major AI company. Argue FOR copyright protection of AI outputs.</p>
+<ul>
+<li>Investment argument: Companies invest billions training models — without protection, there is no incentive.</li>
+<li>Practical argument: Clear ownership enables licensing, commerce and legal certainty.</li>
+<li>Human involvement argument: Humans design the prompt, select the output, curate the result — this is authorship.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Your additional arguments / rebuttal preparation</label>
+<textarea class="resource-field" rows="2" placeholder="Counter to 'AI can't be creative': ... / Response to 'this undercuts human artists': ..."></textarea></div>
+<div class="resource-template-section"><h5>Role Card B — Human Artists &amp; Creators</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">You represent an artists' union. Argue AGAINST copyright protection of AI outputs.</p>
+<ul>
+<li>Creativity argument: Copyright exists to reward human creativity — AI does not create, it recombines.</li>
+<li>Training data argument: AI is trained on copyrighted human work without consent or compensation.</li>
+<li>Economic argument: If AI outputs are copyrightable, human artists face unfair competition from automated production.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Your additional arguments / rebuttal preparation</label>
+<textarea class="resource-field" rows="2" placeholder="Counter to 'humans are involved in prompting': ... / Response to 'innovation needs incentives': ..."></textarea></div>
+<div class="resource-template-section"><h5>Role Card C — Legal Scholars (Neutral)</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">You analyse the arguments from a legal and philosophical perspective. Identify the strongest points on both sides.</p>
+<textarea class="resource-field" rows="3" placeholder="The strongest argument FOR is... because...\nThe strongest argument AGAINST is... because...\nThe key legal question that needs resolving is..."></textarea></div>
+<div class="resource-template-section"><h5>Your Vote &amp; Reasoning</h5>
+<textarea class="resource-field" rows="2" placeholder="After the debate, my position is... because the most persuasive point was..."></textarea></div>`,
+
+  r15: `<h4>Surveillance Debate Pack</h4>
+<p>This debate asks: <em>"The benefits of facial recognition technology in public spaces outweigh the risks to civil liberties."</em></p>
+<div class="resource-template-section"><h5>Key Evidence — FOR (Benefits)</h5>
+<ul>
+<li><strong>Crime reduction:</strong> London's Metropolitan Police reported a 70% reduction in wanted persons evading detection using live facial recognition at targeted events (2023).</li>
+<li><strong>Missing persons:</strong> Chinese authorities located thousands of missing children using facial recognition between 2018–2022.</li>
+<li><strong>Counter-terrorism:</strong> Several airports have used facial recognition to flag individuals on watchlists, preventing travel document fraud.</li>
+<li><strong>Consent argument:</strong> CCTV cameras are already ubiquitous in public spaces — facial recognition is an extension, not a new principle.</li>
+</ul></div>
+<div class="resource-template-section"><h5>Key Evidence — AGAINST (Risks)</h5>
+<ul>
+<li><strong>Accuracy disparities:</strong> NIST studies found error rates up to 100× higher for Black women than white men in some commercial systems.</li>
+<li><strong>Chilling effect:</strong> Research shows people change behaviour — avoiding protests, assemblies — when they know facial recognition is deployed.</li>
+<li><strong>Mission creep:</strong> Technology introduced for counter-terrorism has been used to police minor offences and political dissent in authoritarian states.</li>
+<li><strong>False positives:</strong> Innocents have been wrongly arrested based on facial recognition matches (Robert Williams, Detroit, 2020).</li>
+</ul></div>
+<div class="resource-template-section"><h5>Debate Structure</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Each side gets: Opening statement (2 min) → Rebuttal (1 min) → Questions from floor (2 min) → Closing (1 min)</p>
+<label style="font-size:.8rem;color:var(--text-muted)">Your opening statement (draft it here)</label>
+<textarea class="resource-field" rows="4" placeholder="We [support/oppose] the motion because... Our three key arguments are: 1)... 2)... 3)... Therefore we urge you to vote..."></textarea></div>
+<div class="resource-template-section"><h5>Anticipated Counter-Arguments</h5>
+<textarea class="resource-field" rows="3" placeholder="They will likely argue... Our rebuttal is...\nThey will likely argue... Our rebuttal is..."></textarea></div>
+<div class="resource-template-section"><h5>Post-Debate Reflection</h5>
+<textarea class="resource-field" rows="2" placeholder="The argument that most changed my thinking was... because... My final position is..."></textarea></div>`,
+
+  r16: `<h4>Deepfake Detection Checklist</h4>
+<p>Work through this checklist when evaluating whether an image, video or audio clip might be AI-generated or manipulated. No single signal is definitive — look for patterns.</p>
+<div class="resource-template-section"><h5>Visual — Faces &amp; Skin</h5>
+<ul>
+<li>Unnatural blurring or smoothing around the hairline or ears</li>
+<li>Inconsistent skin texture — too perfect or oddly waxy</li>
+<li>Asymmetry in facial features (eyes, ears) that looks digital rather than natural</li>
+<li>Jewellery, glasses or accessories that flicker, warp or disappear between frames</li>
+<li>Teeth that look blurred, missing or strangely perfect</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Signals spotted in the media you are analysing</label>
+<textarea class="resource-field" rows="2" placeholder="I noticed... at [timestamp / location in image]..."></textarea></div>
+<div class="resource-template-section"><h5>Visual — Eyes &amp; Lighting</h5>
+<ul>
+<li>Gaze direction inconsistent — eyes not following natural movement patterns</li>
+<li>Blinking rate abnormal (too frequent, too rare, or mechanical)</li>
+<li>Lighting on the face inconsistent with background lighting direction</li>
+<li>Reflections in eyes that do not match the environment</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Signals spotted</label>
+<textarea class="resource-field" rows="2" placeholder="I noticed..."></textarea></div>
+<div class="resource-template-section"><h5>Audio Signals</h5>
+<ul>
+<li>Unnatural cadence — speech rhythm that sounds flat or metronomic</li>
+<li>Breathing sounds absent or inserted artificially</li>
+<li>Background audio inconsistent with claimed location</li>
+<li>Voice tone or accent inconsistencies mid-clip</li>
+<li>Lip-sync mismatch — mouth movements do not perfectly match audio</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Signals spotted</label>
+<textarea class="resource-field" rows="2" placeholder="I noticed..."></textarea></div>
+<div class="resource-template-section"><h5>Context &amp; Source Signals</h5>
+<ul>
+<li>Source is anonymous, recently created, or has no track record</li>
+<li>Content is emotionally charged and designed to provoke an immediate reaction</li>
+<li>The person depicted has not commented on or denied the content</li>
+<li>Metadata has been stripped or shows editing software</li>
+<li>No other verified sources show the same event</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Signals spotted</label>
+<textarea class="resource-field" rows="2" placeholder="I noticed..."></textarea></div>
+<div class="resource-template-section"><h5>Verification Tools to Use</h5>
+<ul>
+<li><strong>Reverse image search:</strong> Google Images, TinEye — find original source</li>
+<li><strong>Video analysis:</strong> InVID / WeVerify browser extension</li>
+<li><strong>AI detection:</strong> Hive Moderation, Illuminarty (use as one signal, not proof)</li>
+<li><strong>Metadata:</strong> Jeffrey's Exif Viewer</li>
+</ul></div>
+<div class="resource-template-section"><h5>Verdict</h5>
+<input class="resource-field" placeholder="Confidence this is a deepfake: Low / Medium / High — Key reason: ..."></div>`,
+
+  r18: `<h4>AI Environmental Impact Factsheet</h4>
+<p>Training and running AI models has measurable environmental costs. These figures provide a basis for evidence-based discussion.</p>
+<div class="resource-template-section"><h5>Training Costs — Large Language Models</h5>
+<ul>
+<li><strong>GPT-3 (2020):</strong> Estimated 552 tonnes of CO₂ equivalent emitted during training — roughly equivalent to 120 return flights from London to New York.</li>
+<li><strong>GPT-4 (2023):</strong> OpenAI has not disclosed training emissions; estimates range from 5× to 50× GPT-3 based on compute estimates.</li>
+<li><strong>BLOOM (open-source, 2022):</strong> 25 tonnes CO₂e — significantly lower due to use of low-carbon French nuclear grid electricity.</li>
+<li><strong>Key insight:</strong> Where you train matters as much as how much you train — grid carbon intensity varies from ~30gCO₂/kWh (Norway, hydro) to ~700gCO₂/kWh (coal-heavy grids).</li>
+</ul></div>
+<div class="resource-template-section"><h5>Inference Costs — Running AI at Scale</h5>
+<ul>
+<li>A single ChatGPT query uses approximately 10× the energy of a standard Google search.</li>
+<li>With ~100 million daily ChatGPT users (2024), daily inference energy is estimated at 500+ MWh.</li>
+<li>Microsoft reported a 29% increase in water consumption (2022–2023), partly attributed to AI data centre cooling.</li>
+<li>Google reported a 48% increase in greenhouse gas emissions between 2019 and 2023, citing AI infrastructure growth.</li>
+</ul></div>
+<div class="resource-template-section"><h5>Water &amp; Hardware Costs</h5>
+<ul>
+<li>Training a large model can consume 700,000 litres of fresh water for data centre cooling.</li>
+<li>AI chips (GPUs, TPUs) require rare earth metals; mining creates localised environmental degradation.</li>
+<li>Hardware refresh cycles of 3–5 years generate significant e-waste.</li>
+</ul></div>
+<div class="resource-template-section"><h5>Mitigation Strategies</h5>
+<ul>
+<li><strong>Efficient architectures:</strong> Smaller models (e.g. distillation, quantisation) can match performance at a fraction of the compute.</li>
+<li><strong>Green data centres:</strong> Running on renewable energy reduces emissions without changing capability.</li>
+<li><strong>Temporal shifting:</strong> Scheduling training during periods of low-carbon grid supply.</li>
+<li><strong>Model reuse:</strong> Fine-tuning existing models rather than training from scratch.</li>
+</ul></div>
+<div class="resource-template-section"><h5>Discussion Questions</h5>
+<textarea class="resource-field" rows="3" placeholder="Should AI companies be required to publish emissions data? / Is there a personal responsibility to use AI less? / How do we weigh AI's benefits against its environmental costs?"></textarea></div>
+<div class="resource-template-section"><h5>Your Capstone Project — Environmental Estimate</h5>
+<textarea class="resource-field" rows="2" placeholder="The AI tools my project uses likely consume... My project's footprint could be reduced by..."></textarea></div>`,
+
+  r19: `<h4>Viva Voce Question Bank</h4>
+<p>Prepare for your viva by practising these questions. Your examiner will probe your understanding, not just your memory. Think out loud — reasoning matters as much as answers.</p>
+<div class="resource-template-section"><h5>Section 1: Your Capstone Project</h5>
+<ul>
+<li>In one sentence, what problem does your project solve and for whom?</li>
+<li>Walk me through the most important technical decision you made and why you made it.</li>
+<li>What would you do differently if you started the project again tomorrow?</li>
+<li>How did you test that your project actually works? What did testing reveal?</li>
+<li>If a non-technical person used your project, what would confuse them most?</li>
+<li>How does your project handle edge cases or unexpected inputs?</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Practice answer — choose one question above</label>
+<textarea class="resource-field" rows="3" placeholder="Question chosen: ... / My answer: ..."></textarea></div>
+<div class="resource-template-section"><h5>Section 2: Ethics &amp; Responsibility</h5>
+<ul>
+<li>What is the most significant ethical risk in your project and how did you mitigate it?</li>
+<li>Could your project cause harm to any group of people, directly or indirectly?</li>
+<li>Who should be accountable if your system produces a harmful output?</li>
+<li>Is it possible your training data or prompts contain bias? How would you know?</li>
+<li>Should your project exist? Make the strongest case against it, then respond.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Practice answer — choose one question above</label>
+<textarea class="resource-field" rows="3" placeholder="Question chosen: ... / My answer: ..."></textarea></div>
+<div class="resource-template-section"><h5>Section 3: AI Concepts</h5>
+<ul>
+<li>Explain how the AI tools you used actually work — at the level of someone who knows the basics.</li>
+<li>What is a token? Why does it matter for your project?</li>
+<li>What does "hallucination" mean in the context of LLMs? Did it affect your project?</li>
+<li>What is the difference between a model and a system? Which did you build?</li>
+<li>If the AI model your project uses is updated or deprecated, what happens to your project?</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Practice answer — choose one question above</label>
+<textarea class="resource-field" rows="3" placeholder="Question chosen: ... / My answer: ..."></textarea></div>
+<div class="resource-template-section"><h5>Section 4: Reflection &amp; Growth</h5>
+<ul>
+<li>What single thing you learned on this course most changed how you think?</li>
+<li>Describe a moment when you were wrong about something related to AI. What changed your mind?</li>
+<li>How has your view of AI's potential — and its risks — changed since the start of the course?</li>
+<li>What skill from this course will be most useful to you in five years?</li>
+<li>What would you tell a student starting this course next year?</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Practice answer — choose one question above</label>
+<textarea class="resource-field" rows="3" placeholder="Question chosen: ... / My answer: ..."></textarea></div>
+<div class="resource-template-section"><h5>Section 5: Policy &amp; Society</h5>
+<ul>
+<li>Should AI tools like the ones you used be available to all students, or should access be restricted?</li>
+<li>Which global AI regulation approach (EU, US, UK, China) do you find most convincing and why?</li>
+<li>If you were advising your school's leadership on AI policy, what one rule would you insist on?</li>
+<li>What jobs or roles do you think AI will not replace in the next 20 years, and why?</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Practice answer — choose one question above</label>
+<textarea class="resource-field" rows="3" placeholder="Question chosen: ... / My answer: ..."></textarea></div>`,
+
+  r8: `<h4>Peer Review Feedback Form</h4>
+<p>Give honest, specific, constructive feedback. Vague praise ("it was good") does not help your peer improve.</p>
+<div class="resource-template-section"><h5>Project Reviewed</h5>
+<label style="font-size:.8rem;color:var(--text-muted)">Peer's name &amp; project title</label>
+<input class="resource-field" placeholder="Name: ... | Project: ..."></div>
+<div class="resource-template-section"><h5>What Works Well</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Identify 2–3 specific strengths. Be concrete — point to actual features, decisions or moments.</p>
+<textarea class="resource-field" rows="4" placeholder="1. I was impressed by... because...\n2. The decision to... was effective because...\n3. The way you handled... showed..."></textarea></div>
+<div class="resource-template-section"><h5>Areas for Improvement</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Identify 2–3 areas. Frame as "I wonder if..." or "Have you considered...?" — not "this is wrong".</p>
+<textarea class="resource-field" rows="4" placeholder="1. I wonder if... could be improved by...\n2. Have you considered... ? It might help with...\n3. One thing that confused me was... — could you clarify...?"></textarea></div>
+<div class="resource-template-section"><h5>Ethical Considerations</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Identify any ethical risks you noticed that the creator may have missed.</p>
+<textarea class="resource-field" rows="3" placeholder="A potential risk I noticed: ... / Have you thought about the impact on... / The data handling approach might raise concerns around..."></textarea></div>
+<div class="resource-template-section"><h5>One Priority Action</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">If your peer could only do one thing before their presentation, what should it be?</p>
+<textarea class="resource-field" rows="2" placeholder="The single most important thing to do next is..."></textarea></div>
+<div class="resource-template-section"><h5>Overall Impression</h5>
+<input class="resource-field" placeholder="Overall quality rating: Excellent / Good / Developing / Beginning"></div>`,
+
+  r10: `<h4>AI Policy Drafting Template</h4>
+<p>Use this template to draft a formal AI acceptable use policy. Use clear, precise language — avoid ambiguity.</p>
+<div class="resource-template-section"><h5>1. Policy Title &amp; Scope</h5>
+<textarea class="resource-field" rows="2" placeholder="Title: AI Acceptable Use Policy — [Institution Name]\nScope: This policy applies to all students, staff and visitors who use AI tools in..."></textarea></div>
+<div class="resource-template-section"><h5>2. Definitions</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Define key terms to prevent ambiguity. What counts as an "AI tool"? What is "AI-generated content"?</p>
+<textarea class="resource-field" rows="4" placeholder="For the purposes of this policy:\n&quot;AI tool&quot; means any software that uses machine learning to generate, summarise, translate or transform content, including but not limited to...\n&quot;AI-generated content&quot; means any text, image, code or data produced by..."></textarea></div>
+<div class="resource-template-section"><h5>3. Permitted Uses</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">List what is explicitly allowed.</p>
+<textarea class="resource-field" rows="4" placeholder="AI tools may be used for:\n• Generating initial ideas or outlines, provided...\n• Checking grammar and clarity, provided...\n• Research assistance, provided outputs are..."></textarea></div>
+<div class="resource-template-section"><h5>4. Prohibited Uses</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">List what is explicitly forbidden.</p>
+<textarea class="resource-field" rows="4" placeholder="AI tools may not be used to:\n• Submit AI-generated work as entirely one's own without...\n• Process sensitive personal data without...\n• Circumvent assessment integrity by..."></textarea></div>
+<div class="resource-template-section"><h5>5. Disclosure Requirements</h5>
+<textarea class="resource-field" rows="3" placeholder="Users must disclose AI use by... The required disclosure format is... Failure to disclose will result in..."></textarea></div>
+<div class="resource-template-section"><h5>6. Enforcement &amp; Consequences</h5>
+<textarea class="resource-field" rows="3" placeholder="Breaches of this policy will be handled under... Consequences range from... to... Appeals may be made via..."></textarea></div>
+<div class="resource-template-section"><h5>7. Review Date</h5>
+<input class="resource-field" placeholder="This policy will be reviewed on: ... | Policy owner: ... | Version: ..."></div>`,
+
+  r11: `<h4>AI Manifesto Template</h4>
+<p>A manifesto is a public declaration of your beliefs and intentions. Your AI manifesto captures how you will think, work and live alongside AI — honestly and thoughtfully.</p>
+<ul>
+<li><strong>Be specific:</strong> "I believe AI should..." is stronger than "AI is important".</li>
+<li><strong>Be personal:</strong> Ground principles in your own experience from this course.</li>
+<li><strong>Be honest:</strong> Include tensions and things you are still uncertain about.</li>
+</ul>
+<div class="resource-template-section"><h5>Opening Statement</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Who are you and what is your relationship with AI? (2–3 sentences)</p>
+<textarea class="resource-field" rows="3" placeholder="I am... I have spent [time] learning about AI and I have come to believe that..."></textarea></div>
+<div class="resource-template-section"><h5>What I Believe About AI</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">State 3–5 core beliefs. Start each with "I believe..."</p>
+<textarea class="resource-field" rows="5" placeholder="I believe AI is a tool, not a replacement for human judgement, because...\nI believe transparency in AI systems is essential because...\nI believe..."></textarea></div>
+<div class="resource-template-section"><h5>How I Will Use AI</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Describe your personal principles for AI use — in education, work and life.</p>
+<textarea class="resource-field" rows="4" placeholder="I will use AI to augment my thinking, not replace it. Specifically, I will...\nI will not use AI for... because...\nI will always disclose when..."></textarea></div>
+<div class="resource-template-section"><h5>What I Will Advocate For</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">What changes do you want to see in how AI is developed, governed or used?</p>
+<textarea class="resource-field" rows="3" placeholder="I will advocate for... / I will speak up when I see... / I will support organisations that..."></textarea></div>
+<div class="resource-template-section"><h5>My Uncertainties</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">What questions about AI do you still not have clear answers to? Intellectual honesty strengthens a manifesto.</p>
+<textarea class="resource-field" rows="3" placeholder="I am still uncertain about... / A question I keep returning to is... / I have not fully resolved the tension between..."></textarea></div>
+<div class="resource-template-section"><h5>Closing Commitment</h5>
+<textarea class="resource-field" rows="2" placeholder="In short, I commit to... because the future of AI depends on people who..."></textarea></div>`,
+
+  r12: `<h4>Regulation Jigsaw Cards</h4>
+<p>Each card covers a different regulatory approach. In the jigsaw activity, you become an expert on one region, then teach the others. Use the spaces below to take notes as you research.</p>
+<div class="resource-template-section"><h5>Card A — EU AI Act (2024)</h5>
+<ul>
+<li><strong>Approach:</strong> Risk-based regulation — AI systems classified as Unacceptable, High, Limited or Minimal risk.</li>
+<li><strong>Key features:</strong> Banned uses include social scoring and real-time facial recognition in public. High-risk AI (hiring, credit, education) faces strict requirements: transparency, human oversight, data governance.</li>
+<li><strong>Enforcement:</strong> Fines up to €35 million or 7% of global turnover.</li>
+<li><strong>Criticism:</strong> May stifle innovation; complex compliance burden for SMEs.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Your expert notes</label>
+<textarea class="resource-field" rows="2" placeholder="Key point to teach others: ... / My view: ..."></textarea></div>
+<div class="resource-template-section"><h5>Card B — United States (Sector-by-Sector)</h5>
+<ul>
+<li><strong>Approach:</strong> No comprehensive federal AI law (as of 2024). Relies on existing sector regulation (FDA for medical AI, FTC for consumer protection) plus voluntary commitments.</li>
+<li><strong>Key features:</strong> Executive Order on AI (Oct 2023) required safety testing for frontier models. NIST AI Risk Management Framework is voluntary.</li>
+<li><strong>Criticism:</strong> Fragmented; tech companies largely self-regulate; creates regulatory gaps.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Your expert notes</label>
+<textarea class="resource-field" rows="2" placeholder="Key point to teach others: ... / My view: ..."></textarea></div>
+<div class="resource-template-section"><h5>Card C — United Kingdom (Pro-Innovation)</h5>
+<ul>
+<li><strong>Approach:</strong> Principles-based, sector-led regulation. Existing regulators (ICO, FCA, Ofcom) apply AI principles within their domains rather than a single AI law.</li>
+<li><strong>Key features:</strong> Five principles: safety, transparency, fairness, accountability, contestability. AI Safety Institute established 2023 for frontier model evaluation.</li>
+<li><strong>Criticism:</strong> May leave gaps between sectors; slower to respond to novel harms.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Your expert notes</label>
+<textarea class="resource-field" rows="2" placeholder="Key point to teach others: ... / My view: ..."></textarea></div>
+<div class="resource-template-section"><h5>Card D — China (State-Directed)</h5>
+<ul>
+<li><strong>Approach:</strong> Comprehensive government control. Regulations on algorithmic recommendations (2022), deepfakes (2022) and generative AI (2023) require state approval and content alignment.</li>
+<li><strong>Key features:</strong> Generative AI services must reflect "core socialist values". Data localisation requirements. State actively funds and directs AI development.</li>
+<li><strong>Criticism:</strong> Prioritises control over rights; limited independent oversight.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Your expert notes</label>
+<textarea class="resource-field" rows="2" placeholder="Key point to teach others: ... / My view: ..."></textarea></div>
+<div class="resource-template-section"><h5>Comparison: Key Debate Questions</h5>
+<textarea class="resource-field" rows="3" placeholder="Which approach best balances innovation and safety? Which approach best protects citizens? Is global coordination possible? Why or why not?"></textarea></div>`,
+
+  r13: `<h4>University AI Policy Comparison</h4>
+<p>Review how leading universities approach AI use by students. Use this to identify patterns, gaps and best practices for your own policy drafting.</p>
+<div class="resource-template-section"><h5>Policy A — Conservative Approach</h5>
+<ul>
+<li><strong>Stance:</strong> AI use is prohibited in assessed work unless explicitly stated otherwise.</li>
+<li><strong>Disclosure:</strong> Not required (use is banned).</li>
+<li><strong>Enforcement:</strong> AI-generated text treated as academic misconduct; same penalties as plagiarism.</li>
+<li><strong>Strengths:</strong> Clear, simple to understand and enforce.</li>
+<li><strong>Weaknesses:</strong> Does not prepare students for AI-integrated workplaces; hard to enforce reliably.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Your analysis</label>
+<textarea class="resource-field" rows="2" placeholder="I think this approach works / fails because... A student at this university would..."></textarea></div>
+<div class="resource-template-section"><h5>Policy B — Permissive with Disclosure</h5>
+<ul>
+<li><strong>Stance:</strong> AI use is permitted; students must declare it with a standardised statement.</li>
+<li><strong>Disclosure:</strong> Mandatory declaration specifying which tools used and how.</li>
+<li><strong>Enforcement:</strong> Failure to disclose = misconduct; content itself is not penalised.</li>
+<li><strong>Strengths:</strong> Builds AI literacy; mirrors professional norms; transparent.</li>
+<li><strong>Weaknesses:</strong> Risk of over-reliance; assessment validity questions; unequal AI tool access.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Your analysis</label>
+<textarea class="resource-field" rows="2" placeholder="I think this approach works / fails because... A student at this university would..."></textarea></div>
+<div class="resource-template-section"><h5>Policy C — Task-by-Task Specification</h5>
+<ul>
+<li><strong>Stance:</strong> Each assessment brief specifies exactly which AI use is permitted for that task.</li>
+<li><strong>Disclosure:</strong> Required where AI use is permitted.</li>
+<li><strong>Enforcement:</strong> Use beyond stated permissions treated as misconduct.</li>
+<li><strong>Strengths:</strong> Flexible; allows AI use in authentic contexts; pedagogically intentional.</li>
+<li><strong>Weaknesses:</strong> Confusing across modules; extra burden on lecturers to specify clearly.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Your analysis</label>
+<textarea class="resource-field" rows="2" placeholder="I think this approach works / fails because... A student at this university would..."></textarea></div>
+<div class="resource-template-section"><h5>Cross-Policy Observations</h5>
+<textarea class="resource-field" rows="3" placeholder="Common elements across all three: ... / The biggest gap I noticed: ... / The approach I would recommend for our school: ..."></textarea></div>
+<div class="resource-template-section"><h5>Design Principles for Your Own Policy</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Based on your analysis, list 3 principles that should underpin any school AI policy.</p>
+<textarea class="resource-field" rows="3" placeholder="1. Any school AI policy should... because...\n2. ...\n3. ..."></textarea></div>`,
+
+  r7: `<h4>Presentation Assessment Rubric</h4>
+<p>Assessors use this rubric to evaluate capstone presentations. Each criterion is scored 1–4.</p>
+<div class="resource-template-section"><h5>Criterion 1: Project Understanding</h5>
+<ul>
+<li><strong>4 — Excellent:</strong> Demonstrates deep understanding of all aspects; handles complex questions fluently.</li>
+<li><strong>3 — Good:</strong> Clear understanding of the project; answers most questions confidently.</li>
+<li><strong>2 — Developing:</strong> Basic understanding evident; some gaps when probed.</li>
+<li><strong>1 — Beginning:</strong> Limited understanding; struggles to explain key decisions.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Score &amp; Evidence</label>
+<input class="resource-field" placeholder="Score: _/4 — Notes: ..."></div>
+<div class="resource-template-section"><h5>Criterion 2: Ethical Analysis</h5>
+<ul>
+<li><strong>4 — Excellent:</strong> Proactively identifies ethical tensions; nuanced discussion of trade-offs.</li>
+<li><strong>3 — Good:</strong> Addresses main ethical considerations with reasonable depth.</li>
+<li><strong>2 — Developing:</strong> Mentions ethics but analysis is surface-level.</li>
+<li><strong>1 — Beginning:</strong> Ethical considerations absent or only mentioned when prompted.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Score &amp; Evidence</label>
+<input class="resource-field" placeholder="Score: _/4 — Notes: ..."></div>
+<div class="resource-template-section"><h5>Criterion 3: Communication &amp; Clarity</h5>
+<ul>
+<li><strong>4 — Excellent:</strong> Articulate, well-paced, engages the audience; technical concepts made accessible.</li>
+<li><strong>3 — Good:</strong> Clear delivery; mostly accessible language; good structure.</li>
+<li><strong>2 — Developing:</strong> Understandable but some jargon or pacing issues.</li>
+<li><strong>1 — Beginning:</strong> Difficult to follow; relies heavily on notes or slides.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Score &amp; Evidence</label>
+<input class="resource-field" placeholder="Score: _/4 — Notes: ..."></div>
+<div class="resource-template-section"><h5>Criterion 4: Technical Quality</h5>
+<ul>
+<li><strong>4 — Excellent:</strong> Polished, functional demo; thoughtful design decisions explained.</li>
+<li><strong>3 — Good:</strong> Working demo with minor issues; key decisions justified.</li>
+<li><strong>2 — Developing:</strong> Partial demo or prototype; some decisions unexplained.</li>
+<li><strong>1 — Beginning:</strong> Demo not functional; limited evidence of technical work.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Score &amp; Evidence</label>
+<input class="resource-field" placeholder="Score: _/4 — Notes: ..."></div>
+<div class="resource-template-section"><h5>Criterion 5: Reflection &amp; Growth</h5>
+<ul>
+<li><strong>4 — Excellent:</strong> Insightful reflection; honest about challenges; clear sense of learning.</li>
+<li><strong>3 — Good:</strong> Genuine reflection; identifies what they would do differently.</li>
+<li><strong>2 — Developing:</strong> Some reflection but mostly descriptive rather than analytical.</li>
+<li><strong>1 — Beginning:</strong> Little evidence of reflection; challenges not acknowledged.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Score &amp; Evidence</label>
+<input class="resource-field" placeholder="Score: _/4 — Notes: ..."></div>
+<div class="resource-template-section"><h5>Overall Score &amp; Summary Feedback</h5>
+<input class="resource-field" placeholder="Total: _/20">
+<textarea class="resource-field" rows="3" placeholder="Strengths: ...\nAreas for development: ...\nStand-out moment: ..."></textarea></div>`,
 };
 
 /* ── Lesson Slide Content ──────────────────────── */
