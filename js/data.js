@@ -158,6 +158,116 @@ const RESOURCE_CONTENT = {
 <label style="font-size:.8rem;color:var(--text-muted);margin-top:8px;display:block">Format</label><input class="resource-field" placeholder="As a table / In 3 paragraphs...">
 <label style="font-size:.8rem;color:var(--text-muted);margin-top:8px;display:block">Constraints</label><input class="resource-field" placeholder="Max 200 words / Year 12 reading level...">
 </div>`,
+
+  r2: `<h4>Pitch Deck Structure Guide</h4>
+<p>A great pitch deck tells a story. Follow this structure to build yours slide by slide.</p>
+<ol style="line-height:1.8">
+<li><strong>Title Slide</strong> — Project name, your name, date and one-line tagline.</li>
+<li><strong>The Problem</strong> — What pain point or gap does your project address? Use data or a story.</li>
+<li><strong>Your Solution</strong> — How does your project solve this? Keep it clear and visual.</li>
+<li><strong>Demo / How It Works</strong> — Show, don't tell. Screenshots, flows or a live demo.</li>
+<li><strong>Technical Approach</strong> — Key technologies, AI models and architecture decisions.</li>
+<li><strong>Ethical Considerations</strong> — How you addressed bias, privacy and transparency.</li>
+<li><strong>Impact & Results</strong> — What did you achieve? Metrics, user feedback, test results.</li>
+<li><strong>Reflections & Lessons Learned</strong> — What went well? What would you change?</li>
+<li><strong>Next Steps</strong> — Where could this project go next?</li>
+<li><strong>Q&A</strong> — Prepare 3 likely questions and your answers.</li>
+</ol>
+<div class="resource-template-section"><h5>Your Tagline</h5><input class="resource-field" placeholder="One sentence that captures your project..."></div>
+<div class="resource-template-section"><h5>Key Message</h5><textarea class="resource-field" rows="3" placeholder="What is the single most important thing the audience should remember?"></textarea></div>`,
+
+  r3: `<h4>Prompt Iteration Log</h4>
+<p>Track how your prompts evolve. Each iteration should aim to improve output quality.</p>
+<div class="resource-template-section"><h5>Prompt Goal</h5><input class="resource-field" placeholder="What are you trying to get the AI to produce?"></div>
+<div class="resource-template-section">
+<h5>Version 1</h5>
+<textarea class="resource-field" rows="3" placeholder="Paste your first prompt attempt..."></textarea>
+<label style="font-size:.8rem;color:var(--text-muted);margin-top:6px;display:block">Output Quality (1-5):</label>
+<input class="resource-field" placeholder="Rate 1-5 and note what was wrong...">
+</div>
+<div class="resource-template-section">
+<h5>Version 2</h5>
+<textarea class="resource-field" rows="3" placeholder="Paste your revised prompt..."></textarea>
+<label style="font-size:.8rem;color:var(--text-muted);margin-top:6px;display:block">What did you change and why?</label>
+<input class="resource-field" placeholder="e.g. Added persona, tightened constraints...">
+<label style="font-size:.8rem;color:var(--text-muted);margin-top:6px;display:block">Output Quality (1-5):</label>
+<input class="resource-field" placeholder="Rate 1-5 and note improvements...">
+</div>
+<div class="resource-template-section">
+<h5>Version 3</h5>
+<textarea class="resource-field" rows="3" placeholder="Paste your final refined prompt..."></textarea>
+<label style="font-size:.8rem;color:var(--text-muted);margin-top:6px;display:block">What did you change and why?</label>
+<input class="resource-field" placeholder="e.g. Changed format, added examples...">
+<label style="font-size:.8rem;color:var(--text-muted);margin-top:6px;display:block">Output Quality (1-5):</label>
+<input class="resource-field" placeholder="Rate 1-5 and note improvements...">
+</div>
+<div class="resource-template-section"><h5>Key Takeaway</h5><textarea class="resource-field" rows="2" placeholder="What is the most important lesson from this iteration cycle?"></textarea></div>`,
+
+  r4: `<h4>Reflective Essay Guide</h4>
+<p>Use this framework to write a structured, meaningful reflective essay on your AI learning journey.</p>
+<div style="background:rgba(99,102,241,.08);border-radius:10px;padding:16px;margin:12px 0">
+<h5 style="margin:0 0 8px 0">Suggested Structure</h5>
+<ol style="line-height:1.8;margin:0">
+<li><strong>Introduction</strong> — Set the scene. What was your starting point with AI?</li>
+<li><strong>Description</strong> — What key experiences or activities shaped your understanding?</li>
+<li><strong>Analysis</strong> — Why were those moments significant? What did they reveal?</li>
+<li><strong>Evaluation</strong> — What went well? What challenged you? How did your views change?</li>
+<li><strong>Action Plan</strong> — How will you apply what you have learned going forward?</li>
+</ol>
+</div>
+<h5>Reflective Prompts</h5>
+<ul>
+<li>What surprised you most about working with AI?</li>
+<li>How did your understanding of AI ethics evolve?</li>
+<li>What was your biggest challenge, and how did you overcome it?</li>
+<li>How has this course changed the way you think about technology?</li>
+<li>What skills have you developed that will serve you beyond this course?</li>
+</ul>
+<div class="resource-template-section"><h5>Draft Your Opening Paragraph</h5><textarea class="resource-field" rows="5" placeholder="Before this course, I thought AI was... Now I understand that..."></textarea></div>`,
+
+  r5: `<h4>Skills Audit</h4>
+<p>Rate yourself honestly on each skill area. Use this at the start and end of the course to track growth.</p>
+<table style="width:100%;border-collapse:collapse;font-size:.88rem">
+<thead><tr style="border-bottom:2px solid var(--border)">
+<th style="text-align:left;padding:8px">Skill Area</th>
+<th style="text-align:center;padding:8px">Beginner</th>
+<th style="text-align:center;padding:8px">Developing</th>
+<th style="text-align:center;padding:8px">Competent</th>
+<th style="text-align:center;padding:8px">Advanced</th>
+</tr></thead>
+<tbody>
+<tr style="border-bottom:1px solid var(--border)"><td style="padding:8px"><strong>Prompt Engineering</strong></td><td style="text-align:center"><input type="radio" name="s1"></td><td style="text-align:center"><input type="radio" name="s1"></td><td style="text-align:center"><input type="radio" name="s1"></td><td style="text-align:center"><input type="radio" name="s1"></td></tr>
+<tr style="border-bottom:1px solid var(--border)"><td style="padding:8px"><strong>Critical Evaluation of AI Output</strong></td><td style="text-align:center"><input type="radio" name="s2"></td><td style="text-align:center"><input type="radio" name="s2"></td><td style="text-align:center"><input type="radio" name="s2"></td><td style="text-align:center"><input type="radio" name="s2"></td></tr>
+<tr style="border-bottom:1px solid var(--border)"><td style="padding:8px"><strong>AI Ethics & Responsibility</strong></td><td style="text-align:center"><input type="radio" name="s3"></td><td style="text-align:center"><input type="radio" name="s3"></td><td style="text-align:center"><input type="radio" name="s3"></td><td style="text-align:center"><input type="radio" name="s3"></td></tr>
+<tr style="border-bottom:1px solid var(--border)"><td style="padding:8px"><strong>Research & Analysis</strong></td><td style="text-align:center"><input type="radio" name="s4"></td><td style="text-align:center"><input type="radio" name="s4"></td><td style="text-align:center"><input type="radio" name="s4"></td><td style="text-align:center"><input type="radio" name="s4"></td></tr>
+<tr style="border-bottom:1px solid var(--border)"><td style="padding:8px"><strong>Project Planning</strong></td><td style="text-align:center"><input type="radio" name="s5"></td><td style="text-align:center"><input type="radio" name="s5"></td><td style="text-align:center"><input type="radio" name="s5"></td><td style="text-align:center"><input type="radio" name="s5"></td></tr>
+<tr style="border-bottom:1px solid var(--border)"><td style="padding:8px"><strong>Presentation & Communication</strong></td><td style="text-align:center"><input type="radio" name="s6"></td><td style="text-align:center"><input type="radio" name="s6"></td><td style="text-align:center"><input type="radio" name="s6"></td><td style="text-align:center"><input type="radio" name="s6"></td></tr>
+<tr style="border-bottom:1px solid var(--border)"><td style="padding:8px"><strong>Collaboration & Peer Review</strong></td><td style="text-align:center"><input type="radio" name="s7"></td><td style="text-align:center"><input type="radio" name="s7"></td><td style="text-align:center"><input type="radio" name="s7"></td><td style="text-align:center"><input type="radio" name="s7"></td></tr>
+<tr><td style="padding:8px"><strong>Reflective Practice</strong></td><td style="text-align:center"><input type="radio" name="s8"></td><td style="text-align:center"><input type="radio" name="s8"></td><td style="text-align:center"><input type="radio" name="s8"></td><td style="text-align:center"><input type="radio" name="s8"></td></tr>
+</tbody></table>
+<div class="resource-template-section" style="margin-top:16px"><h5>Strengths</h5><textarea class="resource-field" rows="2" placeholder="Which skills are you most confident in?"></textarea></div>
+<div class="resource-template-section"><h5>Development Priorities</h5><textarea class="resource-field" rows="2" placeholder="Which 2-3 skills do you most want to improve?"></textarea></div>`,
+
+  r7: `<h4>Presentation Assessment Rubric</h4>
+<p>Use this rubric to assess capstone presentations. Rate each criterion 1-4.</p>
+<table style="width:100%;border-collapse:collapse;font-size:.85rem">
+<thead><tr style="border-bottom:2px solid var(--border)">
+<th style="text-align:left;padding:8px">Criterion</th>
+<th style="text-align:center;padding:8px;min-width:60px">1<br><span style="font-weight:400;font-size:.75rem">Limited</span></th>
+<th style="text-align:center;padding:8px;min-width:60px">2<br><span style="font-weight:400;font-size:.75rem">Developing</span></th>
+<th style="text-align:center;padding:8px;min-width:60px">3<br><span style="font-weight:400;font-size:.75rem">Good</span></th>
+<th style="text-align:center;padding:8px;min-width:60px">4<br><span style="font-weight:400;font-size:.75rem">Excellent</span></th>
+</tr></thead>
+<tbody>
+<tr style="border-bottom:1px solid var(--border)"><td style="padding:8px"><strong>Problem Definition</strong><br><span style="font-size:.78rem;color:var(--text-dim)">Clarity of problem statement and context</span></td><td style="text-align:center"><input type="radio" name="c1"></td><td style="text-align:center"><input type="radio" name="c1"></td><td style="text-align:center"><input type="radio" name="c1"></td><td style="text-align:center"><input type="radio" name="c1"></td></tr>
+<tr style="border-bottom:1px solid var(--border)"><td style="padding:8px"><strong>Technical Quality</strong><br><span style="font-size:.78rem;color:var(--text-dim)">Appropriate use of AI, sound architecture</span></td><td style="text-align:center"><input type="radio" name="c2"></td><td style="text-align:center"><input type="radio" name="c2"></td><td style="text-align:center"><input type="radio" name="c2"></td><td style="text-align:center"><input type="radio" name="c2"></td></tr>
+<tr style="border-bottom:1px solid var(--border)"><td style="padding:8px"><strong>Ethical Awareness</strong><br><span style="font-size:.78rem;color:var(--text-dim)">Evidence of ethical thinking and safeguards</span></td><td style="text-align:center"><input type="radio" name="c3"></td><td style="text-align:center"><input type="radio" name="c3"></td><td style="text-align:center"><input type="radio" name="c3"></td><td style="text-align:center"><input type="radio" name="c3"></td></tr>
+<tr style="border-bottom:1px solid var(--border)"><td style="padding:8px"><strong>Presentation Delivery</strong><br><span style="font-size:.78rem;color:var(--text-dim)">Confidence, pacing, audience engagement</span></td><td style="text-align:center"><input type="radio" name="c4"></td><td style="text-align:center"><input type="radio" name="c4"></td><td style="text-align:center"><input type="radio" name="c4"></td><td style="text-align:center"><input type="radio" name="c4"></td></tr>
+<tr style="border-bottom:1px solid var(--border)"><td style="padding:8px"><strong>Visual Design</strong><br><span style="font-size:.78rem;color:var(--text-dim)">Slide quality, layout, supporting visuals</span></td><td style="text-align:center"><input type="radio" name="c5"></td><td style="text-align:center"><input type="radio" name="c5"></td><td style="text-align:center"><input type="radio" name="c5"></td><td style="text-align:center"><input type="radio" name="c5"></td></tr>
+<tr><td style="padding:8px"><strong>Q&A Responses</strong><br><span style="font-size:.78rem;color:var(--text-dim)">Depth, composure and accuracy under questioning</span></td><td style="text-align:center"><input type="radio" name="c6"></td><td style="text-align:center"><input type="radio" name="c6"></td><td style="text-align:center"><input type="radio" name="c6"></td><td style="text-align:center"><input type="radio" name="c6"></td></tr>
+</tbody></table>
+<div class="resource-template-section" style="margin-top:16px"><h5>Overall Comments</h5><textarea class="resource-field" rows="3" placeholder="What were the main strengths and areas for improvement?"></textarea></div>
+<div class="resource-template-section"><h5>Suggested Grade</h5><input class="resource-field" placeholder="e.g. Merit, Distinction..."></div>`,
 };
 
 /* ── Lesson Slide Content ──────────────────────── */
