@@ -22,6 +22,7 @@
         <a href="#" class="nav-link" data-section="units" onclick="showSection('units')">Units</a>
         <a href="#" class="nav-link" data-section="resources" onclick="showSection('resources')">Resources</a>
         <a href="#" class="nav-link" data-section="progress" onclick="showSection('progress')">My Progress</a>
+        <a href="#" class="nav-link" data-section="glossary" onclick="showSection('glossary')">Glossary</a>
       </div>
       <div class="nav-search">
         <input type="text" id="searchInput" placeholder="Search lessons..." oninput="handleSearch(this.value)">
@@ -57,7 +58,7 @@
           </div>
         </div>
         <div class="hero-actions">
-          <button class="btn btn-primary" onclick="showSection('units')">Start Learning</button>
+          <button class="btn btn-primary" id="continueBtn" onclick="continueLesson()">Start Learning</button>
           <button class="btn btn-secondary" onclick="showSection('resources')">Browse Resources</button>
         </div>
       </div>
@@ -120,6 +121,7 @@
       <h2>Course Units</h2>
       <p>Click any lesson to expand its details. Track your progress as you go.</p>
     </div>
+    <div id="tagFilters" class="tag-filters"></div>
     <div id="unitsContainer" class="units-container"></div>
   </section>
 
@@ -174,8 +176,21 @@
     </div>
     <div id="progressByUnit" class="progress-by-unit"></div>
     <div class="progress-actions">
+      <button class="btn btn-primary" onclick="exportReflections()">Download My Reflections</button>
       <button class="btn btn-secondary" onclick="resetProgress()">Reset Progress</button>
     </div>
+  </section>
+
+  <!-- Glossary Section -->
+  <section id="section-glossary" class="section">
+    <div class="section-header">
+      <h2>Glossary</h2>
+      <p>Key terms and concepts from across the course. Click any term to expand its definition.</p>
+    </div>
+    <div class="glossary-search">
+      <input type="text" id="glossarySearch" placeholder="Search terms..." oninput="filterGlossary(this.value)">
+    </div>
+    <div id="glossaryList" class="glossary-list"></div>
   </section>
 
   <!-- Lesson Detail Modal -->

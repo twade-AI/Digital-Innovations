@@ -6,6 +6,7 @@ const STREAK_KEY  = 'di_streak';
 /* ── State ─────────────────────────────────────── */
 let completedLessons = loadProgress();
 let currentFilter = 'all';
+let currentTagFilter = null;
 
 /* ── Persistence ───────────────────────────────── */
 function loadProgress() {
@@ -73,11 +74,14 @@ function renderUnits() {
 
 function lessonRow(lesson, unit) {
   const done = completedLessons.has(lesson.id);
+  const slides = getLessonSlides(lesson.id, lesson, unit);
+  const mins = slides.length * 5;
+  const hidden = currentTagFilter && lesson.tags.indexOf(currentTagFilter) === -1;
   return `
-    <div class="lesson-item" data-id="${lesson.id}">
+    <div class="lesson-item${hidden ? ' tag-hidden' : ''}" data-id="${lesson.id}" data-tags="${lesson.tags.join(' ')}">
       <div class="lesson-check ${done ? 'done' : ''}" onclick="event.stopPropagation();toggleLesson(${lesson.id})" title="Mark complete">✓</div>
       <div class="lesson-info" onclick="openLesson(${lesson.id})">
-        <div class="lesson-num">Lesson ${lesson.id}</div>
+        <div class="lesson-num">Lesson ${lesson.id} <span class="lesson-time">~${mins} min</span></div>
         <div class="lesson-title">${lesson.title}</div>
       </div>
       <button class="lesson-expand" onclick="openLesson(${lesson.id})" title="View details">→</button>
@@ -309,6 +313,23 @@ function renderSlide(index) {
     '</div>';
   }
 
+  else if (slide.type === 'quiz') {
+    var optionsHtml = slide.options.map(function(opt, i) {
+      return '<button class="quiz-option" data-idx="' + i + '" onclick="checkQuiz(this,' + slide.correct + ',' + index + ')">' +
+        '<span class="quiz-option-letter">' + String.fromCharCode(65 + i) + '</span>' +
+        '<span class="quiz-option-text">' + opt + '</span>' +
+      '</button>';
+    }).join('');
+    html = '<div class="slide-quiz">' +
+      '<span class="slide-badge badge-quiz">Knowledge Check</span>' +
+      '<div class="slide-title">' + slide.question + '</div>' +
+      '<div class="quiz-options" id="quizOptions">' + optionsHtml + '</div>' +
+      '<div class="quiz-explanation" id="quizExplanation" style="display:none">' +
+        '<strong>Explanation:</strong> ' + slide.explanation +
+      '</div>' +
+    '</div>';
+  }
+
   else if (slide.type === 'summary') {
     var pointsHtml = slide.points.map(function(p) {
       var label = p.label ? '<strong>' + p.label + '</strong> — ' + p.text : '<strong>' + p.text + '</strong>';
@@ -527,6 +548,7 @@ function updateHomeStats() {
   const pct = Math.round((done / total) * 100);
   const el = document.getElementById('progressPercent');
   if (el) el.textContent = pct + '%';
+  updateContinueButton();
 }
 
 function resetProgress() {
@@ -539,11 +561,149 @@ function resetProgress() {
   updateHomeStats();
 }
 
+/* ── Tag Filtering ────────────────────────────── */
+function getUniqueTags() {
+  var tags = {};
+  UNITS.forEach(function(u) { u.lessons.forEach(function(l) {
+    l.tags.forEach(function(t) { tags[t] = (tags[t] || 0) + 1; });
+  }); });
+  return Object.keys(tags).sort().map(function(t) { return { tag: t, count: tags[t] }; });
+}
+
+function renderTagFilters() {
+  var tags = getUniqueTags();
+  var html = '<button class="tag-btn' + (!currentTagFilter ? ' active' : '') + '" onclick="filterByTag(null)">All Lessons</button>';
+  html += tags.map(function(t) {
+    return '<button class="tag-btn' + (currentTagFilter === t.tag ? ' active' : '') + '" data-tag="' + t.tag + '" onclick="filterByTag(\'' + t.tag + '\')">' + t.tag + ' <span class="tag-count">' + t.count + '</span></button>';
+  }).join('');
+  document.getElementById('tagFilters').innerHTML = html;
+}
+
+function filterByTag(tag) {
+  currentTagFilter = tag;
+  renderTagFilters();
+  renderUnits();
+}
+
+/* ── Continue Button ──────────────────────────── */
+function getFirstIncompleteLesson() {
+  for (var i = 0; i < UNITS.length; i++) {
+    for (var j = 0; j < UNITS[i].lessons.length; j++) {
+      if (!completedLessons.has(UNITS[i].lessons[j].id)) return UNITS[i].lessons[j];
+    }
+  }
+  return null;
+}
+
+function continueLesson() {
+  var next = getFirstIncompleteLesson();
+  if (next) { openLesson(next.id); }
+  else { showSection('units'); }
+}
+
+function updateContinueButton() {
+  var btn = document.getElementById('continueBtn');
+  if (!btn) return;
+  var total = UNITS.reduce(function(s, u) { return s + u.lessons.length; }, 0);
+  if (completedLessons.size === 0) {
+    btn.textContent = 'Start Learning';
+  } else if (completedLessons.size >= total) {
+    btn.textContent = 'All Complete — Review';
+  } else {
+    var next = getFirstIncompleteLesson();
+    btn.textContent = 'Continue: Lesson ' + next.id + ' — ' + next.title;
+  }
+}
+
+/* ── Reflection Export ────────────────────────── */
+function exportReflections() {
+  var lines = ['Digital Innovations — My Reflections', '='.repeat(45), ''];
+  var count = 0;
+  UNITS.forEach(function(u) {
+    u.lessons.forEach(function(l) {
+      var slides = getLessonSlides(l.id, l, u);
+      var lessonNotes = [];
+      slides.forEach(function(slide, idx) {
+        var text = loadReflection(l.id, idx);
+        if (text && text.trim()) lessonNotes.push(text.trim());
+      });
+      if (lessonNotes.length > 0) {
+        count++;
+        lines.push('Lesson ' + l.id + ': ' + l.title);
+        lines.push('Unit ' + (u.id + 1) + ': ' + u.title);
+        lines.push('-'.repeat(35));
+        lessonNotes.forEach(function(n) { lines.push(n); lines.push(''); });
+        lines.push('');
+      }
+    });
+  });
+  if (count === 0) {
+    alert('No reflections saved yet. Write some notes in the discussion slides first!');
+    return;
+  }
+  lines.push('---');
+  lines.push('Exported ' + count + ' lesson reflections on ' + new Date().toLocaleDateString());
+  var blob = new Blob([lines.join('\n')], { type: 'text/plain' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'digital-innovations-reflections.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+}
+
+/* ── Quiz Logic ───────────────────────────────── */
+function checkQuiz(btn, correctIdx, slideIdx) {
+  var container = document.getElementById('quizOptions');
+  if (container.classList.contains('quiz-answered')) return;
+  container.classList.add('quiz-answered');
+  var chosen = parseInt(btn.dataset.idx);
+  var buttons = container.querySelectorAll('.quiz-option');
+  buttons.forEach(function(b) {
+    var idx = parseInt(b.dataset.idx);
+    if (idx === correctIdx) b.classList.add('quiz-correct');
+    if (idx === chosen && chosen !== correctIdx) b.classList.add('quiz-wrong');
+  });
+  document.getElementById('quizExplanation').style.display = 'block';
+}
+
+/* ── Glossary ─────────────────────────────────── */
+function renderGlossary(filter) {
+  if (typeof GLOSSARY === 'undefined') return;
+  var q = (filter || '').toLowerCase();
+  var items = q ? GLOSSARY.filter(function(g) {
+    return g.term.toLowerCase().indexOf(q) !== -1 || g.definition.toLowerCase().indexOf(q) !== -1;
+  }) : GLOSSARY;
+  var html = items.map(function(g) {
+    var lessonLinks = (g.lessons || []).map(function(lid) {
+      var found = findLesson(lid);
+      return found ? '<span class="glossary-lesson-link" onclick="showSection(\'units\');setTimeout(function(){openLesson(' + lid + ')},150)">L' + lid + '</span>' : '';
+    }).join(' ');
+    return '<div class="glossary-item" onclick="this.classList.toggle(\'open\')">' +
+      '<div class="glossary-term">' +
+        '<span class="glossary-term-text">' + g.term + '</span>' +
+        '<span class="glossary-toggle">+</span>' +
+      '</div>' +
+      '<div class="glossary-body">' +
+        '<p>' + g.definition + '</p>' +
+        (lessonLinks ? '<div class="glossary-lessons">Used in: ' + lessonLinks + '</div>' : '') +
+      '</div>' +
+    '</div>';
+  }).join('');
+  document.getElementById('glossaryList').innerHTML = html || '<p style="color:var(--text-dim);text-align:center;padding:32px">No matching terms found.</p>';
+}
+
+function filterGlossary(query) { renderGlossary(query); }
+
 /* ── Init ──────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   renderUnits();
   renderResources('all');
+  renderTagFilters();
+  renderGlossary();
   updateHomeStats();
+  updateContinueButton();
 });
 
 // Keyboard shortcuts: Escape closes modal, arrows navigate slides
