@@ -265,6 +265,147 @@ const RESOURCE_CONTENT = {
 <div class="resource-template-section"><h5>Priority Development Areas</h5>
 <textarea class="resource-field" rows="3" placeholder="Based on my ratings, the 3 areas I most want to develop are... I will work on these by..."></textarea></div>`,
 
+  r8: `<h4>Peer Review Feedback Form</h4>
+<p>Give honest, specific, constructive feedback. Vague praise ("it was good") does not help your peer improve.</p>
+<div class="resource-template-section"><h5>Project Reviewed</h5>
+<label style="font-size:.8rem;color:var(--text-muted)">Peer's name &amp; project title</label>
+<input class="resource-field" placeholder="Name: ... | Project: ..."></div>
+<div class="resource-template-section"><h5>What Works Well</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Identify 2–3 specific strengths. Be concrete — point to actual features, decisions or moments.</p>
+<textarea class="resource-field" rows="4" placeholder="1. I was impressed by... because...\n2. The decision to... was effective because...\n3. The way you handled... showed..."></textarea></div>
+<div class="resource-template-section"><h5>Areas for Improvement</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Identify 2–3 areas. Frame as "I wonder if..." or "Have you considered...?" — not "this is wrong".</p>
+<textarea class="resource-field" rows="4" placeholder="1. I wonder if... could be improved by...\n2. Have you considered... ? It might help with...\n3. One thing that confused me was... — could you clarify...?"></textarea></div>
+<div class="resource-template-section"><h5>Ethical Considerations</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Identify any ethical risks you noticed that the creator may have missed.</p>
+<textarea class="resource-field" rows="3" placeholder="A potential risk I noticed: ... / Have you thought about the impact on... / The data handling approach might raise concerns around..."></textarea></div>
+<div class="resource-template-section"><h5>One Priority Action</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">If your peer could only do one thing before their presentation, what should it be?</p>
+<textarea class="resource-field" rows="2" placeholder="The single most important thing to do next is..."></textarea></div>
+<div class="resource-template-section"><h5>Overall Impression</h5>
+<input class="resource-field" placeholder="Overall quality rating: Excellent / Good / Developing / Beginning"></div>`,
+
+  r10: `<h4>AI Policy Drafting Template</h4>
+<p>Use this template to draft a formal AI acceptable use policy. Use clear, precise language — avoid ambiguity.</p>
+<div class="resource-template-section"><h5>1. Policy Title &amp; Scope</h5>
+<textarea class="resource-field" rows="2" placeholder="Title: AI Acceptable Use Policy — [Institution Name]\nScope: This policy applies to all students, staff and visitors who use AI tools in..."></textarea></div>
+<div class="resource-template-section"><h5>2. Definitions</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Define key terms to prevent ambiguity. What counts as an "AI tool"? What is "AI-generated content"?</p>
+<textarea class="resource-field" rows="4" placeholder="For the purposes of this policy:\n&quot;AI tool&quot; means any software that uses machine learning to generate, summarise, translate or transform content, including but not limited to...\n&quot;AI-generated content&quot; means any text, image, code or data produced by..."></textarea></div>
+<div class="resource-template-section"><h5>3. Permitted Uses</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">List what is explicitly allowed.</p>
+<textarea class="resource-field" rows="4" placeholder="AI tools may be used for:\n• Generating initial ideas or outlines, provided...\n• Checking grammar and clarity, provided...\n• Research assistance, provided outputs are..."></textarea></div>
+<div class="resource-template-section"><h5>4. Prohibited Uses</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">List what is explicitly forbidden.</p>
+<textarea class="resource-field" rows="4" placeholder="AI tools may not be used to:\n• Submit AI-generated work as entirely one's own without...\n• Process sensitive personal data without...\n• Circumvent assessment integrity by..."></textarea></div>
+<div class="resource-template-section"><h5>5. Disclosure Requirements</h5>
+<textarea class="resource-field" rows="3" placeholder="Users must disclose AI use by... The required disclosure format is... Failure to disclose will result in..."></textarea></div>
+<div class="resource-template-section"><h5>6. Enforcement &amp; Consequences</h5>
+<textarea class="resource-field" rows="3" placeholder="Breaches of this policy will be handled under... Consequences range from... to... Appeals may be made via..."></textarea></div>
+<div class="resource-template-section"><h5>7. Review Date</h5>
+<input class="resource-field" placeholder="This policy will be reviewed on: ... | Policy owner: ... | Version: ..."></div>`,
+
+  r11: `<h4>AI Manifesto Template</h4>
+<p>A manifesto is a public declaration of your beliefs and intentions. Your AI manifesto captures how you will think, work and live alongside AI — honestly and thoughtfully.</p>
+<ul>
+<li><strong>Be specific:</strong> "I believe AI should..." is stronger than "AI is important".</li>
+<li><strong>Be personal:</strong> Ground principles in your own experience from this course.</li>
+<li><strong>Be honest:</strong> Include tensions and things you are still uncertain about.</li>
+</ul>
+<div class="resource-template-section"><h5>Opening Statement</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Who are you and what is your relationship with AI? (2–3 sentences)</p>
+<textarea class="resource-field" rows="3" placeholder="I am... I have spent [time] learning about AI and I have come to believe that..."></textarea></div>
+<div class="resource-template-section"><h5>What I Believe About AI</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">State 3–5 core beliefs. Start each with "I believe..."</p>
+<textarea class="resource-field" rows="5" placeholder="I believe AI is a tool, not a replacement for human judgement, because...\nI believe transparency in AI systems is essential because...\nI believe..."></textarea></div>
+<div class="resource-template-section"><h5>How I Will Use AI</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Describe your personal principles for AI use — in education, work and life.</p>
+<textarea class="resource-field" rows="4" placeholder="I will use AI to augment my thinking, not replace it. Specifically, I will...\nI will not use AI for... because...\nI will always disclose when..."></textarea></div>
+<div class="resource-template-section"><h5>What I Will Advocate For</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">What changes do you want to see in how AI is developed, governed or used?</p>
+<textarea class="resource-field" rows="3" placeholder="I will advocate for... / I will speak up when I see... / I will support organisations that..."></textarea></div>
+<div class="resource-template-section"><h5>My Uncertainties</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">What questions about AI do you still not have clear answers to? Intellectual honesty strengthens a manifesto.</p>
+<textarea class="resource-field" rows="3" placeholder="I am still uncertain about... / A question I keep returning to is... / I have not fully resolved the tension between..."></textarea></div>
+<div class="resource-template-section"><h5>Closing Commitment</h5>
+<textarea class="resource-field" rows="2" placeholder="In short, I commit to... because the future of AI depends on people who..."></textarea></div>`,
+
+  r12: `<h4>Regulation Jigsaw Cards</h4>
+<p>Each card covers a different regulatory approach. In the jigsaw activity, you become an expert on one region, then teach the others. Use the spaces below to take notes as you research.</p>
+<div class="resource-template-section"><h5>Card A — EU AI Act (2024)</h5>
+<ul>
+<li><strong>Approach:</strong> Risk-based regulation — AI systems classified as Unacceptable, High, Limited or Minimal risk.</li>
+<li><strong>Key features:</strong> Banned uses include social scoring and real-time facial recognition in public. High-risk AI (hiring, credit, education) faces strict requirements: transparency, human oversight, data governance.</li>
+<li><strong>Enforcement:</strong> Fines up to €35 million or 7% of global turnover.</li>
+<li><strong>Criticism:</strong> May stifle innovation; complex compliance burden for SMEs.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Your expert notes</label>
+<textarea class="resource-field" rows="2" placeholder="Key point to teach others: ... / My view: ..."></textarea></div>
+<div class="resource-template-section"><h5>Card B — United States (Sector-by-Sector)</h5>
+<ul>
+<li><strong>Approach:</strong> No comprehensive federal AI law (as of 2024). Relies on existing sector regulation (FDA for medical AI, FTC for consumer protection) plus voluntary commitments.</li>
+<li><strong>Key features:</strong> Executive Order on AI (Oct 2023) required safety testing for frontier models. NIST AI Risk Management Framework is voluntary.</li>
+<li><strong>Criticism:</strong> Fragmented; tech companies largely self-regulate; creates regulatory gaps.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Your expert notes</label>
+<textarea class="resource-field" rows="2" placeholder="Key point to teach others: ... / My view: ..."></textarea></div>
+<div class="resource-template-section"><h5>Card C — United Kingdom (Pro-Innovation)</h5>
+<ul>
+<li><strong>Approach:</strong> Principles-based, sector-led regulation. Existing regulators (ICO, FCA, Ofcom) apply AI principles within their domains rather than a single AI law.</li>
+<li><strong>Key features:</strong> Five principles: safety, transparency, fairness, accountability, contestability. AI Safety Institute established 2023 for frontier model evaluation.</li>
+<li><strong>Criticism:</strong> May leave gaps between sectors; slower to respond to novel harms.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Your expert notes</label>
+<textarea class="resource-field" rows="2" placeholder="Key point to teach others: ... / My view: ..."></textarea></div>
+<div class="resource-template-section"><h5>Card D — China (State-Directed)</h5>
+<ul>
+<li><strong>Approach:</strong> Comprehensive government control. Regulations on algorithmic recommendations (2022), deepfakes (2022) and generative AI (2023) require state approval and content alignment.</li>
+<li><strong>Key features:</strong> Generative AI services must reflect "core socialist values". Data localisation requirements. State actively funds and directs AI development.</li>
+<li><strong>Criticism:</strong> Prioritises control over rights; limited independent oversight.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Your expert notes</label>
+<textarea class="resource-field" rows="2" placeholder="Key point to teach others: ... / My view: ..."></textarea></div>
+<div class="resource-template-section"><h5>Comparison: Key Debate Questions</h5>
+<textarea class="resource-field" rows="3" placeholder="Which approach best balances innovation and safety? Which approach best protects citizens? Is global coordination possible? Why or why not?"></textarea></div>`,
+
+  r13: `<h4>University AI Policy Comparison</h4>
+<p>Review how leading universities approach AI use by students. Use this to identify patterns, gaps and best practices for your own policy drafting.</p>
+<div class="resource-template-section"><h5>Policy A — Conservative Approach</h5>
+<ul>
+<li><strong>Stance:</strong> AI use is prohibited in assessed work unless explicitly stated otherwise.</li>
+<li><strong>Disclosure:</strong> Not required (use is banned).</li>
+<li><strong>Enforcement:</strong> AI-generated text treated as academic misconduct; same penalties as plagiarism.</li>
+<li><strong>Strengths:</strong> Clear, simple to understand and enforce.</li>
+<li><strong>Weaknesses:</strong> Does not prepare students for AI-integrated workplaces; hard to enforce reliably.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Your analysis</label>
+<textarea class="resource-field" rows="2" placeholder="I think this approach works / fails because... A student at this university would..."></textarea></div>
+<div class="resource-template-section"><h5>Policy B — Permissive with Disclosure</h5>
+<ul>
+<li><strong>Stance:</strong> AI use is permitted; students must declare it with a standardised statement.</li>
+<li><strong>Disclosure:</strong> Mandatory declaration specifying which tools used and how.</li>
+<li><strong>Enforcement:</strong> Failure to disclose = misconduct; content itself is not penalised.</li>
+<li><strong>Strengths:</strong> Builds AI literacy; mirrors professional norms; transparent.</li>
+<li><strong>Weaknesses:</strong> Risk of over-reliance; assessment validity questions; unequal AI tool access.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Your analysis</label>
+<textarea class="resource-field" rows="2" placeholder="I think this approach works / fails because... A student at this university would..."></textarea></div>
+<div class="resource-template-section"><h5>Policy C — Task-by-Task Specification</h5>
+<ul>
+<li><strong>Stance:</strong> Each assessment brief specifies exactly which AI use is permitted for that task.</li>
+<li><strong>Disclosure:</strong> Required where AI use is permitted.</li>
+<li><strong>Enforcement:</strong> Use beyond stated permissions treated as misconduct.</li>
+<li><strong>Strengths:</strong> Flexible; allows AI use in authentic contexts; pedagogically intentional.</li>
+<li><strong>Weaknesses:</strong> Confusing across modules; extra burden on lecturers to specify clearly.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Your analysis</label>
+<textarea class="resource-field" rows="2" placeholder="I think this approach works / fails because... A student at this university would..."></textarea></div>
+<div class="resource-template-section"><h5>Cross-Policy Observations</h5>
+<textarea class="resource-field" rows="3" placeholder="Common elements across all three: ... / The biggest gap I noticed: ... / The approach I would recommend for our school: ..."></textarea></div>
+<div class="resource-template-section"><h5>Design Principles for Your Own Policy</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Based on your analysis, list 3 principles that should underpin any school AI policy.</p>
+<textarea class="resource-field" rows="3" placeholder="1. Any school AI policy should... because...\n2. ...\n3. ..."></textarea></div>`,
+
   r7: `<h4>Presentation Assessment Rubric</h4>
 <p>Assessors use this rubric to evaluate capstone presentations. Each criterion is scored 1–4.</p>
 <div class="resource-template-section"><h5>Criterion 1: Project Understanding</h5>
