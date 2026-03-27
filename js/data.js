@@ -265,6 +265,202 @@ const RESOURCE_CONTENT = {
 <div class="resource-template-section"><h5>Priority Development Areas</h5>
 <textarea class="resource-field" rows="3" placeholder="Based on my ratings, the 3 areas I most want to develop are... I will work on these by..."></textarea></div>`,
 
+  r14: `<h4>Copyright Debate Brief</h4>
+<p>This debate asks: <em>"AI-generated creative works should receive the same copyright protection as human-created works."</em> Use the role cards below to prepare your position.</p>
+<div class="resource-template-section"><h5>Background: The Legal Landscape</h5>
+<ul>
+<li>Current UK and US copyright law requires a human author — AI alone cannot hold copyright.</li>
+<li>The US Copyright Office has ruled that purely AI-generated images are not copyrightable (Thaler v. Vidal, 2023).</li>
+<li>The EU AI Act requires transparency labelling for AI-generated content but does not resolve ownership.</li>
+<li>Key tension: if AI outputs cannot be copyrighted, who profits — or who is protected?</li>
+</ul></div>
+<div class="resource-template-section"><h5>Role Card A — Technology Companies</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">You represent a major AI company. Argue FOR copyright protection of AI outputs.</p>
+<ul>
+<li>Investment argument: Companies invest billions training models — without protection, there is no incentive.</li>
+<li>Practical argument: Clear ownership enables licensing, commerce and legal certainty.</li>
+<li>Human involvement argument: Humans design the prompt, select the output, curate the result — this is authorship.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Your additional arguments / rebuttal preparation</label>
+<textarea class="resource-field" rows="2" placeholder="Counter to 'AI can't be creative': ... / Response to 'this undercuts human artists': ..."></textarea></div>
+<div class="resource-template-section"><h5>Role Card B — Human Artists &amp; Creators</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">You represent an artists' union. Argue AGAINST copyright protection of AI outputs.</p>
+<ul>
+<li>Creativity argument: Copyright exists to reward human creativity — AI does not create, it recombines.</li>
+<li>Training data argument: AI is trained on copyrighted human work without consent or compensation.</li>
+<li>Economic argument: If AI outputs are copyrightable, human artists face unfair competition from automated production.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Your additional arguments / rebuttal preparation</label>
+<textarea class="resource-field" rows="2" placeholder="Counter to 'humans are involved in prompting': ... / Response to 'innovation needs incentives': ..."></textarea></div>
+<div class="resource-template-section"><h5>Role Card C — Legal Scholars (Neutral)</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">You analyse the arguments from a legal and philosophical perspective. Identify the strongest points on both sides.</p>
+<textarea class="resource-field" rows="3" placeholder="The strongest argument FOR is... because...\nThe strongest argument AGAINST is... because...\nThe key legal question that needs resolving is..."></textarea></div>
+<div class="resource-template-section"><h5>Your Vote &amp; Reasoning</h5>
+<textarea class="resource-field" rows="2" placeholder="After the debate, my position is... because the most persuasive point was..."></textarea></div>`,
+
+  r15: `<h4>Surveillance Debate Pack</h4>
+<p>This debate asks: <em>"The benefits of facial recognition technology in public spaces outweigh the risks to civil liberties."</em></p>
+<div class="resource-template-section"><h5>Key Evidence — FOR (Benefits)</h5>
+<ul>
+<li><strong>Crime reduction:</strong> London's Metropolitan Police reported a 70% reduction in wanted persons evading detection using live facial recognition at targeted events (2023).</li>
+<li><strong>Missing persons:</strong> Chinese authorities located thousands of missing children using facial recognition between 2018–2022.</li>
+<li><strong>Counter-terrorism:</strong> Several airports have used facial recognition to flag individuals on watchlists, preventing travel document fraud.</li>
+<li><strong>Consent argument:</strong> CCTV cameras are already ubiquitous in public spaces — facial recognition is an extension, not a new principle.</li>
+</ul></div>
+<div class="resource-template-section"><h5>Key Evidence — AGAINST (Risks)</h5>
+<ul>
+<li><strong>Accuracy disparities:</strong> NIST studies found error rates up to 100× higher for Black women than white men in some commercial systems.</li>
+<li><strong>Chilling effect:</strong> Research shows people change behaviour — avoiding protests, assemblies — when they know facial recognition is deployed.</li>
+<li><strong>Mission creep:</strong> Technology introduced for counter-terrorism has been used to police minor offences and political dissent in authoritarian states.</li>
+<li><strong>False positives:</strong> Innocents have been wrongly arrested based on facial recognition matches (Robert Williams, Detroit, 2020).</li>
+</ul></div>
+<div class="resource-template-section"><h5>Debate Structure</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Each side gets: Opening statement (2 min) → Rebuttal (1 min) → Questions from floor (2 min) → Closing (1 min)</p>
+<label style="font-size:.8rem;color:var(--text-muted)">Your opening statement (draft it here)</label>
+<textarea class="resource-field" rows="4" placeholder="We [support/oppose] the motion because... Our three key arguments are: 1)... 2)... 3)... Therefore we urge you to vote..."></textarea></div>
+<div class="resource-template-section"><h5>Anticipated Counter-Arguments</h5>
+<textarea class="resource-field" rows="3" placeholder="They will likely argue... Our rebuttal is...\nThey will likely argue... Our rebuttal is..."></textarea></div>
+<div class="resource-template-section"><h5>Post-Debate Reflection</h5>
+<textarea class="resource-field" rows="2" placeholder="The argument that most changed my thinking was... because... My final position is..."></textarea></div>`,
+
+  r16: `<h4>Deepfake Detection Checklist</h4>
+<p>Work through this checklist when evaluating whether an image, video or audio clip might be AI-generated or manipulated. No single signal is definitive — look for patterns.</p>
+<div class="resource-template-section"><h5>Visual — Faces &amp; Skin</h5>
+<ul>
+<li>Unnatural blurring or smoothing around the hairline or ears</li>
+<li>Inconsistent skin texture — too perfect or oddly waxy</li>
+<li>Asymmetry in facial features (eyes, ears) that looks digital rather than natural</li>
+<li>Jewellery, glasses or accessories that flicker, warp or disappear between frames</li>
+<li>Teeth that look blurred, missing or strangely perfect</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Signals spotted in the media you are analysing</label>
+<textarea class="resource-field" rows="2" placeholder="I noticed... at [timestamp / location in image]..."></textarea></div>
+<div class="resource-template-section"><h5>Visual — Eyes &amp; Lighting</h5>
+<ul>
+<li>Gaze direction inconsistent — eyes not following natural movement patterns</li>
+<li>Blinking rate abnormal (too frequent, too rare, or mechanical)</li>
+<li>Lighting on the face inconsistent with background lighting direction</li>
+<li>Reflections in eyes that do not match the environment</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Signals spotted</label>
+<textarea class="resource-field" rows="2" placeholder="I noticed..."></textarea></div>
+<div class="resource-template-section"><h5>Audio Signals</h5>
+<ul>
+<li>Unnatural cadence — speech rhythm that sounds flat or metronomic</li>
+<li>Breathing sounds absent or inserted artificially</li>
+<li>Background audio inconsistent with claimed location</li>
+<li>Voice tone or accent inconsistencies mid-clip</li>
+<li>Lip-sync mismatch — mouth movements do not perfectly match audio</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Signals spotted</label>
+<textarea class="resource-field" rows="2" placeholder="I noticed..."></textarea></div>
+<div class="resource-template-section"><h5>Context &amp; Source Signals</h5>
+<ul>
+<li>Source is anonymous, recently created, or has no track record</li>
+<li>Content is emotionally charged and designed to provoke an immediate reaction</li>
+<li>The person depicted has not commented on or denied the content</li>
+<li>Metadata has been stripped or shows editing software</li>
+<li>No other verified sources show the same event</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Signals spotted</label>
+<textarea class="resource-field" rows="2" placeholder="I noticed..."></textarea></div>
+<div class="resource-template-section"><h5>Verification Tools to Use</h5>
+<ul>
+<li><strong>Reverse image search:</strong> Google Images, TinEye — find original source</li>
+<li><strong>Video analysis:</strong> InVID / WeVerify browser extension</li>
+<li><strong>AI detection:</strong> Hive Moderation, Illuminarty (use as one signal, not proof)</li>
+<li><strong>Metadata:</strong> Jeffrey's Exif Viewer</li>
+</ul></div>
+<div class="resource-template-section"><h5>Verdict</h5>
+<input class="resource-field" placeholder="Confidence this is a deepfake: Low / Medium / High — Key reason: ..."></div>`,
+
+  r18: `<h4>AI Environmental Impact Factsheet</h4>
+<p>Training and running AI models has measurable environmental costs. These figures provide a basis for evidence-based discussion.</p>
+<div class="resource-template-section"><h5>Training Costs — Large Language Models</h5>
+<ul>
+<li><strong>GPT-3 (2020):</strong> Estimated 552 tonnes of CO₂ equivalent emitted during training — roughly equivalent to 120 return flights from London to New York.</li>
+<li><strong>GPT-4 (2023):</strong> OpenAI has not disclosed training emissions; estimates range from 5× to 50× GPT-3 based on compute estimates.</li>
+<li><strong>BLOOM (open-source, 2022):</strong> 25 tonnes CO₂e — significantly lower due to use of low-carbon French nuclear grid electricity.</li>
+<li><strong>Key insight:</strong> Where you train matters as much as how much you train — grid carbon intensity varies from ~30gCO₂/kWh (Norway, hydro) to ~700gCO₂/kWh (coal-heavy grids).</li>
+</ul></div>
+<div class="resource-template-section"><h5>Inference Costs — Running AI at Scale</h5>
+<ul>
+<li>A single ChatGPT query uses approximately 10× the energy of a standard Google search.</li>
+<li>With ~100 million daily ChatGPT users (2024), daily inference energy is estimated at 500+ MWh.</li>
+<li>Microsoft reported a 29% increase in water consumption (2022–2023), partly attributed to AI data centre cooling.</li>
+<li>Google reported a 48% increase in greenhouse gas emissions between 2019 and 2023, citing AI infrastructure growth.</li>
+</ul></div>
+<div class="resource-template-section"><h5>Water &amp; Hardware Costs</h5>
+<ul>
+<li>Training a large model can consume 700,000 litres of fresh water for data centre cooling.</li>
+<li>AI chips (GPUs, TPUs) require rare earth metals; mining creates localised environmental degradation.</li>
+<li>Hardware refresh cycles of 3–5 years generate significant e-waste.</li>
+</ul></div>
+<div class="resource-template-section"><h5>Mitigation Strategies</h5>
+<ul>
+<li><strong>Efficient architectures:</strong> Smaller models (e.g. distillation, quantisation) can match performance at a fraction of the compute.</li>
+<li><strong>Green data centres:</strong> Running on renewable energy reduces emissions without changing capability.</li>
+<li><strong>Temporal shifting:</strong> Scheduling training during periods of low-carbon grid supply.</li>
+<li><strong>Model reuse:</strong> Fine-tuning existing models rather than training from scratch.</li>
+</ul></div>
+<div class="resource-template-section"><h5>Discussion Questions</h5>
+<textarea class="resource-field" rows="3" placeholder="Should AI companies be required to publish emissions data? / Is there a personal responsibility to use AI less? / How do we weigh AI's benefits against its environmental costs?"></textarea></div>
+<div class="resource-template-section"><h5>Your Capstone Project — Environmental Estimate</h5>
+<textarea class="resource-field" rows="2" placeholder="The AI tools my project uses likely consume... My project's footprint could be reduced by..."></textarea></div>`,
+
+  r19: `<h4>Viva Voce Question Bank</h4>
+<p>Prepare for your viva by practising these questions. Your examiner will probe your understanding, not just your memory. Think out loud — reasoning matters as much as answers.</p>
+<div class="resource-template-section"><h5>Section 1: Your Capstone Project</h5>
+<ul>
+<li>In one sentence, what problem does your project solve and for whom?</li>
+<li>Walk me through the most important technical decision you made and why you made it.</li>
+<li>What would you do differently if you started the project again tomorrow?</li>
+<li>How did you test that your project actually works? What did testing reveal?</li>
+<li>If a non-technical person used your project, what would confuse them most?</li>
+<li>How does your project handle edge cases or unexpected inputs?</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Practice answer — choose one question above</label>
+<textarea class="resource-field" rows="3" placeholder="Question chosen: ... / My answer: ..."></textarea></div>
+<div class="resource-template-section"><h5>Section 2: Ethics &amp; Responsibility</h5>
+<ul>
+<li>What is the most significant ethical risk in your project and how did you mitigate it?</li>
+<li>Could your project cause harm to any group of people, directly or indirectly?</li>
+<li>Who should be accountable if your system produces a harmful output?</li>
+<li>Is it possible your training data or prompts contain bias? How would you know?</li>
+<li>Should your project exist? Make the strongest case against it, then respond.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Practice answer — choose one question above</label>
+<textarea class="resource-field" rows="3" placeholder="Question chosen: ... / My answer: ..."></textarea></div>
+<div class="resource-template-section"><h5>Section 3: AI Concepts</h5>
+<ul>
+<li>Explain how the AI tools you used actually work — at the level of someone who knows the basics.</li>
+<li>What is a token? Why does it matter for your project?</li>
+<li>What does "hallucination" mean in the context of LLMs? Did it affect your project?</li>
+<li>What is the difference between a model and a system? Which did you build?</li>
+<li>If the AI model your project uses is updated or deprecated, what happens to your project?</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Practice answer — choose one question above</label>
+<textarea class="resource-field" rows="3" placeholder="Question chosen: ... / My answer: ..."></textarea></div>
+<div class="resource-template-section"><h5>Section 4: Reflection &amp; Growth</h5>
+<ul>
+<li>What single thing you learned on this course most changed how you think?</li>
+<li>Describe a moment when you were wrong about something related to AI. What changed your mind?</li>
+<li>How has your view of AI's potential — and its risks — changed since the start of the course?</li>
+<li>What skill from this course will be most useful to you in five years?</li>
+<li>What would you tell a student starting this course next year?</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Practice answer — choose one question above</label>
+<textarea class="resource-field" rows="3" placeholder="Question chosen: ... / My answer: ..."></textarea></div>
+<div class="resource-template-section"><h5>Section 5: Policy &amp; Society</h5>
+<ul>
+<li>Should AI tools like the ones you used be available to all students, or should access be restricted?</li>
+<li>Which global AI regulation approach (EU, US, UK, China) do you find most convincing and why?</li>
+<li>If you were advising your school's leadership on AI policy, what one rule would you insist on?</li>
+<li>What jobs or roles do you think AI will not replace in the next 20 years, and why?</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Practice answer — choose one question above</label>
+<textarea class="resource-field" rows="3" placeholder="Question chosen: ... / My answer: ..."></textarea></div>`,
+
   r8: `<h4>Peer Review Feedback Form</h4>
 <p>Give honest, specific, constructive feedback. Vague praise ("it was good") does not help your peer improve.</p>
 <div class="resource-template-section"><h5>Project Reviewed</h5>
