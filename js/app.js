@@ -254,6 +254,20 @@ function renderSlide(index) {
     '</div>';
   }
 
+  else if (slide.type === 'video') {
+    html = '<div class="slide-video">' +
+      '<span class="slide-badge badge-video">Video</span>' +
+      '<div class="slide-title">' + slide.title + '</div>' +
+      '<div class="concept-body">' + slide.intro + '</div>' +
+      '<div class="video-wrapper">' +
+        '<iframe src="https://www.youtube-nocookie.com/embed/' + slide.videoId + '?rel=0" ' +
+          'frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ' +
+          'allowfullscreen></iframe>' +
+      '</div>' +
+      '<div class="video-credit">' + slide.credit + '</div>' +
+    '</div>';
+  }
+
   else if (slide.type === 'activity') {
     var stepsHtml = '';
     if (slide.steps && slide.steps.length > 0) {
