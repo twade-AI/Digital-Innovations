@@ -129,6 +129,25 @@ let currentSlideIndex = 0;
 let currentSlides = [];
 let currentLessonId = null;
 
+var UNIT_COLOURS = ['#4F8EF7','#9B59B6','#E74C3C','#F39C12','#2ECC71','#1ABC9C'];
+
+function getNextLessonId(currentId) {
+  var allLessons = [];
+  UNITS.forEach(function(u) { u.lessons.forEach(function(l) { allLessons.push(l.id); }); });
+  var idx = allLessons.indexOf(currentId);
+  return idx >= 0 && idx < allLessons.length - 1 ? allLessons[idx + 1] : null;
+}
+
+function saveReflection(lessonId, slideIdx, text) {
+  var key = 'di_reflection_' + lessonId + '_' + slideIdx;
+  localStorage.setItem(key, text);
+}
+
+function loadReflection(lessonId, slideIdx) {
+  var key = 'di_reflection_' + lessonId + '_' + slideIdx;
+  return localStorage.getItem(key) || '';
+}
+
 function getLessonSlides(id, lesson, unit) {
   // Try curated slides first, then fallback to generated
   var all = Object.assign({}, (typeof SLIDES_U1U2 !== 'undefined' ? SLIDES_U1U2 : {}),
@@ -166,12 +185,15 @@ function openLesson(id) {
 
   var modal = document.getElementById('lessonModal');
   modal.classList.add('modal--lesson');
+  var unitColour = UNIT_COLOURS[unit.id] || '#4F8EF7';
+  var doneClass = completedLessons.has(id) ? ' lv-lesson-done' : '';
 
   document.getElementById('modalBody').innerHTML =
-    '<div class="lv-header">' +
+    '<div class="lv-header' + doneClass + '" data-colour="' + unitColour + '" style="--unit-colour:' + unitColour + '">' +
       '<div class="lv-meta">' +
         '<span class="lv-unit-label">Unit ' + (unit.id + 1) + ': ' + unit.title + '</span>' +
         '<span class="lv-slide-count">Slide <span id="lvSlideNum">1</span> of ' + slides.length + '</span>' +
+        '<button class="lv-print-btn" onclick="window.print()" title="Print lesson">&#128424;</button>' +
       '</div>' +
       '<div class="lv-progress-track">' +
         '<div class="lv-progress-fill" id="lvProgressFill" style="width:' + (100/slides.length) + '%"></div>' +
@@ -236,9 +258,9 @@ function renderSlide(index) {
     var stepsHtml = '';
     if (slide.steps && slide.steps.length > 0) {
       stepsHtml = '<ol style="list-style:none;counter-reset:step;display:flex;flex-direction:column;gap:10px;margin-top:16px">' +
-        slide.steps.map(function(s) {
+        slide.steps.map(function(s, idx) {
           return '<li style="counter-increment:step;display:flex;align-items:flex-start;gap:12px;font-size:.93rem;color:var(--text-muted);line-height:1.5">' +
-            '<span style="min-width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0">' + '</span>' +
+            '<span style="min-width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0">' + (idx + 1) + '</span>' +
             s +
           '</li>';
         }).join('') +
@@ -267,7 +289,8 @@ function renderSlide(index) {
       '<div class="interactive-wrapper" style="margin-top:24px">' +
         '<div class="interactive-label">&#9998;&#65039; Reflection</div>' +
         '<div class="reflection-prompt">Write your thoughts on the questions above.</div>' +
-        '<textarea class="reflection-textarea" placeholder="Type your reflection here..."></textarea>' +
+        '<div class="reflection-save-bar"><textarea class="reflection-textarea" id="reflectionText" placeholder="Type your reflection here...">' + loadReflection(currentLessonId, index).replace(/</g, '&lt;') + '</textarea>' +
+        '<span class="saved-indicator" id="reflectionSaved" style="display:none">&#10003; Saved</span></div>' +
       '</div>' +
     '</div>';
   }
@@ -292,11 +315,35 @@ function renderSlide(index) {
           (done ? '&#10003; Completed — Undo' : '&#10003; Mark as Complete') +
         '</button>' +
       '</div>' +
+      (function() {
+        var nextId = getNextLessonId(currentLessonId);
+        if (!nextId) return '';
+        var nextFound = findLesson(nextId);
+        if (!nextFound) return '';
+        return '<div class="lv-next-lesson" onclick="closeModal();setTimeout(function(){openLesson(' + nextId + ')},200)">' +
+          '<span style="font-size:.85rem;color:var(--text-dim)">Up next</span>' +
+          '<span style="font-size:1rem;font-weight:600">Lesson ' + nextId + ': ' + nextFound.lesson.title + ' &#8594;</span>' +
+        '</div>';
+      })() +
     '</div>';
   }
 
   area.innerHTML = html;
   area.scrollTop = 0;
+
+  // Wire up reflection auto-save
+  var reflField = document.getElementById('reflectionText');
+  if (reflField) {
+    var saveTimer = null;
+    reflField.addEventListener('input', function() {
+      clearTimeout(saveTimer);
+      var indicator = document.getElementById('reflectionSaved');
+      saveTimer = setTimeout(function() {
+        saveReflection(currentLessonId, index, reflField.value);
+        if (indicator) { indicator.style.display = 'inline'; setTimeout(function() { indicator.style.display = 'none'; }, 1500); }
+      }, 500);
+    });
+  }
 
   // Update footer nav
   document.getElementById('lvSlideNum').textContent = index + 1;
@@ -305,8 +352,14 @@ function renderSlide(index) {
 
   var nextBtn = document.getElementById('lvNext');
   if (index === currentSlides.length - 1) {
-    nextBtn.innerHTML = 'Close';
-    nextBtn.onclick = function() { closeModal(); };
+    var nextLessonId = getNextLessonId(currentLessonId);
+    if (nextLessonId) {
+      nextBtn.innerHTML = 'Next Lesson &#8594;';
+      nextBtn.onclick = function() { closeModal(); setTimeout(function() { openLesson(nextLessonId); }, 200); };
+    } else {
+      nextBtn.innerHTML = 'Close';
+      nextBtn.onclick = function() { closeModal(); };
+    }
   } else {
     nextBtn.innerHTML = 'Next &#8594;';
     nextBtn.onclick = function() { navigateSlide(1); };
@@ -367,17 +420,33 @@ function renderResources(filter) {
 function filterResources(cat) { renderResources(cat); }
 
 function openResource(id) {
-  const r = RESOURCES.find(x => x.id === id);
+  var r = RESOURCES.find(function(x) { return x.id === id; });
   if (!r) return;
-  const content = RESOURCE_CONTENT[r.id] || '';
-  document.getElementById('modalBody').innerHTML = `
-    <span class="rc-type" data-cat="${r.cat}" style="margin-bottom:12px">${r.cat}</span>
-    <h2>${r.title}</h2>
-    <p class="modal-desc">${r.desc}</p>
-    <div class="resource-body">${content || '<p style="color:var(--text-dim)">Full interactive content coming soon.</p>'}</div>
-    <div class="modal-actions">
-      <button class="btn btn-secondary" onclick="closeModal()">Close</button>
-    </div>`;
+  var content = RESOURCE_CONTENT[r.id] || '';
+  var linkedLessons = findLessonsForResource(r.id);
+  var linkedHtml = '';
+  if (linkedLessons.length > 0) {
+    linkedHtml = '<div style="margin-top:16px;margin-bottom:16px">' +
+      '<strong style="font-size:.85rem;color:var(--text-dim)">Used in:</strong> ' +
+      linkedLessons.map(function(lLabel) {
+        var lid = parseInt(lLabel.replace('L',''));
+        var found = findLesson(lid);
+        var title = found ? found.lesson.title : '';
+        return '<span onclick="closeModal();setTimeout(function(){openLesson(' + lid + ')},200)" ' +
+          'style="cursor:pointer;font-size:.8rem;background:rgba(99,102,241,.15);color:var(--primary-light);padding:4px 12px;border-radius:999px;margin:2px;display:inline-block">' +
+          lLabel + (title ? ': ' + title : '') + '</span>';
+      }).join(' ') +
+    '</div>';
+  }
+  document.getElementById('modalBody').innerHTML =
+    '<span class="rc-type" data-cat="' + r.cat + '" style="margin-bottom:12px">' + r.cat + '</span>' +
+    '<h2>' + r.title + '</h2>' +
+    '<p class="modal-desc">' + r.desc + '</p>' +
+    linkedHtml +
+    '<div class="resource-body">' + (content || '<p style="color:var(--text-dim)">Full interactive content coming soon.</p>') + '</div>' +
+    '<div class="modal-actions">' +
+      '<button class="btn btn-secondary" onclick="closeModal()">Close</button>' +
+    '</div>';
   document.getElementById('lessonModal').classList.add('open');
 }
 
