@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+  <a href="#section-home" class="skip-link">Skip to content</a>
   <!-- Navigation -->
-  <nav class="navbar" id="navbar">
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
       <a href="#" class="nav-brand" onclick="showSection('home')">
         <span class="brand-icon">⚡</span>
@@ -25,15 +26,18 @@
         <a href="#" class="nav-link" data-section="glossary" onclick="showSection('glossary')">Glossary</a>
       </div>
       <div class="nav-search">
-        <input type="text" id="searchInput" placeholder="Search lessons..." oninput="handleSearch(this.value)">
+        <input type="text" id="searchInput" placeholder="Search everything..." oninput="handleSearch(this.value)" aria-label="Search lessons, glossary, and resources">
         <div id="searchResults" class="search-results"></div>
       </div>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light/dark mode" title="Toggle theme">
+        <span class="theme-icon" id="themeIcon">☀️</span>
+      </button>
       <button class="mobile-toggle" onclick="toggleMobileNav()" aria-label="Menu">☰</button>
     </div>
   </nav>
 
   <!-- Hero / Home Section -->
-  <section id="section-home" class="section active">
+  <section id="section-home" class="section active" role="main">
     <div class="hero">
       <div class="hero-content">
         <div class="hero-badge">KS5 — Ages 16-18</div>
@@ -174,6 +178,8 @@
         </div>
       </div>
     </div>
+    <div id="quizScoreSection" class="quiz-score-section"></div>
+    <div id="bookmarkedLessons" class="bookmarked-lessons-section"></div>
     <div id="progressByUnit" class="progress-by-unit"></div>
     <div class="progress-actions">
       <button class="btn btn-primary" onclick="exportReflections()">Download My Reflections</button>
@@ -194,7 +200,11 @@
   </section>
 
   <!-- Lesson Detail Modal -->
-  <div id="lessonModal" class="modal" onclick="if(event.target===this)closeModal()">
+  <!-- Confetti Canvas -->
+  <canvas id="confettiCanvas" aria-hidden="true"></canvas>
+
+  <!-- Lesson Detail Modal -->
+  <div id="lessonModal" class="modal" role="dialog" aria-modal="true" aria-label="Lesson viewer" onclick="if(event.target===this)closeModal()">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal()">&times;</button>
       <div id="modalBody"></div>
