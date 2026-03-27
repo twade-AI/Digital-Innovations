@@ -158,6 +158,163 @@ const RESOURCE_CONTENT = {
 <label style="font-size:.8rem;color:var(--text-muted);margin-top:8px;display:block">Format</label><input class="resource-field" placeholder="As a table / In 3 paragraphs...">
 <label style="font-size:.8rem;color:var(--text-muted);margin-top:8px;display:block">Constraints</label><input class="resource-field" placeholder="Max 200 words / Year 12 reading level...">
 </div>`,
+
+  r2: `<h4>Pitch Deck Structure Guide</h4>
+<p>Build your pitch deck slide-by-slide. Each section below maps to one slide in your presentation.</p>
+<div class="resource-template-section"><h5>Slide 1 — Hook / Problem</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Open with a striking statistic, question or story that makes the problem feel real. One sentence max.</p>
+<textarea class="resource-field" rows="2" placeholder="e.g. &quot;Every year, 800,000 students fail to access the mental health support they need...&quot;"></textarea></div>
+<div class="resource-template-section"><h5>Slide 2 — Your Solution</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Describe your project in plain language. What does it do? How does it work?</p>
+<textarea class="resource-field" rows="3" placeholder="Our project is... It works by... The key feature is..."></textarea></div>
+<div class="resource-template-section"><h5>Slide 3 — Target Audience</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Who will use this? Be specific — age, context, needs.</p>
+<textarea class="resource-field" rows="2" placeholder="Primary users: ... Secondary stakeholders: ..."></textarea></div>
+<div class="resource-template-section"><h5>Slide 4 — Demo / Screenshot</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Describe what you will show — a live demo, walkthrough, or key screenshot. Note the 2–3 features to highlight.</p>
+<textarea class="resource-field" rows="3" placeholder="We will demo... The key interactions to show are... We will highlight..."></textarea></div>
+<div class="resource-template-section"><h5>Slide 5 — Ethical Considerations</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">What ethical risks exist and how have you addressed them? Panels expect this.</p>
+<textarea class="resource-field" rows="3" placeholder="Key risks identified: ... Mitigations built in: ... Trade-offs accepted: ..."></textarea></div>
+<div class="resource-template-section"><h5>Slide 6 — What We Learned</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Reflect on the build process. What surprised you? What would you do differently?</p>
+<textarea class="resource-field" rows="3" placeholder="Biggest technical challenge: ... Most important lesson: ... If we had more time: ..."></textarea></div>
+<div class="resource-template-section"><h5>Slide 7 — Q&amp;A Preparation</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Anticipate the three toughest questions you could be asked and draft your answers.</p>
+<textarea class="resource-field" rows="4" placeholder="Q1: ... A: ...\nQ2: ... A: ...\nQ3: ... A: ..."></textarea></div>`,
+
+  r3: `<h4>Prompt Iteration Log</h4>
+<p>Log each version of your prompt here. Tracking iterations helps you understand what works and why.</p>
+<div class="resource-template-section"><h5>Task / Goal</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">What are you trying to get the AI to produce?</p>
+<textarea class="resource-field" rows="2" placeholder="e.g. Write a paragraph explaining neural networks to a Year 9 student..."></textarea></div>
+<div class="resource-template-section"><h5>Iteration 1</h5>
+<label style="font-size:.8rem;color:var(--text-muted)">Prompt used</label>
+<textarea class="resource-field" rows="2" placeholder="Paste your first prompt here..."></textarea>
+<label style="font-size:.8rem;color:var(--text-muted);margin-top:8px;display:block">Output quality (1–5) &amp; notes</label>
+<input class="resource-field" placeholder="Score: _/5 — What was good? What was missing?"></div>
+<div class="resource-template-section"><h5>Iteration 2</h5>
+<label style="font-size:.8rem;color:var(--text-muted)">What you changed and why</label>
+<input class="resource-field" placeholder="I added / removed / changed... because...">
+<label style="font-size:.8rem;color:var(--text-muted);margin-top:8px;display:block">Prompt used</label>
+<textarea class="resource-field" rows="2" placeholder="Paste your revised prompt here..."></textarea>
+<label style="font-size:.8rem;color:var(--text-muted);margin-top:8px;display:block">Output quality (1–5) &amp; notes</label>
+<input class="resource-field" placeholder="Score: _/5 — Improvement? New problems?"></div>
+<div class="resource-template-section"><h5>Iteration 3</h5>
+<label style="font-size:.8rem;color:var(--text-muted)">What you changed and why</label>
+<input class="resource-field" placeholder="I added / removed / changed... because...">
+<label style="font-size:.8rem;color:var(--text-muted);margin-top:8px;display:block">Prompt used</label>
+<textarea class="resource-field" rows="2" placeholder="Paste your revised prompt here..."></textarea>
+<label style="font-size:.8rem;color:var(--text-muted);margin-top:8px;display:block">Output quality (1–5) &amp; notes</label>
+<input class="resource-field" placeholder="Score: _/5 — Improvement? New problems?"></div>
+<div class="resource-template-section"><h5>Final Reflection</h5>
+<textarea class="resource-field" rows="3" placeholder="What made the biggest difference across iterations? What prompt engineering principle did you discover?"></textarea></div>`,
+
+  r4: `<h4>Reflective Essay Guide</h4>
+<p>Use this framework to write a structured reflective essay on your AI learning journey. Aim for 600–900 words.</p>
+<ul>
+<li><strong>Introduction:</strong> Set the scene — where were you when this course began? What did you think AI was?</li>
+<li><strong>Key Turning Point:</strong> Identify the lesson, activity or moment that most changed your thinking.</li>
+<li><strong>Critical Incident:</strong> Describe one specific thing you built, said or did. Use concrete detail.</li>
+<li><strong>Analysis:</strong> Why did this matter? Connect it to wider themes (ethics, society, your future).</li>
+<li><strong>Conclusion:</strong> Where are you now? What will you do differently because of this course?</li>
+</ul>
+<div class="resource-template-section"><h5>Introduction Draft</h5>
+<textarea class="resource-field" rows="4" placeholder="Before this course, I thought AI was... My relationship with AI tools was... I expected this course would..."></textarea></div>
+<div class="resource-template-section"><h5>Key Turning Point</h5>
+<textarea class="resource-field" rows="3" placeholder="The lesson / activity that most changed my thinking was... because..."></textarea></div>
+<div class="resource-template-section"><h5>Critical Incident (What happened?)</h5>
+<textarea class="resource-field" rows="4" placeholder="Describe the specific moment in detail: what you did, what the AI produced, how you felt, what you noticed..."></textarea></div>
+<div class="resource-template-section"><h5>Analysis (Why did it matter?)</h5>
+<textarea class="resource-field" rows="4" placeholder="This matters because... It connects to the wider theme of... In terms of my future..."></textarea></div>
+<div class="resource-template-section"><h5>Conclusion — Your Position Now</h5>
+<textarea class="resource-field" rows="3" placeholder="My view of AI has changed from... to... Going forward, I will... The most important thing I am taking away is..."></textarea></div>
+<div class="resource-template-section"><h5>Useful Sentence Starters</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">This made me realise... / I was surprised to find... / Contrary to my initial assumption... / What struck me most was... / In hindsight... / I now understand that...</p></div>`,
+
+  r5: `<h4>Skills Audit Template</h4>
+<p>Rate yourself honestly in each area using the scale: <strong>1 = Novice</strong> | <strong>2 = Developing</strong> | <strong>3 = Competent</strong> | <strong>4 = Proficient</strong> | <strong>5 = Expert</strong></p>
+<div class="resource-template-section"><h5>AI Literacy Skills</h5>
+<ul>
+<li>Understanding how LLMs work (training, tokens, temperature) — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Identifying AI strengths, limitations and failure modes — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Evaluating AI-generated content critically — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Applying ethical frameworks to AI use — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+</ul></div>
+<div class="resource-template-section"><h5>Prompt Engineering Skills</h5>
+<ul>
+<li>Writing clear, structured prompts (PTFC framework) — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Iterating prompts to improve outputs — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Using AI for research and fact-checking — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Maintaining academic integrity when using AI — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+</ul></div>
+<div class="resource-template-section"><h5>Technical &amp; Project Skills</h5>
+<ul>
+<li>Planning and managing a project (sprints, milestones) — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Building / prototyping an AI-powered tool — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Testing and debugging systematically — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Documenting decisions and trade-offs — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+</ul></div>
+<div class="resource-template-section"><h5>Professional Skills</h5>
+<ul>
+<li>Communicating technical ideas clearly — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Giving and receiving constructive feedback — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Presenting confidently to an audience — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+<li>Adapting to new tools and challenges — Rate: <input class="resource-field" style="width:60px;display:inline" placeholder="1–5"></li>
+</ul></div>
+<div class="resource-template-section"><h5>Priority Development Areas</h5>
+<textarea class="resource-field" rows="3" placeholder="Based on my ratings, the 3 areas I most want to develop are... I will work on these by..."></textarea></div>`,
+
+  r7: `<h4>Presentation Assessment Rubric</h4>
+<p>Assessors use this rubric to evaluate capstone presentations. Each criterion is scored 1–4.</p>
+<div class="resource-template-section"><h5>Criterion 1: Project Understanding</h5>
+<ul>
+<li><strong>4 — Excellent:</strong> Demonstrates deep understanding of all aspects; handles complex questions fluently.</li>
+<li><strong>3 — Good:</strong> Clear understanding of the project; answers most questions confidently.</li>
+<li><strong>2 — Developing:</strong> Basic understanding evident; some gaps when probed.</li>
+<li><strong>1 — Beginning:</strong> Limited understanding; struggles to explain key decisions.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Score &amp; Evidence</label>
+<input class="resource-field" placeholder="Score: _/4 — Notes: ..."></div>
+<div class="resource-template-section"><h5>Criterion 2: Ethical Analysis</h5>
+<ul>
+<li><strong>4 — Excellent:</strong> Proactively identifies ethical tensions; nuanced discussion of trade-offs.</li>
+<li><strong>3 — Good:</strong> Addresses main ethical considerations with reasonable depth.</li>
+<li><strong>2 — Developing:</strong> Mentions ethics but analysis is surface-level.</li>
+<li><strong>1 — Beginning:</strong> Ethical considerations absent or only mentioned when prompted.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Score &amp; Evidence</label>
+<input class="resource-field" placeholder="Score: _/4 — Notes: ..."></div>
+<div class="resource-template-section"><h5>Criterion 3: Communication &amp; Clarity</h5>
+<ul>
+<li><strong>4 — Excellent:</strong> Articulate, well-paced, engages the audience; technical concepts made accessible.</li>
+<li><strong>3 — Good:</strong> Clear delivery; mostly accessible language; good structure.</li>
+<li><strong>2 — Developing:</strong> Understandable but some jargon or pacing issues.</li>
+<li><strong>1 — Beginning:</strong> Difficult to follow; relies heavily on notes or slides.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Score &amp; Evidence</label>
+<input class="resource-field" placeholder="Score: _/4 — Notes: ..."></div>
+<div class="resource-template-section"><h5>Criterion 4: Technical Quality</h5>
+<ul>
+<li><strong>4 — Excellent:</strong> Polished, functional demo; thoughtful design decisions explained.</li>
+<li><strong>3 — Good:</strong> Working demo with minor issues; key decisions justified.</li>
+<li><strong>2 — Developing:</strong> Partial demo or prototype; some decisions unexplained.</li>
+<li><strong>1 — Beginning:</strong> Demo not functional; limited evidence of technical work.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Score &amp; Evidence</label>
+<input class="resource-field" placeholder="Score: _/4 — Notes: ..."></div>
+<div class="resource-template-section"><h5>Criterion 5: Reflection &amp; Growth</h5>
+<ul>
+<li><strong>4 — Excellent:</strong> Insightful reflection; honest about challenges; clear sense of learning.</li>
+<li><strong>3 — Good:</strong> Genuine reflection; identifies what they would do differently.</li>
+<li><strong>2 — Developing:</strong> Some reflection but mostly descriptive rather than analytical.</li>
+<li><strong>1 — Beginning:</strong> Little evidence of reflection; challenges not acknowledged.</li>
+</ul>
+<label style="font-size:.8rem;color:var(--text-muted)">Score &amp; Evidence</label>
+<input class="resource-field" placeholder="Score: _/4 — Notes: ..."></div>
+<div class="resource-template-section"><h5>Overall Score &amp; Summary Feedback</h5>
+<input class="resource-field" placeholder="Total: _/20">
+<textarea class="resource-field" rows="3" placeholder="Strengths: ...\nAreas for development: ...\nStand-out moment: ..."></textarea></div>`,
 };
 
 /* ── Lesson Slide Content ──────────────────────── */
