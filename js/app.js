@@ -90,6 +90,7 @@ function showSection(name) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
   if (name === 'progress') renderProgress();
   if (name === 'map') renderCourseMap();
+  if (name === 'home') { renderRecentlyViewed(); updateTimeEstimate(); }
 }
 
 function toggleMobileNav() {
@@ -129,7 +130,9 @@ function lessonRow(lesson, unit) {
   const done = completedLessons.has(lesson.id);
   const slides = getLessonSlides(lesson.id, lesson, unit);
   const mins = slides.length * 5;
-  const hidden = currentTagFilter && lesson.tags.indexOf(currentTagFilter) === -1;
+  const tagHidden = currentTagFilter && lesson.tags.indexOf(currentTagFilter) === -1;
+  const diffHidden = currentDiffFilter && lesson.difficulty !== currentDiffFilter;
+  const hidden = tagHidden || diffHidden;
   return `
     <div class="lesson-item${hidden ? ' tag-hidden' : ''}" data-id="${lesson.id}" data-tags="${lesson.tags.join(' ')}">
       <div class="lesson-check ${done ? 'done' : ''}" onclick="event.stopPropagation();toggleLesson(${lesson.id})" title="Mark complete">✓</div>
@@ -247,10 +250,18 @@ function openLesson(id) {
   currentLessonId = id;
   currentSlideIndex = 0;
 
+  // Track in recently viewed
+  addToRecentlyViewed(id);
+
   var modal = document.getElementById('lessonModal');
   modal.classList.add('modal--lesson');
   var unitColour = UNIT_COLOURS[unit.id] || '#4F8EF7';
   var doneClass = completedLessons.has(id) ? ' lv-lesson-done' : '';
+
+  // Build slide-type dots
+  var dotsHtml = slides.map(function(s, i) {
+    return '<span class="lv-dot lv-dot-' + s.type + (i === 0 ? ' active' : '') + '" data-idx="' + i + '" onclick="jumpToSlide(' + i + ')" title="' + (s.title || s.question || s.type) + '"></span>';
+  }).join('');
 
   document.getElementById('modalBody').innerHTML =
     '<div class="lv-header' + doneClass + '" data-colour="' + unitColour + '" style="--unit-colour:' + unitColour + '">' +
@@ -263,6 +274,7 @@ function openLesson(id) {
         '<div class="lv-progress-fill" id="lvProgressFill" style="width:' + (100/slides.length) + '%"></div>' +
       '</div>' +
     '</div>' +
+    '<div class="lv-dots" id="lvDots">' + dotsHtml + '</div>' +
     '<div class="lv-slide-area" id="lvSlideArea"></div>' +
     '<div class="lv-footer">' +
       '<button class="btn btn-secondary" id="lvPrev" onclick="navigateSlide(-1)">&#8592; Back</button>' +
@@ -285,9 +297,23 @@ function renderSlide(index) {
   if (slide.type === 'hook') {
     var tagHtml = lesson ? lesson.tags.map(function(t) { return '<span class="modal-tag">' + t + '</span>'; }).join('') : '';
     var diffHtml = (lesson && lesson.difficulty) ? diffBadge(lesson.difficulty) : '';
+    // Prerequisite nudge
+    var prereqHtml = '';
+    if (lesson && lesson.prereqs && lesson.prereqs.length > 0) {
+      var unmet = lesson.prereqs.filter(function(pid) { return !completedLessons.has(pid); });
+      if (unmet.length > 0) {
+        var prereqLinks = unmet.map(function(pid) {
+          var pf = findLesson(pid);
+          return pf ? '<span onclick="closeModal();setTimeout(function(){openLesson(' + pid + ')},200)" style="cursor:pointer;color:var(--primary-light)">Lesson ' + pid + ': ' + pf.lesson.title + '</span>' : '';
+        }).filter(Boolean).join(', ');
+        prereqHtml = '<div style="background:rgba(245,158,11,.08);border-left:3px solid var(--warning);padding:10px 14px;border-radius:6px;margin-bottom:16px;font-size:.85rem;color:var(--text-muted)">' +
+          '💡 <strong>Suggested preparation:</strong> You may find this lesson easier after completing ' + prereqLinks + '.</div>';
+      }
+    }
     html = '<div class="slide-hook">' +
       '<span class="slide-badge badge-hook">Opening</span>' +
       '<div class="slide-title">' + slide.title + (diffHtml ? '<span style="margin-left:8px">' + diffHtml + '</span>' : '') + '</div>' +
+      prereqHtml +
       '<div class="hook-body">' + slide.body + '</div>' +
       '<div class="interactive-wrapper" style="margin-top:24px">' +
         '<div class="interactive-label">&#127991;&#65039; Tags</div>' +
@@ -471,6 +497,24 @@ function renderSlide(index) {
   area.innerHTML = html;
   area.scrollTop = 0;
 
+  // Add "Confused?" flag button
+  var confusedFlagged = isSlideConfused(currentLessonId, index);
+  var confBtn = document.createElement('button');
+  confBtn.id = 'confusedBtn';
+  confBtn.className = 'confused-btn' + (confusedFlagged ? ' flagged' : '');
+  confBtn.title = confusedFlagged ? 'Remove flag' : 'Flag this slide for review';
+  confBtn.innerHTML = confusedFlagged ? '🔖 Flagged' : '? Flag for review';
+  confBtn.onclick = function() { toggleConfused(currentLessonId, index); };
+  area.style.position = 'relative';
+  area.appendChild(confBtn);
+
+  // Inject glossary tooltips
+  injectGlossaryTooltips(area);
+
+  // Update dot active state
+  var dots = document.querySelectorAll('.lv-dot');
+  dots.forEach(function(d, i) { d.classList.toggle('active', parseInt(d.dataset.idx) === index); });
+
   // Wire up reflection auto-save
   var reflField = document.getElementById('reflectionText');
   if (reflField) {
@@ -504,6 +548,12 @@ function renderSlide(index) {
     nextBtn.innerHTML = 'Next &#8594;';
     nextBtn.onclick = function() { navigateSlide(1); };
   }
+}
+
+function jumpToSlide(idx) {
+  if (idx < 0 || idx >= currentSlides.length) return;
+  currentSlideIndex = idx;
+  renderSlide(idx);
 }
 
 function navigateSlide(dir) {
@@ -674,6 +724,8 @@ function renderProgress() {
 
   // Render badges
   renderBadges();
+  // Render confused/flagged slides
+  renderConfusedSection();
   // Render quiz scores
   renderQuizScoreSection();
   // Render bookmarked lessons
@@ -719,6 +771,8 @@ function updateHomeStats() {
   const el = document.getElementById('progressPercent');
   if (el) el.textContent = pct + '%';
   updateContinueButton();
+  updateTimeEstimate();
+  renderRecentlyViewed();
 }
 
 function resetProgress() {
@@ -928,6 +982,54 @@ function checkQuiz(btn, correctIdx, slideIdx) {
   if (currentLessonId) saveQuizScore(currentLessonId, isCorrect);
 }
 
+/* ── Glossary Tooltip Injection ───────────────── */
+function injectGlossaryTooltips(container) {
+  if (typeof GLOSSARY === 'undefined') return;
+  // Only process text nodes inside non-interactive elements
+  var targets = container.querySelectorAll('.concept-body, .hook-body, .slide-title, .scenario-situation, .scenario-question');
+  targets.forEach(function(el) {
+    var html = el.innerHTML;
+    GLOSSARY.forEach(function(g) {
+      var term = g.term;
+      if (term.length < 4) return; // skip very short terms
+      var def = g.definition.replace(/"/g, '&quot;');
+      // Only replace first occurrence, case-sensitive match at word boundary
+      var regex = new RegExp('(?<![\\w\\-])(' + term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')(?![\\w\\-])', 'i');
+      html = html.replace(regex, function(match) {
+        return '<span class="glossary-tip">' + match + '<span class="glossary-tip-popup">' + def + '</span></span>';
+      });
+    });
+    el.innerHTML = html;
+  });
+}
+
+/* ── Unit Certificate ──────────────────────────── */
+function printUnitCertificate(badge) {
+  var earned = loadBadges();
+  var dateStr = earned[badge.id] ? earned[badge.id] : new Date().toISOString().slice(0,10);
+  var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Certificate — ' + badge.name + '</title>' +
+    '<style>body{font-family:Georgia,serif;text-align:center;padding:60px;background:#fff;color:#0f172a}' +
+    '.border{border:6px double #6366f1;padding:40px;display:inline-block;max-width:600px;width:100%}' +
+    '.icon{font-size:4rem;margin-bottom:12px}h1{font-size:1.5rem;color:#6366f1;margin-bottom:4px}' +
+    '.subtitle{font-size:.9rem;color:#64748b;margin-bottom:24px}.name-line{font-size:2rem;font-weight:700;border-bottom:2px solid #6366f1;display:inline-block;padding:0 32px;margin-bottom:20px}' +
+    '.badge-name{font-size:1.4rem;font-weight:700;color:#4f46e5;margin:8px 0}.desc{font-size:.9rem;color:#475569;margin-bottom:24px}' +
+    '.date{font-size:.8rem;color:#94a3b8}.footer{font-size:.75rem;color:#94a3b8;margin-top:32px}' +
+    '@media print{button{display:none}}</style></head><body>' +
+    '<div class="border"><div class="icon">' + badge.icon + '</div>' +
+    '<h1>Digital Innovations</h1><p class="subtitle">KS5 Course Certificate of Achievement</p>' +
+    '<p>This certifies that</p><div class="name-line">Student</div>' +
+    '<p>has earned the badge</p><div class="badge-name">' + badge.name + '</div>' +
+    '<p class="desc">' + badge.desc + '</p>' +
+    '<p class="date">Awarded: ' + dateStr + '</p>' +
+    '<div class="footer">Digital Innovations &bull; KS5 Curriculum</div></div>' +
+    '<br><button onclick="window.print()" style="margin-top:16px;padding:10px 24px;background:#6366f1;color:#fff;border:none;border-radius:8px;font-size:1rem;cursor:pointer">Print Certificate</button>' +
+    '</body></html>';
+  var win = window.open('', '_blank');
+  if (!win) return;
+  win.document.write(html);
+  win.document.close();
+}
+
 /* ── Glossary ─────────────────────────────────── */
 function renderGlossary(filter) {
   if (typeof GLOSSARY === 'undefined') return;
@@ -956,6 +1058,213 @@ function renderGlossary(filter) {
 
 function filterGlossary(query) { renderGlossary(query); }
 
+/* ── Recently Viewed ───────────────────────────── */
+function loadRecentlyViewed() {
+  try { return JSON.parse(localStorage.getItem('di_recent')) || []; }
+  catch(e) { return []; }
+}
+function addToRecentlyViewed(id) {
+  var recent = loadRecentlyViewed().filter(function(x) { return x !== id; });
+  recent.unshift(id);
+  localStorage.setItem('di_recent', JSON.stringify(recent.slice(0, 3)));
+}
+function renderRecentlyViewed() {
+  var recent = loadRecentlyViewed();
+  var el = document.getElementById('recentlyViewedSection');
+  if (!el) return;
+  if (recent.length === 0) { el.style.display = 'none'; return; }
+  var cards = recent.map(function(id) {
+    var found = findLesson(id);
+    if (!found) return '';
+    var done = completedLessons.has(id);
+    return '<div class="rv-card" onclick="openLesson(' + id + ')">' +
+      '<div class="rv-card-num">Lesson ' + id + (done ? ' ✓' : '') + '</div>' +
+      '<div class="rv-card-title">' + found.lesson.title + '</div>' +
+    '</div>';
+  }).filter(Boolean).join('');
+  el.style.display = 'block';
+  el.innerHTML = '<div class="rv-label">Recently Viewed</div><div class="rv-cards">' + cards + '</div>';
+}
+function updateTimeEstimate() {
+  var el = document.getElementById('heroTimeEst');
+  if (!el) return;
+  var remaining = 0;
+  UNITS.forEach(function(u) {
+    u.lessons.forEach(function(l) {
+      if (!completedLessons.has(l.id)) {
+        var slides = getLessonSlides(l.id, l, u);
+        remaining += slides.length;
+      }
+    });
+  });
+  if (remaining === 0) { el.textContent = '🎉 You\'ve completed the entire course!'; return; }
+  var hours = Math.round(remaining * 5 / 60 * 10) / 10;
+  el.textContent = '~' + hours + ' hours remaining (' + remaining + ' slides across ' + (UNITS.reduce(function(s,u){return s+u.lessons.filter(function(l){return !completedLessons.has(l.id);}).length;},0)) + ' lessons)';
+}
+
+/* ── Confused Slides ───────────────────────────── */
+function loadConfused() {
+  try { return JSON.parse(localStorage.getItem('di_confused')) || {}; }
+  catch(e) { return {}; }
+}
+function saveConfused(data) { localStorage.setItem('di_confused', JSON.stringify(data)); }
+function toggleConfused(lessonId, slideIdx) {
+  var confused = loadConfused();
+  var key = lessonId + '_' + slideIdx;
+  if (confused[key]) delete confused[key];
+  else confused[key] = true;
+  saveConfused(confused);
+  // Update button state
+  var btn = document.getElementById('confusedBtn');
+  if (btn) btn.classList.toggle('flagged', !!confused[key]);
+  // Update course map if open
+  var tile = document.querySelector('.cm-lesson[data-id="' + lessonId + '"]');
+  if (tile) tile.classList.toggle('confused', isLessonConfused(lessonId));
+}
+function isLessonConfused(lessonId) {
+  var confused = loadConfused();
+  return Object.keys(confused).some(function(k) { return k.startsWith(lessonId + '_'); });
+}
+function isSlideConfused(lessonId, slideIdx) {
+  var confused = loadConfused();
+  return !!confused[lessonId + '_' + slideIdx];
+}
+function renderConfusedSection() {
+  var el = document.getElementById('confusedSection');
+  if (!el) return;
+  var confused = loadConfused();
+  var keys = Object.keys(confused);
+  if (keys.length === 0) { el.innerHTML = ''; return; }
+  var cards = keys.map(function(k) {
+    var parts = k.split('_');
+    var lid = parseInt(parts[0]), sidx = parseInt(parts[1]);
+    var found = findLesson(lid);
+    if (!found) return '';
+    var slides = getLessonSlides(lid, found.lesson, found.unit);
+    var slide = slides[sidx];
+    var slideLabel = slide ? (slide.type.charAt(0).toUpperCase() + slide.type.slice(1) + ': ' + (slide.title || slide.question || '')) : 'Slide ' + (sidx+1);
+    return '<div class="confused-card" onclick="showSection(\'units\');setTimeout(function(){openLesson(' + lid + ');setTimeout(function(){jumpToSlide(' + sidx + ')},300)},150)">' +
+      '<div><div class="confused-card-title">L' + lid + ': ' + found.lesson.title + '</div>' +
+      '<div class="confused-card-sub">' + slideLabel + '</div></div>' +
+      '<span style="font-size:1.2rem">🔖</span>' +
+    '</div>';
+  }).filter(Boolean).join('');
+  el.innerHTML = '<h3>🔖 Flagged for Review (' + keys.length + ')</h3><div class="confused-grid">' + cards + '</div>';
+}
+
+/* ── Difficulty Filter ─────────────────────────── */
+var currentDiffFilter = null;
+function renderDifficultyFilter() {
+  var el = document.getElementById('diffFilters');
+  if (!el) return;
+  var html = '<span class="diff-filter-label">Difficulty:</span>' +
+    '<button class="diff-chip' + (!currentDiffFilter ? ' active' : '') + '" onclick="filterByDiff(null)">All</button>' +
+    '<button class="diff-chip diff-chip-beginner' + (currentDiffFilter === 'beginner' ? ' active' : '') + '" onclick="filterByDiff(\'beginner\')">Beginner</button>' +
+    '<button class="diff-chip diff-chip-intermediate' + (currentDiffFilter === 'intermediate' ? ' active' : '') + '" onclick="filterByDiff(\'intermediate\')">Intermediate</button>' +
+    '<button class="diff-chip diff-chip-advanced' + (currentDiffFilter === 'advanced' ? ' active' : '') + '" onclick="filterByDiff(\'advanced\')">Advanced</button>';
+  el.innerHTML = html;
+}
+function filterByDiff(diff) {
+  currentDiffFilter = diff;
+  renderDifficultyFilter();
+  renderUnits();
+}
+
+/* ── Quick Quiz ────────────────────────────────── */
+var quickQuizQuestions = [];
+var quickQuizIndex = 0;
+var quickQuizScore = 0;
+
+function startQuickQuiz() {
+  // Gather quiz slides from all (not just completed) lessons — more useful for exam prep
+  quickQuizQuestions = [];
+  UNITS.forEach(function(u) {
+    u.lessons.forEach(function(l) {
+      var slides = getLessonSlides(l.id, l, u);
+      slides.forEach(function(slide) {
+        if (slide.type === 'quiz') {
+          quickQuizQuestions.push({ lessonId: l.id, lessonTitle: l.title, unitTitle: u.title, slide: slide });
+        }
+      });
+    });
+  });
+  // Fisher-Yates shuffle
+  for (var i = quickQuizQuestions.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = quickQuizQuestions[i]; quickQuizQuestions[i] = quickQuizQuestions[j]; quickQuizQuestions[j] = t;
+  }
+  quickQuizIndex = 0;
+  quickQuizScore = 0;
+  renderQuickQuizSlide();
+  document.getElementById('quickQuizModal').classList.add('open');
+}
+
+function renderQuickQuizSlide() {
+  if (quickQuizIndex >= quickQuizQuestions.length) { showQuickQuizResults(); return; }
+  var q = quickQuizQuestions[quickQuizIndex];
+  var slide = q.slide;
+  var optHtml = slide.options.map(function(opt, i) {
+    return '<button class="quiz-option" data-idx="' + i + '" onclick="answerQuickQuiz(this,' + slide.correct + ',' + i + ')">' +
+      '<span class="quiz-option-letter">' + String.fromCharCode(65 + i) + '</span>' +
+      '<span class="quiz-option-text">' + opt + '</span>' +
+    '</button>';
+  }).join('');
+  document.getElementById('qqBody').innerHTML =
+    '<div class="qq-source">Lesson ' + q.lessonId + ': ' + q.lessonTitle + '</div>' +
+    '<div class="qq-question">' + slide.question + '</div>' +
+    '<div class="quiz-options" id="qqOptions">' + optHtml + '</div>' +
+    '<div class="quiz-explanation" id="qqExplanation" style="display:none"><strong>Explanation:</strong> ' + slide.explanation + '</div>' +
+    '<div id="qqNextBtn" style="display:none;margin-top:16px;text-align:right">' +
+      '<button class="btn btn-primary" onclick="nextQuickQuiz()">' +
+        (quickQuizIndex === quickQuizQuestions.length - 1 ? 'See Results' : 'Next →') +
+      '</button></div>';
+  document.getElementById('qqProgress').textContent = (quickQuizIndex + 1) + ' / ' + quickQuizQuestions.length;
+  document.getElementById('qqScore').textContent = 'Score: ' + quickQuizScore + '/' + quickQuizIndex;
+}
+
+function answerQuickQuiz(btn, correctIdx, chosen) {
+  var container = document.getElementById('qqOptions');
+  if (!container || container.classList.contains('quiz-answered')) return;
+  container.classList.add('quiz-answered');
+  if (chosen === correctIdx) quickQuizScore++;
+  container.querySelectorAll('.quiz-option').forEach(function(b) {
+    var idx = parseInt(b.dataset.idx);
+    if (idx === correctIdx) b.classList.add('quiz-correct');
+    if (idx === chosen && chosen !== correctIdx) b.classList.add('quiz-wrong');
+  });
+  document.getElementById('qqExplanation').style.display = 'block';
+  var nb = document.getElementById('qqNextBtn');
+  if (nb) { nb.style.display = 'block'; nb.querySelector('button').textContent = quickQuizIndex === quickQuizQuestions.length - 1 ? 'See Results' : 'Next →'; }
+  document.getElementById('qqScore').textContent = 'Score: ' + quickQuizScore + '/' + (quickQuizIndex + 1);
+}
+
+function nextQuickQuiz() {
+  quickQuizIndex++;
+  renderQuickQuizSlide();
+}
+
+function showQuickQuizResults() {
+  var pct = Math.round(quickQuizScore / quickQuizQuestions.length * 100);
+  var msg = pct >= 80 ? '🏆 Excellent!' : pct >= 60 ? '👍 Good work' : '📚 Keep revising';
+  document.getElementById('qqBody').innerHTML =
+    '<div style="text-align:center;padding:32px 16px">' +
+      '<div style="font-size:3rem;margin-bottom:12px">' + (pct >= 80 ? '🏆' : pct >= 60 ? '✅' : '📖') + '</div>' +
+      '<div style="font-size:1.8rem;font-weight:800;color:var(--primary)">' + quickQuizScore + ' / ' + quickQuizQuestions.length + '</div>' +
+      '<div style="font-size:1rem;margin:8px 0;color:var(--text)">' + msg + '</div>' +
+      '<div style="color:var(--text-dim);font-size:.9rem;margin-bottom:28px">' + pct + '% correct</div>' +
+      '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">' +
+        '<button class="btn btn-primary" onclick="startQuickQuiz()">New Random Quiz</button>' +
+        '<button class="btn btn-secondary" onclick="closeQuickQuiz()">Close</button>' +
+      '</div>' +
+    '</div>';
+  document.getElementById('qqProgress').textContent = 'Complete!';
+  document.getElementById('qqScore').textContent = 'Final: ' + quickQuizScore + '/' + quickQuizQuestions.length;
+}
+
+function closeQuickQuiz() {
+  document.getElementById('quickQuizModal').classList.remove('open');
+}
+
 /* ── Course Map ────────────────────────────────── */
 function renderCourseMap() {
   var container = document.getElementById('courseMapContainer');
@@ -964,7 +1273,8 @@ function renderCourseMap() {
     var pct = unitProgressPct(unit);
     var tiles = unit.lessons.map(function(l) {
       var done = completedLessons.has(l.id);
-      return '<div class="cm-lesson' + (done ? ' done' : '') + '" onclick="showSection(\'units\');setTimeout(function(){openLesson(' + l.id + ')},150)" title="' + l.title + '">' +
+      var confused = isLessonConfused(l.id);
+      return '<div class="cm-lesson' + (done ? ' done' : '') + (confused ? ' confused' : '') + '" data-id="' + l.id + '" onclick="showSection(\'units\');setTimeout(function(){openLesson(' + l.id + ')},150)" title="' + l.title + '">' +
         '<div class="cm-lesson-num">Lesson ' + l.id + '</div>' +
         '<div class="cm-lesson-title">' + l.title + '</div>' +
         '<div class="cm-lesson-diff">' + diffBadge(l.difficulty) + '</div>' +
@@ -1036,12 +1346,15 @@ function checkAndAwardBadges() {
 function showBadgeToast(badge) {
   var toast = document.createElement('div');
   toast.className = 'badge-toast';
+  var badgeRef = JSON.stringify(badge).replace(/"/g, '&quot;');
   toast.innerHTML = '<span class="badge-toast-icon">' + badge.icon + '</span>' +
     '<div><div class="badge-toast-title">Badge Unlocked!</div>' +
-    '<div class="badge-toast-name">' + badge.name + '</div></div>';
+    '<div class="badge-toast-name">' + badge.name + '</div>' +
+    '<span class="badge-toast-cert" onclick="printUnitCertificate(' + badgeRef + ')">🖨 Print Certificate</span>' +
+    '</div>';
   document.body.appendChild(toast);
   setTimeout(function() { toast.classList.add('show'); }, 50);
-  setTimeout(function() { toast.classList.remove('show'); setTimeout(function() { toast.remove(); }, 400); }, 3500);
+  setTimeout(function() { toast.classList.remove('show'); setTimeout(function() { toast.remove(); }, 400); }, 5000);
 }
 
 function renderBadges() {
@@ -1160,9 +1473,12 @@ document.addEventListener('DOMContentLoaded', () => {
   renderUnits();
   renderResources('all');
   renderTagFilters();
+  renderDifficultyFilter();
   renderGlossary();
   updateHomeStats();
   updateContinueButton();
+  renderRecentlyViewed();
+  updateTimeEstimate();
 });
 
 // Keyboard shortcuts: Escape closes modal, arrows navigate slides

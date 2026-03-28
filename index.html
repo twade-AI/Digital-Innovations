@@ -25,6 +25,7 @@
         <a href="#" class="nav-link" data-section="progress" onclick="showSection('progress')">My Progress</a>
         <a href="#" class="nav-link" data-section="map" onclick="showSection('map')">Course Map</a>
         <a href="#" class="nav-link" data-section="glossary" onclick="showSection('glossary')">Glossary</a>
+        <a href="#" class="nav-link nav-link-quiz" onclick="startQuickQuiz()" title="Quick Quiz — test yourself on completed lessons">⚡ Quiz Me</a>
       </div>
       <div class="nav-search">
         <input type="text" id="searchInput" placeholder="Search everything..." oninput="handleSearch(this.value)" aria-label="Search lessons, glossary, and resources">
@@ -66,6 +67,7 @@
           <button class="btn btn-primary" id="continueBtn" onclick="continueLesson()">Start Learning</button>
           <button class="btn btn-secondary" onclick="showSection('resources')">Browse Resources</button>
         </div>
+        <div id="heroTimeEst" style="margin-top:12px;font-size:.82rem;color:var(--text-dim)"></div>
       </div>
       <div class="hero-visual">
         <div class="orbit-ring">
@@ -78,6 +80,9 @@
         </div>
       </div>
     </div>
+
+    <!-- Recently Viewed -->
+    <div id="recentlyViewedSection" class="recently-viewed" style="display:none"></div>
 
     <!-- Course Overview Cards -->
     <div class="overview-grid">
@@ -127,6 +132,7 @@
       <p>Click any lesson to expand its details. Track your progress as you go.</p>
     </div>
     <div id="tagFilters" class="tag-filters"></div>
+    <div id="diffFilters" class="diff-filters"></div>
     <div id="unitsContainer" class="units-container"></div>
   </section>
 
@@ -189,6 +195,7 @@
       </div>
     </div>
     <div id="badgesSection" class="badges-section"></div>
+    <div id="confusedSection" class="confused-section"></div>
     <div id="quizScoreSection" class="quiz-score-section"></div>
     <div id="bookmarkedLessons" class="bookmarked-lessons-section"></div>
     <div id="progressByUnit" class="progress-by-unit"></div>
@@ -213,6 +220,20 @@
 
   <!-- Lesson Detail Modal -->
   <!-- Confetti Canvas -->
+  <!-- Quick Quiz Modal -->
+  <div id="quickQuizModal" class="modal qq-modal" role="dialog" aria-modal="true" aria-label="Quick Quiz" onclick="if(event.target===this)closeQuickQuiz()">
+    <div class="qq-inner">
+      <div class="qq-header">
+        <div>
+          <div class="qq-title">⚡ Quick Quiz</div>
+          <div class="qq-meta"><span id="qqProgress">1 / ?</span> &bull; <span id="qqScore">Score: 0/0</span></div>
+        </div>
+        <button class="modal-close" onclick="closeQuickQuiz()" aria-label="Close quiz">&times;</button>
+      </div>
+      <div id="qqBody" class="qq-body"></div>
+    </div>
+  </div>
+
   <canvas id="confettiCanvas" aria-hidden="true"></canvas>
 
   <!-- Lesson Detail Modal -->
