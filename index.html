@@ -23,6 +23,7 @@
         <a href="#" class="nav-link" data-section="units" onclick="showSection('units')">Units</a>
         <a href="#" class="nav-link" data-section="resources" onclick="showSection('resources')">Resources</a>
         <a href="#" class="nav-link" data-section="progress" onclick="showSection('progress')">My Progress</a>
+        <a href="#" class="nav-link" data-section="map" onclick="showSection('map')">Course Map</a>
         <a href="#" class="nav-link" data-section="glossary" onclick="showSection('glossary')">Glossary</a>
       </div>
       <div class="nav-search">
@@ -129,6 +130,15 @@
     <div id="unitsContainer" class="units-container"></div>
   </section>
 
+  <!-- Course Map Section -->
+  <section id="section-map" class="section">
+    <div class="section-header">
+      <h2>Course Map</h2>
+      <p>All 44 lessons at a glance — click any tile to open it. Completed lessons show a ✓.</p>
+    </div>
+    <div id="courseMapContainer" class="course-map"></div>
+  </section>
+
   <!-- Resources Section -->
   <section id="section-resources" class="section">
     <div class="section-header">
@@ -178,11 +188,13 @@
         </div>
       </div>
     </div>
+    <div id="badgesSection" class="badges-section"></div>
     <div id="quizScoreSection" class="quiz-score-section"></div>
     <div id="bookmarkedLessons" class="bookmarked-lessons-section"></div>
     <div id="progressByUnit" class="progress-by-unit"></div>
     <div class="progress-actions">
-      <button class="btn btn-primary" onclick="exportReflections()">Download My Reflections</button>
+      <button class="btn btn-primary" onclick="exportFullProgressPDF()">Export Full Report (PDF)</button>
+      <button class="btn btn-secondary" onclick="exportReflections()">Download Reflections (.txt)</button>
       <button class="btn btn-secondary" onclick="resetProgress()">Reset Progress</button>
     </div>
   </section>

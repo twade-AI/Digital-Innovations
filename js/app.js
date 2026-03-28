@@ -89,6 +89,7 @@ function showSection(name) {
   document.querySelector('.nav-links')?.classList.remove('open');
   window.scrollTo({ top: 0, behavior: 'smooth' });
   if (name === 'progress') renderProgress();
+  if (name === 'map') renderCourseMap();
 }
 
 function toggleMobileNav() {
@@ -118,6 +119,12 @@ function renderUnits() {
   `).join('');
 }
 
+function diffBadge(d) {
+  if (!d) return '';
+  var labels = {beginner:'Beginner', intermediate:'Intermediate', advanced:'Advanced'};
+  return '<span class="diff-badge diff-' + d + '">' + (labels[d] || d) + '</span>';
+}
+
 function lessonRow(lesson, unit) {
   const done = completedLessons.has(lesson.id);
   const slides = getLessonSlides(lesson.id, lesson, unit);
@@ -127,7 +134,7 @@ function lessonRow(lesson, unit) {
     <div class="lesson-item${hidden ? ' tag-hidden' : ''}" data-id="${lesson.id}" data-tags="${lesson.tags.join(' ')}">
       <div class="lesson-check ${done ? 'done' : ''}" onclick="event.stopPropagation();toggleLesson(${lesson.id})" title="Mark complete">✓</div>
       <div class="lesson-info" onclick="openLesson(${lesson.id})">
-        <div class="lesson-num">Lesson ${lesson.id} <span class="lesson-time">~${mins} min</span></div>
+        <div class="lesson-num">Lesson ${lesson.id} <span class="lesson-time">~${mins} min</span>${diffBadge(lesson.difficulty)}</div>
         <div class="lesson-title">${lesson.title}</div>
       </div>
       <button class="bookmark-btn${bookmarkedLessons.has(lesson.id) ? ' bookmarked' : ''}" onclick="event.stopPropagation();toggleBookmark(${lesson.id})" title="${bookmarkedLessons.has(lesson.id) ? 'Remove bookmark' : 'Bookmark'}" aria-label="Bookmark lesson">${bookmarkedLessons.has(lesson.id) ? '★' : '☆'}</button>
@@ -170,8 +177,11 @@ function toggleLesson(id) {
   saveProgress();
   renderUnits();
   updateHomeStats();
-  // Confetti on completing a lesson
-  if (!wasComplete) launchConfetti();
+  // Confetti + badge check on completing a lesson
+  if (!wasComplete) {
+    launchConfetti();
+    setTimeout(checkAndAwardBadges, 600);
+  }
 }
 
 function findLesson(id) {
@@ -274,9 +284,10 @@ function renderSlide(index) {
 
   if (slide.type === 'hook') {
     var tagHtml = lesson ? lesson.tags.map(function(t) { return '<span class="modal-tag">' + t + '</span>'; }).join('') : '';
+    var diffHtml = (lesson && lesson.difficulty) ? diffBadge(lesson.difficulty) : '';
     html = '<div class="slide-hook">' +
       '<span class="slide-badge badge-hook">Opening</span>' +
-      '<div class="slide-title">' + slide.title + '</div>' +
+      '<div class="slide-title">' + slide.title + (diffHtml ? '<span style="margin-left:8px">' + diffHtml + '</span>' : '') + '</div>' +
       '<div class="hook-body">' + slide.body + '</div>' +
       '<div class="interactive-wrapper" style="margin-top:24px">' +
         '<div class="interactive-label">&#127991;&#65039; Tags</div>' +
@@ -368,7 +379,7 @@ function renderSlide(index) {
       var esc = c.outcome.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
       return '<div class="scenario-choice" data-outcome="' + esc + '" onclick="revealScenarioOutcome(this)">' +
         '<span class="scenario-choice-letter">' + String.fromCharCode(65 + i) + '</span>' +
-        '<span>' + c.text + '</span>' +
+        '<span class="scenario-choice-text">' + c.text + '</span>' +
       '</div>';
     }).join('');
     html = '<div class="slide-scenario">' +
@@ -376,7 +387,12 @@ function renderSlide(index) {
       '<div class="slide-title">' + slide.title + '</div>' +
       '<div class="scenario-situation">' + slide.situation + '</div>' +
       '<div class="scenario-question">' + slide.question + '</div>' +
-      '<div class="scenario-choices" id="scenarioChoices">' + choicesHtml + '</div>' +
+      '<div class="scenario-choices" id="scenarioChoices"' +
+        ' data-lesson-id="' + currentLessonId + '"' +
+        ' data-slide-idx="' + index + '"' +
+        ' data-choice-count="' + slide.choices.length + '">' +
+        choicesHtml +
+      '</div>' +
       '<div class="scenario-outcome" id="scenarioOutcome" style="display:none"></div>' +
     '</div>';
   }
@@ -388,6 +404,26 @@ function renderSlide(index) {
         '<span class="quiz-option-text">' + opt + '</span>' +
       '</button>';
     }).join('');
+    // Build "Learn More" section from linked resources or slide.learnMore
+    var learnMoreHtml = '';
+    if (slide.learnMore) {
+      learnMoreHtml = '<div id="quizLearnMore" class="quiz-learn-more" style="display:none">' +
+        '<div class="interactive-label">&#128161; Learn More</div>' +
+        '<div style="font-size:.88rem;color:var(--text-muted);margin-top:8px">' + slide.learnMore + '</div>' +
+      '</div>';
+    } else if (lesson && lesson.resources && lesson.resources.length > 0) {
+      var resLinks = lesson.resources.map(function(rid) {
+        var r = RESOURCES.find(function(x) { return x.id === rid; });
+        if (!r) return '';
+        return '<span class="learn-more-link" onclick="closeModal();setTimeout(function(){openResource(\'' + r.id + '\')},200)">' + r.title + ' &#8594;</span>';
+      }).filter(Boolean).join('');
+      if (resLinks) {
+        learnMoreHtml = '<div id="quizLearnMore" class="quiz-learn-more" style="display:none">' +
+          '<div class="interactive-label">&#128218; Dig Deeper</div>' +
+          '<div class="learn-more-links">' + resLinks + '</div>' +
+        '</div>';
+      }
+    }
     html = '<div class="slide-quiz">' +
       '<span class="slide-badge badge-quiz">Knowledge Check</span>' +
       '<div class="slide-title">' + slide.question + '</div>' +
@@ -395,6 +431,7 @@ function renderSlide(index) {
       '<div class="quiz-explanation" id="quizExplanation" style="display:none">' +
         '<strong>Explanation:</strong> ' + slide.explanation +
       '</div>' +
+      learnMoreHtml +
     '</div>';
   }
 
@@ -635,6 +672,8 @@ function renderProgress() {
       </div>`;
   }).join('');
 
+  // Render badges
+  renderBadges();
   // Render quiz scores
   renderQuizScoreSection();
   // Render bookmarked lessons
@@ -750,7 +789,7 @@ function updateContinueButton() {
   }
 }
 
-/* ── Reflection Export ────────────────────────── */
+/* ── Reflection Export (text) ─────────────────── */
 function exportReflections() {
   var lines = ['Digital Innovations — My Reflections', '='.repeat(45), ''];
   var count = 0;
@@ -788,6 +827,86 @@ function exportReflections() {
   URL.revokeObjectURL(a.href);
 }
 
+/* ── Full PDF Export ──────────────────────────── */
+function exportFullProgressPDF() {
+  var total = UNITS.reduce(function(s,u) { return s + u.lessons.length; }, 0);
+  var done = completedLessons.size;
+  var pct = Math.round(done / total * 100);
+  var earned = loadBadges();
+  var earnedBadges = UNIT_BADGES.filter(function(b) { return earned[b.id]; });
+  var quizKeys = Object.keys(quizScores);
+  var correct = quizKeys.filter(function(k) { return quizScores[k].correct; }).length;
+  var exportDate = new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
+
+  // Build reflections HTML
+  var reflSections = '';
+  UNITS.forEach(function(u) {
+    var lessonRows = '';
+    u.lessons.forEach(function(l) {
+      var slides = getLessonSlides(l.id, l, u);
+      var notes = [];
+      slides.forEach(function(slide, idx) {
+        var text = loadReflection(l.id, idx);
+        if (text && text.trim()) notes.push('<p>' + text.trim().replace(/\n/g,'<br>') + '</p>');
+      });
+      var isDone = completedLessons.has(l.id) ? '&#10003; Complete' : 'Not completed';
+      var quizEntry = quizScores[l.id];
+      var quizStr = quizEntry ? (quizEntry.correct ? '&#10003; Quiz correct' : '&#10007; Quiz incorrect') : '';
+      lessonRows += '<tr>' +
+        '<td style="padding:8px 12px;border:1px solid #e2e8f0;font-weight:600;font-size:.85rem">L' + l.id + ': ' + l.title + '</td>' +
+        '<td style="padding:8px 12px;border:1px solid #e2e8f0;font-size:.82rem;color:#64748b">' + isDone + (quizStr ? ' &bull; ' + quizStr : '') + '</td>' +
+        '<td style="padding:8px 12px;border:1px solid #e2e8f0;font-size:.82rem">' + (notes.join('') || '<span style="color:#94a3b8">No notes</span>') + '</td>' +
+      '</tr>';
+    });
+    reflSections += '<h3 style="margin:24px 0 8px;font-size:1rem;color:#4f46e5">' + u.icon + ' Unit ' + (u.id+1) + ': ' + u.title + '</h3>' +
+      '<table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif">' +
+        '<thead><tr style="background:#f8fafc">' +
+          '<th style="padding:8px 12px;border:1px solid #e2e8f0;text-align:left;font-size:.8rem;width:30%">Lesson</th>' +
+          '<th style="padding:8px 12px;border:1px solid #e2e8f0;text-align:left;font-size:.8rem;width:20%">Status</th>' +
+          '<th style="padding:8px 12px;border:1px solid #e2e8f0;text-align:left;font-size:.8rem">Reflection Notes</th>' +
+        '</tr></thead><tbody>' + lessonRows + '</tbody>' +
+      '</table>';
+  });
+
+  var badgeHtml = earnedBadges.length > 0
+    ? earnedBadges.map(function(b) {
+        return '<span style="display:inline-flex;align-items:center;gap:6px;background:#f0f4ff;border:1px solid #c7d2fe;border-radius:8px;padding:6px 12px;font-size:.85rem;margin:4px">' +
+          b.icon + ' <strong>' + b.name + '</strong> <span style="color:#94a3b8;font-size:.78rem">(' + earned[b.id] + ')</span></span>';
+      }).join('')
+    : '<p style="color:#94a3b8;font-size:.88rem">No badges earned yet — keep going!</p>';
+
+  var html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">' +
+    '<title>Digital Innovations — Progress Report</title>' +
+    '<style>body{font-family:system-ui,sans-serif;max-width:900px;margin:0 auto;padding:32px;color:#0f172a}' +
+    'h1{font-size:1.6rem;color:#6366f1;margin-bottom:4px}' +
+    '.meta{color:#64748b;font-size:.9rem;margin-bottom:24px}' +
+    '.stat-row{display:flex;gap:24px;margin:20px 0;flex-wrap:wrap}' +
+    '.stat-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px 20px;text-align:center;min-width:110px}' +
+    '.stat-num{display:block;font-size:1.8rem;font-weight:800;color:#6366f1}' +
+    '.stat-lbl{font-size:.78rem;color:#64748b;margin-top:2px}' +
+    'h2{font-size:1.1rem;border-bottom:2px solid #e2e8f0;padding-bottom:6px;margin-top:32px;color:#1e293b}' +
+    'p{margin:6px 0}@media print{body{padding:16px}}' +
+    '</style></head><body>' +
+    '<h1>&#127891; Digital Innovations — Progress Report</h1>' +
+    '<p class="meta">Exported on ' + exportDate + '</p>' +
+    '<div class="stat-row">' +
+      '<div class="stat-box"><span class="stat-num">' + pct + '%</span><span class="stat-lbl">Complete</span></div>' +
+      '<div class="stat-box"><span class="stat-num">' + done + '/' + total + '</span><span class="stat-lbl">Lessons Done</span></div>' +
+      '<div class="stat-box"><span class="stat-num">' + correct + '/' + quizKeys.length + '</span><span class="stat-lbl">Quizzes Correct</span></div>' +
+      '<div class="stat-box"><span class="stat-num">' + earnedBadges.length + '/' + UNIT_BADGES.length + '</span><span class="stat-lbl">Badges Earned</span></div>' +
+    '</div>' +
+    '<h2>🏅 Badges</h2>' + badgeHtml +
+    '<h2>📝 Lesson Progress & Reflections</h2>' + reflSections +
+    '<p style="margin-top:40px;font-size:.75rem;color:#94a3b8;text-align:center">Digital Innovations AEP &bull; KS5 Course Report</p>' +
+    '</body></html>';
+
+  var win = window.open('', '_blank');
+  if (!win) { alert('Please allow popups to export your PDF.'); return; }
+  win.document.write(html);
+  win.document.close();
+  setTimeout(function() { win.print(); }, 500);
+}
+
 /* ── Quiz Logic ───────────────────────────────── */
 function checkQuiz(btn, correctIdx, slideIdx) {
   var container = document.getElementById('quizOptions');
@@ -802,6 +921,9 @@ function checkQuiz(btn, correctIdx, slideIdx) {
     if (idx === chosen && chosen !== correctIdx) b.classList.add('quiz-wrong');
   });
   document.getElementById('quizExplanation').style.display = 'block';
+  // Show Learn More section if present
+  var lm = document.getElementById('quizLearnMore');
+  if (lm) lm.style.display = 'block';
   // Save quiz score
   if (currentLessonId) saveQuizScore(currentLessonId, isCorrect);
 }
@@ -834,6 +956,130 @@ function renderGlossary(filter) {
 
 function filterGlossary(query) { renderGlossary(query); }
 
+/* ── Course Map ────────────────────────────────── */
+function renderCourseMap() {
+  var container = document.getElementById('courseMapContainer');
+  if (!container) return;
+  container.innerHTML = UNITS.map(function(unit, idx) {
+    var pct = unitProgressPct(unit);
+    var tiles = unit.lessons.map(function(l) {
+      var done = completedLessons.has(l.id);
+      return '<div class="cm-lesson' + (done ? ' done' : '') + '" onclick="showSection(\'units\');setTimeout(function(){openLesson(' + l.id + ')},150)" title="' + l.title + '">' +
+        '<div class="cm-lesson-num">Lesson ' + l.id + '</div>' +
+        '<div class="cm-lesson-title">' + l.title + '</div>' +
+        '<div class="cm-lesson-diff">' + diffBadge(l.difficulty) + '</div>' +
+      '</div>';
+    }).join('');
+    return '<div class="cm-unit">' +
+      '<div class="cm-unit-header">' +
+        '<span style="font-size:1.5rem">' + unit.icon + '</span>' +
+        '<div style="flex:1">' +
+          '<div style="font-weight:700;font-size:.95rem">Unit ' + (idx+1) + ': ' + unit.title + '</div>' +
+          '<div style="font-size:.8rem;color:var(--text-dim);margin-top:2px">' + unit.lessons.length + ' lessons &bull; ' + pct + '% complete</div>' +
+        '</div>' +
+        (pct === 100 ? '<span style="font-size:1.3rem" title="Unit complete!">🏆</span>' : '') +
+      '</div>' +
+      '<div class="cm-unit-bar"><div class="cm-unit-bar-fill" style="width:' + pct + '%"></div></div>' +
+      '<div class="cm-lessons-grid">' + tiles + '</div>' +
+    '</div>';
+  }).join('');
+}
+
+/* ── Unit Badges ───────────────────────────────── */
+var UNIT_BADGES = [
+  { id: 'u1', unitIdx: 0, icon: '🧠', name: 'AI Pioneer',        desc: 'Completed all Foundations of AI lessons' },
+  { id: 'u2', unitIdx: 1, icon: '✍️', name: 'Prompt Master',     desc: 'Completed all Prompt Engineering lessons' },
+  { id: 'u3', unitIdx: 2, icon: '🌐', name: 'Digital Citizen',   desc: 'Completed all AI & Society lessons' },
+  { id: 'u4', unitIdx: 3, icon: '📜', name: 'Policy Architect',  desc: 'Completed all Policy & Governance lessons' },
+  { id: 'u5', unitIdx: 4, icon: '🚀', name: 'Innovator',         desc: 'Completed all Capstone Project lessons' },
+  { id: 'u6', unitIdx: 5, icon: '🎤', name: 'Communicator',      desc: 'Completed all Presentations & Reflection lessons' },
+  { id: 'champion', unitIdx: -1, icon: '⭐', name: 'Course Champion', desc: 'Completed the entire Digital Innovations course!' }
+];
+
+function loadBadges() {
+  try { return JSON.parse(localStorage.getItem('di_badges')) || {}; }
+  catch(e) { return {}; }
+}
+function saveBadges(b) { localStorage.setItem('di_badges', JSON.stringify(b)); }
+
+function checkAndAwardBadges() {
+  var earned = loadBadges();
+  var changed = false;
+  var newBadge = null;
+  UNIT_BADGES.forEach(function(badge) {
+    if (earned[badge.id]) return;
+    var unit = UNITS[badge.unitIdx];
+    if (!unit) {
+      // champion badge
+      var allDone = UNITS.every(function(u) {
+        return u.lessons.every(function(l) { return completedLessons.has(l.id); });
+      });
+      if (allDone) {
+        earned[badge.id] = new Date().toISOString().slice(0,10);
+        changed = true; newBadge = badge;
+      }
+      return;
+    }
+    var unitDone = unit.lessons.every(function(l) { return completedLessons.has(l.id); });
+    if (unitDone) {
+      earned[badge.id] = new Date().toISOString().slice(0,10);
+      changed = true; newBadge = badge;
+    }
+  });
+  if (changed) {
+    saveBadges(earned);
+    if (newBadge) showBadgeToast(newBadge);
+    if (document.getElementById('section-progress')?.classList.contains('active')) renderBadges();
+  }
+}
+
+function showBadgeToast(badge) {
+  var toast = document.createElement('div');
+  toast.className = 'badge-toast';
+  toast.innerHTML = '<span class="badge-toast-icon">' + badge.icon + '</span>' +
+    '<div><div class="badge-toast-title">Badge Unlocked!</div>' +
+    '<div class="badge-toast-name">' + badge.name + '</div></div>';
+  document.body.appendChild(toast);
+  setTimeout(function() { toast.classList.add('show'); }, 50);
+  setTimeout(function() { toast.classList.remove('show'); setTimeout(function() { toast.remove(); }, 400); }, 3500);
+}
+
+function renderBadges() {
+  var el = document.getElementById('badgesSection');
+  if (!el) return;
+  var earned = loadBadges();
+  var cards = UNIT_BADGES.map(function(badge) {
+    var isEarned = !!earned[badge.id];
+    var dateStr = isEarned ? '<div class="badge-date">Earned ' + earned[badge.id] + '</div>' : '<div class="badge-date" style="color:var(--text-dim)">Not yet earned</div>';
+    return '<div class="badge-card ' + (isEarned ? 'earned' : 'locked') + '">' +
+      '<span class="badge-icon">' + badge.icon + '</span>' +
+      '<div class="badge-name">' + badge.name + '</div>' +
+      '<div class="badge-desc">' + badge.desc + '</div>' +
+      dateStr +
+    '</div>';
+  }).join('');
+  el.innerHTML = '<h3>🏅 Badges</h3><div class="badges-grid">' + cards + '</div>';
+}
+
+/* ── Scenario % Breakdown ──────────────────────── */
+function seededRandom(seed) {
+  var x = Math.sin(seed + 1) * 10000;
+  return x - Math.floor(x);
+}
+
+function getScenarioPercentages(lessonId, slideIdx, numChoices) {
+  var seed = lessonId * 100 + slideIdx;
+  var raws = [];
+  for (var i = 0; i < numChoices; i++) {
+    raws.push(seededRandom(seed + i * 7.3) + 0.1);
+  }
+  var total = raws.reduce(function(a,b) { return a+b; }, 0);
+  var pcts = raws.map(function(r) { return Math.round(r / total * 100); });
+  var sum = pcts.reduce(function(a,b) { return a+b; }, 0);
+  pcts[0] += (100 - sum);
+  return pcts;
+}
+
 /* ── Scenario Logic ───────────────────────────── */
 function revealScenarioOutcome(el) {
   var container = document.getElementById('scenarioChoices');
@@ -841,10 +1087,25 @@ function revealScenarioOutcome(el) {
   container.classList.add('scenario-answered');
   el.classList.add('scenario-chosen');
   var outcome = el.getAttribute('data-outcome');
+
+  // Show % breakdown
+  var lessonId = parseInt(container.getAttribute('data-lesson-id')) || currentLessonId;
+  var slideIdx = parseInt(container.getAttribute('data-slide-idx')) || 0;
+  var numChoices = parseInt(container.getAttribute('data-choice-count')) || 2;
+  var pcts = getScenarioPercentages(lessonId, slideIdx, numChoices);
+  var choices = container.querySelectorAll('.scenario-choice');
+  choices.forEach(function(c, i) {
+    var pctEl = document.createElement('span');
+    pctEl.className = 'scenario-pct';
+    pctEl.textContent = pcts[i] + '%';
+    c.appendChild(pctEl);
+  });
+
   var outcomeEl = document.getElementById('scenarioOutcome');
   if (outcomeEl) {
     outcomeEl.style.display = 'block';
-    outcomeEl.innerHTML = '<strong>What happened:</strong> ' + outcome;
+    outcomeEl.innerHTML = '<strong>What happened:</strong> ' + outcome +
+      '<div class="scenario-pct-note">Percentages show how a typical class splits on this scenario.</div>';
   }
 }
 
