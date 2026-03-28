@@ -6,6 +6,9 @@ const STREAK_KEY  = 'di_streak';
 /* ── State ─────────────────────────────────────── */
 let completedLessons = loadProgress();
 let currentFilter = 'all';
+let currentTagFilter = null;
+let bookmarkedLessons = loadBookmarks();
+let quizScores = loadQuizScores();
 
 /* ── Persistence ───────────────────────────────── */
 function loadProgress() {
@@ -30,6 +33,50 @@ function getStreak() {
   const today = new Date().toISOString().slice(0, 10);
   const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
   return (data.last === today || data.last === yesterday) ? data.count : 0;
+}
+
+/* ── Theme Toggle ─────────────────────────────── */
+function initTheme() {
+  var saved = localStorage.getItem('di_theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+  updateThemeIcon(saved);
+}
+function toggleTheme() {
+  var current = document.documentElement.getAttribute('data-theme');
+  var next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('di_theme', next);
+  updateThemeIcon(next);
+}
+function updateThemeIcon(theme) {
+  var icon = document.getElementById('themeIcon');
+  if (icon) icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+}
+initTheme();
+
+/* ── Bookmarks ────────────────────────────────── */
+function loadBookmarks() {
+  try { return new Set(JSON.parse(localStorage.getItem('di_bookmarks')) || []); }
+  catch(e) { return new Set(); }
+}
+function saveBookmarks() {
+  localStorage.setItem('di_bookmarks', JSON.stringify([...bookmarkedLessons]));
+}
+function toggleBookmark(id) {
+  if (bookmarkedLessons.has(id)) bookmarkedLessons.delete(id);
+  else bookmarkedLessons.add(id);
+  saveBookmarks();
+  renderUnits();
+}
+
+/* ── Quiz Scores ──────────────────────────────── */
+function loadQuizScores() {
+  try { return JSON.parse(localStorage.getItem('di_quiz_scores')) || {}; }
+  catch(e) { return {}; }
+}
+function saveQuizScore(lessonId, correct) {
+  quizScores[lessonId] = { correct: correct, date: new Date().toISOString().slice(0, 10) };
+  localStorage.setItem('di_quiz_scores', JSON.stringify(quizScores));
 }
 
 /* ── Navigation ────────────────────────────────── */
@@ -73,13 +120,17 @@ function renderUnits() {
 
 function lessonRow(lesson, unit) {
   const done = completedLessons.has(lesson.id);
+  const slides = getLessonSlides(lesson.id, lesson, unit);
+  const mins = slides.length * 5;
+  const hidden = currentTagFilter && lesson.tags.indexOf(currentTagFilter) === -1;
   return `
-    <div class="lesson-item" data-id="${lesson.id}">
+    <div class="lesson-item${hidden ? ' tag-hidden' : ''}" data-id="${lesson.id}" data-tags="${lesson.tags.join(' ')}">
       <div class="lesson-check ${done ? 'done' : ''}" onclick="event.stopPropagation();toggleLesson(${lesson.id})" title="Mark complete">✓</div>
       <div class="lesson-info" onclick="openLesson(${lesson.id})">
-        <div class="lesson-num">Lesson ${lesson.id}</div>
+        <div class="lesson-num">Lesson ${lesson.id} <span class="lesson-time">~${mins} min</span></div>
         <div class="lesson-title">${lesson.title}</div>
       </div>
+      <button class="bookmark-btn${bookmarkedLessons.has(lesson.id) ? ' bookmarked' : ''}" onclick="event.stopPropagation();toggleBookmark(${lesson.id})" title="${bookmarkedLessons.has(lesson.id) ? 'Remove bookmark' : 'Bookmark'}" aria-label="Bookmark lesson">${bookmarkedLessons.has(lesson.id) ? '★' : '☆'}</button>
       <button class="lesson-expand" onclick="openLesson(${lesson.id})" title="View details">→</button>
     </div>`;
 }
@@ -113,11 +164,14 @@ function scrollToUnit(idx) {
 
 /* ── Lesson Toggle & Modal ─────────────────────── */
 function toggleLesson(id) {
-  if (completedLessons.has(id)) completedLessons.delete(id);
+  var wasComplete = completedLessons.has(id);
+  if (wasComplete) completedLessons.delete(id);
   else completedLessons.add(id);
   saveProgress();
   renderUnits();
   updateHomeStats();
+  // Confetti on completing a lesson
+  if (!wasComplete) launchConfetti();
 }
 
 function findLesson(id) {
@@ -254,6 +308,20 @@ function renderSlide(index) {
     '</div>';
   }
 
+  else if (slide.type === 'video') {
+    html = '<div class="slide-video">' +
+      '<span class="slide-badge badge-video">Video</span>' +
+      '<div class="slide-title">' + slide.title + '</div>' +
+      '<div class="concept-body">' + slide.intro + '</div>' +
+      '<div class="video-wrapper">' +
+        '<iframe src="https://www.youtube-nocookie.com/embed/' + slide.videoId + '?rel=0" ' +
+          'frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ' +
+          'allowfullscreen></iframe>' +
+      '</div>' +
+      '<div class="video-credit">' + slide.credit + '</div>' +
+    '</div>';
+  }
+
   else if (slide.type === 'activity') {
     var stepsHtml = '';
     if (slide.steps && slide.steps.length > 0) {
@@ -291,6 +359,23 @@ function renderSlide(index) {
         '<div class="reflection-prompt">Write your thoughts on the questions above.</div>' +
         '<div class="reflection-save-bar"><textarea class="reflection-textarea" id="reflectionText" placeholder="Type your reflection here...">' + loadReflection(currentLessonId, index).replace(/</g, '&lt;') + '</textarea>' +
         '<span class="saved-indicator" id="reflectionSaved" style="display:none">&#10003; Saved</span></div>' +
+      '</div>' +
+    '</div>';
+  }
+
+  else if (slide.type === 'quiz') {
+    var optionsHtml = slide.options.map(function(opt, i) {
+      return '<button class="quiz-option" data-idx="' + i + '" onclick="checkQuiz(this,' + slide.correct + ',' + index + ')">' +
+        '<span class="quiz-option-letter">' + String.fromCharCode(65 + i) + '</span>' +
+        '<span class="quiz-option-text">' + opt + '</span>' +
+      '</button>';
+    }).join('');
+    html = '<div class="slide-quiz">' +
+      '<span class="slide-badge badge-quiz">Knowledge Check</span>' +
+      '<div class="slide-title">' + slide.question + '</div>' +
+      '<div class="quiz-options" id="quizOptions">' + optionsHtml + '</div>' +
+      '<div class="quiz-explanation" id="quizExplanation" style="display:none">' +
+        '<strong>Explanation:</strong> ' + slide.explanation +
       '</div>' +
     '</div>';
   }
@@ -456,22 +541,48 @@ function handleSearch(query) {
   if (!query || query.length < 2) { box.classList.remove('open'); box.innerHTML = ''; return; }
   const q = query.toLowerCase();
   const results = [];
+  // Search lessons
   for (const u of UNITS) {
     for (const l of u.lessons) {
       const score = [l.title, l.desc, ...l.tags, ...l.objectives].filter(s => s.toLowerCase().includes(q)).length;
-      if (score > 0) results.push({ lesson: l, unit: u, score });
+      if (score > 0) results.push({ type: 'lesson', lesson: l, unit: u, score: score + 10 });
     }
   }
+  // Search glossary
+  if (typeof GLOSSARY !== 'undefined') {
+    for (const g of GLOSSARY) {
+      const score = [g.term, g.definition].filter(s => s.toLowerCase().includes(q)).length;
+      if (score > 0) results.push({ type: 'glossary', term: g, score: score + 5 });
+    }
+  }
+  // Search resources
+  for (const r of RESOURCES) {
+    const score = [r.title, r.desc, r.cat].filter(s => s.toLowerCase().includes(q)).length;
+    if (score > 0) results.push({ type: 'resource', resource: r, score });
+  }
   results.sort((a, b) => b.score - a.score);
-  const top = results.slice(0, 8);
+  const top = results.slice(0, 10);
   if (top.length === 0) {
     box.innerHTML = '<div class="search-result-item"><div class="sr-title">No results</div></div>';
   } else {
-    box.innerHTML = top.map(r => `
-      <div class="search-result-item" onclick="document.getElementById('searchResults').classList.remove('open');document.getElementById('searchInput').value='';showSection('units');setTimeout(()=>openLesson(${r.lesson.id}),150)">
-        <div class="sr-title">Lesson ${r.lesson.id}: ${r.lesson.title}</div>
-        <div class="sr-unit">Unit ${r.unit.id + 1}: ${r.unit.title}</div>
-      </div>`).join('');
+    box.innerHTML = top.map(r => {
+      if (r.type === 'lesson') {
+        return `<div class="search-result-item" onclick="document.getElementById('searchResults').classList.remove('open');document.getElementById('searchInput').value='';showSection('units');setTimeout(()=>openLesson(${r.lesson.id}),150)">
+          <div class="sr-title">Lesson ${r.lesson.id}: ${r.lesson.title}</div>
+          <div class="sr-unit">Unit ${r.unit.id + 1}: ${r.unit.title}</div>
+        </div>`;
+      } else if (r.type === 'glossary') {
+        return `<div class="search-result-item" onclick="document.getElementById('searchResults').classList.remove('open');document.getElementById('searchInput').value='';showSection('glossary');setTimeout(()=>filterGlossary('${r.term.term.replace(/'/g,"\\'")}'),150)">
+          <div class="sr-title">${r.term.term}</div>
+          <div class="sr-unit">Glossary term</div>
+        </div>`;
+      } else {
+        return `<div class="search-result-item" onclick="document.getElementById('searchResults').classList.remove('open');document.getElementById('searchInput').value='';openResource('${r.resource.id}')">
+          <div class="sr-title">${r.resource.title}</div>
+          <div class="sr-unit">Resource — ${r.resource.cat}</div>
+        </div>`;
+      }
+    }).join('');
   }
   box.classList.add('open');
 }
@@ -505,6 +616,43 @@ function renderProgress() {
         <span class="pbu-pct">${uPct}%</span>
       </div>`;
   }).join('');
+
+  // Render quiz scores
+  renderQuizScoreSection();
+  // Render bookmarked lessons
+  renderBookmarkedSection();
+}
+
+function renderQuizScoreSection() {
+  var el = document.getElementById('quizScoreSection');
+  if (!el) return;
+  var keys = Object.keys(quizScores);
+  if (keys.length === 0) { el.innerHTML = ''; return; }
+  var correctCount = keys.filter(function(k) { return quizScores[k].correct; }).length;
+  var cards = keys.map(function(k) {
+    var found = findLesson(parseInt(k));
+    var title = found ? 'L' + k + ': ' + found.lesson.title : 'Lesson ' + k;
+    var cls = quizScores[k].correct ? '' : ' wrong';
+    var label = quizScores[k].correct ? '✓ Correct' : '✗ Wrong';
+    return '<div class="qs-card"><span class="qs-card-label">' + title + '</span><span class="qs-card-score' + cls + '">' + label + '</span></div>';
+  }).join('');
+  el.innerHTML = '<h3>Quiz Scores — ' + correctCount + '/' + keys.length + ' correct</h3><div class="qs-grid">' + cards + '</div>';
+}
+
+function renderBookmarkedSection() {
+  var el = document.getElementById('bookmarkedLessons');
+  if (!el) return;
+  if (bookmarkedLessons.size === 0) { el.innerHTML = ''; return; }
+  var cards = [];
+  bookmarkedLessons.forEach(function(id) {
+    var found = findLesson(id);
+    if (!found) return;
+    cards.push('<div class="bm-card" onclick="openLesson(' + id + ')">' +
+      '<div class="bm-card-title">★ Lesson ' + id + ': ' + found.lesson.title + '</div>' +
+      '<div class="bm-card-unit">Unit ' + (found.unit.id + 1) + ': ' + found.unit.title + '</div>' +
+    '</div>');
+  });
+  el.innerHTML = '<h3>Bookmarked Lessons</h3><div class="bm-grid">' + cards.join('') + '</div>';
 }
 
 function updateHomeStats() {
@@ -513,23 +661,215 @@ function updateHomeStats() {
   const pct = Math.round((done / total) * 100);
   const el = document.getElementById('progressPercent');
   if (el) el.textContent = pct + '%';
+  updateContinueButton();
 }
 
 function resetProgress() {
   if (!confirm('Reset all progress? This cannot be undone.')) return;
   completedLessons.clear();
+  bookmarkedLessons.clear();
+  quizScores = {};
   localStorage.removeItem(STORAGE_KEY);
   localStorage.removeItem(STREAK_KEY);
+  localStorage.removeItem('di_bookmarks');
+  localStorage.removeItem('di_quiz_scores');
   renderUnits();
   renderProgress();
   updateHomeStats();
+}
+
+/* ── Tag Filtering ────────────────────────────── */
+function getUniqueTags() {
+  var tags = {};
+  UNITS.forEach(function(u) { u.lessons.forEach(function(l) {
+    l.tags.forEach(function(t) { tags[t] = (tags[t] || 0) + 1; });
+  }); });
+  return Object.keys(tags).sort().map(function(t) { return { tag: t, count: tags[t] }; });
+}
+
+function renderTagFilters() {
+  var tags = getUniqueTags();
+  var html = '<button class="tag-btn' + (!currentTagFilter ? ' active' : '') + '" onclick="filterByTag(null)">All Lessons</button>';
+  html += tags.map(function(t) {
+    return '<button class="tag-btn' + (currentTagFilter === t.tag ? ' active' : '') + '" data-tag="' + t.tag + '" onclick="filterByTag(\'' + t.tag + '\')">' + t.tag + ' <span class="tag-count">' + t.count + '</span></button>';
+  }).join('');
+  document.getElementById('tagFilters').innerHTML = html;
+}
+
+function filterByTag(tag) {
+  currentTagFilter = tag;
+  renderTagFilters();
+  renderUnits();
+}
+
+/* ── Continue Button ──────────────────────────── */
+function getFirstIncompleteLesson() {
+  for (var i = 0; i < UNITS.length; i++) {
+    for (var j = 0; j < UNITS[i].lessons.length; j++) {
+      if (!completedLessons.has(UNITS[i].lessons[j].id)) return UNITS[i].lessons[j];
+    }
+  }
+  return null;
+}
+
+function continueLesson() {
+  var next = getFirstIncompleteLesson();
+  if (next) { openLesson(next.id); }
+  else { showSection('units'); }
+}
+
+function updateContinueButton() {
+  var btn = document.getElementById('continueBtn');
+  if (!btn) return;
+  var total = UNITS.reduce(function(s, u) { return s + u.lessons.length; }, 0);
+  if (completedLessons.size === 0) {
+    btn.textContent = 'Start Learning';
+  } else if (completedLessons.size >= total) {
+    btn.textContent = 'All Complete — Review';
+  } else {
+    var next = getFirstIncompleteLesson();
+    btn.textContent = 'Continue: Lesson ' + next.id + ' — ' + next.title;
+  }
+}
+
+/* ── Reflection Export ────────────────────────── */
+function exportReflections() {
+  var lines = ['Digital Innovations — My Reflections', '='.repeat(45), ''];
+  var count = 0;
+  UNITS.forEach(function(u) {
+    u.lessons.forEach(function(l) {
+      var slides = getLessonSlides(l.id, l, u);
+      var lessonNotes = [];
+      slides.forEach(function(slide, idx) {
+        var text = loadReflection(l.id, idx);
+        if (text && text.trim()) lessonNotes.push(text.trim());
+      });
+      if (lessonNotes.length > 0) {
+        count++;
+        lines.push('Lesson ' + l.id + ': ' + l.title);
+        lines.push('Unit ' + (u.id + 1) + ': ' + u.title);
+        lines.push('-'.repeat(35));
+        lessonNotes.forEach(function(n) { lines.push(n); lines.push(''); });
+        lines.push('');
+      }
+    });
+  });
+  if (count === 0) {
+    alert('No reflections saved yet. Write some notes in the discussion slides first!');
+    return;
+  }
+  lines.push('---');
+  lines.push('Exported ' + count + ' lesson reflections on ' + new Date().toLocaleDateString());
+  var blob = new Blob([lines.join('\n')], { type: 'text/plain' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'digital-innovations-reflections.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+}
+
+/* ── Quiz Logic ───────────────────────────────── */
+function checkQuiz(btn, correctIdx, slideIdx) {
+  var container = document.getElementById('quizOptions');
+  if (container.classList.contains('quiz-answered')) return;
+  container.classList.add('quiz-answered');
+  var chosen = parseInt(btn.dataset.idx);
+  var isCorrect = chosen === correctIdx;
+  var buttons = container.querySelectorAll('.quiz-option');
+  buttons.forEach(function(b) {
+    var idx = parseInt(b.dataset.idx);
+    if (idx === correctIdx) b.classList.add('quiz-correct');
+    if (idx === chosen && chosen !== correctIdx) b.classList.add('quiz-wrong');
+  });
+  document.getElementById('quizExplanation').style.display = 'block';
+  // Save quiz score
+  if (currentLessonId) saveQuizScore(currentLessonId, isCorrect);
+}
+
+/* ── Glossary ─────────────────────────────────── */
+function renderGlossary(filter) {
+  if (typeof GLOSSARY === 'undefined') return;
+  var q = (filter || '').toLowerCase();
+  var items = q ? GLOSSARY.filter(function(g) {
+    return g.term.toLowerCase().indexOf(q) !== -1 || g.definition.toLowerCase().indexOf(q) !== -1;
+  }) : GLOSSARY;
+  var html = items.map(function(g) {
+    var lessonLinks = (g.lessons || []).map(function(lid) {
+      var found = findLesson(lid);
+      return found ? '<span class="glossary-lesson-link" onclick="showSection(\'units\');setTimeout(function(){openLesson(' + lid + ')},150)">L' + lid + '</span>' : '';
+    }).join(' ');
+    return '<div class="glossary-item" onclick="this.classList.toggle(\'open\')">' +
+      '<div class="glossary-term">' +
+        '<span class="glossary-term-text">' + g.term + '</span>' +
+        '<span class="glossary-toggle">+</span>' +
+      '</div>' +
+      '<div class="glossary-body">' +
+        '<p>' + g.definition + '</p>' +
+        (lessonLinks ? '<div class="glossary-lessons">Used in: ' + lessonLinks + '</div>' : '') +
+      '</div>' +
+    '</div>';
+  }).join('');
+  document.getElementById('glossaryList').innerHTML = html || '<p style="color:var(--text-dim);text-align:center;padding:32px">No matching terms found.</p>';
+}
+
+function filterGlossary(query) { renderGlossary(query); }
+
+/* ── Confetti Celebration ─────────────────────── */
+function launchConfetti() {
+  var canvas = document.getElementById('confettiCanvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  var particles = [];
+  var colours = ['#6366f1','#06b6d4','#22c55e','#f59e0b','#ef4444','#a855f7','#ec4899'];
+  for (var i = 0; i < 120; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height * -1,
+      w: Math.random() * 8 + 4,
+      h: Math.random() * 6 + 3,
+      color: colours[Math.floor(Math.random() * colours.length)],
+      vx: (Math.random() - 0.5) * 4,
+      vy: Math.random() * 4 + 2,
+      rot: Math.random() * 360,
+      rv: (Math.random() - 0.5) * 10
+    });
+  }
+  var frames = 0;
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    var alive = false;
+    particles.forEach(function(p) {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.05;
+      p.rot += p.rv;
+      if (p.y < canvas.height + 20) alive = true;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot * Math.PI / 180);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    });
+    frames++;
+    if (alive && frames < 180) requestAnimationFrame(draw);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  draw();
 }
 
 /* ── Init ──────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   renderUnits();
   renderResources('all');
+  renderTagFilters();
+  renderGlossary();
   updateHomeStats();
+  updateContinueButton();
 });
 
 // Keyboard shortcuts: Escape closes modal, arrows navigate slides
