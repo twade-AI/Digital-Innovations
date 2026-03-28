@@ -360,3 +360,130 @@ footer{
   .overview-grid{grid-template-columns:1fr}
   .hero-stats{flex-wrap:wrap;gap:16px}
 }
+
+/* ── Difficulty Badges ───────────────────────── */
+.diff-badge{
+  display:inline-block;font-size:.65rem;font-weight:700;letter-spacing:.04em;
+  text-transform:uppercase;padding:2px 7px;border-radius:999px;margin-left:6px;
+  vertical-align:middle;
+}
+.diff-beginner{background:rgba(34,197,94,.15);color:#22c55e;border:1px solid rgba(34,197,94,.3)}
+.diff-intermediate{background:rgba(245,158,11,.15);color:#f59e0b;border:1px solid rgba(245,158,11,.3)}
+.diff-advanced{background:rgba(239,68,68,.15);color:#ef4444;border:1px solid rgba(239,68,68,.3)}
+
+/* ── Course Map Section ──────────────────────── */
+.course-map{display:flex;flex-direction:column;gap:24px}
+.cm-unit{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.cm-unit-header{
+  display:flex;align-items:center;gap:12px;padding:14px 18px;
+  border-bottom:1px solid var(--border);
+}
+.cm-unit-icon{font-size:1.4rem}
+.cm-unit-title{font-size:1rem;font-weight:700;flex:1}
+.cm-unit-progress{font-size:.8rem;color:var(--text-muted)}
+.cm-unit-bar{height:3px;background:var(--border)}
+.cm-unit-bar-fill{height:100%;background:var(--primary);transition:width .4s}
+.cm-lessons-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:1px;
+  background:var(--border);
+}
+.cm-lesson{
+  background:var(--bg-card);padding:12px 14px;cursor:pointer;
+  transition:background .15s;position:relative;
+}
+.cm-lesson:hover{background:var(--bg-card-hover)}
+.cm-lesson.done{background:rgba(34,197,94,.05)}
+.cm-lesson.done::after{
+  content:'✓';position:absolute;top:8px;right:10px;
+  font-size:.7rem;color:var(--success);font-weight:700;
+}
+.cm-lesson-num{font-size:.7rem;color:var(--text-dim);font-weight:600}
+.cm-lesson-title{font-size:.82rem;font-weight:600;line-height:1.3;margin-top:2px;color:var(--text)}
+.cm-lesson-diff{margin-top:4px}
+
+/* ── Print / Study Guide ─────────────────────── */
+.study-guide-btn{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  padding:6px 14px;border-radius:var(--radius-sm);font-size:.82rem;
+  cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;
+}
+.study-guide-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+@media print {
+  .navbar,.lv-footer,.lv-close,.study-guide-btn,#confettiCanvas,
+  .lesson-modal .lv-header-actions,button.bookmark-btn{display:none!important}
+  .lesson-modal{position:static!important;background:#fff!important;color:#000!important}
+  .lv-content{max-height:none!important;overflow:visible!important}
+  .slide-hook,.slide-concept,.slide-quiz,.slide-summary{page-break-after:avoid}
+  body{background:#fff;color:#000}
+  .hook-stat-mini{border:1px solid #ccc!important;background:#f5f5f5!important}
+  .hook-stat-mini .sv{color:#333!important}
+  .concept-callout{border-left:3px solid #333!important;background:#f5f5f5!important}
+}
+
+/* ── Mobile Improvements ─────────────────────── */
+@media(max-width:768px){
+  .cm-lessons-grid{grid-template-columns:repeat(2,1fr)}
+  .lesson-item{padding:10px 8px;gap:6px}
+  .lesson-num{font-size:.75rem}
+  .lesson-title{font-size:.9rem}
+  .qs-grid{grid-template-columns:1fr}
+  .bm-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .cm-lessons-grid{grid-template-columns:1fr}
+  .diff-badge{display:none}
+  .hook-stats-row{grid-template-columns:repeat(2,1fr)!important}
+}
+
+/* ── Unit Badges ─────────────────────────────── */
+.badges-section{margin-bottom:32px}
+.badges-section h3{font-size:1.1rem;font-weight:700;margin-bottom:16px}
+.badges-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:14px}
+.badge-card{
+  background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:16px;text-align:center;transition:all .25s;
+}
+.badge-card.earned{border-color:var(--primary);box-shadow:0 0 16px rgba(99,102,241,.25)}
+.badge-card.locked{opacity:.42;filter:grayscale(.8)}
+.badge-icon{font-size:2.2rem;margin-bottom:8px;display:block}
+.badge-name{font-size:.9rem;font-weight:700;color:var(--text)}
+.badge-desc{font-size:.74rem;color:var(--text-dim);margin-top:4px;line-height:1.4}
+.badge-date{font-size:.7rem;margin-top:6px;font-weight:600;color:var(--success)}
+
+/* ── Badge Toast ─────────────────────────────── */
+.badge-toast{
+  position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(120px);
+  z-index:10000;background:var(--bg-card);border:1px solid var(--primary);
+  border-radius:var(--radius);padding:14px 20px;display:flex;align-items:center;gap:14px;
+  box-shadow:0 8px 32px rgba(0,0,0,.35);opacity:0;transition:all .4s cubic-bezier(.34,1.56,.64,1);
+  min-width:280px;
+}
+.badge-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.badge-toast-icon{font-size:2rem}
+.badge-toast-title{font-size:.72rem;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em}
+.badge-toast-name{font-size:1rem;font-weight:700;color:var(--text);margin-top:2px}
+
+/* ── Quiz Learn More ─────────────────────────── */
+.quiz-learn-more{
+  margin-top:16px;padding:16px;background:rgba(99,102,241,.07);
+  border:1px solid rgba(99,102,241,.2);border-radius:var(--radius-sm);
+}
+.learn-more-links{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.learn-more-link{
+  font-size:.87rem;color:var(--primary-light);cursor:pointer;
+  padding:8px 12px;border-radius:var(--radius-xs);background:rgba(99,102,241,.1);
+  transition:background .15s;display:inline-block;
+}
+.learn-more-link:hover{background:rgba(99,102,241,.22)}
+
+/* ── Scenario % Breakdown ────────────────────── */
+.scenario-choice-text{flex:1}
+.scenario-pct{
+  display:none;font-size:.8rem;font-weight:700;color:var(--text-dim);
+  padding:2px 8px;background:rgba(99,102,241,.1);border-radius:999px;
+  white-space:nowrap;margin-left:8px;align-self:center;
+}
+.scenario-answered .scenario-pct{display:inline}
+.scenario-chosen .scenario-pct{color:var(--primary-light);background:rgba(99,102,241,.2)}
+.scenario-pct-note{font-size:.76rem;color:var(--text-dim);margin-top:10px;font-style:italic}
