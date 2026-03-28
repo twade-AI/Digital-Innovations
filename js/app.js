@@ -363,6 +363,24 @@ function renderSlide(index) {
     '</div>';
   }
 
+  else if (slide.type === 'scenario') {
+    var choicesHtml = slide.choices.map(function(c, i) {
+      var esc = c.outcome.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+      return '<div class="scenario-choice" data-outcome="' + esc + '" onclick="revealScenarioOutcome(this)">' +
+        '<span class="scenario-choice-letter">' + String.fromCharCode(65 + i) + '</span>' +
+        '<span>' + c.text + '</span>' +
+      '</div>';
+    }).join('');
+    html = '<div class="slide-scenario">' +
+      '<span class="slide-badge badge-scenario">Scenario</span>' +
+      '<div class="slide-title">' + slide.title + '</div>' +
+      '<div class="scenario-situation">' + slide.situation + '</div>' +
+      '<div class="scenario-question">' + slide.question + '</div>' +
+      '<div class="scenario-choices" id="scenarioChoices">' + choicesHtml + '</div>' +
+      '<div class="scenario-outcome" id="scenarioOutcome" style="display:none"></div>' +
+    '</div>';
+  }
+
   else if (slide.type === 'quiz') {
     var optionsHtml = slide.options.map(function(opt, i) {
       return '<button class="quiz-option" data-idx="' + i + '" onclick="checkQuiz(this,' + slide.correct + ',' + index + ')">' +
@@ -815,6 +833,20 @@ function renderGlossary(filter) {
 }
 
 function filterGlossary(query) { renderGlossary(query); }
+
+/* ── Scenario Logic ───────────────────────────── */
+function revealScenarioOutcome(el) {
+  var container = document.getElementById('scenarioChoices');
+  if (!container || container.classList.contains('scenario-answered')) return;
+  container.classList.add('scenario-answered');
+  el.classList.add('scenario-chosen');
+  var outcome = el.getAttribute('data-outcome');
+  var outcomeEl = document.getElementById('scenarioOutcome');
+  if (outcomeEl) {
+    outcomeEl.style.display = 'block';
+    outcomeEl.innerHTML = '<strong>What happened:</strong> ' + outcome;
+  }
+}
 
 /* ── Confetti Celebration ─────────────────────── */
 function launchConfetti() {
