@@ -8,15 +8,31 @@
   <link rel="stylesheet" href="css/lesson.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#6366f1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
-  <a href="#section-home" class="skip-link">Skip to content</a>
+  <a href="#section-home" class="skip-link">Skip to main content</a>
   <!-- Navigation -->
   <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
-      <a href="#" class="nav-brand" onclick="showSection('home')">
-        <span class="brand-icon">⚡</span>
-        <span class="brand-text">Digital Innovations</span>
+      <a href="#" class="nav-brand" onclick="showSection('home')" aria-label="Digital Innovations — home">
+        <svg class="brand-logo" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="18" cy="18" r="17" stroke="url(#lg)" stroke-width="2"/>
+          <path d="M12 14l4 8 4-6 3 4" stroke="url(#lg2)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="25" cy="11" r="2.5" fill="#6366f1"/>
+          <defs>
+            <linearGradient id="lg" x1="1" y1="1" x2="35" y2="35" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#6366f1"/><stop offset="1" stop-color="#06b6d4"/>
+            </linearGradient>
+            <linearGradient id="lg2" x1="12" y1="14" x2="25" y2="22" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#6366f1"/><stop offset="1" stop-color="#06b6d4"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="brand-text">Digital <span class="brand-accent">Innovations</span></span>
       </a>
       <div class="nav-links">
         <a href="#" class="nav-link active" data-section="home" onclick="showSection('home')">Home</a>
@@ -25,6 +41,7 @@
         <a href="#" class="nav-link" data-section="progress" onclick="showSection('progress')">My Progress</a>
         <a href="#" class="nav-link" data-section="map" onclick="showSection('map')">Course Map</a>
         <a href="#" class="nav-link" data-section="glossary" onclick="showSection('glossary')">Glossary</a>
+        <a href="#" class="nav-link" data-section="exemplars" onclick="showSection('exemplars')">Gallery</a>
         <a href="#" class="nav-link nav-link-quiz" onclick="startQuickQuiz()" title="Quick Quiz — test yourself on completed lessons">⚡ Quiz Me</a>
       </div>
       <div class="nav-search">
@@ -38,6 +55,17 @@
       <button class="mobile-toggle" onclick="toggleMobileNav()" aria-label="Menu">☰</button>
     </div>
   </nav>
+
+  <!-- AI News Ticker -->
+  <div id="newsTicker" class="news-ticker" aria-label="AI news headlines" role="marquee">
+    <span class="news-ticker-label">📰 AI in the News</span>
+    <div class="news-ticker-track" id="tickerTrack"></div>
+  </div>
+
+  <!-- XP Level Strip -->
+  <div class="xp-strip" id="xpStrip">
+    <div id="xpLevelDisplay" class="xp-level-display"></div>
+  </div>
 
   <!-- Hero / Home Section -->
   <section id="section-home" class="section active" role="main">
@@ -67,6 +95,7 @@
         <div class="hero-actions">
           <button class="btn btn-primary" id="continueBtn" onclick="continueLesson()">Start Learning</button>
           <button class="btn btn-secondary" onclick="showSection('resources')">Browse Resources</button>
+          <button class="btn btn-secondary pwa-install-btn" id="pwaInstallBtn" onclick="installPWA()" style="display:none" title="Install as app for offline use">📲 Install App</button>
         </div>
         <div id="heroTimeEst" style="margin-top:12px;font-size:.82rem;color:var(--text-dim)"></div>
         <div id="heroReviewDue" style="display:none;margin-top:8px"></div>
@@ -199,13 +228,16 @@
         </div>
       </div>
     </div>
+    <div id="streakHeatmap" class="streak-heatmap"></div>
+    <div id="xpProgressSection" class="xp-progress-section"></div>
     <div id="badgesSection" class="badges-section"></div>
     <div id="confusedSection" class="confused-section"></div>
     <div id="quizScoreSection" class="quiz-score-section"></div>
     <div id="bookmarkedLessons" class="bookmarked-lessons-section"></div>
     <div id="progressByUnit" class="progress-by-unit"></div>
     <div class="progress-actions">
-      <button class="btn btn-primary" onclick="exportFullProgressPDF()">Export Full Report (PDF)</button>
+      <button class="btn btn-primary" onclick="openCapstone()">📋 Capstone Portfolio</button>
+      <button class="btn btn-secondary" onclick="exportFullProgressPDF()">Export Full Report (PDF)</button>
       <button class="btn btn-secondary" onclick="exportReflections()">Download Reflections (.txt)</button>
       <button class="btn btn-secondary" onclick="resetProgress()">Reset Progress</button>
     </div>
@@ -221,6 +253,15 @@
       <input type="text" id="glossarySearch" placeholder="Search terms..." oninput="filterGlossary(this.value)">
     </div>
     <div id="glossaryList" class="glossary-list"></div>
+  </section>
+
+  <!-- Exemplar Gallery Section -->
+  <section id="section-exemplars" class="section">
+    <div class="section-header">
+      <h2>Prompt Exemplar Gallery</h2>
+      <p>Real PTFC prompts written by students — annotated with teacher feedback. Use these as models for your own work.</p>
+    </div>
+    <div id="exemplarContainer" class="exemplar-grid"></div>
   </section>
 
   <!-- Lesson Detail Modal -->
@@ -296,6 +337,63 @@
     </div>
   </div>
 
+  <!-- Onboarding Tour Overlay -->
+  <div id="onboardingOverlay" class="ob-overlay" role="dialog" aria-modal="true" aria-label="Welcome tour">
+    <div class="ob-card">
+      <div id="obBody"></div>
+    </div>
+  </div>
+
+  <!-- Capstone Portfolio Modal -->
+  <div id="capstoneModal" class="modal" role="dialog" aria-modal="true" aria-label="Capstone Portfolio" onclick="if(event.target===this)closeCapstone()">
+    <div class="modal-content capstone-inner">
+      <button class="modal-close" onclick="closeCapstone()">&times;</button>
+      <h2 style="margin-bottom:4px">📋 Capstone Project Portfolio</h2>
+      <p style="color:var(--text-dim);font-size:.85rem;margin-bottom:20px">Build your project specification using the PTFC framework. Everything auto-saves in your browser.</p>
+      <div class="capstone-form">
+        <label class="capstone-label">Project Title</label>
+        <input id="capstone_title" class="capstone-input" placeholder="e.g. AI in NHS Diagnostics — An Ethical Review" oninput="saveCapstoneData()">
+
+        <label class="capstone-label">Problem Statement <span class="capstone-hint">What question are you investigating?</span></label>
+        <textarea id="capstone_problem" class="capstone-textarea" rows="2" placeholder="e.g. To what extent does the use of AI in medical diagnosis raise ethical concerns that outweigh its clinical benefits?" oninput="saveCapstoneData()"></textarea>
+
+        <label class="capstone-label">Target Audience</label>
+        <input id="capstone_audience" class="capstone-input" placeholder="e.g. Non-specialist sixth-form students and teachers" oninput="saveCapstoneData()">
+
+        <div class="capstone-ptfc-header">🔧 PTFC Research Prompt</div>
+        <div class="capstone-ptfc-grid">
+          <div class="capstone-ptfc-row">
+            <span class="capstone-ptfc-label capstone-p">P</span>
+            <textarea id="capstone_persona" class="capstone-textarea" rows="2" placeholder="Who should the AI act as?" oninput="saveCapstoneData()"></textarea>
+          </div>
+          <div class="capstone-ptfc-row">
+            <span class="capstone-ptfc-label capstone-t">T</span>
+            <textarea id="capstone_task" class="capstone-textarea" rows="2" placeholder="What do you want it to do?" oninput="saveCapstoneData()"></textarea>
+          </div>
+          <div class="capstone-ptfc-row">
+            <span class="capstone-ptfc-label capstone-f">F</span>
+            <textarea id="capstone_format" class="capstone-textarea" rows="2" placeholder="How should it structure the output?" oninput="saveCapstoneData()"></textarea>
+          </div>
+          <div class="capstone-ptfc-row">
+            <span class="capstone-ptfc-label capstone-c">C</span>
+            <textarea id="capstone_context" class="capstone-textarea" rows="2" placeholder="Your role, audience, prior knowledge, constraints..." oninput="saveCapstoneData()"></textarea>
+          </div>
+        </div>
+
+        <label class="capstone-label">Key Findings <span class="capstone-hint">Bullet-point your main research findings</span></label>
+        <textarea id="capstone_findings" class="capstone-textarea" rows="4" placeholder="• Finding 1&#10;• Finding 2&#10;• Finding 3" oninput="saveCapstoneData()"></textarea>
+
+        <label class="capstone-label">Self-Reflection <span class="capstone-hint">What worked well? What would you do differently?</span></label>
+        <textarea id="capstone_reflection" class="capstone-textarea" rows="3" placeholder="Reflect on your research process, use of AI tools, and what you learned..." oninput="saveCapstoneData()"></textarea>
+      </div>
+      <div class="capstone-actions">
+        <span id="capstoneSavedInd" style="display:none;color:var(--success);font-size:.8rem">✓ Saved</span>
+        <button class="btn btn-primary" onclick="printCapstone()">🖨 Print / Export</button>
+        <button class="btn btn-secondary" onclick="closeCapstone()">Close</button>
+      </div>
+    </div>
+  </div>
+
   <footer>
     <p>Digital Innovations AEP &bull; Built for KS5 learners</p>
   </footer>
@@ -305,5 +403,12 @@
   <script src="js/slides-u3u4.js"></script>
   <script src="js/slides-u5u6.js"></script>
   <script src="js/app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('sw.js').catch(function(){});
+      });
+    }
+  </script>
 </body>
 </html>

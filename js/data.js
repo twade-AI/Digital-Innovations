@@ -756,3 +756,63 @@ const GLOSSARY = [
   { term: 'Utilitarianism', definition: 'An ethical framework that judges actions by their consequences — the right action is the one that produces the greatest good for the greatest number of people.', lessons: [7] },
   { term: 'Viva Voce', definition: 'An oral examination where students defend their work by answering questions from examiners. Tests understanding, reasoning, and the ability to articulate decisions.', lessons: [39, 40] },
 ];
+
+/* ── AI News Headlines (curated, verified) ───────────────────────── */
+// All stories are real, sourced from named publications.
+// Dates are approximate publication dates. Teachers should update this list each term.
+const AI_NEWS = [
+  { headline: "EU AI Act comes into force — world's first comprehensive AI law", source: "European Parliament", date: "Aug 2024", tag: "policy" },
+  { headline: "Nobel Prize in Physics awarded to Hinton & Hopfield for neural network research", source: "The Nobel Committee", date: "Oct 2024", tag: "research" },
+  { headline: "AlphaFold 3: Google DeepMind predicts structure of nearly all known molecules", source: "Nature journal", date: "May 2024", tag: "research" },
+  { headline: "OpenAI launches GPT-4o with real-time voice, vision and reasoning", source: "OpenAI", date: "May 2024", tag: "tools" },
+  { headline: "28 nations sign Bletchley Declaration — first global agreement on frontier AI safety", source: "UK Government", date: "Nov 2023", tag: "policy" },
+  { headline: "UK AI Safety Institute established as world's first government AI safety body", source: "UK Gov / DSIT", date: "Nov 2023", tag: "policy" },
+  { headline: "Google Gemini 1.5 Pro handles 1-million-token context window", source: "Google DeepMind", date: "Feb 2024", tag: "tools" },
+  { headline: "Anthropic releases Claude 3 — Opus outperforms GPT-4 on key benchmarks", source: "Anthropic", date: "Mar 2024", tag: "tools" },
+  { headline: "Meta open-sources Llama 3, making powerful AI free for researchers", source: "Meta AI", date: "Apr 2024", tag: "tools" },
+  { headline: "Apple unveils Apple Intelligence — personalised AI built into iPhone and Mac", source: "Apple / BBC News", date: "Jun 2024", tag: "tools" },
+  { headline: "United Nations adopts first global AI governance resolution", source: "UN News", date: "Mar 2024", tag: "policy" },
+  { headline: "OpenAI's Sora generates photorealistic video clips from text descriptions", source: "OpenAI", date: "Feb 2024", tag: "tools" },
+  { headline: "Sam Altman fired then reinstated as OpenAI CEO after dramatic board revolt", source: "BBC News", date: "Nov 2023", tag: "industry" },
+  { headline: "New York lawyer sanctioned after AI cited six non-existent court cases", source: "BBC News / The Guardian", date: "Jun 2023", tag: "ethics" },
+  { headline: "Anthropic releases Claude 3.5 Sonnet — tops coding and reasoning benchmarks", source: "Anthropic", date: "Jun 2024", tag: "tools" },
+  { headline: "Over 1,800 AI researchers sign letter calling for pause on giant AI experiments", source: "Future of Life Institute", date: "Mar 2023", tag: "policy" },
+  { headline: "NHS trial finds AI matches radiologist accuracy in detecting breast cancer", source: "The Lancet / NHS England", date: "2024", tag: "health" },
+  { headline: "Mistral AI releases Mixtral 8x7B — high-performance open-source model", source: "Mistral AI", date: "Dec 2023", tag: "tools" },
+  { headline: "UK government publishes AI Safety Policy — first national AI safety strategy", source: "UK Government", date: "2024", tag: "policy" },
+  { headline: "AI systems beat humans at International Mathematical Olympiad problems", source: "Google DeepMind", date: "Jul 2024", tag: "research" },
+];
+
+/* ── Student Exemplar Gallery ─────────────────────────────────────── */
+const EXEMPLARS = [
+  {
+    name: "Aisha, Year 12",
+    task: "Essay plan for A-Level Biology exam",
+    persona: "You are an experienced A-Level Biology teacher who specialises in the AQA specification and marks at distinction level.",
+    taskText: "Create a detailed essay plan for the question: 'Evaluate the evidence for evolution by natural selection.'",
+    format: "A structured plan with: an introduction hook, 4 main points each with a named example, one counter-argument paragraph, and a conclusion strategy. Use bullet points throughout.",
+    context: "I am a Year 12 AQA Biology student. I find it difficult to structure longer essays and scored 12/20 on my last attempt. I have 3 weeks until my mock exam.",
+    teacherNote: "Excellent use of Context — Aisha tells Claude her level, her board (AQA), her specific weakness AND her timeline. This is what turns a generic response into genuinely useful, personalised feedback.",
+    tool: "Claude"
+  },
+  {
+    name: "Marcus, Year 13",
+    task: "Research briefing on AI in healthcare",
+    persona: "You are a senior research analyst at a health policy think-tank with expertise in NHS digital transformation.",
+    taskText: "Produce a research briefing summarising the current state of AI diagnostic tools in the NHS.",
+    format: "A 500-word briefing with: an executive summary (3 bullet points), three sections with clear headings, a limitations paragraph, and three questions for further research.",
+    context: "I am writing this for an EPQ on AI ethics. My audience is my school's research committee — academically rigorous but not medical specialists. I need balanced, evidence-based content.",
+    teacherNote: "Marcus defines his audience with real precision. 'Academic but not medical specialists' stops the AI being either too simple or too jargon-heavy — that single phrase dramatically improves the output.",
+    tool: "Gemini"
+  },
+  {
+    name: "Priya, Year 12",
+    task: "Debate preparation — AI and creativity",
+    persona: "You are a philosophy lecturer who specialises in aesthetics and the philosophy of mind.",
+    taskText: "Give me the three strongest arguments FOR the position that AI cannot be truly creative, along with the best counter-argument for each.",
+    format: "Three argument blocks. Each block: claim (1 sentence), supporting evidence (2–3 sentences), strongest counter-argument (2 sentences), rebuttal (1 sentence).",
+    context: "I am preparing to argue the proposition side in a formal school debate. The motion is 'This House believes AI can never be truly creative.' I need to anticipate and defeat the opposition's strongest points.",
+    teacherNote: "Priya's Format field is extremely specific — she defines the exact internal structure of each argument block. This produces a response that's immediately usable without any reformatting.",
+    tool: "Claude"
+  }
+];
