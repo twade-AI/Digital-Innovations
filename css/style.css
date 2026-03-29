@@ -965,3 +965,120 @@ kbd{
 .capstone-c{background:#f59e0b}
 .capstone-actions{display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
 .capstone-actions .btn{flex-shrink:0}
+
+/* ── AI History Timeline ──────────────────────────── */
+.timeline-filters{
+  display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;
+}
+.tl-filter{
+  padding:5px 14px;border-radius:999px;border:1px solid var(--border);
+  background:var(--bg-card);color:var(--text-dim);font-size:.78rem;font-weight:600;
+  cursor:pointer;transition:all .18s;
+}
+.tl-filter:hover{border-color:var(--primary);color:var(--text)}
+.tl-filter.active{background:rgba(99,102,241,.15);border-color:var(--primary);color:var(--primary-light)}
+
+.timeline-container{
+  position:relative;max-width:820px;padding-bottom:40px;
+}
+.timeline-spine{
+  position:absolute;left:90px;top:0;bottom:0;width:2px;
+  background:linear-gradient(to bottom,transparent,var(--primary) 5%,var(--accent) 95%,transparent);
+  z-index:0;
+}
+
+.tl-event{
+  display:flex;gap:0;align-items:flex-start;margin-bottom:8px;
+  opacity:1;transition:opacity .2s;
+}
+.tl-event.hidden{display:none}
+.tl-year{
+  width:82px;flex-shrink:0;text-align:right;padding-right:16px;
+  padding-top:14px;font-size:.78rem;font-weight:700;
+  color:var(--text-dim);letter-spacing:.02em;
+}
+.tl-dot-col{
+  width:20px;flex-shrink:0;display:flex;flex-direction:column;
+  align-items:center;padding-top:16px;z-index:1;
+}
+.tl-dot{
+  width:14px;height:14px;border-radius:50%;border:2px solid var(--bg);
+  flex-shrink:0;transition:transform .2s;
+}
+.tl-event:hover .tl-dot{transform:scale(1.4)}
+
+.tl-card{
+  flex:1;margin-left:16px;margin-bottom:6px;
+  background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
+  overflow:hidden;cursor:pointer;transition:border-color .2s, box-shadow .2s;
+}
+.tl-card:hover{border-color:rgba(99,102,241,.5);box-shadow:0 4px 20px rgba(0,0,0,.25)}
+.tl-card-header{
+  display:flex;align-items:center;gap:10px;padding:14px 16px 10px;
+}
+.tl-icon{font-size:1.3rem;flex-shrink:0}
+.tl-card-title{font-weight:700;font-size:.95rem;flex:1}
+.tl-cat-badge{
+  flex-shrink:0;font-size:.67rem;font-weight:700;padding:2px 8px;border-radius:999px;
+  text-transform:uppercase;letter-spacing:.05em;
+}
+.tl-chevron{
+  flex-shrink:0;font-size:.75rem;color:var(--text-dim);
+  transition:transform .25s;margin-left:4px;
+}
+.tl-card.open .tl-chevron{transform:rotate(180deg)}
+.tl-summary{
+  padding:0 16px 12px;font-size:.83rem;color:var(--text-muted);line-height:1.55;
+}
+.tl-detail{
+  display:none;padding:0 16px 14px;border-top:1px solid var(--border);
+  padding-top:12px;
+}
+.tl-card.open .tl-detail{display:block}
+.tl-detail-text{
+  font-size:.84rem;color:var(--text-muted);line-height:1.65;margin-bottom:10px;
+}
+.tl-people{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+
+/* Person bio chip */
+.person-chip{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:3px 10px;border-radius:999px;font-size:.75rem;font-weight:600;
+  background:rgba(99,102,241,.1);color:var(--primary-light);
+  border:1px solid rgba(99,102,241,.25);cursor:default;
+  position:relative;
+}
+.person-chip:hover{background:rgba(99,102,241,.2)}
+.person-bio-popup{
+  display:none;position:absolute;bottom:calc(100% + 8px);left:0;
+  width:300px;background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:14px 16px;box-shadow:0 8px 32px rgba(0,0,0,.4);
+  z-index:300;text-align:left;pointer-events:none;
+}
+.person-chip:hover .person-bio-popup{display:block}
+.pbp-name{font-weight:700;font-size:.88rem;margin-bottom:2px}
+.pbp-role{font-size:.75rem;color:var(--primary-light);margin-bottom:2px}
+.pbp-dates{font-size:.72rem;color:var(--text-dim);margin-bottom:8px}
+.pbp-bio{font-size:.78rem;color:var(--text-muted);line-height:1.55}
+
+/* Category colours */
+.cat-theory   { background:rgba(99,102,241,.15);color:#818cf8;border:none }
+.cat-milestone{ background:rgba(234,179,8,.15);color:#fbbf24;border:none }
+.cat-research { background:rgba(6,182,212,.15);color:#22d3ee;border:none }
+.cat-tools    { background:rgba(34,197,94,.15);color:#4ade80;border:none }
+.cat-policy   { background:rgba(239,68,68,.15);color:#f87171;border:none }
+.cat-industry { background:rgba(168,85,247,.15);color:#c084fc;border:none }
+.dot-theory   { background:#6366f1 }
+.dot-milestone{ background:#f59e0b }
+.dot-research { background:#06b6d4 }
+.dot-tools    { background:#22c55e }
+.dot-policy   { background:#ef4444 }
+.dot-industry { background:#a855f7 }
+
+@media(max-width:600px){
+  .timeline-spine{left:16px}
+  .tl-year{display:none}
+  .tl-dot-col{width:16px}
+  .tl-card{margin-left:10px}
+  .person-bio-popup{width:240px;left:auto;right:0}
+}

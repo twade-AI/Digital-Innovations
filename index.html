@@ -42,6 +42,7 @@
         <a href="#" class="nav-link" data-section="map" onclick="showSection('map')">Course Map</a>
         <a href="#" class="nav-link" data-section="glossary" onclick="showSection('glossary')">Glossary</a>
         <a href="#" class="nav-link" data-section="exemplars" onclick="showSection('exemplars')">Gallery</a>
+        <a href="#" class="nav-link" data-section="timeline" onclick="showSection('timeline')">History</a>
         <a href="#" class="nav-link nav-link-quiz" onclick="startQuickQuiz()" title="Quick Quiz — test yourself on completed lessons">⚡ Quiz Me</a>
       </div>
       <div class="nav-search">
@@ -253,6 +254,16 @@
       <input type="text" id="glossarySearch" placeholder="Search terms..." oninput="filterGlossary(this.value)">
     </div>
     <div id="glossaryList" class="glossary-list"></div>
+  </section>
+
+  <!-- AI History Timeline Section -->
+  <section id="section-timeline" class="section">
+    <div class="section-header">
+      <h2>History of Artificial Intelligence</h2>
+      <p>Major moments from 1943 to today — hover any event for detail, hover a name for a biography.</p>
+    </div>
+    <div class="timeline-filters" id="timelineFilters"></div>
+    <div class="timeline-container" id="timelineContainer"></div>
   </section>
 
   <!-- Exemplar Gallery Section -->
