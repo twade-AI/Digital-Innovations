@@ -816,3 +816,350 @@ const EXEMPLARS = [
     tool: "Claude"
   }
 ];
+
+/* ── AI History Timeline ──────────────────────────────────────────── */
+// People bios: used by hover chips throughout the timeline
+const AI_PEOPLE = {
+  "Alan Turing": {
+    role: "Mathematician & Computer Scientist",
+    dates: "1912 – 1954",
+    bio: "British mathematician who laid the theoretical foundations of computation and AI. During WWII he was central to breaking the Enigma code. He proposed the Turing Test in 1950 as a criterion for machine intelligence. Awarded a royal pardon posthumously in 2013.",
+    icon: "🇬🇧"
+  },
+  "John McCarthy": {
+    role: "Computer Scientist",
+    dates: "1927 – 2011",
+    bio: "American computer scientist who coined the term 'Artificial Intelligence' at the 1956 Dartmouth Conference. Inventor of the Lisp programming language and a pioneer of time-sharing computing. Stanford AI Lab founder.",
+    icon: "🇺🇸"
+  },
+  "Marvin Minsky": {
+    role: "Cognitive Scientist & AI Pioneer",
+    dates: "1927 – 2016",
+    bio: "Co-founder of MIT's AI laboratory. Influential theorist on neural networks and cognitive architectures. His book 'The Society of Mind' (1986) proposed that intelligence arises from the interaction of many simple processes.",
+    icon: "🇺🇸"
+  },
+  "Arthur Samuel": {
+    role: "Computer Scientist",
+    dates: "1901 – 1990",
+    bio: "IBM researcher who coined the term 'machine learning' in 1959. Created one of the earliest self-learning programs — a checkers-playing AI that improved by playing games against itself, demonstrating learning without explicit programming.",
+    icon: "🇺🇸"
+  },
+  "Frank Rosenblatt": {
+    role: "Psychologist & Computer Scientist",
+    dates: "1928 – 1971",
+    bio: "American researcher who invented the Perceptron in 1957 — the first computational model of a neuron capable of supervised learning. His work was foundational to modern neural networks, though interest waned after Minsky's 1969 critique.",
+    icon: "🇺🇸"
+  },
+  "Joseph Weizenbaum": {
+    role: "Computer Scientist",
+    dates: "1923 – 2008",
+    bio: "MIT professor who created ELIZA (1966), one of the first chatbot programs. He was disturbed by how readily users attributed understanding to his program and became a prominent critic of AI, arguing in 'Computer Power and Human Reason' (1976) that some human decisions should never be delegated to machines.",
+    icon: "🇩🇪🇺🇸"
+  },
+  "Geoffrey Hinton": {
+    role: "Cognitive Psychologist & Computer Scientist",
+    dates: "1947 –",
+    bio: "Often called the 'Godfather of Deep Learning'. Co-authored the key backpropagation paper (1986) and, with his students, created AlexNet (2012) which triggered the deep learning revolution. Left Google in 2023 to speak freely about AI risks. Awarded the 2024 Nobel Prize in Physics alongside John Hopfield.",
+    icon: "🇬🇧🇨🇦"
+  },
+  "Yann LeCun": {
+    role: "Computer Scientist",
+    dates: "1960 –",
+    bio: "Pioneer of convolutional neural networks (CNNs). His LeNet system (1989) was the first to successfully apply backpropagation to real-world image recognition — reading handwritten digits on cheques for US banks. Chief AI Scientist at Meta. Turing Award 2018.",
+    icon: "🇫🇷🇺🇸"
+  },
+  "Yoshua Bengio": {
+    role: "Computer Scientist",
+    dates: "1964 –",
+    bio: "Co-founder of the deep learning revolution alongside Hinton and LeCun. Director of the Montreal Institute for Learning Algorithms. A leading advocate for AI safety and ethics. Turing Award 2018.",
+    icon: "🇨🇦"
+  },
+  "Fei-Fei Li": {
+    role: "Computer Scientist",
+    dates: "1976 –",
+    bio: "Professor at Stanford and co-director of the Stanford Human-Centered AI Institute. Creator of ImageNet (2009), the large-scale visual database that enabled the deep learning revolution in computer vision. Former Chief Scientist of AI at Google Cloud.",
+    icon: "🇨🇳🇺🇸"
+  },
+  "Ian Goodfellow": {
+    role: "Machine Learning Researcher",
+    dates: "1985 –",
+    bio: "Inventor of Generative Adversarial Networks (GANs) in 2014 — a breakthrough technique where two neural networks compete against each other to generate increasingly realistic synthetic data. Formerly at Google Brain and Apple.",
+    icon: "🇺🇸"
+  },
+  "Demis Hassabis": {
+    role: "Neuroscientist & Entrepreneur",
+    dates: "1976 –",
+    bio: "Co-founder and CEO of DeepMind (acquired by Google in 2014). Led the AlphaGo, AlphaFold and Gemini projects. A former child chess prodigy, he combines neuroscience and computer science to build AI that learns like the human brain. Knighted in 2023.",
+    icon: "🇬🇧"
+  },
+  "Sam Altman": {
+    role: "Entrepreneur & CEO",
+    dates: "1985 –",
+    bio: "CEO of OpenAI, which he has led since 2019. Oversaw the launch of GPT-3, GPT-4, DALL-E, and ChatGPT — the fastest consumer product to reach 100 million users. Briefly fired and reinstated by OpenAI's board in November 2023 in a highly publicised governance crisis.",
+    icon: "🇺🇸"
+  },
+  "Ilya Sutskever": {
+    role: "Machine Learning Researcher",
+    dates: "1985 –",
+    bio: "Co-founder of OpenAI and co-inventor of AlexNet. Chief Scientist at OpenAI until 2024 when he left to found Safe Superintelligence Inc. One of the most cited researchers in deep learning history.",
+    icon: "🇷🇺🇮🇱🇨🇦"
+  },
+  "John Hopfield": {
+    role: "Physicist & Neuroscientist",
+    dates: "1933 –",
+    bio: "Princeton physicist who invented the Hopfield Network in 1982 — a type of recurrent neural network with associative memory inspired by spin glasses in physics. Awarded the 2024 Nobel Prize in Physics alongside Geoffrey Hinton for foundational discoveries enabling machine learning.",
+    icon: "🇺🇸"
+  },
+  "Ashish Vaswani": {
+    role: "Machine Learning Researcher",
+    dates: "1985 –",
+    bio: "Lead author of the landmark 2017 paper 'Attention Is All You Need', which introduced the Transformer architecture that underpins virtually every modern large language model, including GPT-4, Claude, and Gemini.",
+    icon: "🇮🇳🇺🇸"
+  }
+};
+
+const AI_TIMELINE = [
+  {
+    year: 1943,
+    title: "First Mathematical Neuron",
+    summary: "McCulloch & Pitts publish a mathematical model of how neurons work — the first formal description of a computational brain cell.",
+    detail: "Warren McCulloch and Walter Pitts published 'A Logical Calculus of the Ideas Immanent in Nervous Activity', proposing that neurons could be modelled as binary logic gates. This gave AI its first theoretical toolkit: the idea that intelligence could be built from simple on/off units wired together.",
+    people: [],
+    category: "theory",
+    icon: "🧠"
+  },
+  {
+    year: 1950,
+    title: "The Turing Test",
+    summary: "Alan Turing asks 'Can machines think?' and proposes the Imitation Game as a practical measure of machine intelligence.",
+    detail: "In his paper 'Computing Machinery and Intelligence', Turing proposed replacing the unanswerable philosophical question 'can machines think?' with a practical test: if a human interrogator cannot reliably distinguish machine responses from human ones, the machine passes. The paper also anticipated nearly every objection to machine intelligence still debated today.",
+    people: ["Alan Turing"],
+    category: "theory",
+    icon: "💭"
+  },
+  {
+    year: 1952,
+    title: "First Self-Learning Program",
+    summary: "Arthur Samuel builds a checkers-playing program at IBM that improves by playing games against itself — coining the term 'machine learning'.",
+    detail: "Samuel's checkers program was remarkable because it learned to play better than its creator. It memorised positions and evaluated future moves — demonstrating that computers could acquire skills through experience rather than explicit programming. Samuel coined the phrase 'machine learning' to describe this capability.",
+    people: ["Arthur Samuel"],
+    category: "milestone",
+    icon: "♟️"
+  },
+  {
+    year: 1956,
+    title: "The Dartmouth Conference — AI is Born",
+    summary: "John McCarthy organises a two-month summer workshop at Dartmouth College and coins the term 'Artificial Intelligence'.",
+    detail: "McCarthy's proposal stated the conjecture that 'every aspect of learning or any other feature of intelligence can in principle be so precisely described that a machine can be made to simulate it.' Attendees included Minsky, Shannon, and Simon. The conference set the agenda for AI research for decades — and named the field.",
+    people: ["John McCarthy", "Marvin Minsky"],
+    category: "milestone",
+    icon: "🎓"
+  },
+  {
+    year: 1957,
+    title: "The Perceptron",
+    summary: "Frank Rosenblatt invents the Perceptron — the first neural network capable of learning from labelled examples.",
+    detail: "Rosenblatt's Perceptron was implemented on IBM hardware and could learn to distinguish simple shapes. It seemed to promise that machines could learn to perceive. The New York Times reported it would 'be able to walk, talk, see, write, reproduce itself and be conscious of its existence'. The optimism collapsed in 1969 when Minsky showed Perceptrons couldn't solve non-linear problems.",
+    people: ["Frank Rosenblatt"],
+    category: "research",
+    icon: "⚡"
+  },
+  {
+    year: 1966,
+    title: "ELIZA — The First Chatbot",
+    summary: "Joseph Weizenbaum at MIT creates ELIZA, a program that simulates a psychotherapist by reflecting questions back at the user.",
+    detail: "ELIZA worked by pattern-matching keywords and reformulating user input as questions. Its most famous script, DOCTOR, mimicked a Rogerian therapist. Weizenbaum was disturbed that users formed emotional attachments to the program, including his own secretary. He spent the rest of his career warning against delegating human decisions to machines.",
+    people: ["Joseph Weizenbaum"],
+    category: "tools",
+    icon: "💬"
+  },
+  {
+    year: 1974,
+    title: "First AI Winter",
+    summary: "Funding collapses after a UK government report (the Lighthill Report) and US DARPA cuts conclude that AI has massively overpromised and underdelivered.",
+    detail: "Sir James Lighthill's 1973 report for the British Science Research Council concluded that no part of AI had produced the major impact promised. Combined with the failure of machine translation projects, DARPA cut AI funding sharply. The term 'AI Winter' was later coined to describe this period of disillusionment, which lasted roughly until 1980.",
+    people: [],
+    category: "policy",
+    icon: "❄️"
+  },
+  {
+    year: 1980,
+    title: "Expert Systems Boom",
+    summary: "Rule-based 'expert systems' like XCON bring AI into industry — DEC saves millions using AI to configure computers.",
+    detail: "Expert systems encoded domain knowledge as thousands of if-then rules. XCON (eXpert CONfigurer) at Digital Equipment Corporation processed 80,000 computer orders in its first year. By the mid-1980s, Fortune 500 companies were spending over a billion dollars a year on expert system development. The boom ended when systems proved too brittle and expensive to maintain.",
+    people: [],
+    category: "industry",
+    icon: "🏭"
+  },
+  {
+    year: 1986,
+    title: "Backpropagation Revives Neural Networks",
+    summary: "Geoffrey Hinton co-publishes the backpropagation paper, showing how multi-layer neural networks can be trained efficiently — ending the second AI Winter.",
+    detail: "Rumelhart, Hinton, and Williams' 1986 paper in Nature showed that errors could be propagated backwards through a network to adjust weights at every layer. This made training deep networks computationally feasible for the first time. Though the technique had been independently discovered before, this paper popularised it and reignited neural network research.",
+    people: ["Geoffrey Hinton"],
+    category: "research",
+    icon: "🔬"
+  },
+  {
+    year: 1989,
+    title: "Convolutional Neural Networks & Digit Recognition",
+    summary: "Yann LeCun applies neural networks to recognise handwritten digits, reading cheques for US banks — the first practical deep learning application.",
+    detail: "LeCun's LeNet demonstrated that convolutional neural networks — networks with shared-weight filters that detect local patterns — could read handwritten postcodes and cheques reliably. By the late 1990s, LeNet was processing over 10% of all cheques in the USA. This was the first large-scale commercial deployment of neural networks.",
+    people: ["Yann LeCun"],
+    category: "research",
+    icon: "✍️"
+  },
+  {
+    year: 1997,
+    title: "Deep Blue Defeats Garry Kasparov",
+    summary: "IBM's chess computer Deep Blue becomes the first machine to beat a reigning world chess champion in a match under standard chess tournament conditions.",
+    detail: "Deep Blue evaluated 200 million positions per second using custom chips and search algorithms. Kasparov accused IBM of cheating after a mysterious move in game 2 that he thought no computer could play. IBM refused a rematch and retired the machine. The victory was a cultural watershed but relied on brute-force search rather than learning — making it distinct from modern AI.",
+    people: [],
+    category: "milestone",
+    icon: "♟️"
+  },
+  {
+    year: 2006,
+    title: "Deep Learning Revival",
+    summary: "Geoffrey Hinton and Ruslan Salakhutdinov publish a breakthrough paper showing how to train deep belief networks — reigniting interest in neural networks after two decades.",
+    detail: "Their paper in Science showed that deep networks could be pre-trained layer-by-layer using unsupervised learning, then fine-tuned. This solved the 'vanishing gradient' problem that had made deep networks untrainable. Combined with growing compute and data, this sparked what became the deep learning revolution of the 2010s.",
+    people: ["Geoffrey Hinton"],
+    category: "research",
+    icon: "🔁"
+  },
+  {
+    year: 2009,
+    title: "ImageNet Launched",
+    summary: "Fei-Fei Li launches ImageNet — a database of 14 million labelled images that becomes the benchmark for computer vision and the fuel for deep learning.",
+    detail: "Li's insight was that the bottleneck in computer vision wasn't algorithms — it was data. ImageNet took three years to build using crowdsourced workers on Amazon Mechanical Turk to label millions of images. The annual ImageNet Large Scale Visual Recognition Challenge (ILSVRC) from 2010 created the competition that AlexNet won so dramatically in 2012.",
+    people: ["Fei-Fei Li"],
+    category: "research",
+    icon: "🖼️"
+  },
+  {
+    year: 2011,
+    title: "IBM Watson Wins Jeopardy!",
+    summary: "IBM's Watson defeats Jeopardy! champions Ken Jennings and Brad Rutter in a televised match, showcasing natural language understanding at scale.",
+    detail: "Watson processed natural language questions, searched its knowledge base, and responded faster than the human champions. Ken Jennings wrote on his final answer 'I for one welcome our new computer overlords.' Watson used over 100 algorithms simultaneously. IBM later deployed Watson Health for cancer diagnosis — with mixed results, highlighting the gap between game-playing and real-world AI.",
+    people: [],
+    category: "milestone",
+    icon: "🎯"
+  },
+  {
+    year: 2012,
+    title: "AlexNet — The Deep Learning Revolution",
+    summary: "AlexNet wins the ImageNet competition by a massive margin, cutting the error rate nearly in half and triggering the modern era of deep learning.",
+    detail: "Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton's AlexNet achieved a top-5 error rate of 15.3% — compared to the runner-up's 26.2%. The key innovations were using ReLU activations, dropout regularisation, and training on GPU hardware. This single result shifted the entire field. Within two years, every top ImageNet entry used deep CNNs.",
+    people: ["Geoffrey Hinton", "Ilya Sutskever"],
+    category: "milestone",
+    icon: "🚀"
+  },
+  {
+    year: 2014,
+    title: "GANs Invented",
+    summary: "Ian Goodfellow invents Generative Adversarial Networks — a technique where two networks compete to generate increasingly realistic synthetic data.",
+    detail: "Goodfellow reportedly conceived the idea during an argument at a Montreal bar and coded the first GAN the same night. A generator network tries to fool a discriminator network; the discriminator tries to spot fakes. The competition drives both to improve. GANs enabled photorealistic face generation, deepfakes, synthetic data, and creative AI tools like DALL-E's predecessors.",
+    people: ["Ian Goodfellow"],
+    category: "research",
+    icon: "🎭"
+  },
+  {
+    year: 2016,
+    title: "AlphaGo Defeats Lee Sedol",
+    summary: "Google DeepMind's AlphaGo beats world Go champion Lee Sedol 4-1 — a landmark considered a decade ahead of schedule.",
+    detail: "Go has more possible positions than atoms in the observable universe, making it impervious to brute-force search. AlphaGo used two deep neural networks and Monte Carlo tree search, trained by both supervised learning from human games and reinforcement learning by playing itself. Lee Sedol called it 'an entity that is neither human nor computer'. DeepMind later released AlphaGo Zero, which learned purely from self-play.",
+    people: ["Demis Hassabis"],
+    category: "milestone",
+    icon: "🔵"
+  },
+  {
+    year: 2017,
+    title: '"Attention Is All You Need" — The Transformer',
+    summary: "Google researchers publish the Transformer architecture, which becomes the foundation of GPT, Claude, Gemini, and virtually every modern large language model.",
+    detail: "The paper introduced the self-attention mechanism: instead of processing text sequentially (as RNNs did), Transformers attend to all tokens simultaneously, learning relationships across the full context. This enabled parallelisation on GPUs and scaling to previously impossible sizes. The Transformer is arguably the most influential AI paper since backpropagation.",
+    people: ["Ashish Vaswani"],
+    category: "research",
+    icon: "🔧"
+  },
+  {
+    year: 2018,
+    title: "BERT & The Transfer Learning Era",
+    summary: "Google releases BERT — a pre-trained language model that can be fine-tuned for almost any NLP task, dramatically raising performance benchmarks.",
+    detail: "BERT (Bidirectional Encoder Representations from Transformers) was pre-trained on the entire Wikipedia and BookCorpus. Fine-tuning it on specific tasks required only small datasets. BERT improved state-of-the-art on 11 different NLP benchmarks simultaneously. It triggered a paradigm shift: instead of training models from scratch per task, the field moved to pre-train once, fine-tune anywhere.",
+    people: [],
+    category: "research",
+    icon: "📚"
+  },
+  {
+    year: 2020,
+    title: "GPT-3 — Language Models at Scale",
+    summary: "OpenAI releases GPT-3 with 175 billion parameters — the largest language model at the time, capable of writing essays, code, poetry, and passing professional exams.",
+    detail: "GPT-3's scale produced qualitatively new capabilities that smaller models lacked — few-shot learning, coherent long-form text, working code, and more. Access was via API only, spurring hundreds of startups. It demonstrated that scaling transformer models on more data and compute kept producing improvements — the so-called 'scaling hypothesis'. The paper 'Language Models are Few-Shot Learners' became one of the most cited in AI history.",
+    people: ["Sam Altman", "Ilya Sutskever"],
+    category: "tools",
+    icon: "📝"
+  },
+  {
+    year: 2021,
+    title: "AlphaFold 2 Solves Protein Folding",
+    summary: "DeepMind's AlphaFold 2 accurately predicts protein 3D structure from amino acid sequence — solving a 50-year-old grand challenge in biology.",
+    detail: "How a protein folds determines its function. Predicting this shape from sequence had been biology's hardest computational problem since 1969. AlphaFold 2 achieved accuracy comparable to expensive experimental techniques. DeepMind released structures for over 200 million proteins — effectively the entire known proteome — for free. Nature called it 'a stunning advance' that will accelerate drug discovery by years.",
+    people: ["Demis Hassabis"],
+    category: "milestone",
+    icon: "🧬"
+  },
+  {
+    year: 2022,
+    title: "ChatGPT Launches — AI Goes Mainstream",
+    summary: "OpenAI releases ChatGPT in November 2022. It reaches 100 million users in two months — the fastest consumer product in history.",
+    detail: "ChatGPT combined GPT-3.5 with Reinforcement Learning from Human Feedback (RLHF) to produce an assistant that felt genuinely useful. It could write code, explain complex topics, draft emails, and pass professional exams. The same year saw DALL-E 2, Stable Diffusion, and Midjourney democratise image generation. 2022 is widely considered the year AI entered public consciousness.",
+    people: ["Sam Altman"],
+    category: "milestone",
+    icon: "🌍"
+  },
+  {
+    year: 2023,
+    title: "Frontier AI Safety Becomes Policy",
+    summary: "28 nations sign the Bletchley Declaration; the UK hosts the first AI Safety Summit; the EU finalises the AI Act. AI safety shifts from academic to geopolitical priority.",
+    detail: "The Bletchley Park summit brought together governments, leading AI companies, and researchers to agree that frontier AI poses potential catastrophic risks requiring international coordination. The EU AI Act — the world's first comprehensive AI law — was agreed in December. In the US, President Biden issued an Executive Order on AI safety. The year marked AI governance becoming a mainstream political issue.",
+    people: [],
+    category: "policy",
+    icon: "🏛️"
+  },
+  {
+    year: 2023,
+    title: "Open-Source Models Proliferate",
+    summary: "Meta releases Llama 2; Mistral releases Mixtral. Powerful AI becomes freely available to researchers, developers and activists worldwide.",
+    detail: "Meta's decision to open-source Llama 2 (70 billion parameters) was controversial — some argued it democratised AI; others that it removed safety guardrails. Within months, the open-source community had produced fine-tuned variants for medicine, law, coding, and more. Mistral's Mixtral 8x7B matched GPT-3.5 performance at a fraction of the compute cost, challenging the assumption that frontier AI required massive corporations.",
+    people: [],
+    category: "tools",
+    icon: "🔓"
+  },
+  {
+    year: 2024,
+    title: "EU AI Act Comes Into Force",
+    summary: "The world's first comprehensive AI law takes effect in the EU, establishing risk tiers, banning certain uses, and requiring transparency from general-purpose AI models.",
+    detail: "The Act classifies AI systems by risk: unacceptable-risk (banned — e.g. social scoring, subliminal manipulation), high-risk (regulated — medical devices, hiring systems, critical infrastructure), and general-purpose AI (must publish training data summaries and comply with copyright law). Companies violating it face fines up to €35 million or 7% of global turnover. The Act will be phased in over three years.",
+    people: [],
+    category: "policy",
+    icon: "⚖️"
+  },
+  {
+    year: 2024,
+    title: "Nobel Prize in Physics for AI Foundations",
+    summary: "John Hopfield and Geoffrey Hinton are awarded the Nobel Prize in Physics for discoveries that enabled modern machine learning.",
+    detail: "The Nobel Committee cited Hopfield's associative memory network (1982) and Hinton's Boltzmann machine as the foundational physics-inspired models that enabled the deep learning revolution. Hinton, who had left Google the previous year to speak freely about AI risks, used his Nobel lecture to warn about existential risks from AI systems that may develop goals misaligned with human welfare.",
+    people: ["Geoffrey Hinton", "John Hopfield"],
+    category: "milestone",
+    icon: "🏆"
+  },
+  {
+    year: 2024,
+    title: "Multimodal AI Becomes Standard",
+    summary: "GPT-4o, Gemini 1.5 Pro and Claude 3 Opus all launch with voice, image and million-token context capabilities — AI becomes a genuine general assistant.",
+    detail: "GPT-4o ('o' for omni) processed voice, image and text natively in real time. Gemini 1.5 Pro offered a 1-million-token context window — enough to process entire codebases or novels. Claude 3 Opus outperformed GPT-4 on key benchmarks. Apple Intelligence brought on-device AI to consumer hardware. The year marked a shift from language-only models to genuinely multimodal AI embedded in everyday devices.",
+    people: ["Sam Altman", "Demis Hassabis"],
+    category: "tools",
+    icon: "🤖"
+  }
+];

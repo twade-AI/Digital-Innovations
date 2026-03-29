@@ -95,6 +95,7 @@ function showSection(name) {
   if (name === 'map') renderCourseMap();
   if (name === 'home') { renderRecentlyViewed(); updateTimeEstimate(); }
   if (name === 'exemplars') renderExemplars();
+  if (name === 'timeline') renderTimeline();
 }
 
 function toggleMobileNav() {
@@ -2142,6 +2143,96 @@ function launchConfetti() {
     else ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
   draw();
+}
+
+/* ── AI History Timeline ───────────────────────── */
+var tlFilter = 'all';
+
+function renderTimeline() {
+  if (typeof AI_TIMELINE === 'undefined') return;
+  renderTimelineFilters();
+  renderTimelineEvents();
+}
+
+function renderTimelineFilters() {
+  var el = document.getElementById('timelineFilters');
+  if (!el) return;
+  var cats = ['all','milestone','research','tools','policy','industry','theory'];
+  var labels = { all:'All Events', milestone:'🏆 Milestones', research:'🔬 Research', tools:'🛠️ Tools', policy:'🏛️ Policy', industry:'🏭 Industry', theory:'💭 Theory' };
+  el.innerHTML = cats.map(function(c) {
+    return '<button class="tl-filter' + (tlFilter === c ? ' active' : '') + '" onclick="setTlFilter(\'' + c + '\')">' + labels[c] + '</button>';
+  }).join('');
+}
+
+function setTlFilter(cat) {
+  tlFilter = cat;
+  renderTimelineFilters();
+  document.querySelectorAll('.tl-event').forEach(function(ev) {
+    var evCat = ev.dataset.category;
+    ev.classList.toggle('hidden', cat !== 'all' && evCat !== cat);
+  });
+}
+
+function renderTimelineEvents() {
+  var container = document.getElementById('timelineContainer');
+  if (!container) return;
+
+  var html = '<div class="timeline-spine"></div>';
+
+  AI_TIMELINE.forEach(function(ev, idx) {
+    var hidden = tlFilter !== 'all' && ev.category !== tlFilter;
+    var peopleHtml = '';
+    if (ev.people && ev.people.length > 0) {
+      peopleHtml = '<div class="tl-people">' +
+        ev.people.map(function(name) {
+          var p = (typeof AI_PEOPLE !== 'undefined') ? AI_PEOPLE[name] : null;
+          if (!p) return '<span class="person-chip">' + name + '</span>';
+          return '<span class="person-chip">' +
+            p.icon + ' ' + name +
+            '<span class="person-bio-popup">' +
+              '<div class="pbp-name">' + name + '</div>' +
+              '<div class="pbp-role">' + p.role + '</div>' +
+              '<div class="pbp-dates">' + p.dates + '</div>' +
+              '<div class="pbp-bio">' + p.bio + '</div>' +
+            '</span>' +
+          '</span>';
+        }).join('') +
+      '</div>';
+    }
+
+    html += '<div class="tl-event' + (hidden ? ' hidden' : '') + '" data-category="' + ev.category + '" data-idx="' + idx + '">' +
+      '<div class="tl-year">' + ev.year + '</div>' +
+      '<div class="tl-dot-col"><div class="tl-dot dot-' + ev.category + '"></div></div>' +
+      '<div class="tl-card" onclick="toggleTlCard(this)" role="button" aria-expanded="false">' +
+        '<div class="tl-card-header">' +
+          '<span class="tl-icon">' + ev.icon + '</span>' +
+          '<span class="tl-card-title">' + ev.title + '</span>' +
+          '<span class="tl-cat-badge cat-' + ev.category + '">' + ev.category + '</span>' +
+          '<span class="tl-chevron">▼</span>' +
+        '</div>' +
+        '<div class="tl-summary">' + ev.summary + '</div>' +
+        '<div class="tl-detail">' +
+          '<p class="tl-detail-text">' + ev.detail + '</p>' +
+          peopleHtml +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  });
+
+  container.innerHTML = html;
+}
+
+function toggleTlCard(card) {
+  var isOpen = card.classList.contains('open');
+  // Close all open cards
+  document.querySelectorAll('.tl-card.open').forEach(function(c) {
+    c.classList.remove('open');
+    c.setAttribute('aria-expanded', 'false');
+  });
+  if (!isOpen) {
+    card.classList.add('open');
+    card.setAttribute('aria-expanded', 'true');
+  }
 }
 
 /* ── Init ──────────────────────────────────────── */
