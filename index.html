@@ -31,6 +31,7 @@
         <input type="text" id="searchInput" placeholder="Search everything..." oninput="handleSearch(this.value)" aria-label="Search lessons, glossary, and resources">
         <div id="searchResults" class="search-results"></div>
       </div>
+      <button class="nav-teacher-btn" id="teacherModeBtn" onclick="toggleTeacherMode()" title="Toggle Teacher/Presentation mode">📺</button>
       <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light/dark mode" title="Toggle theme">
         <span class="theme-icon" id="themeIcon">☀️</span>
       </button>
@@ -68,6 +69,7 @@
           <button class="btn btn-secondary" onclick="showSection('resources')">Browse Resources</button>
         </div>
         <div id="heroTimeEst" style="margin-top:12px;font-size:.82rem;color:var(--text-dim)"></div>
+        <div id="heroReviewDue" style="display:none;margin-top:8px"></div>
       </div>
       <div class="hero-visual">
         <div class="orbit-ring">
@@ -141,6 +143,9 @@
     <div class="section-header">
       <h2>Course Map</h2>
       <p>All 44 lessons at a glance — click any tile to open it. Completed lessons show a ✓.</p>
+    </div>
+    <div style="margin-bottom:16px">
+      <button class="btn btn-primary" onclick="openAssessment()">🎯 Take a Unit Assessment</button>
     </div>
     <div id="courseMapContainer" class="course-map"></div>
   </section>
@@ -220,6 +225,45 @@
 
   <!-- Lesson Detail Modal -->
   <!-- Confetti Canvas -->
+  <!-- Teacher Mode Banner -->
+  <div id="teacherBanner" class="teacher-banner" style="display:none">
+    📺 Teacher / Presentation Mode — personal progress hidden &nbsp;
+    <button onclick="toggleTeacherMode()" style="background:none;border:1px solid rgba(255,255,255,.4);color:#fff;padding:2px 10px;border-radius:4px;cursor:pointer;font-size:.8rem">Exit</button>
+  </div>
+
+  <!-- Keyboard Shortcuts Overlay -->
+  <div id="shortcutsOverlay" class="shortcuts-overlay" onclick="closeShortcuts()">
+    <div class="shortcuts-inner" onclick="event.stopPropagation()">
+      <div class="shortcuts-title">⌨️ Keyboard Shortcuts</div>
+      <div class="shortcuts-grid">
+        <div class="sc-row"><kbd>→</kbd><span>Next slide</span></div>
+        <div class="sc-row"><kbd>←</kbd><span>Previous slide</span></div>
+        <div class="sc-row"><kbd>Esc</kbd><span>Close lesson / quiz</span></div>
+        <div class="sc-row"><kbd>M</kbd><span>Mark lesson complete</span></div>
+        <div class="sc-row"><kbd>B</kbd><span>Bookmark lesson</span></div>
+        <div class="sc-row"><kbd>N</kbd><span>Toggle notes panel</span></div>
+        <div class="sc-row"><kbd>F</kbd><span>Flag slide for review</span></div>
+        <div class="sc-row"><kbd>?</kbd><span>Show this overlay</span></div>
+      </div>
+      <button class="btn btn-secondary" style="margin-top:16px;width:100%" onclick="closeShortcuts()">Close</button>
+    </div>
+  </div>
+
+  <!-- Assessment Modal -->
+  <div id="assessmentModal" class="modal" role="dialog" aria-modal="true" aria-label="Unit Assessment" onclick="if(event.target===this)closeAssessment()">
+    <div class="modal-content assessment-inner">
+      <button class="modal-close" onclick="closeAssessment()">&times;</button>
+      <div id="assessmentBody"></div>
+    </div>
+  </div>
+
+  <!-- Milestone Modal -->
+  <div id="milestoneModal" class="modal" role="dialog" aria-modal="true" aria-label="Milestone" onclick="if(event.target===this)closeMilestone()">
+    <div class="modal-content milestone-inner">
+      <div id="milestoneBody"></div>
+    </div>
+  </div>
+
   <!-- Quick Quiz Modal -->
   <div id="quickQuizModal" class="modal qq-modal" role="dialog" aria-modal="true" aria-label="Quick Quiz" onclick="if(event.target===this)closeQuickQuiz()">
     <div class="qq-inner">
@@ -238,9 +282,17 @@
 
   <!-- Lesson Detail Modal -->
   <div id="lessonModal" class="modal" role="dialog" aria-modal="true" aria-label="Lesson viewer" onclick="if(event.target===this)closeModal()">
-    <div class="modal-content">
+    <div class="modal-content lv-modal-content">
       <button class="modal-close" onclick="closeModal()">&times;</button>
-      <div id="modalBody"></div>
+      <button class="lv-notes-toggle" id="notesToggle" onclick="toggleNotesPanel()" title="Toggle lesson notes (N)">📝</button>
+      <div class="lv-modal-body">
+        <div id="modalBody"></div>
+        <div id="notesPanel" class="notes-panel" style="display:none">
+          <div class="notes-panel-header">📝 Lesson Notes</div>
+          <textarea id="notesPanelText" class="notes-panel-textarea" placeholder="Jot down anything as you go — these are saved automatically per lesson..."></textarea>
+          <div class="notes-panel-footer"><span id="notesSavedIndicator" style="display:none;color:var(--success);font-size:.75rem">✓ Saved</span></div>
+        </div>
+      </div>
     </div>
   </div>
 

@@ -180,10 +180,11 @@ function toggleLesson(id) {
   saveProgress();
   renderUnits();
   updateHomeStats();
-  // Confetti + badge check on completing a lesson
   if (!wasComplete) {
     launchConfetti();
     setTimeout(checkAndAwardBadges, 600);
+    setTimeout(checkMilestone, 900);
+    setTimeout(updateReviewDueBadge, 200);
   }
 }
 
@@ -461,6 +462,33 @@ function renderSlide(index) {
     '</div>';
   }
 
+  else if (slide.type === 'builder' && slide.widget === 'ptfc') {
+    html = '<div class="slide-concept">' +
+      '<span class="slide-badge badge-activity">Interactive Tool</span>' +
+      '<div class="slide-title">' + slide.title + '</div>' +
+      '<div class="concept-body">' + (slide.hint || '') + '</div>' +
+      '<div class="ptfc-builder">' +
+        '<div class="ptfc-row"><label class="ptfc-label ptfc-p"><span>P</span>Persona</label>' +
+        '<textarea class="ptfc-input" id="ptfc_p" placeholder="e.g. You are an experienced AQA A-Level Biology examiner who marks at distinction level." oninput="assemblePTFC()"></textarea></div>' +
+        '<div class="ptfc-row"><label class="ptfc-label ptfc-t"><span>T</span>Task</label>' +
+        '<textarea class="ptfc-input" id="ptfc_t" placeholder="e.g. Explain the light-dependent reactions of photosynthesis, focusing on what happens to electrons in the thylakoid membrane." oninput="assemblePTFC()"></textarea></div>' +
+        '<div class="ptfc-row"><label class="ptfc-label ptfc-f"><span>F</span>Format</label>' +
+        '<textarea class="ptfc-input" id="ptfc_f" placeholder="e.g. Brief overview (2 sentences), then numbered step-by-step (max 2 sentences each), then 3 self-test questions with answers." oninput="assemblePTFC()"></textarea></div>' +
+        '<div class="ptfc-row"><label class="ptfc-label ptfc-c"><span>C</span>Context</label>' +
+        '<textarea class="ptfc-input" id="ptfc_c" placeholder="e.g. I understand basic redox reactions but always confuse Photosystem I and II. Year 13 OCR. Exam in 4 weeks. Need to understand the mechanism, not just memorise." oninput="assemblePTFC()"></textarea></div>' +
+        '<div class="ptfc-output-section">' +
+          '<div class="interactive-label">Assembled Prompt</div>' +
+          '<div class="ptfc-output" id="ptfcOutput"><span style="color:var(--text-dim);font-style:italic">Fill in the fields above to see your prompt...</span></div>' +
+          '<div class="ptfc-actions">' +
+            '<button class="btn btn-primary" onclick="copyPTFC()" id="ptfcCopyBtn">Copy to Clipboard</button>' +
+            '<button class="btn btn-secondary" onclick="loadPTFCExample()">Load Example</button>' +
+            '<button class="btn btn-secondary" onclick="clearPTFC()">Clear</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }
+
   else if (slide.type === 'summary') {
     var pointsHtml = slide.points.map(function(p) {
       var label = p.label ? '<strong>' + p.label + '</strong> — ' + p.text : '<strong>' + p.text + '</strong>';
@@ -476,10 +504,11 @@ function renderSlide(index) {
       '<div class="summary-intro">Here\'s what you should take away from this lesson:</div>' +
       '<div class="summary-points">' + pointsHtml + '</div>' +
       resourceHtml +
-      '<div style="margin-top:24px;text-align:center">' +
+      '<div style="margin-top:24px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">' +
         '<button class="btn ' + (done ? 'btn-secondary' : 'btn-primary') + '" onclick="toggleLesson(' + currentLessonId + ');renderSlide(' + index + ')">' +
           (done ? '&#10003; Completed — Undo' : '&#10003; Mark as Complete') +
         '</button>' +
+        '<button class="btn btn-secondary" onclick="printRevisionCard(' + currentLessonId + ')" title="Print a revision card for this lesson">🖨 Revision Card</button>' +
       '</div>' +
       (function() {
         var nextId = getNextLessonId(currentLessonId);
@@ -570,6 +599,12 @@ function closeModal() {
   currentSlides = [];
   currentLessonId = null;
   currentSlideIndex = 0;
+  // Close notes panel
+  notesPanelOpen = false;
+  var panel = document.getElementById('notesPanel');
+  if (panel) panel.style.display = 'none';
+  var btn = document.getElementById('notesToggle');
+  if (btn) btn.classList.remove('active');
 }
 
 /* ── Resources Rendering ───────────────────────── */
@@ -773,6 +808,7 @@ function updateHomeStats() {
   updateContinueButton();
   updateTimeEstimate();
   renderRecentlyViewed();
+  updateReviewDueBadge();
 }
 
 function resetProgress() {
@@ -1057,6 +1093,301 @@ function renderGlossary(filter) {
 }
 
 function filterGlossary(query) { renderGlossary(query); }
+
+/* ── Teacher Mode ──────────────────────────────── */
+var teacherModeActive = false;
+function toggleTeacherMode() {
+  teacherModeActive = !teacherModeActive;
+  document.body.classList.toggle('teacher-mode', teacherModeActive);
+  document.getElementById('teacherBanner').style.display = teacherModeActive ? 'block' : 'none';
+  var btn = document.getElementById('teacherModeBtn');
+  if (btn) btn.classList.toggle('active', teacherModeActive);
+}
+
+/* ── Keyboard Shortcuts Overlay ────────────────── */
+function openShortcuts() { document.getElementById('shortcutsOverlay').classList.add('open'); }
+function closeShortcuts() { document.getElementById('shortcutsOverlay').classList.remove('open'); }
+
+/* ── Notes Panel ───────────────────────────────── */
+var notesPanelOpen = false;
+function loadLessonNotes(lessonId) {
+  return localStorage.getItem('di_notes_' + lessonId) || '';
+}
+function saveLessonNotes(lessonId, text) {
+  localStorage.setItem('di_notes_' + lessonId, text);
+}
+function toggleNotesPanel() {
+  notesPanelOpen = !notesPanelOpen;
+  var panel = document.getElementById('notesPanel');
+  var btn = document.getElementById('notesToggle');
+  if (!panel) return;
+  panel.style.display = notesPanelOpen ? 'flex' : 'none';
+  if (btn) btn.classList.toggle('active', notesPanelOpen);
+  if (notesPanelOpen && currentLessonId) {
+    var ta = document.getElementById('notesPanelText');
+    if (ta) {
+      ta.value = loadLessonNotes(currentLessonId);
+      var saveTimer = null;
+      ta.oninput = function() {
+        clearTimeout(saveTimer);
+        saveTimer = setTimeout(function() {
+          saveLessonNotes(currentLessonId, ta.value);
+          var ind = document.getElementById('notesSavedIndicator');
+          if (ind) { ind.style.display = 'inline'; setTimeout(function(){ ind.style.display = 'none'; }, 1500); }
+        }, 500);
+      };
+    }
+  }
+}
+
+/* ── Spaced Repetition ─────────────────────────── */
+function getQuizDueList() {
+  var due = [];
+  var today = new Date();
+  Object.keys(quizScores).forEach(function(lid) {
+    var score = quizScores[lid];
+    var daysSince = (today - new Date(score.date)) / 86400000;
+    if (!score.correct || daysSince >= 7) {
+      var found = findLesson(parseInt(lid));
+      if (found) due.push({ id: parseInt(lid), title: found.lesson.title, correct: score.correct, daysSince: Math.floor(daysSince) });
+    }
+  });
+  return due;
+}
+function updateReviewDueBadge() {
+  var el = document.getElementById('heroReviewDue');
+  if (!el) return;
+  var due = getQuizDueList();
+  if (due.length === 0) { el.style.display = 'none'; return; }
+  el.style.display = 'block';
+  el.innerHTML = '<span class="review-due-badge" onclick="startQuickQuizDueOnly()">📅 ' + due.length + ' quiz' + (due.length === 1 ? '' : 'zes') + ' due for review — tap to practice</span>';
+}
+function startQuickQuizDueOnly() {
+  var due = getQuizDueList();
+  if (due.length === 0) return;
+  quickQuizQuestions = [];
+  var dueIds = due.map(function(d) { return d.id; });
+  UNITS.forEach(function(u) {
+    u.lessons.forEach(function(l) {
+      if (!dueIds.includes(l.id)) return;
+      var slides = getLessonSlides(l.id, l, u);
+      slides.forEach(function(slide) {
+        if (slide.type === 'quiz') quickQuizQuestions.push({ lessonId: l.id, lessonTitle: l.title, unitTitle: u.title, slide: slide });
+      });
+    });
+  });
+  quickQuizIndex = 0; quickQuizScore = 0;
+  renderQuickQuizSlide();
+  document.getElementById('quickQuizModal').classList.add('open');
+}
+
+/* ── Assessment Mode ───────────────────────────── */
+var assessmentUnitIdx = null;
+var assessmentQuestions = [];
+var assessmentIdx = 0;
+var assessmentScore = 0;
+var assessmentTimer = null;
+var assessmentTimeLeft = 0;
+var assessmentWrong = [];
+
+function openAssessment() {
+  assessmentUnitIdx = null;
+  var unitCards = UNITS.map(function(u, i) {
+    var quizCount = 0;
+    u.lessons.forEach(function(l) {
+      var slides = getLessonSlides(l.id, l, u);
+      slides.forEach(function(s) { if (s.type === 'quiz') quizCount++; });
+    });
+    return '<div class="au-card" onclick="startAssessment(' + i + ')">' +
+      '<div class="au-icon">' + u.icon + '</div>' +
+      '<div class="au-title">Unit ' + (i+1) + ': ' + u.title + '</div>' +
+      '<div class="au-count">' + quizCount + ' questions · ' + (quizCount * 30) + 's</div>' +
+    '</div>';
+  }).join('');
+  document.getElementById('assessmentBody').innerHTML =
+    '<h2 style="margin-bottom:8px">🎯 Unit Assessment</h2>' +
+    '<p style="color:var(--text-dim);font-size:.9rem;margin-bottom:16px">Choose a unit to test yourself. 30 seconds per question. No peeking!</p>' +
+    '<div class="assessment-unit-grid">' + unitCards + '</div>';
+  document.getElementById('assessmentModal').classList.add('open');
+}
+function closeAssessment() {
+  if (assessmentTimer) clearInterval(assessmentTimer);
+  document.getElementById('assessmentModal').classList.remove('open');
+}
+function startAssessment(unitIdx) {
+  assessmentUnitIdx = unitIdx;
+  var u = UNITS[unitIdx];
+  assessmentQuestions = [];
+  u.lessons.forEach(function(l) {
+    var slides = getLessonSlides(l.id, l, u);
+    slides.forEach(function(s) {
+      if (s.type === 'quiz') assessmentQuestions.push({ lessonId: l.id, lessonTitle: l.title, slide: s });
+    });
+  });
+  assessmentIdx = 0; assessmentScore = 0; assessmentWrong = [];
+  renderAssessmentQuestion();
+}
+function renderAssessmentQuestion() {
+  if (assessmentIdx >= assessmentQuestions.length) { showAssessmentResults(); return; }
+  var q = assessmentQuestions[assessmentIdx];
+  var slide = q.slide;
+  assessmentTimeLeft = 30;
+  if (assessmentTimer) clearInterval(assessmentTimer);
+  assessmentTimer = setInterval(function() {
+    assessmentTimeLeft--;
+    var timerEl = document.getElementById('assessTimer');
+    if (timerEl) {
+      timerEl.textContent = assessmentTimeLeft + 's';
+      timerEl.className = 'assessment-timer' + (assessmentTimeLeft <= 5 ? ' danger' : assessmentTimeLeft <= 10 ? ' warning' : '');
+    }
+    if (assessmentTimeLeft <= 0) { clearInterval(assessmentTimer); autoFailAssessment(slide.correct, q); }
+  }, 1000);
+  var optHtml = slide.options.map(function(opt, i) {
+    return '<button class="quiz-option" data-idx="' + i + '" onclick="answerAssessment(this,' + slide.correct + ',' + i + ')">' +
+      '<span class="quiz-option-letter">' + String.fromCharCode(65+i) + '</span>' +
+      '<span class="quiz-option-text">' + opt + '</span>' +
+    '</button>';
+  }).join('');
+  document.getElementById('assessmentBody').innerHTML =
+    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">' +
+      '<span style="font-size:.8rem;color:var(--text-dim)">Q' + (assessmentIdx+1) + '/' + assessmentQuestions.length + ' &bull; ' + UNITS[assessmentUnitIdx].title + '</span>' +
+      '<span class="assessment-timer" id="assessTimer">30s</span>' +
+    '</div>' +
+    '<div class="lv-progress-track" style="margin-bottom:16px"><div class="lv-progress-fill" style="width:' + ((assessmentIdx/assessmentQuestions.length)*100) + '%"></div></div>' +
+    '<div style="font-size:.75rem;color:var(--primary-light);margin-bottom:8px">L' + q.lessonId + ': ' + q.lessonTitle + '</div>' +
+    '<div class="qq-question">' + slide.question + '</div>' +
+    '<div class="quiz-options" id="assessOptions">' + optHtml + '</div>' +
+    '<div class="quiz-explanation" id="assessExplanation" style="display:none"><strong>Explanation:</strong> ' + slide.explanation + '</div>' +
+    '<div id="assessNextBtn" style="display:none;margin-top:16px;text-align:right"><button class="btn btn-primary" onclick="nextAssessment()">Next →</button></div>';
+}
+function answerAssessment(btn, correctIdx, chosen) {
+  var container = document.getElementById('assessOptions');
+  if (!container || container.classList.contains('quiz-answered')) return;
+  if (assessmentTimer) clearInterval(assessmentTimer);
+  container.classList.add('quiz-answered');
+  var isCorrect = chosen === correctIdx;
+  if (isCorrect) assessmentScore++;
+  else assessmentWrong.push(assessmentQuestions[assessmentIdx]);
+  container.querySelectorAll('.quiz-option').forEach(function(b) {
+    var idx = parseInt(b.dataset.idx);
+    if (idx === correctIdx) b.classList.add('quiz-correct');
+    if (idx === chosen && !isCorrect) b.classList.add('quiz-wrong');
+  });
+  document.getElementById('assessExplanation').style.display = 'block';
+  document.getElementById('assessNextBtn').style.display = 'block';
+}
+function autoFailAssessment(correctIdx, q) {
+  assessmentWrong.push(q);
+  var container = document.getElementById('assessOptions');
+  if (container) {
+    container.classList.add('quiz-answered');
+    container.querySelectorAll('.quiz-option').forEach(function(b) {
+      if (parseInt(b.dataset.idx) === correctIdx) b.classList.add('quiz-correct');
+    });
+  }
+  var exp = document.getElementById('assessExplanation');
+  if (exp) exp.style.display = 'block';
+  var nb = document.getElementById('assessNextBtn');
+  if (nb) nb.style.display = 'block';
+}
+function nextAssessment() { assessmentIdx++; renderAssessmentQuestion(); }
+function showAssessmentResults() {
+  if (assessmentTimer) clearInterval(assessmentTimer);
+  var pct = Math.round(assessmentScore / assessmentQuestions.length * 100);
+  var grade = pct >= 80 ? '🏆 Distinction' : pct >= 60 ? '✅ Merit' : pct >= 40 ? '📚 Pass' : '🔄 More revision needed';
+  var wrongItems = assessmentWrong.length > 0
+    ? '<div class="ar-wrong-list"><h4 style="font-size:.9rem;margin-bottom:8px">Review these questions:</h4>' +
+        assessmentWrong.map(function(q) {
+          return '<div class="ar-wrong-item" onclick="closeAssessment();setTimeout(function(){openLesson(' + q.lessonId + ')},200)">L' + q.lessonId + ': ' + q.lessonTitle + '</div>';
+        }).join('') +
+      '</div>'
+    : '<p style="color:var(--success);margin-top:12px">🎉 Perfect score! No questions to review.</p>';
+  document.getElementById('assessmentBody').innerHTML =
+    '<h2 style="margin-bottom:4px">Results — Unit ' + (assessmentUnitIdx+1) + '</h2>' +
+    '<p style="color:var(--text-dim);font-size:.88rem;margin-bottom:16px">' + UNITS[assessmentUnitIdx].title + '</p>' +
+    '<div class="assessment-results-grid">' +
+      '<div class="ar-stat"><div class="ar-num">' + assessmentScore + '/' + assessmentQuestions.length + '</div><div class="ar-label">Score</div></div>' +
+      '<div class="ar-stat"><div class="ar-num">' + pct + '%</div><div class="ar-label">Percentage</div></div>' +
+      '<div class="ar-stat"><div class="ar-num" style="font-size:1rem">' + grade.split(' ').slice(1).join(' ') + '</div><div class="ar-label">Grade</div></div>' +
+    '</div>' +
+    wrongItems +
+    '<div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">' +
+      '<button class="btn btn-primary" onclick="startAssessment(' + assessmentUnitIdx + ')">Retry This Unit</button>' +
+      '<button class="btn btn-secondary" onclick="openAssessment()">Change Unit</button>' +
+      '<button class="btn btn-secondary" onclick="closeAssessment()">Close</button>' +
+    '</div>';
+}
+
+/* ── Milestone Celebrations ────────────────────── */
+function checkMilestone() {
+  var total = UNITS.reduce(function(s,u){ return s+u.lessons.length; }, 0);
+  var done = completedLessons.size;
+  var pct = done / total;
+  var milestones = [
+    { threshold: 0.25, emoji: '🌱', msg: '25% Complete!', sub: 'A quarter of the way through. You\'re building real momentum.' },
+    { threshold: 0.50, emoji: '⚡', msg: 'Halfway There!', sub: 'You\'ve completed 22 of 44 lessons. The hard work is paying off.' },
+    { threshold: 0.75, emoji: '🚀', msg: '75% Done!', sub: 'Three-quarters complete. The finish line is in sight.' },
+    { threshold: 1.00, emoji: '🏆', msg: 'Course Complete!', sub: 'You\'ve finished all 44 lessons. Absolutely outstanding.' }
+  ];
+  var seen = JSON.parse(localStorage.getItem('di_milestones') || '[]');
+  milestones.forEach(function(m) {
+    if (pct >= m.threshold && !seen.includes(m.threshold)) {
+      seen.push(m.threshold);
+      localStorage.setItem('di_milestones', JSON.stringify(seen));
+      showMilestoneCelebration(m);
+    }
+  });
+}
+function showMilestoneCelebration(m) {
+  var total = UNITS.reduce(function(s,u){ return s+u.lessons.length; }, 0);
+  var done = completedLessons.size;
+  document.getElementById('milestoneBody').innerHTML =
+    '<span class="milestone-emoji">' + m.emoji + '</span>' +
+    '<div class="milestone-pct">' + Math.round(done/total*100) + '%</div>' +
+    '<div class="milestone-msg">' + m.msg + '</div>' +
+    '<div class="milestone-sub">' + m.sub + '</div>' +
+    '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">' +
+      '<button class="btn btn-primary" onclick="closeMilestone()">Keep Going! →</button>' +
+    '</div>';
+  document.getElementById('milestoneModal').classList.add('open');
+  launchConfetti();
+}
+function closeMilestone() { document.getElementById('milestoneModal').classList.remove('open'); }
+
+/* ── Revision Card Print ───────────────────────── */
+function printRevisionCard(lessonId) {
+  var found = findLesson(lessonId);
+  if (!found) return;
+  var lesson = found.lesson;
+  var unit = found.unit;
+  var slides = getLessonSlides(lessonId, lesson, unit);
+  var hookSlide = slides.find(function(s){ return s.type === 'hook'; });
+  var quizSlide = slides.find(function(s){ return s.type === 'quiz'; });
+  var summarySlide = slides.find(function(s){ return s.type === 'summary'; });
+  var summaryPoints = summarySlide ? summarySlide.points.map(function(p){ return '<li>' + (p.label || p.text) + '</li>'; }).join('') : '';
+  var notes = loadLessonNotes(lessonId);
+  var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Revision Card — L' + lessonId + '</title>' +
+    '<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:system-ui,sans-serif;font-size:13px;color:#0f172a}' +
+    '.card{width:148mm;min-height:105mm;border:2px solid #6366f1;border-radius:8px;padding:14px;page-break-inside:avoid}' +
+    '.card-header{background:#6366f1;color:#fff;padding:8px 12px;margin:-14px -14px 10px;border-radius:6px 6px 0 0}' +
+    '.card-title{font-size:1rem;font-weight:800}.card-sub{font-size:.75rem;opacity:.8}' +
+    'ul{padding-left:16px;margin:6px 0}li{margin:3px 0;line-height:1.4}' +
+    '.quiz-box{background:#f0f4ff;border-left:3px solid #6366f1;padding:8px;margin-top:10px;border-radius:4px}' +
+    '.notes-box{background:#fefce8;border-left:3px solid #f59e0b;padding:8px;margin-top:10px;border-radius:4px}' +
+    'h3{font-size:.8rem;font-weight:700;color:#6366f1;text-transform:uppercase;letter-spacing:.04em;margin:8px 0 4px}' +
+    '@media print{body{padding:10mm}.card{border:2px solid #6366f1}}</style></head><body>' +
+    '<div class="card"><div class="card-header"><div class="card-title">L' + lessonId + ': ' + lesson.title + '</div>' +
+    '<div class="card-sub">Unit ' + (unit.id+1) + ': ' + unit.title + ' &bull; ' + (lesson.difficulty || '') + '</div></div>' +
+    (summaryPoints ? '<h3>Key Takeaways</h3><ul>' + summaryPoints + '</ul>' : '') +
+    (quizSlide ? '<div class="quiz-box"><h3>Quick Check</h3><strong>Q:</strong> ' + quizSlide.question + '<br><strong>A:</strong> ' + quizSlide.options[quizSlide.correct] + '</div>' : '') +
+    (notes ? '<div class="notes-box"><h3>My Notes</h3>' + notes.replace(/\n/g,'<br>') + '</div>' : '') +
+    '</div><br><button onclick="window.print()" style="padding:8px 20px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.9rem">Print Card</button>' +
+    '</body></html>';
+  var win = window.open('', '_blank');
+  if (!win) return;
+  win.document.write(html);
+  win.document.close();
+}
 
 /* ── Recently Viewed ───────────────────────────── */
 function loadRecentlyViewed() {
@@ -1374,6 +1705,57 @@ function renderBadges() {
   el.innerHTML = '<h3>🏅 Badges</h3><div class="badges-grid">' + cards + '</div>';
 }
 
+/* ── PTFC Builder ──────────────────────────────── */
+function assemblePTFC() {
+  var p = (document.getElementById('ptfc_p')?.value || '').trim();
+  var t = (document.getElementById('ptfc_t')?.value || '').trim();
+  var f = (document.getElementById('ptfc_f')?.value || '').trim();
+  var c = (document.getElementById('ptfc_c')?.value || '').trim();
+  var out = document.getElementById('ptfcOutput');
+  if (!out) return;
+  if (!p && !t && !f && !c) {
+    out.innerHTML = '<span style="color:var(--text-dim);font-style:italic">Fill in the fields above to see your prompt...</span>';
+    return;
+  }
+  var esc = function(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'); };
+  var parts = [];
+  if (p) parts.push('<strong style="color:#06b6d4">[Persona]</strong> ' + esc(p));
+  if (t) parts.push('<strong style="color:#6366f1">[Task]</strong> ' + esc(t));
+  if (f) parts.push('<strong style="color:#22c55e">[Format]</strong> ' + esc(f));
+  if (c) parts.push('<strong style="color:#f59e0b">[Context]</strong> ' + esc(c));
+  out.innerHTML = parts.join('<br><br>');
+}
+function copyPTFC() {
+  var p = (document.getElementById('ptfc_p')?.value || '').trim();
+  var t = (document.getElementById('ptfc_t')?.value || '').trim();
+  var f = (document.getElementById('ptfc_f')?.value || '').trim();
+  var c = (document.getElementById('ptfc_c')?.value || '').trim();
+  var text = [p&&('[Persona] '+p), t&&('[Task] '+t), f&&('[Format] '+f), c&&('[Context] '+c)].filter(Boolean).join('\n\n');
+  if (!text.trim()) return;
+  var btn = document.getElementById('ptfcCopyBtn');
+  var done = function() { if (btn) { btn.textContent = '✓ Copied!'; setTimeout(function(){ btn.textContent = 'Copy to Clipboard'; }, 2000); } };
+  if (navigator.clipboard) { navigator.clipboard.writeText(text).then(done).catch(done); }
+  else {
+    var ta = document.createElement('textarea'); ta.value = text;
+    document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta); done();
+  }
+}
+function loadPTFCExample() {
+  var vals = {
+    ptfc_p: 'You are an experienced AQA A-Level Biology examiner who marks at distinction level.',
+    ptfc_t: 'Explain the light-dependent reactions of photosynthesis — specifically what happens to electrons in the thylakoid membrane.',
+    ptfc_f: 'Brief overview (2 sentences), then numbered step-by-step with maximum 2 sentences per step, then 3 self-test questions with answers.',
+    ptfc_c: 'I understand basic redox reactions but always confuse Photosystem I and II. Year 13 OCR student. Exam in 4 weeks. I need to understand the mechanism, not just memorise it.'
+  };
+  Object.keys(vals).forEach(function(id) { var el = document.getElementById(id); if (el) el.value = vals[id]; });
+  assemblePTFC();
+}
+function clearPTFC() {
+  ['ptfc_p','ptfc_t','ptfc_f','ptfc_c'].forEach(function(id) { var el = document.getElementById(id); if (el) el.value = ''; });
+  assemblePTFC();
+}
+
 /* ── Scenario % Breakdown ──────────────────────── */
 function seededRandom(seed) {
   var x = Math.sin(seed + 1) * 10000;
@@ -1481,11 +1863,28 @@ document.addEventListener('DOMContentLoaded', () => {
   updateTimeEstimate();
 });
 
-// Keyboard shortcuts: Escape closes modal, arrows navigate slides
+// Keyboard shortcuts
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeModal();
+  // Don't fire shortcuts when typing in inputs/textareas
+  var tag = (e.target.tagName || '').toLowerCase();
+  var inInput = (tag === 'input' || tag === 'textarea' || e.target.isContentEditable);
+
+  if (e.key === 'Escape') {
+    closeModal();
+    closeQuickQuiz();
+    closeAssessment();
+    closeMilestone();
+    closeShortcuts();
+  }
+  if (e.key === '?' && !inInput) { openShortcuts(); return; }
   if (currentSlides.length > 0) {
     if (e.key === 'ArrowRight') navigateSlide(1);
     if (e.key === 'ArrowLeft') navigateSlide(-1);
+    if (!inInput) {
+      if (e.key === 'M' || e.key === 'm') { if (currentLessonId) toggleLesson(currentLessonId); }
+      if (e.key === 'B' || e.key === 'b') { if (currentLessonId) toggleBookmark(currentLessonId); }
+      if (e.key === 'N' || e.key === 'n') toggleNotesPanel();
+      if (e.key === 'F' || e.key === 'f') toggleConfused(currentLessonId, currentSlideIndex);
+    }
   }
 });
