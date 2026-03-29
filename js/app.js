@@ -20,10 +20,13 @@ function saveProgress() {
   updateStreak();
 }
 function updateStreak() {
-  const data = JSON.parse(localStorage.getItem(STREAK_KEY) || '{"last":"","count":0}');
-  const today = new Date().toISOString().slice(0, 10);
-  const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
-  if (data.last === today) return;
+  var data = JSON.parse(localStorage.getItem(STREAK_KEY) || '{"last":"","count":0,"days":[]}');
+  var today = new Date().toISOString().slice(0, 10);
+  var yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+  if (!data.days) data.days = [];
+  if (!data.days.includes(today)) data.days.push(today);
+  if (data.days.length > 90) data.days = data.days.slice(-90);
+  if (data.last === today) { localStorage.setItem(STREAK_KEY, JSON.stringify(data)); return; }
   data.count = data.last === yesterday ? data.count + 1 : 1;
   data.last = today;
   localStorage.setItem(STREAK_KEY, JSON.stringify(data));
@@ -91,6 +94,7 @@ function showSection(name) {
   if (name === 'progress') renderProgress();
   if (name === 'map') renderCourseMap();
   if (name === 'home') { renderRecentlyViewed(); updateTimeEstimate(); }
+  if (name === 'exemplars') renderExemplars();
 }
 
 function toggleMobileNav() {
@@ -182,6 +186,7 @@ function toggleLesson(id) {
   updateHomeStats();
   if (!wasComplete) {
     launchConfetti();
+    addXP(20, 'Lesson completed');
     setTimeout(checkAndAwardBadges, 600);
     setTimeout(checkMilestone, 900);
     setTimeout(updateReviewDueBadge, 200);
@@ -387,10 +392,21 @@ function renderSlide(index) {
         '<span class="disc-q-text">' + q.text + '</span>' +
       '</div>';
     }).join('');
+    var voteKey = 'di_vote_' + currentLessonId + '_' + index;
+    var savedVote = localStorage.getItem(voteKey);
+    var voteHtml = '<div class="debate-vote-row">' +
+      '<button class="debate-vote-btn' + (savedVote === 'agree' ? ' voted' : '') + '" data-stance="agree" onclick="voteDebate(' + currentLessonId + ',' + index + ',\'agree\')">✅ Agree</button>' +
+      '<button class="debate-vote-btn' + (savedVote === 'disagree' ? ' voted' : '') + '" data-stance="disagree" onclick="voteDebate(' + currentLessonId + ',' + index + ',\'disagree\')">❌ Disagree</button>' +
+      '<button class="debate-vote-btn' + (savedVote === 'unsure' ? ' voted' : '') + '" data-stance="unsure" onclick="voteDebate(' + currentLessonId + ',' + index + ',\'unsure\')">🤔 Not sure yet</button>' +
+      '<div id="debateVoteResult" style="' + (savedVote ? '' : 'display:none;') + 'font-size:.82rem;color:var(--text-dim);width:100%;margin-top:4px">' +
+        (savedVote ? getVoteMessage(savedVote) : '') +
+      '</div>' +
+    '</div>';
     html = '<div class="slide-discussion">' +
       '<span class="slide-badge badge-discussion">Discussion</span>' +
       '<div class="slide-title">' + slide.title + '</div>' +
       '<div class="disc-intro">Discuss these questions with a partner or reflect on them individually.</div>' +
+      voteHtml +
       '<div class="disc-questions">' + qHtml + '</div>' +
       '<div class="interactive-wrapper" style="margin-top:24px">' +
         '<div class="interactive-label">&#9998;&#65039; Reflection</div>' +
@@ -486,6 +502,25 @@ function renderSlide(index) {
           '</div>' +
         '</div>' +
       '</div>' +
+    '</div>';
+  }
+
+  else if (slide.type === 'chat') {
+    var msgs = (slide.messages || []).map(function(m) {
+      return '<div class="chat-msg chat-msg-' + m.role + '">' +
+        '<div class="chat-msg-avatar">' + (m.role === 'user' ? '👤' : '🤖') + '</div>' +
+        '<div class="chat-msg-bubble">' + m.content + '</div>' +
+      '</div>';
+    }).join('');
+    html = '<div class="slide-concept">' +
+      '<span class="slide-badge badge-activity">Chat Simulator</span>' +
+      '<div class="slide-title">' + slide.title + '</div>' +
+      (slide.intro ? '<div class="concept-body">' + slide.intro + '</div>' : '') +
+      '<div class="chat-sim">' +
+        '<div class="chat-sim-header"><span class="chat-sim-tool">' + (slide.tool || 'Claude') + '</span><span class="chat-sim-subtitle">AI Conversation Example</span></div>' +
+        '<div class="chat-sim-messages">' + msgs + '</div>' +
+      '</div>' +
+      (slide.annotation ? '<div class="chat-annotation"><strong>What to notice:</strong> ' + slide.annotation + '</div>' : '') +
     '</div>';
   }
 
@@ -757,6 +792,10 @@ function renderProgress() {
       </div>`;
   }).join('');
 
+  // Render streak heatmap
+  renderStreakHeatmap();
+  // Render XP progress
+  renderXPSection();
   // Render badges
   renderBadges();
   // Render confused/flagged slides
@@ -1016,6 +1055,10 @@ function checkQuiz(btn, correctIdx, slideIdx) {
   if (lm) lm.style.display = 'block';
   // Save quiz score
   if (currentLessonId) saveQuizScore(currentLessonId, isCorrect);
+  // XP reward
+  if (isCorrect) addXP(10, 'Quiz answered correctly');
+  // Adaptive nudge on wrong answer
+  if (!isCorrect) showAdaptiveNudge(currentLessonId);
 }
 
 /* ── Glossary Tooltip Injection ───────────────── */
@@ -1756,6 +1799,257 @@ function clearPTFC() {
   assemblePTFC();
 }
 
+/* ── XP System ─────────────────────────────────── */
+var XP_KEY = 'di_xp';
+function loadXP() {
+  try { return JSON.parse(localStorage.getItem(XP_KEY)) || { total: 0 }; }
+  catch(e) { return { total: 0 }; }
+}
+function saveXPData(d) { localStorage.setItem(XP_KEY, JSON.stringify(d)); }
+function addXP(amount, reason) {
+  var d = loadXP();
+  d.total = (d.total || 0) + amount;
+  saveXPData(d);
+  showXPToast('+' + amount + ' XP — ' + reason);
+  updateXPStrip();
+}
+function getLevel(xp) {
+  if (xp < 100) return { name: 'Novice', icon: '🌱', min: 0, max: 100, next: 'Explorer' };
+  if (xp < 250) return { name: 'Explorer', icon: '🔍', min: 100, max: 250, next: 'Innovator' };
+  if (xp < 500) return { name: 'Innovator', icon: '⚡', min: 250, max: 500, next: 'Pioneer' };
+  return { name: 'Pioneer', icon: '🚀', min: 500, max: null, next: null };
+}
+function showXPToast(msg) {
+  var el = document.createElement('div');
+  el.className = 'xp-toast';
+  el.textContent = msg;
+  document.body.appendChild(el);
+  requestAnimationFrame(function() { el.classList.add('show'); });
+  setTimeout(function() {
+    el.classList.remove('show');
+    setTimeout(function() { el.remove(); }, 400);
+  }, 2200);
+}
+function updateXPStrip() {
+  var wrap = document.getElementById('xpLevelDisplay');
+  if (!wrap) return;
+  var d = loadXP();
+  var lvl = getLevel(d.total);
+  var pct = lvl.max ? Math.min(100, Math.round(((d.total - lvl.min) / (lvl.max - lvl.min)) * 100)) : 100;
+  wrap.innerHTML = '<span class="xp-level-badge">' + lvl.icon + ' ' + lvl.name + '</span>' +
+    '<div class="xp-bar-track"><div class="xp-bar-fill" style="width:' + pct + '%"></div></div>' +
+    '<span class="xp-label">' + d.total + ' XP' + (lvl.max ? ' → ' + lvl.next + ' at ' + lvl.max : ' — Max Level!') + '</span>';
+}
+function renderXPSection() {
+  var el = document.getElementById('xpProgressSection');
+  if (!el) return;
+  var d = loadXP();
+  var lvl = getLevel(d.total);
+  var pct = lvl.max ? Math.min(100, Math.round(((d.total - lvl.min) / (lvl.max - lvl.min)) * 100)) : 100;
+  var levels = [
+    { name: 'Novice 🌱', min: 0 }, { name: 'Explorer 🔍', min: 100 },
+    { name: 'Innovator ⚡', min: 250 }, { name: 'Pioneer 🚀', min: 500 }
+  ];
+  el.innerHTML = '<h3>🏅 XP Level — ' + lvl.icon + ' ' + lvl.name + '</h3>' +
+    '<div class="xp-full-bar"><div class="xp-full-fill" style="width:' + pct + '%"></div></div>' +
+    '<p style="font-size:.82rem;color:var(--text-dim);margin:6px 0">' + d.total + ' XP earned' +
+      (lvl.max ? ' — ' + (lvl.max - d.total) + ' XP until ' + lvl.next : ' — Max level reached!') + '</p>' +
+    '<div class="xp-level-row">' +
+      levels.map(function(lv) {
+        return '<span class="xp-level-chip' + (lvl.name === lv.name.split(' ')[0] ? ' current' : '') + '">' + lv.name + '</span>';
+      }).join('') +
+    '</div>';
+}
+
+/* ── Streak Heatmap ─────────────────────────────── */
+function renderStreakHeatmap() {
+  var el = document.getElementById('streakHeatmap');
+  if (!el) return;
+  var data;
+  try { data = JSON.parse(localStorage.getItem(STREAK_KEY)) || {}; } catch(e) { data = {}; }
+  var days = data.days || [];
+  var today = new Date();
+  var html = '<div class="heatmap-title">📅 Study Activity — last 30 days</div><div class="heatmap-grid">';
+  for (var i = 29; i >= 0; i--) {
+    var d = new Date(today);
+    d.setDate(d.getDate() - i);
+    var ds = d.toISOString().slice(0, 10);
+    html += '<div class="heatmap-cell' + (days.indexOf(ds) >= 0 ? ' active' : '') + '" title="' + ds + '"></div>';
+  }
+  html += '</div><div class="heatmap-streak">' + getStreak() + ' day streak 🔥</div>';
+  el.innerHTML = html;
+}
+
+/* ── News Ticker ─────────────────────────────────── */
+function renderNewsTicker() {
+  var track = document.getElementById('tickerTrack');
+  if (!track || typeof AI_NEWS === 'undefined') return;
+  var tagColors = { policy:'#6366f1', research:'#06b6d4', tools:'#22c55e', industry:'#f59e0b', ethics:'#ef4444', health:'#ec4899' };
+  var items = AI_NEWS.map(function(n) {
+    var col = tagColors[n.tag] || '#6366f1';
+    return '<span class="ticker-item">' +
+      '<span class="ticker-tag" style="background:' + col + '22;color:' + col + '">' + n.tag + '</span>' +
+      n.headline +
+      ' <span class="ticker-source">— ' + n.source + ', ' + n.date + '</span>' +
+    '</span>';
+  }).join('');
+  // Duplicate for seamless loop
+  track.innerHTML = items + items;
+}
+
+/* ── Onboarding Tour ──────────────────────────────── */
+var OB_STEPS = [
+  { title: 'Welcome to Digital Innovations! 👋', text: 'Explore AI, ethics, prompt engineering and more across 44 lessons. Let\'s take a 60-second tour.' },
+  { title: 'Pick a lesson 📚', text: 'Go to <strong>Units</strong> to browse all 6 units. Click any lesson to open the slide viewer — slides, quizzes and activities are all inside.' },
+  { title: 'Test yourself ⚡', text: 'The <strong>⚡ Quiz Me</strong> button gives you a quick quiz on lessons you\'ve completed. Great for spaced revision.' },
+  { title: 'Track your progress 📊', text: 'Head to <strong>My Progress</strong> to see your streak calendar, XP level, badges, and quiz scores — all saved locally.' },
+  { title: 'Keyboard shortcuts ⌨️', text: 'Press <kbd>?</kbd> at any time to see all shortcuts. Use <kbd>→</kbd> / <kbd>←</kbd> to navigate slides inside a lesson.' },
+];
+var obStep = 0;
+function checkOnboarding() { if (!localStorage.getItem('di_onboarded')) setTimeout(startOnboarding, 1400); }
+function startOnboarding() { obStep = 0; renderObStep(); var ov = document.getElementById('onboardingOverlay'); if (ov) ov.classList.add('open'); }
+function renderObStep() {
+  var body = document.getElementById('obBody');
+  if (!body) return;
+  var s = OB_STEPS[obStep];
+  body.innerHTML = '<div class="ob-step">Step ' + (obStep + 1) + ' of ' + OB_STEPS.length + '</div>' +
+    '<h3 class="ob-title">' + s.title + '</h3>' +
+    '<p class="ob-text">' + s.text + '</p>' +
+    '<div class="ob-actions">' +
+      (obStep < OB_STEPS.length - 1
+        ? '<button class="btn btn-primary" onclick="nextObStep()">Next →</button>'
+        : '<button class="btn btn-primary" onclick="closeOnboarding()">Let\'s go! 🚀</button>') +
+      '<button class="btn btn-secondary" onclick="closeOnboarding()">Skip</button>' +
+    '</div>' +
+    '<div class="ob-dots">' + OB_STEPS.map(function(_,i){ return '<span class="ob-dot' + (i===obStep?' active':'') + '"></span>'; }).join('') + '</div>';
+}
+function nextObStep() { obStep++; if (obStep >= OB_STEPS.length) { closeOnboarding(); return; } renderObStep(); }
+function closeOnboarding() { var ov = document.getElementById('onboardingOverlay'); if (ov) ov.classList.remove('open'); localStorage.setItem('di_onboarded','1'); }
+
+/* ── Exemplar Gallery ──────────────────────────── */
+function renderExemplars() {
+  var el = document.getElementById('exemplarContainer');
+  if (!el || typeof EXEMPLARS === 'undefined') return;
+  el.innerHTML = EXEMPLARS.map(function(ex) {
+    return '<div class="exemplar-card">' +
+      '<div class="exemplar-header">' +
+        '<div><div class="exemplar-name">' + ex.name + '</div><div class="exemplar-task">' + ex.task + '</div></div>' +
+        '<span class="exemplar-tool">' + ex.tool + '</span>' +
+      '</div>' +
+      '<div class="ptfc-breakdown">' +
+        [['p',ex.persona],['t',ex.taskText],['f',ex.format],['c',ex.context]].map(function(row) {
+          return '<div class="ptfc-row-ex"><span class="ptfc-label-ex ptfc-' + row[0] + '-ex">' + row[0].toUpperCase() + '</span><div class="ptfc-val">' + row[1] + '</div></div>';
+        }).join('') +
+      '</div>' +
+      '<div class="exemplar-teacher-note"><span class="teacher-note-icon">👩‍🏫</span><span>' + ex.teacherNote + '</span></div>' +
+    '</div>';
+  }).join('');
+}
+
+/* ── Capstone Portfolio ─────────────────────────── */
+function openCapstone() {
+  loadCapstoneForm();
+  var m = document.getElementById('capstoneModal');
+  if (m) m.classList.add('open');
+}
+function closeCapstone() {
+  var m = document.getElementById('capstoneModal');
+  if (m) m.classList.remove('open');
+}
+function loadCapstoneForm() {
+  var data;
+  try { data = JSON.parse(localStorage.getItem('di_capstone')) || {}; } catch(e) { data = {}; }
+  ['capstone_title','capstone_problem','capstone_audience','capstone_persona','capstone_task','capstone_format','capstone_context','capstone_findings','capstone_reflection'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.value = data[id] || '';
+  });
+}
+function saveCapstoneData() {
+  var data = {};
+  ['capstone_title','capstone_problem','capstone_audience','capstone_persona','capstone_task','capstone_format','capstone_context','capstone_findings','capstone_reflection'].forEach(function(id) {
+    var el = document.getElementById(id); if (el) data[id] = el.value;
+  });
+  localStorage.setItem('di_capstone', JSON.stringify(data));
+  var ind = document.getElementById('capstoneSavedInd');
+  if (ind) { ind.style.display = 'inline'; setTimeout(function() { ind.style.display = 'none'; }, 2000); }
+}
+function printCapstone() {
+  saveCapstoneData();
+  var d;
+  try { d = JSON.parse(localStorage.getItem('di_capstone')) || {}; } catch(e) { d = {}; }
+  var w = window.open('', '_blank');
+  if (!w) return;
+  w.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Capstone Portfolio</title>' +
+    '<style>body{font-family:Georgia,serif;max-width:800px;margin:40px auto;color:#111;line-height:1.6}' +
+    'h1{color:#6366f1;border-bottom:2px solid #6366f1;padding-bottom:8px;margin-bottom:4px}' +
+    'h2{color:#333;margin-top:24px;font-size:.9rem;text-transform:uppercase;letter-spacing:.05em;color:#64748b}' +
+    '.ptfc{background:#f8f9fa;border-left:4px solid #6366f1;padding:10px 16px;margin:6px 0;border-radius:0 4px 4px 0}' +
+    '.lbl{font-weight:700;color:#6366f1;margin-right:8px}p{margin:4px 0}' +
+    '@media print{button{display:none}}</style></head><body>' +
+    '<h1>📋 Capstone Project Portfolio</h1>' +
+    '<h2>Project Title</h2><p>' + (d.capstone_title || '—') + '</p>' +
+    '<h2>Problem Statement</h2><p>' + (d.capstone_problem || '—') + '</p>' +
+    '<h2>Target Audience</h2><p>' + (d.capstone_audience || '—') + '</p>' +
+    '<h2>PTFC Research Prompt</h2>' +
+    '<div class="ptfc"><span class="lbl">P</span>' + (d.capstone_persona || '—') + '</div>' +
+    '<div class="ptfc"><span class="lbl">T</span>' + (d.capstone_task || '—') + '</div>' +
+    '<div class="ptfc"><span class="lbl">F</span>' + (d.capstone_format || '—') + '</div>' +
+    '<div class="ptfc"><span class="lbl">C</span>' + (d.capstone_context || '—') + '</div>' +
+    '<h2>Key Findings</h2><p>' + ((d.capstone_findings || '—').replace(/\n/g,'<br>')) + '</p>' +
+    '<h2>Self-Reflection</h2><p>' + ((d.capstone_reflection || '—').replace(/\n/g,'<br>')) + '</p>' +
+    '<p style="margin-top:40px;color:#999;font-size:.78rem">Digital Innovations AEP — Printed ' + new Date().toLocaleDateString('en-GB') + '</p>' +
+    '<br><button onclick="window.print()" style="padding:10px 24px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer">Print</button>' +
+    '</body></html>');
+  w.document.close(); w.print();
+}
+
+/* ── Debate / Discussion Vote ──────────────────── */
+function getVoteMessage(stance) {
+  var msgs = { agree: '✅ You agree — keep this in mind as you work through the lesson.', disagree: '❌ You disagree — note your reasons; they\'re worth including in any essay.', unsure: '🤔 Not sure yet — that\'s fine! Come back after the lesson.' };
+  return msgs[stance] || '';
+}
+function voteDebate(lessonId, slideIdx, stance) {
+  var key = 'di_vote_' + lessonId + '_' + slideIdx;
+  localStorage.setItem(key, stance);
+  document.querySelectorAll('.debate-vote-btn').forEach(function(b) {
+    b.classList.toggle('voted', b.dataset.stance === stance);
+  });
+  var res = document.getElementById('debateVoteResult');
+  if (res) { res.textContent = getVoteMessage(stance); res.style.display = 'block'; }
+}
+
+/* ── Adaptive Review Nudge ──────────────────────── */
+function showAdaptiveNudge(lessonId) {
+  var found = findLesson(lessonId);
+  if (!found || !found.lesson.prereqs || !found.lesson.prereqs.length) return;
+  var unmet = found.lesson.prereqs.filter(function(pid) { return !completedLessons.has(pid); });
+  if (!unmet.length) return;
+  var el = document.getElementById('quizExplanation');
+  if (!el) return;
+  var links = unmet.map(function(pid) {
+    var pf = findLesson(pid);
+    return pf ? '<span onclick="closeModal();setTimeout(function(){openLesson(' + pid + ')},200)" style="cursor:pointer;color:var(--primary-light);text-decoration:underline">Lesson ' + pid + ': ' + pf.lesson.title + '</span>' : '';
+  }).filter(Boolean).join(', ');
+  var nudge = document.createElement('div');
+  nudge.style.cssText = 'margin-top:10px;padding:10px 14px;background:rgba(245,158,11,.08);border-left:3px solid var(--warning);border-radius:0 6px 6px 0;font-size:.82rem;color:var(--text-muted)';
+  nudge.innerHTML = '💡 <strong>Struggling?</strong> You might find it easier after completing: ' + links;
+  el.appendChild(nudge);
+}
+
+/* ── PWA Install ─────────────────────────────────── */
+var _deferredInstall = null;
+window.addEventListener('beforeinstallprompt', function(e) {
+  e.preventDefault();
+  _deferredInstall = e;
+  var btn = document.getElementById('pwaInstallBtn');
+  if (btn) btn.style.display = 'inline-flex';
+});
+function installPWA() {
+  if (!_deferredInstall) return;
+  _deferredInstall.prompt();
+  _deferredInstall.userChoice.then(function() { _deferredInstall = null; var btn = document.getElementById('pwaInstallBtn'); if (btn) btn.style.display = 'none'; });
+}
+
 /* ── Scenario % Breakdown ──────────────────────── */
 function seededRandom(seed) {
   var x = Math.sin(seed + 1) * 10000;
@@ -1857,10 +2151,14 @@ document.addEventListener('DOMContentLoaded', () => {
   renderTagFilters();
   renderDifficultyFilter();
   renderGlossary();
+  renderExemplars();
   updateHomeStats();
   updateContinueButton();
   renderRecentlyViewed();
   updateTimeEstimate();
+  renderNewsTicker();
+  updateXPStrip();
+  checkOnboarding();
 });
 
 // Keyboard shortcuts
@@ -1875,6 +2173,8 @@ document.addEventListener('keydown', e => {
     closeAssessment();
     closeMilestone();
     closeShortcuts();
+    closeCapstone();
+    closeOnboarding();
   }
   if (e.key === '?' && !inInput) { openShortcuts(); return; }
   if (currentSlides.length > 0) {
