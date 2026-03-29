@@ -23,10 +23,10 @@ const UNITS = [
     icon: "✍️",
     colour: "#8b5cf6",
     lessons: [
-      { id:9, difficulty:"intermediate", title:"Prompt Architecture",                desc:"Learn the PTFC framework — Persona, Task, Format, Constraints — for effective prompting.", tags:["practical","framework"], objectives:["Apply the PTFC framework","Iterate prompts for improved output","Evaluate prompt quality criteria"], resources:["r17","r3"] },
+      { id:9, difficulty:"intermediate", title:"Prompt Architecture",                desc:"Learn the PTFC framework — Persona, Task, Format, Context — for effective prompting with Claude and Gemini.", tags:["practical","framework"], objectives:["Apply the PTFC framework","Build effective prompts for Claude and Gemini","Iterate prompts for improved output"], resources:["r17","r3"], prereqs:[1,2] },
       { id:10, difficulty:"intermediate", title:"Synthetic Creativity & Copyright",    desc:"Debate whether AI-generated content can be creative and who owns the output.", tags:["debate","ethics"], objectives:["Analyse copyright law and AI-generated works","Debate ownership of AI outputs","Evaluate impact on creative industries"], resources:["r14"] },
-      { id:11, difficulty:"intermediate", title:"Deep Research & Career Disruption",   desc:"Use AI research tools to investigate how AI is reshaping industries and careers.", tags:["research","discussion"], objectives:["Conduct AI-assisted deep research","Analyse career disruption data","Evaluate future workforce scenarios"], resources:["r5"] },
-      { id:12, difficulty:"intermediate", title:"The Revision Loop",                   desc:"Use iterative prompt refinement to improve AI outputs for academic tasks.", tags:["practical","activity"], objectives:["Implement systematic prompt iteration","Use AI as a revision partner","Evaluate output quality improvements"], resources:["r3","r17"] },
+      { id:11, difficulty:"intermediate", title:"Deep Research & Career Disruption",   desc:"Use AI research tools to investigate how AI is reshaping industries and careers.", tags:["research","discussion"], objectives:["Conduct AI-assisted deep research","Analyse career disruption data","Evaluate future workforce scenarios"], resources:["r5"], prereqs:[9] },
+      { id:12, difficulty:"intermediate", title:"The Revision Loop",                   desc:"Use iterative prompt refinement to improve AI outputs for academic tasks.", tags:["practical","activity"], objectives:["Implement systematic prompt iteration","Use AI as a revision partner","Evaluate output quality improvements"], resources:["r3","r17"], prereqs:[9] },
     ]
   },
   {
@@ -49,8 +49,8 @@ const UNITS = [
     lessons: [
       { id:17, difficulty:"advanced", title:"Analysing the Status Quo",           desc:"Audit existing school and university AI policies to identify gaps and strengths.", tags:["research","analysis"], objectives:["Analyse existing AI policies","Identify policy gaps","Benchmark against best practice"], resources:["r13"] },
       { id:18, difficulty:"advanced", title:"Defining Acceptable Use",            desc:"Collaboratively define what acceptable AI use looks like in an educational context.", tags:["workshop","policy"], objectives:["Define acceptable use criteria","Balance innovation with safeguarding","Draft acceptable use principles"], resources:["r13","r10"] },
-      { id:19, difficulty:"advanced", title:"Drafting the Document",              desc:"Write a formal AI acceptable use policy using professional drafting techniques.", tags:["practical","writing"], objectives:["Structure a formal policy document","Use precise policy language","Include enforcement mechanisms"], resources:["r10"] },
-      { id:20, difficulty:"advanced", title:"Ratification",                       desc:"Present, debate and vote on class AI policies in a simulated governance process.", tags:["presentation","debate"], objectives:["Present policy proposals","Engage in democratic debate","Ratify through voting process"], resources:["r10"] },
+      { id:19, difficulty:"advanced", title:"Drafting the Document",              desc:"Write a formal AI acceptable use policy using professional drafting techniques.", tags:["practical","writing"], objectives:["Structure a formal policy document","Use precise policy language","Include enforcement mechanisms"], resources:["r10"], prereqs:[17,18] },
+      { id:20, difficulty:"advanced", title:"Ratification",                       desc:"Present, debate and vote on class AI policies in a simulated governance process.", tags:["presentation","debate"], objectives:["Present policy proposals","Engage in democratic debate","Ratify through voting process"], resources:["r10"], prereqs:[19] },
     ]
   },
   {
@@ -112,7 +112,7 @@ const RESOURCES = [
   { id:"r14", title:"Copyright Debate Brief",                cat:"debate",     desc:"Background material and role cards for the AI copyright debate." },
   { id:"r15", title:"Surveillance Debate Pack",              cat:"debate",     desc:"Evidence pack and debate structure for the surveillance and facial recognition debate." },
   { id:"r16", title:"Deepfake Detection Checklist",          cat:"reference",  desc:"Practical checklist for identifying deepfake images, video and audio." },
-  { id:"r17", title:"PTFC Framework Reference Card",         cat:"framework",  desc:"Quick-reference card for the Persona-Task-Format-Constraints prompt framework." },
+  { id:"r17", title:"PTFC Framework Reference Card",         cat:"framework",  desc:"Quick-reference card for the Persona-Task-Format-Context prompt framework, with worked examples for Claude and Gemini." },
   { id:"r18", title:"AI Environmental Impact Factsheet",     cat:"reference",  desc:"Data-driven factsheet on the environmental cost of training and running AI models." },
   { id:"r19", title:"Viva Voce Question Bank",               cat:"assessment", desc:"Bank of viva voce questions spanning all course themes and project areas." },
 ];
@@ -747,7 +747,7 @@ const GLOSSARY = [
   { term: 'Neural Network', definition: 'A computing system inspired by the human brain, consisting of layers of interconnected nodes (neurons). Each connection has a weight that is adjusted during training.', lessons: [3, 4] },
   { term: 'Overfitting', definition: 'When a model memorises training data rather than learning general patterns, performing well on training data but poorly on new, unseen data. Like memorising past exam papers instead of understanding concepts.', lessons: [3] },
   { term: 'Prompt Engineering', definition: 'The skill of crafting effective instructions (prompts) to get high-quality outputs from AI systems. Uses techniques like PTFC, chain-of-thought, and iterative refinement.', lessons: [9, 12, 25, 42] },
-  { term: 'PTFC Framework', definition: 'A structured approach to prompt writing: Persona (who the AI should act as), Task (what to do), Format (output structure), and Constraints (limits and rules).', lessons: [9, 12, 25] },
+  { term: 'PTFC Framework', definition: 'A structured approach to prompt writing: Persona (who the AI should act as), Task (what to do), Format (output structure), and Context (background — your role, audience, purpose, prior knowledge, and constraints). Used with tools such as Claude and Gemini.', lessons: [9, 12, 25] },
   { term: 'Stochastic Parrot', definition: 'A term coined by Bender & Gebru (2021) describing LLMs as sophisticated pattern-matchers that predict probable next tokens without genuine understanding of meaning.', lessons: [2] },
   { term: 'Supervised Learning', definition: 'A type of machine learning where the model learns from labelled examples — data paired with the correct answer. The model learns to map inputs to outputs.', lessons: [3] },
   { term: 'Temperature (AI)', definition: 'A parameter that controls the randomness of AI outputs. Low temperature produces more predictable, focused text; high temperature produces more creative, varied text.', lessons: [9] },
