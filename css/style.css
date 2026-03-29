@@ -436,8 +436,143 @@ footer{
   .hook-stats-row{grid-template-columns:repeat(2,1fr)!important}
 }
 
+/* ── Teacher Mode ────────────────────────────── */
+.teacher-banner{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  background:#4f46e5;color:#fff;text-align:center;padding:8px 16px;font-size:.85rem;font-weight:600;
+}
+body.teacher-mode .navbar{ top:36px }
+body.teacher-mode .section{ padding-top:calc(var(--nav-h) + 36px) }
+body.teacher-mode .lesson-check, body.teacher-mode .bookmark-btn,
+body.teacher-mode .unit-progress, body.teacher-mode #section-progress,
+body.teacher-mode .badges-section, body.teacher-mode .progress-ring-container,
+body.teacher-mode .progress-stats, body.teacher-mode .diff-badge,
+body.teacher-mode .cm-lesson.done::after{ display:none!important }
+body.teacher-mode .nav-link[data-section="progress"]{ display:none }
+.nav-teacher-btn{
+  background:none;border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:6px 8px;font-size:1rem;cursor:pointer;color:var(--text-dim);
+  transition:all .18s;margin-right:4px;
+}
+.nav-teacher-btn:hover,.nav-teacher-btn.active{ border-color:var(--primary);color:var(--primary-light) }
+
+/* ── Keyboard Shortcuts Overlay ──────────────── */
+.shortcuts-overlay{
+  display:none;position:fixed;inset:0;z-index:400;
+  background:rgba(0,0,0,.7);backdrop-filter:blur(4px);
+  align-items:center;justify-content:center;
+}
+.shortcuts-overlay.open{ display:flex }
+.shortcuts-inner{
+  background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:28px;max-width:420px;width:100%;box-shadow:var(--shadow);
+}
+.shortcuts-title{ font-size:1.1rem;font-weight:800;margin-bottom:18px }
+.shortcuts-grid{ display:flex;flex-direction:column;gap:10px }
+.sc-row{ display:flex;align-items:center;gap:16px }
+kbd{
+  background:var(--bg-card-hover);border:1px solid var(--border);border-radius:4px;
+  padding:3px 8px;font-family:var(--mono);font-size:.8rem;min-width:36px;text-align:center;
+  box-shadow:0 2px 0 var(--border);color:var(--text);
+}
+.sc-row span{ font-size:.88rem;color:var(--text-muted) }
+
+/* ── Assessment Modal ────────────────────────── */
+.assessment-inner{ max-width:640px;padding:28px }
+.assessment-unit-grid{ display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:16px 0 }
+.au-card{
+  background:var(--bg-card-hover);border:2px solid var(--border);border-radius:var(--radius-sm);
+  padding:16px;cursor:pointer;transition:all .18s;text-align:center;
+}
+.au-card:hover{ border-color:var(--primary);transform:translateY(-2px) }
+.au-icon{ font-size:2rem;margin-bottom:6px }
+.au-title{ font-size:.88rem;font-weight:700 }
+.au-count{ font-size:.75rem;color:var(--text-dim);margin-top:2px }
+.assessment-timer{ font-size:1.4rem;font-weight:800;color:var(--primary);margin-bottom:4px }
+.assessment-timer.warning{ color:var(--warning) }
+.assessment-timer.danger{ color:var(--danger);animation:pulse .5s infinite }
+@keyframes pulse{ 0%,100%{opacity:1} 50%{opacity:.5} }
+.assessment-results-grid{ display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0 }
+.ar-stat{ background:var(--bg-card-hover);border-radius:var(--radius-sm);padding:12px;text-align:center }
+.ar-num{ font-size:1.6rem;font-weight:800;color:var(--primary) }
+.ar-label{ font-size:.75rem;color:var(--text-dim);margin-top:2px }
+.ar-wrong-list{ margin-top:16px }
+.ar-wrong-item{ background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:var(--radius-sm);padding:10px 14px;margin:6px 0;font-size:.85rem;cursor:pointer }
+.ar-wrong-item:hover{ background:rgba(239,68,68,.15) }
+
+/* ── Milestone Modal ─────────────────────────── */
+.milestone-inner{ max-width:480px;text-align:center;padding:40px 32px }
+.milestone-emoji{ font-size:4rem;margin-bottom:12px;display:block }
+.milestone-pct{ font-size:2.5rem;font-weight:800;color:var(--primary);margin-bottom:4px }
+.milestone-msg{ font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:8px }
+.milestone-sub{ font-size:.9rem;color:var(--text-dim);margin-bottom:24px }
+
+/* ── Notes Panel ─────────────────────────────── */
+.lv-modal-content{ display:flex;flex-direction:column;position:relative }
+.lv-modal-body{ display:flex;flex:1;overflow:hidden;min-height:0 }
+.lv-modal-body #modalBody{ flex:1;overflow:auto }
+.notes-panel{
+  width:300px;flex-shrink:0;border-left:1px solid var(--border);
+  display:flex;flex-direction:column;background:var(--bg-card);
+}
+.notes-panel-header{
+  padding:12px 16px;font-size:.82rem;font-weight:700;border-bottom:1px solid var(--border);
+  color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;
+}
+.notes-panel-textarea{
+  flex:1;background:transparent;border:none;outline:none;resize:none;
+  padding:14px;font-size:.87rem;color:var(--text);line-height:1.6;font-family:var(--font);
+}
+.notes-panel-footer{ padding:6px 14px;border-top:1px solid var(--border);min-height:28px }
+.lv-notes-toggle{
+  position:absolute;top:14px;right:52px;background:none;border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:4px 8px;font-size:.9rem;cursor:pointer;
+  color:var(--text-dim);z-index:10;transition:all .18s;
+}
+.lv-notes-toggle:hover,.lv-notes-toggle.active{ border-color:var(--primary);color:var(--primary-light) }
+
+/* ── Spaced Repetition Due Badge ─────────────── */
+.review-due-badge{
+  display:inline-flex;align-items:center;gap:6px;background:rgba(245,158,11,.12);
+  border:1px solid rgba(245,158,11,.3);color:var(--warning);border-radius:999px;
+  padding:4px 12px;font-size:.82rem;font-weight:700;cursor:pointer;
+}
+.review-due-badge:hover{ background:rgba(245,158,11,.22) }
+.lesson-item .review-due-dot{
+  width:7px;height:7px;border-radius:50%;background:var(--warning);
+  flex-shrink:0;margin-right:4px;
+}
+
+/* ── PTFC Builder ────────────────────────────── */
+.ptfc-builder{ display:flex;flex-direction:column;gap:14px;margin-top:16px }
+.ptfc-row{ display:flex;gap:12px;align-items:flex-start }
+.ptfc-label{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  min-width:60px;padding-top:10px;font-size:.72rem;font-weight:700;
+  color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;
+}
+.ptfc-label span{
+  width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;font-weight:800;color:#fff;flex-shrink:0;
+}
+.ptfc-p span{ background:#06b6d4 }
+.ptfc-t span{ background:#6366f1 }
+.ptfc-f span{ background:#22c55e }
+.ptfc-c span{ background:#f59e0b }
+.ptfc-input{
+  flex:1;background:var(--bg-card-hover);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:10px 12px;color:var(--text);font-size:.87rem;font-family:var(--font);line-height:1.5;
+  resize:vertical;min-height:56px;outline:none;transition:border-color .18s;
+}
+.ptfc-input:focus{ border-color:var(--primary) }
+.ptfc-output-section{ margin-top:8px }
+.ptfc-output{
+  background:var(--bg-card-hover);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:14px;font-size:.87rem;line-height:1.7;color:var(--text-muted);margin:10px 0;min-height:80px;
+}
+.ptfc-actions{ display:flex;gap:10px;flex-wrap:wrap }
+
 /* ── Quick Quiz Modal ────────────────────────── */
-.qq-modal{ display:flex;align-items:center;justify-content:center }
 .qq-modal.open{ display:flex }
 .qq-inner{
   background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
