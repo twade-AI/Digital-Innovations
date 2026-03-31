@@ -270,16 +270,42 @@ var _sortAsc      = true;
 /* ── Init ─────────────────────────────────────────── */
 window.addEventListener('DOMContentLoaded', function() {
   initTheme();
+
+  // 1. Check SDK loaded
+  if (typeof supabase === 'undefined') {
+    document.getElementById('gateError').textContent = '⚠ Supabase SDK failed to load — check your internet connection.';
+    return;
+  }
+  // 2. Check configured
   if (!SUPABASE_URL || SUPABASE_URL === 'YOUR_SUPABASE_URL') {
     document.getElementById('gateError').textContent = '⚠ Supabase is not configured — see SETUP.md';
     return;
   }
-  _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  // 3. Create client
+  try {
+    _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  } catch(e) {
+    document.getElementById('gateError').textContent = '⚠ Failed to initialise Supabase: ' + e.message;
+    console.error('[admin] createClient failed:', e);
+    return;
+  }
+
+  // 4. Listen for auth changes
   _sb.auth.onAuthStateChange(function(event, session) {
+    console.log('[admin] auth event:', event, session ? session.user.email : 'no session');
     _user = session ? session.user : null;
     handleAuthState();
   });
+
+  // 5. Check for existing session
   _sb.auth.getSession().then(function(res) {
+    if (res.error) {
+      console.error('[admin] getSession error:', res.error);
+      document.getElementById('gateError').textContent = '⚠ Session error: ' + res.error.message;
+      return;
+    }
+    console.log('[admin] getSession:', res.data.session ? 'session found for ' + res.data.session.user.email : 'no session');
     _user = (res.data && res.data.session) ? res.data.session.user : null;
     handleAuthState();
   });
@@ -287,12 +313,22 @@ window.addEventListener('DOMContentLoaded', function() {
 
 async function handleAuthState() {
   if (!_user) { showGate(); return; }
-  // Check admin
-  var res = await _sb.from('profiles').select('is_admin').eq('user_id', _user.id).maybeSingle();
-  if (!res.data || !res.data.is_admin) {
-    document.getElementById('gateError').textContent = 'Access denied — your account does not have admin permissions.';
-    showGate();
-    return;
+  // Check admin flag in profiles table
+  try {
+    var res = await _sb.from('profiles').select('is_admin').eq('user_id', _user.id).maybeSingle();
+    console.log('[admin] profile query result:', JSON.stringify(res));
+    if (res.error) {
+      document.getElementById('gateError').textContent = 'Profile query error: ' + res.error.message + ' (code: ' + res.error.code + ')';
+      showGate(); return;
+    }
+    if (!res.data || !res.data.is_admin) {
+      document.getElementById('gateError').textContent = 'Access denied — admin flag not set for ' + _user.email + '. Run the SQL grant in Supabase.';
+      showGate(); return;
+    }
+  } catch(e) {
+    document.getElementById('gateError').textContent = 'Unexpected error: ' + e.message;
+    console.error('[admin] handleAuthState error:', e);
+    showGate(); return;
   }
   document.getElementById('adminUserBadge').textContent = '👤 ' + _user.email;
   showDashboard();
@@ -308,11 +344,19 @@ async function gateLogin(e) {
   var password = document.getElementById('gatePassword').value;
   var btn      = document.getElementById('gateBtn');
   var errEl    = document.getElementById('gateError');
+  errEl.textContent = '';
+  if (!_sb) { errEl.textContent = '⚠ Supabase not initialised — reload the page.'; return; }
   if (!email.endsWith('@' + ALLOWED_DOMAIN)) { errEl.textContent = 'Only @' + ALLOWED_DOMAIN + ' accounts accepted.'; return; }
   btn.disabled = true; btn.textContent = 'Signing in…';
-  var res = await _sb.auth.signInWithPassword({ email: email, password: password });
+  try {
+    var res = await _sb.auth.signInWithPassword({ email: email, password: password });
+    console.log('[admin] signIn result:', res.error ? res.error.message : 'success');
+    if (res.error) { errEl.textContent = res.error.message; }
+  } catch(e) {
+    errEl.textContent = 'Login error: ' + e.message;
+    console.error('[admin] gateLogin error:', e);
+  }
   btn.disabled = false; btn.textContent = 'Sign In';
-  if (res.error) { errEl.textContent = res.error.message; }
 }
 
 async function doSignOut() {
