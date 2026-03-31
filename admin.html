@@ -291,7 +291,6 @@ async function handleAuthState() {
   var res = await _sb.from('profiles').select('is_admin').eq('user_id', _user.id).maybeSingle();
   if (!res.data || !res.data.is_admin) {
     document.getElementById('gateError').textContent = 'Access denied — your account does not have admin permissions.';
-    document.getElementById('gateBtn').disabled = true;
     showGate();
     return;
   }
