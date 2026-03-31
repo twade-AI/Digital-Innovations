@@ -12,6 +12,8 @@
   <meta name="theme-color" content="#6366f1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Supabase SDK (loaded async; auth features degrade gracefully offline) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 </head>
 <body>
   <a href="#section-home" class="skip-link">Skip to main content</a>
@@ -49,6 +51,15 @@
         <input type="text" id="searchInput" placeholder="Search everything..." oninput="handleSearch(this.value)" aria-label="Search lessons, glossary, and resources">
         <div id="searchResults" class="search-results"></div>
       </div>
+      <!-- Auth controls -->
+      <button class="auth-btn" id="authBtn" onclick="openAuthModal('login')" title="Sign in to sync progress across devices">☁️ Sign In</button>
+      <div class="user-chip" id="userChip" style="display:none">
+        <span class="user-avatar">👤</span>
+        <span id="userDisplayName"></span>
+        <button class="user-signout" onclick="authSignOut()" title="Sign out">✕</button>
+      </div>
+      <span class="sync-indicator" id="syncIndicator" style="display:none;opacity:0" aria-live="polite"></span>
+      <a class="admin-link" id="adminLink" href="admin.html" style="display:none" title="Teacher admin dashboard">📊</a>
       <button class="nav-teacher-btn" id="teacherModeBtn" onclick="toggleTeacherMode()" title="Toggle Teacher/Presentation mode">📺</button>
       <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light/dark mode" title="Toggle theme">
         <span class="theme-icon" id="themeIcon">☀️</span>
@@ -348,6 +359,63 @@
     </div>
   </div>
 
+  <!-- Auth Modal -->
+  <div id="authModal" class="modal" role="dialog" aria-modal="true" aria-label="Sign in" onclick="if(event.target===this)closeAuthModal()">
+    <div class="modal-content auth-modal-inner">
+      <button class="modal-close" onclick="closeAuthModal()" aria-label="Close">&times;</button>
+      <div class="auth-header">
+        <div class="auth-logo">☁️</div>
+        <h2 class="auth-title">Sync Your Progress</h2>
+        <p class="auth-subtitle">Sign in with your <strong>@haileybury.com</strong> school email to save progress across devices and unlock teacher feedback.</p>
+      </div>
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab active" data-tab="login" onclick="switchAuthTab('login')" role="tab">Sign In</button>
+        <button class="auth-tab" data-tab="signup" onclick="switchAuthTab('signup')" role="tab">Create Account</button>
+      </div>
+
+      <div id="authLoginForm">
+        <form onsubmit="submitLogin(event)" novalidate>
+          <div class="auth-field">
+            <label for="loginEmail">School Email</label>
+            <input id="loginEmail" type="email" placeholder="yourname@haileybury.com" autocomplete="email" required>
+          </div>
+          <div class="auth-field">
+            <label for="loginPassword">Password</label>
+            <input id="loginPassword" type="password" placeholder="Your password" autocomplete="current-password" required>
+          </div>
+          <button type="submit" class="btn btn-primary auth-submit">Sign In</button>
+        </form>
+      </div>
+
+      <div id="authSignupForm" style="display:none">
+        <form onsubmit="submitSignup(event)" novalidate>
+          <div class="auth-field">
+            <label for="signupName">Your First Name</label>
+            <input id="signupName" type="text" placeholder="e.g. Alex" autocomplete="given-name" required>
+          </div>
+          <div class="auth-field">
+            <label for="signupEmail">School Email</label>
+            <input id="signupEmail" type="email" placeholder="yourname@haileybury.com" autocomplete="email" required>
+          </div>
+          <div class="auth-field">
+            <label for="signupPassword">Password <span style="font-weight:400;color:var(--text-dim)">(min. 6 characters)</span></label>
+            <input id="signupPassword" type="password" placeholder="Choose a password" autocomplete="new-password" required>
+          </div>
+          <button type="submit" class="btn btn-primary auth-submit">Create Account</button>
+        </form>
+      </div>
+
+      <div id="authError" class="auth-error" aria-live="polite"></div>
+
+      <div class="auth-info">
+        <div class="auth-info-item">☁️ Progress syncs across all your devices automatically</div>
+        <div class="auth-info-item">🔒 Only @haileybury.com accounts are accepted</div>
+        <div class="auth-info-item">📊 Your teacher can see completion stats — not your private notes</div>
+        <div class="auth-info-item">💾 Offline use is always available — sign-in is optional</div>
+      </div>
+    </div>
+  </div>
+
   <!-- Onboarding Tour Overlay -->
   <div id="onboardingOverlay" class="ob-overlay" role="dialog" aria-modal="true" aria-label="Welcome tour">
     <div class="ob-card">
@@ -409,11 +477,13 @@
     <p>Digital Innovations AEP &bull; Built for KS5 learners</p>
   </footer>
 
+  <script src="js/supabase-config.js"></script>
   <script src="js/data.js"></script>
   <script src="js/slides-u1u2.js"></script>
   <script src="js/slides-u3u4.js"></script>
   <script src="js/slides-u5u6.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — Digital Innovations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="js/supabase-config.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #6366f1; --primary-light: #818cf8; --accent: #06b6d4;
+      --bg: #0f172a; --bg-card: #1e293b; --bg-hover: #334155;
+      --text: #f1f5f9; --text-muted: #94a3b8; --text-dim: #64748b;
+      --border: #334155; --success: #22c55e; --warning: #f59e0b; --danger: #ef4444;
+      --radius: 12px; --radius-sm: 8px;
+    }
+    [data-theme="light"] {
+      --bg: #f8fafc; --bg-card: #ffffff; --bg-hover: #f1f5f9;
+      --text: #0f172a; --text-muted: #475569; --text-dim: #94a3b8; --border: #e2e8f0;
+    }
+    html { font-size: 16px; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; min-height: 100vh; }
+    a { color: var(--primary-light); text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; }
+
+    /* ── Layout ── */
+    .admin-wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px 60px; }
+
+    /* ── Header ── */
+    .admin-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 0 24px; border-bottom: 1px solid var(--border); margin-bottom: 28px; gap: 16px; flex-wrap: wrap;
+    }
+    .admin-brand { display: flex; align-items: center; gap: 10px; }
+    .admin-brand-icon { font-size: 1.5rem; }
+    .admin-brand-text { font-weight: 800; font-size: 1.1rem; }
+    .admin-brand-sub { font-size: .75rem; color: var(--text-dim); margin-top: 1px; }
+    .admin-header-right { display: flex; align-items: center; gap: 12px; }
+    .admin-user-badge { font-size: .78rem; color: var(--text-dim); }
+    .btn { padding: 8px 16px; border-radius: var(--radius-sm); font-size: .85rem; font-weight: 600; border: none; transition: all .18s; }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: #4f46e5; }
+    .btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--text-muted); }
+    .btn-ghost:hover { border-color: var(--primary); color: var(--text); }
+    .btn-sm { padding: 5px 12px; font-size: .78rem; }
+    .btn-danger { background: rgba(239,68,68,.15); color: var(--danger); border: 1px solid rgba(239,68,68,.3); }
+
+    /* ── Auth Gate ── */
+    #authGate {
+      display: flex; align-items: center; justify-content: center;
+      min-height: 80vh; flex-direction: column; gap: 20px; text-align: center;
+    }
+    .gate-icon { font-size: 3rem; }
+    .gate-title { font-size: 1.5rem; font-weight: 700; }
+    .gate-sub { font-size: .9rem; color: var(--text-muted); max-width: 360px; }
+    .auth-form { display: flex; flex-direction: column; gap: 10px; width: 320px; }
+    .auth-form input {
+      padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border);
+      background: var(--bg-card); color: var(--text); font-size: .9rem; width: 100%;
+    }
+    .auth-form input:focus { outline: none; border-color: var(--primary); }
+    #gateError { font-size: .82rem; color: var(--danger); min-height: 18px; }
+
+    /* ── Summary Cards ── */
+    #dashboard { display: none; }
+    .summary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .summary-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 18px 20px;
+    }
+    .sc-num { font-size: 2rem; font-weight: 800; line-height: 1; }
+    .sc-label { font-size: .78rem; color: var(--text-dim); margin-top: 4px; }
+    .sc-sub { font-size: .72rem; color: var(--text-dim); margin-top: 2px; }
+
+    /* ── Controls ── */
+    .table-controls {
+      display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap;
+    }
+    .search-input {
+      flex: 1; min-width: 200px; padding: 8px 13px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); background: var(--bg-card); color: var(--text);
+      font-size: .85rem;
+    }
+    .search-input:focus { outline: none; border-color: var(--primary); }
+    .sort-btn {
+      padding: 7px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border);
+      background: var(--bg-card); color: var(--text-muted); font-size: .78rem;
+      font-weight: 600; cursor: pointer; white-space: nowrap;
+    }
+    .sort-btn.active { border-color: var(--primary); color: var(--primary-light); }
+
+    /* ── Student Table ── */
+    .student-table { width: 100%; border-collapse: collapse; }
+    .student-table th {
+      padding: 10px 14px; text-align: left; font-size: .72rem; font-weight: 700;
+      color: var(--text-dim); text-transform: uppercase; letter-spacing: .06em;
+      border-bottom: 1px solid var(--border); white-space: nowrap;
+    }
+    .student-table td { padding: 0; border-bottom: 1px solid var(--border); }
+    .student-row {
+      cursor: pointer; transition: background .15s;
+    }
+    .student-row:hover td { background: var(--bg-hover); }
+    .student-row td { padding: 12px 14px; font-size: .85rem; vertical-align: middle; }
+    .student-name { font-weight: 600; }
+    .student-email { font-size: .78rem; color: var(--text-dim); margin-top: 2px; }
+    .progress-cell { min-width: 130px; }
+    .mini-bar { height: 6px; background: var(--border); border-radius: 999px; overflow: hidden; margin-top: 4px; }
+    .mini-bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #6366f1, #06b6d4); }
+    .pct-text { font-size: .78rem; color: var(--text-dim); }
+    .level-chip {
+      display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: .7rem; font-weight: 700;
+      background: rgba(99,102,241,.12); color: var(--primary-light); border: 1px solid rgba(99,102,241,.25);
+    }
+    .streak-badge { font-size: .82rem; }
+    .quiz-pct { font-weight: 600; }
+    .last-active { font-size: .78rem; color: var(--text-dim); }
+    .chevron-cell { color: var(--text-dim); font-size: .7rem; width: 20px; }
+
+    /* ── Expanded row ── */
+    .detail-row td { padding: 0; }
+    .detail-row { display: none; }
+    .detail-row.open { display: table-row; }
+    .detail-panel {
+      padding: 16px 20px; background: rgba(99,102,241,.04);
+      border-bottom: 1px solid var(--border);
+    }
+    .detail-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; margin-bottom: 12px; }
+    .detail-unit {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm);
+      padding: 10px 12px;
+    }
+    .du-title { font-size: .72rem; font-weight: 700; color: var(--text-dim); margin-bottom: 4px; }
+    .du-bar { height: 5px; background: var(--border); border-radius: 999px; overflow: hidden; margin-bottom: 4px; }
+    .du-fill { height: 100%; border-radius: 999px; }
+    .du-pct { font-size: .78rem; color: var(--text-muted); }
+    .detail-meta { font-size: .78rem; color: var(--text-dim); display: flex; gap: 20px; flex-wrap: wrap; }
+
+    /* ── Empty / Loading ── */
+    .empty-state { text-align: center; padding: 48px; color: var(--text-dim); }
+    .loading-spinner { display: inline-block; width: 20px; height: 20px; border: 2px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin .7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Footer ── */
+    .admin-footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); font-size: .78rem; color: var(--text-dim); display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+
+    /* ── Theme toggle ── */
+    .theme-btn { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 6px 10px; font-size: .9rem; cursor: pointer; }
+  </style>
+</head>
+<body>
+<div class="admin-wrap">
+
+  <!-- Header -->
+  <div class="admin-header">
+    <div class="admin-brand">
+      <span class="admin-brand-icon">⚡</span>
+      <div>
+        <div class="admin-brand-text">Digital Innovations</div>
+        <div class="admin-brand-sub">Teacher Admin Dashboard</div>
+      </div>
+    </div>
+    <div class="admin-header-right">
+      <span class="admin-user-badge" id="adminUserBadge"></span>
+      <button class="btn btn-ghost btn-sm" onclick="refreshData()" title="Refresh data">↻ Refresh</button>
+      <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">☀️</button>
+      <a href="index.html" class="btn btn-ghost btn-sm">← Course</a>
+      <button class="btn btn-ghost btn-sm btn-danger" onclick="doSignOut()">Sign Out</button>
+    </div>
+  </div>
+
+  <!-- Auth Gate (shown when not logged in / not admin) -->
+  <div id="authGate">
+    <div class="gate-icon">🔐</div>
+    <div class="gate-title">Admin Sign In</div>
+    <p class="gate-sub">Sign in with your @haileybury.com teacher account. You must have admin access enabled by your Supabase administrator.</p>
+    <form class="auth-form" onsubmit="gateLogin(event)">
+      <input type="email" id="gateEmail" placeholder="teacher@haileybury.com" required>
+      <input type="password" id="gatePassword" placeholder="Password" required>
+      <button type="submit" class="btn btn-primary" id="gateBtn">Sign In</button>
+      <div id="gateError"></div>
+    </form>
+  </div>
+
+  <!-- Dashboard (shown after auth) -->
+  <div id="dashboard">
+
+    <!-- Summary cards -->
+    <div class="summary-grid" id="summaryGrid">
+      <div class="summary-card">
+        <div class="sc-num" id="sumStudents">—</div>
+        <div class="sc-label">Registered Students</div>
+      </div>
+      <div class="summary-card">
+        <div class="sc-num" id="sumAvgPct">—</div>
+        <div class="sc-label">Avg Completion</div>
+        <div class="sc-sub">across all students</div>
+      </div>
+      <div class="summary-card">
+        <div class="sc-num" id="sumActive">—</div>
+        <div class="sc-label">Active This Week</div>
+        <div class="sc-sub">synced in last 7 days</div>
+      </div>
+      <div class="summary-card">
+        <div class="sc-num" id="sumAvgXP">—</div>
+        <div class="sc-label">Avg XP Earned</div>
+      </div>
+      <div class="summary-card">
+        <div class="sc-num" id="sumQuizPct">—</div>
+        <div class="sc-label">Avg Quiz Score</div>
+        <div class="sc-sub">correct answers</div>
+      </div>
+    </div>
+
+    <!-- Table controls -->
+    <div class="table-controls">
+      <input class="search-input" type="text" placeholder="Search by name or email…" id="studentSearch" oninput="filterTable()">
+      <button class="sort-btn active" data-col="name" onclick="sortTable('name')">Name ↕</button>
+      <button class="sort-btn" data-col="pct" onclick="sortTable('pct')">Completion ↕</button>
+      <button class="sort-btn" data-col="xp" onclick="sortTable('xp')">XP ↕</button>
+      <button class="sort-btn" data-col="last" onclick="sortTable('last')">Last Active ↕</button>
+      <button class="btn btn-ghost btn-sm" onclick="exportCSV()" title="Export to CSV">⬇ Export CSV</button>
+    </div>
+
+    <!-- Student table -->
+    <div style="overflow-x:auto">
+      <table class="student-table" id="studentTable">
+        <thead>
+          <tr>
+            <th>Student</th>
+            <th>Lessons</th>
+            <th>XP / Level</th>
+            <th>Streak</th>
+            <th>Quiz Score</th>
+            <th>Last Active</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="studentTableBody">
+          <tr><td colspan="7" class="empty-state"><span class="loading-spinner"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="admin-footer">
+    <span>Digital Innovations AEP &bull; Admin Dashboard</span>
+    <a href="https://supabase.com/dashboard" target="_blank" rel="noopener">Open Supabase Dashboard ↗</a>
+    <span id="lastRefresh"></span>
+  </div>
+
+</div>
+
+<script>
+/* ── Config check ─────────────────────────────────── */
+const TOTAL_LESSONS = 44;
+const UNIT_SIZES    = [8, 4, 4, 4, 16, 8]; // lessons per unit
+
+var _sb   = null;
+var _user = null;
+var _allStudents  = [];
+var _sortCol      = 'name';
+var _sortAsc      = true;
+
+/* ── Init ─────────────────────────────────────────── */
+window.addEventListener('DOMContentLoaded', function() {
+  initTheme();
+  if (!SUPABASE_URL || SUPABASE_URL === 'YOUR_SUPABASE_URL') {
+    document.getElementById('gateError').textContent = '⚠ Supabase is not configured — see SETUP.md';
+    return;
+  }
+  _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  _sb.auth.onAuthStateChange(function(event, session) {
+    _user = session ? session.user : null;
+    handleAuthState();
+  });
+  _sb.auth.getSession().then(function(res) {
+    _user = (res.data && res.data.session) ? res.data.session.user : null;
+    handleAuthState();
+  });
+});
+
+async function handleAuthState() {
+  if (!_user) { showGate(); return; }
+  // Check admin
+  var res = await _sb.from('profiles').select('is_admin').eq('user_id', _user.id).maybeSingle();
+  if (!res.data || !res.data.is_admin) {
+    document.getElementById('gateError').textContent = 'Access denied — your account does not have admin permissions.';
+    document.getElementById('gateBtn').disabled = true;
+    showGate();
+    return;
+  }
+  document.getElementById('adminUserBadge').textContent = '👤 ' + _user.email;
+  showDashboard();
+  loadData();
+}
+
+function showGate()      { document.getElementById('authGate').style.display = 'flex'; document.getElementById('dashboard').style.display = 'none'; }
+function showDashboard() { document.getElementById('authGate').style.display = 'none'; document.getElementById('dashboard').style.display = 'block'; }
+
+async function gateLogin(e) {
+  e.preventDefault();
+  var email    = document.getElementById('gateEmail').value.trim();
+  var password = document.getElementById('gatePassword').value;
+  var btn      = document.getElementById('gateBtn');
+  var errEl    = document.getElementById('gateError');
+  if (!email.endsWith('@' + ALLOWED_DOMAIN)) { errEl.textContent = 'Only @' + ALLOWED_DOMAIN + ' accounts accepted.'; return; }
+  btn.disabled = true; btn.textContent = 'Signing in…';
+  var res = await _sb.auth.signInWithPassword({ email: email, password: password });
+  btn.disabled = false; btn.textContent = 'Sign In';
+  if (res.error) { errEl.textContent = res.error.message; }
+}
+
+async function doSignOut() {
+  await _sb.auth.signOut();
+  _user = null; _allStudents = [];
+  showGate();
+}
+
+/* ── Load all student data ────────────────────────── */
+async function loadData() {
+  document.getElementById('studentTableBody').innerHTML =
+    '<tr><td colspan="7" class="empty-state"><span class="loading-spinner"></span> Loading…</td></tr>';
+
+  // Fetch profiles and progress in parallel
+  var [profRes, progRes] = await Promise.all([
+    _sb.from('profiles').select('user_id, email, display_name, is_admin, created_at'),
+    _sb.from('progress').select('user_id, data, updated_at')
+  ]);
+
+  var profiles  = (profRes.data  || []).filter(function(p) { return !p.is_admin; });
+  var progressMap = {};
+  (progRes.data || []).forEach(function(row) { progressMap[row.user_id] = row; });
+
+  _allStudents = profiles.map(function(p) {
+    var prog     = progressMap[p.user_id];
+    var data     = (prog && prog.data) ? prog.data : {};
+    var completed = Array.isArray(data.completed) ? data.completed.length : 0;
+    var pct      = Math.round(completed / TOTAL_LESSONS * 100);
+    var xp       = (data.xp && data.xp.total) ? data.xp.total : 0;
+    var streak   = (data.streak && data.streak.count) ? data.streak.count : 0;
+    var qs       = data.quiz_scores ? Object.values(data.quiz_scores) : [];
+    var qCorrect = qs.filter(function(q) { return q.correct; }).length;
+    var qPct     = qs.length ? Math.round(qCorrect / qs.length * 100) : null;
+    var lastActive = prog ? prog.updated_at : p.created_at;
+    return {
+      userId:      p.user_id,
+      name:        p.display_name || p.email.split('@')[0],
+      email:       p.email,
+      completed:   completed,
+      pct:         pct,
+      xp:          xp,
+      streak:      streak,
+      qCorrect:    qCorrect,
+      qTotal:      qs.length,
+      qPct:        qPct,
+      lastActive:  lastActive,
+      completedIds: Array.isArray(data.completed) ? data.completed : [],
+      joinedAt:    p.created_at
+    };
+  });
+
+  renderSummary();
+  renderTable(_allStudents);
+  document.getElementById('lastRefresh').textContent = 'Last refreshed: ' + new Date().toLocaleTimeString('en-GB');
+}
+
+function refreshData() { if (_user) loadData(); }
+
+/* ── Summary cards ────────────────────────────────── */
+function renderSummary() {
+  var s = _allStudents;
+  var oneWeekAgo = new Date(Date.now() - 7 * 86400000).toISOString();
+  var active     = s.filter(function(st) { return st.lastActive && st.lastActive > oneWeekAgo; }).length;
+  var avgPct     = s.length ? Math.round(s.reduce(function(a, b) { return a + b.pct; }, 0) / s.length) : 0;
+  var avgXP      = s.length ? Math.round(s.reduce(function(a, b) { return a + b.xp; }, 0) / s.length) : 0;
+  var qStudents  = s.filter(function(st) { return st.qTotal > 0; });
+  var avgQ       = qStudents.length ? Math.round(qStudents.reduce(function(a, b) { return a + b.qPct; }, 0) / qStudents.length) : 0;
+  document.getElementById('sumStudents').textContent = s.length;
+  document.getElementById('sumAvgPct').textContent   = avgPct + '%';
+  document.getElementById('sumActive').textContent   = active;
+  document.getElementById('sumAvgXP').textContent    = avgXP;
+  document.getElementById('sumQuizPct').textContent  = qStudents.length ? avgQ + '%' : '—';
+}
+
+/* ── Table rendering ──────────────────────────────── */
+function getLevel(xp) {
+  if (xp < 100) return 'Novice 🌱';
+  if (xp < 250) return 'Explorer 🔍';
+  if (xp < 500) return 'Innovator ⚡';
+  return 'Pioneer 🚀';
+}
+function relativeDate(iso) {
+  if (!iso) return '—';
+  var d    = new Date(iso);
+  var diff = Math.floor((Date.now() - d) / 86400000);
+  if (diff === 0) return 'Today';
+  if (diff === 1) return 'Yesterday';
+  if (diff < 7)  return diff + ' days ago';
+  if (diff < 30) return Math.floor(diff / 7) + 'w ago';
+  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+}
+
+function renderTable(students) {
+  var tbody = document.getElementById('studentTableBody');
+  if (!students.length) {
+    tbody.innerHTML = '<tr><td colspan="7" class="empty-state">No students found.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = students.map(function(s, i) {
+    var unitBarsHtml = buildUnitBars(s.completedIds);
+    return [
+      '<tr class="student-row" onclick="toggleDetail(' + i + ')" data-idx="' + i + '">',
+        '<td>',
+          '<div class="student-name">' + esc(s.name) + '</div>',
+          '<div class="student-email">' + esc(s.email) + '</div>',
+        '</td>',
+        '<td class="progress-cell">',
+          '<div class="pct-text">' + s.completed + ' / ' + TOTAL_LESSONS + ' (' + s.pct + '%)</div>',
+          '<div class="mini-bar"><div class="mini-bar-fill" style="width:' + s.pct + '%"></div></div>',
+        '</td>',
+        '<td>',
+          '<div style="font-weight:700">' + s.xp + ' XP</div>',
+          '<span class="level-chip">' + getLevel(s.xp) + '</span>',
+        '</td>',
+        '<td class="streak-badge">' + (s.streak ? s.streak + ' 🔥' : '—') + '</td>',
+        '<td class="quiz-pct">' + (s.qPct !== null ? s.qPct + '%' : '—') + '<span style="font-size:.72rem;color:var(--text-dim);font-weight:400"> (' + s.qCorrect + '/' + s.qTotal + ')</span></td>',
+        '<td class="last-active">' + relativeDate(s.lastActive) + '</td>',
+        '<td class="chevron-cell" id="chev-' + i + '">▶</td>',
+      '</tr>',
+      '<tr class="detail-row" id="detail-' + i + '">',
+        '<td colspan="7">',
+          '<div class="detail-panel">',
+            '<div class="detail-grid">' + unitBarsHtml + '</div>',
+            '<div class="detail-meta">',
+              '<span>Joined: ' + new Date(s.joinedAt).toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'}) + '</span>',
+              '<span>Quizzes attempted: ' + s.qTotal + '</span>',
+              '<span>Quizzes correct: ' + s.qCorrect + '</span>',
+              '<span>XP earned: ' + s.xp + '</span>',
+            '</div>',
+          '</div>',
+        '</td>',
+      '</tr>'
+    ].join('');
+  }).join('');
+}
+
+function buildUnitBars(completedIds) {
+  var unitNames  = ['Foundations of AI', 'Prompt Engineering', 'AI & Society', 'Policy & Governance', 'Capstone Project', 'Presentations'];
+  var unitColors = ['#6366f1', '#8b5cf6', '#06b6d4', '#f59e0b', '#22c55e', '#ec4899'];
+  var startId    = 1;
+  return unitNames.map(function(name, i) {
+    var size     = UNIT_SIZES[i];
+    var unitIds  = [];
+    for (var j = startId; j < startId + size; j++) unitIds.push(j);
+    startId += size;
+    var done     = completedIds.filter(function(id) { return unitIds.indexOf(id) >= 0; }).length;
+    var pct      = Math.round(done / size * 100);
+    return '<div class="detail-unit">' +
+      '<div class="du-title">U' + (i+1) + ': ' + name + '</div>' +
+      '<div class="du-bar"><div class="du-fill" style="width:' + pct + '%;background:' + unitColors[i] + '"></div></div>' +
+      '<div class="du-pct">' + done + '/' + size + ' (' + pct + '%)</div>' +
+    '</div>';
+  }).join('');
+}
+
+function toggleDetail(idx) {
+  var row  = document.getElementById('detail-' + idx);
+  var chev = document.getElementById('chev-' + idx);
+  var open = row.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.detail-row.open').forEach(function(r) { r.classList.remove('open'); });
+  document.querySelectorAll('.chevron-cell').forEach(function(c) { c.textContent = '▶'; });
+  if (!open) { row.classList.add('open'); if (chev) chev.textContent = '▼'; }
+}
+
+/* ── Filter & Sort ────────────────────────────────── */
+function filterTable() {
+  var q = document.getElementById('studentSearch').value.toLowerCase();
+  var filtered = q ? _allStudents.filter(function(s) {
+    return s.name.toLowerCase().includes(q) || s.email.toLowerCase().includes(q);
+  }) : _allStudents;
+  renderTable(sortStudents(filtered));
+}
+
+var _sortAscMap = {};
+function sortTable(col) {
+  _sortAscMap[col] = !_sortAscMap[col];
+  _sortCol = col;
+  document.querySelectorAll('.sort-btn').forEach(function(b) {
+    b.classList.toggle('active', b.dataset.col === col);
+  });
+  var q = document.getElementById('studentSearch').value.toLowerCase();
+  var filtered = q ? _allStudents.filter(function(s) {
+    return s.name.toLowerCase().includes(q) || s.email.toLowerCase().includes(q);
+  }) : _allStudents;
+  renderTable(sortStudents(filtered));
+}
+
+function sortStudents(arr) {
+  var asc = _sortAscMap[_sortCol] !== false;
+  return arr.slice().sort(function(a, b) {
+    var av, bv;
+    if (_sortCol === 'name')  { av = a.name.toLowerCase(); bv = b.name.toLowerCase(); }
+    else if (_sortCol === 'pct')  { av = a.pct; bv = b.pct; asc = !asc; }
+    else if (_sortCol === 'xp')   { av = a.xp;  bv = b.xp;  asc = !asc; }
+    else if (_sortCol === 'last') { av = a.lastActive || ''; bv = b.lastActive || ''; asc = !asc; }
+    else { av = a.name.toLowerCase(); bv = b.name.toLowerCase(); }
+    if (av < bv) return asc ? -1 : 1;
+    if (av > bv) return asc ? 1 : -1;
+    return 0;
+  });
+}
+
+/* ── CSV Export ───────────────────────────────────── */
+function exportCSV() {
+  var rows = [['Name','Email','Completed','%','XP','Level','Streak','Quiz Correct','Quiz Total','Quiz %','Last Active','Joined']];
+  _allStudents.forEach(function(s) {
+    rows.push([
+      s.name, s.email, s.completed, s.pct + '%', s.xp, getLevel(s.xp).split(' ')[0],
+      s.streak, s.qCorrect, s.qTotal, s.qPct !== null ? s.qPct + '%' : '',
+      s.lastActive ? new Date(s.lastActive).toLocaleDateString('en-GB') : '',
+      s.joinedAt  ? new Date(s.joinedAt).toLocaleDateString('en-GB')  : ''
+    ]);
+  });
+  var csv  = rows.map(function(r) { return r.map(function(c) { return '"' + String(c).replace(/"/g,'""') + '"'; }).join(','); }).join('\n');
+  var blob = new Blob([csv], { type: 'text/csv' });
+  var a    = document.createElement('a');
+  a.href   = URL.createObjectURL(blob);
+  a.download = 'di-students-' + new Date().toISOString().slice(0,10) + '.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+}
+
+/* ── Theme ────────────────────────────────────────── */
+function initTheme() {
+  var t = localStorage.getItem('di_theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  document.getElementById('themeBtn').textContent = t === 'dark' ? '☀️' : '🌙';
+}
+function toggleTheme() {
+  var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  localStorage.setItem('di_theme', t);
+  document.getElementById('themeBtn').textContent = t === 'dark' ? '☀️' : '🌙';
+}
+
+/* ── Utils ────────────────────────────────────────── */
+function esc(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+</script>
+</body>
+</html>
