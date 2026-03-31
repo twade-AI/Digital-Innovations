@@ -18,6 +18,7 @@ function loadProgress() {
 function saveProgress() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify([...completedLessons]));
   updateStreak();
+  if (typeof scheduleSync === 'function') scheduleSync();
 }
 function updateStreak() {
   var data = JSON.parse(localStorage.getItem(STREAK_KEY) || '{"last":"","count":0,"days":[]}');
@@ -64,6 +65,7 @@ function loadBookmarks() {
 }
 function saveBookmarks() {
   localStorage.setItem('di_bookmarks', JSON.stringify([...bookmarkedLessons]));
+  if (typeof scheduleSync === 'function') scheduleSync();
 }
 function toggleBookmark(id) {
   if (bookmarkedLessons.has(id)) bookmarkedLessons.delete(id);
@@ -80,6 +82,7 @@ function loadQuizScores() {
 function saveQuizScore(lessonId, correct) {
   quizScores[lessonId] = { correct: correct, date: new Date().toISOString().slice(0, 10) };
   localStorage.setItem('di_quiz_scores', JSON.stringify(quizScores));
+  if (typeof scheduleSync === 'function') scheduleSync();
 }
 
 /* ── Navigation ────────────────────────────────── */
@@ -1806,7 +1809,10 @@ function loadXP() {
   try { return JSON.parse(localStorage.getItem(XP_KEY)) || { total: 0 }; }
   catch(e) { return { total: 0 }; }
 }
-function saveXPData(d) { localStorage.setItem(XP_KEY, JSON.stringify(d)); }
+function saveXPData(d) {
+  localStorage.setItem(XP_KEY, JSON.stringify(d));
+  if (typeof scheduleSync === 'function') scheduleSync();
+}
 function addXP(amount, reason) {
   var d = loadXP();
   d.total = (d.total || 0) + amount;
@@ -2266,6 +2272,7 @@ document.addEventListener('keydown', e => {
     closeShortcuts();
     closeCapstone();
     closeOnboarding();
+    if (typeof closeAuthModal === 'function') closeAuthModal();
   }
   if (e.key === '?' && !inInput) { openShortcuts(); return; }
   if (currentSlides.length > 0) {
