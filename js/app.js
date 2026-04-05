@@ -844,12 +844,66 @@ function renderProgress() {
   const done = completedLessons.size;
   const pct = Math.round((done / total) * 100);
   const circumference = 2 * Math.PI * 85; // r=85
+  const streak = getStreak();
 
+  // ── Ring ──
   document.getElementById('progressRingPercent').textContent = pct + '%';
   document.getElementById('progressRingFill').style.strokeDashoffset = circumference - (circumference * pct / 100);
-  document.getElementById('lessonsCompleted').textContent = done;
-  document.getElementById('lessonsRemaining').textContent = total - done;
-  document.getElementById('currentStreak').textContent = getStreak();
+  var ringLabel = document.getElementById('progressRingLabel');
+  if (ringLabel) ringLabel.textContent = done + ' of ' + total + ' lessons';
+
+  // Hidden compat elements
+  var lc = document.getElementById('lessonsCompleted'); if (lc) lc.textContent = done;
+  var lr = document.getElementById('lessonsRemaining'); if (lr) lr.textContent = total - done;
+  var cs = document.getElementById('currentStreak');    if (cs) cs.textContent = streak;
+
+  // ── Profile card ──
+  var xpData = typeof loadXP === 'function' ? loadXP() : { total: 0, level: 1 };
+  var level = xpData.level || 1;
+  var xpTotal = xpData.total || 0;
+  var XP_PER_LEVEL = 100;
+  var xpInLevel = xpTotal % XP_PER_LEVEL;
+  var xpPct = Math.round((xpInLevel / XP_PER_LEVEL) * 100);
+
+  // Level titles
+  var LEVEL_TITLES = ['','AI Newcomer','AI Apprentice','Prompt Crafter','Data Explorer',
+    'Ethics Thinker','Policy Analyst','Algorithm Ace','Neural Navigator','AI Architect','AI Expert'];
+  var levelTitle = LEVEL_TITLES[Math.min(level, LEVEL_TITLES.length - 1)] || 'AI Expert';
+
+  // Avatar based on level
+  var AVATARS = ['🎓','🤖','💡','🧠','⚡','🏆','🌟','🔬','🚀','👑'];
+  var avatar = AVATARS[Math.min(Math.floor((level - 1) / 1), AVATARS.length - 1)];
+
+  // Quiz accuracy
+  var qKeys = Object.keys(quizScores);
+  var qPct = qKeys.length ? Math.round((qKeys.filter(function(k) { return quizScores[k].correct; }).length / qKeys.length) * 100) : null;
+
+  // Badge count
+  var earnedBadges = typeof BADGES !== 'undefined' ? BADGES.filter(function(b) {
+    return typeof b.earned === 'function' ? b.earned() : false;
+  }).length : 0;
+
+  var setEl = function(id, val) { var e = document.getElementById(id); if (e) e.textContent = val; };
+  setEl('profileAvatar', avatar);
+  setEl('profileLevelBadge', 'Lv ' + level);
+  setEl('profileTitle', levelTitle);
+  setEl('profileXpLabel', xpTotal + ' XP  —  ' + xpInLevel + '/' + XP_PER_LEVEL + ' to Lv ' + (level + 1));
+  setEl('pstatLessons', done + '/' + total);
+  setEl('pstatStreak', streak + (streak > 0 ? '🔥' : ''));
+  setEl('pstatBadges', earnedBadges);
+  setEl('pstatQuiz', qPct !== null ? qPct + '%' : '—');
+
+  // Display name from Supabase if logged in
+  if (typeof getCurrentUser === 'function') {
+    var user = getCurrentUser();
+    if (user) {
+      var meta = user.user_metadata;
+      setEl('profileName', (meta && meta.display_name) ? meta.display_name : user.email.split('@')[0]);
+    }
+  }
+
+  var xpFill = document.getElementById('profileXpFill');
+  if (xpFill) xpFill.style.width = xpPct + '%';
 
   document.getElementById('progressByUnit').innerHTML = UNITS.map(u => {
     const uPct = unitProgressPct(u);

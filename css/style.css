@@ -246,6 +246,53 @@ img{max-width:100%}
 .resource-card p{font-size:.82rem;color:var(--text-muted);line-height:1.5}
 
 /* ── Progress ──────────────────────────────────── */
+/* ── Game Profile Card ────────────────────────── */
+.profile-card{
+  display:flex;align-items:center;flex-wrap:wrap;gap:20px;
+  background:linear-gradient(135deg,var(--bg-card) 60%,var(--primary)18);
+  border:1px solid var(--primary);border-radius:var(--radius);
+  padding:28px 32px;margin-bottom:28px;
+}
+.profile-avatar-wrap{ position:relative;flex-shrink:0; }
+.profile-avatar{
+  width:72px;height:72px;border-radius:50%;background:var(--primary)22;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.4rem;border:3px solid var(--primary);
+}
+.profile-level-badge{
+  position:absolute;bottom:-6px;right:-6px;
+  background:var(--primary);color:#fff;font-size:.65rem;font-weight:800;
+  padding:2px 7px;border-radius:999px;white-space:nowrap;
+}
+.profile-info{ flex:1;min-width:180px; }
+.profile-name{ font-size:1.25rem;font-weight:800;margin-bottom:2px; }
+.profile-title-label{ font-size:.8rem;color:var(--text-dim);margin-bottom:10px; }
+.profile-xp-track{
+  height:8px;border-radius:4px;background:var(--border);overflow:hidden;margin-bottom:5px;
+}
+.profile-xp-fill{
+  height:100%;background:linear-gradient(90deg,var(--primary),#06b6d4);
+  border-radius:4px;transition:width .6s ease;
+}
+.profile-xp-label{ font-size:.75rem;color:var(--text-dim); }
+.profile-pstats{
+  display:flex;align-items:center;gap:0;margin-left:auto;flex-shrink:0;
+}
+.pstat{ display:flex;flex-direction:column;align-items:center;padding:0 18px; }
+.pstat-num{ font-size:1.4rem;font-weight:800;color:var(--text);line-height:1; }
+.pstat-label{ font-size:.68rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.04em;margin-top:3px; }
+.pstat-divider{ width:1px;height:40px;background:var(--border);padding:0;flex-shrink:0; }
+/* Two-col layout: ring left, unit bars right */
+.progress-two-col{
+  display:grid;grid-template-columns:200px 1fr;gap:32px;
+  align-items:start;margin-bottom:28px;
+}
+@media(max-width:768px){
+  .progress-two-col{ grid-template-columns:1fr; }
+  .profile-card{ flex-direction:column;text-align:center; }
+  .profile-pstats{ margin-left:0; }
+  .profile-info{ min-width:unset;width:100%; }
+}
 .progress-dashboard{
   display:flex;align-items:center;gap:48px;
   background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);

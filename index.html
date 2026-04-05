@@ -249,11 +249,34 @@
 
   <!-- Progress Section -->
   <section id="section-progress" class="section">
-    <div class="section-header">
-      <h2>My Progress</h2>
-      <p>Track your journey through the course. Your progress is saved locally.</p>
+
+    <!-- ── Game Profile Card ── -->
+    <div class="profile-card">
+      <div class="profile-avatar-wrap">
+        <div class="profile-avatar" id="profileAvatar">🎓</div>
+        <div class="profile-level-badge" id="profileLevelBadge">Lv 1</div>
+      </div>
+      <div class="profile-info">
+        <div class="profile-name" id="profileName">Student</div>
+        <div class="profile-title-label" id="profileTitle">AI Apprentice</div>
+        <div class="profile-xp-track">
+          <div class="profile-xp-fill" id="profileXpFill" style="width:0%"></div>
+        </div>
+        <div class="profile-xp-label" id="profileXpLabel">0 XP — Level 1</div>
+      </div>
+      <div class="profile-pstats">
+        <div class="pstat"><div class="pstat-num" id="pstatLessons">0</div><div class="pstat-label">Lessons</div></div>
+        <div class="pstat pstat-divider"></div>
+        <div class="pstat"><div class="pstat-num" id="pstatStreak">0🔥</div><div class="pstat-label">Streak</div></div>
+        <div class="pstat pstat-divider"></div>
+        <div class="pstat"><div class="pstat-num" id="pstatBadges">0</div><div class="pstat-label">Badges</div></div>
+        <div class="pstat pstat-divider"></div>
+        <div class="pstat"><div class="pstat-num" id="pstatQuiz">—</div><div class="pstat-label">Quiz %</div></div>
+      </div>
     </div>
-    <div class="progress-dashboard">
+
+    <!-- ── Progress ring + unit bars ── -->
+    <div class="progress-two-col">
       <div class="progress-ring-container">
         <svg class="progress-ring" viewBox="0 0 200 200">
           <circle class="progress-ring-bg" cx="100" cy="100" r="85" />
@@ -261,31 +284,25 @@
         </svg>
         <div class="progress-ring-text">
           <span id="progressRingPercent">0%</span>
-          <small>complete</small>
+          <small id="progressRingLabel">complete</small>
         </div>
       </div>
-      <div class="progress-stats">
-        <div class="ps-item">
-          <span class="ps-num" id="lessonsCompleted">0</span>
-          <span class="ps-label">Lessons Done</span>
-        </div>
-        <div class="ps-item">
-          <span class="ps-num" id="lessonsRemaining">44</span>
-          <span class="ps-label">Remaining</span>
-        </div>
-        <div class="ps-item">
-          <span class="ps-num" id="currentStreak">0</span>
-          <span class="ps-label">Day Streak</span>
-        </div>
-      </div>
+      <div id="progressByUnit" class="progress-by-unit"></div>
     </div>
+
+    <!-- ── Detail sections ── -->
     <div id="streakHeatmap" class="streak-heatmap"></div>
     <div id="xpProgressSection" class="xp-progress-section"></div>
     <div id="badgesSection" class="badges-section"></div>
     <div id="confusedSection" class="confused-section"></div>
     <div id="quizScoreSection" class="quiz-score-section"></div>
     <div id="bookmarkedLessons" class="bookmarked-lessons-section"></div>
-    <div id="progressByUnit" class="progress-by-unit"></div>
+
+    <!-- Hidden elements kept for JS compatibility -->
+    <span id="lessonsCompleted" style="display:none">0</span>
+    <span id="lessonsRemaining" style="display:none">44</span>
+    <span id="currentStreak" style="display:none">0</span>
+
     <div class="progress-actions">
       <button class="btn btn-primary" onclick="openCapstone()">📋 Capstone Portfolio</button>
       <button class="btn btn-secondary" onclick="exportFullProgressPDF()">Export Full Report (PDF)</button>
