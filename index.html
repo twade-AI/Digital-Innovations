@@ -45,6 +45,7 @@
         <a href="#" class="nav-link" data-section="glossary" onclick="showSection('glossary')">Glossary</a>
         <a href="#" class="nav-link" data-section="exemplars" onclick="showSection('exemplars')">Gallery</a>
         <a href="#" class="nav-link" data-section="timeline" onclick="showSection('timeline')">History</a>
+        <a href="#" class="nav-link" data-section="news" onclick="showSection('news')">📰 News</a>
         <a href="#" class="nav-link nav-link-quiz" onclick="startQuickQuiz()" title="Quick Quiz — test yourself on completed lessons">⚡ Quiz Me</a>
       </div>
       <div class="nav-search">
@@ -147,12 +148,12 @@
     <!-- Recently Viewed -->
     <div id="recentlyViewedSection" class="recently-viewed" style="display:none"></div>
 
-    <!-- Latest AI News Cards -->
+    <!-- Latest AI News teaser -->
     <div class="home-section-header">
       <h2 class="home-section-title">📰 Latest AI News</h2>
-      <a href="https://www.theneuron.ai/newsletter/" target="_blank" rel="noopener" class="home-section-link">The Neuron daily newsletter ↗</a>
+      <a href="#" class="home-section-link" onclick="showSection('news');return false">See all news →</a>
     </div>
-    <div id="latestNewsGrid" class="news-grid"></div>
+    <div id="latestNewsGrid" class="news-grid news-grid-teaser"></div>
 
     <!-- Course Overview Cards -->
     <div class="overview-grid">
@@ -312,6 +313,16 @@
     </div>
     <div id="exemplarFilters" class="exemplar-filters"></div>
     <div id="exemplarContainer" class="exemplar-grid"></div>
+  </section>
+
+  <!-- AI News Section -->
+  <section id="section-news" class="section">
+    <div class="section-header">
+      <h2>📰 AI in the News</h2>
+      <p>Stay up to date with the latest developments in artificial intelligence. Sourced from <a href="https://www.theneuron.ai/newsletter/" target="_blank" rel="noopener" class="text-link">The Neuron daily newsletter ↗</a></p>
+    </div>
+    <div id="newsTagFilters" class="news-tag-filters"></div>
+    <div id="fullNewsGrid" class="news-grid"></div>
   </section>
 
   <!-- Lesson Detail Modal -->

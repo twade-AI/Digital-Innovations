@@ -884,6 +884,21 @@ a.ticker-item-link:hover{color:var(--text);text-decoration:none;}
   text-decoration:none;white-space:nowrap;
 }
 .news-card-link:hover{text-decoration:underline}
+/* Teaser on home: max 4 columns */
+.news-grid-teaser{ grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); }
+@media(max-width:600px){ .news-grid-teaser{ grid-template-columns:1fr; } }
+/* News tag filter strip */
+.news-tag-filters{ display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px; }
+.news-tag-btn{
+  background:var(--bg-card);border:1px solid var(--border);color:var(--text-dim);
+  padding:5px 14px;border-radius:999px;font-size:.8rem;font-weight:600;
+  cursor:pointer;transition:background .12s,color .12s,border-color .12s;
+}
+.news-tag-btn:hover,.news-tag-btn.active{
+  background:var(--primary);color:#fff;border-color:var(--primary);
+}
+.text-link{ color:var(--primary-light);text-decoration:none; }
+.text-link:hover{ text-decoration:underline; }
 
 /* ── XP Level Strip ───────────────────────────── */
 .xp-strip{
