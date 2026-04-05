@@ -145,6 +145,17 @@
       </div>
     </div>
 
+    <!-- First-lesson banner (hidden once progress begins) -->
+    <div id="firstLessonBanner" class="first-lesson-banner" style="display:none">
+      <div class="flb-icon">🚀</div>
+      <div class="flb-body">
+        <div class="flb-title">Start here — Lesson 1: Your AI Footprint</div>
+        <div class="flb-desc">Audit your daily interactions with AI systems. Beginner-friendly — no prior knowledge needed.</div>
+      </div>
+      <button class="btn btn-primary flb-btn" onclick="openLesson(1)">Begin Lesson 1 →</button>
+      <button class="flb-dismiss" onclick="dismissFirstLessonBanner()" title="Dismiss">✕</button>
+    </div>
+
     <!-- Recently Viewed -->
     <div id="recentlyViewedSection" class="recently-viewed" style="display:none"></div>
 

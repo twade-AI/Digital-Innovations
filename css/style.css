@@ -694,6 +694,24 @@ kbd{
 .diff-chip-advanced.active{ border-color:#ef4444;color:#ef4444;background:rgba(239,68,68,.1) }
 
 /* ── Recently Viewed ─────────────────────────── */
+/* ── First-Lesson Banner ──────────────────────── */
+.first-lesson-banner{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  margin:20px 0;padding:20px 24px;
+  background:linear-gradient(135deg,var(--primary)22,var(--primary)08);
+  border:1px solid var(--primary);border-radius:var(--radius);
+}
+.flb-icon{ font-size:2rem;flex-shrink:0; }
+.flb-body{ flex:1;min-width:180px; }
+.flb-title{ font-weight:700;font-size:1rem;margin-bottom:3px; }
+.flb-desc{ font-size:.82rem;color:var(--text-dim); }
+.flb-btn{ flex-shrink:0; }
+.flb-dismiss{
+  background:none;border:none;color:var(--text-dim);font-size:1.1rem;
+  cursor:pointer;padding:4px 8px;border-radius:4px;margin-left:auto;flex-shrink:0;
+}
+.flb-dismiss:hover{ color:var(--text);background:var(--bg-card-hover); }
+
 .recently-viewed{
   margin:20px 0;padding:18px 20px;background:var(--bg-card);
   border:1px solid var(--border);border-radius:var(--radius);

@@ -254,6 +254,8 @@ function toggleLesson(id) {
     setTimeout(checkAndAwardBadges, 600);
     setTimeout(checkMilestone, 900);
     setTimeout(updateReviewDueBadge, 200);
+    updateFirstLessonBanner();
+    updateContinueButton();
   }
 }
 
@@ -2058,7 +2060,7 @@ var OB_STEPS = [
   { title: 'Pick a lesson 📚', text: 'Go to <strong>Units</strong> to browse all 6 units. Click any lesson to open the slide viewer — slides, quizzes and activities are all inside.' },
   { title: 'Test yourself ⚡', text: 'The <strong>⚡ Quiz Me</strong> button gives you a quick quiz on lessons you\'ve completed. Great for spaced revision.' },
   { title: 'Track your progress 📊', text: 'Head to <strong>My Progress</strong> to see your streak calendar, XP level, badges, and quiz scores — all saved locally.' },
-  { title: 'Keyboard shortcuts ⌨️', text: 'Press <kbd>?</kbd> at any time to see all shortcuts. Use <kbd>→</kbd> / <kbd>←</kbd> to navigate slides inside a lesson.' },
+  { title: 'Ready? Start with Lesson 1 🚀', text: '<strong>Your AI Footprint</strong> is the perfect starting point — audit your daily AI interactions. No prior knowledge needed.', cta: true },
 ];
 var obStep = 0;
 function checkOnboarding() { if (!localStorage.getItem('di_onboarded')) setTimeout(startOnboarding, 1400); }
@@ -2067,19 +2069,37 @@ function renderObStep() {
   var body = document.getElementById('obBody');
   if (!body) return;
   var s = OB_STEPS[obStep];
+  var isLast = obStep === OB_STEPS.length - 1;
   body.innerHTML = '<div class="ob-step">Step ' + (obStep + 1) + ' of ' + OB_STEPS.length + '</div>' +
     '<h3 class="ob-title">' + s.title + '</h3>' +
     '<p class="ob-text">' + s.text + '</p>' +
     '<div class="ob-actions">' +
-      (obStep < OB_STEPS.length - 1
-        ? '<button class="btn btn-primary" onclick="nextObStep()">Next →</button>'
-        : '<button class="btn btn-primary" onclick="closeOnboarding()">Let\'s go! 🚀</button>') +
+      (isLast
+        ? '<button class="btn btn-primary" onclick="closeOnboarding();openLesson(1)">Start Lesson 1 →</button>'
+        : '<button class="btn btn-primary" onclick="nextObStep()">Next →</button>') +
       '<button class="btn btn-secondary" onclick="closeOnboarding()">Skip</button>' +
     '</div>' +
     '<div class="ob-dots">' + OB_STEPS.map(function(_,i){ return '<span class="ob-dot' + (i===obStep?' active':'') + '"></span>'; }).join('') + '</div>';
 }
 function nextObStep() { obStep++; if (obStep >= OB_STEPS.length) { closeOnboarding(); return; } renderObStep(); }
 function closeOnboarding() { var ov = document.getElementById('onboardingOverlay'); if (ov) ov.classList.remove('open'); localStorage.setItem('di_onboarded','1'); }
+
+/* ── First-Lesson Banner ────────────────────────── */
+function updateFirstLessonBanner() {
+  var banner = document.getElementById('firstLessonBanner');
+  if (!banner) return;
+  var dismissed = localStorage.getItem('di_flb_dismissed');
+  if (dismissed || completedLessons.size > 0) {
+    banner.style.display = 'none';
+  } else {
+    banner.style.display = 'flex';
+  }
+}
+function dismissFirstLessonBanner() {
+  localStorage.setItem('di_flb_dismissed', '1');
+  var banner = document.getElementById('firstLessonBanner');
+  if (banner) banner.style.display = 'none';
+}
 
 /* ── Exemplar Gallery ──────────────────────────── */
 var _exemplarFilter = 'all';
@@ -2438,6 +2458,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateXPStrip();
   checkOnboarding();
   initFloatContinue();
+  updateFirstLessonBanner();
 });
 
 // Keyboard shortcuts
