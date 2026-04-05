@@ -652,6 +652,250 @@ const RESOURCE_CONTENT = {
 <div class="resource-template-section"><h5>Overall Score &amp; Summary Feedback</h5>
 <input class="resource-field" placeholder="Total: _/20">
 <textarea class="resource-field" rows="3" placeholder="Strengths: ...\nAreas for development: ...\nStand-out moment: ..."></textarea></div>`,
+
+  r8: `<h4>Peer Review Feedback Form</h4>
+<p>Give honest, specific feedback. Vague comments like "it was good" are not helpful. Use evidence from what you actually saw or read.</p>
+<div class="resource-template-section"><h5>Project Reviewed</h5>
+<input class="resource-field" placeholder="Student / team name and project title...">
+</div>
+<div class="resource-template-section"><h5>Two Stars — What is working well?</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Identify two specific strengths. Say what they are AND why they work.</p>
+<label style="font-size:.8rem;color:var(--text-muted)">Star 1</label>
+<textarea class="resource-field" rows="2" placeholder="The [specific element] works well because..."></textarea>
+<label style="font-size:.8rem;color:var(--text-muted);margin-top:8px;display:block">Star 2</label>
+<textarea class="resource-field" rows="2" placeholder="I particularly liked [specific element] because..."></textarea>
+</div>
+<div class="resource-template-section"><h5>One Wish — What could be improved?</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">One actionable suggestion. Be specific — say what to change and how, not just that something is weak.</p>
+<textarea class="resource-field" rows="3" placeholder="I think the project would be stronger if... specifically by..."></textarea>
+</div>
+<div class="resource-template-section"><h5>Ethical Consideration</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Is there an ethical dimension the creator may not have considered?</p>
+<textarea class="resource-field" rows="2" placeholder="Have you considered what happens if... / A potential risk I noticed was..."></textarea>
+</div>
+<div class="resource-template-section"><h5>One Question for the Creator</h5>
+<textarea class="resource-field" rows="2" placeholder="I'm curious about why you chose... / What would happen if a user..."></textarea>
+</div>`,
+
+  r10: `<h4>AI Policy Drafting Template</h4>
+<p>Use this template to draft a formal AI Acceptable Use Policy. Each section includes guidance notes. Delete the guidance notes before submitting your final policy.</p>
+<div class="resource-template-section"><h5>Section 1 — Purpose and Scope</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">State clearly what this policy covers, who it applies to, and why it exists. Avoid vague language — be specific about which AI tools and which people are covered.</p>
+<textarea class="resource-field" rows="4" placeholder="This policy governs the use of artificial intelligence tools by [students / staff / both] at [school name]. It applies to all AI-assisted activities including [list specific tools or categories]. The purpose of this policy is to..."></textarea>
+</div>
+<div class="resource-template-section"><h5>Section 2 — Definitions</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Define key terms so there is no ambiguity. What counts as an AI tool? What is AI-generated content? What is acceptable use?</p>
+<textarea class="resource-field" rows="4" placeholder="'AI tool' means any software using machine learning to generate text, images, code, or other content, including but not limited to: ChatGPT, Claude, Gemini, Copilot, and Midjourney.\n'AI-assisted work' means...\n'Acceptable use' means..."></textarea>
+</div>
+<div class="resource-template-section"><h5>Section 3 — Acceptable Uses</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Be specific. 'Acceptable use' means different things in different contexts — research, drafting, coding, revision, and accessibility all have different norms.</p>
+<textarea class="resource-field" rows="5" placeholder="The following uses of AI tools are permitted:\n• Using AI to research topics, provided all AI-generated claims are independently verified\n• Using AI to generate a first draft, provided the student substantially revises and takes ownership\n• Using AI for accessibility purposes (e.g. text-to-speech, grammar assistance)\n• [Add your own...]"></textarea>
+</div>
+<div class="resource-template-section"><h5>Section 4 — Prohibited Uses</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Be equally specific about what is not allowed. Include academic integrity implications.</p>
+<textarea class="resource-field" rows="5" placeholder="The following uses are prohibited:\n• Submitting AI-generated content as your own original work in any assessed task\n• Using AI to generate exam answers or controlled assessment responses\n• Using AI to fabricate citations, references, or evidence\n• [Add your own...]"></textarea>
+</div>
+<div class="resource-template-section"><h5>Section 5 — Transparency Requirements</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">How should students disclose AI use? A simple, clear mechanism is better than a complex one nobody follows.</p>
+<textarea class="resource-field" rows="3" placeholder="Where AI tools have been used in the preparation of any work, students must disclose this by [method — e.g. adding a brief note at the end of the submission stating which tool was used and how]..."></textarea>
+</div>
+<div class="resource-template-section"><h5>Section 6 — Enforcement and Review</h5>
+<textarea class="resource-field" rows="3" placeholder="Breaches of this policy will be treated as [academic misconduct / a disciplinary matter]. This policy will be reviewed annually. Last reviewed: [date]. Next review: [date]."></textarea>
+</div>`,
+
+  r11: `<h4>AI Manifesto Template</h4>
+<p>Your AI Manifesto is a personal document — your principles for how you will live and work with AI. It should be honest, specific, and forward-looking. Aim for 400–600 words.</p>
+<div class="resource-template-section"><h5>Opening Statement — Who are you, and where do you stand?</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Don't start with a definition of AI. Start with yourself. What does AI mean in your life right now?</p>
+<textarea class="resource-field" rows="4" placeholder="I am writing this at a moment when... / My relationship with AI began when... / I believe that AI is..."></textarea>
+</div>
+<div class="resource-template-section"><h5>Principle 1 — On using AI honestly</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">What does honest AI use mean to you? When will you disclose it? When will you refuse to use it?</p>
+<textarea class="resource-field" rows="3" placeholder="I commit to... / I will always... / I will never use AI to..."></textarea>
+</div>
+<div class="resource-template-section"><h5>Principle 2 — On thinking critically about AI outputs</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">What habits will you cultivate to avoid over-reliance or uncritical acceptance?</p>
+<textarea class="resource-field" rows="3" placeholder="When AI gives me an answer, I will... / I will question AI most when... / I will not accept AI output without..."></textarea>
+</div>
+<div class="resource-template-section"><h5>Principle 3 — On AI and fairness</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">How will you think about who benefits and who is harmed by the AI tools you use?</p>
+<textarea class="resource-field" rows="3" placeholder="I believe AI should be... / I am concerned about... / When I use AI, I will consider its impact on..."></textarea>
+</div>
+<div class="resource-template-section"><h5>Principle 4 — On AI in your future career</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">How will you use AI as a collaborator, not a replacement for your own thinking?</p>
+<textarea class="resource-field" rows="3" placeholder="In my future career, I want to use AI to... / I will protect my ability to... / The skills I will not outsource to AI are..."></textarea>
+</div>
+<div class="resource-template-section"><h5>Closing Commitment</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">End with a statement you actually mean — not a slogan, but a real commitment.</p>
+<textarea class="resource-field" rows="3" placeholder="The most important thing I have learned about AI this year is... / Going forward, I commit to... / I want to be someone who..."></textarea>
+</div>`,
+
+  r12: `<h4>Global AI Regulation Jigsaw Cards</h4>
+<p>Cut these cards out (or use the table below). Each group receives one region's card and becomes the expert on that approach. Then regroup so every new group has one expert from each region.</p>
+<div class="resource-template-section">
+<table style="width:100%;border-collapse:collapse;font-size:.82rem">
+  <thead><tr style="background:rgba(99,102,241,.15)">
+    <th style="padding:8px;border:1px solid var(--border);text-align:left">Region</th>
+    <th style="padding:8px;border:1px solid var(--border);text-align:left">Approach</th>
+    <th style="padding:8px;border:1px solid var(--border);text-align:left">Key Law / Policy</th>
+    <th style="padding:8px;border:1px solid var(--border);text-align:left">Strengths</th>
+    <th style="padding:8px;border:1px solid var(--border);text-align:left">Criticisms</th>
+  </tr></thead>
+  <tbody>
+    <tr><td style="padding:8px;border:1px solid var(--border)"><strong>🇪🇺 European Union</strong></td><td style="padding:8px;border:1px solid var(--border)">Risk-based, precautionary, legally binding</td><td style="padding:8px;border:1px solid var(--border)">EU AI Act (2024) — four risk tiers; bans social scoring; fines up to €35m or 7% global turnover</td><td style="padding:8px;border:1px solid var(--border)">Comprehensive; protects citizens; sets global standard</td><td style="padding:8px;border:1px solid var(--border)">May slow innovation; compliance burden on startups; hard to enforce extraterritorially</td></tr>
+    <tr><td style="padding:8px;border:1px solid var(--border)"><strong>🇬🇧 United Kingdom</strong></td><td style="padding:8px;border:1px solid var(--border)">Pro-innovation, sector-led, principles-based</td><td style="padding:8px;border:1px solid var(--border)">AI Opportunities Action Plan (2025); AI Safety Institute; no single AI law — existing regulators apply their own rules</td><td style="padding:8px;border:1px solid var(--border)">Flexible; avoids over-regulation; attracts investment</td><td style="padding:8px;border:1px solid var(--border)">Fragmented; no binding rules; weaker citizen protections than EU</td></tr>
+    <tr><td style="padding:8px;border:1px solid var(--border)"><strong>🇺🇸 United States</strong></td><td style="padding:8px;border:1px solid var(--border)">Voluntary standards, executive action, no federal AI law</td><td style="padding:8px;border:1px solid var(--border)">NIST AI Risk Management Framework (2023); Biden Executive Order (2023); state-level laws (California, Colorado)</td><td style="padding:8px;border:1px solid var(--border)">Industry-friendly; allows rapid development; NIST framework is internationally respected</td><td style="padding:8px;border:1px solid var(--border)">Voluntary compliance; no enforceable rights; patchwork of state laws</td></tr>
+    <tr><td style="padding:8px;border:1px solid var(--border)"><strong>🇨🇳 China</strong></td><td style="padding:8px;border:1px solid var(--border)">State-directed, content-focused, supports domestic champions</td><td style="padding:8px;border:1px solid var(--border)">Algorithmic Recommendation Rules (2022); Generative AI Regulations (2023); AI companies must get government approval before public launch</td><td style="padding:8px;border:1px solid var(--border)">Fast rule-making; controls disinformation; supports strategic AI goals</td><td style="padding:8px;border:1px solid var(--border)">Restricts free expression; rules tailored to political priorities; limited transparency</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="resource-template-section"><h5>Discussion Questions (use after the jigsaw)</h5>
+<ul>
+<li>Which approach best protects individual citizens? Which best supports innovation?</li>
+<li>Should AI regulation be global? Who would enforce it?</li>
+<li>The EU AI Act applies to any company selling to EU citizens, even if based in the US or China. Is this appropriate?</li>
+<li>What does the UK's approach tell you about its post-Brexit priorities?</li>
+</ul></div>`,
+
+  r15: `<h4>Surveillance & Facial Recognition Debate Pack</h4>
+<p><strong>Motion:</strong> "This House believes that the use of live facial recognition technology in public spaces should be permanently banned in the UK."</p>
+<div class="resource-template-section"><h5>Background: The Facts</h5>
+<ul>
+<li>The Metropolitan Police has used live facial recognition (LFR) at public events since 2020. South Wales Police have used it since 2017.</li>
+<li>The UK has no specific law governing LFR — police use it under general policing powers.</li>
+<li>A 2019 study by the University of Essex found the Met's LFR system had an 81% false positive rate in trials.</li>
+<li>A 2021 MIT study found facial recognition error rates up to 34% higher for darker-skinned women than lighter-skinned men.</li>
+<li>In 2023, Oportun (a US lender) was fined for using facial recognition to screen loan applicants — the FTC's first such enforcement action.</li>
+<li>China has deployed LFR across 600+ cities, linked to its Social Credit System.</li>
+<li>The EU AI Act classifies real-time LFR in public spaces as high-risk and limits its use to specific, narrow circumstances.</li>
+</ul></div>
+<div class="resource-template-section"><h5>Proposition: Arguments FOR the ban</h5>
+<ul>
+<li><strong>Bias and inaccuracy:</strong> High false positive rates mean innocent people — disproportionately people of colour — are wrongly flagged and potentially detained.</li>
+<li><strong>Chilling effect on free assembly:</strong> Knowing you are being identified at a protest, demonstration, or public event deters lawful political participation.</li>
+<li><strong>No clear legal basis:</strong> There is no specific law authorising LFR in the UK — its use is a constitutional grey area that Parliament has never debated.</li>
+<li><strong>Irreversibility:</strong> Once a surveillance infrastructure is built, it is rarely dismantled — the risk of mission creep is high.</li>
+</ul></div>
+<div class="resource-template-section"><h5>Opposition: Arguments AGAINST the ban</h5>
+<ul>
+<li><strong>Crime prevention:</strong> The Met reported LFR identified 45 wanted suspects in a single month in 2023, including those wanted for serious offences.</li>
+<li><strong>Technology improves:</strong> Accuracy rates are improving rapidly; banning the technology now prevents future, more accurate deployments.</li>
+<li><strong>Proportionate to threat:</strong> CCTV — also a form of mass surveillance — is widely accepted; LFR is more targeted, not less.</li>
+<li><strong>Democratic legitimacy:</strong> The public and elected police commissioners have broadly supported its use in specific contexts.</li>
+</ul></div>
+<div class="resource-template-section"><h5>Debate Structure (suggested)</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Opening speeches: 3 minutes each. Floor debate: 15 minutes. Closing speeches: 90 seconds each. Vote before and after — did anyone change their mind?</p></div>`,
+
+  r16: `<h4>Deepfake Detection Checklist</h4>
+<p>Use this checklist when you encounter video, audio, or images that may be AI-generated. No single indicator is conclusive — look for patterns of multiple flags.</p>
+<div class="resource-template-section"><h5>Video — Visual Checks</h5>
+<ul>
+<li>☐ <strong>Face edges:</strong> Does the face boundary look blurred, flickery, or inconsistent at the hairline or jaw?</li>
+<li>☐ <strong>Blinking:</strong> Does the person blink unnaturally infrequently, or at odd moments? Early deepfakes rarely blinked.</li>
+<li>☐ <strong>Teeth and eyes:</strong> Are teeth unnaturally uniform? Do eyes track realistically or look slightly glassy?</li>
+<li>☐ <strong>Lighting consistency:</strong> Does the lighting on the face match the background? Look for mismatched shadows.</li>
+<li>☐ <strong>Background distortion:</strong> Does anything behind the person warp or ripple slightly, especially near the face?</li>
+<li>☐ <strong>Skin texture:</strong> Is the skin too smooth, waxy, or missing natural texture (pores, stubble)?</li>
+</ul></div>
+<div class="resource-template-section"><h5>Audio — Voice Checks</h5>
+<ul>
+<li>☐ <strong>Unnatural rhythm:</strong> Does speech feel slightly mechanical, with unusual pauses or emphasis?</li>
+<li>☐ <strong>Breathing:</strong> Is there a lack of natural breathing sounds between sentences?</li>
+<li>☐ <strong>Background noise:</strong> Is background audio unusually clean or inconsistent with the video environment?</li>
+<li>☐ <strong>Lip sync:</strong> Does the mouth movement match the audio precisely, or is there a slight mismatch at consonants?</li>
+</ul></div>
+<div class="resource-template-section"><h5>Context — Source Checks</h5>
+<ul>
+<li>☐ <strong>Reverse image search:</strong> Run a frame through Google Images or TinEye — does the same image appear elsewhere with different context?</li>
+<li>☐ <strong>Source credibility:</strong> Who posted it? Is there a verifiable original source?</li>
+<li>☐ <strong>Corroboration:</strong> Is this story covered by at least two independent credible outlets?</li>
+<li>☐ <strong>Metadata:</strong> Do the file's creation date and claimed date match? Tools like InVID / WeVerify can check video metadata.</li>
+<li>☐ <strong>Plausibility:</strong> Does this video make sense given everything else you know? Extraordinary claims require extraordinary evidence.</li>
+</ul></div>
+<div class="resource-template-section"><h5>Detection Tools (free)</h5>
+<ul>
+<li><strong>Hive Moderation</strong> — AI content detection for images and video</li>
+<li><strong>InVID / WeVerify</strong> — video verification and metadata analysis</li>
+<li><strong>Google Reverse Image Search</strong> — drag image to images.google.com</li>
+<li><strong>FotoForensics</strong> — image error level analysis</li>
+</ul></div>
+<div class="resource-template-section"><h5>Remember</h5>
+<p style="font-size:.8rem;color:var(--text-muted)">Deepfake technology is improving rapidly — some fakes are now undetectable to the human eye. Context and source verification matter more than visual inspection alone. When in doubt, do not share.</p></div>`,
+
+  r18: `<h4>AI Environmental Impact Factsheet</h4>
+<p>All figures below are from peer-reviewed research or official reports. Use these facts to ground your discussions and essays.</p>
+<div class="resource-template-section"><h5>Training Energy Costs</h5>
+<ul>
+<li>Training GPT-3 (2020) consumed an estimated <strong>1,287 MWh</strong> of electricity — equivalent to the annual electricity use of 120 US homes.</li>
+<li>Training a large transformer model produces an estimated <strong>284 tonnes of CO₂</strong> — roughly 5× the lifetime emissions of an average car. (Strubell et al., 2019)</li>
+<li>Training GPT-4 reportedly cost over <strong>$100 million</strong> and used thousands of Nvidia A100 GPUs running for months.</li>
+<li>Training a single large language model can consume as much energy as <strong>100 transatlantic flights</strong>.</li>
+</ul></div>
+<div class="resource-template-section"><h5>Inference (Running) Costs</h5>
+<ul>
+<li>A single ChatGPT query uses approximately <strong>10× more energy</strong> than a standard Google Search. (Goldman Sachs, 2024)</li>
+<li>If ChatGPT matched Google's query volume (8.5 billion/day), it would require <strong>10 TWh per year</strong> — roughly Ireland's total annual electricity consumption.</li>
+<li>Microsoft reports AI is increasing its data centre energy demand by <strong>30% per year</strong>.</li>
+</ul></div>
+<div class="resource-template-section"><h5>Water Usage</h5>
+<ul>
+<li>Data centres cool servers using water. Training GPT-3 consumed an estimated <strong>700,000 litres of fresh water</strong>. (Li et al., 2023)</li>
+<li>A conversation of 20–50 questions with ChatGPT consumes roughly <strong>500ml of water</strong>.</li>
+</ul></div>
+<div class="resource-template-section"><h5>The Counter-Argument: AI's Potential to Reduce Emissions</h5>
+<ul>
+<li>AlphaFold has accelerated drug discovery — potentially reducing the energy cost of years of laboratory work.</li>
+<li>DeepMind's AI reduced Google's data centre cooling energy by <strong>40%</strong>.</li>
+<li>AI-optimised wind turbine control has increased energy yield by <strong>20%</strong> in trials.</li>
+<li>The IEA estimates AI could contribute up to <strong>1.4 Gt CO₂ reduction per year</strong> by 2030 through efficiency gains — but only if its own emissions are managed.</li>
+</ul></div>
+<div class="resource-template-section"><h5>Discussion Questions</h5>
+<ul>
+<li>Should AI companies be required to publish their energy and water consumption?</li>
+<li>Is it ethical to develop increasingly large AI models given the environmental cost?</li>
+<li>Who should pay for the environmental externalities of AI — companies, users, or governments?</li>
+</ul></div>`,
+
+  r19: `<h4>Viva Voce Question Bank</h4>
+<p>Practise answering these questions out loud — not by reading a prepared script. Your examiner will probe, so prepare to go deeper than your initial answer.</p>
+<div class="resource-template-section"><h5>Understanding Your Project</h5>
+<ul>
+<li>Walk me through how your project works from the user's perspective.</li>
+<li>What problem were you trying to solve, and how do you know it was a real problem?</li>
+<li>Why did you choose this approach rather than an alternative?</li>
+<li>What is the single most technically interesting decision you made, and why did you make it?</li>
+<li>If you had twice as much time, what would you add first?</li>
+</ul></div>
+<div class="resource-template-section"><h5>Ethical Analysis</h5>
+<ul>
+<li>What is the biggest ethical risk your project creates? What did you do about it?</li>
+<li>Who could be harmed by your project — directly or indirectly?</li>
+<li>How does your project handle user data? Did you consider privacy by design?</li>
+<li>Could your project produce biased outputs? How did you test for this?</li>
+<li>If your project was deployed at scale to millions of users, what new risks would emerge?</li>
+</ul></div>
+<div class="resource-template-section"><h5>Technical and Design Decisions</h5>
+<ul>
+<li>Why did you choose [specific AI tool or model]? What alternatives did you consider?</li>
+<li>Show me your most important prompt. Why is it structured the way it is?</li>
+<li>What was the hardest bug or problem you encountered? How did you solve it?</li>
+<li>How did you test that your system works as intended?</li>
+<li>What assumptions did you make that turned out to be wrong?</li>
+</ul></div>
+<div class="resource-template-section"><h5>Reflection and Learning</h5>
+<ul>
+<li>What is the most important thing you learned — not about AI, but about yourself as a learner?</li>
+<li>What would you do completely differently if you started again?</li>
+<li>How has this project changed how you think about AI?</li>
+<li>What do you know now that you wish you had known at the start?</li>
+</ul></div>
+<div class="resource-template-section"><h5>Connecting to the Wider Course</h5>
+<ul>
+<li>Which lesson from the course was most useful when building your project? Why?</li>
+<li>How does your project relate to the AI regulation landscape we studied?</li>
+<li>Does your project raise questions about human oversight? Where is the human in the loop?</li>
+<li>If you were writing the policy that governed use of your own project, what would it say?</li>
+</ul></div>`,
 };
 
 /* ── Lesson Slide Content ──────────────────────── */
@@ -758,36 +1002,50 @@ const GLOSSARY = [
 ];
 
 /* ── AI News Headlines (curated, verified) ───────────────────────── */
-// All stories are real, sourced from named publications.
-// Dates are approximate publication dates. Teachers should update this list each term.
+// All stories are real. Recent items link to The Neuron (theneuron.ai) — a daily AI newsletter.
+// Teachers: add new articles via the Admin Dashboard → Manage News tab.
 const AI_NEWS = [
+  /* ── 2026 — from The Neuron ── */
+  { headline: "Google just gave away its best AI — Gemini 2.5 Pro goes free for all users", source: "The Neuron", date: "Apr 2026", tag: "tools", url: "https://www.theneuron.ai/newsletter/google-just-gave-away-its-best-ai/" },
+  { headline: "OpenAI's President reveals what the company is betting everything on", source: "The Neuron", date: "Apr 2026", tag: "industry", url: "https://www.theneuron.ai/newsletter/openai-s-president-just-told-you-exactly-what-the-company-is-betting-everything-on/" },
+  { headline: "This is how we'd teach AI from scratch in 2026", source: "The Neuron", date: "Mar 2026", tag: "policy", url: "https://www.theneuron.ai/newsletter/this-is-how-we-d-teach-ai-from-scratch-in-2026/" },
+  { headline: "Anthropic leaked Claude Mythos — and cybersecurity stocks crashed", source: "The Neuron", date: "Mar 2026", tag: "industry", url: "https://www.theneuron.ai/newsletter/anthropic-leaked-claude-mythos-cybersecurity-stocks-crashed/" },
+  { headline: "The White House's new AI plan — the TL;DR", source: "The Neuron", date: "Mar 2026", tag: "policy", url: "https://www.theneuron.ai/newsletter/the-tl-dr-on-the-white-house-s-new-ai-plan/" },
+  { headline: "Google vs OpenAI: the battle of the AI super-apps has begun", source: "The Neuron", date: "Mar 2026", tag: "industry", url: "https://www.theneuron.ai/newsletter/google-vs-openai-battle-of-the-super-apps/" },
+  { headline: "AI's biggest problem just changed — and nobody's ready", source: "The Neuron", date: "Mar 2026", tag: "research", url: "https://www.theneuron.ai/newsletter/ai-s-biggest-problem-just-changed-nobody-s-ready/" },
+  { headline: "The Enterprise AI Platform War has a scoreboard — Anthropic is winning", source: "The Neuron", date: "Mar 2026", tag: "industry", url: "https://www.theneuron.ai/newsletter/the-enterprise-ai-platform-war-has-a-scoreboard-now-anthropic-is-winning/" },
+  /* ── 2025 ── */
+  { headline: "DeepSeek R1 matches OpenAI o1 at a fraction of the cost — Nvidia stock falls 17%", source: "Financial Times / Reuters", date: "Jan 2025", tag: "industry" },
+  { headline: "UK AI Opportunities Action Plan commits £14bn investment and AI growth zones", source: "UK Government", date: "Jan 2025", tag: "policy" },
+  { headline: "Anthropic's Claude 3.7 Sonnet introduces visible extended thinking — new coding record", source: "Anthropic", date: "Feb 2025", tag: "tools" },
+  { headline: "OpenAI o3 scores 71.7% on Humanity's Last Exam — closing in on human expert performance", source: "OpenAI", date: "Apr 2025", tag: "research" },
+  { headline: "Gemini 2.5 Pro tops AI leaderboards combining million-token context with reasoning", source: "Google DeepMind", date: "Mar 2025", tag: "tools" },
+  { headline: "76% of developers now use AI coding tools daily, Stack Overflow survey finds", source: "Stack Overflow", date: "May 2025", tag: "industry" },
+  { headline: "EU AI Act bans on unacceptable-risk systems take effect — social scoring prohibited", source: "European Commission", date: "Feb 2025", tag: "policy" },
+  /* ── 2024 ── */
   { headline: "EU AI Act comes into force — world's first comprehensive AI law", source: "European Parliament", date: "Aug 2024", tag: "policy" },
   { headline: "Nobel Prize in Physics awarded to Hinton & Hopfield for neural network research", source: "The Nobel Committee", date: "Oct 2024", tag: "research" },
-  { headline: "AlphaFold 3: Google DeepMind predicts structure of nearly all known molecules", source: "Nature journal", date: "May 2024", tag: "research" },
+  { headline: "AlphaFold 3: Google DeepMind predicts structure of nearly all known molecules", source: "Nature / DeepMind", date: "May 2024", tag: "research" },
   { headline: "OpenAI launches GPT-4o with real-time voice, vision and reasoning", source: "OpenAI", date: "May 2024", tag: "tools" },
-  { headline: "28 nations sign Bletchley Declaration — first global agreement on frontier AI safety", source: "UK Government", date: "Nov 2023", tag: "policy" },
-  { headline: "UK AI Safety Institute established as world's first government AI safety body", source: "UK Gov / DSIT", date: "Nov 2023", tag: "policy" },
-  { headline: "Google Gemini 1.5 Pro handles 1-million-token context window", source: "Google DeepMind", date: "Feb 2024", tag: "tools" },
-  { headline: "Anthropic releases Claude 3 — Opus outperforms GPT-4 on key benchmarks", source: "Anthropic", date: "Mar 2024", tag: "tools" },
-  { headline: "Meta open-sources Llama 3, making powerful AI free for researchers", source: "Meta AI", date: "Apr 2024", tag: "tools" },
+  { headline: "Anthropic releases Claude 3.5 Sonnet — tops coding and reasoning benchmarks", source: "Anthropic", date: "Jun 2024", tag: "tools" },
+  { headline: "AI systems beat humans at International Mathematical Olympiad problems", source: "Google DeepMind", date: "Jul 2024", tag: "research" },
   { headline: "Apple unveils Apple Intelligence — personalised AI built into iPhone and Mac", source: "Apple / BBC News", date: "Jun 2024", tag: "tools" },
-  { headline: "United Nations adopts first global AI governance resolution", source: "UN News", date: "Mar 2024", tag: "policy" },
-  { headline: "OpenAI's Sora generates photorealistic video clips from text descriptions", source: "OpenAI", date: "Feb 2024", tag: "tools" },
+  { headline: "NHS trial finds AI matches radiologist accuracy in detecting breast cancer", source: "The Lancet / NHS England", date: "2024", tag: "health" },
+  /* ── 2023 ── */
+  { headline: "28 nations sign Bletchley Declaration — first global agreement on frontier AI safety", source: "UK Government", date: "Nov 2023", tag: "policy" },
   { headline: "Sam Altman fired then reinstated as OpenAI CEO after dramatic board revolt", source: "BBC News", date: "Nov 2023", tag: "industry" },
   { headline: "New York lawyer sanctioned after AI cited six non-existent court cases", source: "BBC News / The Guardian", date: "Jun 2023", tag: "ethics" },
-  { headline: "Anthropic releases Claude 3.5 Sonnet — tops coding and reasoning benchmarks", source: "Anthropic", date: "Jun 2024", tag: "tools" },
+  { headline: "Meta open-sources Llama 2, making powerful AI free for researchers worldwide", source: "Meta AI", date: "Jul 2023", tag: "tools" },
   { headline: "Over 1,800 AI researchers sign letter calling for pause on giant AI experiments", source: "Future of Life Institute", date: "Mar 2023", tag: "policy" },
-  { headline: "NHS trial finds AI matches radiologist accuracy in detecting breast cancer", source: "The Lancet / NHS England", date: "2024", tag: "health" },
-  { headline: "Mistral AI releases Mixtral 8x7B — high-performance open-source model", source: "Mistral AI", date: "Dec 2023", tag: "tools" },
-  { headline: "UK government publishes AI Safety Policy — first national AI safety strategy", source: "UK Government", date: "2024", tag: "policy" },
-  { headline: "AI systems beat humans at International Mathematical Olympiad problems", source: "Google DeepMind", date: "Jul 2024", tag: "research" },
 ];
 
 /* ── Student Exemplar Gallery ─────────────────────────────────────── */
 const EXEMPLARS = [
+  /* ── STRONG EXAMPLES ── */
   {
     name: "Aisha, Year 12",
     task: "Essay plan for A-Level Biology exam",
+    quality: "strong",
     persona: "You are an experienced A-Level Biology teacher who specialises in the AQA specification and marks at distinction level.",
     taskText: "Create a detailed essay plan for the question: 'Evaluate the evidence for evolution by natural selection.'",
     format: "A structured plan with: an introduction hook, 4 main points each with a named example, one counter-argument paragraph, and a conclusion strategy. Use bullet points throughout.",
@@ -798,6 +1056,7 @@ const EXEMPLARS = [
   {
     name: "Marcus, Year 13",
     task: "Research briefing on AI in healthcare",
+    quality: "strong",
     persona: "You are a senior research analyst at a health policy think-tank with expertise in NHS digital transformation.",
     taskText: "Produce a research briefing summarising the current state of AI diagnostic tools in the NHS.",
     format: "A 500-word briefing with: an executive summary (3 bullet points), three sections with clear headings, a limitations paragraph, and three questions for further research.",
@@ -808,11 +1067,168 @@ const EXEMPLARS = [
   {
     name: "Priya, Year 12",
     task: "Debate preparation — AI and creativity",
+    quality: "strong",
     persona: "You are a philosophy lecturer who specialises in aesthetics and the philosophy of mind.",
     taskText: "Give me the three strongest arguments FOR the position that AI cannot be truly creative, along with the best counter-argument for each.",
     format: "Three argument blocks. Each block: claim (1 sentence), supporting evidence (2–3 sentences), strongest counter-argument (2 sentences), rebuttal (1 sentence).",
     context: "I am preparing to argue the proposition side in a formal school debate. The motion is 'This House believes AI can never be truly creative.' I need to anticipate and defeat the opposition's strongest points.",
     teacherNote: "Priya's Format field is extremely specific — she defines the exact internal structure of each argument block. This produces a response that's immediately usable without any reformatting.",
+    tool: "Claude"
+  },
+  {
+    name: "Jamie, Year 13",
+    task: "Chemistry titration calculation walkthrough",
+    quality: "strong",
+    persona: "You are an A-Level Chemistry examiner who has marked thousands of titration questions and knows exactly where students lose marks.",
+    taskText: "Walk me through how to calculate the concentration of sodium hydroxide from a titration where 23.5 cm³ of 0.100 mol/dm³ HCl neutralises 25.0 cm³ of NaOH, explaining every step.",
+    format: "Step-by-step working with: the equation used, a one-sentence explanation of why each step is necessary, and a final answer box. Flag any step where students commonly make errors.",
+    context: "I am revising for my A-Level Chemistry Paper 1 next month. I understand the theory but keep losing marks in calculations. I need to understand the reasoning, not just the method.",
+    teacherNote: "Jamie's Persona requests an examiner — not just a teacher. This shifts the AI's focus onto mark-scheme thinking and common student errors, which is exactly what revision needs.",
+    tool: "Claude"
+  },
+  {
+    name: "Sophie, Year 12",
+    task: "Source analysis for History A-Level",
+    quality: "strong",
+    persona: "You are an A-Level History teacher who specialises in the OCR specification and teaches source analysis technique.",
+    taskText: "Analyse this source for its value to a historian studying Nazi propaganda: [Source: 1936 Nuremberg Rally poster — a crowd beneath a German eagle with the slogan 'One People, One Reich, One Leader']. Apply the CCAP framework: Content, Context, Audience, Purpose.",
+    format: "Four short paragraphs, one per CCAP element. Each: 2–3 sentences of analysis followed by a sentence on the value and limitation this creates for historians.",
+    context: "I am studying Nazi Germany for OCR A-Level History. I lose marks because my source analysis describes what sources say rather than analysing why they were created. My teacher says I need to think about who made it and why.",
+    teacherNote: "Sophie quotes her teacher's feedback directly in the Context field. This is a brilliant move — the AI then targets exactly the weakness her teacher identified rather than giving generic advice.",
+    tool: "Claude"
+  },
+  {
+    name: "Reuben, Year 13",
+    task: "Economics 25-mark evaluation essay plan",
+    quality: "strong",
+    persona: "You are an A-Level Economics examiner writing model answers for Edexcel Paper 2.",
+    taskText: "Plan a 25-mark essay evaluating whether a carbon tax is the most effective policy to reduce negative externalities from carbon emissions.",
+    format: "Essay skeleton: thesis statement (1 sentence), four argument paragraphs each with a topic sentence and 3 bullet-point evidence/analysis notes, one counter-argument paragraph, and an evaluative conclusion that reaches a clear judgement.",
+    context: "I am preparing for Edexcel A-Level Economics. I consistently score 16–18/25 and my feedback says I need stronger evaluation and a clearer conclusion. I am confident on market failure theory but weaker on policy comparison.",
+    teacherNote: "Reuben gives a precise score range and specific teacher feedback. This is far more useful than 'I need help with essays' — the AI knows exactly which skills to develop and which to leave alone.",
+    tool: "Gemini"
+  },
+  {
+    name: "Fatima, Year 12",
+    task: "Psychology approach application",
+    quality: "strong",
+    persona: "You are an AQA Psychology teacher who specialises in the Approaches topic and knows the mark scheme inside out.",
+    taskText: "Apply the Behaviourist approach to explain why a child praised for sharing at age 5 consistently shares as an adult. Include classical conditioning, operant conditioning, and social learning theory.",
+    format: "Three paragraphs — one per concept. Each: define the concept in one sentence, apply it to the scenario in two sentences, name at least one psychologist or study.",
+    context: "I am a Year 12 AQA Psychology student. I can define the concepts but my teacher says I lose marks by not applying them specifically enough to the scenario in exam questions.",
+    teacherNote: "Fatima's Format requires named psychologists in every paragraph — this stops the AI writing generic theory and forces application-level responses that match the mark scheme.",
+    tool: "Claude"
+  },
+  {
+    name: "Oliver, Year 13",
+    task: "Python debugging — guided, not given",
+    quality: "strong",
+    persona: "You are a senior software engineer who mentors students and explains bugs without just handing over corrected code.",
+    taskText: "My Python function returns incorrect results: def get_average(nums): total = 0 / for num in nums: / total = total + num / return total / len(nums[0]). Identify the bug, explain why it causes wrong output, and guide me to the fix without writing corrected code.",
+    format: "1) Bug identified — one sentence. 2) Why this causes wrong output — 2–3 sentences with an example. 3) A guiding question that leads me to the fix without giving it away.",
+    context: "I am a Year 13 Computer Science student. I want to understand the bug, not copy a fix. My teacher says I need to demonstrate debugging skills in my coursework write-up.",
+    teacherNote: "Oliver explicitly asks the AI NOT to give him the answer. Requesting a 'guiding question' instead of a solution is academically honest AI use — using it as a tutor rather than an answer machine.",
+    tool: "Claude"
+  },
+  {
+    name: "Amara, Year 12",
+    task: "Spaced-repetition flashcard set",
+    quality: "strong",
+    persona: "You are an expert in spaced repetition learning and A-Level Psychology revision.",
+    taskText: "Create 10 flashcard pairs for the key studies in the Social Influence topic, following the AQA specification.",
+    format: "A two-column table: QUESTION (front of card) and ANSWER (back of card). Questions should test: researcher name, year, method, key finding, and one limitation. Keep answers under 25 words each.",
+    context: "I am revising for AQA A-Level Psychology Paper 1. I have 6 weeks until my exam. I use Anki for spaced repetition. My weakest area is remembering specific study details — years, sample sizes, exact findings.",
+    teacherNote: "The 25-word answer constraint is the key move. Without it, flashcard answers become paragraphs that defeat the purpose of active recall. Amara also mentions Anki — the AI can then format output optimally for that tool.",
+    tool: "ChatGPT"
+  },
+  {
+    name: "Dev, Year 13",
+    task: "UCAS personal statement critique",
+    quality: "strong",
+    persona: "You are an experienced UCAS admissions tutor who has reviewed thousands of personal statements for competitive university courses.",
+    taskText: "Review the opening two paragraphs of my Computer Science personal statement (below). Identify the three strongest elements and the two weakest, and suggest specific rewrites for the weak sections only.",
+    format: "Strengths: numbered list of 3, one sentence each. Weaknesses: numbered list of 2, one sentence identifying the problem. Rewrites: one alternative version per weakness. Final verdict: one sentence.",
+    context: "I am applying to Imperial, UCL and Edinburgh for Computer Science. My statement is 3,800 characters. I have had one round of teacher edits already. I want targeted critique, not encouragement.",
+    teacherNote: "'I want targeted critique, not encouragement' overrides the AI's default tendency to soften feedback. This single phrase produces more honest, useful output — sophisticated prompt writing.",
+    tool: "Claude"
+  },
+  {
+    name: "Mei, Year 12",
+    task: "Physics concept — wave-particle duality",
+    quality: "strong",
+    persona: "You are a physics tutor who makes abstract quantum concepts accessible to A-Level students without over-simplifying.",
+    taskText: "Explain wave-particle duality using the double-slit experiment. Cover: what the experiment shows, why classical physics cannot explain it, and what the Copenhagen interpretation concludes.",
+    format: "Three sections with bold headings. Use an analogy per section. End with two exam-style questions (with mark allocations) that test understanding of this topic.",
+    context: "I am a Year 12 AQA Physics student. I understand the maths behind waves and particles separately but cannot conceptually reconcile how something can be both. My teacher says the Copenhagen interpretation is enough for A-Level — I do not need to go beyond it.",
+    teacherNote: "Mei includes her teacher's explicit boundary: 'the Copenhagen interpretation is enough for A-Level'. This stops the AI going down quantum rabbit holes and keeps output exam-relevant — excellent use of the C in PTFC.",
+    tool: "Claude"
+  },
+
+  /* ── POOR EXAMPLES — learn what NOT to do ── */
+  {
+    name: "James, Year 12",
+    task: "Help with history essay",
+    quality: "poor",
+    persona: "",
+    taskText: "Write me an essay about World War One.",
+    format: "",
+    context: "",
+    teacherNote: "🚩 No Persona, no Format, no Context — and the Task is far too broad. 'Write me an essay about World War One' could mean anything from a paragraph to a dissertation. The AI has no idea of the level, word count, question focus, or assessment criteria. The output will be generic and useless for any specific exam. Always answer: Who am I talking to? What exactly do I need? How should it be formatted? For what audience and purpose?",
+    tool: "ChatGPT"
+  },
+  {
+    name: "Emma, Year 13",
+    task: "Economics explanation",
+    quality: "poor",
+    persona: "",
+    taskText: "Can you explain supply and demand to me?",
+    format: "Just explain it.",
+    context: "I'm studying Economics.",
+    teacherNote: "🚩 Without a Persona, the AI defaults to a generalist voice — the explanation could be pitched at a 10-year-old or a university student. 'I'm studying Economics' gives almost nothing useful (what level? what aspect? what do you already know?). Compare this to Reuben's prompt above — same subject, dramatically different output quality.",
+    tool: "ChatGPT"
+  },
+  {
+    name: "Tom, Year 12",
+    task: "Biology notes",
+    quality: "poor",
+    persona: "You are a biology expert.",
+    taskText: "Give me everything I need to know about the nervous system including all the different parts and how they work and the differences between the central and peripheral nervous system and what neurons are and how synapses work and what hormones do.",
+    format: "",
+    context: "",
+    teacherNote: "🚩 Tom has crammed every sub-topic into one Task without specifying format or context. The AI will produce a wall of text covering everything — far more than any single lesson requires. Break large topics into focused sub-questions, add a format (e.g. 'bullet points, max 3 per topic'), and tell the AI which exam board and paper this is for.",
+    tool: "Gemini"
+  },
+  {
+    name: "Chloe, Year 13",
+    task: "Personal statement writing",
+    quality: "poor",
+    persona: "You are a UCAS expert.",
+    taskText: "Write my personal statement for a Psychology degree.",
+    format: "Make it sound like me.",
+    context: "I want to study Psychology.",
+    teacherNote: "🚩 Two serious problems. First, asking AI to write your personal statement is an academic integrity issue — UCAS prohibits this and universities use AI detection tools. Second, 'Make it sound like me' is the least useful format instruction possible since the AI has no idea who you are. Use AI to critique YOUR draft (see Dev's exemplar above), not to replace your voice.",
+    tool: "Claude"
+  },
+  {
+    name: "Ben, Year 12",
+    task: "EPQ academic sources",
+    quality: "poor",
+    persona: "You are a research librarian.",
+    taskText: "Give me 10 academic sources I can use for my EPQ on AI regulation, with full citations.",
+    format: "APA format citations.",
+    context: "I need real sources from the last 5 years.",
+    teacherNote: "🚩 Asking an AI to generate citations is one of the most dangerous uses of these tools. LLMs frequently hallucinate references — inventing plausible-sounding authors, journals, and page numbers that do not exist. A New York lawyer was fined in 2023 for submitting six non-existent AI-generated court cases. Always verify every citation independently using Google Scholar or JSTOR. Use AI to find topics — not to generate references.",
+    tool: "ChatGPT"
+  },
+  {
+    name: "Ryan, Year 12",
+    task: "Essay feedback",
+    quality: "poor",
+    persona: "You are a very experienced, highly qualified, world-class English Literature professor who has written many books on Shakespeare and studied at Oxford and Cambridge and has decades of experience marking essays at all levels from GCSE to PhD.",
+    taskText: "Please read my essay and tell me everything that could possibly be improved, every single mistake, every place where I could write better, every way to make it perfect.",
+    format: "Give me as much feedback as possible. Be extremely thorough. I want feedback on literally everything.",
+    context: "Here is my essay: [essay text]",
+    teacherNote: "🚩 Ryan has overcorrected — the Persona is an entire CV (2–3 sentences is enough) and the Task/Format ask for 'literally everything', 'every single mistake'. This produces overwhelming, unfocused feedback. Better approach: 'Give me feedback on structure and argument only — ignore grammar for now' or 'Identify the three most important changes I should make'. Specific constraints make feedback actionable.",
     tool: "Claude"
   }
 ];
@@ -914,6 +1330,24 @@ const AI_PEOPLE = {
     role: "Machine Learning Researcher",
     dates: "1985 –",
     bio: "Lead author of the landmark 2017 paper 'Attention Is All You Need', which introduced the Transformer architecture that underpins virtually every modern large language model, including GPT-4, Claude, and Gemini.",
+    icon: "🇮🇳🇺🇸"
+  },
+  "Dario Amodei": {
+    role: "Neuroscientist & Entrepreneur",
+    dates: "1983 –",
+    bio: "Co-founder and CEO of Anthropic, which he founded in 2021 after leaving OpenAI as VP of Research. A leading voice on AI safety, he has argued that frontier AI poses genuine existential risks and that safety and capability research must advance together. Anthropic created Claude, one of the leading AI assistants, and pioneered Constitutional AI — a method of training AI systems to be helpful, harmless, and honest.",
+    icon: "🇺🇸"
+  },
+  "Liang Wenfeng": {
+    role: "Entrepreneur & AI Researcher",
+    dates: "1985 –",
+    bio: "Co-founder and CEO of DeepSeek, the Chinese AI lab that shocked the AI world in January 2025 by releasing R1 — a reasoning model matching OpenAI's o1 performance at a fraction of the training cost. A former hedge fund founder, Wenfeng pivoted to AI research and built one of the most efficient AI labs in the world, challenging assumptions about the necessity of Western compute dominance.",
+    icon: "🇨🇳"
+  },
+  "Sundar Pichai": {
+    role: "Chief Executive Officer",
+    dates: "1972 –",
+    bio: "CEO of Alphabet (Google's parent company) since 2019. Under his leadership Google has made major AI bets: acquiring DeepMind, launching Gemini, embedding AI across Google Search and Workspace, and competing directly with OpenAI. Born in Chennai, India, Pichai studied at IIT Kharagpur before earning an MS from Stanford and MBA from Wharton.",
     icon: "🇮🇳🇺🇸"
   }
 };
@@ -1161,5 +1595,113 @@ const AI_TIMELINE = [
     people: ["Sam Altman", "Demis Hassabis"],
     category: "tools",
     icon: "🤖"
+  },
+  {
+    year: 2024,
+    title: "OpenAI o1 — AI That Thinks Before Answering",
+    summary: "OpenAI releases o1, a reasoning model that spends time working through problems before responding — scoring in the top 1% on maths competitions and passing the Bar Exam at the 90th percentile.",
+    detail: "Unlike previous models that generated tokens immediately, o1 produces an internal chain of thought before its final answer. It scored in the top 1% on the AMC maths competition and passed the US Bar Exam at the 90th percentile. The model trades speed for accuracy, sometimes taking minutes on hard problems. It marked a new paradigm beyond simply scaling language model training — the beginning of 'test-time compute' as a route to greater intelligence.",
+    people: ["Sam Altman"],
+    category: "tools",
+    icon: "🤔"
+  },
+  {
+    year: 2024,
+    title: "Google NotebookLM Goes Viral",
+    summary: "Google's NotebookLM launches AI-generated audio discussions of any document — two hosts sound so natural that millions of users struggle to believe they are AI.",
+    detail: "NotebookLM's Audio Overview feature generated podcast-style conversations about uploaded documents. The hosts — entirely AI-generated — sounded so natural that the feature went viral on social media in October 2024. Users uploaded academic papers, legal documents, and personal notes to hear AI hosts discuss them. The tool brought AI-generated audio into mainstream awareness and sparked debate about what 'authentic' audio means in the age of generative AI.",
+    people: [],
+    category: "tools",
+    icon: "🎙️"
+  },
+  {
+    year: 2024,
+    title: "Sora: Photorealistic Video from Text",
+    summary: "OpenAI releases Sora to the public — generating videos up to one minute long from text descriptions, raising immediate concerns about synthetic media and misinformation.",
+    detail: "Sora used a diffusion transformer architecture trained on vast amounts of video. It could simulate physical interactions, camera movements, and lighting with striking realism. Public access via ChatGPT subscriptions was granted in December 2024. The release immediately raised concerns about deepfakes, electoral misinformation, and synthetic media in creative industries. Several film studios began negotiations about AI video terms in contracts.",
+    people: ["Sam Altman"],
+    category: "tools",
+    icon: "🎬"
+  },
+  {
+    year: 2025,
+    title: "DeepSeek R1 Shocks the AI World",
+    summary: "Chinese lab DeepSeek releases R1 open-source — a reasoning model matching OpenAI o1 reportedly trained for under $6 million. Nvidia's stock falls 17% in a single day, wiping $600 billion from its market cap.",
+    detail: "DeepSeek R1 was released as open-source in January 2025. It matched or exceeded OpenAI o1 on key benchmarks and reportedly cost a fraction of frontier model training budgets. The release fundamentally challenged Western assumptions about AI dominance and the necessity of expensive Nvidia chips. It triggered the largest single-day market loss in US history when Nvidia shares fell 17%. The event forced a global rethink of AI investment strategy and compute requirements.",
+    people: ["Liang Wenfeng"],
+    category: "milestone",
+    icon: "🌏"
+  },
+  {
+    year: 2025,
+    title: "UK AI Opportunities Action Plan",
+    summary: "The UK government commits £14 billion in private AI investment, announces AI growth zones, and plans a National Data Library — aiming to become Europe's AI leader.",
+    detail: "Published in January 2025, the Action Plan set out 50 recommendations covering compute infrastructure, public sector AI adoption, and AI skills education. It included plans for dedicated AI growth zones with fast-tracked planning permission for data centres. Critics questioned whether the plan adequately addressed safety and ethics. The plan reflected a wider geopolitical race as the US, EU, China, and UK each sought to attract AI investment and talent.",
+    people: [],
+    category: "policy",
+    icon: "🇬🇧"
+  },
+  {
+    year: 2025,
+    title: "Claude 3.7 — Extended Thinking Made Visible",
+    summary: "Anthropic releases Claude 3.7 Sonnet with 'extended thinking' mode — the model reasons step by step and shows its working to users before giving a final answer.",
+    detail: "Unlike OpenAI's o1, which kept its reasoning hidden, Claude 3.7's extended thinking was displayed to users as a collapsible reasoning block. This transparency allowed users to verify the model's reasoning process and catch errors. The model set a new record on SWE-bench (software engineering) with 70.3% and improved significantly on scientific reasoning. Anthropic described it as their most intelligent model and a step toward AI capable of autonomous complex tasks.",
+    people: ["Dario Amodei"],
+    category: "tools",
+    icon: "💭"
+  },
+  {
+    year: 2025,
+    title: "Gemini 2.5 Pro — Reasoning at Scale",
+    summary: "Google DeepMind releases Gemini 2.5 Pro, combining million-token context with o1-style reasoning — it scores 18.8% on Humanity's Last Exam, the hardest AI benchmark.",
+    detail: "Gemini 2.5 Pro topped the LMArena leaderboard — a human-preference ranking — and achieved 18.8% on Humanity's Last Exam, a benchmark of 3,000 questions from university-level specialists that previous models struggled with. It combined Google's existing strength in long-context processing with new step-by-step reasoning capabilities. The release confirmed Google DeepMind as a peer rival to OpenAI and Anthropic at the frontier.",
+    people: ["Demis Hassabis", "Sundar Pichai"],
+    category: "tools",
+    icon: "⭐"
+  },
+  {
+    year: 2025,
+    title: "OpenAI o3 — A Leap Toward Expert-Level Reasoning",
+    summary: "OpenAI releases o3 and o4-mini. o3 solves 71.7% of Humanity's Last Exam and 96.7% of AIME — approaching human expert performance across maths, science, and coding.",
+    detail: "o3 scored 71.7% on Humanity's Last Exam (compared to ~34% for the previous best), 96.7% on the AIME maths competition, and 87.5% on ARC-AGI (versus 85% for average humans). Alongside o3, OpenAI released o4-mini — smaller, faster, and similarly capable for most tasks. GPT-4.1 was also launched optimised for long-context coding. The releases accelerated debate about whether AI had crossed a threshold into expert-level reasoning across multiple domains.",
+    people: ["Sam Altman"],
+    category: "milestone",
+    icon: "🔮"
+  },
+  {
+    year: 2025,
+    title: "The Rise of AI Agents",
+    summary: "AI systems move from conversation to action — browsing the web, writing and running code, filling forms, and completing multi-step tasks autonomously on users' behalf.",
+    detail: "In 2025, AI agents became a central focus for every major lab. OpenAI launched Operator; Anthropic's computer use feature allowed Claude to control any software; Google's Project Mariner could navigate browsers. GitHub Copilot moved from code suggestion to autonomous coding sessions. Microsoft reported Copilot completing workflows of 10,000+ steps. Safety researchers warned of new risks: prompt injection attacks, social engineering by AI, and the difficulty of auditing decisions in multi-agent pipelines.",
+    people: ["Sam Altman", "Dario Amodei"],
+    category: "tools",
+    icon: "🤖"
+  },
+  {
+    year: 2025,
+    title: "Claude 4 and the Frontier Consolidates",
+    summary: "Anthropic releases Claude Sonnet 4 and Opus 4. Three labs — OpenAI, Google DeepMind, and Anthropic — now compete at the frontier with models that can work autonomously on complex tasks for extended periods.",
+    detail: "Claude 4's Opus model set new standards for agentic tasks — autonomous multi-step work requiring minimal human oversight. All three frontier labs had now released reasoning models, agentic capabilities, and multimodal tools. The consolidation raised questions about market structure: would AI become a utility controlled by three US companies? Calls for open-source alternatives, regulation, and international competition intensified. The race had produced enormous capability gains but also deepened concentration of power.",
+    people: ["Dario Amodei"],
+    category: "milestone",
+    icon: "✨"
+  },
+  {
+    year: 2025,
+    title: "AI Coding Becomes Standard Practice",
+    summary: "GitHub reports 40%+ of code in Copilot repositories is AI-generated. The Stack Overflow survey finds 76% of developers use AI daily — reshaping what it means to be a software engineer.",
+    detail: "AI-assisted development tools — Cursor, GitHub Copilot, Claude, and Replit — became standard in professional software development. Studies found 55% productivity improvements but also noted increased bug rates requiring more review. Junior developer hiring slowed as companies found AI could handle entry-level tasks. The profession began shifting towards AI architecture, supervision, and system design — skills that AI still cannot replicate. Universities began revising computer science curricula in response.",
+    people: [],
+    category: "industry",
+    icon: "💻"
+  },
+  {
+    year: 2026,
+    title: "AI in Every Pocket — and Every Classroom",
+    summary: "Frontier AI models are embedded in smartphones, laptops, search engines, and school software. Every major tech platform integrates AI by default, and educational institutions worldwide debate how to teach alongside it.",
+    detail: "By 2026, AI had moved from a specialised tool to ambient infrastructure. Apple Intelligence processed queries on-device; Microsoft Copilot was embedded in Windows and Office; Google AI mode transformed Search. In education, the question shifted from 'should students use AI?' to 'how do we teach with and about AI responsibly?' The UK Department for Education published its first national AI in education framework. Research showed students who used AI effectively outperformed those who avoided it — but also those who over-relied on it without critical engagement.",
+    people: [],
+    category: "policy",
+    icon: "🌍"
   }
 ];
