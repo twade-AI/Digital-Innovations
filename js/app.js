@@ -58,6 +58,39 @@ function updateThemeIcon(theme) {
 }
 initTheme();
 
+/* ── Accessibility Toggles ────────────────────── */
+function toggleContrast() {
+  var on = document.documentElement.getAttribute('data-contrast') === 'high';
+  var next = on ? 'normal' : 'high';
+  document.documentElement.setAttribute('data-contrast', next);
+  localStorage.setItem('di_contrast', next);
+  var btn = document.getElementById('contrastBtn');
+  if (btn) btn.classList.toggle('a11y-active', !on);
+}
+function toggleDyslexiaFont() {
+  var on = document.documentElement.getAttribute('data-font') === 'dyslexic';
+  var next = on ? 'normal' : 'dyslexic';
+  document.documentElement.setAttribute('data-font', next);
+  localStorage.setItem('di_font', next);
+  var btn = document.getElementById('dyslexiaBtn');
+  if (btn) btn.classList.toggle('a11y-active', !on);
+}
+function initA11y() {
+  var contrast = localStorage.getItem('di_contrast');
+  if (contrast === 'high') {
+    document.documentElement.setAttribute('data-contrast', 'high');
+    var cb = document.getElementById('contrastBtn');
+    if (cb) cb.classList.add('a11y-active');
+  }
+  var font = localStorage.getItem('di_font');
+  if (font === 'dyslexic') {
+    document.documentElement.setAttribute('data-font', 'dyslexic');
+    var db = document.getElementById('dyslexiaBtn');
+    if (db) db.classList.add('a11y-active');
+  }
+}
+initA11y();
+
 /* ── Bookmarks ────────────────────────────────── */
 function loadBookmarks() {
   try { return new Set(JSON.parse(localStorage.getItem('di_bookmarks')) || []); }
