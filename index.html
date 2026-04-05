@@ -535,6 +535,25 @@
   <script src="js/app.js"></script>
   <script src="js/auth.js"></script>
   <!-- Floating Continue Button (appears when hero CTA scrolls out of view) -->
+  <!-- Mobile bottom tab bar -->
+  <nav class="mobile-tabs" id="mobileTabs" aria-label="Mobile navigation">
+    <button class="mob-tab active" data-section="home" onclick="showSection('home')">
+      <span class="mob-tab-icon">🏠</span><span class="mob-tab-label">Home</span>
+    </button>
+    <button class="mob-tab" data-section="units" onclick="showSection('units')">
+      <span class="mob-tab-icon">📚</span><span class="mob-tab-label">Units</span>
+    </button>
+    <button class="mob-tab mob-tab-center" onclick="continueLesson()" title="Continue learning">
+      <span class="mob-tab-icon mob-tab-play">▶</span><span class="mob-tab-label">Learn</span>
+    </button>
+    <button class="mob-tab" data-section="progress" onclick="showSection('progress')">
+      <span class="mob-tab-icon">📊</span><span class="mob-tab-label">Progress</span>
+    </button>
+    <button class="mob-tab" data-section="news" onclick="showSection('news')">
+      <span class="mob-tab-icon">📰</span><span class="mob-tab-label">News</span>
+    </button>
+  </nav>
+
   <button class="float-continue" id="floatContinue" onclick="continueLesson()" aria-label="Continue learning" style="display:none">
     <span id="floatContinueLabel">▶ Continue Learning</span>
   </button>

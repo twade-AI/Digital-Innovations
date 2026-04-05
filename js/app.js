@@ -151,6 +151,9 @@ function showSection(name) {
   document.querySelectorAll('.nav-link').forEach(l => {
     l.classList.toggle('active', l.dataset.section === name);
   });
+  document.querySelectorAll('.mob-tab[data-section]').forEach(t => {
+    t.classList.toggle('active', t.dataset.section === name);
+  });
   document.querySelector('.nav-links')?.classList.remove('open');
   window.scrollTo({ top: 0, behavior: 'smooth' });
   if (name === 'progress') renderProgress();
