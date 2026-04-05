@@ -35,8 +35,33 @@ function initSupabase() {
       updateAuthUI();
       if (_currentUser) loadProgressFromSupabase();
     });
+
+    // Fetch teacher-added news articles (no auth required — public read policy)
+    fetchDynamicNews();
   } catch(e) {
     console.warn('[auth] Supabase init failed:', e.message);
+  }
+}
+
+async function fetchDynamicNews() {
+  if (!isSupabaseReady()) return;
+  try {
+    var res = await _sb.from('site_news').select('*').order('created_at', { ascending: false });
+    if (res.error || !res.data || !res.data.length) return;
+    // Prepend dynamic articles to the front of AI_NEWS
+    var newItems = res.data.map(function(n) {
+      return { headline: n.headline, source: n.source, date: n.date, tag: n.tag || 'tools', url: n.url || '' };
+    });
+    newItems.forEach(function(item) {
+      // Avoid duplicates
+      var exists = AI_NEWS.some(function(n) { return n.headline === item.headline; });
+      if (!exists) AI_NEWS.unshift(item);
+    });
+    // Re-render news displays
+    if (typeof renderNewsTicker === 'function') renderNewsTicker();
+    if (typeof renderNewsSection === 'function') renderNewsSection();
+  } catch(e) {
+    console.warn('[auth] Dynamic news fetch failed:', e.message);
   }
 }
 
