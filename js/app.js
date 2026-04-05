@@ -151,6 +151,9 @@ function showSection(name) {
   document.querySelectorAll('.nav-link').forEach(l => {
     l.classList.toggle('active', l.dataset.section === name);
   });
+  document.querySelectorAll('.mob-tab[data-section]').forEach(t => {
+    t.classList.toggle('active', t.dataset.section === name);
+  });
   document.querySelector('.nav-links')?.classList.remove('open');
   window.scrollTo({ top: 0, behavior: 'smooth' });
   if (name === 'progress') renderProgress();
@@ -254,6 +257,8 @@ function toggleLesson(id) {
     setTimeout(checkAndAwardBadges, 600);
     setTimeout(checkMilestone, 900);
     setTimeout(updateReviewDueBadge, 200);
+    updateFirstLessonBanner();
+    updateContinueButton();
   }
 }
 
@@ -839,12 +844,66 @@ function renderProgress() {
   const done = completedLessons.size;
   const pct = Math.round((done / total) * 100);
   const circumference = 2 * Math.PI * 85; // r=85
+  const streak = getStreak();
 
+  // ── Ring ──
   document.getElementById('progressRingPercent').textContent = pct + '%';
   document.getElementById('progressRingFill').style.strokeDashoffset = circumference - (circumference * pct / 100);
-  document.getElementById('lessonsCompleted').textContent = done;
-  document.getElementById('lessonsRemaining').textContent = total - done;
-  document.getElementById('currentStreak').textContent = getStreak();
+  var ringLabel = document.getElementById('progressRingLabel');
+  if (ringLabel) ringLabel.textContent = done + ' of ' + total + ' lessons';
+
+  // Hidden compat elements
+  var lc = document.getElementById('lessonsCompleted'); if (lc) lc.textContent = done;
+  var lr = document.getElementById('lessonsRemaining'); if (lr) lr.textContent = total - done;
+  var cs = document.getElementById('currentStreak');    if (cs) cs.textContent = streak;
+
+  // ── Profile card ──
+  var xpData = typeof loadXP === 'function' ? loadXP() : { total: 0, level: 1 };
+  var level = xpData.level || 1;
+  var xpTotal = xpData.total || 0;
+  var XP_PER_LEVEL = 100;
+  var xpInLevel = xpTotal % XP_PER_LEVEL;
+  var xpPct = Math.round((xpInLevel / XP_PER_LEVEL) * 100);
+
+  // Level titles
+  var LEVEL_TITLES = ['','AI Newcomer','AI Apprentice','Prompt Crafter','Data Explorer',
+    'Ethics Thinker','Policy Analyst','Algorithm Ace','Neural Navigator','AI Architect','AI Expert'];
+  var levelTitle = LEVEL_TITLES[Math.min(level, LEVEL_TITLES.length - 1)] || 'AI Expert';
+
+  // Avatar based on level
+  var AVATARS = ['🎓','🤖','💡','🧠','⚡','🏆','🌟','🔬','🚀','👑'];
+  var avatar = AVATARS[Math.min(Math.floor((level - 1) / 1), AVATARS.length - 1)];
+
+  // Quiz accuracy
+  var qKeys = Object.keys(quizScores);
+  var qPct = qKeys.length ? Math.round((qKeys.filter(function(k) { return quizScores[k].correct; }).length / qKeys.length) * 100) : null;
+
+  // Badge count
+  var earnedBadges = typeof BADGES !== 'undefined' ? BADGES.filter(function(b) {
+    return typeof b.earned === 'function' ? b.earned() : false;
+  }).length : 0;
+
+  var setEl = function(id, val) { var e = document.getElementById(id); if (e) e.textContent = val; };
+  setEl('profileAvatar', avatar);
+  setEl('profileLevelBadge', 'Lv ' + level);
+  setEl('profileTitle', levelTitle);
+  setEl('profileXpLabel', xpTotal + ' XP  —  ' + xpInLevel + '/' + XP_PER_LEVEL + ' to Lv ' + (level + 1));
+  setEl('pstatLessons', done + '/' + total);
+  setEl('pstatStreak', streak + (streak > 0 ? '🔥' : ''));
+  setEl('pstatBadges', earnedBadges);
+  setEl('pstatQuiz', qPct !== null ? qPct + '%' : '—');
+
+  // Display name from Supabase if logged in
+  if (typeof getCurrentUser === 'function') {
+    var user = getCurrentUser();
+    if (user) {
+      var meta = user.user_metadata;
+      setEl('profileName', (meta && meta.display_name) ? meta.display_name : user.email.split('@')[0]);
+    }
+  }
+
+  var xpFill = document.getElementById('profileXpFill');
+  if (xpFill) xpFill.style.width = xpPct + '%';
 
   document.getElementById('progressByUnit').innerHTML = UNITS.map(u => {
     const uPct = unitProgressPct(u);
@@ -2058,7 +2117,7 @@ var OB_STEPS = [
   { title: 'Pick a lesson 📚', text: 'Go to <strong>Units</strong> to browse all 6 units. Click any lesson to open the slide viewer — slides, quizzes and activities are all inside.' },
   { title: 'Test yourself ⚡', text: 'The <strong>⚡ Quiz Me</strong> button gives you a quick quiz on lessons you\'ve completed. Great for spaced revision.' },
   { title: 'Track your progress 📊', text: 'Head to <strong>My Progress</strong> to see your streak calendar, XP level, badges, and quiz scores — all saved locally.' },
-  { title: 'Keyboard shortcuts ⌨️', text: 'Press <kbd>?</kbd> at any time to see all shortcuts. Use <kbd>→</kbd> / <kbd>←</kbd> to navigate slides inside a lesson.' },
+  { title: 'Ready? Start with Lesson 1 🚀', text: '<strong>Your AI Footprint</strong> is the perfect starting point — audit your daily AI interactions. No prior knowledge needed.', cta: true },
 ];
 var obStep = 0;
 function checkOnboarding() { if (!localStorage.getItem('di_onboarded')) setTimeout(startOnboarding, 1400); }
@@ -2067,19 +2126,37 @@ function renderObStep() {
   var body = document.getElementById('obBody');
   if (!body) return;
   var s = OB_STEPS[obStep];
+  var isLast = obStep === OB_STEPS.length - 1;
   body.innerHTML = '<div class="ob-step">Step ' + (obStep + 1) + ' of ' + OB_STEPS.length + '</div>' +
     '<h3 class="ob-title">' + s.title + '</h3>' +
     '<p class="ob-text">' + s.text + '</p>' +
     '<div class="ob-actions">' +
-      (obStep < OB_STEPS.length - 1
-        ? '<button class="btn btn-primary" onclick="nextObStep()">Next →</button>'
-        : '<button class="btn btn-primary" onclick="closeOnboarding()">Let\'s go! 🚀</button>') +
+      (isLast
+        ? '<button class="btn btn-primary" onclick="closeOnboarding();openLesson(1)">Start Lesson 1 →</button>'
+        : '<button class="btn btn-primary" onclick="nextObStep()">Next →</button>') +
       '<button class="btn btn-secondary" onclick="closeOnboarding()">Skip</button>' +
     '</div>' +
     '<div class="ob-dots">' + OB_STEPS.map(function(_,i){ return '<span class="ob-dot' + (i===obStep?' active':'') + '"></span>'; }).join('') + '</div>';
 }
 function nextObStep() { obStep++; if (obStep >= OB_STEPS.length) { closeOnboarding(); return; } renderObStep(); }
 function closeOnboarding() { var ov = document.getElementById('onboardingOverlay'); if (ov) ov.classList.remove('open'); localStorage.setItem('di_onboarded','1'); }
+
+/* ── First-Lesson Banner ────────────────────────── */
+function updateFirstLessonBanner() {
+  var banner = document.getElementById('firstLessonBanner');
+  if (!banner) return;
+  var dismissed = localStorage.getItem('di_flb_dismissed');
+  if (dismissed || completedLessons.size > 0) {
+    banner.style.display = 'none';
+  } else {
+    banner.style.display = 'flex';
+  }
+}
+function dismissFirstLessonBanner() {
+  localStorage.setItem('di_flb_dismissed', '1');
+  var banner = document.getElementById('firstLessonBanner');
+  if (banner) banner.style.display = 'none';
+}
 
 /* ── Exemplar Gallery ──────────────────────────── */
 var _exemplarFilter = 'all';
@@ -2438,6 +2515,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateXPStrip();
   checkOnboarding();
   initFloatContinue();
+  updateFirstLessonBanner();
 });
 
 // Keyboard shortcuts
