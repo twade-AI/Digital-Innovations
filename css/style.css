@@ -482,18 +482,52 @@ body.teacher-mode .badges-section, body.teacher-mode .progress-ring-container,
 body.teacher-mode .progress-stats, body.teacher-mode .diff-badge,
 body.teacher-mode .cm-lesson.done::after{ display:none!important }
 body.teacher-mode .nav-link[data-section="progress"]{ display:none }
-.nav-teacher-btn{
+/* ── Settings Dropdown ───────────────────────── */
+.settings-wrap{ position:relative;margin-left:6px;flex-shrink:0; }
+.settings-btn{
   background:none;border:1px solid var(--border);border-radius:var(--radius-sm);
-  padding:5px 8px;font-size:.95rem;cursor:pointer;color:var(--text-dim);
-  transition:all .18s;margin-left:6px;flex-shrink:0;
+  padding:5px 9px;font-size:1rem;cursor:pointer;color:var(--text-dim);
+  transition:all .18s;line-height:1;
 }
-.nav-teacher-btn:hover,.nav-teacher-btn.active{ border-color:var(--primary);color:var(--primary-light) }
-.nav-a11y-btn{
-  background:none;border:1px solid var(--border);border-radius:var(--radius-sm);
-  padding:5px 9px;font-size:.82rem;font-weight:700;cursor:pointer;color:var(--text-dim);
-  transition:all .18s;margin-left:4px;flex-shrink:0;font-family:inherit;
+.settings-btn:hover,.settings-btn.active{ border-color:var(--primary);color:var(--primary-light);background:rgba(99,102,241,.08) }
+.settings-menu{
+  display:none;position:absolute;right:0;top:calc(100% + 8px);
+  background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
+  min-width:220px;box-shadow:var(--shadow);z-index:200;overflow:hidden;
+  animation:fadeSlideDown .15s ease;
 }
-.nav-a11y-btn:hover{ border-color:var(--primary);color:var(--primary-light) }
+.settings-menu.open{ display:block; }
+@keyframes fadeSlideDown{ from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
+.settings-menu-label{
+  padding:8px 14px 4px;font-size:.68rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);
+}
+.settings-menu-divider{ height:1px;background:var(--border);margin:4px 0; }
+.settings-menu-item{
+  display:flex;align-items:center;gap:10px;width:100%;padding:9px 14px;
+  background:none;border:none;color:var(--text-muted);font-size:.85rem;
+  cursor:pointer;text-align:left;font-family:inherit;transition:background .12s;
+}
+.settings-menu-item:hover{ background:var(--bg-card-hover);color:var(--text); }
+.sm-badge{
+  margin-left:auto;background:var(--primary);color:#fff;
+  font-size:.65rem;font-weight:700;padding:1px 6px;border-radius:999px;
+}
+/* keep old classes working for initA11y */
+.nav-teacher-btn{ display:none; }
+.nav-a11y-btn{ display:none; }
+
+/* ── Floating Continue Button ─────────────────── */
+.float-continue{
+  position:fixed;bottom:28px;right:28px;z-index:150;
+  background:var(--primary);color:#fff;border:none;border-radius:999px;
+  padding:14px 22px;font-size:.95rem;font-weight:700;cursor:pointer;
+  box-shadow:0 4px 18px rgba(0,0,0,.35);
+  transition:opacity .25s,transform .25s,background .15s;
+  display:flex;align-items:center;gap:8px;
+}
+.float-continue:hover{ background:var(--primary-hover,#4a6cf7);transform:translateY(-2px); }
+.float-continue.hidden{ opacity:0;pointer-events:none;transform:translateY(12px); }
 
 /* ── Keyboard Shortcuts Overlay ──────────────── */
 .shortcuts-overlay{

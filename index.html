@@ -60,12 +60,30 @@
       </div>
       <span class="sync-indicator" id="syncIndicator" style="display:none;opacity:0" aria-live="polite"></span>
       <a class="admin-link" id="adminLink" href="admin.html" style="display:none" title="Teacher admin dashboard">📊</a>
-      <button class="nav-teacher-btn" id="teacherModeBtn" onclick="toggleTeacherMode()" title="Toggle Teacher/Presentation mode">📺</button>
-      <button class="nav-a11y-btn" id="contrastBtn" onclick="toggleContrast()" aria-label="Toggle high-contrast mode" title="High-contrast mode">◐</button>
-      <button class="nav-a11y-btn" id="dyslexiaBtn" onclick="toggleDyslexiaFont()" aria-label="Toggle dyslexia-friendly font" title="Dyslexia-friendly font">Aa</button>
-      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light/dark mode" title="Toggle theme">
-        <span class="theme-icon" id="themeIcon">☀️</span>
-      </button>
+      <!-- Settings dropdown -->
+      <div class="settings-wrap" id="settingsWrap">
+        <button class="settings-btn" id="settingsBtn" onclick="toggleSettingsMenu()" aria-label="Settings" title="Settings">⚙</button>
+        <div class="settings-menu" id="settingsMenu" role="menu" aria-hidden="true">
+          <div class="settings-menu-label">Display</div>
+          <button class="settings-menu-item" onclick="toggleTheme();updateSettingsIcons()" id="sm-theme">
+            <span id="smThemeIcon">☀️</span> Light / Dark mode
+          </button>
+          <button class="settings-menu-item" onclick="toggleContrast();updateSettingsIcons()" id="sm-contrast">
+            <span>◐</span> High-contrast mode <span class="sm-badge" id="smContrastBadge" style="display:none">ON</span>
+          </button>
+          <button class="settings-menu-item" onclick="toggleDyslexiaFont();updateSettingsIcons()" id="sm-dyslexia">
+            <span>Aa</span> Dyslexia-friendly font <span class="sm-badge" id="smDyslexiaBadge" style="display:none">ON</span>
+          </button>
+          <div class="settings-menu-divider"></div>
+          <div class="settings-menu-label">View</div>
+          <button class="settings-menu-item" onclick="toggleTeacherMode();toggleSettingsMenu()" id="sm-teacher">
+            <span>📺</span> Teacher / Presentation mode
+          </button>
+          <button class="settings-menu-item" onclick="showShortcuts();toggleSettingsMenu()">
+            <span>⌨️</span> Keyboard shortcuts
+          </button>
+        </div>
+      </div>
       <button class="mobile-toggle" onclick="toggleMobileNav()" aria-label="Menu">☰</button>
     </div>
   </nav>
@@ -494,6 +512,11 @@
   <script src="js/slides-u5u6.js"></script>
   <script src="js/app.js"></script>
   <script src="js/auth.js"></script>
+  <!-- Floating Continue Button (appears when hero CTA scrolls out of view) -->
+  <button class="float-continue" id="floatContinue" onclick="continueLesson()" aria-label="Continue learning" style="display:none">
+    <span id="floatContinueLabel">▶ Continue Learning</span>
+  </button>
+
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {

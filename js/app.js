@@ -51,6 +51,7 @@ function toggleTheme() {
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem('di_theme', next);
   updateThemeIcon(next);
+  updateSettingsIcons();
 }
 function updateThemeIcon(theme) {
   var icon = document.getElementById('themeIcon');
@@ -77,19 +78,44 @@ function toggleDyslexiaFont() {
 }
 function initA11y() {
   var contrast = localStorage.getItem('di_contrast');
-  if (contrast === 'high') {
-    document.documentElement.setAttribute('data-contrast', 'high');
-    var cb = document.getElementById('contrastBtn');
-    if (cb) cb.classList.add('a11y-active');
-  }
+  if (contrast === 'high') document.documentElement.setAttribute('data-contrast', 'high');
   var font = localStorage.getItem('di_font');
-  if (font === 'dyslexic') {
-    document.documentElement.setAttribute('data-font', 'dyslexic');
-    var db = document.getElementById('dyslexiaBtn');
-    if (db) db.classList.add('a11y-active');
-  }
+  if (font === 'dyslexic') document.documentElement.setAttribute('data-font', 'dyslexic');
+  updateSettingsIcons();
 }
 initA11y();
+
+/* ── Settings Dropdown ────────────────────────── */
+function toggleSettingsMenu() {
+  var menu = document.getElementById('settingsMenu');
+  var btn  = document.getElementById('settingsBtn');
+  if (!menu) return;
+  var open = menu.classList.toggle('open');
+  menu.setAttribute('aria-hidden', String(!open));
+  if (btn) btn.classList.toggle('active', open);
+  if (open) updateSettingsIcons();
+}
+function updateSettingsIcons() {
+  var isDark     = document.documentElement.getAttribute('data-theme') !== 'light';
+  var isContrast = document.documentElement.getAttribute('data-contrast') === 'high';
+  var isDyslexic = document.documentElement.getAttribute('data-font') === 'dyslexic';
+  var ti = document.getElementById('smThemeIcon');
+  if (ti) ti.textContent = isDark ? '☀️' : '🌙';
+  var cb = document.getElementById('smContrastBadge');
+  if (cb) cb.style.display = isContrast ? 'inline' : 'none';
+  var db = document.getElementById('smDyslexiaBadge');
+  if (db) db.style.display = isDyslexic ? 'inline' : 'none';
+}
+// Close menu when clicking outside
+document.addEventListener('click', function(e) {
+  var wrap = document.getElementById('settingsWrap');
+  if (wrap && !wrap.contains(e.target)) {
+    var menu = document.getElementById('settingsMenu');
+    var btn  = document.getElementById('settingsBtn');
+    if (menu) { menu.classList.remove('open'); menu.setAttribute('aria-hidden','true'); }
+    if (btn)  btn.classList.remove('active');
+  }
+});
 
 /* ── Bookmarks ────────────────────────────────── */
 function loadBookmarks() {
@@ -953,6 +979,40 @@ function updateContinueButton() {
     var next = getFirstIncompleteLesson();
     btn.textContent = 'Continue: Lesson ' + next.id + ' — ' + next.title;
   }
+  updateFloatContinueLabel();
+}
+
+function updateFloatContinueLabel() {
+  var lbl = document.getElementById('floatContinueLabel');
+  if (!lbl) return;
+  var total = UNITS.reduce(function(s, u) { return s + u.lessons.length; }, 0);
+  if (completedLessons.size === 0) {
+    lbl.textContent = '▶ Start Learning';
+  } else if (completedLessons.size >= total) {
+    lbl.textContent = '★ All Complete — Review';
+  } else {
+    var next = getFirstIncompleteLesson();
+    lbl.textContent = '▶ Continue: ' + next.title;
+  }
+}
+
+function initFloatContinue() {
+  var floatBtn  = document.getElementById('floatContinue');
+  var heroCta   = document.getElementById('continueBtn');
+  if (!floatBtn || !heroCta) return;
+  updateFloatContinueLabel();
+  // Show float button only when hero CTA is out of viewport
+  var observer = new IntersectionObserver(function(entries) {
+    var heroVisible = entries[0].isIntersecting;
+    if (heroVisible) {
+      floatBtn.classList.add('hidden');
+      setTimeout(function() { floatBtn.style.display = 'none'; }, 260);
+    } else {
+      floatBtn.style.display = 'flex';
+      requestAnimationFrame(function() { floatBtn.classList.remove('hidden'); });
+    }
+  }, { threshold: 0.1 });
+  observer.observe(heroCta);
 }
 
 /* ── Reflection Export (text) ─────────────────── */
@@ -2347,6 +2407,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderNewsSection();
   updateXPStrip();
   checkOnboarding();
+  initFloatContinue();
 });
 
 // Keyboard shortcuts
