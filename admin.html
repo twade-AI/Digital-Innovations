@@ -149,6 +149,38 @@
 
     /* ── Theme toggle ── */
     .theme-btn { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 6px 10px; font-size: .9rem; cursor: pointer; }
+
+    /* ── Dashboard Tabs ── */
+    .dash-tabs { display: flex; gap: 4px; margin-bottom: 20px; border-bottom: 1px solid var(--border); }
+    .dash-tab { background: none; border: none; border-bottom: 2px solid transparent; padding: 10px 18px; font-size: .88rem; font-weight: 600; color: var(--text-muted); cursor: pointer; margin-bottom: -1px; transition: all .15s; }
+    .dash-tab.active { color: var(--primary-light); border-bottom-color: var(--primary); }
+    .dash-tab:hover:not(.active) { color: var(--text); }
+
+    /* ── News Management ── */
+    .news-setup-box { background: rgba(245,158,11,.08); border: 1px solid rgba(245,158,11,.3); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 20px; font-size: .82rem; }
+    .news-form-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+    .news-form-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+    .news-form-headline, .news-form-url { grid-column: 1 / -1; }
+    .news-form-field label { display: block; font-size: .75rem; font-weight: 600; color: var(--text-dim); margin-bottom: 5px; }
+    .news-form-field input, .news-form-field select {
+      width: 100%; padding: 8px 11px; border-radius: var(--radius-sm); border: 1px solid var(--border);
+      background: var(--bg); color: var(--text); font-size: .85rem; font-family: inherit;
+    }
+    .news-form-field input:focus, .news-form-field select:focus { outline: none; border-color: var(--primary); }
+    .news-article-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 12px 14px; background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); margin-bottom: 8px;
+    }
+    .news-article-item:hover { border-color: var(--primary); }
+    .nai-tag { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: .67rem; font-weight: 700; flex-shrink: 0; background: rgba(99,102,241,.15); color: var(--primary-light); }
+    .nai-body { flex: 1; min-width: 0; }
+    .nai-headline { font-size: .85rem; font-weight: 600; margin-bottom: 3px; }
+    .nai-meta { font-size: .75rem; color: var(--text-dim); }
+    .nai-link { font-size: .75rem; color: var(--primary-light); text-decoration: none; }
+    .nai-link:hover { text-decoration: underline; }
+    .nai-del { background: none; border: none; color: var(--danger); cursor: pointer; font-size: 1rem; padding: 2px 6px; border-radius: 4px; flex-shrink: 0; }
+    .nai-del:hover { background: rgba(239,68,68,.1); }
   </style>
 </head>
 <body>
@@ -215,34 +247,114 @@
       </div>
     </div>
 
-    <!-- Table controls -->
-    <div class="table-controls">
-      <input class="search-input" type="text" placeholder="Search by name or email…" id="studentSearch" oninput="filterTable()">
-      <button class="sort-btn active" data-col="name" onclick="sortTable('name')">Name ↕</button>
-      <button class="sort-btn" data-col="pct" onclick="sortTable('pct')">Completion ↕</button>
-      <button class="sort-btn" data-col="xp" onclick="sortTable('xp')">XP ↕</button>
-      <button class="sort-btn" data-col="last" onclick="sortTable('last')">Last Active ↕</button>
-      <button class="btn btn-ghost btn-sm" onclick="exportCSV()" title="Export to CSV">⬇ Export CSV</button>
+    <!-- Dashboard Tabs -->
+    <div class="dash-tabs">
+      <button class="dash-tab active" onclick="switchDashTab('students')">👥 Students</button>
+      <button class="dash-tab" onclick="switchDashTab('news')">📰 Manage News</button>
     </div>
 
-    <!-- Student table -->
-    <div style="overflow-x:auto">
-      <table class="student-table" id="studentTable">
-        <thead>
-          <tr>
-            <th>Student</th>
-            <th>Lessons</th>
-            <th>XP / Level</th>
-            <th>Streak</th>
-            <th>Quiz Score</th>
-            <th>Last Active</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="studentTableBody">
-          <tr><td colspan="7" class="empty-state"><span class="loading-spinner"></span></td></tr>
-        </tbody>
-      </table>
+    <!-- Students Tab -->
+    <div id="tabStudents">
+      <div class="table-controls">
+        <input class="search-input" type="text" placeholder="Search by name or email…" id="studentSearch" oninput="filterTable()">
+        <button class="sort-btn active" data-col="name" onclick="sortTable('name')">Name ↕</button>
+        <button class="sort-btn" data-col="pct" onclick="sortTable('pct')">Completion ↕</button>
+        <button class="sort-btn" data-col="xp" onclick="sortTable('xp')">XP ↕</button>
+        <button class="sort-btn" data-col="last" onclick="sortTable('last')">Last Active ↕</button>
+        <button class="btn btn-ghost btn-sm" onclick="exportCSV()" title="Export to CSV">⬇ Export CSV</button>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="student-table" id="studentTable">
+          <thead>
+            <tr>
+              <th>Student</th><th>Lessons</th><th>XP / Level</th>
+              <th>Streak</th><th>Quiz Score</th><th>Last Active</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="studentTableBody">
+            <tr><td colspan="7" class="empty-state"><span class="loading-spinner"></span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- News Management Tab -->
+    <div id="tabNews" style="display:none">
+
+      <!-- First-time setup notice -->
+      <div class="news-setup-box" id="newsSetupBox">
+        <strong>⚡ One-time setup required</strong> — run this SQL in your
+        <a href="https://supabase.com/dashboard" target="_blank" rel="noopener">Supabase SQL Editor</a>
+        to enable news management:
+        <pre id="newsSetupSql" style="margin:10px 0;background:rgba(0,0,0,.3);padding:12px;border-radius:6px;font-size:.75rem;overflow-x:auto;white-space:pre-wrap">CREATE TABLE IF NOT EXISTS public.site_news (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  headline TEXT NOT NULL,
+  source TEXT NOT NULL,
+  date TEXT NOT NULL,
+  tag TEXT DEFAULT 'tools',
+  url TEXT,
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+ALTER TABLE public.site_news ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Anyone can read news" ON public.site_news FOR SELECT USING (true);
+CREATE POLICY "Admins can manage news" ON public.site_news FOR ALL USING (
+  EXISTS (SELECT 1 FROM public.profiles WHERE user_id = auth.uid() AND is_admin = true)
+);</pre>
+        <button class="btn btn-ghost btn-sm" onclick="copySetupSql()">📋 Copy SQL</button>
+        <span id="sqlCopied" style="font-size:.78rem;color:var(--success);display:none;margin-left:8px">✓ Copied!</span>
+      </div>
+
+      <!-- Add article form -->
+      <div class="news-form-card">
+        <h3 style="font-size:.95rem;font-weight:700;margin-bottom:14px">➕ Add News Article</h3>
+        <p style="font-size:.78rem;color:var(--text-dim);margin-bottom:14px">
+          Find articles at <a href="https://www.theneuron.ai/newsletter/" target="_blank" rel="noopener" style="color:var(--primary-light)">The Neuron daily newsletter ↗</a>
+        </p>
+        <div class="news-form-grid">
+          <div class="news-form-field news-form-headline">
+            <label>Headline *</label>
+            <input type="text" id="nfHeadline" placeholder="e.g. OpenAI releases GPT-5 with breakthrough reasoning…">
+          </div>
+          <div class="news-form-field">
+            <label>Source *</label>
+            <input type="text" id="nfSource" placeholder="e.g. The Neuron">
+          </div>
+          <div class="news-form-field">
+            <label>Date *</label>
+            <input type="text" id="nfDate" placeholder="e.g. Apr 2026">
+          </div>
+          <div class="news-form-field">
+            <label>Category</label>
+            <select id="nfTag">
+              <option value="tools">tools</option>
+              <option value="policy">policy</option>
+              <option value="research">research</option>
+              <option value="industry">industry</option>
+              <option value="ethics">ethics</option>
+              <option value="health">health</option>
+            </select>
+          </div>
+          <div class="news-form-field news-form-url">
+            <label>Article URL (optional)</label>
+            <input type="url" id="nfUrl" placeholder="https://www.theneuron.ai/newsletter/…">
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;margin-top:14px">
+          <button class="btn btn-primary btn-sm" onclick="addNewsArticle()">Add Article</button>
+          <span id="newsFormMsg" style="font-size:.82rem"></span>
+        </div>
+      </div>
+
+      <!-- Existing articles -->
+      <div style="margin-top:24px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <h3 style="font-size:.95rem;font-weight:700">Live News Articles <span id="newsCount" style="font-size:.78rem;color:var(--text-dim);font-weight:400"></span></h3>
+          <button class="btn btn-ghost btn-sm" onclick="loadNewsArticles()">↻ Refresh</button>
+        </div>
+        <div id="newsArticlesList">
+          <div class="empty-state" style="padding:32px">No articles yet — add one above, or run the setup SQL first.</div>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -595,6 +707,106 @@ function toggleTheme() {
 /* ── Utils ────────────────────────────────────────── */
 function esc(str) {
   return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+/* ── Dashboard Tabs ───────────────────────────── */
+function switchDashTab(tab) {
+  document.getElementById('tabStudents').style.display = tab === 'students' ? 'block' : 'none';
+  document.getElementById('tabNews').style.display     = tab === 'news'     ? 'block' : 'none';
+  document.querySelectorAll('.dash-tab').forEach(function(b, i) {
+    b.classList.toggle('active', (i === 0 && tab === 'students') || (i === 1 && tab === 'news'));
+  });
+  if (tab === 'news') loadNewsArticles();
+}
+
+/* ── News Management ──────────────────────────── */
+async function loadNewsArticles() {
+  var el = document.getElementById('newsArticlesList');
+  var countEl = document.getElementById('newsCount');
+  el.innerHTML = '<div class="empty-state" style="padding:24px"><span class="loading-spinner"></span> Loading…</div>';
+  try {
+    var res = await _sb.from('site_news').select('*').order('created_at', { ascending: false });
+    if (res.error) {
+      if (res.error.code === '42P01') {
+        // Table doesn't exist yet
+        el.innerHTML = '<div class="empty-state" style="padding:24px">⚠ Run the setup SQL above first, then refresh.</div>';
+        document.getElementById('newsSetupBox').style.display = 'block';
+      } else {
+        el.innerHTML = '<div class="empty-state" style="padding:24px">Error: ' + esc(res.error.message) + '</div>';
+      }
+      if (countEl) countEl.textContent = '';
+      return;
+    }
+    document.getElementById('newsSetupBox').style.display = 'none';
+    var articles = res.data || [];
+    if (countEl) countEl.textContent = '(' + articles.length + ' articles)';
+    if (!articles.length) {
+      el.innerHTML = '<div class="empty-state" style="padding:24px">No articles yet — add one above.</div>';
+      return;
+    }
+    var tagColors = { policy:'#6366f1', research:'#06b6d4', tools:'#22c55e', industry:'#f59e0b', ethics:'#ef4444', health:'#ec4899' };
+    el.innerHTML = articles.map(function(a) {
+      var col = tagColors[a.tag] || '#6366f1';
+      return '<div class="news-article-item">' +
+        '<span class="nai-tag" style="background:' + col + '22;color:' + col + '">' + esc(a.tag) + '</span>' +
+        '<div class="nai-body">' +
+          '<div class="nai-headline">' + esc(a.headline) + '</div>' +
+          '<div class="nai-meta">' + esc(a.source) + ' &bull; ' + esc(a.date) +
+            (a.url ? ' &bull; <a class="nai-link" href="' + esc(a.url) + '" target="_blank" rel="noopener">View article ↗</a>' : '') +
+          '</div>' +
+        '</div>' +
+        '<button class="nai-del" onclick="deleteNewsArticle(\'' + a.id + '\')" title="Delete">✕</button>' +
+      '</div>';
+    }).join('');
+  } catch(e) {
+    el.innerHTML = '<div class="empty-state" style="padding:24px">Error loading articles: ' + esc(e.message) + '</div>';
+  }
+}
+
+async function addNewsArticle() {
+  var headline = document.getElementById('nfHeadline').value.trim();
+  var source   = document.getElementById('nfSource').value.trim();
+  var date     = document.getElementById('nfDate').value.trim();
+  var tag      = document.getElementById('nfTag').value;
+  var url      = document.getElementById('nfUrl').value.trim();
+  var msgEl    = document.getElementById('newsFormMsg');
+  if (!headline || !source || !date) {
+    msgEl.textContent = '⚠ Headline, source and date are required.';
+    msgEl.style.color = 'var(--danger)'; return;
+  }
+  msgEl.textContent = 'Saving…'; msgEl.style.color = 'var(--text-muted)';
+  try {
+    var res = await _sb.from('site_news').insert({ headline, source, date, tag, url: url || null });
+    if (res.error) {
+      msgEl.textContent = '⚠ ' + res.error.message;
+      msgEl.style.color = 'var(--danger)'; return;
+    }
+    msgEl.textContent = '✓ Article added!'; msgEl.style.color = 'var(--success)';
+    document.getElementById('nfHeadline').value = '';
+    document.getElementById('nfSource').value = '';
+    document.getElementById('nfDate').value = '';
+    document.getElementById('nfUrl').value = '';
+    setTimeout(function() { msgEl.textContent = ''; }, 3000);
+    loadNewsArticles();
+  } catch(e) {
+    msgEl.textContent = '⚠ Error: ' + e.message; msgEl.style.color = 'var(--danger)';
+  }
+}
+
+async function deleteNewsArticle(id) {
+  if (!confirm('Delete this article from the live site?')) return;
+  var res = await _sb.from('site_news').delete().eq('id', id);
+  if (res.error) { alert('Error: ' + res.error.message); return; }
+  loadNewsArticles();
+}
+
+function copySetupSql() {
+  var sql = document.getElementById('newsSetupSql').textContent;
+  navigator.clipboard.writeText(sql).then(function() {
+    var el = document.getElementById('sqlCopied');
+    el.style.display = 'inline';
+    setTimeout(function() { el.style.display = 'none'; }, 2500);
+  });
 }
 </script>
 </body>

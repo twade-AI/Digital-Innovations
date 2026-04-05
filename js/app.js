@@ -58,6 +58,39 @@ function updateThemeIcon(theme) {
 }
 initTheme();
 
+/* ── Accessibility Toggles ────────────────────── */
+function toggleContrast() {
+  var on = document.documentElement.getAttribute('data-contrast') === 'high';
+  var next = on ? 'normal' : 'high';
+  document.documentElement.setAttribute('data-contrast', next);
+  localStorage.setItem('di_contrast', next);
+  var btn = document.getElementById('contrastBtn');
+  if (btn) btn.classList.toggle('a11y-active', !on);
+}
+function toggleDyslexiaFont() {
+  var on = document.documentElement.getAttribute('data-font') === 'dyslexic';
+  var next = on ? 'normal' : 'dyslexic';
+  document.documentElement.setAttribute('data-font', next);
+  localStorage.setItem('di_font', next);
+  var btn = document.getElementById('dyslexiaBtn');
+  if (btn) btn.classList.toggle('a11y-active', !on);
+}
+function initA11y() {
+  var contrast = localStorage.getItem('di_contrast');
+  if (contrast === 'high') {
+    document.documentElement.setAttribute('data-contrast', 'high');
+    var cb = document.getElementById('contrastBtn');
+    if (cb) cb.classList.add('a11y-active');
+  }
+  var font = localStorage.getItem('di_font');
+  if (font === 'dyslexic') {
+    document.documentElement.setAttribute('data-font', 'dyslexic');
+    var db = document.getElementById('dyslexiaBtn');
+    if (db) db.classList.add('a11y-active');
+  }
+}
+initA11y();
+
 /* ── Bookmarks ────────────────────────────────── */
 function loadBookmarks() {
   try { return new Set(JSON.parse(localStorage.getItem('di_bookmarks')) || []); }
@@ -1894,14 +1927,39 @@ function renderNewsTicker() {
   var tagColors = { policy:'#6366f1', research:'#06b6d4', tools:'#22c55e', industry:'#f59e0b', ethics:'#ef4444', health:'#ec4899' };
   var items = AI_NEWS.map(function(n) {
     var col = tagColors[n.tag] || '#6366f1';
-    return '<span class="ticker-item">' +
-      '<span class="ticker-tag" style="background:' + col + '22;color:' + col + '">' + n.tag + '</span>' +
+    var inner = '<span class="ticker-tag" style="background:' + col + '22;color:' + col + '">' + n.tag + '</span>' +
       n.headline +
-      ' <span class="ticker-source">— ' + n.source + ', ' + n.date + '</span>' +
-    '</span>';
+      ' <span class="ticker-source">— ' + n.source + ', ' + n.date + '</span>';
+    if (n.url) {
+      return '<a class="ticker-item ticker-item-link" href="' + n.url + '" target="_blank" rel="noopener" title="Read full article">' + inner + ' ↗</a>';
+    }
+    return '<span class="ticker-item">' + inner + '</span>';
   }).join('');
-  // Duplicate for seamless loop
   track.innerHTML = items + items;
+}
+
+function renderNewsSection() {
+  var el = document.getElementById('latestNewsGrid');
+  if (!el || typeof AI_NEWS === 'undefined') return;
+  var tagColors = { policy:'#6366f1', research:'#06b6d4', tools:'#22c55e', industry:'#f59e0b', ethics:'#ef4444', health:'#ec4899' };
+  // Show up to 8 most recent (first in array = most recent)
+  var shown = AI_NEWS.slice(0, 8);
+  el.innerHTML = shown.map(function(n) {
+    var col = tagColors[n.tag] || '#6366f1';
+    var card = '<div class="news-card">' +
+      '<div class="news-card-top">' +
+        '<span class="news-card-tag" style="background:' + col + '22;color:' + col + '">' + n.tag + '</span>' +
+        '<span class="news-card-date">' + n.date + '</span>' +
+      '</div>' +
+      '<p class="news-card-headline">' + n.headline + '</p>' +
+      '<div class="news-card-footer">' +
+        '<span class="news-card-source">' + n.source + '</span>';
+    if (n.url) {
+      card += '<a class="news-card-link" href="' + n.url + '" target="_blank" rel="noopener">Read →</a>';
+    }
+    card += '</div></div>';
+    return card;
+  }).join('');
 }
 
 /* ── Onboarding Tour ──────────────────────────────── */
@@ -1934,23 +1992,55 @@ function nextObStep() { obStep++; if (obStep >= OB_STEPS.length) { closeOnboardi
 function closeOnboarding() { var ov = document.getElementById('onboardingOverlay'); if (ov) ov.classList.remove('open'); localStorage.setItem('di_onboarded','1'); }
 
 /* ── Exemplar Gallery ──────────────────────────── */
+var _exemplarFilter = 'all';
 function renderExemplars() {
   var el = document.getElementById('exemplarContainer');
   if (!el || typeof EXEMPLARS === 'undefined') return;
-  el.innerHTML = EXEMPLARS.map(function(ex) {
-    return '<div class="exemplar-card">' +
+
+  // Filter bar
+  var filterBar = document.getElementById('exemplarFilters');
+  if (filterBar && !filterBar.dataset.built) {
+    filterBar.dataset.built = '1';
+    filterBar.innerHTML =
+      ['all','strong','poor'].map(function(f) {
+        var labels = { all:'All Examples', strong:'✅ Strong Examples', poor:'🚩 What NOT to Do' };
+        return '<button class="exemplar-filter-btn' + (f === _exemplarFilter ? ' active' : '') + '" onclick="setExemplarFilter(\'' + f + '\')">' + labels[f] + '</button>';
+      }).join('');
+  }
+
+  var list = _exemplarFilter === 'all' ? EXEMPLARS : EXEMPLARS.filter(function(e) { return e.quality === _exemplarFilter; });
+
+  el.innerHTML = list.map(function(ex) {
+    var isPoor = ex.quality === 'poor';
+    var qualityBadge = isPoor
+      ? '<span class="exemplar-quality-badge exemplar-quality-poor">🚩 What NOT to do</span>'
+      : '<span class="exemplar-quality-badge exemplar-quality-strong">✅ Strong Example</span>';
+
+    var ptfcRows = isPoor
+      ? [['p',ex.persona||'<em style="color:var(--text-dim)">Not provided</em>'],['t',ex.taskText],['f',ex.format||'<em style="color:var(--text-dim)">Not specified</em>'],['c',ex.context||'<em style="color:var(--text-dim)">Not provided</em>']]
+      : [['p',ex.persona],['t',ex.taskText],['f',ex.format],['c',ex.context]];
+
+    return '<div class="exemplar-card' + (isPoor ? ' exemplar-card-poor' : '') + '">' +
+      qualityBadge +
       '<div class="exemplar-header">' +
         '<div><div class="exemplar-name">' + ex.name + '</div><div class="exemplar-task">' + ex.task + '</div></div>' +
         '<span class="exemplar-tool">' + ex.tool + '</span>' +
       '</div>' +
       '<div class="ptfc-breakdown">' +
-        [['p',ex.persona],['t',ex.taskText],['f',ex.format],['c',ex.context]].map(function(row) {
+        ptfcRows.map(function(row) {
           return '<div class="ptfc-row-ex"><span class="ptfc-label-ex ptfc-' + row[0] + '-ex">' + row[0].toUpperCase() + '</span><div class="ptfc-val">' + row[1] + '</div></div>';
         }).join('') +
       '</div>' +
-      '<div class="exemplar-teacher-note"><span class="teacher-note-icon">👩‍🏫</span><span>' + ex.teacherNote + '</span></div>' +
+      '<div class="exemplar-teacher-note"><span class="teacher-note-icon">' + (isPoor ? '⚠️' : '👩‍🏫') + '</span><span>' + ex.teacherNote + '</span></div>' +
     '</div>';
   }).join('');
+}
+
+function setExemplarFilter(f) {
+  _exemplarFilter = f;
+  var btns = document.querySelectorAll('.exemplar-filter-btn');
+  btns.forEach(function(b) { b.classList.toggle('active', b.textContent.toLowerCase().includes(f) || f === 'all' && b.textContent.includes('All')); });
+  renderExemplars();
 }
 
 /* ── Capstone Portfolio ─────────────────────────── */
@@ -2254,6 +2344,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderRecentlyViewed();
   updateTimeEstimate();
   renderNewsTicker();
+  renderNewsSection();
   updateXPStrip();
   checkOnboarding();
 });
