@@ -127,6 +127,13 @@
     <!-- Recently Viewed -->
     <div id="recentlyViewedSection" class="recently-viewed" style="display:none"></div>
 
+    <!-- Latest AI News Cards -->
+    <div class="home-section-header">
+      <h2 class="home-section-title">📰 Latest AI News</h2>
+      <a href="https://www.theneuron.ai/newsletter/" target="_blank" rel="noopener" class="home-section-link">The Neuron daily newsletter ↗</a>
+    </div>
+    <div id="latestNewsGrid" class="news-grid"></div>
+
     <!-- Course Overview Cards -->
     <div class="overview-grid">
       <div class="overview-card" onclick="showSection('units'); scrollToUnit(0)">
@@ -281,8 +288,9 @@
   <section id="section-exemplars" class="section">
     <div class="section-header">
       <h2>Prompt Exemplar Gallery</h2>
-      <p>Real PTFC prompts written by students — annotated with teacher feedback. Use these as models for your own work.</p>
+      <p>Real PTFC prompts annotated with teacher feedback — including examples of what <strong>not</strong> to do. Use these as models for your own work.</p>
     </div>
+    <div id="exemplarFilters" class="exemplar-filters"></div>
     <div id="exemplarContainer" class="exemplar-grid"></div>
   </section>
 
