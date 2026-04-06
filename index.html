@@ -307,6 +307,7 @@
     <span id="currentStreak" style="display:none">0</span>
 
     <div class="progress-actions">
+      <button class="btn btn-primary" onclick="openVivaPractice()">🎓 Viva Practice</button>
       <button class="btn btn-primary" onclick="openCapstone()">📋 Capstone Portfolio</button>
       <button class="btn btn-secondary" onclick="exportFullProgressPDF()">Export Full Report (PDF)</button>
       <button class="btn btn-secondary" onclick="exportReflections()">Download Reflections (.txt)</button>
@@ -355,6 +356,57 @@
     <div id="newsTagFilters" class="news-tag-filters"></div>
     <div id="fullNewsGrid" class="news-grid"></div>
   </section>
+
+  <!-- Viva Practice Modal -->
+  <div id="vivaPracticeModal" class="modal viva-modal" role="dialog" aria-modal="true" aria-label="Viva Practice" onclick="if(event.target===this)closeVivaPractice()">
+    <div class="modal-content viva-inner">
+      <button class="modal-close" onclick="closeVivaPractice()">&times;</button>
+      <div class="viva-header">
+        <div class="viva-title">🎓 Viva Practice</div>
+        <div class="viva-progress-wrap">
+          <span id="vivaProgressLabel">Question 1 of 20</span>
+          <div class="viva-progress-track"><div class="viva-progress-fill" id="vivaProgressFill" style="width:0%"></div></div>
+        </div>
+        <div class="viva-score-wrap">
+          <span id="vivaScoreGreen" class="viva-score viva-green">0 Confident</span>
+          <span id="vivaScoreAmber" class="viva-score viva-amber">0 Unsure</span>
+          <span id="vivaScoreRed" class="viva-score viva-red">0 Struggling</span>
+        </div>
+      </div>
+      <div id="vivaCard" class="viva-card">
+        <div class="viva-category" id="vivaCat"></div>
+        <div class="viva-question" id="vivaQuestion"></div>
+        <div class="viva-hint" id="vivaHint" style="display:none"></div>
+        <button class="viva-hint-btn" id="vivaHintBtn" onclick="toggleVivaHint()">💡 Show prompt</button>
+      </div>
+      <div class="viva-actions">
+        <div class="viva-instructions">How well did you answer?</div>
+        <div class="viva-rate-row">
+          <button class="viva-rate-btn viva-rate-red" onclick="rateViva('red')">😰 Struggling</button>
+          <button class="viva-rate-btn viva-rate-amber" onclick="rateViva('amber')">🤔 Getting there</button>
+          <button class="viva-rate-btn viva-rate-green" onclick="rateViva('green')">✅ Confident</button>
+        </div>
+        <div id="vivaDoneMsg" class="viva-done" style="display:none">
+          <div class="viva-done-title">Practice complete!</div>
+          <div id="vivaDoneSummary" class="viva-done-summary"></div>
+          <div class="viva-done-actions">
+            <button class="btn btn-primary" onclick="restartViva()">Practice again</button>
+            <button class="btn btn-secondary" onclick="reviewVivaWeak()">Review struggling only</button>
+            <button class="btn btn-secondary" onclick="closeVivaPractice()">Close</button>
+          </div>
+        </div>
+      </div>
+      <div class="viva-filter-row">
+        <span class="viva-filter-label">Category:</span>
+        <button class="viva-filter-btn active" onclick="setVivaFilter('all')">All</button>
+        <button class="viva-filter-btn" onclick="setVivaFilter('project')">Your Project</button>
+        <button class="viva-filter-btn" onclick="setVivaFilter('ethics')">Ethics</button>
+        <button class="viva-filter-btn" onclick="setVivaFilter('technical')">Technical</button>
+        <button class="viva-filter-btn" onclick="setVivaFilter('reflection')">Reflection</button>
+        <button class="viva-filter-btn" onclick="setVivaFilter('wider')">Wider Course</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Lesson Detail Modal -->
   <!-- Confetti Canvas -->
