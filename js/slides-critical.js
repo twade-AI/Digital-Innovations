@@ -395,6 +395,70 @@ var SLIDES_CRITICAL = {
   ],
 
 
+  // ── L50: Mini-Project (Unit 3 — Policy & Governance) ─────────────────────
+  50: [
+    {
+      type: 'hook',
+      title: 'Build Something Small',
+      body: 'Every capstone project that has ever gone badly started the same way: the builder had never built anything before. They encountered their first prompt engineering problem, their first user testing failure, and their first ethical dilemma — all at once, under deadline pressure, with high stakes. This lesson is your safety net. You are going to build something small, imperfect, and low-stakes today — so that when you hit the same problems in the capstone, they feel familiar rather than catastrophic.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">1 lesson</span><span class="sl">to go from idea to working prototype</span></div><div class="hook-stat-mini"><span class="sv">3 phases</span><span class="sl">Design → Build → Test — compressed to 45 minutes</span></div><div class="hook-stat-mini"><span class="sv">Low stakes</span><span class="sl">This does not count for assessment — it counts for learning</span></div></div>The point is not to produce something polished. The point is to learn by building.'
+    },
+    {
+      type: 'concept',
+      title: 'The Compressed Build Process',
+      body: 'The capstone uses six sprint sessions to do what you are doing today in one lesson. That compression forces you to make fast decisions — which is exactly the point. You will miss things, cut corners, and hit walls. Notice where that happens. Those are the problems you need to solve before the capstone begins.',
+      bullets: [
+        '<strong>Phase 1 — Define (5 minutes):</strong> Choose a problem. Write one sentence: "I am building [what] for [who] that helps them [do what]." Do not spend more than 5 minutes on this.',
+        '<strong>Phase 2 — Design (10 minutes):</strong> Write your core PTFC prompt. Identify one ethical consideration. Sketch the user flow in 3 steps maximum.',
+        '<strong>Phase 3 — Build (20 minutes):</strong> Run your prompt. Iterate at least twice. Get something that works — even if imperfectly.',
+        '<strong>Phase 4 — Test (5 minutes):</strong> Give your tool to one other student. Watch them use it without explaining it. Note what confuses them.',
+        '<strong>Phase 5 — Reflect (5 minutes):</strong> Three sentences: What worked? What failed? What would you do differently in 60 minutes?'
+      ],
+      callout: 'The most valuable output from this lesson is not the tool you build — it is your 3-sentence reflection. Write it honestly. It will directly inform your capstone brief.'
+    },
+    {
+      type: 'activity',
+      title: 'Mini-Build: Your First AI Tool',
+      instructions: 'Build a working AI-powered tool in one lesson. Use Claude, Gemini, or ChatGPT. The tool can be a prompt that produces a useful output — it does not need to be a web app or require coding.',
+      steps: [
+        'DEFINE (5 min): Choose from these starter ideas — or invent your own: (a) A revision question generator for a subject you study; (b) A "explain this to me like I\'m 12" tool for complex concepts; (c) A debate argument generator that argues both sides; (d) A project brief checker that identifies missing elements; (e) Your own idea',
+        'DESIGN (10 min): Write your PTFC prompt in the Prompt Iteration Log. Identify one ethical risk (hallucination? bias? over-reliance?) and note how you will address it',
+        'BUILD (20 min): Run your prompt. Evaluate the output against your goal. Iterate at least twice, each time noting what you changed and why',
+        'TEST (5 min): Ask a classmate to use your tool on a real task of theirs. Do not explain it — just observe. Note: what did they try first? What confused them? What would they find useful?',
+        'REFLECT (5 min): Write 3 sentences: (1) The thing that worked best. (2) The thing that failed. (3) The first thing you would improve with more time'
+      ]
+    },
+    {
+      type: 'discussion',
+      title: 'What Did You Learn?',
+      questions: [
+        { num: 1, text: 'What was the hardest part of the 45-minute build — defining the problem, designing the prompt, or getting a useful output? What does that tell you about where to invest more time in the capstone?' },
+        { num: 2, text: 'When you watched your classmate use your tool, what surprised you most about how they interacted with it? What does this tell you about the gap between building something and designing for someone?' },
+        { num: 3, text: 'You identified an ethical consideration in the design phase. Did the actual build create any new ethical issues you had not anticipated? This is a common pattern — what does it suggest about ethics-by-design vs. ethics-by-audit?' }
+      ]
+    },
+    {
+      type: 'quiz',
+      question: 'In the mini-project build process, why is the "Test" phase specifically structured so you do NOT explain your tool to the user?',
+      options: [
+        'To save time during the lesson',
+        'Because real users will not have an explanation — observing unguided use reveals genuine usability problems',
+        'To test whether the tool is self-explanatory from a marketing perspective',
+        'Because explaining your tool could give away the answer to classmates'
+      ],
+      correct: 1,
+      explanation: 'Unmoderated user testing — watching someone use a product without guidance — reveals the actual mental model users bring to the tool, not the mental model the builder assumed they would have. Explanations mask usability problems. Seeing someone confused without understanding why tells you where the design has failed.'
+    },
+    {
+      type: 'summary',
+      title: 'Key Takeaways',
+      points: [
+        { icon: '🏗️', label: 'Process over product', text: 'The goal was not a polished tool — it was experiencing the define/design/build/test/reflect cycle under real conditions before the capstone stakes are high' },
+        { icon: '👁️', label: 'Watch, don\'t explain', text: 'Unmoderated user testing consistently reveals problems that creator-led demos miss. Your classmate\'s confusion is your most valuable data point' },
+        { icon: '📝', label: 'Your 3-sentence reflection is the deliverable', text: 'What worked, what failed, and what you\'d do differently — keep this somewhere visible when you write your capstone brief' }
+      ]
+    }
+  ],
+
   // ── L49: AI and Democracy (Unit 2 — AI & Society) ────────────────────────
   49: [
     {
