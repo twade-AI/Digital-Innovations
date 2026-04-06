@@ -2,6 +2,104 @@
 
 var SLIDES_CRITICAL = {
 
+  // ── L46: Trust, But Verify (Unit 1 — Prompt Engineering & Research) ────────
+  46: [
+    {
+      type: 'hook',
+      title: 'Trust, But Verify',
+      body: 'In February 2023, Google\'s AI assistant Bard was demonstrated to the world. In the demo video, Bard was asked what new discoveries the James Webb Space Telescope had made. It answered confidently — including the claim that Webb had taken the "very first images" of a planet outside our solar system. Astronomers immediately pointed out this was wrong: the first exoplanet image was taken in 2004. The error wiped over $100 billion from Alphabet\'s market value in a single day. A week later, Air Canada\'s chatbot told a bereaved customer he could apply for bereavement fares retroactively — a policy that did not exist. A court ruled Air Canada was liable for its chatbot\'s false promise.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">$100B</span><span class="sl">lost by Alphabet after one AI factual error in a live demo</span></div><div class="hook-stat-mini"><span class="sv">38%</span><span class="sl">of AI-generated medical information contains a significant error (BMJ, 2023)</span></div><div class="hook-stat-mini"><span class="sv">~20%</span><span class="sl">of AI legal citations found to be fabricated in independent audits</span></div></div>AI systems produce errors with the same tone, fluency, and confidence as accurate information. The only defence is verification — and you need a system for it.'
+    },
+    {
+      type: 'concept',
+      title: 'The Four Types of AI Hallucination',
+      body: 'Not all AI errors are the same. Understanding the type of hallucination helps you know where to look when checking. AI researchers classify hallucinations into four main categories — each with a different verification strategy.',
+      bullets: [
+        '<strong>Factual hallucinations:</strong> Plausible-sounding claims that are simply wrong — wrong dates, wrong figures, wrong names, wrong locations. Example: "The UK passed the Online Safety Act in 2021" (it was 2023). Verification: always check dates and numbers against a primary source',
+        '<strong>Citation hallucinations:</strong> Fabricated references to papers, studies, reports, or books that do not exist — or exist but do not say what the AI claims. Example: the NY lawyer case — 6 hallucinated court cases submitted to a federal judge. Verification: look up every citation independently',
+        '<strong>Logical hallucinations:</strong> Valid-seeming reasoning that contains a false premise, a hidden leap, or a category error. The conclusion follows from the argument — but the argument is built on sand. Verification: identify the premises explicitly and check each one',
+        '<strong>Temporal hallucinations:</strong> Outdated information presented as current — AI training data has a cutoff, and the model has no way to know things have changed since. Example: AI describing a company\'s current CEO who resigned a year ago. Verification: check currency for anything time-sensitive'
+      ],
+      callout: 'The most dangerous hallucinations are the ones that are 95% accurate. A fully false claim is easy to dismiss. A claim that is correct except for one crucial detail — a wrong statistic, a misattributed quote — passes initial scrutiny and causes the most damage when acted upon.'
+    },
+    {
+      type: 'concept',
+      title: 'The VERIFY Workflow',
+      body: 'Professional fact-checkers, researchers, and journalists use structured verification workflows. The VERIFY method adapts these for AI-assisted work — a six-step habit that takes minutes but catches the errors that matter.',
+      bullets: [
+        '<strong>V — Validate the claim type.</strong> Is this a fact, a statistic, a quote, a date, or an interpretation? Each requires a different verification approach',
+        '<strong>E — Extract the specific claim.</strong> Write out the exact, testable assertion in your own words. Vague claims cannot be fact-checked — make it specific before you search',
+        '<strong>R — Reach for a primary source.</strong> Not another website, not another AI. A primary source: the original study, the official document, the institution\'s own publication, the legislation',
+        '<strong>I — Investigate the numbers.</strong> Statistics are the most commonly hallucinated element. Find the original data set, the methodology, and the exact figure — not a secondary report of it',
+        '<strong>F — Find the counter-evidence.</strong> Search specifically for contradictory information. If an AI claim seems perfectly one-sided, ask what the strongest challenge to it is',
+        '<strong>Y — Your conclusion, in writing.</strong> Write one sentence stating whether you verified the claim, partially verified it, or could not verify it — and why. This becomes your audit trail'
+      ],
+      callout: 'Lateral reading is the fastest verification technique researchers have identified: instead of reading deeply into one source, quickly look at what OTHER credible sources say about it. A claim corroborated by three independent sources from different sectors (academic, journalistic, governmental) is far more reliable than any single detailed source.'
+    },
+    {
+      type: 'scenario',
+      title: 'The Chemistry Coursework',
+      situation: 'Zara is completing an A-Level Chemistry piece on the environmental impact of lithium-ion batteries. She uses Claude to research and gets a detailed response citing "a 2022 Nature Chemistry study finding that lithium extraction produces 15 tonnes of CO₂ per tonne of lithium" and "a 2023 EU directive requiring battery passports for all EVs sold from 2026." Both claims are specific, plausible, and fit her argument perfectly. She has 45 minutes before submission.',
+      question: 'What should Zara do — and what is the minimum acceptable verification standard here?',
+      choices: [
+        {
+          text: 'Submit as written — both claims are specific enough to be real, and she does not have time to check both',
+          outcome: 'The Nature Chemistry figure is close to reality but significantly overstated — the actual estimate in the cited study is 4–9 tonnes depending on the extraction method. Worse, the "2023 EU directive" conflates two separate pieces of legislation and gets the implementation date wrong. Zara\'s teacher notes both inaccuracies and her score is reduced. The lesson: specificity in a hallucination is not evidence of accuracy — it is a feature of how convincing hallucinations are designed to sound.'
+        },
+        {
+          text: 'Spend 15 minutes verifying the EU directive (easier to find official sources for legislation) and note the Nature Chemistry figure as "approximate" without full citation',
+          outcome: 'The EU Battery Regulation is a real document — Zara finds it in under 3 minutes via the EUR-Lex database and corrects the date. She removes the Nature Chemistry citation and uses the approximate figure with a note that it comes from a range of studies. Her teacher appreciates the honesty and asks her to find a real primary source for the CO₂ figure as an extension task. Partial verification done under time pressure, transparently acknowledged, is far better than false precision.'
+        },
+        {
+          text: 'Use the VERIFY workflow on both claims: find the original Nature Chemistry study and the EUR-Lex source for the directive',
+          outcome: 'Zara finds the EU Battery Regulation immediately. The Nature Chemistry search takes longer — the exact study Claude described does not exist, but she finds a 2021 paper in Nature Communications with similar methodology and a figure of 6.1 tonnes per tonne of lithium. She updates the citation accordingly. The 15-minute investment produces a substantially more accurate and academically credible piece. Her teacher notes the real citation and her mark reflects the care taken.'
+        }
+      ]
+    },
+    {
+      type: 'activity',
+      title: 'Hallucination Hunt',
+      instructions: 'Deliberately induce AI hallucinations and develop your ability to spot them before they cause damage. Use the Prompt Iteration Log from Resources to track your findings.',
+      steps: [
+        'Choose a topic you know well — a subject you study, a hobby, a local area. This background knowledge will help you spot errors',
+        'Ask an AI tool to produce five specific factual claims with citations about your topic. Use a confident prompt: "Give me five specific, cited facts about [topic] including statistics, dates, and research findings"',
+        'Before checking anything: mark which claims feel most suspicious and why. Note your gut reactions',
+        'Now apply VERIFY to each claim. Record: Claim | Primary source found? | Accurate? | Type of error (if any)',
+        'Calculate: How many were fully accurate? Partially accurate? Hallucinated entirely?',
+        'Reflect: Which errors did your gut pick up? Which ones fooled you? What made the hallucinations convincing?'
+      ]
+    },
+    {
+      type: 'discussion',
+      title: 'Who Is Responsible?',
+      questions: [
+        { num: 1, text: 'Air Canada was held legally liable for its chatbot\'s false promise. Should AI companies be liable when their systems produce harmful false information — or does responsibility always lie with the person who chose to act on it?' },
+        { num: 2, text: 'Medical AI tools are increasingly used by patients to self-diagnose. A BMJ study found 38% of AI-generated medical information contains a significant error. Who bears responsibility when a patient is harmed by acting on AI medical advice?' },
+        { num: 3, text: 'Professional fact-checkers take 15–20 minutes to verify a single claim thoroughly. In a world where AI produces thousands of claims per second, is systematic verification even scalable? What institutional solutions might work?' }
+      ]
+    },
+    {
+      type: 'quiz',
+      question: 'What is "lateral reading" in the context of fact-checking?',
+      options: [
+        'Reading a document from multiple angles to find hidden meaning',
+        'Quickly checking what multiple independent sources say about a claim, rather than reading one source deeply',
+        'Comparing the left-wing and right-wing perspectives on a news story',
+        'Re-reading an AI output multiple times to check for internal consistency'
+      ],
+      correct: 1,
+      explanation: 'Lateral reading — opening multiple tabs and checking what credible, independent sources say about a claim or its source — is the fastest and most reliable verification technique identified by media literacy researchers. It is how professional fact-checkers work. A claim supported by three independent credible sources is far more reliable than any single detailed account.'
+    },
+    {
+      type: 'summary',
+      title: 'Key Takeaways',
+      points: [
+        { icon: '🔬', label: '4 hallucination types', text: 'Factual, citation, logical, and temporal — each requires a different verification strategy. Statistics and citations are the most commonly fabricated.' },
+        { icon: '✅', label: 'The VERIFY workflow', text: 'Validate the claim type → Extract the specific claim → Reach for a primary source → Investigate the numbers → Find counter-evidence → Your conclusion in writing' },
+        { icon: '↔️', label: 'Lateral reading beats deep reading', text: 'Checking what multiple independent sources say about a claim is faster and more reliable than reading any single source deeply' }
+      ]
+    }
+  ],
+
   // ── L45: What Can You Trust? (Unit 0 — Foundations) ──────────────────────
   45: [
     {
