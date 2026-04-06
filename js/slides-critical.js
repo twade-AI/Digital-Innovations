@@ -394,4 +394,103 @@ var SLIDES_CRITICAL = {
     }
   ],
 
+
+  // ── L49: AI and Democracy (Unit 2 — AI & Society) ────────────────────────
+  49: [
+    {
+      type: 'hook',
+      title: 'AI and Democracy',
+      body: 'In the 2024 Slovak election, an AI-generated audio clip of a liberal candidate discussing plans to rig the vote spread across social media two days before polling — during a mandatory pre-election silence period when candidates could not legally respond. The candidate lost. In the 2024 US election, over 900 AI-generated political ads ran on Facebook in a single week in swing states. Across the 2024 global super-election year — when 40% of the world\'s population went to the polls — AI-generated content appeared in documented interference operations in at least 16 countries.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">16+</span><span class="sl">countries with documented AI electoral interference in 2024</span></div><div class="hook-stat-mini"><span class="sv">900+</span><span class="sl">AI political ads on Facebook in one week, one US state</span></div><div class="hook-stat-mini"><span class="sv">40%</span><span class="sl">of world population voted in 2024 — the largest election year in history</span></div></div>Democracy depends on informed citizens making genuine choices. AI is now a direct threat to both conditions.'
+    },
+    {
+      type: 'concept',
+      title: 'How AI Is Used in Electoral Influence',
+      body: 'AI-driven electoral interference takes several distinct forms — some illegal, some legal but ethically contested, some simply new. Understanding the taxonomy helps you distinguish a coordinated influence operation from legitimate political communication.',
+      bullets: [
+        '<strong>Synthetic media:</strong> Deepfake audio and video of real candidates saying things they never said. The 2024 Slovak audio, a deepfake of Keir Starmer endorsing a private investment scheme, a fabricated video of a Bangladeshi opposition leader were all generated with free or low-cost tools and spread before fact-checkers could respond',
+        '<strong>AI-generated text at scale:</strong> Automated accounts generating thousands of politically themed posts per hour, seeding narratives across platforms before human moderators can identify the pattern. Stanford Internet Observatory documented networks of 800+ accounts operating in this way during the 2024 Taiwan election',
+        '<strong>Micro-targeting 2.0:</strong> Psychographic profiling using AI to identify voter fears, insecurities and identity threats with unprecedented precision — then tailoring political messaging to exploit them. Cambridge Analytica\'s methods were crude compared to what 2024 tools can do',
+        '<strong>AI-assisted polling manipulation:</strong> Synthetic polling data fed to aggregators to manufacture an impression of inevitability, suppressing voter turnout by making elections seem decided',
+        '<strong>Personalised political chatbots:</strong> AI assistants trained on party platforms that answer voters\' questions — the risk being that they hallucinate policy positions or selectively present information to convert undecided voters'
+      ],
+      callout: 'The most dangerous form is not the obvious fake — it is the barely-wrong AI summary. A chatbot that accurately describes a candidate\'s position 95% of the time, then slightly misrepresents one key policy to undecided voters, is far more effective than a crude deepfake that gets immediately debunked.'
+    },
+    {
+      type: 'concept',
+      title: 'What Laws and Platforms Are — and Aren\'t — Doing',
+      body: 'The 2024 elections served as a live experiment in whether existing laws and platform policies were adequate to manage AI-generated electoral content. The verdict: significant gaps remain, and enforcement is slower than the technology.',
+      bullets: [
+        '<strong>EU AI Act (2024):</strong> Classifies AI systems used in democratic processes — including voter profiling and political micro-targeting — as "high risk," requiring transparency and human oversight. But it covers EU-based actors; external influence operations are largely outside its reach',
+        '<strong>UK Elections Act (2022):</strong> Requires transparency in political advertising but was drafted before generative AI — it does not specifically address AI-generated content. The Electoral Commission has no clear enforcement mechanism for synthetic media',
+        '<strong>US FEC gap:</strong> The US Federal Election Commission confirmed in 2023 that existing campaign finance law does not clearly cover AI-generated content. No comprehensive federal electoral AI law has passed',
+        '<strong>Platform self-regulation:</strong> Meta, Google, and X/Twitter all introduced AI disclosure policies for political ads in 2024. Enforcement was inconsistent — disclosed AI ads ran alongside undisclosed ones on all three platforms',
+        '<strong>What works:</strong> Pre-bunking (teaching voters to recognise manipulation before it occurs) has shown stronger resistance effects than debunking (correcting after exposure). The Jigsaw/Google programme showed 20% reduction in susceptibility to specific manipulation tactics after a 2-minute pre-bunking video'
+      ],
+      callout: 'There is a structural asymmetry: generating AI-manipulated content takes seconds and costs pennies. Detecting, verifying, and removing it takes hours or days and requires significant resources. Current laws and policies have not closed this gap.'
+    },
+    {
+      type: 'scenario',
+      title: 'The Viral Clip',
+      situation: 'Three days before a UK general election, a 45-second audio clip is shared widely on TikTok. In it, a voice that sounds exactly like the prime ministerial candidate discusses a secret plan to raise taxes by 15% immediately after the election — a policy completely at odds with their public platform. The clip has 4 million views. Audio forensics experts say it is consistent with AI voice cloning. The candidate\'s team denies it is real. Under UK electoral law, there is no rapid takedown mechanism for electoral deepfakes. You are a sixth-form student with 2,400 Instagram followers, many of whom are first-time voters.',
+      question: 'What should you do — and what does this situation reveal about the gap between technology and law?',
+      choices: [
+        {
+          text: 'Share the clip with a caption saying it might be fake — your followers deserve to know it exists and make their own judgement',
+          outcome: 'Your caveat gets stripped as others screenshot and reshare the clip. TikTok\'s algorithm treats the engagement your share generates as a signal to amplify it further. You contributed to 18,000 additional views. Even well-intentioned sharing of potentially false content during an election blackout period amplifies rather than corrects. The clip was later confirmed as AI-generated by GCHQ — two days after the election.'
+        },
+        {
+          text: 'Check Full Fact and BBC Verify for coverage before sharing anything; share only the fact-check once it appears',
+          outcome: 'Full Fact posts a preliminary notice within 3 hours noting the clip is under investigation. BBC Verify confirms AI generation within 24 hours. You share the BBC Verify piece, not the original. Your followers get accurate information. You have modelled the correct epistemic behaviour: lateral reading, primary source verification, and patience over speed — especially in the 72-hour window before an election.'
+        },
+        {
+          text: 'Report the clip directly to TikTok and the Electoral Commission, and say nothing publicly until official verification',
+          outcome: 'TikTok\'s automated system deprioritises the report as it does not violate specific content rules — there is no electoral deepfake policy in UK law that TikTok is obligated to enforce. The Electoral Commission confirms it has no authority to compel removal. Your silence was responsible; but it also reveals how dependent the current system is on platform goodwill rather than legal obligation. Nothing stops the clip continuing to spread.'
+        }
+      ]
+    },
+    {
+      type: 'activity',
+      title: 'Design the Safeguard',
+      instructions: 'Work in groups to design a policy response to one specific aspect of AI in elections. Your proposal must be specific, enforceable, and address a genuine trade-off.',
+      steps: [
+        'Choose one of the following problems: (A) AI-generated audio/video of candidates; (B) AI micro-targeting using psychographic data; (C) AI-generated fake polls; (D) Political chatbots that hallucinate policy positions',
+        'Define the specific harm your policy targets: Who is harmed? How? What evidence do you have that this is a real problem?',
+        'Research existing approaches: Has any country or platform tried to address this? What happened?',
+        'Draft a policy proposal: Be specific about what is required, who it applies to, how compliance is verified, and what the penalty for violation is',
+        'Identify the trade-off your policy creates: Does it risk over-restricting legitimate political speech? Who might abuse it?',
+        'Present to the class: 2 minutes maximum. Invite one specific challenge question from the audience and prepare your answer'
+      ]
+    },
+    {
+      type: 'discussion',
+      title: 'Democracy in the Age of AI',
+      questions: [
+        { num: 1, text: 'Pre-bunking — teaching people to recognise manipulation before they encounter it — is more effective than debunking after the fact. But pre-bunking requires knowing what manipulation will occur. Who should be responsible for funding and delivering pre-bunking at scale, and how would you prevent that system itself from becoming a form of political influence?' },
+        { num: 2, text: 'Some argue that AI-generated political content is simply a new form of political communication that should be protected by free expression principles. Others argue that the speed and scale of AI make it categorically different from historical propaganda. Where should the legal line be drawn — and who should draw it?' },
+        { num: 3, text: 'The 2024 elections showed that democratic institutions were largely unprepared for AI-scale content manipulation. Should AI companies be required to pause development of capabilities that can be used for electoral interference during election periods — similar to how campaigns face blackout periods?' }
+      ]
+    },
+    {
+      type: 'quiz',
+      question: 'What is "pre-bunking" in the context of AI and misinformation?',
+      options: [
+        'Removing false content before it is published on social media',
+        'Teaching people to recognise manipulation techniques before they encounter them, building resistance in advance',
+        'A legal process for banning AI-generated political content before an election',
+        'Fact-checking AI outputs before they are distributed to the public'
+      ],
+      correct: 1,
+      explanation: 'Pre-bunking (also called inoculation theory) involves teaching people to recognise the techniques used to manipulate them — before they encounter actual manipulation. Research shows this produces more durable resistance than debunking after exposure, because it activates critical thinking at the moment of encountering false content rather than after the belief has formed.'
+    },
+    {
+      type: 'summary',
+      title: 'Key Takeaways',
+      points: [
+        { icon: '🗳️', label: 'AI is already reshaping elections', text: 'Documented AI influence operations ran in 16+ countries in 2024 — synthetic audio, micro-targeting, AI-generated text at scale. This is not a hypothetical threat.' },
+        { icon: '⚖️', label: 'Law is behind the technology', text: 'The EU AI Act covers high-risk AI in democratic processes; UK and US law has significant gaps. Platform self-regulation is inconsistent and slower than the technology.' },
+        { icon: '🛡️', label: 'Pre-bunking beats debunking', text: 'Teaching critical evaluation before encountering manipulation is more effective than correcting afterwards. The asymmetry between generating and verifying AI content will not close soon.' }
+      ]
+    }
+  ],
+
 };
