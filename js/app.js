@@ -334,6 +334,28 @@ function getNextLessonId(currentId) {
 function saveReflection(lessonId, slideIdx, text) {
   var key = 'di_reflection_' + lessonId + '_' + slideIdx;
   localStorage.setItem(key, text);
+  // Sync to Supabase if signed in
+  syncReflectionToCloud(lessonId, slideIdx, text);
+}
+
+function syncReflectionToCloud(lessonId, slideIdx, text) {
+  if (typeof isSupabaseReady !== 'function' || !isSupabaseReady()) return;
+  if (typeof getCurrentUser !== 'function') return;
+  var user = getCurrentUser();
+  if (!user) return;
+  var found = findLesson(lessonId);
+  var lessonTitle = found ? found.lesson.title : 'Lesson ' + lessonId;
+  // Fire-and-forget upsert — don't block the UI
+  _sb.from('reflections').upsert({
+    user_id:      user.id,
+    lesson_id:    lessonId,
+    slide_idx:    slideIdx,
+    lesson_title: lessonTitle,
+    text:         text,
+    updated_at:   new Date().toISOString()
+  }, { onConflict: 'user_id,lesson_id,slide_idx' }).then(function(res) {
+    if (res.error) console.warn('[reflections] sync error:', res.error.message);
+  });
 }
 
 function loadReflection(lessonId, slideIdx) {
