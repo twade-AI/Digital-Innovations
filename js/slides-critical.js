@@ -2,6 +2,104 @@
 
 var SLIDES_CRITICAL = {
 
+  // ── L48: Thinking With vs. Thinking For (Unit 5 — Presentations & Reflection) ─
+  48: [
+    {
+      type: 'hook',
+      title: 'Thinking With vs. Thinking For',
+      body: 'A 2023 study by MIT researchers gave 758 professionals a writing task. One group used ChatGPT for every step. One group used no AI. One group used AI only for specific, defined subtasks. The results: the full-AI group produced work that scored highly on surface quality — clarity, structure, fluency. But when participants were tested on their understanding of what they had written, full-AI users scored 47% lower than no-AI users on comprehension. They had produced better-looking work they understood less well. A separate study found that frequent GPS users show measurable decline in hippocampal spatial reasoning ability over two years — the brain physically restructures around the tool.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">47%</span><span class="sl">lower comprehension when students used AI for all writing steps (MIT, 2023)</span></div><div class="hook-stat-mini"><span class="sv">2 yrs</span><span class="sl">for measurable hippocampal decline in heavy GPS users</span></div><div class="hook-stat-mini"><span class="sv">40%</span><span class="sl">higher quality output when AI is used iteratively, not totally (Wharton)</span></div></div>There is a difference between AI that extends your thinking and AI that replaces it. Only one of those makes you more capable over time.'
+    },
+    {
+      type: 'concept',
+      title: 'Cognitive Offloading — What It Really Costs',
+      body: 'Cognitive offloading is the practice of using external tools to handle mental work: writing a note instead of memorising, using a calculator instead of computing, asking AI instead of reasoning. It is not inherently harmful — human cognition has always used tools. But some offloading builds capability; some erodes it.',
+      bullets: [
+        'The extended mind thesis (Clark & Chalmers, 1998): cognitive processes can extend into the environment — a notebook is part of your memory system, a GPS is part of your navigation system. Tools become genuine extensions of mind',
+        'Productive offloading: using AI to handle tasks that do not build the capabilities you need. Asking AI to format a bibliography so you can focus on argumentation. Using spellcheck so your attention stays on ideas. These free up cognitive resources for higher-order thinking',
+        'Harmful offloading: using AI for tasks where the struggle itself is the learning. When you ask AI to generate your essay plan, you skip the thinking that develops your analytical ability. You get the output but not the capability',
+        'The "generation effect" (cognitive science): information you generate yourself — even imperfectly — is retained far better and understood more deeply than information you passively receive. Struggle is not inefficiency; it is the mechanism of learning',
+        'The key question for any task: Is the cognitive work involved in this task something I want to develop? If yes, do it yourself. If no, offload it'
+      ],
+      callout: 'Using a calculator for arithmetic you already understand offloads a skill you have. Using it before you understand arithmetic prevents you from developing the skill at all. The same principle applies to AI: offloading tasks you have mastered is fine; offloading tasks you are still learning can stunt your development permanently.'
+    },
+    {
+      type: 'concept',
+      title: 'Desirable Difficulties — Why Struggle Builds Competence',
+      body: 'Educational psychologists Robert Bjork and Elizabeth Bjork coined the term "desirable difficulties" to describe conditions that slow down learning in the short term but produce dramatically better long-term retention and transfer. AI makes it possible to bypass all of them.',
+      bullets: [
+        '<strong>Retrieval practice:</strong> Trying to recall information without looking it up produces stronger, more flexible memory than re-reading. Asking AI to "remind you" of facts you should recall yourself eliminates this benefit entirely',
+        '<strong>Spaced practice:</strong> Returning to material after a delay — the basis of effective revision. AI removes the gap that makes spaced practice work by giving you the answer immediately, every time',
+        '<strong>Interleaving:</strong> Mixing different types of problems, forcing the brain to identify which approach applies. AI-assisted work tends to route around this — you always know the approach because AI chose it',
+        '<strong>Generation effect:</strong> Producing an answer — even a wrong one — before seeing the correct version creates stronger memory traces than reading the correct answer first. Asking AI before you attempt produces the opposite of this',
+        '<strong>Contextual interference:</strong> Varying the conditions of practice. When AI always provides the same scaffolding, variability is reduced and transfer to new contexts suffers'
+      ],
+      callout: 'This is not an argument against using AI. It is an argument for using AI after you have struggled with a problem yourself, not instead of struggling. The same content, in the same time, produces different learning depending on when in the process AI enters.'
+    },
+    {
+      type: 'scenario',
+      title: 'Two Students, One Year On',
+      situation: 'Two students take the same Digital Innovations course. Amara uses AI for everything from day one: essay plans, argument structures, slide summaries, first drafts. She produces consistently high-quality submitted work all year. She finds the course comfortable. Jonas uses AI only after attempting tasks himself — he drafts essay plans before asking AI to critique them, attempts summaries before comparing to AI output, struggles with argument structures before using AI to check his reasoning. His submitted work is sometimes weaker than Amara\'s. At the end-of-year viva voce (oral examination), both students are asked to explain their thinking and respond to unexpected questions without AI.',
+      question: 'What do you predict happens at the viva — and what does this reveal about the purpose of the course?',
+      choices: [
+        {
+          text: 'Amara performs just as well — she has absorbed the material through her AI-assisted work and can explain it confidently',
+          outcome: 'Amara discovers a problem she did not anticipate: she can describe the conclusions but struggles to reconstruct the reasoning. When the examiner asks "why does this follow from that?" she finds herself reaching for the AI-generated structures she submitted rather than her own understanding. She passes, but the experience reveals how much of the thinking in her submitted work was not hers. The viva was designed precisely to test this — and it succeeded.'
+        },
+        {
+          text: 'Jonas performs better — his struggle throughout the year built genuine understanding that transfers to novel questions',
+          outcome: 'Jonas finds the viva uncomfortable in a familiar way — it is the same productive struggle he practised all year. When the examiner challenges his argument, he can adapt it in real time because he built the argument himself and understands where it is strong and where it bends. His final grade is higher than his average submitted grade suggested. The desirable difficulties paid off exactly as the research predicts — slower during the year, more capable at the end of it.'
+        },
+        {
+          text: 'Both perform similarly — the viva tests communication skills as much as understanding, and Amara has practised producing clear, well-structured communication all year',
+          outcome: 'There is genuine truth to this. Amara\'s year of AI-assisted work has made her a clearer communicator, and clear communication is part of what the viva tests. But on the questions specifically designed to probe original reasoning — "What would you do if this assumption were false?" "What evidence would change your mind?" — the gap between the students emerges. Preparation for novel thinking cannot be outsourced.'
+        }
+      ]
+    },
+    {
+      type: 'activity',
+      title: 'The Dependency Audit',
+      instructions: 'Map your current AI use against the framework of productive vs. harmful offloading — and design a personal protocol for the next term.',
+      steps: [
+        'List every task you have used AI for in the past two weeks across all subjects. Be honest and specific',
+        'For each task, answer: (a) Did I attempt this myself before using AI? (b) Is this a skill I want to develop further? (c) Could I explain the AI\'s output in my own words without looking at it?',
+        'Classify each as: Productive offloading (task not central to your development, AI freed capacity) / Neutral (unclear) / Potentially harmful (you skipped the struggle that would have built a skill)',
+        'Identify the 2–3 tasks where you most suspect harmful offloading. These are your blind spots.',
+        'Design 3 personal rules for AI use that you could commit to for the next half-term. They should be specific, testable, and honest about what you are trying to protect',
+        'Share your rules with a partner. Challenge each other: Are these rules consistent with your goals? Are they specific enough to actually follow?'
+      ]
+    },
+    {
+      type: 'discussion',
+      title: 'Choosing How You Think',
+      questions: [
+        { num: 1, text: 'The GPS analogy suggests that tools we rely on consistently change our cognitive architecture over years. If that is true of AI assistance in school, what kind of adults will today\'s students become — and is that something they should get to choose consciously?' },
+        { num: 2, text: 'Is there a meaningful difference between a student who uses AI to generate their essay plan versus one who reads widely and lets the ideas of others structure their thinking? Both are outsourcing cognitive work. Where is the real line?' },
+        { num: 3, text: 'Some researchers argue that offloading low-level cognitive tasks to AI frees humans for higher-order creative thinking — just as calculators freed mathematicians from arithmetic. Is cognitive offloading in education a temporary problem of adjustment, or a permanent risk?' }
+      ]
+    },
+    {
+      type: 'quiz',
+      question: 'What is the "generation effect" in educational psychology?',
+      options: [
+        'The finding that younger generations learn faster with digital tools',
+        'The principle that AI-generated content is more memorable than human-written content',
+        'The finding that information you produce yourself — even imperfectly — is retained better than information you passively receive',
+        'The idea that each generation of AI models learns from the outputs of the previous one'
+      ],
+      correct: 2,
+      explanation: 'The generation effect is a well-replicated finding in cognitive psychology: when you produce an answer, explanation, or summary yourself — even if it is incomplete or wrong — you retain and understand it significantly better than if you simply read the correct version. This is why asking AI for an answer before attempting it yourself reduces learning, even when the AI\'s answer is perfect.'
+    },
+    {
+      type: 'summary',
+      title: 'Key Takeaways',
+      points: [
+        { icon: '🧩', label: 'Not all offloading is equal', text: 'Productive offloading frees cognitive capacity for higher-order work. Harmful offloading skips the struggle that builds genuine capability — and the difference depends on whether you needed to develop that skill' },
+        { icon: '💪', label: 'Struggle is the mechanism of learning', text: 'Desirable difficulties — retrieval practice, generation effect, interleaving — are consistently erased when AI provides answers before you attempt them. Slower practice, better outcomes.' },
+        { icon: '🗺️', label: 'Design your own protocol', text: 'The students who get the most from AI are those who have made explicit, conscious decisions about when to use it — not those who reach for it by default every time' }
+      ]
+    }
+  ],
+
   // ── L47: The AI Content Flood (Unit 2 — AI & Society) ───────────────────────
   47: [
     {
@@ -296,3 +394,4 @@ var SLIDES_CRITICAL = {
     }
   ],
 
+};
