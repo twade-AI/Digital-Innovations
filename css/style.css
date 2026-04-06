@@ -770,6 +770,29 @@ kbd{
 .diff-chip-advanced.active{ border-color:#ef4444;color:#ef4444;background:rgba(239,68,68,.1) }
 
 /* ── Recently Viewed ─────────────────────────── */
+/* ── Spaced Review Queue ──────────────────────── */
+.spaced-review-section{
+  margin:20px 0;padding:18px 20px;
+  background:var(--bg-card);border:1px solid var(--border);
+  border-left:3px solid var(--primary);border-radius:var(--radius);
+}
+.srq-header{ display:flex;align-items:baseline;gap:12px;margin-bottom:12px; }
+.srq-title{ font-weight:700;font-size:.95rem; }
+.srq-sub{ font-size:.78rem;color:var(--text-dim); }
+.srq-list{ display:flex;flex-direction:column;gap:6px; }
+.srq-item{
+  display:flex;align-items:center;gap:12px;width:100%;
+  background:var(--bg-card-hover);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:10px 14px;
+  cursor:pointer;text-align:left;font-family:inherit;
+  transition:border-color .15s,background .15s;
+}
+.srq-item:hover{ border-color:var(--primary);background:var(--bg); }
+.srq-lesson-title{ flex:1;font-size:.85rem;font-weight:600; }
+.srq-days{ font-size:.75rem;color:var(--text-dim);white-space:nowrap; }
+.srq-go{ font-size:.78rem;font-weight:700;color:var(--primary-light);white-space:nowrap; }
+.srq-more{ font-size:.75rem;color:var(--text-dim);padding:6px 14px; }
+
 /* ── First-Lesson Banner ──────────────────────── */
 .first-lesson-banner{
   display:flex;align-items:center;gap:16px;flex-wrap:wrap;

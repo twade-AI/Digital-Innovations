@@ -1,7 +1,8 @@
 /* ── App Logic ── Digital Innovations Course Portal ─────── */
 
-const STORAGE_KEY = 'di_progress';
-const STREAK_KEY  = 'di_streak';
+const STORAGE_KEY      = 'di_progress';
+const STREAK_KEY       = 'di_streak';
+const COMPLETION_DATES_KEY = 'di_completion_dates';
 
 /* ── State ─────────────────────────────────────── */
 let completedLessons = loadProgress();
@@ -19,6 +20,54 @@ function saveProgress() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify([...completedLessons]));
   updateStreak();
   if (typeof scheduleSync === 'function') scheduleSync();
+}
+
+/* ── Completion Dates (for spaced repetition) ── */
+function loadCompletionDates() {
+  try { return JSON.parse(localStorage.getItem(COMPLETION_DATES_KEY)) || {}; }
+  catch { return {}; }
+}
+function recordCompletionDate(lessonId) {
+  var dates = loadCompletionDates();
+  if (!dates[lessonId]) {  // only record first completion
+    dates[lessonId] = new Date().toISOString();
+    localStorage.setItem(COMPLETION_DATES_KEY, JSON.stringify(dates));
+  }
+}
+// Spaced intervals (days): review after 1d, 7d, 30d since completion
+var SRS_INTERVALS = [1, 7, 30];
+function getSpacedReviewDue() {
+  var dates = loadCompletionDates();
+  var now = Date.now();
+  var due = [];
+  completedLessons.forEach(function(id) {
+    if (!dates[id]) return;
+    var daysSince = (now - new Date(dates[id]).getTime()) / 86400000;
+    // Find which interval we're in
+    var nextInterval = SRS_INTERVALS.find(function(d) { return daysSince >= d; });
+    if (!nextInterval) return;
+    // Check if they've reviewed it recently enough
+    var lastReview = getLastReviewDate(id);
+    var daysSinceReview = lastReview ? (now - new Date(lastReview).getTime()) / 86400000 : daysSince;
+    if (daysSinceReview >= nextInterval) {
+      var found = findLesson(id);
+      if (found) due.push({ id: id, title: found.lesson.title, unit: found.unit.title, daysSince: Math.floor(daysSince) });
+    }
+  });
+  return due.sort(function(a, b) { return b.daysSince - a.daysSince; });
+}
+function getLastReviewDate(lessonId) {
+  try {
+    var reviews = JSON.parse(localStorage.getItem('di_reviews') || '{}');
+    return reviews[lessonId] || null;
+  } catch { return null; }
+}
+function recordReview(lessonId) {
+  try {
+    var reviews = JSON.parse(localStorage.getItem('di_reviews') || '{}');
+    reviews[lessonId] = new Date().toISOString();
+    localStorage.setItem('di_reviews', JSON.stringify(reviews));
+  } catch {}
 }
 function updateStreak() {
   var data = JSON.parse(localStorage.getItem(STREAK_KEY) || '{"last":"","count":0,"days":[]}');
@@ -158,7 +207,7 @@ function showSection(name) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
   if (name === 'progress') renderProgress();
   if (name === 'map') renderCourseMap();
-  if (name === 'home') { renderRecentlyViewed(); updateTimeEstimate(); }
+  if (name === 'home') { renderRecentlyViewed(); updateTimeEstimate(); renderSpacedReviewQueue(); }
   if (name === 'exemplars') renderExemplars();
   if (name === 'timeline') renderTimeline();
   if (name === 'news') renderFullNewsGrid();
@@ -252,11 +301,13 @@ function toggleLesson(id) {
   renderUnits();
   updateHomeStats();
   if (!wasComplete) {
+    recordCompletionDate(id);
     launchConfetti();
     addXP(20, 'Lesson completed');
     setTimeout(checkAndAwardBadges, 600);
     setTimeout(checkMilestone, 900);
     setTimeout(updateReviewDueBadge, 200);
+    setTimeout(renderSpacedReviewQueue, 300);
     updateFirstLessonBanner();
     updateContinueButton();
   }
@@ -319,6 +370,11 @@ function renderResourceLinks(lesson) {
 function openLesson(id) {
   var found = findLesson(id);
   if (!found) return;
+  // Record as reviewed if it was previously completed
+  if (completedLessons.has(id)) {
+    recordReview(id);
+    setTimeout(renderSpacedReviewQueue, 200);
+  }
   var lesson = found.lesson;
   var unit = found.unit;
   var slides = getLessonSlides(id, lesson, unit);
@@ -1355,6 +1411,30 @@ function getQuizDueList() {
   });
   return due;
 }
+/* ── Spaced Review Queue ────────────────────────── */
+function renderSpacedReviewQueue() {
+  var el = document.getElementById('spacedReviewSection');
+  if (!el) return;
+  var due = getSpacedReviewDue();
+  if (!due.length) { el.style.display = 'none'; return; }
+  el.style.display = 'block';
+  el.innerHTML =
+    '<div class="srq-header">' +
+      '<span class="srq-title">📅 Due for Review</span>' +
+      '<span class="srq-sub">' + due.length + ' lesson' + (due.length === 1 ? '' : 's') + ' — revisit to strengthen your memory</span>' +
+    '</div>' +
+    '<div class="srq-list">' +
+    due.slice(0, 5).map(function(d) {
+      return '<button class="srq-item" onclick="openLesson(' + d.id + ')">' +
+        '<span class="srq-lesson-title">L' + d.id + ': ' + d.title + '</span>' +
+        '<span class="srq-days">' + d.daysSince + 'd ago</span>' +
+        '<span class="srq-go">Review →</span>' +
+      '</button>';
+    }).join('') +
+    (due.length > 5 ? '<div class="srq-more">+' + (due.length - 5) + ' more — go to My Progress to see all</div>' : '') +
+    '</div>';
+}
+
 function updateReviewDueBadge() {
   var el = document.getElementById('heroReviewDue');
   if (!el) return;
@@ -2517,6 +2597,7 @@ document.addEventListener('DOMContentLoaded', () => {
   checkOnboarding();
   initFloatContinue();
   updateFirstLessonBanner();
+  renderSpacedReviewQueue();
 });
 
 // Keyboard shortcuts
