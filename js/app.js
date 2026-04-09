@@ -221,7 +221,7 @@ function toggleMobileNav() {
 function renderUnits() {
   const container = document.getElementById('unitsContainer');
   container.innerHTML = UNITS.map((unit, idx) => `
-    <div class="unit-block" id="unit-${idx}">
+    <div class="unit-block" id="unit-${idx}" style="--unit-colour:${UNIT_COLOURS[idx] || '#6366f1'}">
       <div class="unit-header" onclick="toggleUnit(${idx})">
         <span class="unit-icon">${unit.icon}</span>
         <div class="unit-meta">

@@ -2,46 +2,51 @@
 
 /* Larger modal for full lessons */
 .modal--lesson .modal-content {
-  max-width: 860px;
+  max-width: 880px;
   max-height: 92vh;
   padding: 0;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.09);
+  box-shadow: 0 32px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(99,102,241,.12);
 }
 
 /* Header bar */
 .lv-header {
-  padding: 16px 24px 12px;
+  padding: 14px 24px 10px;
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
+  /* Subtle unit-colour tint at top */
+  background: linear-gradient(180deg, rgba(var(--unit-colour-rgb,99,102,241),.04) 0%, transparent 100%);
 }
 .lv-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .lv-unit-label {
-  font-size: .75rem;
-  color: var(--primary-light);
-  font-weight: 600;
+  font-size: .72rem;
+  color: var(--unit-colour, var(--primary-light));
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: .05em;
+  letter-spacing: .07em;
 }
 .lv-slide-count {
-  font-size: .75rem;
+  font-size: .72rem;
   color: var(--text-dim);
 }
 .lv-progress-track {
-  height: 4px;
+  height: 3px;
   background: var(--border);
   border-radius: 2px;
   overflow: hidden;
 }
 .lv-progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
+  background: linear-gradient(90deg, var(--unit-colour, var(--primary)), var(--accent));
   border-radius: 2px;
   transition: width .35s ease;
 }
