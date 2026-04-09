@@ -1,7 +1,8 @@
 /* ── App Logic ── Digital Innovations Course Portal ─────── */
 
-const STORAGE_KEY = 'di_progress';
-const STREAK_KEY  = 'di_streak';
+const STORAGE_KEY      = 'di_progress';
+const STREAK_KEY       = 'di_streak';
+const COMPLETION_DATES_KEY = 'di_completion_dates';
 
 /* ── State ─────────────────────────────────────── */
 let completedLessons = loadProgress();
@@ -19,6 +20,54 @@ function saveProgress() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify([...completedLessons]));
   updateStreak();
   if (typeof scheduleSync === 'function') scheduleSync();
+}
+
+/* ── Completion Dates (for spaced repetition) ── */
+function loadCompletionDates() {
+  try { return JSON.parse(localStorage.getItem(COMPLETION_DATES_KEY)) || {}; }
+  catch { return {}; }
+}
+function recordCompletionDate(lessonId) {
+  var dates = loadCompletionDates();
+  if (!dates[lessonId]) {  // only record first completion
+    dates[lessonId] = new Date().toISOString();
+    localStorage.setItem(COMPLETION_DATES_KEY, JSON.stringify(dates));
+  }
+}
+// Spaced intervals (days): review after 1d, 7d, 30d since completion
+var SRS_INTERVALS = [1, 7, 30];
+function getSpacedReviewDue() {
+  var dates = loadCompletionDates();
+  var now = Date.now();
+  var due = [];
+  completedLessons.forEach(function(id) {
+    if (!dates[id]) return;
+    var daysSince = (now - new Date(dates[id]).getTime()) / 86400000;
+    // Find which interval we're in
+    var nextInterval = SRS_INTERVALS.find(function(d) { return daysSince >= d; });
+    if (!nextInterval) return;
+    // Check if they've reviewed it recently enough
+    var lastReview = getLastReviewDate(id);
+    var daysSinceReview = lastReview ? (now - new Date(lastReview).getTime()) / 86400000 : daysSince;
+    if (daysSinceReview >= nextInterval) {
+      var found = findLesson(id);
+      if (found) due.push({ id: id, title: found.lesson.title, unit: found.unit.title, daysSince: Math.floor(daysSince) });
+    }
+  });
+  return due.sort(function(a, b) { return b.daysSince - a.daysSince; });
+}
+function getLastReviewDate(lessonId) {
+  try {
+    var reviews = JSON.parse(localStorage.getItem('di_reviews') || '{}');
+    return reviews[lessonId] || null;
+  } catch { return null; }
+}
+function recordReview(lessonId) {
+  try {
+    var reviews = JSON.parse(localStorage.getItem('di_reviews') || '{}');
+    reviews[lessonId] = new Date().toISOString();
+    localStorage.setItem('di_reviews', JSON.stringify(reviews));
+  } catch {}
 }
 function updateStreak() {
   var data = JSON.parse(localStorage.getItem(STREAK_KEY) || '{"last":"","count":0,"days":[]}');
@@ -158,7 +207,7 @@ function showSection(name) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
   if (name === 'progress') renderProgress();
   if (name === 'map') renderCourseMap();
-  if (name === 'home') { renderRecentlyViewed(); updateTimeEstimate(); }
+  if (name === 'home') { renderRecentlyViewed(); updateTimeEstimate(); renderSpacedReviewQueue(); }
   if (name === 'exemplars') renderExemplars();
   if (name === 'timeline') renderTimeline();
   if (name === 'news') renderFullNewsGrid();
@@ -252,11 +301,13 @@ function toggleLesson(id) {
   renderUnits();
   updateHomeStats();
   if (!wasComplete) {
+    recordCompletionDate(id);
     launchConfetti();
     addXP(20, 'Lesson completed');
     setTimeout(checkAndAwardBadges, 600);
     setTimeout(checkMilestone, 900);
     setTimeout(updateReviewDueBadge, 200);
+    setTimeout(renderSpacedReviewQueue, 300);
     updateFirstLessonBanner();
     updateContinueButton();
   }
@@ -283,6 +334,28 @@ function getNextLessonId(currentId) {
 function saveReflection(lessonId, slideIdx, text) {
   var key = 'di_reflection_' + lessonId + '_' + slideIdx;
   localStorage.setItem(key, text);
+  // Sync to Supabase if signed in
+  syncReflectionToCloud(lessonId, slideIdx, text);
+}
+
+function syncReflectionToCloud(lessonId, slideIdx, text) {
+  if (typeof isSupabaseReady !== 'function' || !isSupabaseReady()) return;
+  if (typeof getCurrentUser !== 'function') return;
+  var user = getCurrentUser();
+  if (!user) return;
+  var found = findLesson(lessonId);
+  var lessonTitle = found ? found.lesson.title : 'Lesson ' + lessonId;
+  // Fire-and-forget upsert — don't block the UI
+  _sb.from('reflections').upsert({
+    user_id:      user.id,
+    lesson_id:    lessonId,
+    slide_idx:    slideIdx,
+    lesson_title: lessonTitle,
+    text:         text,
+    updated_at:   new Date().toISOString()
+  }, { onConflict: 'user_id,lesson_id,slide_idx' }).then(function(res) {
+    if (res.error) console.warn('[reflections] sync error:', res.error.message);
+  });
 }
 
 function loadReflection(lessonId, slideIdx) {
@@ -319,6 +392,11 @@ function renderResourceLinks(lesson) {
 function openLesson(id) {
   var found = findLesson(id);
   if (!found) return;
+  // Record as reviewed if it was previously completed
+  if (completedLessons.has(id)) {
+    recordReview(id);
+    setTimeout(renderSpacedReviewQueue, 200);
+  }
   var lesson = found.lesson;
   var unit = found.unit;
   var slides = getLessonSlides(id, lesson, unit);
@@ -1355,6 +1433,30 @@ function getQuizDueList() {
   });
   return due;
 }
+/* ── Spaced Review Queue ────────────────────────── */
+function renderSpacedReviewQueue() {
+  var el = document.getElementById('spacedReviewSection');
+  if (!el) return;
+  var due = getSpacedReviewDue();
+  if (!due.length) { el.style.display = 'none'; return; }
+  el.style.display = 'block';
+  el.innerHTML =
+    '<div class="srq-header">' +
+      '<span class="srq-title">📅 Due for Review</span>' +
+      '<span class="srq-sub">' + due.length + ' lesson' + (due.length === 1 ? '' : 's') + ' — revisit to strengthen your memory</span>' +
+    '</div>' +
+    '<div class="srq-list">' +
+    due.slice(0, 5).map(function(d) {
+      return '<button class="srq-item" onclick="openLesson(' + d.id + ')">' +
+        '<span class="srq-lesson-title">L' + d.id + ': ' + d.title + '</span>' +
+        '<span class="srq-days">' + d.daysSince + 'd ago</span>' +
+        '<span class="srq-go">Review →</span>' +
+      '</button>';
+    }).join('') +
+    (due.length > 5 ? '<div class="srq-more">+' + (due.length - 5) + ' more — go to My Progress to see all</div>' : '') +
+    '</div>';
+}
+
 function updateReviewDueBadge() {
   var el = document.getElementById('heroReviewDue');
   if (!el) return;
@@ -1380,6 +1482,144 @@ function startQuickQuizDueOnly() {
   quickQuizIndex = 0; quickQuizScore = 0;
   renderQuickQuizSlide();
   document.getElementById('quickQuizModal').classList.add('open');
+}
+
+/* ── Viva Practice Mode ────────────────────────── */
+var VIVA_QUESTIONS = [
+  // Your Project
+  { cat:'project', q:"Walk me through how your project works from the user's perspective.", hint:"Start with the problem, then describe the user journey step by step." },
+  { cat:'project', q:"What problem were you trying to solve, and how do you know it was a real problem?", hint:"Evidence of need: interviews, statistics, personal experience. Avoid 'I thought it would be useful.'" },
+  { cat:'project', q:"Why did you choose this approach rather than an alternative?", hint:"Name at least one alternative you considered and explain why you rejected it." },
+  { cat:'project', q:"What is the single most technically interesting decision you made, and why?", hint:"Focus on a decision with real trade-offs — not just 'I used GPT-4 because it's the best.'" },
+  { cat:'project', q:"If you had twice as much time, what would you add first?", hint:"Shows self-awareness. Prioritise by user impact, not technical interest." },
+  // Ethics
+  { cat:'ethics', q:"What is the biggest ethical risk your project creates? What did you do about it?", hint:"Be specific. Vague answers ('privacy could be a concern') score lower than named risks with named mitigations." },
+  { cat:'ethics', q:"Who could be harmed by your project — directly or indirectly?", hint:"Think beyond primary users: third parties, marginalised groups, people who didn't consent to be affected." },
+  { cat:'ethics', q:"How does your project handle user data? Did you consider privacy by design?", hint:"Data minimisation, purpose limitation, user control. What data do you collect and why is each piece necessary?" },
+  { cat:'ethics', q:"Could your project produce biased outputs? How did you test for this?", hint:"Bias can come from training data, prompt design, or the framing of the problem itself. Be specific about your testing approach." },
+  { cat:'ethics', q:"If your project was deployed at scale to millions of users, what new risks would emerge?", hint:"Scale changes everything: misuse, adversarial inputs, societal effects, environmental cost." },
+  // Technical
+  { cat:'technical', q:"Why did you choose the AI tools and models you used? What alternatives did you consider?", hint:"Evaluate on: capability, cost, privacy, ethics of the provider, terms of service." },
+  { cat:'technical', q:"Show me your most important prompt. Why is it structured the way it is?", hint:"Reference the PTFC framework. Explain each element and what happens when you remove it." },
+  { cat:'technical', q:"What was the hardest problem you encountered? How did you solve it?", hint:"Process matters: what did you try first? What failed? How did failure lead to the solution?" },
+  { cat:'technical', q:"How did you test that your system works as intended?", hint:"Systematic testing vs. ad hoc testing. Edge cases. What would cause it to fail?" },
+  { cat:'technical', q:"What assumptions did you make that turned out to be wrong?", hint:"Intellectual honesty here is valued. Everyone makes wrong assumptions — the skill is recognising and adapting." },
+  // Reflection
+  { cat:'reflection', q:"What is the most important thing you learned — not about AI, but about yourself as a learner?", hint:"Avoid generic answers. The examiner wants specificity: a moment, a realisation, a changed behaviour." },
+  { cat:'reflection', q:"What would you do completely differently if you started again?", hint:"Distinguish process improvements (how you worked) from product improvements (what you built)." },
+  { cat:'reflection', q:"How has this project changed how you think about AI?", hint:"Contrast your view at the start of the course with your view now. What evidence changed your mind?" },
+  { cat:'reflection', q:"What do you know now that you wish you had known at the start of the project?", hint:"Technical knowledge, process knowledge, or self-knowledge — any of these count." },
+  // Wider Course
+  { cat:'wider', q:"Which lesson from the course was most useful when building your project? Why?", hint:"Be specific about which concepts from that lesson you applied and where." },
+  { cat:'wider', q:"How does your project relate to the AI regulation landscape we studied?", hint:"EU AI Act risk classification, UK and US approaches. Where would your project sit on the risk spectrum?" },
+  { cat:'wider', q:"Does your project raise questions about human oversight? Where is the human in the loop?", hint:"Human-in/on/out-of-the-loop. Could your project cause harm without human review at a critical step?" },
+  { cat:'wider', q:"If you were writing the policy that governed use of your own project, what would it say?", hint:"Acceptable use, prohibited uses, data retention, oversight requirements. Be specific." }
+];
+var VIVA_CATEGORY_LABELS = { project:'Your Project', ethics:'Ethical Analysis', technical:'Technical & Design', reflection:'Reflection & Learning', wider:'Wider Course', all:'All Questions' };
+
+var _vivaQueue = [];
+var _vivaIndex = 0;
+var _vivaScores = {};
+var _vivaFilter = 'all';
+
+function openVivaPractice() {
+  _vivaFilter = 'all';
+  document.querySelectorAll('.viva-filter-btn').forEach(function(b) { b.classList.toggle('active', b.getAttribute('onclick').includes("'all'")); });
+  startVivaSession();
+  document.getElementById('vivaPracticeModal').classList.add('open');
+}
+function closeVivaPractice() { document.getElementById('vivaPracticeModal').classList.remove('open'); }
+
+function startVivaSession() {
+  _vivaScores = {};
+  _vivaIndex = 0;
+  var filtered = _vivaFilter === 'all' ? VIVA_QUESTIONS : VIVA_QUESTIONS.filter(function(q) { return q.cat === _vivaFilter; });
+  // Shuffle
+  _vivaQueue = filtered.slice().sort(function() { return Math.random() - 0.5; });
+  document.getElementById('vivaDoneMsg').style.display = 'none';
+  document.getElementById('vivaCard').style.display = 'block';
+  document.querySelectorAll('.viva-rate-btn').forEach(function(b) { b.style.display = 'inline-flex'; });
+  document.querySelector('.viva-instructions').style.display = 'block';
+  renderVivaCard();
+  updateVivaScoreDisplay();
+}
+
+function renderVivaCard() {
+  var q = _vivaQueue[_vivaIndex];
+  if (!q) return;
+  document.getElementById('vivaCat').textContent = VIVA_CATEGORY_LABELS[q.cat] || q.cat;
+  document.getElementById('vivaQuestion').textContent = q.q;
+  var hintEl = document.getElementById('vivaHint');
+  hintEl.textContent = q.hint;
+  hintEl.style.display = 'none';
+  document.getElementById('vivaHintBtn').textContent = '💡 Show prompt';
+  var pct = Math.round(_vivaIndex / _vivaQueue.length * 100);
+  document.getElementById('vivaProgressFill').style.width = pct + '%';
+  document.getElementById('vivaProgressLabel').textContent = 'Question ' + (_vivaIndex + 1) + ' of ' + _vivaQueue.length;
+}
+
+function toggleVivaHint() {
+  var h = document.getElementById('vivaHint');
+  var visible = h.style.display !== 'none';
+  h.style.display = visible ? 'none' : 'block';
+  document.getElementById('vivaHintBtn').textContent = visible ? '💡 Show prompt' : '💡 Hide prompt';
+}
+
+function rateViva(rating) {
+  var q = _vivaQueue[_vivaIndex];
+  if (q) _vivaScores[_vivaIndex] = rating;
+  _vivaIndex++;
+  if (_vivaIndex >= _vivaQueue.length) { showVivaDone(); return; }
+  renderVivaCard();
+  updateVivaScoreDisplay();
+}
+
+function updateVivaScoreDisplay() {
+  var vals = Object.values(_vivaScores);
+  document.getElementById('vivaScoreGreen').textContent = vals.filter(function(v) { return v === 'green'; }).length + ' Confident';
+  document.getElementById('vivaScoreAmber').textContent = vals.filter(function(v) { return v === 'amber'; }).length + ' Unsure';
+  document.getElementById('vivaScoreRed').textContent   = vals.filter(function(v) { return v === 'red';   }).length + ' Struggling';
+}
+
+function showVivaDone() {
+  document.getElementById('vivaProgressFill').style.width = '100%';
+  document.getElementById('vivaProgressLabel').textContent = 'Complete!';
+  document.getElementById('vivaCard').style.display = 'none';
+  document.querySelectorAll('.viva-rate-btn').forEach(function(b) { b.style.display = 'none'; });
+  document.querySelector('.viva-instructions').style.display = 'none';
+  var vals = Object.values(_vivaScores);
+  var green = vals.filter(function(v) { return v === 'green'; }).length;
+  var amber = vals.filter(function(v) { return v === 'amber'; }).length;
+  var red   = vals.filter(function(v) { return v === 'red';   }).length;
+  document.getElementById('vivaDoneSummary').innerHTML =
+    '<strong>' + green + '</strong> confident &nbsp;·&nbsp; <strong>' + amber + '</strong> getting there &nbsp;·&nbsp; <strong>' + red + '</strong> need work';
+  document.getElementById('vivaDoneMsg').style.display = 'block';
+  updateVivaScoreDisplay();
+}
+
+function restartViva() { startVivaSession(); }
+
+function reviewVivaWeak() {
+  // Only review questions rated 'red'
+  var weak = _vivaQueue.filter(function(_, i) { return _vivaScores[i] === 'red'; });
+  if (!weak.length) { alert('No struggling questions to review — great work!'); return; }
+  _vivaQueue = weak;
+  _vivaScores = {};
+  _vivaIndex = 0;
+  document.getElementById('vivaDoneMsg').style.display = 'none';
+  document.getElementById('vivaCard').style.display = 'block';
+  document.querySelectorAll('.viva-rate-btn').forEach(function(b) { b.style.display = 'inline-flex'; });
+  document.querySelector('.viva-instructions').style.display = 'block';
+  renderVivaCard();
+  updateVivaScoreDisplay();
+}
+
+function setVivaFilter(filter) {
+  _vivaFilter = filter;
+  document.querySelectorAll('.viva-filter-btn').forEach(function(b) {
+    b.classList.toggle('active', b.getAttribute('onclick').includes("'" + filter + "'"));
+  });
+  startVivaSession();
 }
 
 /* ── Assessment Mode ───────────────────────────── */
@@ -2517,6 +2757,7 @@ document.addEventListener('DOMContentLoaded', () => {
   checkOnboarding();
   initFloatContinue();
   updateFirstLessonBanner();
+  renderSpacedReviewQueue();
 });
 
 // Keyboard shortcuts
@@ -2533,6 +2774,7 @@ document.addEventListener('keydown', e => {
     closeShortcuts();
     closeCapstone();
     closeOnboarding();
+    closeVivaPractice();
     if (typeof closeAuthModal === 'function') closeAuthModal();
   }
   if (e.key === '?' && !inInput) { openShortcuts(); return; }

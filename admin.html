@@ -156,6 +156,34 @@
     .dash-tab.active { color: var(--primary-light); border-bottom-color: var(--primary); }
     .dash-tab:hover:not(.active) { color: var(--text); }
 
+    /* ── Class Dashboard ── */
+    .cd-section { margin-bottom: 32px; }
+    .cd-section-title { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); margin-bottom: 14px; }
+    .cd-unit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+    .cd-unit-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+    .cd-unit-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; font-weight: 600; font-size: .88rem; }
+    .cd-unit-pct { font-size: 1.1rem; font-weight: 800; color: var(--primary-light); }
+    .cd-bar-track { height: 8px; border-radius: 4px; background: var(--border); overflow: hidden; }
+    .cd-bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #6366f1, #06b6d4); transition: width .6s ease; }
+    .cd-unit-sub { font-size: .72rem; color: var(--text-muted); margin-top: 6px; }
+    .cd-dist-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .cd-dist-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; }
+    .cd-dist-num { font-size: 1.6rem; font-weight: 800; color: var(--text); }
+    .cd-dist-label { font-size: .72rem; color: var(--text-muted); margin-top: 3px; }
+    .cd-dist-bar { height: 6px; border-radius: 3px; margin-top: 10px; }
+    .cd-lesson-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+    .cd-lesson-table th { text-align: left; padding: 6px 10px; font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+    .cd-lesson-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); }
+    .cd-lesson-table tr:last-child td { border-bottom: none; }
+    .cd-lesson-bar { height: 6px; border-radius: 3px; background: var(--border); overflow: hidden; display: inline-block; width: 80px; vertical-align: middle; margin-right: 6px; }
+    .cd-lesson-fill { height: 100%; border-radius: 3px; background: var(--primary); }
+    .cd-risk-list { display: flex; flex-direction: column; gap: 8px; }
+    .cd-risk-row { display: flex; align-items: center; gap: 12px; background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px; font-size: .82rem; }
+    .cd-risk-name { font-weight: 600; flex: 1; }
+    .cd-risk-badge { font-size: .7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
+    .cd-risk-inactive { background: rgba(239,68,68,.15); color: #ef4444; }
+    .cd-risk-nostart { background: rgba(245,158,11,.15); color: #f59e0b; }
+
     /* ── News Management ── */
     .news-setup-box { background: rgba(245,158,11,.08); border: 1px solid rgba(245,158,11,.3); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 20px; font-size: .82rem; }
     .news-form-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
@@ -174,6 +202,14 @@
     }
     .news-article-item:hover { border-color: var(--primary); }
     .nai-tag { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: .67rem; font-weight: 700; flex-shrink: 0; background: rgba(99,102,241,.15); color: var(--primary-light); }
+    /* ── Reflections ── */
+    .ref-setup-box { background: rgba(245,158,11,.1); border: 1px solid var(--warning); border-radius: 8px; padding: 16px; margin-bottom: 20px; font-size: .82rem; }
+    .ref-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+    .ref-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+    .ref-student { font-weight: 700; font-size: .88rem; }
+    .ref-lesson { font-size: .78rem; color: var(--primary-light); background: rgba(99,102,241,.12); padding: 2px 8px; border-radius: 4px; }
+    .ref-date { font-size: .72rem; color: var(--text-muted); margin-left: auto; }
+    .ref-text { font-size: .85rem; line-height: 1.6; color: var(--text); white-space: pre-wrap; border-left: 3px solid var(--border); padding-left: 12px; }
     .nai-body { flex: 1; min-width: 0; }
     .nai-headline { font-size: .85rem; font-weight: 600; margin-bottom: 3px; }
     .nai-meta { font-size: .75rem; color: var(--text-dim); }
@@ -250,6 +286,8 @@
     <!-- Dashboard Tabs -->
     <div class="dash-tabs">
       <button class="dash-tab active" onclick="switchDashTab('students')">👥 Students</button>
+      <button class="dash-tab" onclick="switchDashTab('class')">📊 Class Dashboard</button>
+      <button class="dash-tab" onclick="switchDashTab('reflections')">💬 Reflections</button>
       <button class="dash-tab" onclick="switchDashTab('news')">📰 Manage News</button>
     </div>
 
@@ -275,6 +313,46 @@
             <tr><td colspan="7" class="empty-state"><span class="loading-spinner"></span></td></tr>
           </tbody>
         </table>
+      </div>
+    </div>
+
+    <!-- Class Dashboard Tab -->
+    <div id="tabClass" style="display:none">
+      <div id="classDashboardBody">
+        <div class="empty-state" style="padding:40px">Load student data first, then open this tab.</div>
+      </div>
+    </div>
+
+    <!-- Reflections Tab -->
+    <div id="tabReflections" style="display:none">
+      <div class="ref-setup-box" id="refSetupBox" style="display:none">
+        <strong>⚡ One-time setup</strong> — run this SQL in your Supabase SQL Editor to enable reflection sync:
+        <pre style="margin:10px 0;background:rgba(0,0,0,.3);padding:12px;border-radius:6px;font-size:.75rem;overflow-x:auto;white-space:pre-wrap" id="refSetupSql">CREATE TABLE IF NOT EXISTS public.reflections (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
+  lesson_id INT NOT NULL,
+  slide_idx INT NOT NULL,
+  lesson_title TEXT,
+  text TEXT NOT NULL,
+  updated_at TIMESTAMPTZ DEFAULT now(),
+  UNIQUE(user_id, lesson_id, slide_idx)
+);
+ALTER TABLE public.reflections ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Users manage own reflections" ON public.reflections
+  FOR ALL USING (auth.uid() = user_id);
+CREATE POLICY "Admins read all reflections" ON public.reflections
+  FOR SELECT USING (
+    EXISTS (SELECT 1 FROM public.profiles WHERE user_id = auth.uid() AND is_admin = true)
+  );</pre>
+        <button class="btn btn-ghost btn-sm" onclick="copyRefSql()">📋 Copy SQL</button>
+        <span id="refSqlCopied" style="font-size:.78rem;color:var(--success);display:none;margin-left:8px">✓ Copied!</span>
+      </div>
+      <div class="table-controls" style="margin-bottom:16px">
+        <input class="search-input" type="text" id="reflectionSearch" placeholder="Filter by student or lesson…" oninput="filterReflections()">
+        <button class="btn btn-ghost btn-sm" onclick="exportReflectionsCSV()">⬇ Export CSV</button>
+      </div>
+      <div id="reflectionsBody">
+        <div class="empty-state" style="padding:40px"><span class="loading-spinner"></span></div>
       </div>
     </div>
 
@@ -522,6 +600,8 @@ async function loadData() {
 
   renderSummary();
   renderTable(_allStudents);
+  // Refresh class dashboard if it's currently visible
+  if (document.getElementById('tabClass').style.display !== 'none') renderClassDashboard();
   document.getElementById('lastRefresh').textContent = 'Last refreshed: ' + new Date().toLocaleTimeString('en-GB');
 }
 
@@ -711,12 +791,206 @@ function esc(str) {
 
 /* ── Dashboard Tabs ───────────────────────────── */
 function switchDashTab(tab) {
-  document.getElementById('tabStudents').style.display = tab === 'students' ? 'block' : 'none';
-  document.getElementById('tabNews').style.display     = tab === 'news'     ? 'block' : 'none';
-  document.querySelectorAll('.dash-tab').forEach(function(b, i) {
-    b.classList.toggle('active', (i === 0 && tab === 'students') || (i === 1 && tab === 'news'));
+  document.getElementById('tabStudents').style.display    = tab === 'students'    ? 'block' : 'none';
+  document.getElementById('tabClass').style.display       = tab === 'class'       ? 'block' : 'none';
+  document.getElementById('tabReflections').style.display = tab === 'reflections' ? 'block' : 'none';
+  document.getElementById('tabNews').style.display        = tab === 'news'        ? 'block' : 'none';
+  document.querySelectorAll('.dash-tab').forEach(function(b) {
+    b.classList.toggle('active', b.getAttribute('onclick').includes("'" + tab + "'"));
   });
-  if (tab === 'news') loadNewsArticles();
+  if (tab === 'news')        loadNewsArticles();
+  if (tab === 'class')       renderClassDashboard();
+  if (tab === 'reflections') loadReflections();
+}
+
+/* ── Class Dashboard ──────────────────────────── */
+var UNITS_META = [
+  { id:0, icon:'🧠', title:'Foundations of AI',          lessons:[1,2,3,4,5,6,7,8,45] },
+  { id:1, icon:'✍️', title:'Prompt Engineering',          lessons:[9,10,11,12,46] },
+  { id:2, icon:'🌐', title:'AI & Society',                lessons:[13,14,15,16,47] },
+  { id:3, icon:'📜', title:'Policy & Governance',         lessons:[17,18,19,20] },
+  { id:4, icon:'🚀', title:'Capstone Project',            lessons:[21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36] },
+  { id:5, icon:'🎤', title:'Presentations & Reflection',  lessons:[37,38,39,40,41,42,43,44,48] }
+];
+var LESSON_TITLES = {
+  1:'Your AI Footprint',2:'The Parrot vs. The Librarian',3:'How a Machine Learns',4:'The Black Box',
+  5:'Bias In, Bias Out',6:'The Data Harvest',7:'The Trolley Problem',8:'Human in the Loop',
+  9:'Prompt Architecture',10:'Synthetic Creativity',11:'Deep Research',12:'The Revision Loop',
+  13:'Deepfakes & Disinformation',14:'Surveillance & Facial Recognition',15:'The Environmental Cost',
+  16:'Global Regulation',17:'Analysing the Status Quo',18:'Defining Acceptable Use',
+  19:'Drafting the Document',20:'Ratification',21:'From Consumer to Co-Creator',
+  22:'Defining the Problem',23:'Ethics by Design',24:'Project Planning',25:'Applying Prompt Architecture',
+  26:'Logic Flows',27:'Sprint 0',28:'Peer Review',29:'Deep Work 1',30:'Deep Work 2',
+  31:'Deep Work 3',32:'Deep Work 4',33:'Deep Work 5',34:'The Ethical Audit',35:'The Pitch Deck',
+  36:'Dress Rehearsal',37:'Presentations Grp 1',38:'Presentations Grp 2',39:'Viva Session 1',
+  40:'Viva Session 2',41:'The Automated Graduate',42:'Personal Statement Audit',
+  43:'Course Retrospective',44:'The AI Manifesto',
+  45:'What Can You Trust?',46:'Trust, But Verify',47:'The AI Content Flood',48:'Thinking With vs. Thinking For'
+};
+var TOTAL_LESSONS_FULL = 48;
+
+function renderClassDashboard() {
+  var el = document.getElementById('classDashboardBody');
+  if (!_allStudents || !_allStudents.length) {
+    el.innerHTML = '<div class="empty-state" style="padding:40px">No student data loaded yet. Refresh the Students tab first.</div>';
+    return;
+  }
+  var s = _allStudents;
+  var n = s.length;
+
+  // ── 1. Progress distribution ──
+  var brackets = [
+    { label: 'Not started', range: [0,0],   color: '#ef4444' },
+    { label: '1–25%',       range: [1,25],  color: '#f59e0b' },
+    { label: '26–75%',      range: [26,75], color: '#6366f1' },
+    { label: '76–100%',     range: [76,100],color: '#22c55e' }
+  ];
+  var distHtml = '<div class="cd-section"><div class="cd-section-title">Progress Distribution</div><div class="cd-dist-grid">' +
+    brackets.map(function(b) {
+      var count = s.filter(function(st) {
+        return b.range[0] === 0 && b.range[1] === 0
+          ? st.pct === 0
+          : st.pct >= b.range[0] && st.pct <= b.range[1];
+      }).length;
+      var barW = n ? Math.round(count / n * 100) : 0;
+      return '<div class="cd-dist-card">' +
+        '<div class="cd-dist-num">' + count + '</div>' +
+        '<div class="cd-dist-label">' + b.label + '</div>' +
+        '<div class="cd-dist-bar" style="background:' + b.color + '22"><div style="width:' + barW + '%;height:6px;border-radius:3px;background:' + b.color + '"></div></div>' +
+      '</div>';
+    }).join('') + '</div></div>';
+
+  // ── 2. Unit completion heatmap ──
+  var unitHtml = '<div class="cd-section"><div class="cd-section-title">Unit Completion — class average</div><div class="cd-unit-grid">' +
+    UNITS_META.map(function(u) {
+      var lessonCount = u.lessons.length;
+      // Average % of this unit's lessons completed across all students
+      var avgCompleted = s.reduce(function(sum, st) {
+        var done = u.lessons.filter(function(lid) { return st.completedIds.indexOf(lid) !== -1; }).length;
+        return sum + (done / lessonCount * 100);
+      }, 0) / n;
+      var pct = Math.round(avgCompleted);
+      var studentsStarted = s.filter(function(st) {
+        return u.lessons.some(function(lid) { return st.completedIds.indexOf(lid) !== -1; });
+      }).length;
+      return '<div class="cd-unit-card">' +
+        '<div class="cd-unit-header"><span>' + u.icon + ' Unit ' + (u.id+1) + ': ' + u.title + '</span>' +
+        '<span class="cd-unit-pct">' + pct + '%</span></div>' +
+        '<div class="cd-bar-track"><div class="cd-bar-fill" style="width:' + pct + '%"></div></div>' +
+        '<div class="cd-unit-sub">' + studentsStarted + ' of ' + n + ' students started</div>' +
+      '</div>';
+    }).join('') + '</div></div>';
+
+  // ── 3. Lesson engagement ──
+  var allLessonIds = [];
+  UNITS_META.forEach(function(u) { allLessonIds = allLessonIds.concat(u.lessons); });
+  var lessonCounts = allLessonIds.map(function(lid) {
+    var count = s.filter(function(st) { return st.completedIds.indexOf(lid) !== -1; }).length;
+    return { id: lid, title: LESSON_TITLES[lid] || 'Lesson ' + lid, count: count, pct: n ? Math.round(count/n*100) : 0 };
+  }).sort(function(a,b) { return b.count - a.count; });
+  var topRow = function(l) {
+    return '<tr><td><strong>L' + l.id + '</strong> ' + esc(l.title) + '</td>' +
+      '<td><span class="cd-lesson-bar"><span class="cd-lesson-fill" style="width:' + l.pct + '%"></span></span>' + l.count + ' students (' + l.pct + '%)</td></tr>';
+  };
+  var lessonHtml = '<div class="cd-section"><div class="cd-section-title">Lesson Engagement</div>' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">' +
+    '<div><div style="font-size:.78rem;font-weight:700;color:var(--success);margin-bottom:8px">Most completed</div>' +
+    '<table class="cd-lesson-table"><thead><tr><th>Lesson</th><th>Completion</th></tr></thead><tbody>' +
+    lessonCounts.slice(0,5).map(topRow).join('') + '</tbody></table></div>' +
+    '<div><div style="font-size:.78rem;font-weight:700;color:var(--danger);margin-bottom:8px">Least completed</div>' +
+    '<table class="cd-lesson-table"><thead><tr><th>Lesson</th><th>Completion</th></tr></thead><tbody>' +
+    lessonCounts.slice(-5).reverse().map(topRow).join('') + '</tbody></table></div>' +
+    '</div></div>';
+
+  // ── 4. At-risk students ──
+  var twoWeeksAgo = new Date(Date.now() - 14 * 86400000).toISOString();
+  var atRisk = s.filter(function(st) {
+    return st.pct === 0 || !st.lastActive || st.lastActive < twoWeeksAgo;
+  }).sort(function(a,b) { return a.pct - b.pct; });
+  var riskHtml = '<div class="cd-section"><div class="cd-section-title">At-Risk Students (' + atRisk.length + ')</div>';
+  if (!atRisk.length) {
+    riskHtml += '<div class="empty-state" style="padding:16px">No at-risk students — great!</div>';
+  } else {
+    riskHtml += '<div class="cd-risk-list">' + atRisk.map(function(st) {
+      var badge = st.pct === 0
+        ? '<span class="cd-risk-badge cd-risk-nostart">Not started</span>'
+        : '<span class="cd-risk-badge cd-risk-inactive">Inactive 14d+</span>';
+      return '<div class="cd-risk-row">' +
+        '<span class="cd-risk-name">' + esc(st.name) + '</span>' +
+        '<span style="font-size:.78rem;color:var(--text-muted)">' + st.pct + '% complete</span>' +
+        badge + '</div>';
+    }).join('') + '</div>';
+  }
+  riskHtml += '</div>';
+
+  el.innerHTML = distHtml + unitHtml + lessonHtml + riskHtml;
+}
+
+/* ── Reflections ──────────────────────────────── */
+var _allReflections = [];
+function copyRefSql() {
+  var sql = document.getElementById('refSetupSql').textContent;
+  navigator.clipboard.writeText(sql).then(function() {
+    var el = document.getElementById('refSqlCopied'); if (el) { el.style.display='inline'; setTimeout(function(){el.style.display='none';},2500); }
+  });
+}
+async function loadReflections() {
+  var el = document.getElementById('reflectionsBody');
+  el.innerHTML = '<div class="empty-state" style="padding:40px"><span class="loading-spinner"></span> Loading…</div>';
+  try {
+    var res = await _sb.from('reflections').select('user_id, lesson_id, lesson_title, slide_idx, text, updated_at').order('updated_at', { ascending: false });
+    if (res.error) {
+      if (res.error.code === '42P01') {
+        document.getElementById('refSetupBox').style.display = 'block';
+        el.innerHTML = '<div class="empty-state" style="padding:24px">⚠ Run the setup SQL above first, then refresh.</div>';
+      } else {
+        el.innerHTML = '<div class="empty-state" style="padding:24px">Error: ' + esc(res.error.message) + '</div>';
+      }
+      return;
+    }
+    document.getElementById('refSetupBox').style.display = 'none';
+    _allReflections = (res.data || []).map(function(r) {
+      // Enrich with student name from _allStudents
+      var student = _allStudents.find(function(s) { return s.userId === r.user_id; });
+      r.studentName = student ? student.name : r.user_id.slice(0,8) + '…';
+      return r;
+    });
+    renderReflections(_allReflections);
+  } catch(e) {
+    el.innerHTML = '<div class="empty-state" style="padding:24px">Error: ' + esc(e.message) + '</div>';
+  }
+}
+function renderReflections(list) {
+  var el = document.getElementById('reflectionsBody');
+  if (!list.length) { el.innerHTML = '<div class="empty-state" style="padding:40px">No reflections submitted yet.</div>'; return; }
+  el.innerHTML = list.map(function(r) {
+    var date = r.updated_at ? new Date(r.updated_at).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' }) : '—';
+    return '<div class="ref-card">' +
+      '<div class="ref-card-header">' +
+        '<span class="ref-student">' + esc(r.studentName) + '</span>' +
+        '<span class="ref-lesson">L' + r.lesson_id + ': ' + esc(r.lesson_title || 'Lesson ' + r.lesson_id) + '</span>' +
+        '<span class="ref-date">' + date + '</span>' +
+      '</div>' +
+      '<div class="ref-text">' + esc(r.text) + '</div>' +
+    '</div>';
+  }).join('');
+}
+function filterReflections() {
+  var q = (document.getElementById('reflectionSearch').value || '').toLowerCase();
+  if (!q) { renderReflections(_allReflections); return; }
+  renderReflections(_allReflections.filter(function(r) {
+    return r.studentName.toLowerCase().includes(q) || (r.lesson_title || '').toLowerCase().includes(q) || r.text.toLowerCase().includes(q);
+  }));
+}
+function exportReflectionsCSV() {
+  if (!_allReflections.length) return;
+  var rows = [['Student','Lesson','Slide','Text','Date']];
+  _allReflections.forEach(function(r) {
+    rows.push([r.studentName, (r.lesson_title || 'L'+r.lesson_id), r.slide_idx, r.text.replace(/\n/g,' '), r.updated_at ? r.updated_at.slice(0,10) : '']);
+  });
+  var csv = rows.map(function(r) { return r.map(function(c) { return '"' + String(c).replace(/"/g,'""') + '"'; }).join(','); }).join('\n');
+  var a = document.createElement('a'); a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+  a.download = 'reflections_' + new Date().toISOString().slice(0,10) + '.csv'; a.click();
 }
 
 /* ── News Management ──────────────────────────── */

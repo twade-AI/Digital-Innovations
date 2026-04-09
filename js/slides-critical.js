@@ -394,4 +394,167 @@ var SLIDES_CRITICAL = {
     }
   ],
 
+
+  // ── L50: Mini-Project (Unit 3 — Policy & Governance) ─────────────────────
+  50: [
+    {
+      type: 'hook',
+      title: 'Build Something Small',
+      body: 'Every capstone project that has ever gone badly started the same way: the builder had never built anything before. They encountered their first prompt engineering problem, their first user testing failure, and their first ethical dilemma — all at once, under deadline pressure, with high stakes. This lesson is your safety net. You are going to build something small, imperfect, and low-stakes today — so that when you hit the same problems in the capstone, they feel familiar rather than catastrophic.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">1 lesson</span><span class="sl">to go from idea to working prototype</span></div><div class="hook-stat-mini"><span class="sv">3 phases</span><span class="sl">Design → Build → Test — compressed to 45 minutes</span></div><div class="hook-stat-mini"><span class="sv">Low stakes</span><span class="sl">This does not count for assessment — it counts for learning</span></div></div>The point is not to produce something polished. The point is to learn by building.'
+    },
+    {
+      type: 'concept',
+      title: 'The Compressed Build Process',
+      body: 'The capstone uses six sprint sessions to do what you are doing today in one lesson. That compression forces you to make fast decisions — which is exactly the point. You will miss things, cut corners, and hit walls. Notice where that happens. Those are the problems you need to solve before the capstone begins.',
+      bullets: [
+        '<strong>Phase 1 — Define (5 minutes):</strong> Choose a problem. Write one sentence: "I am building [what] for [who] that helps them [do what]." Do not spend more than 5 minutes on this.',
+        '<strong>Phase 2 — Design (10 minutes):</strong> Write your core PTFC prompt. Identify one ethical consideration. Sketch the user flow in 3 steps maximum.',
+        '<strong>Phase 3 — Build (20 minutes):</strong> Run your prompt. Iterate at least twice. Get something that works — even if imperfectly.',
+        '<strong>Phase 4 — Test (5 minutes):</strong> Give your tool to one other student. Watch them use it without explaining it. Note what confuses them.',
+        '<strong>Phase 5 — Reflect (5 minutes):</strong> Three sentences: What worked? What failed? What would you do differently in 60 minutes?'
+      ],
+      callout: 'The most valuable output from this lesson is not the tool you build — it is your 3-sentence reflection. Write it honestly. It will directly inform your capstone brief.'
+    },
+    {
+      type: 'activity',
+      title: 'Mini-Build: Your First AI Tool',
+      instructions: 'Build a working AI-powered tool in one lesson. Use Claude, Gemini, or ChatGPT. The tool can be a prompt that produces a useful output — it does not need to be a web app or require coding.',
+      steps: [
+        'DEFINE (5 min): Choose from these starter ideas — or invent your own: (a) A revision question generator for a subject you study; (b) A "explain this to me like I\'m 12" tool for complex concepts; (c) A debate argument generator that argues both sides; (d) A project brief checker that identifies missing elements; (e) Your own idea',
+        'DESIGN (10 min): Write your PTFC prompt in the Prompt Iteration Log. Identify one ethical risk (hallucination? bias? over-reliance?) and note how you will address it',
+        'BUILD (20 min): Run your prompt. Evaluate the output against your goal. Iterate at least twice, each time noting what you changed and why',
+        'TEST (5 min): Ask a classmate to use your tool on a real task of theirs. Do not explain it — just observe. Note: what did they try first? What confused them? What would they find useful?',
+        'REFLECT (5 min): Write 3 sentences: (1) The thing that worked best. (2) The thing that failed. (3) The first thing you would improve with more time'
+      ]
+    },
+    {
+      type: 'discussion',
+      title: 'What Did You Learn?',
+      questions: [
+        { num: 1, text: 'What was the hardest part of the 45-minute build — defining the problem, designing the prompt, or getting a useful output? What does that tell you about where to invest more time in the capstone?' },
+        { num: 2, text: 'When you watched your classmate use your tool, what surprised you most about how they interacted with it? What does this tell you about the gap between building something and designing for someone?' },
+        { num: 3, text: 'You identified an ethical consideration in the design phase. Did the actual build create any new ethical issues you had not anticipated? This is a common pattern — what does it suggest about ethics-by-design vs. ethics-by-audit?' }
+      ]
+    },
+    {
+      type: 'quiz',
+      question: 'In the mini-project build process, why is the "Test" phase specifically structured so you do NOT explain your tool to the user?',
+      options: [
+        'To save time during the lesson',
+        'Because real users will not have an explanation — observing unguided use reveals genuine usability problems',
+        'To test whether the tool is self-explanatory from a marketing perspective',
+        'Because explaining your tool could give away the answer to classmates'
+      ],
+      correct: 1,
+      explanation: 'Unmoderated user testing — watching someone use a product without guidance — reveals the actual mental model users bring to the tool, not the mental model the builder assumed they would have. Explanations mask usability problems. Seeing someone confused without understanding why tells you where the design has failed.'
+    },
+    {
+      type: 'summary',
+      title: 'Key Takeaways',
+      points: [
+        { icon: '🏗️', label: 'Process over product', text: 'The goal was not a polished tool — it was experiencing the define/design/build/test/reflect cycle under real conditions before the capstone stakes are high' },
+        { icon: '👁️', label: 'Watch, don\'t explain', text: 'Unmoderated user testing consistently reveals problems that creator-led demos miss. Your classmate\'s confusion is your most valuable data point' },
+        { icon: '📝', label: 'Your 3-sentence reflection is the deliverable', text: 'What worked, what failed, and what you\'d do differently — keep this somewhere visible when you write your capstone brief' }
+      ]
+    }
+  ],
+
+  // ── L49: AI and Democracy (Unit 2 — AI & Society) ────────────────────────
+  49: [
+    {
+      type: 'hook',
+      title: 'AI and Democracy',
+      body: 'In the 2024 Slovak election, an AI-generated audio clip of a liberal candidate discussing plans to rig the vote spread across social media two days before polling — during a mandatory pre-election silence period when candidates could not legally respond. The candidate lost. In the 2024 US election, over 900 AI-generated political ads ran on Facebook in a single week in swing states. Across the 2024 global super-election year — when 40% of the world\'s population went to the polls — AI-generated content appeared in documented interference operations in at least 16 countries.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">16+</span><span class="sl">countries with documented AI electoral interference in 2024</span></div><div class="hook-stat-mini"><span class="sv">900+</span><span class="sl">AI political ads on Facebook in one week, one US state</span></div><div class="hook-stat-mini"><span class="sv">40%</span><span class="sl">of world population voted in 2024 — the largest election year in history</span></div></div>Democracy depends on informed citizens making genuine choices. AI is now a direct threat to both conditions.'
+    },
+    {
+      type: 'concept',
+      title: 'How AI Is Used in Electoral Influence',
+      body: 'AI-driven electoral interference takes several distinct forms — some illegal, some legal but ethically contested, some simply new. Understanding the taxonomy helps you distinguish a coordinated influence operation from legitimate political communication.',
+      bullets: [
+        '<strong>Synthetic media:</strong> Deepfake audio and video of real candidates saying things they never said. The 2024 Slovak audio, a deepfake of Keir Starmer endorsing a private investment scheme, a fabricated video of a Bangladeshi opposition leader were all generated with free or low-cost tools and spread before fact-checkers could respond',
+        '<strong>AI-generated text at scale:</strong> Automated accounts generating thousands of politically themed posts per hour, seeding narratives across platforms before human moderators can identify the pattern. Stanford Internet Observatory documented networks of 800+ accounts operating in this way during the 2024 Taiwan election',
+        '<strong>Micro-targeting 2.0:</strong> Psychographic profiling using AI to identify voter fears, insecurities and identity threats with unprecedented precision — then tailoring political messaging to exploit them. Cambridge Analytica\'s methods were crude compared to what 2024 tools can do',
+        '<strong>AI-assisted polling manipulation:</strong> Synthetic polling data fed to aggregators to manufacture an impression of inevitability, suppressing voter turnout by making elections seem decided',
+        '<strong>Personalised political chatbots:</strong> AI assistants trained on party platforms that answer voters\' questions — the risk being that they hallucinate policy positions or selectively present information to convert undecided voters'
+      ],
+      callout: 'The most dangerous form is not the obvious fake — it is the barely-wrong AI summary. A chatbot that accurately describes a candidate\'s position 95% of the time, then slightly misrepresents one key policy to undecided voters, is far more effective than a crude deepfake that gets immediately debunked.'
+    },
+    {
+      type: 'concept',
+      title: 'What Laws and Platforms Are — and Aren\'t — Doing',
+      body: 'The 2024 elections served as a live experiment in whether existing laws and platform policies were adequate to manage AI-generated electoral content. The verdict: significant gaps remain, and enforcement is slower than the technology.',
+      bullets: [
+        '<strong>EU AI Act (2024):</strong> Classifies AI systems used in democratic processes — including voter profiling and political micro-targeting — as "high risk," requiring transparency and human oversight. But it covers EU-based actors; external influence operations are largely outside its reach',
+        '<strong>UK Elections Act (2022):</strong> Requires transparency in political advertising but was drafted before generative AI — it does not specifically address AI-generated content. The Electoral Commission has no clear enforcement mechanism for synthetic media',
+        '<strong>US FEC gap:</strong> The US Federal Election Commission confirmed in 2023 that existing campaign finance law does not clearly cover AI-generated content. No comprehensive federal electoral AI law has passed',
+        '<strong>Platform self-regulation:</strong> Meta, Google, and X/Twitter all introduced AI disclosure policies for political ads in 2024. Enforcement was inconsistent — disclosed AI ads ran alongside undisclosed ones on all three platforms',
+        '<strong>What works:</strong> Pre-bunking (teaching voters to recognise manipulation before it occurs) has shown stronger resistance effects than debunking (correcting after exposure). The Jigsaw/Google programme showed 20% reduction in susceptibility to specific manipulation tactics after a 2-minute pre-bunking video'
+      ],
+      callout: 'There is a structural asymmetry: generating AI-manipulated content takes seconds and costs pennies. Detecting, verifying, and removing it takes hours or days and requires significant resources. Current laws and policies have not closed this gap.'
+    },
+    {
+      type: 'scenario',
+      title: 'The Viral Clip',
+      situation: 'Three days before a UK general election, a 45-second audio clip is shared widely on TikTok. In it, a voice that sounds exactly like the prime ministerial candidate discusses a secret plan to raise taxes by 15% immediately after the election — a policy completely at odds with their public platform. The clip has 4 million views. Audio forensics experts say it is consistent with AI voice cloning. The candidate\'s team denies it is real. Under UK electoral law, there is no rapid takedown mechanism for electoral deepfakes. You are a sixth-form student with 2,400 Instagram followers, many of whom are first-time voters.',
+      question: 'What should you do — and what does this situation reveal about the gap between technology and law?',
+      choices: [
+        {
+          text: 'Share the clip with a caption saying it might be fake — your followers deserve to know it exists and make their own judgement',
+          outcome: 'Your caveat gets stripped as others screenshot and reshare the clip. TikTok\'s algorithm treats the engagement your share generates as a signal to amplify it further. You contributed to 18,000 additional views. Even well-intentioned sharing of potentially false content during an election blackout period amplifies rather than corrects. The clip was later confirmed as AI-generated by GCHQ — two days after the election.'
+        },
+        {
+          text: 'Check Full Fact and BBC Verify for coverage before sharing anything; share only the fact-check once it appears',
+          outcome: 'Full Fact posts a preliminary notice within 3 hours noting the clip is under investigation. BBC Verify confirms AI generation within 24 hours. You share the BBC Verify piece, not the original. Your followers get accurate information. You have modelled the correct epistemic behaviour: lateral reading, primary source verification, and patience over speed — especially in the 72-hour window before an election.'
+        },
+        {
+          text: 'Report the clip directly to TikTok and the Electoral Commission, and say nothing publicly until official verification',
+          outcome: 'TikTok\'s automated system deprioritises the report as it does not violate specific content rules — there is no electoral deepfake policy in UK law that TikTok is obligated to enforce. The Electoral Commission confirms it has no authority to compel removal. Your silence was responsible; but it also reveals how dependent the current system is on platform goodwill rather than legal obligation. Nothing stops the clip continuing to spread.'
+        }
+      ]
+    },
+    {
+      type: 'activity',
+      title: 'Design the Safeguard',
+      instructions: 'Work in groups to design a policy response to one specific aspect of AI in elections. Your proposal must be specific, enforceable, and address a genuine trade-off.',
+      steps: [
+        'Choose one of the following problems: (A) AI-generated audio/video of candidates; (B) AI micro-targeting using psychographic data; (C) AI-generated fake polls; (D) Political chatbots that hallucinate policy positions',
+        'Define the specific harm your policy targets: Who is harmed? How? What evidence do you have that this is a real problem?',
+        'Research existing approaches: Has any country or platform tried to address this? What happened?',
+        'Draft a policy proposal: Be specific about what is required, who it applies to, how compliance is verified, and what the penalty for violation is',
+        'Identify the trade-off your policy creates: Does it risk over-restricting legitimate political speech? Who might abuse it?',
+        'Present to the class: 2 minutes maximum. Invite one specific challenge question from the audience and prepare your answer'
+      ]
+    },
+    {
+      type: 'discussion',
+      title: 'Democracy in the Age of AI',
+      questions: [
+        { num: 1, text: 'Pre-bunking — teaching people to recognise manipulation before they encounter it — is more effective than debunking after the fact. But pre-bunking requires knowing what manipulation will occur. Who should be responsible for funding and delivering pre-bunking at scale, and how would you prevent that system itself from becoming a form of political influence?' },
+        { num: 2, text: 'Some argue that AI-generated political content is simply a new form of political communication that should be protected by free expression principles. Others argue that the speed and scale of AI make it categorically different from historical propaganda. Where should the legal line be drawn — and who should draw it?' },
+        { num: 3, text: 'The 2024 elections showed that democratic institutions were largely unprepared for AI-scale content manipulation. Should AI companies be required to pause development of capabilities that can be used for electoral interference during election periods — similar to how campaigns face blackout periods?' }
+      ]
+    },
+    {
+      type: 'quiz',
+      question: 'What is "pre-bunking" in the context of AI and misinformation?',
+      options: [
+        'Removing false content before it is published on social media',
+        'Teaching people to recognise manipulation techniques before they encounter them, building resistance in advance',
+        'A legal process for banning AI-generated political content before an election',
+        'Fact-checking AI outputs before they are distributed to the public'
+      ],
+      correct: 1,
+      explanation: 'Pre-bunking (also called inoculation theory) involves teaching people to recognise the techniques used to manipulate them — before they encounter actual manipulation. Research shows this produces more durable resistance than debunking after exposure, because it activates critical thinking at the moment of encountering false content rather than after the belief has formed.'
+    },
+    {
+      type: 'summary',
+      title: 'Key Takeaways',
+      points: [
+        { icon: '🗳️', label: 'AI is already reshaping elections', text: 'Documented AI influence operations ran in 16+ countries in 2024 — synthetic audio, micro-targeting, AI-generated text at scale. This is not a hypothetical threat.' },
+        { icon: '⚖️', label: 'Law is behind the technology', text: 'The EU AI Act covers high-risk AI in democratic processes; UK and US law has significant gaps. Platform self-regulation is inconsistent and slower than the technology.' },
+        { icon: '🛡️', label: 'Pre-bunking beats debunking', text: 'Teaching critical evaluation before encountering manipulation is more effective than correcting afterwards. The asymmetry between generating and verifying AI content will not close soon.' }
+      ]
+    }
+  ],
+
 };
