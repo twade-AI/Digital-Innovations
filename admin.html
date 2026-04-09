@@ -160,14 +160,14 @@
     .cd-section { margin-bottom: 32px; }
     .cd-section-title { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); margin-bottom: 14px; }
     .cd-unit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
-    .cd-unit-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+    .cd-unit-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
     .cd-unit-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; font-weight: 600; font-size: .88rem; }
     .cd-unit-pct { font-size: 1.1rem; font-weight: 800; color: var(--primary-light); }
     .cd-bar-track { height: 8px; border-radius: 4px; background: var(--border); overflow: hidden; }
     .cd-bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #6366f1, #06b6d4); transition: width .6s ease; }
     .cd-unit-sub { font-size: .72rem; color: var(--text-muted); margin-top: 6px; }
     .cd-dist-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-    .cd-dist-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; }
+    .cd-dist-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; }
     .cd-dist-num { font-size: 1.6rem; font-weight: 800; color: var(--text); }
     .cd-dist-label { font-size: .72rem; color: var(--text-muted); margin-top: 3px; }
     .cd-dist-bar { height: 6px; border-radius: 3px; margin-top: 10px; }
@@ -178,7 +178,7 @@
     .cd-lesson-bar { height: 6px; border-radius: 3px; background: var(--border); overflow: hidden; display: inline-block; width: 80px; vertical-align: middle; margin-right: 6px; }
     .cd-lesson-fill { height: 100%; border-radius: 3px; background: var(--primary); }
     .cd-risk-list { display: flex; flex-direction: column; gap: 8px; }
-    .cd-risk-row { display: flex; align-items: center; gap: 12px; background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px; font-size: .82rem; }
+    .cd-risk-row { display: flex; align-items: center; gap: 12px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px; font-size: .82rem; }
     .cd-risk-name { font-weight: 600; flex: 1; }
     .cd-risk-badge { font-size: .7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
     .cd-risk-inactive { background: rgba(239,68,68,.15); color: #ef4444; }
@@ -204,7 +204,7 @@
     .nai-tag { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: .67rem; font-weight: 700; flex-shrink: 0; background: rgba(99,102,241,.15); color: var(--primary-light); }
     /* ── Reflections ── */
     .ref-setup-box { background: rgba(245,158,11,.1); border: 1px solid var(--warning); border-radius: 8px; padding: 16px; margin-bottom: 20px; font-size: .82rem; }
-    .ref-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+    .ref-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 12px; }
     .ref-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
     .ref-student { font-weight: 700; font-size: .88rem; }
     .ref-lesson { font-size: .78rem; color: var(--primary-light); background: rgba(99,102,241,.12); padding: 2px 8px; border-radius: 4px; }
@@ -481,8 +481,8 @@ CREATE POLICY "Admins can manage news" ON public.site_news FOR ALL USING (
 
 <script>
 /* ── Config check ─────────────────────────────────── */
-const TOTAL_LESSONS = 44;
-const UNIT_SIZES    = [8, 4, 4, 4, 16, 8]; // lessons per unit
+const TOTAL_LESSONS = 50;
+const UNIT_SIZES    = [9, 5, 5, 4, 16, 11]; // lessons per unit (matches UNITS_META)
 
 var _sb   = null;
 var _user = null;
@@ -845,7 +845,7 @@ var UNITS_META = [
   { id:2, icon:'🌐', title:'AI & Society',                lessons:[13,14,15,16,47] },
   { id:3, icon:'📜', title:'Policy & Governance',         lessons:[17,18,19,20] },
   { id:4, icon:'🚀', title:'Capstone Project',            lessons:[21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36] },
-  { id:5, icon:'🎤', title:'Presentations & Reflection',  lessons:[37,38,39,40,41,42,43,44,48] }
+  { id:5, icon:'🎤', title:'Presentations & Reflection',  lessons:[37,38,39,40,41,42,43,44,48,49,50] }
 ];
 var LESSON_TITLES = {
   1:'Your AI Footprint',2:'The Parrot vs. The Librarian',3:'How a Machine Learns',4:'The Black Box',
@@ -860,9 +860,10 @@ var LESSON_TITLES = {
   36:'Dress Rehearsal',37:'Presentations Grp 1',38:'Presentations Grp 2',39:'Viva Session 1',
   40:'Viva Session 2',41:'The Automated Graduate',42:'Personal Statement Audit',
   43:'Course Retrospective',44:'The AI Manifesto',
-  45:'What Can You Trust?',46:'Trust, But Verify',47:'The AI Content Flood',48:'Thinking With vs. Thinking For'
+  45:'What Can You Trust?',46:'Trust, But Verify',47:'The AI Content Flood',48:'Thinking With vs. Thinking For',
+  49:'AI and Democracy',50:'Mini-Project: Build Something Small'
 };
-var TOTAL_LESSONS_FULL = 48;
+var TOTAL_LESSONS_FULL = 50;
 
 function renderClassDashboard() {
   var el = document.getElementById('classDashboardBody');
