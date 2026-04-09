@@ -2050,18 +2050,22 @@ function closeQuickQuiz() {
 }
 
 /* ── Course Map ────────────────────────────────── */
+var cmShowDeps = false;
 function renderCourseMap() {
   var container = document.getElementById('courseMapContainer');
   if (!container) return;
+  container.style.position = 'relative';
   container.innerHTML = UNITS.map(function(unit, idx) {
     var pct = unitProgressPct(unit);
     var tiles = unit.lessons.map(function(l) {
       var done = completedLessons.has(l.id);
       var confused = isLessonConfused(l.id);
-      return '<div class="cm-lesson' + (done ? ' done' : '') + (confused ? ' confused' : '') + '" data-id="' + l.id + '" onclick="showSection(\'units\');setTimeout(function(){openLesson(' + l.id + ')},150)" title="' + l.title + '">' +
+      var hasPrereqs = l.prereqs && l.prereqs.length;
+      return '<div class="cm-lesson' + (done ? ' done' : '') + (confused ? ' confused' : '') + (hasPrereqs ? ' has-prereqs' : '') + '" data-id="' + l.id + '" onclick="showSection(\'units\');setTimeout(function(){openLesson(' + l.id + ')},150)" title="' + l.title + (hasPrereqs ? ' (requires L' + l.prereqs.join(', L') + ')' : '') + '">' +
         '<div class="cm-lesson-num">Lesson ' + l.id + '</div>' +
         '<div class="cm-lesson-title">' + l.title + '</div>' +
         '<div class="cm-lesson-diff">' + diffBadge(l.difficulty) + '</div>' +
+        (hasPrereqs ? '<div class="cm-prereq-badge" title="Has prerequisites">🔗</div>' : '') +
       '</div>';
     }).join('');
     return '<div class="cm-unit">' +
@@ -2077,6 +2081,94 @@ function renderCourseMap() {
       '<div class="cm-lessons-grid">' + tiles + '</div>' +
     '</div>';
   }).join('');
+
+  if (cmShowDeps) requestAnimationFrame(function() { drawCourseMapDeps(container); });
+}
+
+function toggleCourseMapDeps() {
+  cmShowDeps = !cmShowDeps;
+  var btn = document.getElementById('cmDepToggle');
+  if (btn) btn.textContent = cmShowDeps ? 'Hide dependencies' : 'Show dependencies';
+  var container = document.getElementById('courseMapContainer');
+  if (!container) return;
+  var old = container.querySelector('.cm-dep-svg');
+  if (old) old.remove();
+  if (cmShowDeps) requestAnimationFrame(function() { drawCourseMapDeps(container); });
+}
+
+function drawCourseMapDeps(container) {
+  var old = container.querySelector('.cm-dep-svg');
+  if (old) old.remove();
+
+  var cRect = container.getBoundingClientRect();
+  if (!cRect.width) return;
+
+  // Build id → element map
+  var tileMap = {};
+  container.querySelectorAll('[data-id]').forEach(function(el) {
+    tileMap[+el.dataset.id] = el;
+  });
+
+  // Collect all prereq pairs
+  var pairs = [];
+  UNITS.forEach(function(u) {
+    u.lessons.forEach(function(l) {
+      if (!l.prereqs || !l.prereqs.length) return;
+      var toEl = tileMap[l.id];
+      if (!toEl) return;
+      l.prereqs.forEach(function(pid) {
+        var fromEl = tileMap[pid];
+        if (!fromEl) return;
+        pairs.push({ from: fromEl, to: toEl, prereqDone: completedLessons.has(pid) });
+      });
+    });
+  });
+  if (!pairs.length) return;
+
+  var svgNS = 'http://www.w3.org/2000/svg';
+  var svg = document.createElementNS(svgNS, 'svg');
+  svg.setAttribute('class', 'cm-dep-svg');
+
+  var defs = document.createElementNS(svgNS, 'defs');
+  [['cm-arr-done', 'var(--primary)'], ['cm-arr-todo', 'var(--border)']].forEach(function(pair) {
+    var marker = document.createElementNS(svgNS, 'marker');
+    marker.setAttribute('id', pair[0]);
+    marker.setAttribute('markerWidth', '7');
+    marker.setAttribute('markerHeight', '7');
+    marker.setAttribute('refX', '6');
+    marker.setAttribute('refY', '3.5');
+    marker.setAttribute('orient', 'auto');
+    var p = document.createElementNS(svgNS, 'path');
+    p.setAttribute('d', 'M0,0 L0,7 L7,3.5 z');
+    p.setAttribute('fill', pair[1]);
+    marker.appendChild(p);
+    defs.appendChild(marker);
+  });
+  svg.appendChild(defs);
+
+  var scrollTop = container.scrollTop || 0;
+  pairs.forEach(function(pair) {
+    var fR = pair.from.getBoundingClientRect();
+    var tR = pair.to.getBoundingClientRect();
+    var x1 = fR.right - cRect.left;
+    var y1 = fR.top - cRect.top + fR.height / 2 + scrollTop;
+    var x2 = tR.left - cRect.left;
+    var y2 = tR.top - cRect.top + tR.height / 2 + scrollTop;
+    var cp = Math.abs(x2 - x1) * 0.5;
+    var pathEl = document.createElementNS(svgNS, 'path');
+    pathEl.setAttribute('d', 'M' + x1 + ',' + y1 + ' C' + (x1+cp) + ',' + y1 + ' ' + (x2-cp) + ',' + y2 + ' ' + x2 + ',' + y2);
+    pathEl.setAttribute('stroke', pair.prereqDone ? 'var(--primary)' : 'var(--border)');
+    pathEl.setAttribute('stroke-width', '1.5');
+    pathEl.setAttribute('fill', 'none');
+    pathEl.setAttribute('stroke-dasharray', pair.prereqDone ? 'none' : '6,4');
+    pathEl.setAttribute('marker-end', 'url(#' + (pair.prereqDone ? 'cm-arr-done' : 'cm-arr-todo') + ')');
+    pathEl.setAttribute('opacity', '0.65');
+    svg.appendChild(pathEl);
+  });
+
+  svg.style.cssText = 'position:absolute;top:0;left:0;width:100%;pointer-events:none;overflow:visible';
+  svg.setAttribute('height', container.scrollHeight);
+  container.appendChild(svg);
 }
 
 /* ── Unit Badges ───────────────────────────────── */

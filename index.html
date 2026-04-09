@@ -227,8 +227,9 @@
       <h2>Course Map</h2>
       <p>All 44 lessons at a glance — click any tile to open it. Completed lessons show a ✓.</p>
     </div>
-    <div style="margin-bottom:16px">
+    <div style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap">
       <button class="btn btn-primary" onclick="openAssessment()">🎯 Take a Unit Assessment</button>
+      <button id="cmDepToggle" class="btn btn-secondary" onclick="toggleCourseMapDeps()">Show dependencies</button>
     </div>
     <div id="courseMapContainer" class="course-map"></div>
   </section>
