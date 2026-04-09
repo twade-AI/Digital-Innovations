@@ -2862,7 +2862,17 @@ document.addEventListener('DOMContentLoaded', () => {
   initFloatContinue();
   updateFirstLessonBanner();
   renderSpacedReviewQueue();
+  initOfflineBanner();
 });
+
+function initOfflineBanner() {
+  var banner = document.getElementById('offlineBanner');
+  if (!banner) return;
+  function update() { banner.style.display = navigator.onLine ? 'none' : 'flex'; }
+  window.addEventListener('online', update);
+  window.addEventListener('offline', update);
+  update();
+}
 
 // Keyboard shortcuts
 document.addEventListener('keydown', e => {

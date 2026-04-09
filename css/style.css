@@ -1450,3 +1450,7 @@ a.ticker-item-link:hover{color:var(--text);text-decoration:none;}
 .viva-filter-label{ font-size:.75rem;font-weight:600;color:var(--text-dim); }
 .viva-filter-btn{ background:none;border:1px solid var(--border);color:var(--text-dim);font-size:.75rem;padding:4px 10px;border-radius:999px;cursor:pointer;transition:all .12s; }
 .viva-filter-btn:hover,.viva-filter-btn.active{ background:var(--primary);color:#fff;border-color:var(--primary); }
+
+/* ── Offline Banner ───────────────────────────── */
+.offline-banner{ display:flex;align-items:center;justify-content:center;gap:8px;background:#92400e;color:#fef3c7;font-size:.8rem;font-weight:600;padding:8px 16px;text-align:center;position:sticky;top:0;z-index:9999 }
+.offline-banner::before{ content:'⚠';font-size:1rem }
