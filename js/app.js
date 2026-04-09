@@ -1062,6 +1062,8 @@ function updateHomeStats() {
   const pct = Math.round((done / total) * 100);
   const el = document.getElementById('progressPercent');
   if (el) el.textContent = pct + '%';
+  const fill = document.getElementById('pcProgressFill');
+  if (fill) fill.style.width = pct + '%';
   updateContinueButton();
   updateTimeEstimate();
   renderRecentlyViewed();

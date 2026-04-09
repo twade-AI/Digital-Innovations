@@ -1,8 +1,9 @@
-/* Digital Innovations — Service Worker (offline-first) v3 */
-const CACHE = 'di-v3';
+/* Digital Innovations — Service Worker (offline-first) v4 */
+const CACHE = 'di-v4';
 const ASSETS = [
   './',
   './index.html',
+  './fluency.html',
   './css/style.css',
   './css/lesson.css',
   './js/app.js',

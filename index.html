@@ -105,55 +105,72 @@
 
   <!-- Hero / Home Section -->
   <section id="section-home" class="section active" role="main">
-    <div class="hero">
-      <div class="hero-content">
-        <div class="hero-badge">KS5 — Ages 16-18</div>
-        <h1>Digital Innovations</h1>
-        <p class="hero-sub">Explore AI, ethics, prompt engineering, policy, and build your own capstone project. 50 lessons across 6 units — from foundations to the future.</p>
-        <div class="hero-stats">
-          <div class="stat">
-            <span class="stat-num">50</span>
-            <span class="stat-label">Lessons</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num">6</span>
-            <span class="stat-label">Units</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num">19</span>
-            <span class="stat-label">Resources</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num" id="progressPercent">0%</span>
-            <span class="stat-label">Complete</span>
-          </div>
+
+    <!-- Pathway chooser -->
+    <div class="pathway-header">
+      <div class="pathway-badge">Digital Innovations</div>
+      <h1 class="pathway-title">Choose your learning pathway</h1>
+      <p class="pathway-sub">Two routes — same goal: understanding AI clearly and using it responsibly.</p>
+    </div>
+
+    <div class="pathway-cards">
+      <!-- Full Course -->
+      <div class="pathway-card pathway-card--full" onclick="showSection('units')">
+        <div class="pc-icon">📚</div>
+        <div class="pc-badge pc-badge--full">Classroom Course</div>
+        <h2 class="pc-title">Digital Innovations<br>Full Course</h2>
+        <p class="pc-desc">The complete KS5 programme — 50 lessons across 6 units covering AI foundations, prompt engineering, ethics, policy and a supervised capstone project.</p>
+        <ul class="pc-features">
+          <li>50 lessons · 6 units</li>
+          <li>Capstone build project</li>
+          <li>Policy drafting & debate</li>
+          <li>Viva practice & assessments</li>
+          <li>Progress tracking &amp; badges</li>
+        </ul>
+        <div class="pc-actions">
+          <button class="btn btn-primary pc-cta">Enter Full Course →</button>
+          <div id="heroTimeEst" style="font-size:.78rem;color:var(--text-dim);margin-top:6px"></div>
         </div>
-        <div class="hero-actions">
-          <button class="btn btn-primary" id="continueBtn" onclick="continueLesson()">Start Learning</button>
-          <button class="btn btn-secondary" onclick="showSection('resources')">Browse Resources</button>
-          <button class="btn btn-secondary pwa-install-btn" id="pwaInstallBtn" onclick="installPWA()" style="display:none" title="Install as app for offline use">📲 Install App</button>
+        <div class="pc-progress-row">
+          <div class="pc-progress-track"><div class="pc-progress-fill" id="pcProgressFill" style="width:0%"></div></div>
+          <span id="progressPercent" class="pc-pct">0%</span>
         </div>
-        <div id="heroTimeEst" style="margin-top:12px;font-size:.82rem;color:var(--text-dim)"></div>
-        <div id="heroReviewDue" style="display:none;margin-top:8px"></div>
+        <button class="btn btn-secondary pwa-install-btn" id="pwaInstallBtn" onclick="event.stopPropagation();installPWA()" style="display:none;margin-top:10px;font-size:.8rem" title="Install for offline use">📲 Install App</button>
       </div>
-      <div class="hero-visual">
-        <div class="orbit-ring">
-          <div class="orbit-item" style="--i:0">🤖</div>
-          <div class="orbit-item" style="--i:1">⚖️</div>
-          <div class="orbit-item" style="--i:2">🧠</div>
-          <div class="orbit-item" style="--i:3">🔒</div>
-          <div class="orbit-item" style="--i:4">🌍</div>
-          <div class="orbit-item" style="--i:5">💡</div>
+
+      <!-- AI Fluency Track -->
+      <div class="pathway-card pathway-card--fluency" onclick="window.location.href='fluency.html'">
+        <div class="pc-icon">⚡</div>
+        <div class="pc-badge pc-badge--fluency">Self-Directed · Free</div>
+        <h2 class="pc-title">AI Fluency Track</h2>
+        <p class="pc-desc">A curated 15-lesson pathway for independent learners. No teacher needed — work at your own pace and earn your AI Fluency certificate.</p>
+        <ul class="pc-features">
+          <li>15 carefully chosen lessons</li>
+          <li>Works fully offline</li>
+          <li>No login required</li>
+          <li>Completion certificate</li>
+          <li>~6 hours total</li>
+        </ul>
+        <div class="pc-actions">
+          <button class="btn pc-cta pc-cta--fluency">Start AI Fluency Track →</button>
+        </div>
+        <div class="pc-topic-pills">
+          <span class="pc-pill">Prompting</span>
+          <span class="pc-pill">Hallucinations</span>
+          <span class="pc-pill">Deepfakes</span>
+          <span class="pc-pill">Bias</span>
+          <span class="pc-pill">Critical thinking</span>
+          <span class="pc-pill">AI &amp; democracy</span>
         </div>
       </div>
     </div>
 
-    <!-- First-lesson banner (hidden once progress begins) -->
+    <!-- Returning-user strip -->
     <div id="firstLessonBanner" class="first-lesson-banner" style="display:none">
       <div class="flb-icon">🚀</div>
       <div class="flb-body">
         <div class="flb-title">Start here — Lesson 1: Your AI Footprint</div>
-        <div class="flb-desc">Audit your daily interactions with AI systems. Beginner-friendly — no prior knowledge needed.</div>
+        <div class="flb-desc">Beginner-friendly — no prior knowledge needed.</div>
       </div>
       <button class="btn btn-primary flb-btn" onclick="openLesson(1)">Begin Lesson 1 →</button>
       <button class="flb-dismiss" onclick="dismissFirstLessonBanner()" title="Dismiss">✕</button>
@@ -165,52 +182,15 @@
     <!-- Recently Viewed -->
     <div id="recentlyViewedSection" class="recently-viewed" style="display:none"></div>
 
-    <!-- Latest AI News teaser -->
-    <div class="home-section-header">
+    <!-- Latest AI News -->
+    <div class="home-section-header" style="margin-top:32px">
       <h2 class="home-section-title">📰 Latest AI News</h2>
-      <a href="#" class="home-section-link" onclick="showSection('news');return false">See all news →</a>
+      <a href="#" class="home-section-link" onclick="showSection('news');return false">See all →</a>
     </div>
     <div id="latestNewsGrid" class="news-grid news-grid-teaser"></div>
 
-    <!-- Course Overview Cards -->
-    <div class="overview-grid">
-      <div class="overview-card" onclick="showSection('units'); scrollToUnit(0)">
-        <div class="oc-icon">🧠</div>
-        <h3>Unit 1</h3>
-        <p>Foundations of AI</p>
-        <span class="oc-count">8 lessons</span>
-      </div>
-      <div class="overview-card" onclick="showSection('units'); scrollToUnit(1)">
-        <div class="oc-icon">✍️</div>
-        <h3>Unit 2</h3>
-        <p>Prompt Engineering & Research</p>
-        <span class="oc-count">4 lessons</span>
-      </div>
-      <div class="overview-card" onclick="showSection('units'); scrollToUnit(2)">
-        <div class="oc-icon">🌐</div>
-        <h3>Unit 3</h3>
-        <p>AI & Society</p>
-        <span class="oc-count">4 lessons</span>
-      </div>
-      <div class="overview-card" onclick="showSection('units'); scrollToUnit(3)">
-        <div class="oc-icon">📜</div>
-        <h3>Unit 4</h3>
-        <p>Policy & Governance</p>
-        <span class="oc-count">4 lessons</span>
-      </div>
-      <div class="overview-card" onclick="showSection('units'); scrollToUnit(4)">
-        <div class="oc-icon">🚀</div>
-        <h3>Unit 5</h3>
-        <p>Capstone Project</p>
-        <span class="oc-count">16 lessons</span>
-      </div>
-      <div class="overview-card" onclick="showSection('units'); scrollToUnit(5)">
-        <div class="oc-icon">🎤</div>
-        <h3>Unit 6</h3>
-        <p>Presentations & Reflection</p>
-        <span class="oc-count">8 lessons</span>
-      </div>
-    </div>
+    <span id="lessonsRemaining" style="display:none">50</span>
+    <div id="heroReviewDue" style="display:none"></div>
   </section>
 
   <!-- Units Section -->
