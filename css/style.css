@@ -947,10 +947,12 @@ kbd{
   flex-shrink:0;font-size:.68rem;font-weight:700;color:var(--primary-light);
   background:var(--bg-card);padding:2px 8px;border-radius:4px;
   border:1px solid rgba(99,102,241,.3);letter-spacing:.06em;text-transform:uppercase;
+  position:relative;z-index:2;
+  box-shadow:8px 0 12px 4px var(--bg-card);
 }
 .news-ticker-track{
   display:flex;width:max-content;
-  animation:ticker 90s linear infinite;
+  animation:ticker 150s linear infinite;
 }
 .news-ticker-track:hover{animation-play-state:paused}
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
