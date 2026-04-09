@@ -1477,6 +1477,12 @@ function startQuickQuizDueOnly() {
       slides.forEach(function(slide) {
         if (slide.type === 'quiz') quickQuizQuestions.push({ lessonId: l.id, lessonTitle: l.title, unitTitle: u.title, slide: slide });
       });
+      // Also pull from QUIZ_BANK
+      if (typeof QUIZ_BANK !== 'undefined' && QUIZ_BANK[l.id]) {
+        QUIZ_BANK[l.id].forEach(function(q) {
+          quickQuizQuestions.push({ lessonId: l.id, lessonTitle: l.title, unitTitle: u.title, slide: { type:'quiz', question: q.question, options: q.options, correct: q.correct, explanation: q.explanation } });
+        });
+      }
     });
   });
   quickQuizIndex = 0; quickQuizScore = 0;
@@ -1664,6 +1670,12 @@ function startAssessment(unitIdx) {
     slides.forEach(function(s) {
       if (s.type === 'quiz') assessmentQuestions.push({ lessonId: l.id, lessonTitle: l.title, slide: s });
     });
+    // Add extra questions from QUIZ_BANK if available
+    if (typeof QUIZ_BANK !== 'undefined' && QUIZ_BANK[l.id]) {
+      QUIZ_BANK[l.id].forEach(function(q) {
+        assessmentQuestions.push({ lessonId: l.id, lessonTitle: l.title, slide: { type:'quiz', question: q.question, options: q.options, correct: q.correct, explanation: q.explanation } });
+      });
+    }
   });
   assessmentIdx = 0; assessmentScore = 0; assessmentWrong = [];
   renderAssessmentQuestion();
