@@ -8,6 +8,7 @@
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/lesson.css">
   <style>
     /* ── Fluency-specific overrides ── */
     .fl-shell { max-width: 820px; margin: 0 auto; padding: 0 16px 80px; }
@@ -70,6 +71,16 @@
     .fl-cert-date { font-size:.75rem; color:var(--text-dim); }
     .fl-print-btn { background:linear-gradient(135deg,#f59e0b,#d97706); color:#fff; border:none; border-radius:var(--radius); padding:10px 24px; font-weight:700; cursor:pointer; margin-top:8px; }
     .fl-print-btn:hover { background:linear-gradient(135deg,#d97706,#b45309); }
+
+    /* Discussion slide */
+    .slide-disc-qs { display:flex; flex-direction:column; gap:10px; margin-top:12px; }
+    .slide-disc-q { display:flex; align-items:flex-start; gap:12px; background:var(--bg-sidebar,rgba(255,255,255,.04)); border:1px solid var(--border); border-radius:8px; padding:12px 14px; }
+    .sdq-num { display:inline-flex; align-items:center; justify-content:center; min-width:28px; height:28px; border-radius:50%; background:var(--primary,#6366f1); color:#fff; font-size:.75rem; font-weight:700; flex-shrink:0; }
+    .sdq-text { font-size:.9rem; color:var(--text-muted,var(--text)); line-height:1.5; flex:1; }
+
+    /* Video embed */
+    .slide-video-wrap { margin:12px 0; border-radius:8px; overflow:hidden; aspect-ratio:16/9; }
+    .slide-video-wrap iframe { width:100%; height:100%; border:0; }
 
     @media print {
       .fl-header,.fl-back,.fl-progress-wrap,.fl-track,.fl-hero,.fl-section-label,.fl-complete > *:not(.fl-cert-card) { display:none!important; }
@@ -416,16 +427,49 @@
         '<div class="slide-title">' + (slide.title || 'Scenario') + '</div>' +
         '<div class="slide-body">' + (slide.situation || '') + '</div>' +
         (slide.question ? '<div class="slide-callout"><strong>Consider:</strong> ' + slide.question + '</div>' : '') +
-        (slide.choices ? '<ul class="slide-bullets">' + slide.choices.map(function(c){ return '<li>' + c + '</li>'; }).join('') + '</ul>' : '') +
+        (slide.choices ? '<ul class="slide-bullets">' + slide.choices.map(function(c){ return '<li>' + (typeof c === 'string' ? c : c.text) + '</li>'; }).join('') + '</ul>' : '') +
       '</div>';
     }
     if (type === 'activity') {
+      var bodyText = slide.task || slide.instructions || '';
       return '<div class="slide-activity">' +
         '<span class="slide-badge badge-activity">Activity</span>' +
         '<div class="slide-title">' + (slide.title || '') + '</div>' +
-        (slide.task ? '<div class="slide-body">' + slide.task + '</div>' : '') +
+        (bodyText ? '<div class="slide-body">' + bodyText + '</div>' : '') +
         (slide.steps ? '<ol class="slide-steps">' + slide.steps.map(function(s){ return '<li>' + s + '</li>'; }).join('') + '</ol>' : '') +
         (slide.callout ? '<div class="slide-callout">' + slide.callout + '</div>' : '') +
+      '</div>';
+    }
+    if (type === 'discussion') {
+      var qHtml = (slide.questions || []).map(function(q) {
+        return '<div class="slide-disc-q"><span class="sdq-num">' + (q.num || '') + '</span><span class="sdq-text">' + (q.text || q) + '</span></div>';
+      }).join('');
+      return '<div class="slide-concept">' +
+        '<span class="slide-badge badge-concept">Discussion</span>' +
+        '<div class="slide-title">' + (slide.title || 'Discussion') + '</div>' +
+        (slide.body ? '<div class="slide-body">' + slide.body + '</div>' : '') +
+        '<div class="slide-disc-qs">' + qHtml + '</div>' +
+      '</div>';
+    }
+    if (type === 'video') {
+      var embedHtml = '';
+      if (slide.videoId) {
+        embedHtml = '<div class="slide-video-wrap"><iframe width="100%" height="280" src="https://www.youtube.com/embed/' + slide.videoId + '" frameborder="0" allowfullscreen></iframe></div>';
+      }
+      return '<div class="slide-concept">' +
+        '<span class="slide-badge badge-concept">Video</span>' +
+        '<div class="slide-title">' + (slide.title || '') + '</div>' +
+        (slide.intro ? '<div class="slide-body">' + slide.intro + '</div>' : '') +
+        embedHtml +
+        (slide.credit ? '<div class="slide-callout" style="font-size:0.82em">Credit: ' + slide.credit + '</div>' : '') +
+      '</div>';
+    }
+    if (type === 'builder') {
+      return '<div class="slide-activity">' +
+        '<span class="slide-badge badge-activity">Builder</span>' +
+        '<div class="slide-title">' + (slide.title || '') + '</div>' +
+        (slide.body ? '<div class="slide-body">' + slide.body + '</div>' : '') +
+        (slide.hint ? '<div class="slide-callout"><strong>Hint:</strong> ' + slide.hint + '</div>' : '') +
       '</div>';
     }
     if (type === 'quiz') {
