@@ -1454,3 +1454,13 @@ a.ticker-item-link:hover{color:var(--text);text-decoration:none;}
 /* ── Offline Banner ───────────────────────────── */
 .offline-banner{ display:flex;align-items:center;justify-content:center;gap:8px;background:#92400e;color:#fef3c7;font-size:.8rem;font-weight:600;padding:8px 16px;text-align:center;position:sticky;top:0;z-index:9999 }
 .offline-banner::before{ content:'⚠';font-size:1rem }
+
+/* ── Lesson Ratings ───────────────────────────── */
+.lesson-rating-wrap{ display:flex;align-items:center;gap:10px;justify-content:center;margin-top:16px;padding:10px 0;border-top:1px solid var(--border);flex-wrap:wrap }
+.lesson-rating-label{ font-size:.8rem;color:var(--text-dim);font-weight:600 }
+.lesson-rating-btns{ display:flex;gap:6px }
+.lrat-btn{ background:none;border:1px solid var(--border);border-radius:8px;padding:6px 14px;font-size:1.2rem;cursor:pointer;transition:all .15s;line-height:1 }
+.lrat-btn:hover{ background:var(--bg-card-hover);transform:scale(1.1) }
+.lrat-btn.active-up{ background:rgba(34,197,94,.12);border-color:var(--success);box-shadow:0 0 0 2px rgba(34,197,94,.3) }
+.lrat-btn.active-down{ background:rgba(239,68,68,.1);border-color:var(--danger);box-shadow:0 0 0 2px rgba(239,68,68,.25) }
+.lesson-rating-thanks{ font-size:.75rem;color:var(--text-dim);font-style:italic }

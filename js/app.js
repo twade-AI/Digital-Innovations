@@ -720,6 +720,22 @@ function renderSlide(index) {
   area.style.position = 'relative';
   area.appendChild(confBtn);
 
+  // Rating widget — show on summary slide or last slide
+  var slides = getLessonSlides(currentLessonId, findLesson(currentLessonId) ? findLesson(currentLessonId).lesson : null, findLesson(currentLessonId) ? findLesson(currentLessonId).unit : null);
+  var isLastSlide = (index === slides.length - 1);
+  if (isLastSlide) {
+    var ratingWrap = document.createElement('div');
+    ratingWrap.className = 'lesson-rating-wrap';
+    var savedRating = getLessonRating(currentLessonId);
+    ratingWrap.innerHTML =
+      '<span class="lesson-rating-label">Rate this lesson</span>' +
+      '<div class="lesson-rating-btns">' +
+        '<button class="lrat-btn' + (savedRating === 'up' ? ' active-up' : '') + '" onclick="ratelesson(' + currentLessonId + ',\'up\')" title="Helpful">&#128077;</button>' +
+        '<button class="lrat-btn' + (savedRating === 'down' ? ' active-down' : '') + '" onclick="ratelesson(' + currentLessonId + ',\'down\')" title="Could be better">&#128078;</button>' +
+      '</div>';
+    area.appendChild(ratingWrap);
+  }
+
   // Inject glossary tooltips
   injectGlossaryTooltips(area);
 
@@ -2864,6 +2880,42 @@ document.addEventListener('DOMContentLoaded', () => {
   renderSpacedReviewQueue();
   initOfflineBanner();
 });
+
+/* ── Lesson Ratings ────────────────────────────── */
+var RATINGS_KEY = 'di_lesson_ratings';
+function loadRatings() {
+  try { return JSON.parse(localStorage.getItem(RATINGS_KEY)) || {}; } catch(e) { return {}; }
+}
+function getLessonRating(id) { return loadRatings()[id] || null; }
+function ratelesson(id, val) {
+  var ratings = loadRatings();
+  if (ratings[id] === val) {
+    delete ratings[id]; // toggle off
+  } else {
+    ratings[id] = val;
+    syncRatingToCloud(id, val);
+  }
+  localStorage.setItem(RATINGS_KEY, JSON.stringify(ratings));
+  // Refresh the widget in place
+  var wrap = document.querySelector('.lesson-rating-wrap');
+  if (wrap) {
+    var savedRating = ratings[id] || null;
+    wrap.innerHTML =
+      '<span class="lesson-rating-label">Rate this lesson</span>' +
+      '<div class="lesson-rating-btns">' +
+        '<button class="lrat-btn' + (savedRating === 'up' ? ' active-up' : '') + '" onclick="ratelesson(' + id + ',\'up\')" title="Helpful">&#128077;</button>' +
+        '<button class="lrat-btn' + (savedRating === 'down' ? ' active-down' : '') + '" onclick="ratelesson(' + id + ',\'down\')" title="Could be better">&#128078;</button>' +
+      '</div>' +
+      (savedRating ? '<span class="lesson-rating-thanks">Thanks for the feedback!</span>' : '');
+  }
+}
+function syncRatingToCloud(id, val) {
+  if (!window.supabase || !currentUser) return;
+  supabase.from('lesson_ratings').upsert(
+    { user_id: currentUser.id, lesson_id: id, rating: val, rated_at: new Date().toISOString() },
+    { onConflict: 'user_id,lesson_id' }
+  ).catch(function() {});
+}
 
 function initOfflineBanner() {
   var banner = document.getElementById('offlineBanner');
