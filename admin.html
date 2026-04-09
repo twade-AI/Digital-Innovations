@@ -288,6 +288,7 @@
       <button class="dash-tab active" onclick="switchDashTab('students')">👥 Students</button>
       <button class="dash-tab" onclick="switchDashTab('class')">📊 Class Dashboard</button>
       <button class="dash-tab" onclick="switchDashTab('reflections')">💬 Reflections</button>
+      <button class="dash-tab" onclick="switchDashTab('ratings')">⭐ Lesson Ratings</button>
       <button class="dash-tab" onclick="switchDashTab('news')">📰 Manage News</button>
     </div>
 
@@ -353,6 +354,38 @@ CREATE POLICY "Admins read all reflections" ON public.reflections
       </div>
       <div id="reflectionsBody">
         <div class="empty-state" style="padding:40px"><span class="loading-spinner"></span></div>
+      </div>
+    </div>
+
+    <!-- Ratings Tab -->
+    <div id="tabRatings" style="display:none">
+      <div class="cd-section-title" style="margin-bottom:16px">⭐ Lesson Ratings — student thumbs up/down feedback</div>
+      <details class="ref-setup-box" style="margin-bottom:16px">
+        <summary style="cursor:pointer;font-size:.85rem;font-weight:600;color:var(--text-dim)">▶ First-time setup — run this SQL in Supabase</summary>
+        <pre class="ref-sql-box" id="ratingsSqlBox">CREATE TABLE IF NOT EXISTS public.lesson_ratings (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id uuid REFERENCES auth.users(id) ON DELETE CASCADE,
+  lesson_id integer NOT NULL,
+  rating text CHECK (rating IN ('up','down')),
+  rated_at timestamptz DEFAULT now(),
+  UNIQUE(user_id, lesson_id)
+);
+ALTER TABLE public.lesson_ratings ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Users manage own ratings" ON public.lesson_ratings
+  FOR ALL USING (auth.uid() = user_id);
+CREATE POLICY "Admins read all ratings" ON public.lesson_ratings
+  FOR SELECT USING (
+    EXISTS (SELECT 1 FROM public.profiles WHERE user_id = auth.uid() AND is_admin = true)
+  );</pre>
+        <button class="btn btn-ghost btn-sm" onclick="navigator.clipboard.writeText(document.getElementById('ratingsSqlBox').textContent).then(function(){var el=document.getElementById('ratSqlCopied');el.style.display='inline';setTimeout(function(){el.style.display='none'},2000)})">📋 Copy SQL</button>
+        <span id="ratSqlCopied" style="font-size:.78rem;color:var(--success);display:none;margin-left:8px">✓ Copied!</span>
+      </details>
+      <div class="table-controls" style="margin-bottom:16px">
+        <button class="btn btn-ghost btn-sm" onclick="loadRatingsData()">🔄 Refresh</button>
+        <button class="btn btn-ghost btn-sm" onclick="exportRatingsCSV()">⬇ Export CSV</button>
+      </div>
+      <div id="ratingsBody">
+        <div class="empty-state" style="padding:40px">Click Refresh to load ratings data.</div>
       </div>
     </div>
 
@@ -794,6 +827,7 @@ function switchDashTab(tab) {
   document.getElementById('tabStudents').style.display    = tab === 'students'    ? 'block' : 'none';
   document.getElementById('tabClass').style.display       = tab === 'class'       ? 'block' : 'none';
   document.getElementById('tabReflections').style.display = tab === 'reflections' ? 'block' : 'none';
+  document.getElementById('tabRatings').style.display     = tab === 'ratings'     ? 'block' : 'none';
   document.getElementById('tabNews').style.display        = tab === 'news'        ? 'block' : 'none';
   document.querySelectorAll('.dash-tab').forEach(function(b) {
     b.classList.toggle('active', b.getAttribute('onclick').includes("'" + tab + "'"));
@@ -801,6 +835,7 @@ function switchDashTab(tab) {
   if (tab === 'news')        loadNewsArticles();
   if (tab === 'class')       renderClassDashboard();
   if (tab === 'reflections') loadReflections();
+  if (tab === 'ratings')     loadRatingsData();
 }
 
 /* ── Class Dashboard ──────────────────────────── */
@@ -991,6 +1026,81 @@ function exportReflectionsCSV() {
   var csv = rows.map(function(r) { return r.map(function(c) { return '"' + String(c).replace(/"/g,'""') + '"'; }).join(','); }).join('\n');
   var a = document.createElement('a'); a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
   a.download = 'reflections_' + new Date().toISOString().slice(0,10) + '.csv'; a.click();
+}
+
+/* ── Lesson Ratings ───────────────────────────── */
+var _allRatings = [];
+async function loadRatingsData() {
+  var el = document.getElementById('ratingsBody');
+  el.innerHTML = '<div class="empty-state" style="padding:24px"><span class="loading-spinner"></span> Loading…</div>';
+  try {
+    var res = await _sb.from('lesson_ratings').select('*, profiles(display_name, email)').order('rated_at', { ascending: false });
+    if (res.error) {
+      if (res.error.code === '42P01') {
+        el.innerHTML = '<div class="empty-state" style="padding:24px">⚠ The <code>lesson_ratings</code> table does not exist yet. Run the setup SQL below first.</div>' +
+          '<pre class="ref-sql-box">CREATE TABLE IF NOT EXISTS public.lesson_ratings (\n  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,\n  user_id uuid REFERENCES auth.users(id) ON DELETE CASCADE,\n  lesson_id integer NOT NULL,\n  rating text CHECK (rating IN (\'up\',\'down\')),\n  rated_at timestamptz DEFAULT now(),\n  UNIQUE(user_id, lesson_id)\n);\nALTER TABLE public.lesson_ratings ENABLE ROW LEVEL SECURITY;\nCREATE POLICY "Users manage own ratings" ON public.lesson_ratings\n  FOR ALL USING (auth.uid() = user_id);\nCREATE POLICY "Admins read all ratings" ON public.lesson_ratings\n  FOR SELECT USING (\n    EXISTS (SELECT 1 FROM public.profiles WHERE user_id = auth.uid() AND is_admin = true)\n  );</pre>';
+        return;
+      }
+      el.innerHTML = '<div class="empty-state" style="padding:24px">Error: ' + esc(res.error.message) + '</div>';
+      return;
+    }
+    _allRatings = res.data || [];
+    renderRatings();
+  } catch(e) {
+    el.innerHTML = '<div class="empty-state" style="padding:24px">Error loading ratings.</div>';
+  }
+}
+
+function renderRatings() {
+  var el = document.getElementById('ratingsBody');
+  if (!_allRatings.length) {
+    el.innerHTML = '<div class="empty-state" style="padding:40px">No ratings submitted yet.</div>';
+    return;
+  }
+
+  // Aggregate by lesson
+  var byLesson = {};
+  _allRatings.forEach(function(r) {
+    if (!byLesson[r.lesson_id]) byLesson[r.lesson_id] = { up: 0, down: 0, rows: [] };
+    byLesson[r.lesson_id][r.rating === 'up' ? 'up' : 'down']++;
+    byLesson[r.lesson_id].rows.push(r);
+  });
+
+  // Sort by most feedback
+  var sorted = Object.keys(byLesson).sort(function(a, b) {
+    return (byLesson[b].up + byLesson[b].down) - (byLesson[a].up + byLesson[a].down);
+  });
+
+  var summaryRows = sorted.map(function(lid) {
+    var d = byLesson[lid];
+    var total = d.up + d.down;
+    var pct = total ? Math.round(d.up / total * 100) : 0;
+    var bar = '<div style="background:var(--border);border-radius:4px;height:6px;width:80px;display:inline-block;vertical-align:middle;margin:0 6px"><div style="background:var(--success);height:100%;border-radius:4px;width:' + pct + '%"></div></div>';
+    return '<tr><td><strong>L' + lid + '</strong></td><td style="color:var(--success)">👍 ' + d.up + '</td><td style="color:var(--danger)">👎 ' + d.down + '</td><td>' + bar + ' ' + pct + '% positive</td></tr>';
+  }).join('');
+
+  el.innerHTML =
+    '<h3 style="font-size:.95rem;font-weight:700;margin-bottom:12px">Lesson summary (' + _allRatings.length + ' total ratings)</h3>' +
+    '<table class="student-table" style="margin-bottom:24px"><thead><tr><th>Lesson</th><th>👍</th><th>👎</th><th>Satisfaction</th></tr></thead><tbody>' + summaryRows + '</tbody></table>' +
+    '<h3 style="font-size:.95rem;font-weight:700;margin-bottom:12px">Individual ratings</h3>' +
+    '<table class="student-table"><thead><tr><th>Student</th><th>Lesson</th><th>Rating</th><th>Date</th></tr></thead><tbody>' +
+    _allRatings.map(function(r) {
+      var name = (r.profiles && r.profiles.display_name) ? esc(r.profiles.display_name) : (r.profiles && r.profiles.email ? esc(r.profiles.email) : r.user_id.slice(0,8) + '…');
+      return '<tr><td>' + name + '</td><td>L' + r.lesson_id + '</td><td>' + (r.rating === 'up' ? '👍' : '👎') + '</td><td style="color:var(--text-dim);font-size:.8rem">' + (r.rated_at ? r.rated_at.slice(0,10) : '') + '</td></tr>';
+    }).join('') +
+    '</tbody></table>';
+}
+
+function exportRatingsCSV() {
+  if (!_allRatings.length) return;
+  var rows = [['Student','Lesson','Rating','Date']];
+  _allRatings.forEach(function(r) {
+    var name = (r.profiles && r.profiles.display_name) ? r.profiles.display_name : (r.profiles && r.profiles.email ? r.profiles.email : r.user_id);
+    rows.push([name, 'L' + r.lesson_id, r.rating, r.rated_at ? r.rated_at.slice(0,10) : '']);
+  });
+  var csv = rows.map(function(r) { return r.map(function(c) { return '"' + String(c).replace(/"/g,'""') + '"'; }).join(','); }).join('\n');
+  var a = document.createElement('a'); a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+  a.download = 'lesson_ratings_' + new Date().toISOString().slice(0,10) + '.csv'; a.click();
 }
 
 /* ── News Management ──────────────────────────── */
