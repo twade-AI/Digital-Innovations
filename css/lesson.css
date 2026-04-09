@@ -53,11 +53,22 @@
   padding: 32px 36px;
 }
 .lv-slide-area > * {
-  animation: slideIn .3s ease;
+  animation: slideInUp .28s ease;
 }
-@keyframes slideIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+/* Directional transitions */
+.slide-area-forward > * { animation: slideInRight .28s ease !important; }
+.slide-area-back    > * { animation: slideInLeft  .28s ease !important; }
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-32px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 /* ── Unit Colour Theming ──────────────────────── */
@@ -127,20 +138,75 @@
 .lv-print-btn:hover { border-color: var(--primary); color: var(--primary-light); }
 
 @media print {
+  /* Hide everything except the lesson modal */
   body > *:not(.modal) { display: none !important; }
   .modal { display: block !important; position: static; background: #fff; }
-  .modal-content { max-height: none; overflow: visible; border: none; box-shadow: none; background: #fff; color: #000; max-width: 100%; }
+  .modal-content {
+    max-height: none; overflow: visible; border: none;
+    box-shadow: none; background: #fff; color: #000;
+    max-width: 100%; padding: 0;
+  }
   .modal--lesson .modal-content { max-height: none; }
-  .lv-footer, .modal-close, .lv-print-btn { display: none !important; }
-  .lv-header { border-bottom: 2px solid #333; }
-  .lv-slide-area { padding: 20px 0; }
-  .slide-badge { border: 1px solid #999; }
-  .concept-callout { border-left: 3px solid #333; background: #f5f5f5; }
-  .interactive-wrapper { background: #f9f9f9; border: 1px solid #ddd; }
-  .disc-q { background: #f5f5f5; border: 1px solid #ddd; }
-  .summary-point { background: #f5f5f5; border: 1px solid #ddd; }
-  .lv-progress-track { display: none; }
+
+  /* Hide navigation chrome */
+  .lv-footer, .modal-close, .lv-print-btn,
+  .lv-progress-track, .lv-dots, .notes-toggle,
+  #lvPrev, #lvNext { display: none !important; }
+
+  /* Header becomes a clean title block */
+  .lv-header {
+    border-bottom: 2px solid #000;
+    padding: 12px 0 10px;
+    margin-bottom: 0;
+    background: none !important;
+  }
+  .lv-meta { font-size: 10pt; }
+  .lv-unit-label { font-weight: 600; }
+
+  /* Slide area — show all slides in sequence */
+  .lv-slide-area { padding: 12px 0; }
+
+  /* Each slide is a compact block */
+  .slide-hook, .slide-concept, .slide-quiz,
+  .slide-scenario, .slide-activity, .slide-discussion,
+  .slide-summary { break-inside: avoid; margin-bottom: 18pt; }
+
+  /* Summary slide — enlarge for quick-scan */
+  .slide-summary { border: 1.5pt solid #000; padding: 12pt; border-radius: 6pt; }
+  .summary-points { columns: 2; gap: 12pt; }
+  .summary-point { background: #f4f4f4; border: 1pt solid #ccc; border-radius: 4pt;
+                   padding: 6pt 8pt; break-inside: avoid; margin-bottom: 6pt; }
+
+  /* Type badges as border boxes */
+  .slide-badge { border: 1pt solid #666; background: none !important;
+                 color: #333 !important; font-size: 7pt; }
+
+  /* Callouts */
+  .concept-callout, .slide-callout {
+    border-left: 3pt solid #333; background: #f5f5f5 !important;
+    padding: 6pt 10pt;
+  }
+
+  /* Discussion, activity */
+  .disc-q, .slide-disc-q { background: #f5f5f5 !important; border: 1pt solid #ccc; }
+
+  /* Quiz — show correct answer highlighted */
+  .quiz-option { border: 1pt solid #999; margin: 3pt 0; padding: 4pt 8pt; }
+  .quiz-option.correct { background: #d4edda !important; border-color: #28a745 !important;
+                         font-weight: 700; }
+
+  /* Branding footer on every page */
+  .modal-content::after {
+    content: 'Digital Innovations Course — digitalinnovations.education';
+    display: block; text-align: center;
+    font-size: 8pt; color: #999; border-top: 1pt solid #ddd;
+    padding-top: 6pt; margin-top: 20pt;
+  }
+
   * { color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* Page setup */
+  @page { margin: 15mm 18mm; size: A4; }
 }
 
 /* ── Slide Types ────────────────────────────────── */
@@ -905,8 +971,27 @@
 }
 
 @media (max-width: 768px) {
-  .modal--lesson .modal-content { max-height: 95vh; }
+  /* Bottom-sheet style on mobile */
+  .modal--lesson {
+    align-items: flex-end !important;
+    padding: 0 !important;
+  }
+  .modal--lesson .modal-content {
+    max-height: 92vh;
+    max-width: 100% !important;
+    width: 100% !important;
+    border-radius: 20px 20px 0 0 !important;
+    border-bottom: none !important;
+    animation: sheetUp .3s cubic-bezier(.32,.72,0,1);
+  }
+  @keyframes sheetUp {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+  }
   .lv-slide-area { padding: 20px; }
   .concept-two-col { grid-template-columns: 1fr; }
   .checklist-grid { grid-template-columns: 1fr; }
+  .lv-dots { overflow-x: auto; }
+  .lv-header { padding: 16px 20px 12px; }
+  .lv-footer { padding: 12px 16px; }
 }

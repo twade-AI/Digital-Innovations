@@ -257,7 +257,7 @@ function lessonRow(lesson, unit) {
     <div class="lesson-item${hidden ? ' tag-hidden' : ''}" data-id="${lesson.id}" data-tags="${lesson.tags.join(' ')}">
       <div class="lesson-check ${done ? 'done' : ''}" onclick="event.stopPropagation();toggleLesson(${lesson.id})" title="Mark complete">✓</div>
       <div class="lesson-info" onclick="openLesson(${lesson.id})">
-        <div class="lesson-num">Lesson ${lesson.id} <span class="lesson-time">~${mins} min</span>${diffBadge(lesson.difficulty)}</div>
+        <div class="lesson-num">Lesson ${lesson.id} <span class="lesson-time">~${mins} min</span>${diffBadge(lesson.difficulty)}${quizScores[lesson.id] ? '<span class="lesson-quiz-score ' + (quizScores[lesson.id].correct ? 'lqs-pass' : 'lqs-fail') + '" title="Quiz: ' + (quizScores[lesson.id].correct ? 'Passed' : 'Attempted') + '">' + (quizScores[lesson.id].correct ? '✓ Quiz' : '✗ Quiz') + '</span>' : ''}</div>
         <div class="lesson-title">${lesson.title}</div>
       </div>
       <button class="bookmark-btn${bookmarkedLessons.has(lesson.id) ? ' bookmarked' : ''}" onclick="event.stopPropagation();toggleBookmark(${lesson.id})" title="${bookmarkedLessons.has(lesson.id) ? 'Remove bookmark' : 'Bookmark'}" aria-label="Bookmark lesson">${bookmarkedLessons.has(lesson.id) ? '★' : '☆'}</button>
@@ -437,6 +437,7 @@ function openLesson(id) {
 
   renderSlide(0);
   modal.classList.add('open');
+  initSlideSwipe('lvSlideArea', function(dir) { navigateSlide(dir); });
 }
 
 function renderSlide(index) {
@@ -788,6 +789,12 @@ function navigateSlide(dir) {
   const newIndex = currentSlideIndex + dir;
   if (newIndex < 0 || newIndex >= currentSlides.length) return;
   currentSlideIndex = newIndex;
+  var area = document.getElementById('lvSlideArea');
+  if (area) {
+    area.classList.remove('slide-area-forward', 'slide-area-back');
+    void area.offsetWidth; // force reflow to restart animation
+    area.classList.add(dir > 0 ? 'slide-area-forward' : 'slide-area-back');
+  }
   renderSlide(currentSlideIndex);
 }
 
@@ -1068,6 +1075,36 @@ function updateHomeStats() {
   updateTimeEstimate();
   renderRecentlyViewed();
   updateReviewDueBadge();
+
+  // Streak row
+  var streakRow = document.getElementById('homeStreakRow');
+  if (streakRow) {
+    var s = getStreak();
+    if (s > 0) {
+      streakRow.style.display = 'flex';
+      streakRow.innerHTML = '<span class="pc-streak-fire">🔥</span><span class="pc-streak-num">' + s + '-day streak</span>' +
+        (s >= 7 ? '<span class="pc-streak-badge">🏆 Week streak!</span>' : '');
+    } else {
+      streakRow.style.display = 'none';
+    }
+  }
+
+  // Badges row — show earned unit badges as small icons
+  var badgesRow = document.getElementById('homeBadgesRow');
+  if (badgesRow && typeof UNIT_BADGES !== 'undefined') {
+    var earned = {};
+    try { earned = JSON.parse(localStorage.getItem('di_unit_badges') || '{}'); } catch(e) {}
+    var earnedBadges = UNIT_BADGES.filter(function(b) { return earned[b.id]; });
+    if (earnedBadges.length > 0) {
+      badgesRow.style.display = 'flex';
+      badgesRow.innerHTML = '<span class="pc-badges-label">Badges:</span>' +
+        earnedBadges.map(function(b) {
+          return '<span class="pc-badge-icon" title="' + b.title + '">' + b.icon + '</span>';
+        }).join('');
+    } else {
+      badgesRow.style.display = 'none';
+    }
+  }
 }
 
 function resetProgress() {
@@ -2931,6 +2968,24 @@ function initOfflineBanner() {
 }
 
 // Keyboard shortcuts
+/* ── Touch swipe for slide navigation ─────────── */
+function initSlideSwipe(areaId, callback) {
+  var el = document.getElementById(areaId);
+  if (!el) return;
+  var startX = 0, startY = 0;
+  el.addEventListener('touchstart', function(e) {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+  el.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].clientX - startX;
+    var dy = e.changedTouches[0].clientY - startY;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+      callback(dx < 0 ? 1 : -1);
+    }
+  }, { passive: true });
+}
+
 document.addEventListener('keydown', e => {
   // Don't fire shortcuts when typing in inputs/textareas
   var tag = (e.target.tagName || '').toLowerCase();
@@ -2948,6 +3003,13 @@ document.addEventListener('keydown', e => {
     if (typeof closeAuthModal === 'function') closeAuthModal();
   }
   if (e.key === '?' && !inInput) { openShortcuts(); return; }
+  // Cmd+K / Ctrl+K — focus search
+  if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+    e.preventDefault();
+    var si = document.getElementById('searchInput');
+    if (si) { si.focus(); si.select(); }
+    return;
+  }
   if (currentSlides.length > 0) {
     if (e.key === 'ArrowRight') navigateSlide(1);
     if (e.key === 'ArrowLeft') navigateSlide(-1);

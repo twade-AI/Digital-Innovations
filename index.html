@@ -52,7 +52,7 @@
         <a href="#" class="nav-link nav-link-quiz" onclick="startQuickQuiz()" title="Quick Quiz — test yourself on completed lessons">⚡ Quiz Me</a>
       </div>
       <div class="nav-search">
-        <input type="text" id="searchInput" placeholder="Search everything..." oninput="handleSearch(this.value)" aria-label="Search lessons, glossary, and resources">
+        <input type="text" id="searchInput" placeholder="Search… (⌘K)" oninput="handleSearch(this.value)" aria-label="Search lessons, glossary, and resources">
         <div id="searchResults" class="search-results"></div>
       </div>
       <!-- Auth controls -->
@@ -128,13 +128,15 @@
           <li>Progress tracking &amp; badges</li>
         </ul>
         <div class="pc-actions">
-          <button class="btn btn-primary pc-cta">Enter Full Course →</button>
+          <button class="btn btn-primary pc-cta" id="continueBtn" onclick="event.stopPropagation();continueLesson()">Enter Full Course →</button>
           <div id="heroTimeEst" style="font-size:.78rem;color:var(--text-dim);margin-top:6px"></div>
         </div>
         <div class="pc-progress-row">
           <div class="pc-progress-track"><div class="pc-progress-fill" id="pcProgressFill" style="width:0%"></div></div>
           <span id="progressPercent" class="pc-pct">0%</span>
         </div>
+        <div id="homeStreakRow" class="pc-streak-row" style="display:none"></div>
+        <div id="homeBadgesRow" class="pc-badges-row" style="display:none"></div>
         <button class="btn btn-secondary pwa-install-btn" id="pwaInstallBtn" onclick="event.stopPropagation();installPWA()" style="display:none;margin-top:10px;font-size:.8rem" title="Install for offline use">📲 Install App</button>
       </div>
 
