@@ -341,6 +341,20 @@
     flRenderSlide();
     document.getElementById('lessonModal').classList.add('open');
     document.body.style.overflow = 'hidden';
+    // Touch swipe
+    var sa = document.getElementById('slideArea');
+    if (sa && !sa._swipeInit) {
+      sa._swipeInit = true;
+      var sx = 0, sy = 0;
+      sa.addEventListener('touchstart', function(e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+      sa.addEventListener('touchend', function(e) {
+        var dx = e.changedTouches[0].clientX - sx;
+        var dy = e.changedTouches[0].clientY - sy;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+          if (dx < 0) flNextSlide(); else flPrevSlide();
+        }
+      }, { passive: true });
+    }
   }
 
   function flCloseLesson() {
@@ -513,6 +527,14 @@
     }
   }
 
+  function flSetSlideDirection(dir) {
+    var area = document.getElementById('slideArea');
+    if (!area) return;
+    area.classList.remove('slide-area-forward', 'slide-area-back');
+    void area.offsetWidth;
+    area.classList.add(dir > 0 ? 'slide-area-forward' : 'slide-area-back');
+  }
+
   function flNextSlide() {
     var isLast = flCurrentSlideIdx === flCurrentSlides.length - 1;
     if (isLast) {
@@ -523,11 +545,12 @@
       return;
     }
     flCurrentSlideIdx++;
+    flSetSlideDirection(1);
     flRenderSlide();
   }
 
   function flPrevSlide() {
-    if (flCurrentSlideIdx > 0) { flCurrentSlideIdx--; flRenderSlide(); }
+    if (flCurrentSlideIdx > 0) { flCurrentSlideIdx--; flSetSlideDirection(-1); flRenderSlide(); }
   }
 
   function flJumpSlide(idx) {
