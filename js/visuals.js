@@ -572,4 +572,109 @@ var SLIDE_VISUALS = {
     <text x="200" y="166" text-anchor="middle" class="vreg" font-size="9" opacity=".7">Deregulate · compete</text>
   </svg>`,
 
+  /* ── L23:3 — Model Card — anatomy of a transparency document ─────── */
+  '23:3': `<svg viewBox="0 0 560 195" xmlns="http://www.w3.org/2000/svg" aria-label="Model card anatomy">
+    <defs>
+      <style>.vmc { font-family: system-ui, sans-serif; fill: currentColor; }</style>
+    </defs>
+    <!-- Card background -->
+    <rect x="10" y="8" width="540" height="180" rx="12" fill="rgba(99,102,241,.06)" stroke="rgba(99,102,241,.3)" stroke-width="1.5"/>
+    <text x="280" y="26" text-anchor="middle" class="vmc" font-size="11" font-weight="700" opacity=".6" letter-spacing=".06em">MODEL CARD</text>
+    <!-- Six sections in 2×3 grid -->
+    <!-- Row 1 -->
+    <rect x="22" y="34" width="162" height="65" rx="7" fill="rgba(99,102,241,.1)" stroke="rgba(99,102,241,.3)" stroke-width="1"/>
+    <text x="103" y="53" text-anchor="middle" class="vmc" font-size="10" font-weight="700">📋 Model Details</text>
+    <text x="103" y="67" text-anchor="middle" class="vmc" font-size="9" opacity=".7">What does it do?</text>
+    <text x="103" y="79" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Which AI tools / APIs?</text>
+    <text x="103" y="91" text-anchor="middle" class="vmc" font-size="9" opacity=".7">When last updated?</text>
+
+    <rect x="199" y="34" width="162" height="65" rx="7" fill="rgba(6,182,212,.09)" stroke="rgba(6,182,212,.3)" stroke-width="1"/>
+    <text x="280" y="53" text-anchor="middle" class="vmc" font-size="10" font-weight="700">🎯 Intended Use</text>
+    <text x="280" y="67" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Primary user group?</text>
+    <text x="280" y="79" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Designed tasks?</text>
+    <text x="280" y="91" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Explicitly NOT for?</text>
+
+    <rect x="376" y="34" width="162" height="65" rx="7" fill="rgba(34,197,94,.09)" stroke="rgba(34,197,94,.3)" stroke-width="1"/>
+    <text x="457" y="53" text-anchor="middle" class="vmc" font-size="10" font-weight="700">📊 Performance</text>
+    <text x="457" y="67" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Accuracy / effectiveness?</text>
+    <text x="457" y="79" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Best-case inputs?</text>
+    <text x="457" y="91" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Worst-case inputs?</text>
+
+    <!-- Row 2 -->
+    <rect x="22" y="108" width="162" height="65" rx="7" fill="rgba(245,158,11,.09)" stroke="rgba(245,158,11,.3)" stroke-width="1"/>
+    <text x="103" y="127" text-anchor="middle" class="vmc" font-size="10" font-weight="700">⚖️ Bias &amp; Fairness</text>
+    <text x="103" y="141" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Tested with diverse users?</text>
+    <text x="103" y="153" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Demographic differences?</text>
+    <text x="103" y="165" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Mitigation steps taken?</text>
+
+    <rect x="199" y="108" width="162" height="65" rx="7" fill="rgba(239,68,68,.09)" stroke="rgba(239,68,68,.3)" stroke-width="1"/>
+    <text x="280" y="127" text-anchor="middle" class="vmc" font-size="10" font-weight="700">🚫 Limitations</text>
+    <text x="280" y="141" text-anchor="middle" class="vmc" font-size="9" opacity=".7">What can it NOT do?</text>
+    <text x="280" y="153" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Inputs that cause failure?</text>
+    <text x="280" y="165" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Confidence level?</text>
+
+    <rect x="376" y="108" width="162" height="65" rx="7" fill="rgba(168,85,247,.09)" stroke="rgba(168,85,247,.3)" stroke-width="1"/>
+    <text x="457" y="127" text-anchor="middle" class="vmc" font-size="10" font-weight="700">🛡️ Ethics</text>
+    <text x="457" y="141" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Potential harms?</text>
+    <text x="457" y="153" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Built-in safeguards?</text>
+    <text x="457" y="165" text-anchor="middle" class="vmc" font-size="9" opacity=".7">What users must know?</text>
+  </svg>`,
+
+  /* ── L24:1 — AI Project Lifecycle — five-stage pipeline ─────────── */
+  '24:1': `<svg viewBox="0 0 560 165" xmlns="http://www.w3.org/2000/svg" aria-label="AI project lifecycle five stages">
+    <defs>
+      <style>.vlc { font-family: system-ui, sans-serif; fill: currentColor; }</style>
+      <marker id="arr24" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <polygon points="0 0, 7 3.5, 0 7" fill="currentColor" opacity=".4"/>
+      </marker>
+    </defs>
+    <!-- Five stages -->
+    <!-- 1. Define -->
+    <rect x="10" y="45" width="90" height="75" rx="9" fill="rgba(99,102,241,.14)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
+    <text x="55" y="70" text-anchor="middle" class="vlc" font-size="18">🎯</text>
+    <text x="55" y="87" text-anchor="middle" class="vlc" font-size="11" font-weight="700">Define</text>
+    <text x="55" y="100" text-anchor="middle" class="vlc" font-size="9" opacity=".65">Problem</text>
+    <text x="55" y="112" text-anchor="middle" class="vlc" font-size="9" opacity=".65">framing</text>
+    <text x="55" y="132" text-anchor="middle" class="vlc" font-size="8" opacity=".45">L21–22</text>
+    <!-- Arrow -->
+    <line x1="102" y1="82" x2="120" y2="82" stroke="currentColor" stroke-opacity=".35" stroke-width="1.5" marker-end="url(#arr24)"/>
+    <!-- 2. Design -->
+    <rect x="122" y="45" width="90" height="75" rx="9" fill="rgba(6,182,212,.12)" stroke="rgba(6,182,212,.45)" stroke-width="1.5"/>
+    <text x="167" y="70" text-anchor="middle" class="vlc" font-size="18">🏗️</text>
+    <text x="167" y="87" text-anchor="middle" class="vlc" font-size="11" font-weight="700">Design</text>
+    <text x="167" y="100" text-anchor="middle" class="vlc" font-size="9" opacity=".65">Architecture</text>
+    <text x="167" y="112" text-anchor="middle" class="vlc" font-size="9" opacity=".65">&amp; ethics</text>
+    <text x="167" y="132" text-anchor="middle" class="vlc" font-size="8" opacity=".45">L23–24</text>
+    <!-- Arrow -->
+    <line x1="214" y1="82" x2="232" y2="82" stroke="currentColor" stroke-opacity=".35" stroke-width="1.5" marker-end="url(#arr24)"/>
+    <!-- 3. Build -->
+    <rect x="234" y="45" width="90" height="75" rx="9" fill="rgba(245,158,11,.12)" stroke="rgba(245,158,11,.45)" stroke-width="1.5"/>
+    <text x="279" y="70" text-anchor="middle" class="vlc" font-size="18">⚙️</text>
+    <text x="279" y="87" text-anchor="middle" class="vlc" font-size="11" font-weight="700">Build</text>
+    <text x="279" y="100" text-anchor="middle" class="vlc" font-size="9" opacity=".65">Prompt eng.</text>
+    <text x="279" y="112" text-anchor="middle" class="vlc" font-size="9" opacity=".65">&amp; sprints</text>
+    <text x="279" y="132" text-anchor="middle" class="vlc" font-size="8" opacity=".45">L25–35</text>
+    <!-- Arrow -->
+    <line x1="326" y1="82" x2="344" y2="82" stroke="currentColor" stroke-opacity=".35" stroke-width="1.5" marker-end="url(#arr24)"/>
+    <!-- 4. Evaluate -->
+    <rect x="346" y="45" width="90" height="75" rx="9" fill="rgba(239,68,68,.11)" stroke="rgba(239,68,68,.4)" stroke-width="1.5"/>
+    <text x="391" y="70" text-anchor="middle" class="vlc" font-size="18">🧪</text>
+    <text x="391" y="87" text-anchor="middle" class="vlc" font-size="11" font-weight="700">Evaluate</text>
+    <text x="391" y="100" text-anchor="middle" class="vlc" font-size="9" opacity=".65">Test, bias</text>
+    <text x="391" y="112" text-anchor="middle" class="vlc" font-size="9" opacity=".65">&amp; audit</text>
+    <text x="391" y="132" text-anchor="middle" class="vlc" font-size="8" opacity=".45">L36–38</text>
+    <!-- Arrow -->
+    <line x1="438" y1="82" x2="456" y2="82" stroke="currentColor" stroke-opacity=".35" stroke-width="1.5" marker-end="url(#arr24)"/>
+    <!-- 5. Communicate -->
+    <rect x="458" y="45" width="90" height="75" rx="9" fill="rgba(34,197,94,.12)" stroke="rgba(34,197,94,.45)" stroke-width="1.5"/>
+    <text x="503" y="70" text-anchor="middle" class="vlc" font-size="18">📢</text>
+    <text x="503" y="87" text-anchor="middle" class="vlc" font-size="11" font-weight="700">Communicate</text>
+    <text x="503" y="100" text-anchor="middle" class="vlc" font-size="9" opacity=".65">Pitch, reflect</text>
+    <text x="503" y="112" text-anchor="middle" class="vlc" font-size="9" opacity=".65">&amp; model card</text>
+    <text x="503" y="132" text-anchor="middle" class="vlc" font-size="8" opacity=".45">L39–44</text>
+    <!-- Iteration arc -->
+    <path d="M503,45 C503,18 55,18 55,45" fill="none" stroke="currentColor" stroke-opacity=".2" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#arr24)"/>
+    <text x="280" y="14" text-anchor="middle" class="vlc" font-size="8.5" opacity=".4" font-style="italic">Professional teams iterate between stages — but never skip Define</text>
+  </svg>`,
+
 };
