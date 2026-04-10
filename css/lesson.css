@@ -233,6 +233,57 @@
   background: rgba(99,102,241,.03);
 }
 
+/* ── Per-slide student notes ────────────────────── */
+.slide-notes {
+  margin-top: 22px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(99,102,241,.14);
+}
+.slide-notes-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 7px;
+}
+.slide-notes-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-secondary, #94a3b8);
+}
+.slide-notes-saved {
+  margin-left: auto;
+  font-size: 11px;
+  color: rgba(99,102,241,.8);
+  opacity: 0;
+  transition: opacity .3s;
+}
+.slide-notes-saved.visible { opacity: 1; }
+.slide-notes-ta {
+  width: 100%;
+  min-height: 72px;
+  max-height: 180px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(99,102,241,.18);
+  background: rgba(99,102,241,.05);
+  color: inherit;
+  font-family: inherit;
+  font-size: 13.5px;
+  line-height: 1.55;
+  resize: vertical;
+  box-sizing: border-box;
+  transition: border-color .2s, background .2s;
+}
+.slide-notes-ta:focus {
+  outline: none;
+  border-color: rgba(99,102,241,.45);
+  background: rgba(99,102,241,.08);
+}
+.slide-notes-ta::placeholder { color: rgba(148,163,184,.5); }
+@media print { .slide-notes { display: none; } }
+
 /* ── Slide Types ────────────────────────────────── */
 
 /* Hook */

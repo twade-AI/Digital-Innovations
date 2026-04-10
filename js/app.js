@@ -738,6 +738,35 @@ function renderSlide(index) {
   area.style.position = 'relative';
   area.appendChild(confBtn);
 
+  // Per-slide student notes
+  var noteKey = 'di_note_' + currentLessonId + '_' + index;
+  var savedNote = localStorage.getItem(noteKey) || '';
+  var notesWrap = document.createElement('div');
+  notesWrap.className = 'slide-notes';
+  notesWrap.innerHTML =
+    '<div class="slide-notes-header">' +
+      '<span class="slide-notes-label">✏ My Notes</span>' +
+      '<span class="slide-notes-saved" id="slideNotesSaved">Saved</span>' +
+    '</div>' +
+    '<textarea class="slide-notes-ta" id="slideNotesTa" placeholder="Jot your own thoughts, questions, or key points for this slide…" maxlength="2000"></textarea>';
+  area.appendChild(notesWrap);
+  var notesTa = document.getElementById('slideNotesTa');
+  if (notesTa) {
+    notesTa.value = savedNote;
+    var noteTimer = null;
+    var savedIndicator = document.getElementById('slideNotesSaved');
+    notesTa.addEventListener('input', function() {
+      clearTimeout(noteTimer);
+      noteTimer = setTimeout(function() {
+        localStorage.setItem(noteKey, notesTa.value);
+        if (savedIndicator) {
+          savedIndicator.classList.add('visible');
+          setTimeout(function() { savedIndicator.classList.remove('visible'); }, 1500);
+        }
+      }, 500);
+    });
+  }
+
   // Rating widget — show on summary slide or last slide
   var slides = getLessonSlides(currentLessonId, findLesson(currentLessonId) ? findLesson(currentLessonId).lesson : null, findLesson(currentLessonId) ? findLesson(currentLessonId).unit : null);
   var isLastSlide = (index === slides.length - 1);

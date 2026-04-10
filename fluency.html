@@ -422,6 +422,35 @@
         }
       }
     }
+
+    // Per-slide student notes
+    var flNoteKey = 'di_note_' + flCurrentLessonId + '_' + idx;
+    var flSavedNote = localStorage.getItem(flNoteKey) || '';
+    var flNotesWrap = document.createElement('div');
+    flNotesWrap.className = 'slide-notes';
+    flNotesWrap.innerHTML =
+      '<div class="slide-notes-header">' +
+        '<span class="slide-notes-label">✏ My Notes</span>' +
+        '<span class="slide-notes-saved" id="flNotesSaved">Saved</span>' +
+      '</div>' +
+      '<textarea class="slide-notes-ta" id="flNotesTa" placeholder="Jot your own thoughts, questions, or key points for this slide…" maxlength="2000"></textarea>';
+    area.appendChild(flNotesWrap);
+    var flNotesTa = document.getElementById('flNotesTa');
+    if (flNotesTa) {
+      flNotesTa.value = flSavedNote;
+      var flNoteTimer = null;
+      var flSavedInd = document.getElementById('flNotesSaved');
+      flNotesTa.addEventListener('input', function() {
+        clearTimeout(flNoteTimer);
+        flNoteTimer = setTimeout(function() {
+          localStorage.setItem(flNoteKey, flNotesTa.value);
+          if (flSavedInd) {
+            flSavedInd.classList.add('visible');
+            setTimeout(function() { flSavedInd.classList.remove('visible'); }, 1500);
+          }
+        }, 500);
+      });
+    }
   }
 
   function flRenderSlideHTML(slide, idx) {
