@@ -178,6 +178,7 @@
   <script src="js/slides-u5u6.js"></script>
   <script src="js/slides-critical.js"></script>
   <script src="js/quiz-bank.js"></script>
+  <script src="js/visuals.js"></script>
   <script>
   /* ── AI Fluency Track — standalone app ── */
 
@@ -405,6 +406,22 @@
     // Render slide HTML (reuse existing slide types)
     area.innerHTML = flRenderSlideHTML(slide, idx);
     area.scrollTop = 0;
+
+    // Inject SVG visual if one exists
+    if (typeof SLIDE_VISUALS !== 'undefined') {
+      var vKey = flCurrentLessonId + ':' + idx;
+      var svg = SLIDE_VISUALS[vKey];
+      if (svg) {
+        var vEl = document.createElement('div');
+        vEl.className = 'slide-visual';
+        vEl.innerHTML = svg;
+        var sEl = area.firstElementChild;
+        if (sEl) {
+          var ins = sEl.querySelector('.slide-callout, ul');
+          if (ins) sEl.insertBefore(vEl, ins); else sEl.appendChild(vEl);
+        }
+      }
+    }
   }
 
   function flRenderSlideHTML(slide, idx) {
