@@ -7,6 +7,8 @@
   <meta name="description" content="A free, self-directed 15-lesson pathway to AI fluency. No login needed. Works offline.">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <!-- Apply saved theme BEFORE CSS loads — eliminates flash of unstyled content -->
+  <script>try{var _t=localStorage.getItem('di_theme');if(_t)document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/lesson.css">
   <style>
@@ -74,7 +76,8 @@
 
     /* Discussion slide */
     .slide-disc-qs { display:flex; flex-direction:column; gap:10px; margin-top:12px; }
-    .slide-disc-q { display:flex; align-items:flex-start; gap:12px; background:var(--bg-sidebar,rgba(255,255,255,.04)); border:1px solid var(--border); border-radius:8px; padding:12px 14px; }
+    .slide-disc-q { display:flex; align-items:flex-start; gap:12px; background:rgba(99,102,241,.06); border:1px solid var(--border); border-radius:8px; padding:12px 14px; }
+    [data-theme="light"] .slide-disc-q { background:rgba(99,102,241,.05); border-color:rgba(99,102,241,.15); }
     .sdq-num { display:inline-flex; align-items:center; justify-content:center; min-width:28px; height:28px; border-radius:50%; background:var(--primary,#6366f1); color:#fff; font-size:.75rem; font-weight:700; flex-shrink:0; }
     .sdq-text { font-size:.9rem; color:var(--text-muted,var(--text)); line-height:1.5; flex:1; }
 

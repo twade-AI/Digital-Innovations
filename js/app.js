@@ -4,6 +4,15 @@ const STORAGE_KEY      = 'di_progress';
 const STREAK_KEY       = 'di_streak';
 const COMPLETION_DATES_KEY = 'di_completion_dates';
 
+/* ── Sequential display numbering ──────────────── */
+// Maps lesson.id → 1-based position in course order (for display only)
+var LESSON_NUM_MAP = (function() {
+  var m = {}, n = 0;
+  UNITS.forEach(function(u) { u.lessons.forEach(function(l) { m[l.id] = ++n; }); });
+  return m;
+})();
+function lessonNum(id) { return LESSON_NUM_MAP[id] || id; }
+
 /* ── State ─────────────────────────────────────── */
 let completedLessons = loadProgress();
 let currentFilter = 'all';
@@ -257,7 +266,7 @@ function lessonRow(lesson, unit) {
     <div class="lesson-item${hidden ? ' tag-hidden' : ''}" data-id="${lesson.id}" data-tags="${lesson.tags.join(' ')}">
       <div class="lesson-check ${done ? 'done' : ''}" onclick="event.stopPropagation();toggleLesson(${lesson.id})" title="Mark complete">✓</div>
       <div class="lesson-info" onclick="openLesson(${lesson.id})">
-        <div class="lesson-num">Lesson ${lesson.id} <span class="lesson-time">~${mins} min</span>${diffBadge(lesson.difficulty)}${quizScores[lesson.id] ? '<span class="lesson-quiz-score ' + (quizScores[lesson.id].correct ? 'lqs-pass' : 'lqs-fail') + '" title="Quiz: ' + (quizScores[lesson.id].correct ? 'Passed' : 'Attempted') + '">' + (quizScores[lesson.id].correct ? '✓ Quiz' : '✗ Quiz') + '</span>' : ''}</div>
+        <div class="lesson-num">Lesson ${lessonNum(lesson.id)} <span class="lesson-time">~${mins} min</span>${diffBadge(lesson.difficulty)}${quizScores[lesson.id] ? '<span class="lesson-quiz-score ' + (quizScores[lesson.id].correct ? 'lqs-pass' : 'lqs-fail') + '" title="Quiz: ' + (quizScores[lesson.id].correct ? 'Passed' : 'Attempted') + '">' + (quizScores[lesson.id].correct ? '✓ Quiz' : '✗ Quiz') + '</span>' : ''}</div>
         <div class="lesson-title">${lesson.title}</div>
       </div>
       <button class="bookmark-btn${bookmarkedLessons.has(lesson.id) ? ' bookmarked' : ''}" onclick="event.stopPropagation();toggleBookmark(${lesson.id})" title="${bookmarkedLessons.has(lesson.id) ? 'Remove bookmark' : 'Bookmark'}" aria-label="Bookmark lesson">${bookmarkedLessons.has(lesson.id) ? '★' : '☆'}</button>
@@ -459,7 +468,7 @@ function renderSlide(index) {
       if (unmet.length > 0) {
         var prereqLinks = unmet.map(function(pid) {
           var pf = findLesson(pid);
-          return pf ? '<span onclick="closeModal();setTimeout(function(){openLesson(' + pid + ')},200)" style="cursor:pointer;color:var(--primary-light)">Lesson ' + pid + ': ' + pf.lesson.title + '</span>' : '';
+          return pf ? '<span onclick="closeModal();setTimeout(function(){openLesson(' + pid + ')},200)" style="cursor:pointer;color:var(--primary-light)">Lesson ' + lessonNum(pid) + ': ' + pf.lesson.title + '</span>' : '';
         }).filter(Boolean).join(', ');
         prereqHtml = '<div style="background:rgba(245,158,11,.08);border-left:3px solid var(--warning);padding:10px 14px;border-radius:6px;margin-bottom:16px;font-size:.85rem;color:var(--text-muted)">' +
           '💡 <strong>Suggested preparation:</strong> You may find this lesson easier after completing ' + prereqLinks + '.</div>';
@@ -701,7 +710,7 @@ function renderSlide(index) {
         if (!nextFound) return '';
         return '<div class="lv-next-lesson" onclick="closeModal();setTimeout(function(){openLesson(' + nextId + ')},200)">' +
           '<span style="font-size:.85rem;color:var(--text-dim)">Up next</span>' +
-          '<span style="font-size:1rem;font-weight:600">Lesson ' + nextId + ': ' + nextFound.lesson.title + ' &#8594;</span>' +
+          '<span style="font-size:1rem;font-weight:600">Lesson ' + lessonNum(nextId) + ': ' + nextFound.lesson.title + ' &#8594;</span>' +
         '</div>';
       })() +
     '</div>';
@@ -960,7 +969,7 @@ function handleSearch(query) {
     box.innerHTML = top.map(r => {
       if (r.type === 'lesson') {
         return `<div class="search-result-item" onclick="document.getElementById('searchResults').classList.remove('open');document.getElementById('searchInput').value='';showSection('units');setTimeout(()=>openLesson(${r.lesson.id}),150)">
-          <div class="sr-title">Lesson ${r.lesson.id}: ${r.lesson.title}</div>
+          <div class="sr-title">Lesson ${lessonNum(r.lesson.id)}: ${r.lesson.title}</div>
           <div class="sr-unit">Unit ${r.unit.id + 1}: ${r.unit.title}</div>
         </div>`;
       } else if (r.type === 'glossary') {
@@ -1085,7 +1094,7 @@ function renderQuizScoreSection() {
   var correctCount = keys.filter(function(k) { return quizScores[k].correct; }).length;
   var cards = keys.map(function(k) {
     var found = findLesson(parseInt(k));
-    var title = found ? 'L' + k + ': ' + found.lesson.title : 'Lesson ' + k;
+    var title = found ? 'L' + lessonNum(parseInt(k)) + ': ' + found.lesson.title : 'Lesson ' + k;
     var cls = quizScores[k].correct ? '' : ' wrong';
     var label = quizScores[k].correct ? '✓ Correct' : '✗ Wrong';
     return '<div class="qs-card"><span class="qs-card-label">' + title + '</span><span class="qs-card-score' + cls + '">' + label + '</span></div>';
@@ -1102,7 +1111,7 @@ function renderBookmarkedSection() {
     var found = findLesson(id);
     if (!found) return;
     cards.push('<div class="bm-card" onclick="openLesson(' + id + ')">' +
-      '<div class="bm-card-title">★ Lesson ' + id + ': ' + found.lesson.title + '</div>' +
+      '<div class="bm-card-title">★ Lesson ' + lessonNum(id) + ': ' + found.lesson.title + '</div>' +
       '<div class="bm-card-unit">Unit ' + (found.unit.id + 1) + ': ' + found.unit.title + '</div>' +
     '</div>');
   });
@@ -1217,7 +1226,7 @@ function updateContinueButton() {
     btn.textContent = 'All Complete — Review';
   } else {
     var next = getFirstIncompleteLesson();
-    btn.textContent = 'Continue: Lesson ' + next.id + ' — ' + next.title;
+    btn.textContent = 'Continue: Lesson ' + lessonNum(next.id) + ' — ' + next.title;
   }
   updateFloatContinueLabel();
 }
@@ -1269,7 +1278,7 @@ function exportReflections() {
       });
       if (lessonNotes.length > 0) {
         count++;
-        lines.push('Lesson ' + l.id + ': ' + l.title);
+        lines.push('Lesson ' + lessonNum(l.id) + ': ' + l.title);
         lines.push('Unit ' + (u.id + 1) + ': ' + u.title);
         lines.push('-'.repeat(35));
         lessonNotes.forEach(function(n) { lines.push(n); lines.push(''); });
@@ -1965,7 +1974,7 @@ function renderRecentlyViewed() {
     if (!found) return '';
     var done = completedLessons.has(id);
     return '<div class="rv-card" onclick="openLesson(' + id + ')">' +
-      '<div class="rv-card-num">Lesson ' + id + (done ? ' ✓' : '') + '</div>' +
+      '<div class="rv-card-num">Lesson ' + lessonNum(id) + (done ? ' ✓' : '') + '</div>' +
       '<div class="rv-card-title">' + found.lesson.title + '</div>' +
     '</div>';
   }).filter(Boolean).join('');
@@ -2097,7 +2106,7 @@ function renderQuickQuizSlide() {
     '</button>';
   }).join('');
   document.getElementById('qqBody').innerHTML =
-    '<div class="qq-source">Lesson ' + q.lessonId + ': ' + q.lessonTitle + '</div>' +
+    '<div class="qq-source">Lesson ' + lessonNum(q.lessonId) + ': ' + q.lessonTitle + '</div>' +
     '<div class="qq-question">' + slide.question + '</div>' +
     '<div class="quiz-options" id="qqOptions">' + optHtml + '</div>' +
     '<div class="quiz-explanation" id="qqExplanation" style="display:none"><strong>Explanation:</strong> ' + slide.explanation + '</div>' +
@@ -2164,8 +2173,8 @@ function renderCourseMap() {
       var done = completedLessons.has(l.id);
       var confused = isLessonConfused(l.id);
       var hasPrereqs = l.prereqs && l.prereqs.length;
-      return '<div class="cm-lesson' + (done ? ' done' : '') + (confused ? ' confused' : '') + (hasPrereqs ? ' has-prereqs' : '') + '" data-id="' + l.id + '" onclick="showSection(\'units\');setTimeout(function(){openLesson(' + l.id + ')},150)" title="' + l.title + (hasPrereqs ? ' (requires L' + l.prereqs.join(', L') + ')' : '') + '">' +
-        '<div class="cm-lesson-num">Lesson ' + l.id + '</div>' +
+      return '<div class="cm-lesson' + (done ? ' done' : '') + (confused ? ' confused' : '') + (hasPrereqs ? ' has-prereqs' : '') + '" data-id="' + l.id + '" onclick="showSection(\'units\');setTimeout(function(){openLesson(' + l.id + ')},150)" title="' + l.title + (hasPrereqs ? ' (requires L' + l.prereqs.map(lessonNum).join(', L') + ')' : '') + '">' +
+        '<div class="cm-lesson-num">Lesson ' + lessonNum(l.id) + '</div>' +
         '<div class="cm-lesson-title">' + l.title + '</div>' +
         '<div class="cm-lesson-diff">' + diffBadge(l.difficulty) + '</div>' +
         (hasPrereqs ? '<div class="cm-prereq-badge" title="Has prerequisites">🔗</div>' : '') +
