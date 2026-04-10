@@ -269,4 +269,412 @@ var SLIDE_VISUALS = {
     <text x="280" y="22" text-anchor="middle" class="vd" font-size="10" opacity=".45" font-weight="600">GAN — Generative Adversarial Network</text>
   </svg>`,
 
+  /* ── L6:1 — The Data Harvest — data broker pipeline ─────────────── */
+  '6:1': `<svg viewBox="0 0 560 180" xmlns="http://www.w3.org/2000/svg" aria-label="Data broker pipeline">
+    <defs>
+      <style>.vdb { font-family: system-ui, sans-serif; fill: currentColor; }</style>
+      <marker id="arr6" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <polygon points="0 0, 7 3.5, 0 7" fill="currentColor" opacity=".5"/>
+      </marker>
+    </defs>
+    <!-- You -->
+    <rect x="10" y="65" width="100" height="50" rx="8" fill="rgba(99,102,241,.15)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
+    <text x="60" y="87" text-anchor="middle" class="vdb" font-size="13" font-weight="700">You</text>
+    <text x="60" y="102" text-anchor="middle" class="vdb" font-size="9" opacity=".65">1,500+ data points</text>
+    <!-- Sources below -->
+    <text x="60" y="133" text-anchor="middle" class="vdb" font-size="9" opacity=".5">📱 apps  🛒 purchases</text>
+    <text x="60" y="146" text-anchor="middle" class="vdb" font-size="9" opacity=".5">🗺 location  🖱 clicks</text>
+    <!-- Arrow to broker -->
+    <line x1="112" y1="90" x2="158" y2="90" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#arr6)"/>
+    <!-- Data Broker -->
+    <rect x="160" y="55" width="130" height="70" rx="9" fill="rgba(245,158,11,.14)" stroke="rgba(245,158,11,.55)" stroke-width="1.5"/>
+    <text x="225" y="82" text-anchor="middle" class="vdb" font-size="12" font-weight="700" fill="#f59e0b">Data Broker</text>
+    <text x="225" y="97" text-anchor="middle" class="vdb" font-size="9" opacity=".7">Axciom · Oracle · Experian</text>
+    <text x="225" y="111" text-anchor="middle" class="vdb" font-size="9" opacity=".55">$300B industry</text>
+    <!-- Arrows to buyers -->
+    <line x1="292" y1="72" x2="346" y2="48" stroke="currentColor" stroke-opacity=".35" stroke-width="1.4" marker-end="url(#arr6)"/>
+    <line x1="292" y1="90" x2="346" y2="90" stroke="currentColor" stroke-opacity=".35" stroke-width="1.4" marker-end="url(#arr6)"/>
+    <line x1="292" y1="108" x2="346" y2="132" stroke="currentColor" stroke-opacity=".35" stroke-width="1.4" marker-end="url(#arr6)"/>
+    <!-- Buyers -->
+    <rect x="348" y="22" width="100" height="38" rx="7" fill="rgba(239,68,68,.12)" stroke="rgba(239,68,68,.4)" stroke-width="1.2"/>
+    <text x="398" y="38" text-anchor="middle" class="vdb" font-size="11">🎯 Advertisers</text>
+    <text x="398" y="52" text-anchor="middle" class="vdb" font-size="9" opacity=".6">targeted ads</text>
+    <rect x="348" y="71" width="100" height="38" rx="7" fill="rgba(239,68,68,.12)" stroke="rgba(239,68,68,.4)" stroke-width="1.2"/>
+    <text x="398" y="87" text-anchor="middle" class="vdb" font-size="11">🏦 Insurers</text>
+    <text x="398" y="101" text-anchor="middle" class="vdb" font-size="9" opacity=".6">risk scoring</text>
+    <rect x="348" y="120" width="100" height="38" rx="7" fill="rgba(239,68,68,.12)" stroke="rgba(239,68,68,.4)" stroke-width="1.2"/>
+    <text x="398" y="136" text-anchor="middle" class="vdb" font-size="11">🏛 Governments</text>
+    <text x="398" y="150" text-anchor="middle" class="vdb" font-size="9" opacity=".6">law enforcement</text>
+    <!-- Label -->
+    <text x="460" y="170" text-anchor="middle" class="vdb" font-size="9" opacity=".4">You never consented. You were never asked.</text>
+  </svg>`,
+
+  /* ── L7:1 — The Trolley Problem — AV decision tree ──────────────── */
+  '7:1': `<svg viewBox="0 0 560 190" xmlns="http://www.w3.org/2000/svg" aria-label="Autonomous vehicle moral decision tree">
+    <defs>
+      <style>.vtr { font-family: system-ui, sans-serif; fill: currentColor; }</style>
+    </defs>
+    <!-- Car node -->
+    <rect x="210" y="12" width="140" height="44" rx="9" fill="rgba(99,102,241,.15)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
+    <text x="280" y="31" text-anchor="middle" class="vtr" font-size="13" font-weight="700">🚗 Autonomous Car</text>
+    <text x="280" y="47" text-anchor="middle" class="vtr" font-size="10" opacity=".65">collision unavoidable · 0.2 sec to decide</text>
+    <!-- Lines down -->
+    <line x1="220" y1="56" x2="100" y2="105" stroke="currentColor" stroke-opacity=".35" stroke-width="1.5"/>
+    <line x1="280" y1="56" x2="280" y2="105" stroke="currentColor" stroke-opacity=".35" stroke-width="1.5"/>
+    <line x1="340" y1="56" x2="460" y2="105" stroke="currentColor" stroke-opacity=".35" stroke-width="1.5"/>
+    <!-- Option A -->
+    <rect x="22" y="106" width="156" height="50" rx="8" fill="rgba(239,68,68,.12)" stroke="rgba(239,68,68,.4)" stroke-width="1.3"/>
+    <text x="100" y="127" text-anchor="middle" class="vtr" font-size="11" font-weight="700">Option A</text>
+    <text x="100" y="141" text-anchor="middle" class="vtr" font-size="10" opacity=".7">Swerve left</text>
+    <text x="100" y="154" text-anchor="middle" class="vtr" font-size="9" opacity=".55">hit 1 elderly pedestrian</text>
+    <!-- Option B -->
+    <rect x="200" y="106" width="160" height="50" rx="8" fill="rgba(245,158,11,.12)" stroke="rgba(245,158,11,.4)" stroke-width="1.3"/>
+    <text x="280" y="127" text-anchor="middle" class="vtr" font-size="11" font-weight="700">Option B</text>
+    <text x="280" y="141" text-anchor="middle" class="vtr" font-size="10" opacity=".7">Hit concrete barrier</text>
+    <text x="280" y="154" text-anchor="middle" class="vtr" font-size="9" opacity=".55">likely kills passenger</text>
+    <!-- Option C -->
+    <rect x="378" y="106" width="160" height="50" rx="8" fill="rgba(239,68,68,.12)" stroke="rgba(239,68,68,.4)" stroke-width="1.3"/>
+    <text x="458" y="127" text-anchor="middle" class="vtr" font-size="11" font-weight="700">Option C</text>
+    <text x="458" y="141" text-anchor="middle" class="vtr" font-size="10" opacity=".7">Emergency brake</text>
+    <text x="458" y="154" text-anchor="middle" class="vtr" font-size="9" opacity=".55">hit group of 5</text>
+    <!-- Bottom note -->
+    <text x="280" y="178" text-anchor="middle" class="vtr" font-size="9" opacity=".45" font-style="italic">An engineer wrote this code. 40M people gave answers in MIT's Moral Machine — no universal consensus emerged.</text>
+  </svg>`,
+
+  /* ── L8:1 — Flash Crash — feedback loop spiral ──────────────────── */
+  '8:1': `<svg viewBox="0 0 560 175" xmlns="http://www.w3.org/2000/svg" aria-label="Flash Crash algorithm feedback loop">
+    <defs>
+      <style>.vfc { font-family: system-ui, sans-serif; fill: currentColor; }</style>
+      <marker id="arr8" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <polygon points="0 0, 7 3.5, 0 7" fill="currentColor" opacity=".45"/>
+      </marker>
+    </defs>
+    <!-- Algo A -->
+    <rect x="30" y="60" width="130" height="50" rx="9" fill="rgba(239,68,68,.12)" stroke="rgba(239,68,68,.45)" stroke-width="1.5"/>
+    <text x="95" y="81" text-anchor="middle" class="vfc" font-size="12" font-weight="700">Algorithm A</text>
+    <text x="95" y="96" text-anchor="middle" class="vfc" font-size="9.5" opacity=".65">sells → price drops</text>
+    <!-- Arrow A→B -->
+    <path d="M162,80 C230,40 340,40 400,80" fill="none" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#arr8)"/>
+    <text x="280" y="34" text-anchor="middle" class="vfc" font-size="9" opacity=".5">detects drop → triggers sell</text>
+    <!-- Algo B -->
+    <rect x="400" y="60" width="130" height="50" rx="9" fill="rgba(239,68,68,.12)" stroke="rgba(239,68,68,.45)" stroke-width="1.5"/>
+    <text x="465" y="81" text-anchor="middle" class="vfc" font-size="12" font-weight="700">Algorithm B</text>
+    <text x="465" y="96" text-anchor="middle" class="vfc" font-size="9.5" opacity=".65">sells → price drops more</text>
+    <!-- Arrow B→A -->
+    <path d="M398,100 C330,140 230,140 162,100" fill="none" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#arr8)"/>
+    <text x="280" y="150" text-anchor="middle" class="vfc" font-size="9" opacity=".5">detects further drop → sells more</text>
+    <!-- Result label -->
+    <rect x="186" y="60" width="188" height="50" rx="9" fill="rgba(99,102,241,.12)" stroke="rgba(99,102,241,.35)" stroke-width="1.5"/>
+    <text x="280" y="79" text-anchor="middle" class="vfc" font-size="12" font-weight="700">Result</text>
+    <text x="280" y="95" text-anchor="middle" class="vfc" font-size="10" opacity=".7">−1,000 pts in 36 min</text>
+    <text x="280" y="108" text-anchor="middle" class="vfc" font-size="9" opacity=".55">$1 trillion wiped</text>
+    <!-- Bottom -->
+    <text x="280" y="170" text-anchor="middle" class="vfc" font-size="9" opacity=".4" font-style="italic">No human could intervene fast enough. A circuit breaker paused trading at 2:45pm.</text>
+  </svg>`,
+
+  /* ── L10:1 — Synthetic Creativity — copyright chain ─────────────── */
+  '10:1': `<svg viewBox="0 0 560 165" xmlns="http://www.w3.org/2000/svg" aria-label="AI copyright ownership chain">
+    <defs>
+      <style>.vcp { font-family: system-ui, sans-serif; fill: currentColor; }</style>
+      <marker id="arr10" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <polygon points="0 0, 7 3.5, 0 7" fill="currentColor" opacity=".45"/>
+      </marker>
+    </defs>
+    <!-- Artist -->
+    <rect x="10" y="55" width="105" height="56" rx="8" fill="rgba(99,102,241,.14)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
+    <text x="62" y="76" text-anchor="middle" class="vcp" font-size="22">🎨</text>
+    <text x="62" y="95" text-anchor="middle" class="vcp" font-size="11" font-weight="700">Human Artist</text>
+    <text x="62" y="108" text-anchor="middle" class="vcp" font-size="9" opacity=".6">© protected work</text>
+    <!-- Arrow -->
+    <line x1="117" y1="83" x2="152" y2="83" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#arr10)"/>
+    <text x="134" y="73" text-anchor="middle" class="vcp" font-size="8" opacity=".5">scraped</text>
+    <!-- Training Data -->
+    <rect x="153" y="55" width="115" height="56" rx="8" fill="rgba(245,158,11,.12)" stroke="rgba(245,158,11,.45)" stroke-width="1.5"/>
+    <text x="210" y="78" text-anchor="middle" class="vcp" font-size="11" font-weight="700" fill="#f59e0b">Training Data</text>
+    <text x="210" y="93" text-anchor="middle" class="vcp" font-size="9" opacity=".7">12M+ images</text>
+    <text x="210" y="107" text-anchor="middle" class="vcp" font-size="9" opacity=".55">$0 paid to artists</text>
+    <!-- Arrow -->
+    <line x1="270" y1="83" x2="305" y2="83" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#arr10)"/>
+    <text x="287" y="73" text-anchor="middle" class="vcp" font-size="8" opacity=".5">trains</text>
+    <!-- AI Model -->
+    <rect x="307" y="55" width="110" height="56" rx="8" fill="rgba(6,182,212,.12)" stroke="rgba(6,182,212,.45)" stroke-width="1.5"/>
+    <text x="362" y="78" text-anchor="middle" class="vcp" font-size="11" font-weight="700" fill="#06b6d4">AI Model</text>
+    <text x="362" y="93" text-anchor="middle" class="vcp" font-size="9" opacity=".7">Midjourney / DALL-E</text>
+    <text x="362" y="107" text-anchor="middle" class="vcp" font-size="9" opacity=".55">Stable Diffusion</text>
+    <!-- Arrow -->
+    <line x1="419" y1="83" x2="454" y2="83" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#arr10)"/>
+    <text x="436" y="73" text-anchor="middle" class="vcp" font-size="8" opacity=".5">generates</text>
+    <!-- Output -->
+    <rect x="456" y="55" width="94" height="56" rx="8" fill="rgba(239,68,68,.12)" stroke="rgba(239,68,68,.45)" stroke-width="1.5"/>
+    <text x="503" y="80" text-anchor="middle" class="vcp" font-size="11" font-weight="700">AI Output</text>
+    <text x="503" y="95" text-anchor="middle" class="vcp" font-size="11">❓</text>
+    <text x="503" y="109" text-anchor="middle" class="vcp" font-size="9" opacity=".6">who owns this?</text>
+    <!-- Bottom question -->
+    <text x="280" y="140" text-anchor="middle" class="vcp" font-size="10" opacity=".6" font-weight="600">US Copyright Office (2023): AI output cannot be copyrighted.</text>
+    <text x="280" y="155" text-anchor="middle" class="vcp" font-size="9" opacity=".45">Getty, NYT, Universal Music are all suing AI companies. Every court ruling sets new precedent.</text>
+  </svg>`,
+
+  /* ── L11:1 — Career Disruption — risk spectrum ──────────────────── */
+  '11:1': `<svg viewBox="0 0 560 170" xmlns="http://www.w3.org/2000/svg" aria-label="AI job disruption risk spectrum">
+    <defs>
+      <style>.vjd { font-family: system-ui, sans-serif; fill: currentColor; }</style>
+    </defs>
+    <!-- Spectrum bar -->
+    <defs>
+      <linearGradient id="specGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="rgba(239,68,68,.7)"/>
+        <stop offset="50%" stop-color="rgba(245,158,11,.6)"/>
+        <stop offset="100%" stop-color="rgba(34,197,94,.6)"/>
+      </linearGradient>
+    </defs>
+    <rect x="20" y="30" width="520" height="8" rx="4" fill="url(#specGrad)" opacity=".5"/>
+    <!-- Category boxes -->
+    <rect x="20" y="50" width="95" height="80" rx="8" fill="rgba(239,68,68,.13)" stroke="rgba(239,68,68,.4)" stroke-width="1.2"/>
+    <text x="67" y="70" text-anchor="middle" class="vjd" font-size="10" font-weight="700" fill="#ef4444">Most at Risk</text>
+    <text x="67" y="84" text-anchor="middle" class="vjd" font-size="9" opacity=".7">Data entry</text>
+    <text x="67" y="97" text-anchor="middle" class="vjd" font-size="9" opacity=".7">Basic analysis</text>
+    <text x="67" y="110" text-anchor="middle" class="vjd" font-size="9" opacity=".7">Document review</text>
+    <text x="67" y="123" text-anchor="middle" class="vjd" font-size="9" opacity=".7">Call centre</text>
+
+    <rect x="125" y="50" width="100" height="80" rx="8" fill="rgba(245,158,11,.11)" stroke="rgba(245,158,11,.4)" stroke-width="1.2"/>
+    <text x="175" y="70" text-anchor="middle" class="vjd" font-size="10" font-weight="700" fill="#f59e0b">Partially</text>
+    <text x="175" y="82" text-anchor="middle" class="vjd" font-size="10" font-weight="700" fill="#f59e0b">Disrupted</text>
+    <text x="175" y="97" text-anchor="middle" class="vjd" font-size="9" opacity=".7">Paralegal</text>
+    <text x="175" y="110" text-anchor="middle" class="vjd" font-size="9" opacity=".7">Basic coding</text>
+    <text x="175" y="123" text-anchor="middle" class="vjd" font-size="9" opacity=".7">Journalism</text>
+
+    <rect x="235" y="50" width="100" height="80" rx="8" fill="rgba(99,102,241,.11)" stroke="rgba(99,102,241,.4)" stroke-width="1.2"/>
+    <text x="285" y="70" text-anchor="middle" class="vjd" font-size="10" font-weight="700">Transformed</text>
+    <text x="285" y="84" text-anchor="middle" class="vjd" font-size="10" font-weight="700">Not Replaced</text>
+    <text x="285" y="100" text-anchor="middle" class="vjd" font-size="9" opacity=".7">Radiologist</text>
+    <text x="285" y="113" text-anchor="middle" class="vjd" font-size="9" opacity=".7">Lawyer</text>
+    <text x="285" y="126" text-anchor="middle" class="vjd" font-size="9" opacity=".7">Engineer</text>
+
+    <rect x="345" y="50" width="100" height="80" rx="8" fill="rgba(34,197,94,.11)" stroke="rgba(34,197,94,.4)" stroke-width="1.2"/>
+    <text x="395" y="70" text-anchor="middle" class="vjd" font-size="10" font-weight="700" fill="#22c55e">New Roles</text>
+    <text x="395" y="70" text-anchor="middle" class="vjd" font-size="10" font-weight="700" fill="#22c55e">Emerging</text>
+    <text x="395" y="84" text-anchor="middle" class="vjd" font-size="10" font-weight="700" fill="#22c55e"> </text>
+    <text x="395" y="100" text-anchor="middle" class="vjd" font-size="9" opacity=".7">AI trainer</text>
+    <text x="395" y="113" text-anchor="middle" class="vjd" font-size="9" opacity=".7">Prompt engineer</text>
+    <text x="395" y="126" text-anchor="middle" class="vjd" font-size="9" opacity=".7">AI ethicist</text>
+
+    <rect x="455" y="50" width="85" height="80" rx="8" fill="rgba(34,197,94,.13)" stroke="rgba(34,197,94,.45)" stroke-width="1.2"/>
+    <text x="497" y="70" text-anchor="middle" class="vjd" font-size="10" font-weight="700" fill="#22c55e">Centaur</text>
+    <text x="497" y="82" text-anchor="middle" class="vjd" font-size="10" font-weight="700" fill="#22c55e">Zone</text>
+    <text x="497" y="98" text-anchor="middle" class="vjd" font-size="9" opacity=".7">Human + AI</text>
+    <text x="497" y="111" text-anchor="middle" class="vjd" font-size="9" opacity=".7">beats both</text>
+    <text x="497" y="124" text-anchor="middle" class="vjd" font-size="9" opacity=".7">alone</text>
+    <!-- Bottom note -->
+    <text x="280" y="155" text-anchor="middle" class="vjd" font-size="9" opacity=".45">WEF 2025: 41% of employers plan AI-driven headcount reductions · 77% will hire more people with AI skills</text>
+  </svg>`,
+
+  /* ── L14:1 — Facial Recognition — error rate comparison ─────────── */
+  '14:1': `<svg viewBox="0 0 560 175" xmlns="http://www.w3.org/2000/svg" aria-label="Facial recognition error rate demographics">
+    <defs>
+      <style>.vfr { font-family: system-ui, sans-serif; fill: currentColor; }</style>
+    </defs>
+    <text x="20" y="20" class="vfr" font-size="11" font-weight="700" opacity=".7">False positive rate — NIST evaluation</text>
+    <!-- Bars (horizontal) -->
+    <!-- Light-skinned men: 0.8% -->
+    <text x="200" y="48" text-anchor="end" class="vfr" font-size="10" opacity=".75">Light-skinned men</text>
+    <rect x="205" y="36" width="8" height="16" rx="2" fill="rgba(34,197,94,.7)"/>
+    <text x="218" y="48" class="vfr" font-size="10" font-weight="700" fill="#22c55e">0.8%</text>
+    <!-- Light-skinned women: 5% -->
+    <text x="200" y="74" text-anchor="end" class="vfr" font-size="10" opacity=".75">Light-skinned women</text>
+    <rect x="205" y="62" width="50" height="16" rx="2" fill="rgba(99,102,241,.6)"/>
+    <text x="260" y="74" class="vfr" font-size="10" font-weight="700">5.0%</text>
+    <!-- Dark-skinned men: 8% -->
+    <text x="200" y="100" text-anchor="end" class="vfr" font-size="10" opacity=".75">Dark-skinned men</text>
+    <rect x="205" y="88" width="80" height="16" rx="2" fill="rgba(245,158,11,.65)"/>
+    <text x="290" y="100" class="vfr" font-size="10" font-weight="700" fill="#f59e0b">8.0%</text>
+    <!-- Dark-skinned women: 34.7% -->
+    <text x="200" y="126" text-anchor="end" class="vfr" font-size="10" opacity=".75">Dark-skinned women</text>
+    <rect x="205" y="114" width="347" height="16" rx="2" fill="rgba(239,68,68,.7)"/>
+    <text x="557" y="126" text-anchor="end" class="vfr" font-size="10" font-weight="700" fill="#ef4444">34.7%</text>
+    <!-- Scale line -->
+    <line x1="205" y1="140" x2="555" y2="140" stroke="currentColor" stroke-opacity=".2" stroke-width="1"/>
+    <text x="205" y="152" class="vfr" font-size="9" opacity=".45">0%</text>
+    <text x="550" y="152" text-anchor="end" class="vfr" font-size="9" opacity=".45">35%</text>
+    <text x="280" y="170" text-anchor="middle" class="vfr" font-size="9" opacity=".5" font-style="italic">43× higher error for dark-skinned women vs. light-skinned men. Robert Williams was wrongfully arrested because of this gap.</text>
+  </svg>`,
+
+  /* ── L15:1 — Environmental Cost — energy comparison chart ───────── */
+  '15:1': `<svg viewBox="0 0 560 170" xmlns="http://www.w3.org/2000/svg" aria-label="AI energy consumption comparison">
+    <defs>
+      <style>.ven { font-family: system-ui, sans-serif; fill: currentColor; }</style>
+    </defs>
+    <text x="280" y="18" text-anchor="middle" class="ven" font-size="11" font-weight="700" opacity=".65">Relative Energy Use per Query (log scale)</text>
+    <!-- Bar chart — vertical -->
+    <!-- Google search: 0.3 Wh baseline -->
+    <rect x="55" y="120" width="60" height="18" rx="3" fill="rgba(34,197,94,.6)"/>
+    <text x="85" y="132" text-anchor="middle" class="ven" font-size="9" font-weight="700">1×</text>
+    <text x="85" y="152" text-anchor="middle" class="ven" font-size="9" opacity=".7">Google</text>
+    <text x="85" y="163" text-anchor="middle" class="ven" font-size="9" opacity=".7">search</text>
+    <!-- ChatGPT: ~10x -->
+    <rect x="155" y="78" width="60" height="60" rx="3" fill="rgba(245,158,11,.6)"/>
+    <text x="185" y="105" text-anchor="middle" class="ven" font-size="9" font-weight="700">~10×</text>
+    <text x="185" y="152" text-anchor="middle" class="ven" font-size="9" opacity=".7">ChatGPT</text>
+    <text x="185" y="163" text-anchor="middle" class="ven" font-size="9" opacity=".7">query</text>
+    <!-- Image gen: ~50x -->
+    <rect x="255" y="30" width="60" height="108" rx="3" fill="rgba(99,102,241,.5)"/>
+    <text x="285" y="82" text-anchor="middle" class="ven" font-size="9" font-weight="700">~50×</text>
+    <text x="285" y="152" text-anchor="middle" class="ven" font-size="9" opacity=".7">AI image</text>
+    <text x="285" y="163" text-anchor="middle" class="ven" font-size="9" opacity=".7">generation</text>
+    <!-- GPT-3 training (lifetime equivalent) -->
+    <rect x="355" y="24" width="60" height="114" rx="3" fill="rgba(239,68,68,.5)"/>
+    <text x="385" y="78" text-anchor="middle" class="ven" font-size="9" font-weight="700">552t CO₂</text>
+    <text x="385" y="90" text-anchor="middle" class="ven" font-size="8" opacity=".7">= 120 cars</text>
+    <text x="385" y="152" text-anchor="middle" class="ven" font-size="9" opacity=".7">GPT-3</text>
+    <text x="385" y="163" text-anchor="middle" class="ven" font-size="9" opacity=".7">training run</text>
+    <!-- Netherlands comparison -->
+    <rect x="455" y="18" width="80" height="120" rx="3" fill="rgba(239,68,68,.65)"/>
+    <text x="495" y="65" text-anchor="middle" class="ven" font-size="9" font-weight="700" fill="#fca5a5">All AI</text>
+    <text x="495" y="78" text-anchor="middle" class="ven" font-size="9" font-weight="700" fill="#fca5a5">data centres</text>
+    <text x="495" y="91" text-anchor="middle" class="ven" font-size="8" opacity=".8">=</text>
+    <text x="495" y="103" text-anchor="middle" class="ven" font-size="8">🇳🇱 Netherlands</text>
+    <text x="495" y="115" text-anchor="middle" class="ven" font-size="8" opacity=".7">annual usage</text>
+    <text x="495" y="152" text-anchor="middle" class="ven" font-size="9" opacity=".7">IEA 2024</text>
+    <text x="495" y="163" text-anchor="middle" class="ven" font-size="9" opacity=".7">benchmark</text>
+  </svg>`,
+
+  /* ── L16:1 — Global Regulation — four-quadrant philosophy map ───── */
+  '16:1': `<svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" aria-label="Global AI regulation philosophy quadrant">
+    <defs>
+      <style>.vreg { font-family: system-ui, sans-serif; fill: currentColor; }</style>
+    </defs>
+    <!-- Axes -->
+    <line x1="280" y1="18" x2="280" y2="182" stroke="currentColor" stroke-opacity=".25" stroke-width="1.5"/>
+    <line x1="30" y1="100" x2="530" y2="100" stroke="currentColor" stroke-opacity=".25" stroke-width="1.5"/>
+    <!-- Axis labels -->
+    <text x="280" y="12" text-anchor="middle" class="vreg" font-size="9" opacity=".5">More Restrictive</text>
+    <text x="280" y="195" text-anchor="middle" class="vreg" font-size="9" opacity=".5">More Permissive</text>
+    <text x="34" y="98" class="vreg" font-size="9" opacity=".5">State-led</text>
+    <text x="490" y="98" text-anchor="end" class="vreg" font-size="9" opacity=".5">Market-led</text>
+    <!-- EU — top right (restrictive, market) -->
+    <rect x="295" y="24" width="130" height="64" rx="9" fill="rgba(99,102,241,.14)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
+    <text x="360" y="47" text-anchor="middle" class="vreg" font-size="13">🇪🇺</text>
+    <text x="360" y="64" text-anchor="middle" class="vreg" font-size="11" font-weight="700">European Union</text>
+    <text x="360" y="78" text-anchor="middle" class="vreg" font-size="9" opacity=".7">Protect citizens first</text>
+    <!-- China — top left (restrictive, state) -->
+    <rect x="135" y="24" width="130" height="64" rx="9" fill="rgba(239,68,68,.12)" stroke="rgba(239,68,68,.45)" stroke-width="1.5"/>
+    <text x="200" y="47" text-anchor="middle" class="vreg" font-size="13">🇨🇳</text>
+    <text x="200" y="64" text-anchor="middle" class="vreg" font-size="11" font-weight="700">China</text>
+    <text x="200" y="78" text-anchor="middle" class="vreg" font-size="9" opacity=".7">State control first</text>
+    <!-- UK — bottom right (permissive, market) -->
+    <rect x="295" y="112" width="130" height="64" rx="9" fill="rgba(6,182,212,.12)" stroke="rgba(6,182,212,.45)" stroke-width="1.5"/>
+    <text x="360" y="135" text-anchor="middle" class="vreg" font-size="13">🇬🇧</text>
+    <text x="360" y="152" text-anchor="middle" class="vreg" font-size="11" font-weight="700">United Kingdom</text>
+    <text x="360" y="166" text-anchor="middle" class="vreg" font-size="9" opacity=".7">Enable innovation</text>
+    <!-- US — bottom left (permissive, market-ish, post-Trump) -->
+    <rect x="135" y="112" width="130" height="64" rx="9" fill="rgba(245,158,11,.12)" stroke="rgba(245,158,11,.45)" stroke-width="1.5"/>
+    <text x="200" y="135" text-anchor="middle" class="vreg" font-size="13">🇺🇸</text>
+    <text x="200" y="152" text-anchor="middle" class="vreg" font-size="11" font-weight="700">United States</text>
+    <text x="200" y="166" text-anchor="middle" class="vreg" font-size="9" opacity=".7">Deregulate · compete</text>
+  </svg>`,
+
+  /* ── L23:3 — Model Card — anatomy of a transparency document ─────── */
+  '23:3': `<svg viewBox="0 0 560 195" xmlns="http://www.w3.org/2000/svg" aria-label="Model card anatomy">
+    <defs>
+      <style>.vmc { font-family: system-ui, sans-serif; fill: currentColor; }</style>
+    </defs>
+    <!-- Card background -->
+    <rect x="10" y="8" width="540" height="180" rx="12" fill="rgba(99,102,241,.06)" stroke="rgba(99,102,241,.3)" stroke-width="1.5"/>
+    <text x="280" y="26" text-anchor="middle" class="vmc" font-size="11" font-weight="700" opacity=".6" letter-spacing=".06em">MODEL CARD</text>
+    <!-- Six sections in 2×3 grid -->
+    <!-- Row 1 -->
+    <rect x="22" y="34" width="162" height="65" rx="7" fill="rgba(99,102,241,.1)" stroke="rgba(99,102,241,.3)" stroke-width="1"/>
+    <text x="103" y="53" text-anchor="middle" class="vmc" font-size="10" font-weight="700">📋 Model Details</text>
+    <text x="103" y="67" text-anchor="middle" class="vmc" font-size="9" opacity=".7">What does it do?</text>
+    <text x="103" y="79" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Which AI tools / APIs?</text>
+    <text x="103" y="91" text-anchor="middle" class="vmc" font-size="9" opacity=".7">When last updated?</text>
+
+    <rect x="199" y="34" width="162" height="65" rx="7" fill="rgba(6,182,212,.09)" stroke="rgba(6,182,212,.3)" stroke-width="1"/>
+    <text x="280" y="53" text-anchor="middle" class="vmc" font-size="10" font-weight="700">🎯 Intended Use</text>
+    <text x="280" y="67" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Primary user group?</text>
+    <text x="280" y="79" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Designed tasks?</text>
+    <text x="280" y="91" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Explicitly NOT for?</text>
+
+    <rect x="376" y="34" width="162" height="65" rx="7" fill="rgba(34,197,94,.09)" stroke="rgba(34,197,94,.3)" stroke-width="1"/>
+    <text x="457" y="53" text-anchor="middle" class="vmc" font-size="10" font-weight="700">📊 Performance</text>
+    <text x="457" y="67" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Accuracy / effectiveness?</text>
+    <text x="457" y="79" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Best-case inputs?</text>
+    <text x="457" y="91" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Worst-case inputs?</text>
+
+    <!-- Row 2 -->
+    <rect x="22" y="108" width="162" height="65" rx="7" fill="rgba(245,158,11,.09)" stroke="rgba(245,158,11,.3)" stroke-width="1"/>
+    <text x="103" y="127" text-anchor="middle" class="vmc" font-size="10" font-weight="700">⚖️ Bias &amp; Fairness</text>
+    <text x="103" y="141" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Tested with diverse users?</text>
+    <text x="103" y="153" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Demographic differences?</text>
+    <text x="103" y="165" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Mitigation steps taken?</text>
+
+    <rect x="199" y="108" width="162" height="65" rx="7" fill="rgba(239,68,68,.09)" stroke="rgba(239,68,68,.3)" stroke-width="1"/>
+    <text x="280" y="127" text-anchor="middle" class="vmc" font-size="10" font-weight="700">🚫 Limitations</text>
+    <text x="280" y="141" text-anchor="middle" class="vmc" font-size="9" opacity=".7">What can it NOT do?</text>
+    <text x="280" y="153" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Inputs that cause failure?</text>
+    <text x="280" y="165" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Confidence level?</text>
+
+    <rect x="376" y="108" width="162" height="65" rx="7" fill="rgba(168,85,247,.09)" stroke="rgba(168,85,247,.3)" stroke-width="1"/>
+    <text x="457" y="127" text-anchor="middle" class="vmc" font-size="10" font-weight="700">🛡️ Ethics</text>
+    <text x="457" y="141" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Potential harms?</text>
+    <text x="457" y="153" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Built-in safeguards?</text>
+    <text x="457" y="165" text-anchor="middle" class="vmc" font-size="9" opacity=".7">What users must know?</text>
+  </svg>`,
+
+  /* ── L24:1 — AI Project Lifecycle — five-stage pipeline ─────────── */
+  '24:1': `<svg viewBox="0 0 560 165" xmlns="http://www.w3.org/2000/svg" aria-label="AI project lifecycle five stages">
+    <defs>
+      <style>.vlc { font-family: system-ui, sans-serif; fill: currentColor; }</style>
+      <marker id="arr24" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <polygon points="0 0, 7 3.5, 0 7" fill="currentColor" opacity=".4"/>
+      </marker>
+    </defs>
+    <!-- Five stages -->
+    <!-- 1. Define -->
+    <rect x="10" y="45" width="90" height="75" rx="9" fill="rgba(99,102,241,.14)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
+    <text x="55" y="70" text-anchor="middle" class="vlc" font-size="18">🎯</text>
+    <text x="55" y="87" text-anchor="middle" class="vlc" font-size="11" font-weight="700">Define</text>
+    <text x="55" y="100" text-anchor="middle" class="vlc" font-size="9" opacity=".65">Problem</text>
+    <text x="55" y="112" text-anchor="middle" class="vlc" font-size="9" opacity=".65">framing</text>
+    <text x="55" y="132" text-anchor="middle" class="vlc" font-size="8" opacity=".45">L21–22</text>
+    <!-- Arrow -->
+    <line x1="102" y1="82" x2="120" y2="82" stroke="currentColor" stroke-opacity=".35" stroke-width="1.5" marker-end="url(#arr24)"/>
+    <!-- 2. Design -->
+    <rect x="122" y="45" width="90" height="75" rx="9" fill="rgba(6,182,212,.12)" stroke="rgba(6,182,212,.45)" stroke-width="1.5"/>
+    <text x="167" y="70" text-anchor="middle" class="vlc" font-size="18">🏗️</text>
+    <text x="167" y="87" text-anchor="middle" class="vlc" font-size="11" font-weight="700">Design</text>
+    <text x="167" y="100" text-anchor="middle" class="vlc" font-size="9" opacity=".65">Architecture</text>
+    <text x="167" y="112" text-anchor="middle" class="vlc" font-size="9" opacity=".65">&amp; ethics</text>
+    <text x="167" y="132" text-anchor="middle" class="vlc" font-size="8" opacity=".45">L23–24</text>
+    <!-- Arrow -->
+    <line x1="214" y1="82" x2="232" y2="82" stroke="currentColor" stroke-opacity=".35" stroke-width="1.5" marker-end="url(#arr24)"/>
+    <!-- 3. Build -->
+    <rect x="234" y="45" width="90" height="75" rx="9" fill="rgba(245,158,11,.12)" stroke="rgba(245,158,11,.45)" stroke-width="1.5"/>
+    <text x="279" y="70" text-anchor="middle" class="vlc" font-size="18">⚙️</text>
+    <text x="279" y="87" text-anchor="middle" class="vlc" font-size="11" font-weight="700">Build</text>
+    <text x="279" y="100" text-anchor="middle" class="vlc" font-size="9" opacity=".65">Prompt eng.</text>
+    <text x="279" y="112" text-anchor="middle" class="vlc" font-size="9" opacity=".65">&amp; sprints</text>
+    <text x="279" y="132" text-anchor="middle" class="vlc" font-size="8" opacity=".45">L25–35</text>
+    <!-- Arrow -->
+    <line x1="326" y1="82" x2="344" y2="82" stroke="currentColor" stroke-opacity=".35" stroke-width="1.5" marker-end="url(#arr24)"/>
+    <!-- 4. Evaluate -->
+    <rect x="346" y="45" width="90" height="75" rx="9" fill="rgba(239,68,68,.11)" stroke="rgba(239,68,68,.4)" stroke-width="1.5"/>
+    <text x="391" y="70" text-anchor="middle" class="vlc" font-size="18">🧪</text>
+    <text x="391" y="87" text-anchor="middle" class="vlc" font-size="11" font-weight="700">Evaluate</text>
+    <text x="391" y="100" text-anchor="middle" class="vlc" font-size="9" opacity=".65">Test, bias</text>
+    <text x="391" y="112" text-anchor="middle" class="vlc" font-size="9" opacity=".65">&amp; audit</text>
+    <text x="391" y="132" text-anchor="middle" class="vlc" font-size="8" opacity=".45">L36–38</text>
+    <!-- Arrow -->
+    <line x1="438" y1="82" x2="456" y2="82" stroke="currentColor" stroke-opacity=".35" stroke-width="1.5" marker-end="url(#arr24)"/>
+    <!-- 5. Communicate -->
+    <rect x="458" y="45" width="90" height="75" rx="9" fill="rgba(34,197,94,.12)" stroke="rgba(34,197,94,.45)" stroke-width="1.5"/>
+    <text x="503" y="70" text-anchor="middle" class="vlc" font-size="18">📢</text>
+    <text x="503" y="87" text-anchor="middle" class="vlc" font-size="11" font-weight="700">Communicate</text>
+    <text x="503" y="100" text-anchor="middle" class="vlc" font-size="9" opacity=".65">Pitch, reflect</text>
+    <text x="503" y="112" text-anchor="middle" class="vlc" font-size="9" opacity=".65">&amp; model card</text>
+    <text x="503" y="132" text-anchor="middle" class="vlc" font-size="8" opacity=".45">L39–44</text>
+    <!-- Iteration arc -->
+    <path d="M503,45 C503,18 55,18 55,45" fill="none" stroke="currentColor" stroke-opacity=".2" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#arr24)"/>
+    <text x="280" y="14" text-anchor="middle" class="vlc" font-size="8.5" opacity=".4" font-style="italic">Professional teams iterate between stages — but never skip Define</text>
+  </svg>`,
+
 };
