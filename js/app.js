@@ -710,6 +710,23 @@ function renderSlide(index) {
   area.innerHTML = html;
   area.scrollTop = 0;
 
+  // Inject SVG visual if one exists for this lesson+slide
+  if (typeof SLIDE_VISUALS !== 'undefined') {
+    var visualKey = currentLessonId + ':' + index;
+    var svgContent = SLIDE_VISUALS[visualKey];
+    if (svgContent) {
+      var visualEl = document.createElement('div');
+      visualEl.className = 'slide-visual';
+      visualEl.innerHTML = svgContent;
+      var slideEl = area.firstElementChild;
+      if (slideEl) {
+        var insertBefore = slideEl.querySelector('.slide-callout, .slide-bullets, .concept-bullets, ul');
+        if (insertBefore) slideEl.insertBefore(visualEl, insertBefore);
+        else slideEl.appendChild(visualEl);
+      }
+    }
+  }
+
   // Add "Confused?" flag button
   var confusedFlagged = isSlideConfused(currentLessonId, index);
   var confBtn = document.createElement('button');

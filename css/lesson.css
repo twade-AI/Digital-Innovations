@@ -214,6 +214,25 @@
   @page { margin: 15mm 18mm; size: A4; }
 }
 
+/* ── Slide Visuals ──────────────────────────────── */
+.slide-visual {
+  margin: 18px 0 4px;
+  background: rgba(99,102,241,.04);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 16px 14px;
+  overflow: hidden;
+}
+.slide-visual svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 220px;
+}
+[data-theme="light"] .slide-visual {
+  background: rgba(99,102,241,.03);
+}
+
 /* ── Slide Types ────────────────────────────────── */
 
 /* Hook */
