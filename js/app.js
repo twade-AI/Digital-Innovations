@@ -1647,6 +1647,155 @@ function closeShortcuts() { document.getElementById('shortcutsOverlay').classLis
 function openKb() { openShortcuts(); }
 function closeKb() { closeShortcuts(); }
 
+/* ── Profile Modal ─────────────────────────────── */
+var PM_AVATARS = ['👤','🧑‍💻','👩‍💻','🧠','🤖','🚀','⚡','🎓','🌟','🦊','🐼','🦁','🎯','💡','🔬','📚'];
+
+function openProfileModal() {
+  var modal = document.getElementById('profileModal');
+  if (!modal) return;
+  pmPopulate();
+  modal.classList.add('open');
+}
+function closeProfileModal() {
+  var modal = document.getElementById('profileModal');
+  if (modal) modal.classList.remove('open');
+  var picker = document.getElementById('pmAvatarPicker');
+  if (picker) picker.style.display = 'none';
+}
+
+function pmPopulate() {
+  // Avatar
+  var savedAvatar = localStorage.getItem('di_avatar') || '👤';
+  var avatarEl = document.getElementById('pmAvatar');
+  var chipAvatar = document.getElementById('userAvatarChip');
+  if (avatarEl) avatarEl.textContent = savedAvatar;
+  if (chipAvatar) chipAvatar.textContent = savedAvatar;
+
+  // Name
+  var nameInput = document.getElementById('pmDisplayName');
+  var user = (typeof getCurrentUser === 'function') ? getCurrentUser() : null;
+  var savedName = localStorage.getItem('di_display_name') || '';
+  if (!savedName && user) {
+    var meta = user.user_metadata;
+    savedName = (meta && meta.display_name) ? meta.display_name : user.email.split('@')[0];
+  }
+  if (nameInput) nameInput.value = savedName;
+
+  // Email + joined
+  var emailEl = document.getElementById('pmEmail');
+  var joinedEl = document.getElementById('pmJoined');
+  if (emailEl) emailEl.textContent = user ? user.email : 'Not signed in';
+  if (joinedEl && user && user.created_at) {
+    joinedEl.textContent = 'Joined ' + new Date(user.created_at).toLocaleDateString('en-GB', { month:'long', year:'numeric' });
+  }
+
+  // XP + level
+  var xpData = (typeof getXPData === 'function') ? getXPData() : null;
+  var levelBadge = document.getElementById('pmLevelBadge');
+  var xpFill = document.getElementById('pmXpFill');
+  var xpLabel = document.getElementById('pmXpLabel');
+  if (xpData) {
+    if (levelBadge) levelBadge.textContent = 'Lv ' + xpData.level;
+    if (xpFill) xpFill.style.width = xpData.pct + '%';
+    if (xpLabel) xpLabel.textContent = xpData.xp + ' XP — ' + xpData.xpToNext + ' to next level';
+  }
+
+  // Stats
+  var total = UNITS.reduce(function(s,u){return s+u.lessons.length;},0);
+  var done = completedLessons.size;
+  var streak = (typeof getCurrentStreak === 'function') ? getCurrentStreak() : 0;
+  var qKeys = Object.keys(quizScores);
+  var qAvg = qKeys.length ? Math.round(qKeys.filter(function(k){return quizScores[k].correct;}).length/qKeys.length*100) : null;
+  var badgeCount = (typeof loadBadges === 'function') ? Object.keys(loadBadges()).length : 0;
+  var statLessons = document.getElementById('pmStatLessons');
+  var statStreak = document.getElementById('pmStatStreak');
+  var statQuiz = document.getElementById('pmStatQuiz');
+  var statBadges = document.getElementById('pmStatBadges');
+  if (statLessons) statLessons.textContent = done + '/' + total;
+  if (statStreak) statStreak.textContent = streak + (streak>0?'🔥':'');
+  if (statQuiz) statQuiz.textContent = qAvg !== null ? qAvg + '%' : '—';
+  if (statBadges) statBadges.textContent = badgeCount;
+
+  // Unit progress
+  var unitsEl = document.getElementById('pmUnits');
+  if (unitsEl) {
+    unitsEl.innerHTML = UNITS.map(function(u, i) {
+      var unitDone = u.lessons.filter(function(l){return completedLessons.has(l.id);}).length;
+      var pct = Math.round(unitDone/u.lessons.length*100);
+      var colour = UNIT_COLOURS[i] || '#6366f1';
+      return '<div class="pm-unit-row">' +
+        '<div class="pm-unit-dot" style="background:'+colour+'"></div>' +
+        '<div class="pm-unit-label">'+u.icon+' '+u.title+'</div>' +
+        '<div class="pm-unit-bar-track"><div class="pm-unit-bar-fill" style="width:'+pct+'%;background:'+colour+'"></div></div>' +
+        '<div class="pm-unit-pct">'+pct+'%</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  // Badges
+  var badgesEl = document.getElementById('pmBadges');
+  if (badgesEl && typeof BADGE_DEFINITIONS !== 'undefined') {
+    var earnedBadges = (typeof loadBadges === 'function') ? loadBadges() : {};
+    badgesEl.innerHTML = BADGE_DEFINITIONS.map(function(b) {
+      var isEarned = !!earnedBadges[b.id];
+      return '<div class="pm-badge-chip ' + (isEarned ? 'earned' : 'locked') + '" title="' + (isEarned ? 'Earned' : 'Locked') + '">' +
+        b.icon + ' ' + b.name +
+      '</div>';
+    }).join('');
+  }
+
+  // Ratings
+  var ratingsEl = document.getElementById('pmRatings');
+  var ratingsTitle = document.getElementById('pmRatingsTitle');
+  if (ratingsEl) {
+    var ratingEntries = Object.entries(lessonRatings);
+    if (ratingsTitle) ratingsTitle.style.display = ratingEntries.length ? '' : 'none';
+    ratingsEl.innerHTML = ratingEntries.map(function(entry) {
+      var lid = parseInt(entry[0]), val = entry[1];
+      var found = findLesson(lid);
+      var title = found ? 'L' + lessonNum(lid) + ': ' + found.lesson.title : 'Lesson ' + lid;
+      return '<span class="pm-rating-pill pm-rating-' + val + '" onclick="closeProfileModal();openLesson(' + lid + ')" style="cursor:pointer" title="Click to open">' +
+        (val==='up'?'👍':'👎') + ' ' + title +
+      '</span>';
+    }).join('');
+  }
+
+  // Avatar picker grid
+  pmBuildAvatarGrid(savedAvatar);
+}
+
+function pmBuildAvatarGrid(current) {
+  var grid = document.getElementById('pmAvatarGrid');
+  if (!grid) return;
+  grid.innerHTML = PM_AVATARS.map(function(emoji) {
+    return '<button class="pm-avatar-opt' + (emoji===current?' selected':'') + '" onclick="pmSelectAvatar(\'' + emoji + '\')">' + emoji + '</button>';
+  }).join('');
+}
+
+function openAvatarPicker() {
+  var picker = document.getElementById('pmAvatarPicker');
+  if (picker) picker.style.display = picker.style.display === 'none' ? 'block' : 'none';
+}
+
+function pmSelectAvatar(emoji) {
+  localStorage.setItem('di_avatar', emoji);
+  var avatarEl = document.getElementById('pmAvatar');
+  var chipAvatar = document.getElementById('userAvatarChip');
+  if (avatarEl) avatarEl.textContent = emoji;
+  if (chipAvatar) chipAvatar.textContent = emoji;
+  var picker = document.getElementById('pmAvatarPicker');
+  if (picker) picker.style.display = 'none';
+  pmBuildAvatarGrid(emoji);
+}
+
+function pmSaveName(val) {
+  if (val.trim()) {
+    localStorage.setItem('di_display_name', val.trim());
+    var nameEl = document.getElementById('userDisplayName');
+    if (nameEl) nameEl.textContent = val.trim();
+  }
+}
+
 /* ── Notes Panel ───────────────────────────────── */
 var notesPanelOpen = false;
 function loadLessonNotes(lessonId) {
@@ -3246,6 +3395,12 @@ document.addEventListener('DOMContentLoaded', () => {
   updateFirstLessonBanner();
   renderSpacedReviewQueue();
   initOfflineBanner();
+  // Restore avatar on chip
+  var savedAvatar = localStorage.getItem('di_avatar');
+  if (savedAvatar) {
+    var chipAvatar = document.getElementById('userAvatarChip');
+    if (chipAvatar) chipAvatar.textContent = savedAvatar;
+  }
 });
 
 /* ── Lesson Rating ─────────────────────────────── */
@@ -3302,6 +3457,7 @@ document.addEventListener('keydown', e => {
     closeCapstone();
     closeOnboarding();
     closeVivaPractice();
+    closeProfileModal();
     if (typeof closeAuthModal === 'function') closeAuthModal();
   }
   if (e.key === '?' || (e.key === '/' && e.shiftKey)) {

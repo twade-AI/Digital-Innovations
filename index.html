@@ -62,10 +62,9 @@
       </div>
       <!-- Auth controls -->
       <button class="auth-btn" id="authBtn" onclick="openAuthModal('login')" title="Sign in to sync progress across devices">☁️ Sign In</button>
-      <div class="user-chip" id="userChip" style="display:none">
-        <span class="user-avatar">👤</span>
+      <div class="user-chip" id="userChip" style="display:none" onclick="openProfileModal()" title="View your profile" role="button" tabindex="0">
+        <span class="user-avatar" id="userAvatarChip">👤</span>
         <span id="userDisplayName"></span>
-        <button class="user-signout" onclick="authSignOut()" title="Sign out">✕</button>
       </div>
       <span class="sync-indicator" id="syncIndicator" style="display:none;opacity:0" aria-live="polite"></span>
       <a class="admin-link" id="adminLink" href="admin.html" style="display:none" title="Teacher admin dashboard">📊</a>
@@ -402,6 +401,64 @@
 
   <!-- Lesson Detail Modal -->
   <!-- Confetti Canvas -->
+  <!-- Profile Modal -->
+  <div id="profileModal" class="modal profile-modal" role="dialog" aria-modal="true" aria-label="Your profile" onclick="if(event.target===this)closeProfileModal()">
+    <div class="modal-content profile-modal-inner">
+      <button class="modal-close" onclick="closeProfileModal()" aria-label="Close">&times;</button>
+
+      <!-- Avatar + name -->
+      <div class="pm-hero">
+        <div class="pm-avatar-wrap">
+          <button class="pm-avatar" id="pmAvatar" onclick="openAvatarPicker()" title="Change avatar" aria-label="Change avatar">👤</button>
+          <div class="pm-avatar-picker" id="pmAvatarPicker" style="display:none">
+            <span>Pick an avatar</span>
+            <div class="pm-avatar-grid" id="pmAvatarGrid"></div>
+          </div>
+        </div>
+        <div class="pm-identity">
+          <div class="pm-name-row">
+            <input id="pmDisplayName" class="pm-name-input" type="text" placeholder="Your name" maxlength="40" oninput="pmSaveName(this.value)">
+          </div>
+          <div class="pm-email" id="pmEmail"></div>
+          <div class="pm-joined" id="pmJoined"></div>
+        </div>
+        <div class="pm-level-badge" id="pmLevelBadge">Lv 1</div>
+      </div>
+
+      <!-- XP bar -->
+      <div class="pm-xp-row">
+        <div class="pm-xp-track"><div class="pm-xp-fill" id="pmXpFill" style="width:0%"></div></div>
+        <span class="pm-xp-label" id="pmXpLabel">0 XP</span>
+      </div>
+
+      <!-- Stats row -->
+      <div class="pm-stats">
+        <div class="pm-stat"><div class="pm-stat-num" id="pmStatLessons">0</div><div class="pm-stat-label">Lessons done</div></div>
+        <div class="pm-stat"><div class="pm-stat-num" id="pmStatStreak">0🔥</div><div class="pm-stat-label">Day streak</div></div>
+        <div class="pm-stat"><div class="pm-stat-num" id="pmStatQuiz">—</div><div class="pm-stat-label">Quiz avg</div></div>
+        <div class="pm-stat"><div class="pm-stat-num" id="pmStatBadges">0</div><div class="pm-stat-label">Badges</div></div>
+      </div>
+
+      <!-- Unit progress -->
+      <div class="pm-section-title">Progress by unit</div>
+      <div class="pm-units" id="pmUnits"></div>
+
+      <!-- Badges -->
+      <div class="pm-section-title">Badges</div>
+      <div class="pm-badges" id="pmBadges"></div>
+
+      <!-- Ratings -->
+      <div class="pm-section-title" id="pmRatingsTitle" style="display:none">Lesson ratings</div>
+      <div class="pm-ratings" id="pmRatings"></div>
+
+      <!-- Actions -->
+      <div class="pm-actions">
+        <button class="btn btn-secondary" onclick="exportReflections()">⬇ Download my notes</button>
+        <button class="btn btn-secondary" style="color:var(--danger);border-color:var(--danger)" onclick="closeProfileModal();authSignOut()">Sign out</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Teacher Mode Banner -->
   <div id="teacherBanner" class="teacher-banner" style="display:none">
     📺 Teacher / Presentation Mode — personal progress hidden &nbsp;
