@@ -1582,3 +1582,16 @@ a.ticker-item-link:hover{color:var(--text);text-decoration:none;}
 .pc-badges-row{ align-items:center;gap:6px;margin-top:6px;flex-wrap:wrap }
 .pc-badges-label{ font-size:.72rem;color:var(--text-dim);font-weight:600 }
 .pc-badge-icon{ font-size:1.15rem;cursor:default }
+
+/* ── Keyboard Shortcuts Overlay ───────────────────── */
+.kb-overlay { position:fixed; inset:0; background:rgba(0,0,0,.55); backdrop-filter:blur(4px); z-index:9000; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .2s; }
+.kb-overlay.open { opacity:1; pointer-events:all; }
+.kb-modal { background:var(--bg-card); border:1px solid var(--border); border-radius:20px; padding:28px 32px; max-width:540px; width:90%; box-shadow:0 24px 64px rgba(0,0,0,.4); }
+.kb-title { font-size:1.1rem; font-weight:800; margin:0 0 20px; display:flex; align-items:center; gap:10px; }
+.kb-title span { font-size:.8rem; font-weight:400; color:var(--text-dim); margin-left:auto; }
+.kb-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px 24px; }
+.kb-row { display:flex; align-items:center; gap:10px; padding:6px 0; border-bottom:1px solid var(--border); }
+.kb-row:last-child { border-bottom:none; }
+.kb-key { background:var(--bg); border:1px solid var(--border); border-radius:5px; padding:2px 8px; font-size:.75rem; font-weight:700; color:var(--text-muted); font-family:monospace; white-space:nowrap; flex-shrink:0; box-shadow:0 1px 0 var(--border); }
+.kb-desc { font-size:.82rem; color:var(--text-muted); }
+.kb-section { grid-column:1/-1; font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--text-dim); padding-top:8px; }

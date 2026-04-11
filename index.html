@@ -66,6 +66,7 @@
       <a class="admin-link" id="adminLink" href="admin.html" style="display:none" title="Teacher admin dashboard">📊</a>
       <!-- Settings dropdown -->
       <div class="settings-wrap" id="settingsWrap">
+        <button class="nav-icon-btn" onclick="openKb()" title="Keyboard shortcuts (?)" aria-label="Keyboard shortcuts">⌨</button>
         <button class="settings-btn" id="settingsBtn" onclick="toggleSettingsMenu()" aria-label="Settings" title="Settings">⚙</button>
         <div class="settings-menu" id="settingsMenu" role="menu" aria-hidden="true">
           <div class="settings-menu-label">Display</div>
@@ -403,20 +404,26 @@
   </div>
 
   <!-- Keyboard Shortcuts Overlay -->
-  <div id="shortcutsOverlay" class="shortcuts-overlay" onclick="closeShortcuts()">
-    <div class="shortcuts-inner" onclick="event.stopPropagation()">
-      <div class="shortcuts-title">⌨️ Keyboard Shortcuts</div>
-      <div class="shortcuts-grid">
-        <div class="sc-row"><kbd>→</kbd><span>Next slide</span></div>
-        <div class="sc-row"><kbd>←</kbd><span>Previous slide</span></div>
-        <div class="sc-row"><kbd>Esc</kbd><span>Close lesson / quiz</span></div>
-        <div class="sc-row"><kbd>M</kbd><span>Mark lesson complete</span></div>
-        <div class="sc-row"><kbd>B</kbd><span>Bookmark lesson</span></div>
-        <div class="sc-row"><kbd>N</kbd><span>Toggle notes panel</span></div>
-        <div class="sc-row"><kbd>F</kbd><span>Flag slide for review</span></div>
-        <div class="sc-row"><kbd>?</kbd><span>Show this overlay</span></div>
+  <div id="shortcutsOverlay" class="kb-overlay" role="dialog" aria-modal="true" aria-label="Keyboard shortcuts" onclick="if(event.target===this)closeShortcuts()">
+    <div class="kb-modal">
+      <div class="kb-title">⌨ Keyboard Shortcuts <span>Press ? to toggle</span></div>
+      <div class="kb-grid">
+        <div class="kb-section">General</div>
+        <div class="kb-row"><span class="kb-key">?</span><span class="kb-desc">Show / hide this panel</span></div>
+        <div class="kb-row"><span class="kb-key">⌘K</span><span class="kb-desc">Open search</span></div>
+        <div class="kb-row"><span class="kb-key">Esc</span><span class="kb-desc">Close any open panel</span></div>
+        <div class="kb-row"><span class="kb-key">D</span><span class="kb-desc">Toggle dark / light mode</span></div>
+        <div class="kb-section">In a Lesson</div>
+        <div class="kb-row"><span class="kb-key">→</span><span class="kb-desc">Next slide</span></div>
+        <div class="kb-row"><span class="kb-key">←</span><span class="kb-desc">Previous slide</span></div>
+        <div class="kb-row"><span class="kb-key">M</span><span class="kb-desc">Mark lesson complete</span></div>
+        <div class="kb-row"><span class="kb-key">B</span><span class="kb-desc">Bookmark lesson</span></div>
+        <div class="kb-section">Jump to</div>
+        <div class="kb-row"><span class="kb-key">P</span><span class="kb-desc">Open profile</span></div>
+        <div class="kb-row"><span class="kb-key">R</span><span class="kb-desc">Quick quiz (random review)</span></div>
+        <div class="kb-row"><span class="kb-key">F</span><span class="kb-desc">AI Fluency Track</span></div>
+        <div class="kb-row"><span class="kb-key">N</span><span class="kb-desc">Toggle notes panel</span></div>
       </div>
-      <button class="btn btn-secondary" style="margin-top:16px;width:100%" onclick="closeShortcuts()">Close</button>
     </div>
   </div>
 
@@ -581,6 +588,7 @@
       </div>
     </div>
   </div>
+
 
   <footer>
     <p>Digital Innovations AEP &bull; Built for KS5 learners</p>

@@ -19,6 +19,29 @@ let currentFilter = 'all';
 let currentTagFilter = null;
 let bookmarkedLessons = loadBookmarks();
 let quizScores = loadQuizScores();
+var lessonRatings = loadRatings();
+function loadRatings() {
+  try { return JSON.parse(localStorage.getItem('di_ratings')) || {}; }
+  catch { return {}; }
+}
+function saveRating(lessonId, value) {
+  lessonRatings[lessonId] = value; // 'up' or 'down'
+  localStorage.setItem('di_ratings', JSON.stringify(lessonRatings));
+  // Sync to Supabase if available
+  if (typeof isSupabaseReady === 'function' && isSupabaseReady() && typeof getCurrentUser === 'function') {
+    var user = getCurrentUser();
+    if (user) {
+      _sb.from('lesson_ratings').upsert({
+        user_id: user.id,
+        lesson_id: lessonId,
+        rating: value,
+        rated_at: new Date().toISOString()
+      }, { onConflict: 'user_id,lesson_id' }).then(function(res) {
+        if (res.error) console.warn('[ratings] sync error:', res.error.message);
+      });
+    }
+  }
+}
 
 /* ── Persistence ───────────────────────────────── */
 function loadProgress() {
@@ -776,19 +799,16 @@ function renderSlide(index) {
     });
   }
 
-  // Rating widget — show on summary slide or last slide
-  var slides = getLessonSlides(currentLessonId, findLesson(currentLessonId) ? findLesson(currentLessonId).lesson : null, findLesson(currentLessonId) ? findLesson(currentLessonId).unit : null);
-  var isLastSlide = (index === slides.length - 1);
-  if (isLastSlide) {
+  // Rating widget — only on last slide
+  if (index === currentSlides.length - 1) {
+    var existingRating = lessonRatings[currentLessonId];
     var ratingWrap = document.createElement('div');
-    ratingWrap.className = 'lesson-rating-wrap';
-    var savedRating = getLessonRating(currentLessonId);
+    ratingWrap.className = 'lesson-rating';
     ratingWrap.innerHTML =
-      '<span class="lesson-rating-label">Rate this lesson</span>' +
-      '<div class="lesson-rating-btns">' +
-        '<button class="lrat-btn' + (savedRating === 'up' ? ' active-up' : '') + '" onclick="ratelesson(' + currentLessonId + ',\'up\')" title="Helpful">&#128077;</button>' +
-        '<button class="lrat-btn' + (savedRating === 'down' ? ' active-down' : '') + '" onclick="ratelesson(' + currentLessonId + ',\'down\')" title="Could be better">&#128078;</button>' +
-      '</div>';
+      '<span class="lesson-rating-label">Was this lesson useful?</span>' +
+      '<button class="rating-btn' + (existingRating === 'up' ? ' rated-up' : '') + '" id="ratingUp" onclick="rateLesson(' + currentLessonId + ',\'up\')" aria-label="Thumbs up">👍</button>' +
+      '<button class="rating-btn' + (existingRating === 'down' ? ' rated-down' : '') + '" id="ratingDown" onclick="rateLesson(' + currentLessonId + ',\'down\')" aria-label="Thumbs down">👎</button>' +
+      '<span class="rating-thanks' + (existingRating ? ' visible' : '') + '" id="ratingThanks">Thanks!</span>';
     area.appendChild(ratingWrap);
   }
 
@@ -1496,6 +1516,9 @@ function toggleTeacherMode() {
 /* ── Keyboard Shortcuts Overlay ────────────────── */
 function openShortcuts() { document.getElementById('shortcutsOverlay').classList.add('open'); }
 function closeShortcuts() { document.getElementById('shortcutsOverlay').classList.remove('open'); }
+
+function openKb() { openShortcuts(); }
+function closeKb() { closeShortcuts(); }
 
 /* ── Notes Panel ───────────────────────────────── */
 var notesPanelOpen = false;
@@ -3098,40 +3121,16 @@ document.addEventListener('DOMContentLoaded', () => {
   initOfflineBanner();
 });
 
-/* ── Lesson Ratings ────────────────────────────── */
-var RATINGS_KEY = 'di_lesson_ratings';
-function loadRatings() {
-  try { return JSON.parse(localStorage.getItem(RATINGS_KEY)) || {}; } catch(e) { return {}; }
-}
-function getLessonRating(id) { return loadRatings()[id] || null; }
-function ratelesson(id, val) {
-  var ratings = loadRatings();
-  if (ratings[id] === val) {
-    delete ratings[id]; // toggle off
-  } else {
-    ratings[id] = val;
-    syncRatingToCloud(id, val);
-  }
-  localStorage.setItem(RATINGS_KEY, JSON.stringify(ratings));
-  // Refresh the widget in place
-  var wrap = document.querySelector('.lesson-rating-wrap');
-  if (wrap) {
-    var savedRating = ratings[id] || null;
-    wrap.innerHTML =
-      '<span class="lesson-rating-label">Rate this lesson</span>' +
-      '<div class="lesson-rating-btns">' +
-        '<button class="lrat-btn' + (savedRating === 'up' ? ' active-up' : '') + '" onclick="ratelesson(' + id + ',\'up\')" title="Helpful">&#128077;</button>' +
-        '<button class="lrat-btn' + (savedRating === 'down' ? ' active-down' : '') + '" onclick="ratelesson(' + id + ',\'down\')" title="Could be better">&#128078;</button>' +
-      '</div>' +
-      (savedRating ? '<span class="lesson-rating-thanks">Thanks for the feedback!</span>' : '');
-  }
-}
-function syncRatingToCloud(id, val) {
-  if (!window.supabase || !currentUser) return;
-  supabase.from('lesson_ratings').upsert(
-    { user_id: currentUser.id, lesson_id: id, rating: val, rated_at: new Date().toISOString() },
-    { onConflict: 'user_id,lesson_id' }
-  ).catch(function() {});
+/* ── Lesson Rating ─────────────────────────────── */
+function rateLesson(lessonId, value) {
+  saveRating(lessonId, value);
+  // Update UI
+  var upBtn   = document.getElementById('ratingUp');
+  var downBtn = document.getElementById('ratingDown');
+  var thanks  = document.getElementById('ratingThanks');
+  if (upBtn)   { upBtn.classList.toggle('rated-up',   value === 'up');   upBtn.classList.remove('rated-down'); }
+  if (downBtn) { downBtn.classList.toggle('rated-down', value === 'down'); downBtn.classList.remove('rated-up'); }
+  if (thanks)  { thanks.classList.add('visible'); }
 }
 
 function initOfflineBanner() {
@@ -3178,13 +3177,29 @@ document.addEventListener('keydown', e => {
     closeVivaPractice();
     if (typeof closeAuthModal === 'function') closeAuthModal();
   }
-  if (e.key === '?' && !inInput) { openShortcuts(); return; }
+  if (e.key === '?' || (e.key === '/' && e.shiftKey)) {
+    if (!inInput) {
+      e.preventDefault();
+      var kb = document.getElementById('shortcutsOverlay');
+      if (kb && kb.classList.contains('open')) { closeShortcuts(); } else { openShortcuts(); }
+      return;
+    }
+  }
   // Cmd+K / Ctrl+K — focus search
   if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
     e.preventDefault();
     var si = document.getElementById('searchInput');
     if (si) { si.focus(); si.select(); }
     return;
+  }
+  if (e.key === 'd' || e.key === 'D') {
+    // only if not typing in an input
+    if (document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+      toggleTheme();
+    }
+  }
+  if ((e.key === 'f' || e.key === 'F') && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+    if (currentSlides.length === 0) window.location.href = 'fluency.html';
   }
   if (currentSlides.length > 0) {
     if (e.key === 'ArrowRight') navigateSlide(1);
