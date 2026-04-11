@@ -599,6 +599,7 @@ function renderSlide(index) {
   }
 
   else if (slide.type === 'video') {
+    var isLast = index === currentSlides.length - 1;
     html = '<div class="slide-video">' +
       '<span class="slide-badge badge-video">Video</span>' +
       '<div class="slide-title">' + slide.title + '</div>' +
@@ -606,9 +607,12 @@ function renderSlide(index) {
       '<div class="video-wrapper">' +
         '<iframe src="https://www.youtube-nocookie.com/embed/' + slide.videoId + '?rel=0" ' +
           'frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ' +
-          'allowfullscreen></iframe>' +
+          'allowfullscreen title="' + slide.title + '"></iframe>' +
       '</div>' +
       '<div class="video-credit">' + slide.credit + '</div>' +
+      '<button class="video-next-btn" onclick="navigateSlide(1)">' +
+        (isLast ? '✓ Finish lesson' : 'Continue to next slide →') +
+      '</button>' +
     '</div>';
   }
 
