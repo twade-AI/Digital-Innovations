@@ -2700,12 +2700,51 @@ function printCapstone() {
   try { d = JSON.parse(localStorage.getItem('di_capstone')) || {}; } catch(e) { d = {}; }
   var w = window.open('', '_blank');
   if (!w) return;
+
+  var CAPSTONE_PHASES = [
+    { phase: 'Phase 1 — Define', lessons: [{id:21,label:'From Consumer to Co-Creator'},{id:22,label:'Defining the Problem Statement'}] },
+    { phase: 'Phase 2 — Design', lessons: [{id:23,label:'Ethics by Design'},{id:24,label:'Project Planning & Architecture'}] },
+    { phase: 'Phase 3 — Build', lessons: [{id:25,label:'Applying Prompt Architecture'},{id:26,label:'Logic Flows & Edge Cases'},{id:27,label:'Sprint 0 — Foundation'},{id:28,label:'Initial Peer Review'},{id:29,label:'Deep Work 1'},{id:30,label:'Deep Work 2'},{id:31,label:'Deep Work 3'},{id:32,label:'Deep Work 4'},{id:33,label:'Deep Work 5'}] },
+    { phase: 'Phase 4 — Evaluate', lessons: [{id:34,label:'The Ethical Audit'},{id:35,label:'The Pitch Deck'},{id:36,label:'Dress Rehearsal'}] },
+    { phase: 'Phase 5 — Communicate', lessons: [{id:39,label:'Viva Voce Prep'},{id:41,label:'The Automated Graduate'},{id:43,label:'Course Retrospective'},{id:44,label:'The AI Manifesto'}] }
+  ];
+
+  var notesHtml = '';
+  var hasAnyNotes = false;
+  CAPSTONE_PHASES.forEach(function(ph) {
+    var phaseHtml = '';
+    ph.lessons.forEach(function(l) {
+      var lessonHtml = '';
+      for (var si = 0; si < 9; si++) {
+        var note = localStorage.getItem('di_note_' + l.id + '_' + si);
+        if (note && note.trim()) {
+          lessonHtml += '<p>' + note.trim().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</p>';
+        }
+      }
+      if (lessonHtml) {
+        phaseHtml += '<div class="lesson-notes"><h3>' + l.label + '</h3>' + lessonHtml + '</div>';
+      }
+    });
+    if (phaseHtml) {
+      hasAnyNotes = true;
+      notesHtml += '<div class="phase-block"><h2>' + ph.phase + '</h2>' + phaseHtml + '</div>';
+    }
+  });
+  if (!hasAnyNotes) {
+    notesHtml = '<p style="color:#94a3b8;font-style:italic">No sprint diary notes recorded yet.</p>';
+  }
+
   w.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Capstone Portfolio</title>' +
     '<style>body{font-family:Georgia,serif;max-width:800px;margin:40px auto;color:#111;line-height:1.6}' +
     'h1{color:#6366f1;border-bottom:2px solid #6366f1;padding-bottom:8px;margin-bottom:4px}' +
     'h2{color:#333;margin-top:24px;font-size:.9rem;text-transform:uppercase;letter-spacing:.05em;color:#64748b}' +
     '.ptfc{background:#f8f9fa;border-left:4px solid #6366f1;padding:10px 16px;margin:6px 0;border-radius:0 4px 4px 0}' +
     '.lbl{font-weight:700;color:#6366f1;margin-right:8px}p{margin:4px 0}' +
+    '.phase-block{margin-top:24px}' +
+    '.phase-block h2{color:#6366f1;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;padding-bottom:4px}' +
+    '.lesson-notes{margin:12px 0 0 16px}' +
+    '.lesson-notes h3{font-size:.9rem;color:#334155;margin:8px 0 4px}' +
+    '.lesson-notes p{font-size:.85rem;color:#475569;margin:0 0 8px;white-space:pre-wrap}' +
     '@media print{button{display:none}}</style></head><body>' +
     '<h1>📋 Capstone Project Portfolio</h1>' +
     '<h2>Project Title</h2><p>' + (d.capstone_title || '—') + '</p>' +
@@ -2718,10 +2757,92 @@ function printCapstone() {
     '<div class="ptfc"><span class="lbl">C</span>' + (d.capstone_context || '—') + '</div>' +
     '<h2>Key Findings</h2><p>' + ((d.capstone_findings || '—').replace(/\n/g,'<br>')) + '</p>' +
     '<h2>Self-Reflection</h2><p>' + ((d.capstone_reflection || '—').replace(/\n/g,'<br>')) + '</p>' +
+    '<h1>📓 Sprint Diary & Build Notes</h1>' +
+    notesHtml +
     '<p style="margin-top:40px;color:#999;font-size:.78rem">Digital Innovations AEP — Printed ' + new Date().toLocaleDateString('en-GB') + '</p>' +
     '<br><button onclick="window.print()" style="padding:10px 24px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer">Print</button>' +
     '</body></html>');
   w.document.close(); w.print();
+}
+function downloadPortfolio() {
+  saveCapstoneData();
+  var d;
+  try { d = JSON.parse(localStorage.getItem('di_capstone')) || {}; } catch(e) { d = {}; }
+  var lines = [];
+  var date = new Date().toLocaleDateString('en-GB');
+  lines.push('DIGITAL INNOVATIONS — CAPSTONE PORTFOLIO');
+  lines.push('Generated: ' + date);
+  lines.push('='.repeat(50));
+  lines.push('');
+  lines.push('PROJECT TITLE');
+  lines.push(d.capstone_title || '(not set)');
+  lines.push('');
+  lines.push('PROBLEM STATEMENT');
+  lines.push(d.capstone_problem || '(not set)');
+  lines.push('');
+  lines.push('TARGET AUDIENCE');
+  lines.push(d.capstone_audience || '(not set)');
+  lines.push('');
+  lines.push('PTFC RESEARCH PROMPT');
+  lines.push('P — ' + (d.capstone_persona || '(not set)'));
+  lines.push('T — ' + (d.capstone_task || '(not set)'));
+  lines.push('F — ' + (d.capstone_format || '(not set)'));
+  lines.push('C — ' + (d.capstone_context || '(not set)'));
+  lines.push('');
+  lines.push('KEY FINDINGS');
+  lines.push(d.capstone_findings || '(not set)');
+  lines.push('');
+  lines.push('SELF-REFLECTION');
+  lines.push(d.capstone_reflection || '(not set)');
+  lines.push('');
+  lines.push('='.repeat(50));
+  lines.push('SPRINT DIARY & BUILD NOTES');
+  lines.push('='.repeat(50));
+  lines.push('');
+
+  var CAPSTONE_PHASES = [
+    { phase: 'Phase 1 — Define', lessons: [{id:21,label:'From Consumer to Co-Creator'},{id:22,label:'Defining the Problem Statement'}] },
+    { phase: 'Phase 2 — Design', lessons: [{id:23,label:'Ethics by Design'},{id:24,label:'Project Planning & Architecture'}] },
+    { phase: 'Phase 3 — Build', lessons: [{id:25,label:'Applying Prompt Architecture'},{id:26,label:'Logic Flows & Edge Cases'},{id:27,label:'Sprint 0 — Foundation'},{id:28,label:'Initial Peer Review'},{id:29,label:'Deep Work 1'},{id:30,label:'Deep Work 2'},{id:31,label:'Deep Work 3'},{id:32,label:'Deep Work 4'},{id:33,label:'Deep Work 5'}] },
+    { phase: 'Phase 4 — Evaluate', lessons: [{id:34,label:'The Ethical Audit'},{id:35,label:'The Pitch Deck'},{id:36,label:'Dress Rehearsal'}] },
+    { phase: 'Phase 5 — Communicate', lessons: [{id:39,label:'Viva Voce Prep'},{id:41,label:'The Automated Graduate'},{id:43,label:'Course Retrospective'},{id:44,label:'The AI Manifesto'}] }
+  ];
+
+  var hasAny = false;
+  CAPSTONE_PHASES.forEach(function(ph) {
+    var phaseLines = [];
+    ph.lessons.forEach(function(l) {
+      var lessonLines = [];
+      for (var si = 0; si < 9; si++) {
+        var note = localStorage.getItem('di_note_' + l.id + '_' + si);
+        if (note && note.trim()) lessonLines.push(note.trim());
+      }
+      if (lessonLines.length) {
+        phaseLines.push('  ' + l.label);
+        phaseLines.push('  ' + '-'.repeat(30));
+        lessonLines.forEach(function(n) { phaseLines.push('  ' + n); });
+        phaseLines.push('');
+      }
+    });
+    if (phaseLines.length) {
+      hasAny = true;
+      lines.push(ph.phase.toUpperCase());
+      lines.push('-'.repeat(40));
+      phaseLines.forEach(function(l) { lines.push(l); });
+    }
+  });
+
+  if (!hasAny) lines.push('No sprint diary notes recorded yet.');
+  lines.push('');
+  lines.push('---');
+  lines.push('Digital Innovations AEP — ' + date);
+
+  var blob = new Blob([lines.join('\n')], { type: 'text/plain' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'capstone-portfolio-' + date.replace(/\//g,'-') + '.txt';
+  a.click();
+  URL.revokeObjectURL(a.href);
 }
 
 /* ── Debate / Discussion Vote ──────────────────── */
@@ -2749,7 +2870,7 @@ function showAdaptiveNudge(lessonId) {
   if (!el) return;
   var links = unmet.map(function(pid) {
     var pf = findLesson(pid);
-    return pf ? '<span onclick="closeModal();setTimeout(function(){openLesson(' + pid + ')},200)" style="cursor:pointer;color:var(--primary-light);text-decoration:underline">Lesson ' + pid + ': ' + pf.lesson.title + '</span>' : '';
+    return pf ? '<span onclick="closeModal();setTimeout(function(){openLesson(' + pid + ')},200)" style="cursor:pointer;color:var(--primary-light);text-decoration:underline">Lesson ' + lessonNum(pid) + ': ' + pf.lesson.title + '</span>' : '';
   }).filter(Boolean).join(', ');
   var nudge = document.createElement('div');
   nudge.style.cssText = 'margin-top:10px;padding:10px 14px;background:rgba(245,158,11,.08);border-left:3px solid var(--warning);border-radius:0 6px 6px 0;font-size:.82rem;color:var(--text-muted)';
