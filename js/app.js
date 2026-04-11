@@ -229,8 +229,15 @@ function saveQuizScore(lessonId, correct) {
 function showSection(name) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById('section-' + name)?.classList.add('active');
+  var exploreSections = ['exemplars','timeline','news'];
   document.querySelectorAll('.nav-link').forEach(l => {
     l.classList.toggle('active', l.dataset.section === name);
+  });
+  var exploreBtn = document.getElementById('navExploreBtn');
+  if (exploreBtn) exploreBtn.classList.toggle('active', exploreSections.includes(name));
+  // Highlight active item inside the explore menu
+  document.querySelectorAll('.nav-explore-item').forEach(function(a) {
+    a.classList.toggle('active', a.dataset.section === name);
   });
   document.querySelectorAll('.mob-tab[data-section]').forEach(t => {
     t.classList.toggle('active', t.dataset.section === name);
@@ -248,6 +255,26 @@ function showSection(name) {
 function toggleMobileNav() {
   document.querySelector('.nav-links')?.classList.toggle('open');
 }
+
+/* ── Explore Dropdown ─────────────────────────── */
+var _exploreOpen = false;
+function toggleExploreMenu() {
+  _exploreOpen = !_exploreOpen;
+  var menu = document.getElementById('navExploreMenu');
+  var btn  = document.getElementById('navExploreBtn');
+  if (menu) { menu.classList.toggle('open', _exploreOpen); menu.setAttribute('aria-hidden', !_exploreOpen); }
+  if (btn)  { btn.setAttribute('aria-expanded', _exploreOpen); btn.classList.toggle('active', _exploreOpen); }
+}
+function closeExploreMenu() {
+  _exploreOpen = false;
+  var menu = document.getElementById('navExploreMenu');
+  var btn  = document.getElementById('navExploreBtn');
+  if (menu) { menu.classList.remove('open'); menu.setAttribute('aria-hidden', 'true'); }
+  if (btn)  { btn.setAttribute('aria-expanded', 'false'); btn.classList.remove('active'); }
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('#navExploreWrap')) closeExploreMenu();
+});
 
 /* ── Units Rendering ───────────────────────────── */
 function renderUnits() {

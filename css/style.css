@@ -594,6 +594,27 @@ body.teacher-mode .badges-section, body.teacher-mode .progress-ring-container,
 body.teacher-mode .progress-stats, body.teacher-mode .diff-badge,
 body.teacher-mode .cm-lesson.done::after{ display:none!important }
 body.teacher-mode .nav-link[data-section="progress"]{ display:none }
+/* ── Explore Dropdown ───────────────────────── */
+.nav-explore-wrap { position:relative; }
+.nav-explore-btn { background:none; border:none; font-family:inherit; font-size:.88rem; font-weight:500; color:var(--text-muted); cursor:pointer; padding:4px 2px; transition:color .15s; white-space:nowrap; }
+.nav-explore-btn:hover, .nav-explore-btn.active { color:var(--primary-light); }
+.nav-explore-menu {
+  display:none; position:absolute; top:calc(100% + 10px); left:50%; transform:translateX(-50%);
+  background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius);
+  min-width:180px; box-shadow:var(--shadow); z-index:200; overflow:hidden;
+  animation:fadeSlideDown .15s ease;
+}
+.nav-explore-menu.open { display:block; }
+.nav-explore-item {
+  display:flex; align-items:center; gap:8px; padding:10px 16px;
+  color:var(--text-muted); font-size:.85rem; font-weight:500; white-space:nowrap;
+  transition:background .12s, color .12s; text-decoration:none;
+}
+.nav-explore-item:hover { background:var(--bg-card-hover); color:var(--text); }
+.nav-explore-item[data-section="exemplars"].active,
+.nav-explore-item[data-section="timeline"].active,
+.nav-explore-item[data-section="news"].active { color:var(--primary-light); }
+
 /* ── Settings Dropdown ───────────────────────── */
 .settings-wrap{ position:relative;margin-left:6px;flex-shrink:0; }
 .settings-btn{

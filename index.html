@@ -46,9 +46,14 @@
         <a href="#" class="nav-link" data-section="progress" onclick="showSection('progress')">My Progress</a>
         <a href="#" class="nav-link" data-section="map" onclick="showSection('map')">Course Map</a>
         <a href="#" class="nav-link" data-section="glossary" onclick="showSection('glossary')">Glossary</a>
-        <a href="#" class="nav-link" data-section="exemplars" onclick="showSection('exemplars')">Gallery</a>
-        <a href="#" class="nav-link" data-section="timeline" onclick="showSection('timeline')">History</a>
-        <a href="#" class="nav-link" data-section="news" onclick="showSection('news')">📰 News</a>
+        <div class="nav-explore-wrap" id="navExploreWrap">
+          <button class="nav-link nav-explore-btn" id="navExploreBtn" onclick="toggleExploreMenu()" aria-haspopup="true" aria-expanded="false">Explore ▾</button>
+          <div class="nav-explore-menu" id="navExploreMenu" role="menu" aria-hidden="true">
+            <a href="#" class="nav-explore-item" data-section="exemplars" onclick="showSection('exemplars');closeExploreMenu()">📌 Prompt Gallery</a>
+            <a href="#" class="nav-explore-item" data-section="timeline" onclick="showSection('timeline');closeExploreMenu()">📅 AI History</a>
+            <a href="#" class="nav-explore-item" data-section="news" onclick="showSection('news');closeExploreMenu()">📰 AI News</a>
+          </div>
+        </div>
         <a href="#" class="nav-link nav-link-quiz" onclick="startQuickQuiz()" title="Quick Quiz — test yourself on completed lessons">⚡ Quiz Me</a>
       </div>
       <div class="nav-search">
