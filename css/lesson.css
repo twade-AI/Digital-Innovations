@@ -853,6 +853,8 @@
 }
 .resource-field:focus { outline: none; border-color: var(--primary); }
 .resource-field[rows] { min-height: 60px; resize: vertical; line-height: 1.5; }
+.resource-autosave-notice { font-size:.75rem; color:var(--success); margin:8px 0 4px; transition:opacity .3s; }
+.resource-autosave-notice.just-saved { font-weight:700; }
 
 /* ── Tag Filters ─────────────────────────────────── */
 .tag-filters {

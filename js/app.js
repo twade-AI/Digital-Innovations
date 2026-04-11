@@ -945,16 +945,73 @@ function openResource(id) {
       }).join(' ') +
     '</div>';
   }
+  var hasFields = content && (content.indexOf('resource-field') !== -1);
+  var downloadBtn = hasFields
+    ? '<button class="btn btn-secondary" onclick="downloadResource(\'' + r.id + '\',\'' + r.title.replace(/'/g,"\\'") + '\')" title="Download your filled template as a .txt file">⬇ Download .txt</button>'
+    : '';
+  var clearBtn = hasFields
+    ? '<button class="btn btn-secondary" onclick="clearResource(\'' + r.id + '\')" title="Clear all saved answers">Clear</button>'
+    : '';
+
   document.getElementById('modalBody').innerHTML =
     '<span class="rc-type" data-cat="' + r.cat + '" style="margin-bottom:12px">' + r.cat + '</span>' +
     '<h2>' + r.title + '</h2>' +
     '<p class="modal-desc">' + r.desc + '</p>' +
     linkedHtml +
+    (hasFields ? '<div class="resource-autosave-notice" id="resourceSaveNotice">✓ Changes saved automatically</div>' : '') +
     '<div class="resource-body">' + (content || '<p style="color:var(--text-dim)">Full interactive content coming soon.</p>') + '</div>' +
     '<div class="modal-actions">' +
+      downloadBtn + clearBtn +
       '<button class="btn btn-secondary" onclick="closeModal()">Close</button>' +
     '</div>';
+
+  // Auto-save: restore saved values, then listen for changes
+  if (hasFields) {
+    var fields = document.querySelectorAll('#modalBody .resource-field');
+    fields.forEach(function(field, idx) {
+      var key = 'di_res_' + r.id + '_' + idx;
+      var saved = localStorage.getItem(key);
+      if (saved) field.value = saved;
+      field.addEventListener('input', function() {
+        localStorage.setItem(key, field.value);
+        var notice = document.getElementById('resourceSaveNotice');
+        if (notice) { notice.textContent = '✓ Saved'; notice.classList.add('just-saved'); setTimeout(function() { notice.classList.remove('just-saved'); notice.textContent = '✓ Changes saved automatically'; }, 1200); }
+      });
+    });
+  }
+
   document.getElementById('lessonModal').classList.add('open');
+}
+
+function downloadResource(id, title) {
+  var fields = document.querySelectorAll('#modalBody .resource-field');
+  var labels = document.querySelectorAll('#modalBody .resource-template-section h5');
+  var lines = [title, '='.repeat(title.length), ''];
+  var labelIdx = 0;
+  fields.forEach(function(field) {
+    // Find the closest section heading
+    var section = field.closest('.resource-template-section');
+    var heading = section ? section.querySelector('h5') : null;
+    if (heading) lines.push('--- ' + heading.textContent + ' ---');
+    lines.push(field.value || '(blank)');
+    lines.push('');
+  });
+  lines.push('Digital Innovations — ' + new Date().toLocaleDateString('en-GB'));
+  var blob = new Blob([lines.join('\n')], { type: 'text/plain' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = title.toLowerCase().replace(/\s+/g,'-') + '.txt';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function clearResource(id) {
+  if (!confirm('Clear all saved answers for this template?')) return;
+  var fields = document.querySelectorAll('#modalBody .resource-field');
+  fields.forEach(function(field, idx) {
+    localStorage.removeItem('di_res_' + id + '_' + idx);
+    field.value = '';
+  });
 }
 
 /* ── Search ────────────────────────────────────── */
