@@ -998,4 +998,201 @@ var SLIDE_VISUALS = {
     <text x="505" y="162" class="vlc" font-size="8" opacity=".55">HARD</text>
   </svg>`,
 
+  /* ── L3:3 — Overfitting vs. Generalisation ──────────────────────── */
+  '3:3': `<svg viewBox="0 0 560 170" xmlns="http://www.w3.org/2000/svg" aria-label="Underfitting, good fit, and overfitting comparison">
+  <style>.vlc{font-family:system-ui,sans-serif;fill:currentColor}</style>
+  <text x="280" y="14" text-anchor="middle" class="vlc" font-size="11" font-weight="700">Underfitting · Good Fit · Overfitting</text>
+  <!-- Panel 1: Underfitting -->
+  <rect x="8" y="22" width="162" height="110" rx="9" fill="rgba(245,158,11,.09)" stroke="rgba(245,158,11,.4)" stroke-width="1.5"/>
+  <text x="89" y="38" text-anchor="middle" class="vlc" font-size="10" font-weight="700">Underfitting</text>
+  <!-- Scatter dots -->
+  <circle cx="35" cy="90" r="3.5" fill="rgba(99,102,241,.5)"/><circle cx="55" cy="72" r="3.5" fill="rgba(99,102,241,.5)"/>
+  <circle cx="70" cy="80" r="3.5" fill="rgba(99,102,241,.5)"/><circle cx="88" cy="58" r="3.5" fill="rgba(99,102,241,.5)"/>
+  <circle cx="105" cy="65" r="3.5" fill="rgba(99,102,241,.5)"/><circle cx="122" cy="48" r="3.5" fill="rgba(99,102,241,.5)"/>
+  <circle cx="140" cy="55" r="3.5" fill="rgba(99,102,241,.5)"/>
+  <!-- Flat line (too simple) -->
+  <line x1="28" y1="72" x2="152" y2="72" stroke="rgba(245,158,11,.8)" stroke-width="2.5" stroke-dasharray="5 3"/>
+  <text x="89" y="115" text-anchor="middle" class="vlc" font-size="8" opacity=".65">Too simple — misses the pattern</text>
+  <text x="89" y="126" text-anchor="middle" class="vlc" font-size="8" fill="rgba(245,158,11,.8)" font-weight="600">High bias, low variance</text>
+
+  <!-- Panel 2: Good Fit -->
+  <rect x="199" y="22" width="162" height="110" rx="9" fill="rgba(34,197,94,.1)" stroke="rgba(34,197,94,.45)" stroke-width="1.5"/>
+  <text x="280" y="38" text-anchor="middle" class="vlc" font-size="10" font-weight="700">Good Fit ✓</text>
+  <!-- Same dots -->
+  <circle cx="226" cy="90" r="3.5" fill="rgba(99,102,241,.5)"/><circle cx="246" cy="72" r="3.5" fill="rgba(99,102,241,.5)"/>
+  <circle cx="261" cy="80" r="3.5" fill="rgba(99,102,241,.5)"/><circle cx="279" cy="58" r="3.5" fill="rgba(99,102,241,.5)"/>
+  <circle cx="296" cy="65" r="3.5" fill="rgba(99,102,241,.5)"/><circle cx="313" cy="48" r="3.5" fill="rgba(99,102,241,.5)"/>
+  <circle cx="331" cy="55" r="3.5" fill="rgba(99,102,241,.5)"/>
+  <!-- Smooth curve -->
+  <path d="M219,95 Q248,82 261,78 Q276,62 296,63 Q316,50 340,50" fill="none" stroke="rgba(34,197,94,.85)" stroke-width="2.5"/>
+  <text x="280" y="115" text-anchor="middle" class="vlc" font-size="8" opacity=".65">Captures the signal, not the noise</text>
+  <text x="280" y="126" text-anchor="middle" class="vlc" font-size="8" fill="rgba(34,197,94,.8)" font-weight="600">Balanced bias and variance</text>
+
+  <!-- Panel 3: Overfitting -->
+  <rect x="390" y="22" width="162" height="110" rx="9" fill="rgba(239,68,68,.09)" stroke="rgba(239,68,68,.4)" stroke-width="1.5"/>
+  <text x="471" y="38" text-anchor="middle" class="vlc" font-size="10" font-weight="700">Overfitting</text>
+  <!-- Same dots -->
+  <circle cx="417" cy="90" r="3.5" fill="rgba(99,102,241,.5)"/><circle cx="437" cy="72" r="3.5" fill="rgba(99,102,241,.5)"/>
+  <circle cx="452" cy="80" r="3.5" fill="rgba(99,102,241,.5)"/><circle cx="470" cy="58" r="3.5" fill="rgba(99,102,241,.5)"/>
+  <circle cx="487" cy="65" r="3.5" fill="rgba(99,102,241,.5)"/><circle cx="504" cy="48" r="3.5" fill="rgba(99,102,241,.5)"/>
+  <circle cx="522" cy="55" r="3.5" fill="rgba(99,102,241,.5)"/>
+  <!-- Wiggly line threading every point -->
+  <path d="M410,95 C420,88 428,95 437,72 C444,55 448,88 452,80 C456,72 464,45 470,58 C476,70 480,58 487,65 C493,72 498,40 504,48 C510,56 516,48 524,52" fill="none" stroke="rgba(239,68,68,.8)" stroke-width="2.5"/>
+  <text x="471" y="115" text-anchor="middle" class="vlc" font-size="8" opacity=".65">Memorised training data — fails on new data</text>
+  <text x="471" y="126" text-anchor="middle" class="vlc" font-size="8" fill="rgba(239,68,68,.8)" font-weight="600">Low bias, high variance</text>
+
+  <!-- Bottom note -->
+  <text x="280" y="150" text-anchor="middle" class="vlc" font-size="8" opacity=".45" font-style="italic">Test set accuracy reveals the difference — a model that fits training perfectly may fail completely on new data</text>
+</svg>`,
+
+  /* ── L20:1 — The Democratic Ratification Process ────────────────── */
+  '20:1': `<svg viewBox="0 0 560 168" xmlns="http://www.w3.org/2000/svg" aria-label="Democratic policy ratification process flow">
+  <style>.vlc{font-family:system-ui,sans-serif;fill:currentColor}</style>
+  <defs><marker id="a20" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor" opacity=".45"/></marker></defs>
+  <text x="280" y="14" text-anchor="middle" class="vlc" font-size="11" font-weight="700">The Policy Ratification Process</text>
+  <!-- Stage 1: Proposal -->
+  <rect x="8" y="24" width="88" height="52" rx="8" fill="rgba(99,102,241,.12)" stroke="rgba(99,102,241,.45)" stroke-width="1.5"/>
+  <text x="52" y="44" text-anchor="middle" class="vlc" font-size="16">📋</text>
+  <text x="52" y="60" text-anchor="middle" class="vlc" font-size="9" font-weight="700">Proposal</text>
+  <text x="52" y="71" text-anchor="middle" class="vlc" font-size="7.5" opacity=".6">Draft policy</text>
+  <!-- Arrow -->
+  <line x1="97" y1="50" x2="116" y2="50" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a20)"/>
+  <!-- Stage 2: Debate -->
+  <rect x="117" y="24" width="88" height="52" rx="8" fill="rgba(6,182,212,.1)" stroke="rgba(6,182,212,.45)" stroke-width="1.5"/>
+  <text x="161" y="44" text-anchor="middle" class="vlc" font-size="16">💬</text>
+  <text x="161" y="60" text-anchor="middle" class="vlc" font-size="9" font-weight="700">Debate</text>
+  <text x="161" y="71" text-anchor="middle" class="vlc" font-size="7.5" opacity=".6">Open floor</text>
+  <!-- Arrow -->
+  <line x1="206" y1="50" x2="225" y2="50" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a20)"/>
+  <!-- Stage 3: Amendment -->
+  <rect x="226" y="24" width="108" height="52" rx="8" fill="rgba(245,158,11,.1)" stroke="rgba(245,158,11,.45)" stroke-width="1.5"/>
+  <text x="280" y="44" text-anchor="middle" class="vlc" font-size="16">✏️</text>
+  <text x="280" y="60" text-anchor="middle" class="vlc" font-size="9" font-weight="700">Amendment</text>
+  <text x="280" y="71" text-anchor="middle" class="vlc" font-size="7.5" opacity=".6">Propose changes</text>
+  <!-- Arrow -->
+  <line x1="335" y1="50" x2="354" y2="50" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a20)"/>
+  <!-- Stage 4: Vote -->
+  <rect x="355" y="24" width="88" height="52" rx="8" fill="rgba(99,102,241,.12)" stroke="rgba(99,102,241,.45)" stroke-width="1.5"/>
+  <text x="399" y="44" text-anchor="middle" class="vlc" font-size="16">🗳️</text>
+  <text x="399" y="60" text-anchor="middle" class="vlc" font-size="9" font-weight="700">Vote</text>
+  <text x="399" y="71" text-anchor="middle" class="vlc" font-size="7.5" opacity=".6">Simple majority</text>
+  <!-- Arrow splits down -->
+  <line x1="444" y1="50" x2="464" y2="50" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a20)"/>
+  <!-- Stage 5: Decision diamond -->
+  <polygon points="480,30 540,50 480,70 420,50" fill="rgba(99,102,241,.08)" stroke="rgba(99,102,241,.4)" stroke-width="1.5"/>
+  <text x="480" y="54" text-anchor="middle" class="vlc" font-size="8.5" font-weight="700">Result</text>
+  <!-- Down arrows from diamond -->
+  <line x1="480" y1="70" x2="430" y2="95" stroke="rgba(34,197,94,.6)" stroke-width="1.5" marker-end="url(#a20)"/>
+  <line x1="480" y1="70" x2="530" y2="95" stroke="rgba(239,68,68,.6)" stroke-width="1.5" marker-end="url(#a20)"/>
+  <!-- Passed -->
+  <rect x="378" y="96" width="104" height="42" rx="8" fill="rgba(34,197,94,.12)" stroke="rgba(34,197,94,.45)" stroke-width="1.5"/>
+  <text x="430" y="115" text-anchor="middle" class="vlc" font-size="9" font-weight="700" fill="rgba(34,197,94,.9)">✓ RATIFIED</text>
+  <text x="430" y="129" text-anchor="middle" class="vlc" font-size="7.5" opacity=".6">Becomes policy</text>
+  <!-- Rejected -->
+  <rect x="490" y="96" width="62" height="42" rx="8" fill="rgba(239,68,68,.1)" stroke="rgba(239,68,68,.4)" stroke-width="1.5"/>
+  <text x="521" y="115" text-anchor="middle" class="vlc" font-size="9" font-weight="700" fill="rgba(239,68,68,.8)">✗ FAIL</text>
+  <text x="521" y="129" text-anchor="middle" class="vlc" font-size="7.5" opacity=".6">Revisit</text>
+  <!-- Return arrow for amendment loop -->
+  <path d="M161,77 C161,100 226,112 226,77" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#a20)"/>
+  <text x="194" y="110" text-anchor="middle" class="vlc" font-size="7.5" opacity=".4" font-style="italic">back to amend</text>
+  <!-- Bottom note -->
+  <text x="200" y="152" text-anchor="middle" class="vlc" font-size="8" opacity=".45" font-style="italic">Real legislation follows this same process — debate and amendment are not obstacles, they are quality control</text>
+</svg>`,
+
+  /* ── L25:1 — From Single Prompts to Prompt Systems ──────────────── */
+  '25:1': `<svg viewBox="0 0 560 168" xmlns="http://www.w3.org/2000/svg" aria-label="Prompt system architecture: from single prompts to prompt libraries">
+  <style>.vlc{font-family:system-ui,sans-serif;fill:currentColor}</style>
+  <defs><marker id="a25" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor" opacity=".4"/></marker></defs>
+  <text x="280" y="14" text-anchor="middle" class="vlc" font-size="11" font-weight="700">From Single Prompts to Prompt Systems</text>
+  <!-- Level 1: Ad hoc prompt (top) -->
+  <rect x="160" y="22" width="240" height="36" rx="8" fill="rgba(148,163,184,.12)" stroke="rgba(148,163,184,.4)" stroke-width="1.5"/>
+  <text x="280" y="37" text-anchor="middle" class="vlc" font-size="9" font-weight="700">Level 1 — Ad Hoc Prompt</text>
+  <text x="280" y="51" text-anchor="middle" class="vlc" font-size="8" opacity=".6">One-off, written fresh each time, no consistency</text>
+  <line x1="280" y1="58" x2="280" y2="72" stroke="currentColor" stroke-opacity=".35" stroke-width="1.5" marker-end="url(#a25)"/>
+  <!-- Level 2: Template (middle) -->
+  <rect x="100" y="73" width="360" height="36" rx="8" fill="rgba(6,182,212,.1)" stroke="rgba(6,182,212,.45)" stroke-width="1.5"/>
+  <text x="280" y="88" text-anchor="middle" class="vlc" font-size="9" font-weight="700">Level 2 — Reusable Template</text>
+  <text x="280" y="102" text-anchor="middle" class="vlc" font-size="8" opacity=".6">PTFC structure applied consistently · variables filled per task · saves time</text>
+  <line x1="280" y1="109" x2="280" y2="123" stroke="currentColor" stroke-opacity=".35" stroke-width="1.5" marker-end="url(#a25)"/>
+  <!-- Level 3: Prompt Library (bottom) -->
+  <rect x="20" y="124" width="520" height="36" rx="8" fill="rgba(99,102,241,.13)" stroke="rgba(99,102,241,.5)" stroke-width="2"/>
+  <text x="280" y="139" text-anchor="middle" class="vlc" font-size="9" font-weight="700">Level 3 — Prompt Library</text>
+  <text x="280" y="153" text-anchor="middle" class="vlc" font-size="8" opacity=".6">Organised · version-controlled · tested · shared with team · different prompts for each use case</text>
+  <!-- Width indicators showing growth -->
+  <text x="15" y="45" class="vlc" font-size="8" opacity=".35">↔</text>
+  <text x="15" y="91" class="vlc" font-size="8" opacity=".35">↔↔</text>
+  <text x="10" y="143" class="vlc" font-size="8" opacity=".35">↔↔↔</text>
+  <!-- Labels on the side -->
+  <text x="545" y="45" text-anchor="end" class="vlc" font-size="7.5" opacity=".4" font-style="italic">beginner</text>
+  <text x="545" y="91" text-anchor="end" class="vlc" font-size="7.5" opacity=".4" font-style="italic">intermediate</text>
+  <text x="545" y="143" text-anchor="end" class="vlc" font-size="7.5" fill="rgba(99,102,241,.6)" font-weight="600" font-style="italic">production</text>
+</svg>`,
+
+  /* ── L44:1 — AI Manifesto: What It Contains ─────────────────────── */
+  '44:1': `<svg viewBox="0 0 560 168" xmlns="http://www.w3.org/2000/svg" aria-label="AI manifesto structure: beliefs, principles, and commitments">
+  <style>.vlc{font-family:system-ui,sans-serif;fill:currentColor}</style>
+  <text x="280" y="14" text-anchor="middle" class="vlc" font-size="11" font-weight="700">Structure of a Personal AI Manifesto</text>
+  <!-- Layer 1: Core Beliefs (bottom/foundation) -->
+  <rect x="20" y="126" width="520" height="38" rx="9" fill="rgba(99,102,241,.14)" stroke="rgba(99,102,241,.5)" stroke-width="2"/>
+  <text x="280" y="142" text-anchor="middle" class="vlc" font-size="10" font-weight="800">Layer 1 — Core Beliefs</text>
+  <text x="280" y="157" text-anchor="middle" class="vlc" font-size="8.5" opacity=".65">What do I fundamentally believe about AI — its nature, its risks, its potential?</text>
+  <!-- Layer 2: Principles -->
+  <rect x="70" y="80" width="420" height="38" rx="9" fill="rgba(6,182,212,.1)" stroke="rgba(6,182,212,.45)" stroke-width="1.5"/>
+  <text x="280" y="96" text-anchor="middle" class="vlc" font-size="10" font-weight="800">Layer 2 — Principles</text>
+  <text x="280" y="111" text-anchor="middle" class="vlc" font-size="8.5" opacity=".65">How will I behave with AI? What rules guide my use — for work, for study, for society?</text>
+  <!-- Layer 3: Commitments (top) -->
+  <rect x="140" y="34" width="280" height="38" rx="9" fill="rgba(34,197,94,.11)" stroke="rgba(34,197,94,.45)" stroke-width="1.5"/>
+  <text x="280" y="50" text-anchor="middle" class="vlc" font-size="10" font-weight="800">Layer 3 — Commitments</text>
+  <text x="280" y="65" text-anchor="middle" class="vlc" font-size="8.5" opacity=".65">Specific, verifiable promises I make to myself — and will revisit in one year</text>
+  <!-- Foundation label -->
+  <text x="280" y="20" text-anchor="middle" class="vlc" font-size="7.5" opacity=".4" font-style="italic">Build from the bottom up — weak beliefs produce weak principles and vague commitments</text>
+  <!-- Side brace indicators -->
+  <line x1="14" y1="126" x2="14" y2="164" stroke="currentColor" stroke-opacity=".25" stroke-width="2"/>
+  <line x1="14" y1="80" x2="14" y2="118" stroke="currentColor" stroke-opacity=".2" stroke-width="2"/>
+  <line x1="14" y1="34" x2="14" y2="72" stroke="currentColor" stroke-opacity=".15" stroke-width="2"/>
+  <text x="8" y="148" text-anchor="middle" class="vlc" font-size="7" opacity=".3" transform="rotate(-90 8 148)">Foundation</text>
+</svg>`,
+
+  /* ── L48:1 — Cognitive Offloading Spectrum ──────────────────────── */
+  '48:1': `<svg viewBox="0 0 560 168" xmlns="http://www.w3.org/2000/svg" aria-label="Cognitive offloading spectrum from thinking with AI to thinking for you">
+  <style>.vlc{font-family:system-ui,sans-serif;fill:currentColor}</style>
+  <defs>
+    <linearGradient id="cog48" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="rgba(34,197,94,.55)"/>
+      <stop offset="50%" stop-color="rgba(99,102,241,.4)"/>
+      <stop offset="100%" stop-color="rgba(239,68,68,.55)"/>
+    </linearGradient>
+  </defs>
+  <text x="280" y="14" text-anchor="middle" class="vlc" font-size="11" font-weight="700">The Cognitive Offloading Spectrum</text>
+  <!-- Spectrum bar -->
+  <rect x="30" y="28" width="500" height="20" rx="10" fill="url(#cog48)" opacity=".8"/>
+  <!-- Zone labels above -->
+  <text x="100" y="24" text-anchor="middle" class="vlc" font-size="9" font-weight="700" fill="rgba(34,197,94,.85)">Thinking WITH AI</text>
+  <text x="280" y="24" text-anchor="middle" class="vlc" font-size="9" font-weight="700" opacity=".6">Partnership</text>
+  <text x="460" y="24" text-anchor="middle" class="vlc" font-size="9" font-weight="700" fill="rgba(239,68,68,.85)">AI Thinking FOR You</text>
+  <!-- Zone 1: Thinking WITH (green) -->
+  <rect x="30" y="54" width="155" height="80" rx="8" fill="rgba(34,197,94,.08)" stroke="rgba(34,197,94,.35)" stroke-width="1.2"/>
+  <text x="108" y="70" text-anchor="middle" class="vlc" font-size="8.5" font-weight="700">Augmentation ✓</text>
+  <text x="108" y="84" text-anchor="middle" class="vlc" font-size="7.5" opacity=".65">You do the thinking</text>
+  <text x="108" y="96" text-anchor="middle" class="vlc" font-size="7.5" opacity=".65">AI handles grunt work</text>
+  <text x="108" y="112" text-anchor="middle" class="vlc" font-size="7.5" opacity=".5" font-style="italic">e.g. AI formats your</text>
+  <text x="108" y="123" text-anchor="middle" class="vlc" font-size="7.5" opacity=".5" font-style="italic">ideas into a table</text>
+  <!-- Zone 2: Partnership (indigo) -->
+  <rect x="193" y="54" width="174" height="80" rx="8" fill="rgba(99,102,241,.08)" stroke="rgba(99,102,241,.3)" stroke-width="1.2"/>
+  <text x="280" y="70" text-anchor="middle" class="vlc" font-size="8.5" font-weight="700">Co-thinking ⚠</text>
+  <text x="280" y="84" text-anchor="middle" class="vlc" font-size="7.5" opacity=".65">Shared reasoning</text>
+  <text x="280" y="96" text-anchor="middle" class="vlc" font-size="7.5" opacity=".65">Requires critical eval.</text>
+  <text x="280" y="112" text-anchor="middle" class="vlc" font-size="7.5" opacity=".5" font-style="italic">e.g. AI drafts essay,</text>
+  <text x="280" y="123" text-anchor="middle" class="vlc" font-size="7.5" opacity=".5" font-style="italic">you rewrite &amp; judge</text>
+  <!-- Zone 3: AI thinking FOR you (red) -->
+  <rect x="375" y="54" width="155" height="80" rx="8" fill="rgba(239,68,68,.08)" stroke="rgba(239,68,68,.35)" stroke-width="1.2"/>
+  <text x="452" y="70" text-anchor="middle" class="vlc" font-size="8.5" font-weight="700">Dependency ✗</text>
+  <text x="452" y="84" text-anchor="middle" class="vlc" font-size="7.5" opacity=".65">AI decides for you</text>
+  <text x="452" y="96" text-anchor="middle" class="vlc" font-size="7.5" opacity=".65">Your skills atrophy</text>
+  <text x="452" y="112" text-anchor="middle" class="vlc" font-size="7.5" opacity=".5" font-style="italic">e.g. copy-paste AI</text>
+  <text x="452" y="123" text-anchor="middle" class="vlc" font-size="7.5" opacity=".5" font-style="italic">answer unchanged</text>
+  <!-- Bottom note -->
+  <text x="280" y="150" text-anchor="middle" class="vlc" font-size="8" opacity=".45" font-style="italic">The goal is augmentation — not elimination of your own thinking. Struggle is how skills are built.</text>
+</svg>`,
+
 };
