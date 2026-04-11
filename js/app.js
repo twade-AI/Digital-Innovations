@@ -370,7 +370,45 @@ function toggleLesson(id) {
     setTimeout(renderSpacedReviewQueue, 300);
     updateFirstLessonBanner();
     updateContinueButton();
+    // Nudge toward quiz if not yet attempted
+    if (!quizScores[id]) {
+      var found = findLesson(id);
+      if (found) {
+        var slides = getLessonSlides(id, found.lesson, found.unit);
+        var hasQuiz = slides.some(function(s) { return s.type === 'quiz'; }) ||
+                      (typeof QUIZ_BANK !== 'undefined' && QUIZ_BANK[id] && QUIZ_BANK[id].length > 0);
+        if (hasQuiz) showQuizNudgeToast(id);
+      }
+    }
   }
+}
+
+function showQuizNudgeToast(lessonId) {
+  var existing = document.getElementById('quizNudgeToast');
+  if (existing) existing.remove();
+  var toast = document.createElement('div');
+  toast.id = 'quizNudgeToast';
+  toast.className = 'quiz-nudge-toast';
+  toast.innerHTML =
+    '<span class="qnt-icon">⚡</span>' +
+    '<span class="qnt-text">Test yourself — this lesson has a quiz!</span>' +
+    '<button class="qnt-btn" onclick="navigateToLessonQuiz(' + lessonId + ')">Take Quiz</button>' +
+    '<button class="qnt-close" onclick="this.closest(\'.quiz-nudge-toast\').remove()" aria-label="Dismiss">✕</button>';
+  document.body.appendChild(toast);
+  // Auto-dismiss after 6s
+  setTimeout(function() { if (toast.parentNode) toast.remove(); }, 6000);
+}
+
+function navigateToLessonQuiz(lessonId) {
+  var toast = document.getElementById('quizNudgeToast');
+  if (toast) toast.remove();
+  // Open the lesson and jump to the quiz slide
+  var found = findLesson(lessonId);
+  if (!found) return;
+  var slides = getLessonSlides(lessonId, found.lesson, found.unit);
+  var quizIdx = slides.findIndex(function(s) { return s.type === 'quiz'; });
+  openLesson(lessonId);
+  if (quizIdx >= 0) setTimeout(function() { navigateSlide(quizIdx - 0); }, 400);
 }
 
 function findLesson(id) {
