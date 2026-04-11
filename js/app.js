@@ -960,11 +960,12 @@ function closeModal() {
 
 /* ── Resources Rendering ───────────────────────── */
 function findLessonsForResource(rid) {
+  // Returns array of {id, title, num} objects
   var matches = [];
   UNITS.forEach(function(u) {
     u.lessons.forEach(function(l) {
       if (l.resources && l.resources.indexOf(rid) !== -1) {
-        matches.push('L' + l.id);
+        matches.push({ id: l.id, title: l.title, num: lessonNum(l.id) });
       }
     });
   });
@@ -977,8 +978,11 @@ function renderResources(filter) {
   document.getElementById('resourcesGrid').innerHTML = items.map(function(r) {
     var linkedLessons = findLessonsForResource(r.id);
     var linkedHtml = linkedLessons.length > 0
-      ? '<div style="margin-top:8px;display:flex;gap:4px;flex-wrap:wrap">' +
-          linkedLessons.map(function(l) { return '<span style="font-size:.7rem;background:rgba(99,102,241,.15);color:var(--primary-light);padding:2px 8px;border-radius:999px">' + l + '</span>'; }).join('') +
+      ? '<div class="rc-used-in">' +
+          '<span class="rc-used-label">Used in:</span> ' +
+          linkedLessons.map(function(l) {
+            return '<span class="rc-lesson-pill" onclick="event.stopPropagation();openLesson(' + l.id + ')" title="' + l.title + '">L' + l.num + '</span>';
+          }).join('') +
         '</div>'
       : '';
     return '<div class="resource-card" onclick="openResource(\'' + r.id + '\')">' +
@@ -1004,13 +1008,10 @@ function openResource(id) {
   if (linkedLessons.length > 0) {
     linkedHtml = '<div style="margin-top:16px;margin-bottom:16px">' +
       '<strong style="font-size:.85rem;color:var(--text-dim)">Used in:</strong> ' +
-      linkedLessons.map(function(lLabel) {
-        var lid = parseInt(lLabel.replace('L',''));
-        var found = findLesson(lid);
-        var title = found ? found.lesson.title : '';
-        return '<span onclick="closeModal();setTimeout(function(){openLesson(' + lid + ')},200)" ' +
+      linkedLessons.map(function(l) {
+        return '<span onclick="closeModal();setTimeout(function(){openLesson(' + l.id + ')},200)" ' +
           'style="cursor:pointer;font-size:.8rem;background:rgba(99,102,241,.15);color:var(--primary-light);padding:4px 12px;border-radius:999px;margin:2px;display:inline-block">' +
-          lLabel + (title ? ': ' + title : '') + '</span>';
+          'L' + l.num + ': ' + l.title + '</span>';
       }).join(' ') +
     '</div>';
   }
