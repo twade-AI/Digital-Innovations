@@ -66,12 +66,32 @@
     .fl-complete-icon { font-size:3rem; margin-bottom:16px; }
     .fl-complete h2 { font-size:1.5rem; font-weight:800; margin:0 0 8px; }
     .fl-complete p { color:var(--text-dim); font-size:.9rem; margin:0 0 20px; }
-    .fl-cert-card { background:linear-gradient(135deg,rgba(245,158,11,.1),rgba(217,119,6,.05)); border:1px solid rgba(245,158,11,.3); border-radius:12px; padding:28px; margin:20px auto; max-width:480px; }
-    .fl-cert-title { font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#f59e0b; margin-bottom:8px; }
-    .fl-cert-name { font-size:1.6rem; font-weight:800; margin:0 0 4px; }
-    .fl-cert-sub { font-size:.85rem; color:var(--text-dim); margin:0 0 12px; }
-    .fl-cert-date { font-size:.75rem; color:var(--text-dim); }
-    .fl-print-btn { background:linear-gradient(135deg,#f59e0b,#d97706); color:#fff; border:none; border-radius:var(--radius); padding:10px 24px; font-weight:700; cursor:pointer; margin-top:8px; }
+
+    /* Name input row */
+    .fl-cert-name-row { margin:0 auto 20px; max-width:400px; text-align:left; }
+    .fl-cert-name-label { display:block; font-size:.78rem; font-weight:600; color:var(--text-dim); margin-bottom:6px; }
+    .fl-cert-name-input { width:100%; padding:10px 14px; border-radius:8px; border:1.5px solid var(--border); background:var(--bg); color:var(--text); font-size:.95rem; font-family:var(--font); outline:none; transition:border-color .15s; }
+    .fl-cert-name-input:focus { border-color:#f59e0b; }
+
+    /* Certificate card */
+    .fl-cert-card { position:relative; overflow:hidden; background:linear-gradient(145deg,rgba(245,158,11,.1),rgba(217,119,6,.04)); border:2px solid rgba(245,158,11,.35); border-radius:16px; padding:36px 36px 28px; margin:0 auto 20px; max-width:560px; text-align:center; }
+    .fl-cert-watermark { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:16rem; font-weight:900; color:rgba(245,158,11,.04); pointer-events:none; line-height:1; }
+    .fl-cert-header { display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:20px; }
+    .fl-cert-logo { width:32px; height:32px; }
+    .fl-cert-issuer { font-size:.9rem; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:.08em; }
+    .fl-cert-label { font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.14em; color:#f59e0b; margin-bottom:16px; }
+    .fl-cert-presented { font-size:.85rem; color:var(--text-dim); margin-bottom:8px; }
+    .fl-cert-recipient { font-size:2rem; font-weight:800; color:var(--text); margin:0 0 8px; font-style:italic; min-height:2.5rem; }
+    .fl-cert-course { font-size:.85rem; color:var(--text-dim); margin-bottom:6px; }
+    .fl-cert-title-main { font-size:1.3rem; font-weight:800; color:#f59e0b; margin-bottom:6px; }
+    .fl-cert-detail { font-size:.75rem; color:var(--text-dim); margin-bottom:20px; }
+    .fl-cert-divider { height:1px; background:rgba(245,158,11,.2); margin:0 0 16px; }
+    .fl-cert-footer { display:flex; justify-content:space-around; }
+    .fl-cert-date-wrap, .fl-cert-id-wrap { text-align:center; }
+    .fl-cert-date, .fl-cert-id { font-size:.85rem; font-weight:700; color:var(--text); }
+    .fl-cert-date-label { font-size:.68rem; color:var(--text-dim); margin-top:2px; text-transform:uppercase; letter-spacing:.06em; }
+
+    .fl-print-btn { background:linear-gradient(135deg,#f59e0b,#d97706); color:#fff; border:none; border-radius:var(--radius); padding:10px 24px; font-weight:700; cursor:pointer; margin-top:8px; font-size:.9rem; }
     .fl-print-btn:hover { background:linear-gradient(135deg,#d97706,#b45309); }
 
     /* Discussion slide */
@@ -86,9 +106,27 @@
     .slide-video-wrap iframe { width:100%; height:100%; border:0; }
 
     @media print {
-      .fl-header,.fl-back,.fl-progress-wrap,.fl-track,.fl-hero,.fl-section-label,.fl-complete > *:not(.fl-cert-card) { display:none!important; }
-      .fl-cert-card { border:2px solid #000; background:none; }
-      .fl-cert-title,.fl-cert-name,.fl-cert-sub,.fl-cert-date { color:#000!important; }
+      * { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+      body { background:#fff !important; }
+      .fl-shell { max-width:100%; padding:0; }
+      .fl-header, .fl-back, .fl-progress-wrap, .fl-track, .fl-hero,
+      .fl-section-label, .fl-complete-icon, .fl-complete h2, .fl-complete > p,
+      .fl-cert-name-row, .fl-print-btn, #lessonModal, .offline-banner { display:none !important; }
+      .fl-complete { display:block !important; border:none; padding:0; background:#fff; }
+      .fl-cert-card {
+        max-width:100%; margin:0; border:3px solid #d97706 !important;
+        background:linear-gradient(145deg,rgba(245,158,11,.08),rgba(255,255,255,1)) !important;
+        padding:60px 60px 48px; page-break-inside:avoid;
+        box-shadow:inset 0 0 0 8px rgba(245,158,11,.06);
+      }
+      .fl-cert-watermark { color:rgba(245,158,11,.06) !important; }
+      .fl-cert-issuer, .fl-cert-date-label { color:#6b7280 !important; }
+      .fl-cert-label { color:#d97706 !important; font-size:.85rem; }
+      .fl-cert-presented, .fl-cert-course, .fl-cert-detail { color:#4b5563 !important; }
+      .fl-cert-recipient { color:#111827 !important; font-size:2.4rem; }
+      .fl-cert-title-main { color:#d97706 !important; }
+      .fl-cert-date, .fl-cert-id { color:#111827 !important; }
+      .fl-cert-divider { background:#d97706 !important; opacity:.3; }
     }
   </style>
 </head>
@@ -122,11 +160,41 @@
       <div class="fl-complete-icon">🏆</div>
       <h2>AI Fluency Achieved!</h2>
       <p>You've completed all 15 lessons. You now have the knowledge to use AI clearly, critically, and responsibly.</p>
+      <div class="fl-cert-name-row">
+        <label class="fl-cert-name-label" for="flCertNameInput">Your name (for the certificate)</label>
+        <input id="flCertNameInput" class="fl-cert-name-input" type="text" placeholder="Enter your full name…" oninput="flUpdateCertName(this.value)" maxlength="60">
+      </div>
       <div class="fl-cert-card" id="flCertCard">
-        <div class="fl-cert-title">Certificate of Completion</div>
-        <div class="fl-cert-name">AI Fluency Track</div>
-        <div class="fl-cert-sub">Digital Innovations — 15 lessons completed</div>
-        <div class="fl-cert-date" id="flCertDate"></div>
+        <div class="fl-cert-watermark" aria-hidden="true">AI</div>
+        <div class="fl-cert-header">
+          <svg class="fl-cert-logo" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="18" cy="18" r="17" stroke="url(#clg)" stroke-width="1.5"/>
+            <path d="M12 14l4 8 4-6 3 4" stroke="url(#clg2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="25" cy="11" r="2.5" fill="#d97706"/>
+            <defs>
+              <linearGradient id="clg" x1="1" y1="1" x2="35" y2="35" gradientUnits="userSpaceOnUse"><stop stop-color="#f59e0b"/><stop offset="1" stop-color="#d97706"/></linearGradient>
+              <linearGradient id="clg2" x1="12" y1="14" x2="25" y2="22" gradientUnits="userSpaceOnUse"><stop stop-color="#f59e0b"/><stop offset="1" stop-color="#d97706"/></linearGradient>
+            </defs>
+          </svg>
+          <span class="fl-cert-issuer">Digital Innovations</span>
+        </div>
+        <div class="fl-cert-label">Certificate of Completion</div>
+        <div class="fl-cert-presented">This certifies that</div>
+        <div class="fl-cert-recipient" id="flCertRecipient">—</div>
+        <div class="fl-cert-course">has successfully completed the</div>
+        <div class="fl-cert-title-main">AI Fluency Track</div>
+        <div class="fl-cert-detail">15 lessons · ~6 hours · AI literacy, critical thinking &amp; responsible use</div>
+        <div class="fl-cert-divider"></div>
+        <div class="fl-cert-footer">
+          <div class="fl-cert-date-wrap">
+            <div class="fl-cert-date" id="flCertDate"></div>
+            <div class="fl-cert-date-label">Date of completion</div>
+          </div>
+          <div class="fl-cert-id-wrap">
+            <div class="fl-cert-id" id="flCertId"></div>
+            <div class="fl-cert-date-label">Certificate ID</div>
+          </div>
+        </div>
       </div>
       <button class="fl-print-btn" onclick="window.print()">🖨 Print Certificate</button>
     </div>
@@ -316,10 +384,34 @@
   function flShowComplete() {
     var el = document.getElementById('flComplete');
     if (el) el.classList.add('visible');
+
+    // Date
+    var completedDate = localStorage.getItem('fl_completed_date') || new Date().toISOString().slice(0,10);
     var dateEl = document.getElementById('flCertDate');
-    if (dateEl) dateEl.textContent = 'Completed ' + new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
-    // Store completion date
-    localStorage.setItem('fl_completed_date', new Date().toISOString().slice(0,10));
+    if (dateEl) dateEl.textContent = new Date(completedDate).toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
+
+    // Certificate ID (stable per device: hash of date + user-agent substring)
+    var certId = localStorage.getItem('fl_cert_id');
+    if (!certId) {
+      certId = 'DI-FL-' + completedDate.replace(/-/g,'') + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
+      localStorage.setItem('fl_cert_id', certId);
+    }
+    var idEl = document.getElementById('flCertId');
+    if (idEl) idEl.textContent = certId;
+
+    // Restore saved name
+    var savedName = localStorage.getItem('fl_cert_name') || '';
+    var nameInput = document.getElementById('flCertNameInput');
+    if (nameInput && savedName) nameInput.value = savedName;
+    flUpdateCertName(savedName);
+
+    localStorage.setItem('fl_completed_date', completedDate);
+  }
+
+  function flUpdateCertName(val) {
+    var recipient = document.getElementById('flCertRecipient');
+    if (recipient) recipient.textContent = val && val.trim() ? val.trim() : '—';
+    if (val && val.trim()) localStorage.setItem('fl_cert_name', val.trim());
   }
 
   // ── Lesson modal ─────────────────────────────

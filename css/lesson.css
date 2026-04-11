@@ -853,6 +853,8 @@
 }
 .resource-field:focus { outline: none; border-color: var(--primary); }
 .resource-field[rows] { min-height: 60px; resize: vertical; line-height: 1.5; }
+.resource-autosave-notice { font-size:.75rem; color:var(--success); margin:8px 0 4px; transition:opacity .3s; }
+.resource-autosave-notice.just-saved { font-weight:700; }
 
 /* ── Tag Filters ─────────────────────────────────── */
 .tag-filters {
@@ -1024,20 +1026,26 @@
 .badge-video { background: rgba(239,68,68,.15); color: #f87171; }
 .video-wrapper {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
-  height: 0;
+  aspect-ratio: 16/9;
+  max-height: 42vh; /* cap so it never fills the whole slide area */
   overflow: hidden;
   border-radius: 10px;
   background: #000;
   margin: 4px 0;
 }
 .video-wrapper iframe {
-  position: absolute;
-  top: 0; left: 0;
   width: 100%; height: 100%;
   border: 0;
   border-radius: 10px;
 }
+.video-next-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  margin-top: 4px; padding: 10px 20px;
+  background: var(--primary); color: #fff;
+  border: none; border-radius: 10px; font-size: .88rem; font-weight: 700;
+  cursor: pointer; width: 100%; transition: background .15s;
+}
+.video-next-btn:hover { background: var(--primary-dark); }
 .video-credit {
   font-size: .78rem;
   color: var(--text-dim);

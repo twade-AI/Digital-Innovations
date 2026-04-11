@@ -229,8 +229,15 @@ function saveQuizScore(lessonId, correct) {
 function showSection(name) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById('section-' + name)?.classList.add('active');
+  var exploreSections = ['exemplars','timeline','news'];
   document.querySelectorAll('.nav-link').forEach(l => {
     l.classList.toggle('active', l.dataset.section === name);
+  });
+  var exploreBtn = document.getElementById('navExploreBtn');
+  if (exploreBtn) exploreBtn.classList.toggle('active', exploreSections.includes(name));
+  // Highlight active item inside the explore menu
+  document.querySelectorAll('.nav-explore-item').forEach(function(a) {
+    a.classList.toggle('active', a.dataset.section === name);
   });
   document.querySelectorAll('.mob-tab[data-section]').forEach(t => {
     t.classList.toggle('active', t.dataset.section === name);
@@ -248,6 +255,26 @@ function showSection(name) {
 function toggleMobileNav() {
   document.querySelector('.nav-links')?.classList.toggle('open');
 }
+
+/* ── Explore Dropdown ─────────────────────────── */
+var _exploreOpen = false;
+function toggleExploreMenu() {
+  _exploreOpen = !_exploreOpen;
+  var menu = document.getElementById('navExploreMenu');
+  var btn  = document.getElementById('navExploreBtn');
+  if (menu) { menu.classList.toggle('open', _exploreOpen); menu.setAttribute('aria-hidden', !_exploreOpen); }
+  if (btn)  { btn.setAttribute('aria-expanded', _exploreOpen); btn.classList.toggle('active', _exploreOpen); }
+}
+function closeExploreMenu() {
+  _exploreOpen = false;
+  var menu = document.getElementById('navExploreMenu');
+  var btn  = document.getElementById('navExploreBtn');
+  if (menu) { menu.classList.remove('open'); menu.setAttribute('aria-hidden', 'true'); }
+  if (btn)  { btn.setAttribute('aria-expanded', 'false'); btn.classList.remove('active'); }
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('#navExploreWrap')) closeExploreMenu();
+});
 
 /* ── Units Rendering ───────────────────────────── */
 function renderUnits() {
@@ -291,6 +318,7 @@ function lessonRow(lesson, unit) {
       <div class="lesson-info" onclick="openLesson(${lesson.id})">
         <div class="lesson-num">Lesson ${lessonNum(lesson.id)} <span class="lesson-time">~${mins} min</span>${diffBadge(lesson.difficulty)}${quizScores[lesson.id] ? '<span class="lesson-quiz-score ' + (quizScores[lesson.id].correct ? 'lqs-pass' : 'lqs-fail') + '" title="Quiz: ' + (quizScores[lesson.id].correct ? 'Passed' : 'Attempted') + '">' + (quizScores[lesson.id].correct ? '✓ Quiz' : '✗ Quiz') + '</span>' : ''}</div>
         <div class="lesson-title">${lesson.title}</div>
+        ${lesson.desc ? `<div class="lesson-desc">${lesson.desc}</div>` : ''}
       </div>
       <button class="bookmark-btn${bookmarkedLessons.has(lesson.id) ? ' bookmarked' : ''}" onclick="event.stopPropagation();toggleBookmark(${lesson.id})" title="${bookmarkedLessons.has(lesson.id) ? 'Remove bookmark' : 'Bookmark'}" aria-label="Bookmark lesson">${bookmarkedLessons.has(lesson.id) ? '★' : '☆'}</button>
       <button class="lesson-expand" onclick="openLesson(${lesson.id})" title="View details">→</button>
@@ -342,7 +370,45 @@ function toggleLesson(id) {
     setTimeout(renderSpacedReviewQueue, 300);
     updateFirstLessonBanner();
     updateContinueButton();
+    // Nudge toward quiz if not yet attempted
+    if (!quizScores[id]) {
+      var found = findLesson(id);
+      if (found) {
+        var slides = getLessonSlides(id, found.lesson, found.unit);
+        var hasQuiz = slides.some(function(s) { return s.type === 'quiz'; }) ||
+                      (typeof QUIZ_BANK !== 'undefined' && QUIZ_BANK[id] && QUIZ_BANK[id].length > 0);
+        if (hasQuiz) showQuizNudgeToast(id);
+      }
+    }
   }
+}
+
+function showQuizNudgeToast(lessonId) {
+  var existing = document.getElementById('quizNudgeToast');
+  if (existing) existing.remove();
+  var toast = document.createElement('div');
+  toast.id = 'quizNudgeToast';
+  toast.className = 'quiz-nudge-toast';
+  toast.innerHTML =
+    '<span class="qnt-icon">⚡</span>' +
+    '<span class="qnt-text">Test yourself — this lesson has a quiz!</span>' +
+    '<button class="qnt-btn" onclick="navigateToLessonQuiz(' + lessonId + ')">Take Quiz</button>' +
+    '<button class="qnt-close" onclick="this.closest(\'.quiz-nudge-toast\').remove()" aria-label="Dismiss">✕</button>';
+  document.body.appendChild(toast);
+  // Auto-dismiss after 6s
+  setTimeout(function() { if (toast.parentNode) toast.remove(); }, 6000);
+}
+
+function navigateToLessonQuiz(lessonId) {
+  var toast = document.getElementById('quizNudgeToast');
+  if (toast) toast.remove();
+  // Open the lesson and jump to the quiz slide
+  var found = findLesson(lessonId);
+  if (!found) return;
+  var slides = getLessonSlides(lessonId, found.lesson, found.unit);
+  var quizIdx = slides.findIndex(function(s) { return s.type === 'quiz'; });
+  openLesson(lessonId);
+  if (quizIdx >= 0) setTimeout(function() { navigateSlide(quizIdx - 0); }, 400);
 }
 
 function findLesson(id) {
@@ -533,6 +599,7 @@ function renderSlide(index) {
   }
 
   else if (slide.type === 'video') {
+    var isLast = index === currentSlides.length - 1;
     html = '<div class="slide-video">' +
       '<span class="slide-badge badge-video">Video</span>' +
       '<div class="slide-title">' + slide.title + '</div>' +
@@ -540,9 +607,12 @@ function renderSlide(index) {
       '<div class="video-wrapper">' +
         '<iframe src="https://www.youtube-nocookie.com/embed/' + slide.videoId + '?rel=0" ' +
           'frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ' +
-          'allowfullscreen></iframe>' +
+          'allowfullscreen title="' + slide.title + '"></iframe>' +
       '</div>' +
       '<div class="video-credit">' + slide.credit + '</div>' +
+      '<button class="video-next-btn" onclick="navigateSlide(1)">' +
+        (isLast ? '✓ Finish lesson' : 'Continue to next slide →') +
+      '</button>' +
     '</div>';
   }
 
@@ -890,11 +960,12 @@ function closeModal() {
 
 /* ── Resources Rendering ───────────────────────── */
 function findLessonsForResource(rid) {
+  // Returns array of {id, title, num} objects
   var matches = [];
   UNITS.forEach(function(u) {
     u.lessons.forEach(function(l) {
       if (l.resources && l.resources.indexOf(rid) !== -1) {
-        matches.push('L' + l.id);
+        matches.push({ id: l.id, title: l.title, num: lessonNum(l.id) });
       }
     });
   });
@@ -907,8 +978,11 @@ function renderResources(filter) {
   document.getElementById('resourcesGrid').innerHTML = items.map(function(r) {
     var linkedLessons = findLessonsForResource(r.id);
     var linkedHtml = linkedLessons.length > 0
-      ? '<div style="margin-top:8px;display:flex;gap:4px;flex-wrap:wrap">' +
-          linkedLessons.map(function(l) { return '<span style="font-size:.7rem;background:rgba(99,102,241,.15);color:var(--primary-light);padding:2px 8px;border-radius:999px">' + l + '</span>'; }).join('') +
+      ? '<div class="rc-used-in">' +
+          '<span class="rc-used-label">Used in:</span> ' +
+          linkedLessons.map(function(l) {
+            return '<span class="rc-lesson-pill" onclick="event.stopPropagation();openLesson(' + l.id + ')" title="' + l.title + '">L' + l.num + '</span>';
+          }).join('') +
         '</div>'
       : '';
     return '<div class="resource-card" onclick="openResource(\'' + r.id + '\')">' +
@@ -934,26 +1008,80 @@ function openResource(id) {
   if (linkedLessons.length > 0) {
     linkedHtml = '<div style="margin-top:16px;margin-bottom:16px">' +
       '<strong style="font-size:.85rem;color:var(--text-dim)">Used in:</strong> ' +
-      linkedLessons.map(function(lLabel) {
-        var lid = parseInt(lLabel.replace('L',''));
-        var found = findLesson(lid);
-        var title = found ? found.lesson.title : '';
-        return '<span onclick="closeModal();setTimeout(function(){openLesson(' + lid + ')},200)" ' +
+      linkedLessons.map(function(l) {
+        return '<span onclick="closeModal();setTimeout(function(){openLesson(' + l.id + ')},200)" ' +
           'style="cursor:pointer;font-size:.8rem;background:rgba(99,102,241,.15);color:var(--primary-light);padding:4px 12px;border-radius:999px;margin:2px;display:inline-block">' +
-          lLabel + (title ? ': ' + title : '') + '</span>';
+          'L' + l.num + ': ' + l.title + '</span>';
       }).join(' ') +
     '</div>';
   }
+  var hasFields = content && (content.indexOf('resource-field') !== -1);
+  var downloadBtn = hasFields
+    ? '<button class="btn btn-secondary" onclick="downloadResource(\'' + r.id + '\',\'' + r.title.replace(/'/g,"\\'") + '\')" title="Download your filled template as a .txt file">⬇ Download .txt</button>'
+    : '';
+  var clearBtn = hasFields
+    ? '<button class="btn btn-secondary" onclick="clearResource(\'' + r.id + '\')" title="Clear all saved answers">Clear</button>'
+    : '';
+
   document.getElementById('modalBody').innerHTML =
     '<span class="rc-type" data-cat="' + r.cat + '" style="margin-bottom:12px">' + r.cat + '</span>' +
     '<h2>' + r.title + '</h2>' +
     '<p class="modal-desc">' + r.desc + '</p>' +
     linkedHtml +
+    (hasFields ? '<div class="resource-autosave-notice" id="resourceSaveNotice">✓ Changes saved automatically</div>' : '') +
     '<div class="resource-body">' + (content || '<p style="color:var(--text-dim)">Full interactive content coming soon.</p>') + '</div>' +
     '<div class="modal-actions">' +
+      downloadBtn + clearBtn +
       '<button class="btn btn-secondary" onclick="closeModal()">Close</button>' +
     '</div>';
+
+  // Auto-save: restore saved values, then listen for changes
+  if (hasFields) {
+    var fields = document.querySelectorAll('#modalBody .resource-field');
+    fields.forEach(function(field, idx) {
+      var key = 'di_res_' + r.id + '_' + idx;
+      var saved = localStorage.getItem(key);
+      if (saved) field.value = saved;
+      field.addEventListener('input', function() {
+        localStorage.setItem(key, field.value);
+        var notice = document.getElementById('resourceSaveNotice');
+        if (notice) { notice.textContent = '✓ Saved'; notice.classList.add('just-saved'); setTimeout(function() { notice.classList.remove('just-saved'); notice.textContent = '✓ Changes saved automatically'; }, 1200); }
+      });
+    });
+  }
+
   document.getElementById('lessonModal').classList.add('open');
+}
+
+function downloadResource(id, title) {
+  var fields = document.querySelectorAll('#modalBody .resource-field');
+  var labels = document.querySelectorAll('#modalBody .resource-template-section h5');
+  var lines = [title, '='.repeat(title.length), ''];
+  var labelIdx = 0;
+  fields.forEach(function(field) {
+    // Find the closest section heading
+    var section = field.closest('.resource-template-section');
+    var heading = section ? section.querySelector('h5') : null;
+    if (heading) lines.push('--- ' + heading.textContent + ' ---');
+    lines.push(field.value || '(blank)');
+    lines.push('');
+  });
+  lines.push('Digital Innovations — ' + new Date().toLocaleDateString('en-GB'));
+  var blob = new Blob([lines.join('\n')], { type: 'text/plain' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = title.toLowerCase().replace(/\s+/g,'-') + '.txt';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function clearResource(id) {
+  if (!confirm('Clear all saved answers for this template?')) return;
+  var fields = document.querySelectorAll('#modalBody .resource-field');
+  fields.forEach(function(field, idx) {
+    localStorage.removeItem('di_res_' + id + '_' + idx);
+    field.value = '';
+  });
 }
 
 /* ── Search ────────────────────────────────────── */
@@ -1519,6 +1647,155 @@ function closeShortcuts() { document.getElementById('shortcutsOverlay').classLis
 
 function openKb() { openShortcuts(); }
 function closeKb() { closeShortcuts(); }
+
+/* ── Profile Modal ─────────────────────────────── */
+var PM_AVATARS = ['👤','🧑‍💻','👩‍💻','🧠','🤖','🚀','⚡','🎓','🌟','🦊','🐼','🦁','🎯','💡','🔬','📚'];
+
+function openProfileModal() {
+  var modal = document.getElementById('profileModal');
+  if (!modal) return;
+  pmPopulate();
+  modal.classList.add('open');
+}
+function closeProfileModal() {
+  var modal = document.getElementById('profileModal');
+  if (modal) modal.classList.remove('open');
+  var picker = document.getElementById('pmAvatarPicker');
+  if (picker) picker.style.display = 'none';
+}
+
+function pmPopulate() {
+  // Avatar
+  var savedAvatar = localStorage.getItem('di_avatar') || '👤';
+  var avatarEl = document.getElementById('pmAvatar');
+  var chipAvatar = document.getElementById('userAvatarChip');
+  if (avatarEl) avatarEl.textContent = savedAvatar;
+  if (chipAvatar) chipAvatar.textContent = savedAvatar;
+
+  // Name
+  var nameInput = document.getElementById('pmDisplayName');
+  var user = (typeof getCurrentUser === 'function') ? getCurrentUser() : null;
+  var savedName = localStorage.getItem('di_display_name') || '';
+  if (!savedName && user) {
+    var meta = user.user_metadata;
+    savedName = (meta && meta.display_name) ? meta.display_name : user.email.split('@')[0];
+  }
+  if (nameInput) nameInput.value = savedName;
+
+  // Email + joined
+  var emailEl = document.getElementById('pmEmail');
+  var joinedEl = document.getElementById('pmJoined');
+  if (emailEl) emailEl.textContent = user ? user.email : 'Not signed in';
+  if (joinedEl && user && user.created_at) {
+    joinedEl.textContent = 'Joined ' + new Date(user.created_at).toLocaleDateString('en-GB', { month:'long', year:'numeric' });
+  }
+
+  // XP + level
+  var xpData = (typeof getXPData === 'function') ? getXPData() : null;
+  var levelBadge = document.getElementById('pmLevelBadge');
+  var xpFill = document.getElementById('pmXpFill');
+  var xpLabel = document.getElementById('pmXpLabel');
+  if (xpData) {
+    if (levelBadge) levelBadge.textContent = 'Lv ' + xpData.level;
+    if (xpFill) xpFill.style.width = xpData.pct + '%';
+    if (xpLabel) xpLabel.textContent = xpData.xp + ' XP — ' + xpData.xpToNext + ' to next level';
+  }
+
+  // Stats
+  var total = UNITS.reduce(function(s,u){return s+u.lessons.length;},0);
+  var done = completedLessons.size;
+  var streak = (typeof getCurrentStreak === 'function') ? getCurrentStreak() : 0;
+  var qKeys = Object.keys(quizScores);
+  var qAvg = qKeys.length ? Math.round(qKeys.filter(function(k){return quizScores[k].correct;}).length/qKeys.length*100) : null;
+  var badgeCount = (typeof loadBadges === 'function') ? Object.keys(loadBadges()).length : 0;
+  var statLessons = document.getElementById('pmStatLessons');
+  var statStreak = document.getElementById('pmStatStreak');
+  var statQuiz = document.getElementById('pmStatQuiz');
+  var statBadges = document.getElementById('pmStatBadges');
+  if (statLessons) statLessons.textContent = done + '/' + total;
+  if (statStreak) statStreak.textContent = streak + (streak>0?'🔥':'');
+  if (statQuiz) statQuiz.textContent = qAvg !== null ? qAvg + '%' : '—';
+  if (statBadges) statBadges.textContent = badgeCount;
+
+  // Unit progress
+  var unitsEl = document.getElementById('pmUnits');
+  if (unitsEl) {
+    unitsEl.innerHTML = UNITS.map(function(u, i) {
+      var unitDone = u.lessons.filter(function(l){return completedLessons.has(l.id);}).length;
+      var pct = Math.round(unitDone/u.lessons.length*100);
+      var colour = UNIT_COLOURS[i] || '#6366f1';
+      return '<div class="pm-unit-row">' +
+        '<div class="pm-unit-dot" style="background:'+colour+'"></div>' +
+        '<div class="pm-unit-label">'+u.icon+' '+u.title+'</div>' +
+        '<div class="pm-unit-bar-track"><div class="pm-unit-bar-fill" style="width:'+pct+'%;background:'+colour+'"></div></div>' +
+        '<div class="pm-unit-pct">'+pct+'%</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  // Badges
+  var badgesEl = document.getElementById('pmBadges');
+  if (badgesEl && typeof BADGE_DEFINITIONS !== 'undefined') {
+    var earnedBadges = (typeof loadBadges === 'function') ? loadBadges() : {};
+    badgesEl.innerHTML = BADGE_DEFINITIONS.map(function(b) {
+      var isEarned = !!earnedBadges[b.id];
+      return '<div class="pm-badge-chip ' + (isEarned ? 'earned' : 'locked') + '" title="' + (isEarned ? 'Earned' : 'Locked') + '">' +
+        b.icon + ' ' + b.name +
+      '</div>';
+    }).join('');
+  }
+
+  // Ratings
+  var ratingsEl = document.getElementById('pmRatings');
+  var ratingsTitle = document.getElementById('pmRatingsTitle');
+  if (ratingsEl) {
+    var ratingEntries = Object.entries(lessonRatings);
+    if (ratingsTitle) ratingsTitle.style.display = ratingEntries.length ? '' : 'none';
+    ratingsEl.innerHTML = ratingEntries.map(function(entry) {
+      var lid = parseInt(entry[0]), val = entry[1];
+      var found = findLesson(lid);
+      var title = found ? 'L' + lessonNum(lid) + ': ' + found.lesson.title : 'Lesson ' + lid;
+      return '<span class="pm-rating-pill pm-rating-' + val + '" onclick="closeProfileModal();openLesson(' + lid + ')" style="cursor:pointer" title="Click to open">' +
+        (val==='up'?'👍':'👎') + ' ' + title +
+      '</span>';
+    }).join('');
+  }
+
+  // Avatar picker grid
+  pmBuildAvatarGrid(savedAvatar);
+}
+
+function pmBuildAvatarGrid(current) {
+  var grid = document.getElementById('pmAvatarGrid');
+  if (!grid) return;
+  grid.innerHTML = PM_AVATARS.map(function(emoji) {
+    return '<button class="pm-avatar-opt' + (emoji===current?' selected':'') + '" onclick="pmSelectAvatar(\'' + emoji + '\')">' + emoji + '</button>';
+  }).join('');
+}
+
+function openAvatarPicker() {
+  var picker = document.getElementById('pmAvatarPicker');
+  if (picker) picker.style.display = picker.style.display === 'none' ? 'block' : 'none';
+}
+
+function pmSelectAvatar(emoji) {
+  localStorage.setItem('di_avatar', emoji);
+  var avatarEl = document.getElementById('pmAvatar');
+  var chipAvatar = document.getElementById('userAvatarChip');
+  if (avatarEl) avatarEl.textContent = emoji;
+  if (chipAvatar) chipAvatar.textContent = emoji;
+  var picker = document.getElementById('pmAvatarPicker');
+  if (picker) picker.style.display = 'none';
+  pmBuildAvatarGrid(emoji);
+}
+
+function pmSaveName(val) {
+  if (val.trim()) {
+    localStorage.setItem('di_display_name', val.trim());
+    var nameEl = document.getElementById('userDisplayName');
+    if (nameEl) nameEl.textContent = val.trim();
+  }
+}
 
 /* ── Notes Panel ───────────────────────────────── */
 var notesPanelOpen = false;
@@ -3119,6 +3396,12 @@ document.addEventListener('DOMContentLoaded', () => {
   updateFirstLessonBanner();
   renderSpacedReviewQueue();
   initOfflineBanner();
+  // Restore avatar on chip
+  var savedAvatar = localStorage.getItem('di_avatar');
+  if (savedAvatar) {
+    var chipAvatar = document.getElementById('userAvatarChip');
+    if (chipAvatar) chipAvatar.textContent = savedAvatar;
+  }
 });
 
 /* ── Lesson Rating ─────────────────────────────── */
@@ -3175,6 +3458,7 @@ document.addEventListener('keydown', e => {
     closeCapstone();
     closeOnboarding();
     closeVivaPractice();
+    closeProfileModal();
     if (typeof closeAuthModal === 'function') closeAuthModal();
   }
   if (e.key === '?' || (e.key === '/' && e.shiftKey)) {
