@@ -225,7 +225,7 @@ img{max-width:100%}
 .lesson-list{display:none;border-top:1px solid var(--border)}
 .lesson-list.open{display:block}
 .lesson-item{
-  display:flex;align-items:center;gap:14px;padding:13px 24px;
+  display:flex;align-items:flex-start;gap:14px;padding:13px 24px;
   border-bottom:1px solid var(--border);cursor:pointer;
   transition:background .15s, padding-left .15s;
 }
@@ -234,12 +234,13 @@ img{max-width:100%}
 .lesson-check{
   width:20px;height:20px;border-radius:50%;border:2px solid var(--border);
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  font-size:.7rem;transition:all .2s;color:transparent;
+  font-size:.7rem;transition:all .2s;color:transparent;margin-top:2px;
 }
 .lesson-check.done{background:var(--success);border-color:var(--success);color:#fff}
 .lesson-info{flex:1}
 .lesson-num{font-size:.72rem;font-weight:600;color:var(--text-dim);margin-bottom:1px;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
 .lesson-title{font-size:.92rem;font-weight:600;color:var(--text)}
+.lesson-desc{font-size:.78rem;color:var(--text-dim);margin-top:2px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .lesson-time{font-weight:400;color:var(--text-dim)}
 .lesson-expand{background:none;border:none;color:var(--text-dim);font-size:1rem;padding:4px 8px;transition:color .15s,transform .15s}
 .lesson-expand:hover{color:var(--primary-light);transform:translateX(2px)}

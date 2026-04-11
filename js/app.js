@@ -291,6 +291,7 @@ function lessonRow(lesson, unit) {
       <div class="lesson-info" onclick="openLesson(${lesson.id})">
         <div class="lesson-num">Lesson ${lessonNum(lesson.id)} <span class="lesson-time">~${mins} min</span>${diffBadge(lesson.difficulty)}${quizScores[lesson.id] ? '<span class="lesson-quiz-score ' + (quizScores[lesson.id].correct ? 'lqs-pass' : 'lqs-fail') + '" title="Quiz: ' + (quizScores[lesson.id].correct ? 'Passed' : 'Attempted') + '">' + (quizScores[lesson.id].correct ? '✓ Quiz' : '✗ Quiz') + '</span>' : ''}</div>
         <div class="lesson-title">${lesson.title}</div>
+        ${lesson.desc ? `<div class="lesson-desc">${lesson.desc}</div>` : ''}
       </div>
       <button class="bookmark-btn${bookmarkedLessons.has(lesson.id) ? ' bookmarked' : ''}" onclick="event.stopPropagation();toggleBookmark(${lesson.id})" title="${bookmarkedLessons.has(lesson.id) ? 'Remove bookmark' : 'Bookmark'}" aria-label="Bookmark lesson">${bookmarkedLessons.has(lesson.id) ? '★' : '☆'}</button>
       <button class="lesson-expand" onclick="openLesson(${lesson.id})" title="View details">→</button>
