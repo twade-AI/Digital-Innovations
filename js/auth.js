@@ -58,6 +58,7 @@ async function fetchDynamicNews() {
       if (!exists) AI_NEWS.unshift(item);
     });
     // Re-render news displays
+    if (typeof _newsLastFetched !== 'undefined') _newsLastFetched = new Date();
     if (typeof renderNewsTicker === 'function') renderNewsTicker();
     if (typeof renderNewsSection === 'function') renderNewsSection();
   } catch(e) {

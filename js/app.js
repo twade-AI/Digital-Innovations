@@ -1238,7 +1238,14 @@ function renderQuizScoreSection() {
   var el = document.getElementById('quizScoreSection');
   if (!el) return;
   var keys = Object.keys(quizScores);
-  if (keys.length === 0) { el.innerHTML = ''; return; }
+  if (keys.length === 0) {
+    el.innerHTML = '<div class="section-empty-state">' +
+      '<div class="ses-icon">⚡</div>' +
+      '<div class="ses-title">No quiz scores yet</div>' +
+      '<div class="ses-desc">Complete a lesson and try the <strong>⚡ Quiz Me</strong> button to test your knowledge — your scores will appear here.</div>' +
+    '</div>';
+    return;
+  }
   var correctCount = keys.filter(function(k) { return quizScores[k].correct; }).length;
   var cards = keys.map(function(k) {
     var found = findLesson(parseInt(k));
@@ -1253,7 +1260,14 @@ function renderQuizScoreSection() {
 function renderBookmarkedSection() {
   var el = document.getElementById('bookmarkedLessons');
   if (!el) return;
-  if (bookmarkedLessons.size === 0) { el.innerHTML = ''; return; }
+  if (bookmarkedLessons.size === 0) {
+    el.innerHTML = '<div class="section-empty-state">' +
+      '<div class="ses-icon">★</div>' +
+      '<div class="ses-title">No bookmarks yet</div>' +
+      '<div class="ses-desc">Tap the <strong>★ bookmark</strong> button inside any lesson to save it here for quick access later.</div>' +
+    '</div>';
+    return;
+  }
   var cards = [];
   bookmarkedLessons.forEach(function(id) {
     var found = findLesson(id);
@@ -1848,7 +1862,18 @@ function renderSpacedReviewQueue() {
   var el = document.getElementById('spacedReviewSection');
   if (!el) return;
   var due = getSpacedReviewDue();
-  if (!due.length) { el.style.display = 'none'; return; }
+  if (!due.length) {
+    if (completedLessons.size === 0) { el.style.display = 'none'; return; }
+    // Some lessons completed but nothing due — show a caught-up state
+    el.style.display = 'block';
+    el.innerHTML =
+      '<div class="srq-header">' +
+        '<span class="srq-title">📅 Spaced Review</span>' +
+        '<span class="srq-sub">Nothing due right now — great work keeping up!</span>' +
+      '</div>' +
+      '<div class="srq-empty">✓ You\'re all caught up. Check back after studying more lessons.</div>';
+    return;
+  }
   el.style.display = 'block';
   el.innerHTML =
     '<div class="srq-header">' +
@@ -2268,7 +2293,15 @@ function renderRecentlyViewed() {
   var recent = loadRecentlyViewed();
   var el = document.getElementById('recentlyViewedSection');
   if (!el) return;
-  if (recent.length === 0) { el.style.display = 'none'; return; }
+  el.style.display = 'block';
+  if (recent.length === 0) {
+    el.innerHTML = '<div class="rv-empty">' +
+      '<div class="rv-empty-icon">📖</div>' +
+      '<div class="rv-empty-msg">No lessons viewed yet.</div>' +
+      '<div class="rv-empty-hint">Open a lesson from <button class="rv-empty-link" onclick="showSection(\'units\')">Units</button> to start your journey.</div>' +
+    '</div>';
+    return;
+  }
   var cards = recent.map(function(id) {
     var found = findLesson(id);
     if (!found) return '';
@@ -2278,7 +2311,6 @@ function renderRecentlyViewed() {
       '<div class="rv-card-title">' + found.lesson.title + '</div>' +
     '</div>';
   }).filter(Boolean).join('');
-  el.style.display = 'block';
   el.innerHTML = '<div class="rv-label">Recently Viewed</div><div class="rv-cards">' + cards + '</div>';
 }
 function updateTimeEstimate() {
@@ -2851,6 +2883,7 @@ function renderFullNewsGrid() {
   var filtered = _newsTagFilter === 'all' ? AI_NEWS : AI_NEWS.filter(function(n) { return n.tag === _newsTagFilter; });
   el.innerHTML = filtered.map(buildNewsCard).join('');
   renderNewsTagFilters();
+  renderNewsStaleness();
 }
 
 function renderNewsTagFilters() {
@@ -2866,6 +2899,53 @@ function renderNewsTagFilters() {
 function setNewsTagFilter(tag) {
   _newsTagFilter = tag;
   renderFullNewsGrid();
+}
+
+/* ── News staleness ─────────────────────────────── */
+var _newsLastFetched = null; // set by auth.js after successful Supabase pull
+
+function _parseMostRecentNewsDate() {
+  if (typeof AI_NEWS === 'undefined' || !AI_NEWS.length) return null;
+  var MON = { Jan:0, Feb:1, Mar:2, Apr:3, May:4, Jun:5, Jul:6, Aug:7, Sep:8, Oct:9, Nov:10, Dec:11 };
+  var best = null;
+  AI_NEWS.forEach(function(n) {
+    if (!n.date) return;
+    var parts = n.date.split(' ');
+    if (parts.length < 2) return;
+    var mon = MON[parts[0]];
+    var yr  = parseInt(parts[1], 10);
+    if (mon === undefined || isNaN(yr)) return;
+    var d = new Date(yr, mon, 1); // first day of that month
+    if (!best || d > best) best = d;
+  });
+  return best;
+}
+
+function renderNewsStaleness() {
+  var el = document.getElementById('newsStalenessBanner');
+  if (!el) return;
+  var mostRecent = _parseMostRecentNewsDate();
+  if (!mostRecent) { el.innerHTML = ''; return; }
+
+  var now        = new Date();
+  var daysSince  = Math.floor((now - mostRecent) / 86400000);
+  var monNames   = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var dateLabel  = monNames[mostRecent.getMonth()] + ' ' + mostRecent.getFullYear();
+
+  var html = '<div class="news-freshness-bar">';
+  if (daysSince > 60) {
+    html += '<span class="news-stale-warn"><svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-4a1 1 0 00-1 1v2a1 1 0 002 0V10a1 1 0 00-1-1z"/></svg>' +
+             'Feed may be outdated — most recent article: <strong>' + dateLabel + '</strong>. Sign in to load live updates.</span>';
+  } else {
+    html += '<span class="news-fresh-ok"><svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>' +
+             'Feed is current — most recent article: <strong>' + dateLabel + '</strong>.</span>';
+  }
+  if (_newsLastFetched) {
+    var t = _newsLastFetched.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    html += '<span class="news-fetched-at">Live articles loaded at ' + t + '.</span>';
+  }
+  html += '</div>';
+  el.innerHTML = html;
 }
 
 /* ── Onboarding Tour ──────────────────────────────── */
