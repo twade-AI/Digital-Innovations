@@ -319,6 +319,7 @@ function lessonRow(lesson, unit) {
         <div class="lesson-num">Lesson ${lessonNum(lesson.id)} <span class="lesson-time">~${mins} min</span>${diffBadge(lesson.difficulty)}${quizScores[lesson.id] ? '<span class="lesson-quiz-score ' + (quizScores[lesson.id].correct ? 'lqs-pass' : 'lqs-fail') + '" title="Quiz: ' + (quizScores[lesson.id].correct ? 'Passed' : 'Attempted') + '">' + (quizScores[lesson.id].correct ? '✓ Quiz' : '✗ Quiz') + '</span>' : ''}</div>
         <div class="lesson-title">${lesson.title}</div>
         ${lesson.desc ? `<div class="lesson-desc">${lesson.desc}</div>` : ''}
+        ${lesson.objectives && lesson.objectives.length ? `<div class="lesson-objectives"><span class="lo-label">You'll learn:</span>${lesson.objectives.slice(0,2).map(o => `<span class="lo-item">▸ ${o}</span>`).join('')}${lesson.objectives.length > 2 ? `<span class="lo-more">+${lesson.objectives.length - 2} more</span>` : ''}</div>` : ''}
       </div>
       <button class="bookmark-btn${bookmarkedLessons.has(lesson.id) ? ' bookmarked' : ''}" onclick="event.stopPropagation();toggleBookmark(${lesson.id})" title="${bookmarkedLessons.has(lesson.id) ? 'Remove bookmark' : 'Bookmark'}" aria-label="Bookmark lesson">${bookmarkedLessons.has(lesson.id) ? '★' : '☆'}</button>
       <button class="lesson-expand" onclick="openLesson(${lesson.id})" title="View details">→</button>
