@@ -139,12 +139,99 @@
     [data-theme="light"] .modal-footer { background: #f8fafc; }
     [data-theme="light"] .modal-header { background: linear-gradient(180deg, rgba(99,102,241,.05) 0%, transparent 100%); }
 
+    /* ── Slide content — classes used by flRenderSlideHTML that are missing
+       from lesson.css's regular (non-print) rules ── */
+
+    /* Body text for hook / concept / activity / scenario slides */
+    .slide-body {
+      font-size: .97rem;
+      color: var(--text-muted, #475569);
+      line-height: 1.75;
+      margin-top: 8px;
+      margin-bottom: 14px;
+    }
+
+    /* Callout box (border-left accent) */
+    .slide-callout {
+      background: rgba(6,182,212,.08);
+      border-left: 3px solid var(--accent, #06b6d4);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin-top: 16px;
+      font-size: .92rem;
+      color: var(--text-muted, #475569);
+      line-height: 1.6;
+    }
+    [data-theme="light"] .slide-callout {
+      background: rgba(6,182,212,.07);
+      border-left-color: #0891b2;
+      color: #1e3a4a;
+    }
+
+    /* Bullet list */
+    .slide-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 12px;
+      padding: 0;
+    }
+    .slide-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .93rem;
+      color: var(--text-muted, #475569);
+      line-height: 1.5;
+    }
+    .slide-bullets li::before {
+      content: '▸';
+      color: var(--primary-light, #818cf8);
+      font-size: .85rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    [data-theme="light"] .slide-bullets li { color: #334155; }
+    [data-theme="light"] .slide-bullets li::before { color: #4f46e5; }
+
+    /* Numbered steps (activity slides) */
+    .slide-steps {
+      list-style: none;
+      counter-reset: step;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 14px;
+      padding: 0;
+    }
+    .slide-steps li {
+      counter-increment: step;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: .93rem;
+      color: var(--text-muted, #475569);
+      line-height: 1.5;
+    }
+    .slide-steps li::before {
+      content: counter(step);
+      min-width: 24px; height: 24px;
+      background: var(--primary, #6366f1);
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .75rem; font-weight: 800; flex-shrink: 0;
+    }
+    [data-theme="light"] .slide-steps li { color: #334155; }
+
     /* Discussion slide */
     .slide-disc-qs { display:flex; flex-direction:column; gap:10px; margin-top:12px; }
     .slide-disc-q { display:flex; align-items:flex-start; gap:12px; background:rgba(99,102,241,.06); border:1px solid var(--border); border-radius:8px; padding:12px 14px; }
     [data-theme="light"] .slide-disc-q { background:rgba(99,102,241,.05); border-color:rgba(99,102,241,.15); }
     .sdq-num { display:inline-flex; align-items:center; justify-content:center; min-width:28px; height:28px; border-radius:50%; background:var(--primary,#6366f1); color:#fff; font-size:.75rem; font-weight:700; flex-shrink:0; }
     .sdq-text { font-size:.9rem; color:var(--text-muted,var(--text)); line-height:1.5; flex:1; }
+    [data-theme="light"] .sdq-text { color: #334155; }
 
     /* Video embed */
     .slide-video-wrap { margin:12px 0; border-radius:8px; overflow:hidden; aspect-ratio:16/9; }

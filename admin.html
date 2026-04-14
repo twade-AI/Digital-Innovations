@@ -139,6 +139,13 @@
     .du-pct { font-size: .78rem; color: var(--text-muted); }
     .detail-meta { font-size: .78rem; color: var(--text-dim); display: flex; gap: 20px; flex-wrap: wrap; }
 
+    /* ── Quiz chips in expanded row ── */
+    .detail-quiz-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 10px 0; }
+    .detail-quiz-label { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--text-dim); flex-shrink: 0; margin-right: 4px; }
+    .quiz-chip { display: inline-flex; align-items: center; gap: 3px; padding: 2px 7px; border-radius: 999px; font-size: .7rem; font-weight: 700; cursor: default; }
+    .qc-pass { background: rgba(34,197,94,.15); color: #22c55e; border: 1px solid rgba(34,197,94,.3); }
+    .qc-fail { background: rgba(239,68,68,.12); color: #ef4444; border: 1px solid rgba(239,68,68,.25); }
+
     /* ── Empty / Loading ── */
     .empty-state { text-align: center; padding: 48px; color: var(--text-dim); }
     .loading-spinner { display: inline-block; width: 20px; height: 20px; border: 2px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin .7s linear infinite; }
@@ -472,7 +479,7 @@ CREATE POLICY "Admins can manage news" ON public.site_news FOR ALL USING (
 
   <!-- Footer -->
   <div class="admin-footer">
-    <span>Digital Innovations AEP &bull; Admin Dashboard</span>
+    <span>Digital Innovations <abbr title="Advanced Extension Programme">AEP</abbr> &bull; Admin Dashboard</span>
     <a href="https://supabase.com/dashboard" target="_blank" rel="noopener">Open Supabase Dashboard ↗</a>
     <span id="lastRefresh"></span>
   </div>
@@ -627,6 +634,7 @@ async function loadData() {
       qPct:        qPct,
       lastActive:  lastActive,
       completedIds: Array.isArray(data.completed) ? data.completed : [],
+      quizScores:  data.quiz_scores || {},
       joinedAt:    p.created_at
     };
   });
@@ -682,6 +690,7 @@ function renderTable(students) {
   }
   tbody.innerHTML = students.map(function(s, i) {
     var unitBarsHtml = buildUnitBars(s.completedIds);
+    var quizHtml = buildQuizBreakdown(s.completedIds, s.quizScores);
     return [
       '<tr class="student-row" onclick="toggleDetail(' + i + ')" data-idx="' + i + '">',
         '<td>',
@@ -705,6 +714,7 @@ function renderTable(students) {
         '<td colspan="7">',
           '<div class="detail-panel">',
             '<div class="detail-grid">' + unitBarsHtml + '</div>',
+            quizHtml,
             '<div class="detail-meta">',
               '<span>Joined: ' + new Date(s.joinedAt).toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'}) + '</span>',
               '<span>Quizzes attempted: ' + s.qTotal + '</span>',
@@ -735,6 +745,25 @@ function buildUnitBars(completedIds) {
       '<div class="du-pct">' + done + '/' + size + ' (' + pct + '%)</div>' +
     '</div>';
   }).join('');
+}
+
+function buildQuizBreakdown(completedIds, quizScores) {
+  // Collect all lessons that have either been completed or quizzed
+  var allLessonIds = [];
+  UNITS_META.forEach(function(u) { allLessonIds = allLessonIds.concat(u.lessons); });
+  var attempted = allLessonIds.filter(function(lid) { return quizScores[lid]; });
+  if (!attempted.length) return '';
+
+  var chips = attempted.map(function(lid) {
+    var q    = quizScores[lid];
+    var cls  = q.correct ? 'qc-pass' : 'qc-fail';
+    var icon = q.correct ? '✓' : '✗';
+    var date = q.date ? ' · ' + q.date : '';
+    var title = (LESSON_TITLES[lid] || 'L' + lid) + date;
+    return '<span class="quiz-chip ' + cls + '" title="' + esc(title) + '">' + icon + ' L' + lid + '</span>';
+  }).join('');
+
+  return '<div class="detail-quiz-row"><span class="detail-quiz-label">Quiz attempts:</span>' + chips + '</div>';
 }
 
 function toggleDetail(idx) {
