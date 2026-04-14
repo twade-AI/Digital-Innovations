@@ -17,6 +17,7 @@ function lessonNum(id) { return LESSON_NUM_MAP[id] || id; }
 let completedLessons = loadProgress();
 let currentFilter = 'all';
 let currentTagFilter = null;
+var openUnits = new Set([0]); // first unit open by default
 let bookmarkedLessons = loadBookmarks();
 let quizScores = loadQuizScores();
 var lessonRatings = loadRatings();
@@ -279,7 +280,9 @@ document.addEventListener('click', function(e) {
 /* ── Units Rendering ───────────────────────────── */
 function renderUnits() {
   const container = document.getElementById('unitsContainer');
-  container.innerHTML = UNITS.map((unit, idx) => `
+  container.innerHTML = UNITS.map((unit, idx) => {
+    const isOpen = openUnits.has(idx);
+    return `
     <div class="unit-block" id="unit-${idx}" style="--unit-colour:${UNIT_COLOURS[idx] || '#6366f1'}">
       <div class="unit-header" onclick="toggleUnit(${idx})">
         <span class="unit-icon">${unit.icon}</span>
@@ -290,13 +293,13 @@ function renderUnits() {
         <div class="unit-progress">
           <div class="unit-progress-fill" style="width:${unitProgressPct(unit)}%"></div>
         </div>
-        <button class="unit-toggle" aria-label="Toggle">▼</button>
+        <button class="unit-toggle${isOpen ? ' open' : ''}" aria-label="Toggle">▼</button>
       </div>
-      <div class="lesson-list" id="lessons-${idx}">
+      <div class="lesson-list${isOpen ? ' open' : ''}" id="lessons-${idx}">
         ${unit.lessons.map(l => lessonRow(l, unit)).join('')}
       </div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 }
 
 function diffBadge(d) {
@@ -338,8 +341,10 @@ function unitProgressPct(unit) {
 function toggleUnit(idx) {
   const list = document.getElementById('lessons-' + idx);
   const btn = list.previousElementSibling.querySelector('.unit-toggle');
-  list.classList.toggle('open');
-  btn.classList.toggle('open');
+  const nowOpen = !list.classList.contains('open');
+  list.classList.toggle('open', nowOpen);
+  btn.classList.toggle('open', nowOpen);
+  if (nowOpen) openUnits.add(idx); else openUnits.delete(idx);
 }
 
 function scrollToUnit(idx) {
@@ -1359,6 +1364,8 @@ function renderTagFilters() {
 
 function filterByTag(tag) {
   currentTagFilter = tag;
+  // When filtering, expand all units so results are visible
+  if (tag) UNITS.forEach(function(_, i) { openUnits.add(i); });
   renderTagFilters();
   renderUnits();
 }
@@ -2499,6 +2506,7 @@ function renderDifficultyFilter() {
 }
 function filterByDiff(diff) {
   currentDiffFilter = diff;
+  if (diff) UNITS.forEach(function(_, i) { openUnits.add(i); });
   renderDifficultyFilter();
   renderUnits();
 }
