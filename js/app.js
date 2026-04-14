@@ -1464,84 +1464,188 @@ function exportReflections() {
   URL.revokeObjectURL(a.href);
 }
 
-/* ── Full PDF Export ──────────────────────────── */
+/* ── Full Progress Report Export ─────────────────── */
 function exportFullProgressPDF() {
-  var total = UNITS.reduce(function(s,u) { return s + u.lessons.length; }, 0);
-  var done = completedLessons.size;
-  var pct = Math.round(done / total * 100);
-  var earned = loadBadges();
+  var total      = UNITS.reduce(function(s,u) { return s + u.lessons.length; }, 0);
+  var done       = completedLessons.size;
+  var pct        = Math.round(done / total * 100);
+  var earned     = loadBadges();
   var earnedBadges = UNIT_BADGES.filter(function(b) { return earned[b.id]; });
-  var quizKeys = Object.keys(quizScores);
-  var correct = quizKeys.filter(function(k) { return quizScores[k].correct; }).length;
+  var quizKeys   = Object.keys(quizScores);
+  var correct    = quizKeys.filter(function(k) { return quizScores[k].correct; }).length;
+  var quizPct    = quizKeys.length ? Math.round(correct / quizKeys.length * 100) : null;
+  var streak     = getStreak();
+  var xpData     = typeof loadXP === 'function' ? loadXP() : { total: 0 };
+  var xpTotal    = xpData.total || 0;
   var exportDate = new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
 
-  // Build reflections HTML
-  var reflSections = '';
-  UNITS.forEach(function(u) {
-    var lessonRows = '';
-    u.lessons.forEach(function(l) {
-      var slides = getLessonSlides(l.id, l, u);
-      var notes = [];
-      slides.forEach(function(slide, idx) {
-        var text = loadReflection(l.id, idx);
-        if (text && text.trim()) notes.push('<p>' + text.trim().replace(/\n/g,'<br>') + '</p>');
-      });
-      var isDone = completedLessons.has(l.id) ? '&#10003; Complete' : 'Not completed';
-      var quizEntry = quizScores[l.id];
-      var quizStr = quizEntry ? (quizEntry.correct ? '&#10003; Quiz correct' : '&#10007; Quiz incorrect') : '';
-      lessonRows += '<tr>' +
-        '<td style="padding:8px 12px;border:1px solid #e2e8f0;font-weight:600;font-size:.85rem">L' + l.id + ': ' + l.title + '</td>' +
-        '<td style="padding:8px 12px;border:1px solid #e2e8f0;font-size:.82rem;color:#64748b">' + isDone + (quizStr ? ' &bull; ' + quizStr : '') + '</td>' +
-        '<td style="padding:8px 12px;border:1px solid #e2e8f0;font-size:.82rem">' + (notes.join('') || '<span style="color:#94a3b8">No notes</span>') + '</td>' +
-      '</tr>';
-    });
-    reflSections += '<h3 style="margin:24px 0 8px;font-size:1rem;color:#4f46e5">' + u.icon + ' Unit ' + (u.id+1) + ': ' + u.title + '</h3>' +
-      '<table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif">' +
-        '<thead><tr style="background:#f8fafc">' +
-          '<th style="padding:8px 12px;border:1px solid #e2e8f0;text-align:left;font-size:.8rem;width:30%">Lesson</th>' +
-          '<th style="padding:8px 12px;border:1px solid #e2e8f0;text-align:left;font-size:.8rem;width:20%">Status</th>' +
-          '<th style="padding:8px 12px;border:1px solid #e2e8f0;text-align:left;font-size:.8rem">Reflection Notes</th>' +
-        '</tr></thead><tbody>' + lessonRows + '</tbody>' +
-      '</table>';
-  });
+  // Student name
+  var studentName = localStorage.getItem('di_display_name') || '';
+  if (!studentName && typeof getCurrentUser === 'function') {
+    var cu = getCurrentUser();
+    if (cu) studentName = (cu.user_metadata && cu.user_metadata.display_name) ? cu.user_metadata.display_name : cu.email.split('@')[0];
+  }
 
-  var badgeHtml = earnedBadges.length > 0
-    ? earnedBadges.map(function(b) {
-        return '<span style="display:inline-flex;align-items:center;gap:6px;background:#f0f4ff;border:1px solid #c7d2fe;border-radius:8px;padding:6px 12px;font-size:.85rem;margin:4px">' +
-          b.icon + ' <strong>' + b.name + '</strong> <span style="color:#94a3b8;font-size:.78rem">(' + earned[b.id] + ')</span></span>';
-      }).join('')
-    : '<p style="color:#94a3b8;font-size:.88rem">No badges earned yet — keep going!</p>';
+  // Unit progress bars HTML
+  var unitBarsHtml = UNITS.map(function(u) {
+    var uDone  = u.lessons.filter(function(l) { return completedLessons.has(l.id); }).length;
+    var uTotal = u.lessons.length;
+    var uPct   = Math.round(uDone / uTotal * 100);
+    return '<div class="unit-row">' +
+      '<div class="unit-label"><span>' + u.icon + ' Unit ' + (u.id+1) + ': ' + u.title + '</span>' +
+      '<span style="color:#6366f1;font-weight:700">' + uDone + '/' + uTotal + ' &nbsp;(' + uPct + '%)</span></div>' +
+      '<div class="unit-bar"><div class="unit-fill" style="width:' + uPct + '%"></div></div>' +
+    '</div>';
+  }).join('');
+
+  // Badges HTML
+  var badgesHtml = earnedBadges.length
+    ? '<div class="badge-grid">' + earnedBadges.map(function(b) {
+        return '<div class="badge-pill">' + b.icon + ' <strong>' + b.name + '</strong>' +
+          (earned[b.id] ? '<span class="badge-date">' + earned[b.id] + '</span>' : '') + '</div>';
+      }).join('') + '</div>'
+    : '<p class="empty-msg">No unit badges earned yet — complete all lessons in a unit to earn one.</p>';
+
+  // Lesson table by unit
+  var lessonTableHtml = UNITS.map(function(u) {
+    var rows = u.lessons.map(function(l) {
+      var slides   = getLessonSlides(l.id, l, u);
+      var noteList = [];
+      slides.forEach(function(s, i) {
+        var t = loadReflection(l.id, i);
+        if (t && t.trim()) noteList.push(t.trim().replace(/\n/g,'<br>'));
+      });
+      var isDone    = completedLessons.has(l.id);
+      var quizEntry = quizScores[l.id];
+      var quizCell  = quizEntry
+        ? (quizEntry.correct
+            ? '<span class="q-ok">&#10003; Correct</span>'
+            : '<span class="q-no">&#10007; Incorrect</span>')
+        : '<span class="q-none">—</span>';
+      var notesCell = noteList.length
+        ? noteList.map(function(n) { return '<p class="note-p">' + n + '</p>'; }).join('')
+        : '<span class="empty-msg">No notes</span>';
+      return '<tr>' +
+        '<td class="lesson-num">L' + lessonNum(l.id) + '</td>' +
+        '<td class="lesson-title">' + l.title + '</td>' +
+        '<td>' + (isDone ? '<span class="s-done">&#10003; Done</span>' : '<span class="s-pend">Not started</span>') + '</td>' +
+        '<td>' + quizCell + '</td>' +
+        '<td class="notes-col">' + notesCell + '</td>' +
+      '</tr>';
+    }).join('');
+    return '<tr class="unit-hdr"><td colspan="5">' + u.icon + ' Unit ' + (u.id+1) + ': ' + u.title + '</td></tr>' + rows;
+  }).join('');
+
+  var css = [
+    '*{box-sizing:border-box;margin:0;padding:0}',
+    'body{font-family:system-ui,-apple-system,sans-serif;background:#f8fafc;color:#0f172a;font-size:14px}',
+    /* Print action bar */
+    '.pbar{background:#1e293b;color:#fff;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}',
+    '.pbar-title{font-size:.9rem;opacity:.85}',
+    '.pbtn{background:#6366f1;color:#fff;border:none;padding:9px 20px;border-radius:8px;font-size:.88rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px}',
+    '.pbtn:hover{background:#4f46e5}',
+    /* Page */
+    '.page{max-width:920px;margin:24px auto;padding:0 16px 80px}',
+    /* Header */
+    '.rh{background:linear-gradient(135deg,#4f46e5 0%,#06b6d4 100%);color:#fff;border-radius:16px;padding:32px 40px;margin-bottom:24px}',
+    '.rh-brand{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.75;margin-bottom:6px}',
+    '.rh-title{font-size:1.7rem;font-weight:800;margin-bottom:4px}',
+    '.rh-sub{font-size:.88rem;opacity:.8}',
+    '.rh-name{font-size:1rem;font-weight:600;margin-top:10px;opacity:.9}',
+    /* Stats */
+    '.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:20px}',
+    '.sc{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:16px 10px;text-align:center}',
+    '.sn{display:block;font-size:1.6rem;font-weight:900;color:#6366f1;line-height:1;margin-bottom:4px}',
+    '.sl{font-size:.7rem;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:.05em}',
+    /* Cards */
+    '.card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:22px 24px;margin-bottom:18px}',
+    '.card-title{font-size:.95rem;font-weight:700;color:#1e293b;margin-bottom:14px;display:flex;align-items:center;gap:6px}',
+    /* Unit bars */
+    '.unit-row{margin-bottom:10px}',
+    '.unit-label{display:flex;justify-content:space-between;font-size:.82rem;font-weight:600;margin-bottom:4px}',
+    '.unit-bar{height:7px;background:#f1f5f9;border-radius:4px;overflow:hidden}',
+    '.unit-fill{height:100%;background:linear-gradient(90deg,#6366f1,#06b6d4);border-radius:4px}',
+    /* Badges */
+    '.badge-grid{display:flex;flex-wrap:wrap;gap:8px}',
+    '.badge-pill{background:#f0f4ff;border:1px solid #c7d2fe;border-radius:20px;padding:7px 14px;font-size:.85rem;display:flex;align-items:center;gap:6px}',
+    '.badge-date{color:#94a3b8;font-size:.72rem;margin-left:2px}',
+    /* Table */
+    'table{width:100%;border-collapse:collapse}',
+    'th{background:#f8fafc;padding:9px 10px;text-align:left;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#64748b;border-bottom:2px solid #e2e8f0}',
+    'td{padding:7px 10px;border-bottom:1px solid #f1f5f9;vertical-align:top;font-size:.82rem}',
+    'tr:last-child td{border-bottom:none}',
+    '.unit-hdr td{background:#f0f4ff;font-weight:700;font-size:.82rem;color:#4f46e5;padding:8px 10px}',
+    '.lesson-num{color:#94a3b8;font-weight:700;white-space:nowrap;width:42px}',
+    '.lesson-title{font-weight:600;color:#1e293b;max-width:220px}',
+    '.s-done{color:#16a34a;font-weight:600}.s-pend{color:#94a3b8}',
+    '.q-ok{color:#16a34a;font-weight:600}.q-no{color:#dc2626;font-weight:600}.q-none{color:#94a3b8}',
+    '.notes-col{max-width:260px;color:#475569}',
+    '.note-p{margin-bottom:4px;font-size:.8rem}',
+    '.empty-msg{color:#94a3b8;font-size:.8rem;font-style:italic}',
+    /* Footer */
+    '.rfooter{text-align:center;font-size:.72rem;color:#94a3b8;margin-top:32px;padding-top:16px;border-top:1px solid #e2e8f0}',
+    /* Print */
+    '@media print{',
+      '.pbar{display:none}',
+      'body{background:#fff}',
+      '.page{margin:0;padding:0 0 40px}',
+      '.rh{-webkit-print-color-adjust:exact;print-color-adjust:exact;border-radius:8px}',
+      '.unit-fill{-webkit-print-color-adjust:exact;print-color-adjust:exact}',
+      '.card{break-inside:avoid;border-radius:8px}',
+      '.stats{break-inside:avoid}',
+    '}'
+  ].join('');
 
   var html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">' +
     '<title>Digital Innovations — Progress Report</title>' +
-    '<style>body{font-family:system-ui,sans-serif;max-width:900px;margin:0 auto;padding:32px;color:#0f172a}' +
-    'h1{font-size:1.6rem;color:#6366f1;margin-bottom:4px}' +
-    '.meta{color:#64748b;font-size:.9rem;margin-bottom:24px}' +
-    '.stat-row{display:flex;gap:24px;margin:20px 0;flex-wrap:wrap}' +
-    '.stat-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px 20px;text-align:center;min-width:110px}' +
-    '.stat-num{display:block;font-size:1.8rem;font-weight:800;color:#6366f1}' +
-    '.stat-lbl{font-size:.78rem;color:#64748b;margin-top:2px}' +
-    'h2{font-size:1.1rem;border-bottom:2px solid #e2e8f0;padding-bottom:6px;margin-top:32px;color:#1e293b}' +
-    'p{margin:6px 0}@media print{body{padding:16px}}' +
-    '</style></head><body>' +
-    '<h1>&#127891; Digital Innovations — Progress Report</h1>' +
-    '<p class="meta">Exported on ' + exportDate + '</p>' +
-    '<div class="stat-row">' +
-      '<div class="stat-box"><span class="stat-num">' + pct + '%</span><span class="stat-lbl">Complete</span></div>' +
-      '<div class="stat-box"><span class="stat-num">' + done + '/' + total + '</span><span class="stat-lbl">Lessons Done</span></div>' +
-      '<div class="stat-box"><span class="stat-num">' + correct + '/' + quizKeys.length + '</span><span class="stat-lbl">Quizzes Correct</span></div>' +
-      '<div class="stat-box"><span class="stat-num">' + earnedBadges.length + '/' + UNIT_BADGES.length + '</span><span class="stat-lbl">Badges Earned</span></div>' +
+    '<style>' + css + '</style></head><body>' +
+    /* Print bar */
+    '<div class="pbar">' +
+      '<span class="pbar-title">Digital Innovations — Progress Report &bull; ' + exportDate + '</span>' +
+      '<button class="pbtn" onclick="window.print()">🖨&nbsp; Save as PDF / Print</button>' +
     '</div>' +
-    '<h2>🏅 Badges</h2>' + badgeHtml +
-    '<h2>📝 Lesson Progress & Reflections</h2>' + reflSections +
-    '<p style="margin-top:40px;font-size:.75rem;color:#94a3b8;text-align:center">Digital Innovations AEP &bull; KS5 Course Report</p>' +
-    '</body></html>';
+    '<div class="page">' +
+    /* Header */
+    '<div class="rh">' +
+      '<div class="rh-brand">Digital Innovations &bull; KS5 AI Course</div>' +
+      '<div class="rh-title">📊 Progress Report</div>' +
+      '<div class="rh-sub">Exported ' + exportDate + '</div>' +
+      (studentName ? '<div class="rh-name">Student: ' + studentName + '</div>' : '') +
+    '</div>' +
+    /* Stats grid */
+    '<div class="stats">' +
+      '<div class="sc"><span class="sn">' + pct + '%</span><span class="sl">Complete</span></div>' +
+      '<div class="sc"><span class="sn">' + done + '/' + total + '</span><span class="sl">Lessons done</span></div>' +
+      '<div class="sc"><span class="sn">' + (quizPct !== null ? quizPct + '%' : '—') + '</span><span class="sl">Quiz accuracy</span></div>' +
+      '<div class="sc"><span class="sn">' + correct + '/' + quizKeys.length + '</span><span class="sl">Quizzes passed</span></div>' +
+      '<div class="sc"><span class="sn">' + streak + (streak > 0 ? '🔥' : '') + '</span><span class="sl">Day streak</span></div>' +
+      '<div class="sc"><span class="sn">' + xpTotal + '</span><span class="sl">Total XP</span></div>' +
+    '</div>' +
+    /* Unit progress */
+    '<div class="card">' +
+      '<div class="card-title">📈 Progress by Unit</div>' +
+      unitBarsHtml +
+    '</div>' +
+    /* Badges */
+    '<div class="card">' +
+      '<div class="card-title">🏅 Badges Earned (' + earnedBadges.length + '/' + UNIT_BADGES.length + ')</div>' +
+      badgesHtml +
+    '</div>' +
+    /* Lesson table */
+    '<div class="card">' +
+      '<div class="card-title">📝 Lesson Detail &amp; Reflection Notes</div>' +
+      '<table><thead><tr>' +
+        '<th>#</th><th>Lesson</th><th>Status</th><th>Quiz</th><th>My Notes</th>' +
+      '</tr></thead><tbody>' + lessonTableHtml + '</tbody></table>' +
+    '</div>' +
+    /* Footer */
+    '<div class="rfooter">Digital Innovations &bull; KS5 AI &amp; Society Course &bull; Report generated ' + exportDate + '</div>' +
+    '</div></body></html>';
 
   var win = window.open('', '_blank');
-  if (!win) { alert('Please allow popups to export your PDF.'); return; }
+  if (!win) { alert('Please allow pop-ups for this site to export your report.'); return; }
   win.document.write(html);
   win.document.close();
-  setTimeout(function() { win.print(); }, 500);
 }
 
 /* ── Quiz Logic ───────────────────────────────── */
