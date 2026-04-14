@@ -1195,4 +1195,890 @@ var SLIDE_VISUALS = {
   <text x="280" y="150" text-anchor="middle" class="vlc" font-size="8" opacity=".45" font-style="italic">The goal is augmentation — not elimination of your own thinking. Struggle is how skills are built.</text>
 </svg>`,
 
+
+  /* ── L18:1 — Defining Acceptable Use — innovation vs safeguarding balance ── */
+  '18:1': `<svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" aria-label="Acceptable use balance diagram">
+    <defs><style>.v18{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
+    <!-- Centre pillar -->
+    <rect x="267" y="80" width="26" height="90" rx="4" fill="rgba(99,102,241,.25)" stroke="rgba(99,102,241,.5)" stroke-width="1.2"/>
+    <!-- Beam -->
+    <rect x="100" y="76" width="360" height="10" rx="5" fill="rgba(99,102,241,.3)" stroke="rgba(99,102,241,.5)" stroke-width="1.2"/>
+    <!-- Pivot -->
+    <circle cx="280" cy="81" r="7" fill="rgba(99,102,241,.5)" stroke="rgba(99,102,241,.8)" stroke-width="1.5"/>
+    <!-- Left pan — Innovation -->
+    <line x1="140" y1="86" x2="140" y2="108" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5"/>
+    <rect x="80" y="108" width="120" height="56" rx="8" fill="rgba(34,197,94,.12)" stroke="rgba(34,197,94,.45)" stroke-width="1.5"/>
+    <text x="140" y="128" text-anchor="middle" class="v18" font-size="18">🚀</text>
+    <text x="140" y="146" text-anchor="middle" class="v18" font-size="11" font-weight="700" fill="#22c55e">Innovation</text>
+    <text x="140" y="158" text-anchor="middle" class="v18" font-size="9" opacity=".65">Creativity · Efficiency</text>
+    <!-- Right pan — Safeguarding -->
+    <line x1="420" y1="86" x2="420" y2="108" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5"/>
+    <rect x="360" y="108" width="120" height="56" rx="8" fill="rgba(245,158,11,.12)" stroke="rgba(245,158,11,.45)" stroke-width="1.5"/>
+    <text x="420" y="128" text-anchor="middle" class="v18" font-size="18">🛡</text>
+    <text x="420" y="146" text-anchor="middle" class="v18" font-size="11" font-weight="700" fill="#f59e0b">Safeguarding</text>
+    <text x="420" y="158" text-anchor="middle" class="v18" font-size="9" opacity=".65">Integrity · Fairness</text>
+    <!-- Centre label -->
+    <text x="280" y="190" text-anchor="middle" class="v18" font-size="10" font-weight="700" opacity=".7">Acceptable Use Policy</text>
+    <!-- Top label -->
+    <text x="280" y="22" text-anchor="middle" class="v18" font-size="12" font-weight="800">Defining the Balance</text>
+    <text x="280" y="40" text-anchor="middle" class="v18" font-size="9.5" opacity=".6">An acceptable use policy keeps both sides of the scale in mind</text>
+  </svg>`,
+
+  /* ── L19:1 — Drafting the Document — policy document anatomy ──────────── */
+  '19:1': `<svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" aria-label="Policy document anatomy">
+    <defs><style>.v19{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
+    <!-- Document outline -->
+    <rect x="140" y="10" width="280" height="180" rx="8" fill="rgba(99,102,241,.06)" stroke="rgba(99,102,241,.3)" stroke-width="1.5"/>
+    <!-- Dog-ear fold -->
+    <polygon points="380,10 420,10 420,40" fill="rgba(99,102,241,.18)" stroke="rgba(99,102,241,.3)" stroke-width="1"/>
+    <!-- Section rows -->
+    <rect x="156" y="26" width="248" height="22" rx="4" fill="rgba(99,102,241,.18)" stroke="rgba(99,102,241,.4)" stroke-width="1"/>
+    <text x="280" y="41" text-anchor="middle" class="v19" font-size="10" font-weight="700">📋 Purpose &amp; Scope</text>
+    <rect x="156" y="56" width="248" height="22" rx="4" fill="rgba(6,182,212,.1)" stroke="rgba(6,182,212,.35)" stroke-width="1"/>
+    <text x="280" y="71" text-anchor="middle" class="v19" font-size="10" font-weight="700">📖 Definitions</text>
+    <rect x="156" y="86" width="248" height="22" rx="4" fill="rgba(34,197,94,.1)" stroke="rgba(34,197,94,.35)" stroke-width="1"/>
+    <text x="280" y="101" text-anchor="middle" class="v19" font-size="10" font-weight="700">✅ Acceptable Uses</text>
+    <rect x="156" y="116" width="248" height="22" rx="4" fill="rgba(239,68,68,.1)" stroke="rgba(239,68,68,.35)" stroke-width="1"/>
+    <text x="280" y="131" text-anchor="middle" class="v19" font-size="10" font-weight="700">🚫 Prohibited Uses</text>
+    <rect x="156" y="146" width="248" height="22" rx="4" fill="rgba(245,158,11,.1)" stroke="rgba(245,158,11,.35)" stroke-width="1"/>
+    <text x="280" y="161" text-anchor="middle" class="v19" font-size="10" font-weight="700">⚖️ Enforcement &amp; Review</text>
+    <text x="280" y="184" text-anchor="middle" class="v19" font-size="8" opacity=".45" font-style="italic">Use precise language — ambiguity creates loopholes</text>
+  </svg>`,
+
+  /* ── L21:1 — From Consumer to Co-Creator — mindset spectrum ───────────── */
+  '21:1': `<svg viewBox="0 0 560 180" xmlns="http://www.w3.org/2000/svg" aria-label="Consumer to co-creator spectrum">
+    <defs>
+      <style>.v21{font-family:system-ui,sans-serif;fill:currentColor}</style>
+      <linearGradient id="spg" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#06b6d4" stop-opacity=".6"/>
+        <stop offset="100%" stop-color="#6366f1" stop-opacity=".8"/>
+      </linearGradient>
+      <marker id="arr21" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+        <polygon points="0 0,8 3,0 6" fill="url(#spg)"/>
+      </marker>
+    </defs>
+    <text x="280" y="22" text-anchor="middle" class="v21" font-size="12" font-weight="800">The Creator Mindset Shift</text>
+    <!-- Arrow bar -->
+    <rect x="40" y="70" width="480" height="14" rx="7" fill="url(#spg)" opacity=".25"/>
+    <line x1="40" y1="77" x2="510" y2="77" stroke="url(#spg)" stroke-width="2.5" marker-end="url(#arr21)"/>
+    <!-- Stage markers -->
+    <circle cx="80"  cy="77" r="18" fill="rgba(6,182,212,.15)"  stroke="rgba(6,182,212,.5)"  stroke-width="1.5"/>
+    <text x="80"  y="73" text-anchor="middle" class="v21" font-size="16">👤</text>
+    <text x="80"  y="108" text-anchor="middle" class="v21" font-size="9" font-weight="700">Consumer</text>
+    <text x="80"  y="120" text-anchor="middle" class="v21" font-size="8" opacity=".6">Uses AI outputs</text>
+
+    <circle cx="200" cy="77" r="18" fill="rgba(99,102,241,.12)" stroke="rgba(99,102,241,.4)"  stroke-width="1.5"/>
+    <text x="200" y="73" text-anchor="middle" class="v21" font-size="16">🔍</text>
+    <text x="200" y="108" text-anchor="middle" class="v21" font-size="9" font-weight="700">Evaluator</text>
+    <text x="200" y="120" text-anchor="middle" class="v21" font-size="8" opacity=".6">Questions &amp; tests</text>
+
+    <circle cx="320" cy="77" r="18" fill="rgba(99,102,241,.14)" stroke="rgba(99,102,241,.45)" stroke-width="1.5"/>
+    <text x="320" y="73" text-anchor="middle" class="v21" font-size="16">⚙️</text>
+    <text x="320" y="108" text-anchor="middle" class="v21" font-size="9" font-weight="700">Customiser</text>
+    <text x="320" y="120" text-anchor="middle" class="v21" font-size="8" opacity=".6">Adapts &amp; refines</text>
+
+    <circle cx="460" cy="77" r="20" fill="rgba(99,102,241,.22)" stroke="rgba(99,102,241,.65)" stroke-width="2"/>
+    <text x="460" y="73" text-anchor="middle" class="v21" font-size="18">🛠</text>
+    <text x="460" y="108" text-anchor="middle" class="v21" font-size="9" font-weight="800" fill="#818cf8">Co-Creator</text>
+    <text x="460" y="120" text-anchor="middle" class="v21" font-size="8" opacity=".6">Builds with AI</text>
+
+    <text x="280" y="158" text-anchor="middle" class="v21" font-size="9" opacity=".5" font-style="italic">The capstone moves you from the left end to the right end of this spectrum</text>
+  </svg>`,
+
+  /* ── L26:1 — Logic Flows & Edge Cases — decision flowchart ────────────── */
+  '26:1': `<svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" aria-label="Logic flow and edge case diagram">
+    <defs>
+      <style>.v26{font-family:system-ui,sans-serif;fill:currentColor}</style>
+      <marker id="arr26" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <polygon points="0 0,7 3.5,0 7" fill="currentColor" opacity=".45"/>
+      </marker>
+    </defs>
+    <!-- Start -->
+    <ellipse cx="100" cy="30" rx="60" ry="18" fill="rgba(99,102,241,.18)" stroke="rgba(99,102,241,.55)" stroke-width="1.5"/>
+    <text x="100" y="35" text-anchor="middle" class="v26" font-size="10" font-weight="700">Start / Input</text>
+    <!-- Arrow down -->
+    <line x1="100" y1="48" x2="100" y2="68" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#arr26)"/>
+    <!-- Decision diamond -->
+    <polygon points="100,70 155,100 100,130 45,100" fill="rgba(245,158,11,.12)" stroke="rgba(245,158,11,.55)" stroke-width="1.5"/>
+    <text x="100" y="96" text-anchor="middle" class="v26" font-size="9" font-weight="700">Valid</text>
+    <text x="100" y="108" text-anchor="middle" class="v26" font-size="9" font-weight="700">input?</text>
+    <!-- YES arrow down -->
+    <line x1="100" y1="130" x2="100" y2="152" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#arr26)"/>
+    <text x="112" y="145" class="v26" font-size="9" fill="#22c55e" font-weight="700">YES</text>
+    <!-- Happy path box -->
+    <rect x="50" y="152" width="100" height="32" rx="6" fill="rgba(34,197,94,.12)" stroke="rgba(34,197,94,.45)" stroke-width="1.5"/>
+    <text x="100" y="172" text-anchor="middle" class="v26" font-size="9" font-weight="700">Main Logic</text>
+    <!-- NO arrow right -->
+    <line x1="155" y1="100" x2="220" y2="100" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#arr26)"/>
+    <text x="183" y="94" text-anchor="middle" class="v26" font-size="9" fill="#ef4444" font-weight="700">NO</text>
+    <!-- Edge case column header -->
+    <text x="380" y="18" text-anchor="middle" class="v26" font-size="10" font-weight="700" opacity=".7">Edge Cases to Handle</text>
+    <!-- Edge case boxes -->
+    <rect x="220" y="78" width="130" height="26" rx="5" fill="rgba(239,68,68,.1)" stroke="rgba(239,68,68,.4)" stroke-width="1"/>
+    <text x="285" y="95" text-anchor="middle" class="v26" font-size="9">Empty / null input</text>
+    <rect x="220" y="112" width="130" height="26" rx="5" fill="rgba(239,68,68,.1)" stroke="rgba(239,68,68,.4)" stroke-width="1"/>
+    <text x="285" y="129" text-anchor="middle" class="v26" font-size="9">Out-of-range values</text>
+    <rect x="365" y="78" width="130" height="26" rx="5" fill="rgba(245,158,11,.1)" stroke="rgba(245,158,11,.4)" stroke-width="1"/>
+    <text x="430" y="95" text-anchor="middle" class="v26" font-size="9">Unexpected type</text>
+    <rect x="365" y="112" width="130" height="26" rx="5" fill="rgba(245,158,11,.1)" stroke="rgba(245,158,11,.4)" stroke-width="1"/>
+    <text x="430" y="129" text-anchor="middle" class="v26" font-size="9">Adversarial input</text>
+    <rect x="220" y="148" width="275" height="26" rx="5" fill="rgba(99,102,241,.1)" stroke="rgba(99,102,241,.35)" stroke-width="1"/>
+    <text x="357" y="165" text-anchor="middle" class="v26" font-size="9">API failure / timeout — graceful fallback?</text>
+    <text x="280" y="194" text-anchor="middle" class="v26" font-size="8.5" opacity=".5" font-style="italic">Plan every branch before you write a line of code</text>
+  </svg>`,
+
+  /* ── L27:1 — Sprint 0: The Foundation — layered architecture stack ─────── */
+  '27:1': `<svg viewBox="0 0 560 195" xmlns="http://www.w3.org/2000/svg" aria-label="Foundation layer stack diagram">
+    <defs><style>.v27{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
+    <text x="280" y="18" text-anchor="middle" class="v27" font-size="12" font-weight="800">What Sprint 0 Builds</text>
+    <!-- Layer 5 (top — future) -->
+    <rect x="160" y="30" width="240" height="28" rx="6" fill="rgba(99,102,241,.07)" stroke="rgba(99,102,241,.2)" stroke-width="1" stroke-dasharray="5 3"/>
+    <text x="280" y="49" text-anchor="middle" class="v27" font-size="10" opacity=".5" font-style="italic">Future features (later sprints)</text>
+    <!-- Layer 4 -->
+    <rect x="120" y="62" width="320" height="28" rx="6" fill="rgba(168,85,247,.1)" stroke="rgba(168,85,247,.35)" stroke-width="1.2"/>
+    <text x="280" y="78" text-anchor="middle" class="v27" font-size="10" font-weight="700">🎨 UI / Interface skeleton</text>
+    <text x="280" y="88" text-anchor="middle" class="v27" font-size="8" opacity=".6">Screens, navigation, basic layout</text>
+    <!-- Layer 3 -->
+    <rect x="80" y="96" width="400" height="28" rx="6" fill="rgba(6,182,212,.1)" stroke="rgba(6,182,212,.38)" stroke-width="1.2"/>
+    <text x="280" y="112" text-anchor="middle" class="v27" font-size="10" font-weight="700">🔌 API &amp; Prompt connections</text>
+    <text x="280" y="122" text-anchor="middle" class="v27" font-size="8" opacity=".6">LLM calls, data sources, error handling</text>
+    <!-- Layer 2 -->
+    <rect x="40" y="130" width="480" height="28" rx="6" fill="rgba(34,197,94,.1)" stroke="rgba(34,197,94,.4)" stroke-width="1.2"/>
+    <text x="280" y="146" text-anchor="middle" class="v27" font-size="10" font-weight="700">🧠 Core logic &amp; data flow</text>
+    <text x="280" y="156" text-anchor="middle" class="v27" font-size="8" opacity=".6">What your tool actually does — without fluff</text>
+    <!-- Layer 1 (foundation) -->
+    <rect x="10" y="164" width="540" height="28" rx="6" fill="rgba(99,102,241,.2)" stroke="rgba(99,102,241,.55)" stroke-width="1.8"/>
+    <text x="280" y="180" text-anchor="middle" class="v27" font-size="11" font-weight="800">🏗 Project setup &amp; structure</text>
+    <text x="280" y="190" text-anchor="middle" class="v27" font-size="8" opacity=".65">Repo · environment · dependencies · naming conventions</text>
+  </svg>`,
+
+
+  /* ── L28:1 — Initial Peer Review — structured feedback loop ───────────── */
+  '28:1': `<svg viewBox="0 0 560 185" xmlns="http://www.w3.org/2000/svg" aria-label="Peer review feedback cycle">
+    <defs>
+      <style>.v28{font-family:system-ui,sans-serif;fill:currentColor}</style>
+      <marker id="a28" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <polygon points="0 0,7 3.5,0 7" fill="currentColor" opacity=".5"/>
+      </marker>
+    </defs>
+    <text x="280" y="18" text-anchor="middle" class="v28" font-size="12" font-weight="800">The Peer Review Cycle</text>
+    <!-- Builder -->
+    <rect x="30" y="60" width="120" height="70" rx="10" fill="rgba(99,102,241,.14)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
+    <text x="90" y="88" text-anchor="middle" class="v28" font-size="22">🛠</text>
+    <text x="90" y="108" text-anchor="middle" class="v28" font-size="11" font-weight="700">Builder</text>
+    <text x="90" y="121" text-anchor="middle" class="v28" font-size="9" opacity=".65">Shares work</text>
+    <!-- Reviewer -->
+    <rect x="410" y="60" width="120" height="70" rx="10" fill="rgba(6,182,212,.12)" stroke="rgba(6,182,212,.5)" stroke-width="1.5"/>
+    <text x="470" y="88" text-anchor="middle" class="v28" font-size="22">🔍</text>
+    <text x="470" y="108" text-anchor="middle" class="v28" font-size="11" font-weight="700">Reviewer</text>
+    <text x="470" y="121" text-anchor="middle" class="v28" font-size="9" opacity=".65">Gives feedback</text>
+    <!-- Top arrow: share work -->
+    <path d="M150,82 Q280,40 410,82" fill="none" stroke="rgba(99,102,241,.5)" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#a28)"/>
+    <text x="280" y="50" text-anchor="middle" class="v28" font-size="9" font-weight="700" opacity=".8">Share deliverable →</text>
+    <!-- Bottom arrow: feedback -->
+    <path d="M410,112 Q280,158 150,112" fill="none" stroke="rgba(6,182,212,.5)" stroke-width="1.8" marker-end="url(#a28)"/>
+    <text x="280" y="165" text-anchor="middle" class="v28" font-size="9" font-weight="700" opacity=".8">← Structured feedback</text>
+    <!-- Centre: criteria labels -->
+    <text x="280" y="86" text-anchor="middle" class="v28" font-size="8.5" opacity=".65">What works · What's unclear</text>
+    <text x="280" y="98" text-anchor="middle" class="v28" font-size="8.5" opacity=".65">One concrete improvement</text>
+  </svg>`,
+
+  /* ── L29:1 — Deep Work Session 1 — sprint kanban board ───────────────── */
+  '29:1': `<svg viewBox="0 0 560 185" xmlns="http://www.w3.org/2000/svg" aria-label="Sprint kanban board">
+    <defs><style>.v29{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
+    <text x="280" y="18" text-anchor="middle" class="v29" font-size="12" font-weight="800">Your Sprint Board</text>
+    <!-- Column: To Do -->
+    <rect x="20" y="28" width="158" height="148" rx="8" fill="rgba(99,102,241,.06)" stroke="rgba(99,102,241,.25)" stroke-width="1.2"/>
+    <text x="99" y="46" text-anchor="middle" class="v29" font-size="10" font-weight="700" opacity=".7">📋 TO DO</text>
+    <rect x="30" y="54" width="138" height="24" rx="5" fill="rgba(99,102,241,.12)" stroke="rgba(99,102,241,.3)" stroke-width="1"/>
+    <text x="99" y="70" text-anchor="middle" class="v29" font-size="9">Add prompt error handling</text>
+    <rect x="30" y="84" width="138" height="24" rx="5" fill="rgba(99,102,241,.12)" stroke="rgba(99,102,241,.3)" stroke-width="1"/>
+    <text x="99" y="100" text-anchor="middle" class="v29" font-size="9">Write unit tests</text>
+    <rect x="30" y="114" width="138" height="24" rx="5" fill="rgba(99,102,241,.12)" stroke="rgba(99,102,241,.3)" stroke-width="1"/>
+    <text x="99" y="130" text-anchor="middle" class="v29" font-size="9">Update sprint diary</text>
+    <!-- Column: Doing -->
+    <rect x="191" y="28" width="158" height="148" rx="8" fill="rgba(245,158,11,.06)" stroke="rgba(245,158,11,.3)" stroke-width="1.2"/>
+    <text x="270" y="46" text-anchor="middle" class="v29" font-size="10" font-weight="700" opacity=".7">⚡ IN PROGRESS</text>
+    <rect x="201" y="54" width="138" height="24" rx="5" fill="rgba(245,158,11,.15)" stroke="rgba(245,158,11,.4)" stroke-width="1"/>
+    <text x="270" y="70" text-anchor="middle" class="v29" font-size="9" font-weight="600">Core logic ← you are here</text>
+    <!-- Column: Done -->
+    <rect x="362" y="28" width="178" height="148" rx="8" fill="rgba(34,197,94,.06)" stroke="rgba(34,197,94,.3)" stroke-width="1.2"/>
+    <text x="451" y="46" text-anchor="middle" class="v29" font-size="10" font-weight="700" opacity=".7">✅ DONE</text>
+    <rect x="372" y="54" width="158" height="24" rx="5" fill="rgba(34,197,94,.15)" stroke="rgba(34,197,94,.4)" stroke-width="1"/>
+    <text x="451" y="70" text-anchor="middle" class="v29" font-size="9">Project structure set up</text>
+    <rect x="372" y="84" width="158" height="24" rx="5" fill="rgba(34,197,94,.15)" stroke="rgba(34,197,94,.4)" stroke-width="1"/>
+    <text x="451" y="100" text-anchor="middle" class="v29" font-size="9">Problem statement drafted</text>
+    <text x="280" y="182" text-anchor="middle" class="v29" font-size="8" opacity=".45" font-style="italic">Move cards left to right — document blockers honestly</text>
+  </svg>`,
+
+  /* ── L30:1 — Deep Work Session 2 — build → feedback → integrate cycle ── */
+  '30:1': `<svg viewBox="0 0 560 185" xmlns="http://www.w3.org/2000/svg" aria-label="Build feedback integrate cycle">
+    <defs>
+      <style>.v30{font-family:system-ui,sans-serif;fill:currentColor}</style>
+      <marker id="a30" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <polygon points="0 0,7 3.5,0 7" fill="currentColor" opacity=".45"/>
+      </marker>
+    </defs>
+    <text x="280" y="18" text-anchor="middle" class="v30" font-size="12" font-weight="800">Integrating Feedback</text>
+    <!-- Three circles in triangle -->
+    <circle cx="140" cy="90"  r="52" fill="rgba(99,102,241,.1)"  stroke="rgba(99,102,241,.45)" stroke-width="1.8"/>
+    <text x="140" y="83" text-anchor="middle" class="v30" font-size="20">🛠</text>
+    <text x="140" y="103" text-anchor="middle" class="v30" font-size="11" font-weight="700">Build</text>
+    <text x="140" y="117" text-anchor="middle" class="v30" font-size="8.5" opacity=".65">Add &amp; improve</text>
+
+    <circle cx="420" cy="90"  r="52" fill="rgba(6,182,212,.1)"   stroke="rgba(6,182,212,.45)"  stroke-width="1.8"/>
+    <text x="420" y="83" text-anchor="middle" class="v30" font-size="20">💬</text>
+    <text x="420" y="103" text-anchor="middle" class="v30" font-size="11" font-weight="700">Review</text>
+    <text x="420" y="117" text-anchor="middle" class="v30" font-size="8.5" opacity=".65">Peer + self critique</text>
+
+    <circle cx="280" cy="155" r="52" fill="rgba(34,197,94,.1)"   stroke="rgba(34,197,94,.45)"  stroke-width="1.8"/>
+    <text x="280" y="148" text-anchor="middle" class="v30" font-size="20">✅</text>
+    <text x="280" y="168" text-anchor="middle" class="v30" font-size="11" font-weight="700">Integrate</text>
+
+    <!-- Arrows between circles -->
+    <line x1="192" y1="76" x2="368" y2="76" stroke="currentColor" stroke-opacity=".35" stroke-width="1.5" marker-end="url(#a30)"/>
+    <line x1="396" y1="134" x2="312" y2="152" stroke="currentColor" stroke-opacity=".35" stroke-width="1.5" marker-end="url(#a30)"/>
+    <line x1="248" y1="152" x2="168" y2="134" stroke="currentColor" stroke-opacity=".35" stroke-width="1.5" marker-end="url(#a30)"/>
+  </svg>`,
+
+  /* ── L31:1 — Deep Work Session 3 — testing pyramid ───────────────────── */
+  '31:1': `<svg viewBox="0 0 560 195" xmlns="http://www.w3.org/2000/svg" aria-label="Testing pyramid diagram">
+    <defs><style>.v31{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
+    <text x="280" y="18" text-anchor="middle" class="v31" font-size="12" font-weight="800">Testing Strategy</text>
+    <!-- Pyramid layers (wide at bottom) -->
+    <!-- Layer 1: Unit/prompt tests -->
+    <polygon points="80,175 480,175 420,135 140,135" fill="rgba(34,197,94,.15)" stroke="rgba(34,197,94,.5)" stroke-width="1.5"/>
+    <text x="280" y="158" text-anchor="middle" class="v31" font-size="11" font-weight="700">🧪 Prompt &amp; logic tests</text>
+    <text x="280" y="170" text-anchor="middle" class="v31" font-size="8.5" opacity=".65">Does each function do what you expect?</text>
+    <!-- Layer 2: Integration -->
+    <polygon points="140,133 420,133 370,95 190,95" fill="rgba(245,158,11,.14)" stroke="rgba(245,158,11,.5)" stroke-width="1.5"/>
+    <text x="280" y="116" text-anchor="middle" class="v31" font-size="11" font-weight="700">🔗 Integration tests</text>
+    <text x="280" y="128" text-anchor="middle" class="v31" font-size="8.5" opacity=".65">Do the parts work together?</text>
+    <!-- Layer 3: User -->
+    <polygon points="190,93 370,93 330,57 230,57" fill="rgba(6,182,212,.14)" stroke="rgba(6,182,212,.5)" stroke-width="1.5"/>
+    <text x="280" y="78" text-anchor="middle" class="v31" font-size="10" font-weight="700">👤 User tests</text>
+    <text x="280" y="89" text-anchor="middle" class="v31" font-size="8" opacity=".65">Can a real person use it?</text>
+    <!-- Apex -->
+    <polygon points="230,55 330,55 280,28" fill="rgba(99,102,241,.2)" stroke="rgba(99,102,241,.6)" stroke-width="1.5"/>
+    <text x="280" y="46" text-anchor="middle" class="v31" font-size="9" font-weight="800">🎯 Goal</text>
+    <text x="500" y="160" class="v31" font-size="8" opacity=".5">More</text>
+    <text x="500" y="100" class="v31" font-size="8" opacity=".5">↑</text>
+    <text x="500" y="50"  class="v31" font-size="8" opacity=".5">Less</text>
+  </svg>`,
+
+  /* ── L32:1 — Deep Work Session 4 — pre-audit quality checklist ────────── */
+  '32:1': `<svg viewBox="0 0 560 190" xmlns="http://www.w3.org/2000/svg" aria-label="Pre-audit quality checklist">
+    <defs><style>.v32{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
+    <text x="280" y="18" text-anchor="middle" class="v32" font-size="12" font-weight="800">Pre-Audit Checklist</text>
+    <!-- Two-column grid -->
+    <!-- Left column -->
+    <rect x="20" y="28" width="250" height="152" rx="8" fill="rgba(99,102,241,.06)" stroke="rgba(99,102,241,.25)" stroke-width="1.2"/>
+    <text x="145" y="46" text-anchor="middle" class="v32" font-size="10" font-weight="700">⚙️ Functionality</text>
+    <text x="36" y="66" class="v32" font-size="9">☐  Core feature works end-to-end</text>
+    <text x="36" y="84" class="v32" font-size="9">☐  Edge cases handled gracefully</text>
+    <text x="36" y="102" class="v32" font-size="9">☐  Error messages are helpful</text>
+    <text x="145" y="122" text-anchor="middle" class="v32" font-size="10" font-weight="700">🎨 User Experience</text>
+    <text x="36" y="142" class="v32" font-size="9">☐  A stranger can use it without help</text>
+    <text x="36" y="160" class="v32" font-size="9">☐  Output is clear &amp; formatted</text>
+    <!-- Right column -->
+    <rect x="290" y="28" width="250" height="152" rx="8" fill="rgba(99,102,241,.06)" stroke="rgba(99,102,241,.25)" stroke-width="1.2"/>
+    <text x="415" y="46" text-anchor="middle" class="v32" font-size="10" font-weight="700">⚖️ Ethics</text>
+    <text x="306" y="66" class="v32" font-size="9">☐  No harmful output possible</text>
+    <text x="306" y="84" class="v32" font-size="9">☐  Bias considered &amp; documented</text>
+    <text x="306" y="102" class="v32" font-size="9">☐  Limitations disclosed to user</text>
+    <text x="415" y="122" text-anchor="middle" class="v32" font-size="10" font-weight="700">📄 Documentation</text>
+    <text x="306" y="142" class="v32" font-size="9">☐  Sprint diary is up to date</text>
+    <text x="306" y="160" class="v32" font-size="9">☐  Design decisions are recorded</text>
+    <text x="280" y="186" text-anchor="middle" class="v32" font-size="8" opacity=".45" font-style="italic">Complete every box before the ethical audit session</text>
+  </svg>`,
+
+
+  /* ── L33:1 — Deep Work Session 5 — final delivery pipeline ───────────── */
+  '33:1': `<svg viewBox="0 0 560 165" xmlns="http://www.w3.org/2000/svg" aria-label="Final delivery pipeline">
+    <defs>
+      <style>.v33{font-family:system-ui,sans-serif;fill:currentColor}</style>
+      <marker id="a33" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <polygon points="0 0,7 3.5,0 7" fill="currentColor" opacity=".4"/>
+      </marker>
+    </defs>
+    <text x="280" y="18" text-anchor="middle" class="v33" font-size="12" font-weight="800">Final Sprint — What to Deliver</text>
+    <!-- Five stages in a row -->
+    <rect x="10"  y="40" width="88" height="70" rx="8" fill="rgba(34,197,94,.12)"  stroke="rgba(34,197,94,.45)"  stroke-width="1.5"/>
+    <text x="54"  y="65" text-anchor="middle" class="v33" font-size="18">💻</text>
+    <text x="54"  y="83" text-anchor="middle" class="v33" font-size="9.5" font-weight="700">Working</text>
+    <text x="54"  y="95" text-anchor="middle" class="v33" font-size="9.5" font-weight="700">Code</text>
+
+    <line x1="98"  y1="75" x2="116" y2="75" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a33)"/>
+
+    <rect x="118" y="40" width="88" height="70" rx="8" fill="rgba(6,182,212,.12)"   stroke="rgba(6,182,212,.45)"   stroke-width="1.5"/>
+    <text x="162" y="65" text-anchor="middle" class="v33" font-size="18">📄</text>
+    <text x="162" y="83" text-anchor="middle" class="v33" font-size="9.5" font-weight="700">Sprint</text>
+    <text x="162" y="95" text-anchor="middle" class="v33" font-size="9.5" font-weight="700">Diary</text>
+
+    <line x1="206" y1="75" x2="224" y2="75" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a33)"/>
+
+    <rect x="226" y="40" width="88" height="70" rx="8" fill="rgba(245,158,11,.12)"  stroke="rgba(245,158,11,.45)"  stroke-width="1.5"/>
+    <text x="270" y="65" text-anchor="middle" class="v33" font-size="18">⚖️</text>
+    <text x="270" y="83" text-anchor="middle" class="v33" font-size="9.5" font-weight="700">Ethics</text>
+    <text x="270" y="95" text-anchor="middle" class="v33" font-size="9.5" font-weight="700">Report</text>
+
+    <line x1="314" y1="75" x2="332" y2="75" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a33)"/>
+
+    <rect x="334" y="40" width="88" height="70" rx="8" fill="rgba(168,85,247,.12)"  stroke="rgba(168,85,247,.45)"  stroke-width="1.5"/>
+    <text x="378" y="65" text-anchor="middle" class="v33" font-size="18">🎤</text>
+    <text x="378" y="83" text-anchor="middle" class="v33" font-size="9.5" font-weight="700">Pitch</text>
+    <text x="378" y="95" text-anchor="middle" class="v33" font-size="9.5" font-weight="700">Deck</text>
+
+    <line x1="422" y1="75" x2="440" y2="75" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a33)"/>
+
+    <rect x="442" y="40" width="108" height="70" rx="8" fill="rgba(99,102,241,.18)"  stroke="rgba(99,102,241,.55)"  stroke-width="2"/>
+    <text x="496" y="65" text-anchor="middle" class="v33" font-size="18">🏆</text>
+    <text x="496" y="83" text-anchor="middle" class="v33" font-size="9.5" font-weight="700">Submission</text>
+    <text x="496" y="95" text-anchor="middle" class="v33" font-size="8" opacity=".65">Complete &amp; polished</text>
+
+    <text x="280" y="130" text-anchor="middle" class="v33" font-size="9" opacity=".55" font-style="italic">This is your last build session — close loops, don't open new ones</text>
+  </svg>`,
+
+  /* ── L35:1 — The Pitch Deck — slide structure overview ────────────────── */
+  '35:1': `<svg viewBox="0 0 560 185" xmlns="http://www.w3.org/2000/svg" aria-label="Pitch deck slide structure">
+    <defs><style>.v35{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
+    <text x="280" y="18" text-anchor="middle" class="v35" font-size="12" font-weight="800">Pitch Deck Structure</text>
+    <!-- Five slide thumbnails -->
+    <rect x="12"  y="30" width="92" height="68" rx="6" fill="rgba(99,102,241,.15)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
+    <text x="58"  y="55" text-anchor="middle" class="v35" font-size="20">🎯</text>
+    <text x="58"  y="73" text-anchor="middle" class="v35" font-size="9"  font-weight="700">The Problem</text>
+    <text x="58"  y="85" text-anchor="middle" class="v35" font-size="7.5" opacity=".6">Who suffers &amp; why?</text>
+    <text x="58"  y="112" text-anchor="middle" class="v35" font-size="9"  opacity=".6">1</text>
+
+    <rect x="118" y="30" width="92" height="68" rx="6" fill="rgba(6,182,212,.12)"  stroke="rgba(6,182,212,.5)"  stroke-width="1.5"/>
+    <text x="164" y="55" text-anchor="middle" class="v35" font-size="20">💡</text>
+    <text x="164" y="73" text-anchor="middle" class="v35" font-size="9"  font-weight="700">Your Solution</text>
+    <text x="164" y="85" text-anchor="middle" class="v35" font-size="7.5" opacity=".6">What it does</text>
+    <text x="164" y="112" text-anchor="middle" class="v35" font-size="9"  opacity=".6">2</text>
+
+    <rect x="224" y="30" width="112" height="68" rx="6" fill="rgba(34,197,94,.13)"  stroke="rgba(34,197,94,.5)"  stroke-width="2"/>
+    <text x="280" y="55" text-anchor="middle" class="v35" font-size="20">🖥</text>
+    <text x="280" y="73" text-anchor="middle" class="v35" font-size="9"  font-weight="800">Live Demo</text>
+    <text x="280" y="85" text-anchor="middle" class="v35" font-size="7.5" opacity=".6">Show, don't tell</text>
+    <text x="280" y="112" text-anchor="middle" class="v35" font-size="9"  opacity=".6" fill="#22c55e">★ Centre your pitch</text>
+
+    <rect x="350" y="30" width="92" height="68" rx="6" fill="rgba(245,158,11,.12)"  stroke="rgba(245,158,11,.5)"  stroke-width="1.5"/>
+    <text x="396" y="55" text-anchor="middle" class="v35" font-size="20">⚖️</text>
+    <text x="396" y="73" text-anchor="middle" class="v35" font-size="9"  font-weight="700">Ethics &amp; Limits</text>
+    <text x="396" y="85" text-anchor="middle" class="v35" font-size="7.5" opacity=".6">Risks you own</text>
+    <text x="396" y="112" text-anchor="middle" class="v35" font-size="9"  opacity=".6">4</text>
+
+    <rect x="456" y="30" width="92" height="68" rx="6" fill="rgba(168,85,247,.12)"  stroke="rgba(168,85,247,.5)"  stroke-width="1.5"/>
+    <text x="502" y="55" text-anchor="middle" class="v35" font-size="20">🚀</text>
+    <text x="502" y="73" text-anchor="middle" class="v35" font-size="9"  font-weight="700">What's Next</text>
+    <text x="502" y="85" text-anchor="middle" class="v35" font-size="7.5" opacity=".6">If you had more time…</text>
+    <text x="502" y="112" text-anchor="middle" class="v35" font-size="9"  opacity=".6">5</text>
+
+    <text x="280" y="140" text-anchor="middle" class="v35" font-size="9.5" font-weight="700" opacity=".8">Golden rule: one idea per slide, no walls of text</text>
+    <text x="280" y="158" text-anchor="middle" class="v35" font-size="8.5" opacity=".55">Your audience will remember the demo — make it flawless</text>
+  </svg>`,
+
+  /* ── L36:1 — Dress Rehearsal — timed run-through with feedback ─────────── */
+  '36:1': `<svg viewBox="0 0 560 185" xmlns="http://www.w3.org/2000/svg" aria-label="Dress rehearsal timeline">
+    <defs>
+      <style>.v36{font-family:system-ui,sans-serif;fill:currentColor}</style>
+      <marker id="a36" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <polygon points="0 0,7 3.5,0 7" fill="currentColor" opacity=".4"/>
+      </marker>
+    </defs>
+    <text x="280" y="18" text-anchor="middle" class="v36" font-size="12" font-weight="800">The Dress Rehearsal Format</text>
+    <!-- Timeline bar -->
+    <line x1="40" y1="85" x2="520" y2="85" stroke="currentColor" stroke-opacity=".25" stroke-width="2" marker-end="url(#a36)"/>
+    <!-- Segment 1 -->
+    <circle cx="80"  cy="85" r="14" fill="rgba(99,102,241,.2)"  stroke="rgba(99,102,241,.55)" stroke-width="1.5"/>
+    <text x="80"  y="90" text-anchor="middle" class="v36" font-size="10" font-weight="800">1</text>
+    <text x="80"  y="112" text-anchor="middle" class="v36" font-size="9" font-weight="700">Full run</text>
+    <text x="80"  y="124" text-anchor="middle" class="v36" font-size="8" opacity=".6">No stopping</text>
+    <text x="80"  y="60"  text-anchor="middle" class="v36" font-size="8" opacity=".5">~8 min</text>
+    <!-- Segment 2 -->
+    <circle cx="210" cy="85" r="14" fill="rgba(6,182,212,.18)"  stroke="rgba(6,182,212,.55)"  stroke-width="1.5"/>
+    <text x="210" y="90" text-anchor="middle" class="v36" font-size="10" font-weight="800">2</text>
+    <text x="210" y="112" text-anchor="middle" class="v36" font-size="9" font-weight="700">Self-assess</text>
+    <text x="210" y="124" text-anchor="middle" class="v36" font-size="8" opacity=".6">What felt off?</text>
+    <text x="210" y="60"  text-anchor="middle" class="v36" font-size="8" opacity=".5">2 min</text>
+    <!-- Segment 3 -->
+    <circle cx="340" cy="85" r="14" fill="rgba(245,158,11,.18)"  stroke="rgba(245,158,11,.55)"  stroke-width="1.5"/>
+    <text x="340" y="90" text-anchor="middle" class="v36" font-size="10" font-weight="800">3</text>
+    <text x="340" y="112" text-anchor="middle" class="v36" font-size="9" font-weight="700">Peer feedback</text>
+    <text x="340" y="124" text-anchor="middle" class="v36" font-size="8" opacity=".6">Two specific points</text>
+    <text x="340" y="60"  text-anchor="middle" class="v36" font-size="8" opacity=".5">5 min</text>
+    <!-- Segment 4 -->
+    <circle cx="470" cy="85" r="14" fill="rgba(34,197,94,.2)"   stroke="rgba(34,197,94,.55)"   stroke-width="1.5"/>
+    <text x="470" y="90" text-anchor="middle" class="v36" font-size="10" font-weight="800">4</text>
+    <text x="470" y="112" text-anchor="middle" class="v36" font-size="9" font-weight="700">Action list</text>
+    <text x="470" y="124" text-anchor="middle" class="v36" font-size="8" opacity=".6">3 things to fix</text>
+    <text x="470" y="60"  text-anchor="middle" class="v36" font-size="8" opacity=".5">3 min</text>
+    <text x="280" y="155" text-anchor="middle" class="v36" font-size="9" opacity=".55" font-style="italic">Treat it exactly like the real thing — nerves, timer, full demo</text>
+  </svg>`,
+
+  /* ── L37:1 — Presentations Group 1 — presentation scoring criteria ────── */
+  '37:1': `<svg viewBox="0 0 560 185" xmlns="http://www.w3.org/2000/svg" aria-label="Presentation assessment criteria">
+    <defs><style>.v37{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
+    <text x="280" y="18" text-anchor="middle" class="v37" font-size="12" font-weight="800">What the Panel Is Looking For</text>
+    <!-- Four criteria boxes -->
+    <rect x="20"  y="30" width="242" height="64" rx="8" fill="rgba(99,102,241,.1)"  stroke="rgba(99,102,241,.4)" stroke-width="1.5"/>
+    <text x="36"  y="52" class="v37" font-size="22">🎯</text>
+    <text x="68"  y="50" class="v37" font-size="10" font-weight="700">Clarity of problem &amp; solution</text>
+    <text x="68"  y="64" class="v37" font-size="8.5" opacity=".65">Does the panel understand what you built</text>
+    <text x="68"  y="76" class="v37" font-size="8.5" opacity=".65">and why it matters?</text>
+
+    <rect x="298" y="30" width="242" height="64" rx="8" fill="rgba(6,182,212,.1)"   stroke="rgba(6,182,212,.4)"  stroke-width="1.5"/>
+    <text x="314" y="52" class="v37" font-size="22">🖥</text>
+    <text x="346" y="50" class="v37" font-size="10" font-weight="700">Demo quality</text>
+    <text x="346" y="64" class="v37" font-size="8.5" opacity=".65">Does it work live? Is output meaningful?</text>
+    <text x="346" y="76" class="v37" font-size="8.5" opacity=".65">Are edge cases handled gracefully?</text>
+
+    <rect x="20"  y="104" width="242" height="64" rx="8" fill="rgba(245,158,11,.1)"  stroke="rgba(245,158,11,.4)" stroke-width="1.5"/>
+    <text x="36"  y="126" class="v37" font-size="22">⚖️</text>
+    <text x="68"  y="124" class="v37" font-size="10" font-weight="700">Ethical awareness</text>
+    <text x="68"  y="138" class="v37" font-size="8.5" opacity=".65">Can you articulate the risks and how</text>
+    <text x="68"  y="150" class="v37" font-size="8.5" opacity=".65">you've mitigated them?</text>
+
+    <rect x="298" y="104" width="242" height="64" rx="8" fill="rgba(34,197,94,.1)"   stroke="rgba(34,197,94,.4)"  stroke-width="1.5"/>
+    <text x="314" y="126" class="v37" font-size="22">❓</text>
+    <text x="346" y="124" class="v37" font-size="10" font-weight="700">Q&amp;A response</text>
+    <text x="346" y="138" class="v37" font-size="8.5" opacity=".65">Do you know your project deeply enough</text>
+    <text x="346" y="150" class="v37" font-size="8.5" opacity=".65">to handle unexpected questions?</text>
+  </svg>`,
+
+  /* ── L38:1 — Presentations Group 2 — audience and panel setup ─────────── */
+  '38:1': `<svg viewBox="0 0 560 185" xmlns="http://www.w3.org/2000/svg" aria-label="Presentation room layout and tips">
+    <defs><style>.v38{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
+    <text x="280" y="18" text-anchor="middle" class="v38" font-size="12" font-weight="800">Presentation Day — What to Remember</text>
+    <!-- Three tip cards -->
+    <rect x="20"  y="30" width="158" height="140" rx="10" fill="rgba(99,102,241,.1)"  stroke="rgba(99,102,241,.4)" stroke-width="1.5"/>
+    <text x="99"  y="58" text-anchor="middle" class="v38" font-size="28">🧘</text>
+    <text x="99"  y="80" text-anchor="middle" class="v38" font-size="11" font-weight="800">Before</text>
+    <text x="99"  y="96" text-anchor="middle" class="v38" font-size="8.5" opacity=".7">Test your demo on</text>
+    <text x="99"  y="108" text-anchor="middle" class="v38" font-size="8.5" opacity=".7">the actual device</text>
+    <text x="99"  y="124" text-anchor="middle" class="v38" font-size="8.5" opacity=".7">Have a backup plan</text>
+    <text x="99"  y="138" text-anchor="middle" class="v38" font-size="8.5" opacity=".7">if live demo fails</text>
+    <text x="99"  y="158" text-anchor="middle" class="v38" font-size="8" opacity=".5" font-style="italic">Screenshots save lives</text>
+
+    <rect x="201" y="30" width="158" height="140" rx="10" fill="rgba(34,197,94,.1)"   stroke="rgba(34,197,94,.4)"  stroke-width="1.5"/>
+    <text x="280" y="58" text-anchor="middle" class="v38" font-size="28">🎤</text>
+    <text x="280" y="80" text-anchor="middle" class="v38" font-size="11" font-weight="800">During</text>
+    <text x="280" y="96" text-anchor="middle" class="v38" font-size="8.5" opacity=".7">Speak to the panel,</text>
+    <text x="280" y="108" text-anchor="middle" class="v38" font-size="8.5" opacity=".7">not the screen</text>
+    <text x="280" y="124" text-anchor="middle" class="v38" font-size="8.5" opacity=".7">Pause after key points</text>
+    <text x="280" y="138" text-anchor="middle" class="v38" font-size="8.5" opacity=".7">Own your limitations</text>
+    <text x="280" y="158" text-anchor="middle" class="v38" font-size="8" opacity=".5" font-style="italic">Confidence ≠ certainty</text>
+
+    <rect x="382" y="30" width="158" height="140" rx="10" fill="rgba(245,158,11,.1)"  stroke="rgba(245,158,11,.4)" stroke-width="1.5"/>
+    <text x="461" y="58" text-anchor="middle" class="v38" font-size="28">❓</text>
+    <text x="461" y="80" text-anchor="middle" class="v38" font-size="11" font-weight="800">Q&amp;A</text>
+    <text x="461" y="96" text-anchor="middle" class="v38" font-size="8.5" opacity=".7">"Good question" is</text>
+    <text x="461" y="108" text-anchor="middle" class="v38" font-size="8.5" opacity=".7">filler — just answer</text>
+    <text x="461" y="124" text-anchor="middle" class="v38" font-size="8.5" opacity=".7">"I don't know, but…"</text>
+    <text x="461" y="138" text-anchor="middle" class="v38" font-size="8.5" opacity=".7">is an honest answer</text>
+    <text x="461" y="158" text-anchor="middle" class="v38" font-size="8" opacity=".5" font-style="italic">Defend your choices</text>
+  </svg>`,
+
+
+  /* ── L39:1 — Viva Voce Session 1 — question types triangle ───────────── */
+  '39:1': `<svg viewBox="0 0 560 185" xmlns="http://www.w3.org/2000/svg" aria-label="Viva question types">
+    <defs><style>.v39{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
+    <text x="280" y="18" text-anchor="middle" class="v39" font-size="12" font-weight="800">Viva Question Types — Be Ready for All Three</text>
+    <!-- Three columns -->
+    <rect x="18"  y="30" width="162" height="140" rx="9" fill="rgba(6,182,212,.1)"   stroke="rgba(6,182,212,.45)"  stroke-width="1.5"/>
+    <text x="99"  y="56" text-anchor="middle" class="v39" font-size="24">📖</text>
+    <text x="99"  y="76" text-anchor="middle" class="v39" font-size="11" font-weight="700">Knowledge</text>
+    <text x="99"  y="92" text-anchor="middle" class="v39" font-size="8.5" opacity=".7">"What does X mean?"</text>
+    <text x="99"  y="106" text-anchor="middle" class="v39" font-size="8.5" opacity=".7">"How does Y work?"</text>
+    <text x="99"  y="124" text-anchor="middle" class="v39" font-size="8" opacity=".55" font-style="italic">Can you explain your</text>
+    <text x="99"  y="136" text-anchor="middle" class="v39" font-size="8" opacity=".55" font-style="italic">own design choices?</text>
+    <text x="99"  y="158" text-anchor="middle" class="v39" font-size="9" fill="#06b6d4" font-weight="700">→ Know your project</text>
+
+    <rect x="199" y="30" width="162" height="140" rx="9" fill="rgba(99,102,241,.1)"  stroke="rgba(99,102,241,.45)" stroke-width="1.5"/>
+    <text x="280" y="56" text-anchor="middle" class="v39" font-size="24">🔧</text>
+    <text x="280" y="76" text-anchor="middle" class="v39" font-size="11" font-weight="700">Application</text>
+    <text x="280" y="92" text-anchor="middle" class="v39" font-size="8.5" opacity=".7">"What if X went wrong?"</text>
+    <text x="280" y="106" text-anchor="middle" class="v39" font-size="8.5" opacity=".7">"How would you improve it?"</text>
+    <text x="280" y="124" text-anchor="middle" class="v39" font-size="8" opacity=".55" font-style="italic">Can you think on your</text>
+    <text x="280" y="136" text-anchor="middle" class="v39" font-size="8" opacity=".55" font-style="italic">feet under pressure?</text>
+    <text x="280" y="158" text-anchor="middle" class="v39" font-size="9" fill="#818cf8" font-weight="700">→ Think aloud</text>
+
+    <rect x="380" y="30" width="162" height="140" rx="9" fill="rgba(245,158,11,.1)"  stroke="rgba(245,158,11,.45)" stroke-width="1.5"/>
+    <text x="461" y="56" text-anchor="middle" class="v39" font-size="24">🪞</text>
+    <text x="461" y="76" text-anchor="middle" class="v39" font-size="11" font-weight="700">Reflection</text>
+    <text x="461" y="92" text-anchor="middle" class="v39" font-size="8.5" opacity=".7">"What would you do</text>
+    <text x="461" y="106" text-anchor="middle" class="v39" font-size="8.5" opacity=".7">differently?"</text>
+    <text x="461" y="124" text-anchor="middle" class="v39" font-size="8" opacity=".55" font-style="italic">Do you understand</text>
+    <text x="461" y="136" text-anchor="middle" class="v39" font-size="8" opacity=".55" font-style="italic">your own learning?</text>
+    <text x="461" y="158" text-anchor="middle" class="v39" font-size="9" fill="#f59e0b" font-weight="700">→ Be honest</text>
+  </svg>`,
+
+  /* ── L40:1 — Viva Voce Session 2 — Q&A strategy ──────────────────────── */
+  '40:1': `<svg viewBox="0 0 560 185" xmlns="http://www.w3.org/2000/svg" aria-label="Viva Q and A strategy diagram">
+    <defs>
+      <style>.v40{font-family:system-ui,sans-serif;fill:currentColor}</style>
+      <marker id="a40" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <polygon points="0 0,7 3.5,0 7" fill="currentColor" opacity=".4"/>
+      </marker>
+    </defs>
+    <text x="280" y="18" text-anchor="middle" class="v40" font-size="12" font-weight="800">Answering Any Viva Question</text>
+    <!-- Linear flow: Question → Pause → Structure → Answer → Evidence -->
+    <rect x="10"  y="55" width="95" height="50" rx="8" fill="rgba(239,68,68,.12)"  stroke="rgba(239,68,68,.45)"  stroke-width="1.5"/>
+    <text x="57"  y="76" text-anchor="middle" class="v40" font-size="20">❓</text>
+    <text x="57"  y="95" text-anchor="middle" class="v40" font-size="9" font-weight="700">Question</text>
+
+    <line x1="105" y1="80" x2="123" y2="80" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a40)"/>
+
+    <rect x="125" y="55" width="85" height="50" rx="8" fill="rgba(245,158,11,.12)"  stroke="rgba(245,158,11,.45)"  stroke-width="1.5"/>
+    <text x="167" y="76" text-anchor="middle" class="v40" font-size="20">⏸</text>
+    <text x="167" y="95" text-anchor="middle" class="v40" font-size="9" font-weight="700">Pause &amp; think</text>
+
+    <line x1="210" y1="80" x2="228" y2="80" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a40)"/>
+
+    <rect x="230" y="55" width="100" height="50" rx="8" fill="rgba(99,102,241,.13)"  stroke="rgba(99,102,241,.45)"  stroke-width="1.5"/>
+    <text x="280" y="76" text-anchor="middle" class="v40" font-size="20">🗂</text>
+    <text x="280" y="95" text-anchor="middle" class="v40" font-size="9" font-weight="700">Structure first</text>
+
+    <line x1="330" y1="80" x2="348" y2="80" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a40)"/>
+
+    <rect x="350" y="55" width="85" height="50" rx="8" fill="rgba(6,182,212,.12)"   stroke="rgba(6,182,212,.45)"   stroke-width="1.5"/>
+    <text x="392" y="76" text-anchor="middle" class="v40" font-size="20">💬</text>
+    <text x="392" y="95" text-anchor="middle" class="v40" font-size="9" font-weight="700">Answer clearly</text>
+
+    <line x1="435" y1="80" x2="453" y2="80" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a40)"/>
+
+    <rect x="455" y="55" width="95" height="50" rx="8" fill="rgba(34,197,94,.13)"   stroke="rgba(34,197,94,.45)"   stroke-width="1.5"/>
+    <text x="502" y="76" text-anchor="middle" class="v40" font-size="20">📎</text>
+    <text x="502" y="95" text-anchor="middle" class="v40" font-size="9" font-weight="700">Add evidence</text>
+
+    <!-- Bottom tips -->
+    <text x="57"  y="125" text-anchor="middle" class="v40" font-size="7.5" opacity=".55" font-style="italic">Silence is OK</text>
+    <text x="167" y="125" text-anchor="middle" class="v40" font-size="7.5" opacity=".55" font-style="italic">3 seconds is fine</text>
+    <text x="280" y="125" text-anchor="middle" class="v40" font-size="7.5" opacity=".55" font-style="italic">"There are two parts…"</text>
+    <text x="392" y="125" text-anchor="middle" class="v40" font-size="7.5" opacity=".55" font-style="italic">Short sentences</text>
+    <text x="502" y="125" text-anchor="middle" class="v40" font-size="7.5" opacity=".55" font-style="italic">Point to your work</text>
+    <text x="280" y="160" text-anchor="middle" class="v40" font-size="8.5" opacity=".5" font-style="italic">"I don't know, but my reasoning was…" beats a wrong answer every time</text>
+  </svg>`,
+
+  /* ── L41:1 — The Automated Graduate — AI-replaceable vs human-essential ─ */
+  '41:1': `<svg viewBox="0 0 560 185" xmlns="http://www.w3.org/2000/svg" aria-label="AI replaceable vs human essential skills matrix">
+    <defs><style>.v41{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
+    <text x="280" y="18" text-anchor="middle" class="v41" font-size="12" font-weight="800">Graduate Skills — 2026 and Beyond</text>
+    <!-- Left: AI can do -->
+    <rect x="18" y="30" width="240" height="145" rx="9" fill="rgba(239,68,68,.08)"  stroke="rgba(239,68,68,.4)" stroke-width="1.5"/>
+    <text x="138" y="54" text-anchor="middle" class="v41" font-size="10" font-weight="700" fill="#ef4444">🤖 AI Can Now Do This</text>
+    <text x="34"  y="76" class="v41" font-size="9.5" opacity=".8">✗  Summarise documents</text>
+    <text x="34"  y="94" class="v41" font-size="9.5" opacity=".8">✗  First-draft writing</text>
+    <text x="34"  y="112" class="v41" font-size="9.5" opacity=".8">✗  Basic data analysis</text>
+    <text x="34"  y="130" class="v41" font-size="9.5" opacity=".8">✗  Routine coding tasks</text>
+    <text x="34"  y="148" class="v41" font-size="9.5" opacity=".8">✗  Pattern recognition</text>
+    <text x="34"  y="164" class="v41" font-size="8" opacity=".5" font-style="italic">Commoditised skills lose value fast</text>
+
+    <!-- Right: Humans still win -->
+    <rect x="302" y="30" width="240" height="145" rx="9" fill="rgba(34,197,94,.09)"  stroke="rgba(34,197,94,.4)" stroke-width="1.5"/>
+    <text x="422" y="54" text-anchor="middle" class="v41" font-size="10" font-weight="700" fill="#22c55e">🧠 Humans Still Lead</text>
+    <text x="318" y="76" class="v41" font-size="9.5" opacity=".8">✓  Ethical judgment &amp; accountability</text>
+    <text x="318" y="94" class="v41" font-size="9.5" opacity=".8">✓  Novel problem framing</text>
+    <text x="318" y="112" class="v41" font-size="9.5" opacity=".8">✓  Stakeholder empathy</text>
+    <text x="318" y="130" class="v41" font-size="9.5" opacity=".8">✓  Cross-domain creativity</text>
+    <text x="318" y="148" class="v41" font-size="9.5" opacity=".8">✓  Leading &amp; being led</text>
+    <text x="318" y="164" class="v41" font-size="8" opacity=".5" font-style="italic">These are your competitive advantages</text>
+  </svg>`,
+
+  /* ── L42:1 — Personal Statement Audit — AI-assisted writing process ────── */
+  '42:1': `<svg viewBox="0 0 560 185" xmlns="http://www.w3.org/2000/svg" aria-label="AI assisted personal statement writing process">
+    <defs>
+      <style>.v42{font-family:system-ui,sans-serif;fill:currentColor}</style>
+      <marker id="a42" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <polygon points="0 0,7 3.5,0 7" fill="currentColor" opacity=".4"/>
+      </marker>
+    </defs>
+    <text x="280" y="18" text-anchor="middle" class="v42" font-size="12" font-weight="800">AI-Assisted Writing — The Right Way</text>
+    <!-- Step 1: Your raw draft -->
+    <rect x="10" y="38" width="110" height="60" rx="8" fill="rgba(99,102,241,.14)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
+    <text x="65" y="62" text-anchor="middle" class="v42" font-size="20">✍️</text>
+    <text x="65" y="80" text-anchor="middle" class="v42" font-size="9" font-weight="700">Your first draft</text>
+    <text x="65" y="92" text-anchor="middle" class="v42" font-size="8" opacity=".6">Authentic voice</text>
+    <line x1="120" y1="68" x2="138" y2="68" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a42)"/>
+    <!-- Step 2: AI suggestions -->
+    <rect x="140" y="38" width="110" height="60" rx="8" fill="rgba(6,182,212,.12)"  stroke="rgba(6,182,212,.45)"  stroke-width="1.5"/>
+    <text x="195" y="62" text-anchor="middle" class="v42" font-size="20">🤖</text>
+    <text x="195" y="80" text-anchor="middle" class="v42" font-size="9" font-weight="700">AI feedback</text>
+    <text x="195" y="92" text-anchor="middle" class="v42" font-size="8" opacity=".6">Structure · Clarity</text>
+    <!-- Critical filter — wide and prominent -->
+    <line x1="250" y1="68" x2="268" y2="68" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a42)"/>
+    <rect x="270" y="30" width="130" height="76" rx="8" fill="rgba(245,158,11,.16)" stroke="rgba(245,158,11,.6)"  stroke-width="2"/>
+    <text x="335" y="54" text-anchor="middle" class="v42" font-size="20">🔍</text>
+    <text x="335" y="72" text-anchor="middle" class="v42" font-size="10" font-weight="800" fill="#f59e0b">Critical filter</text>
+    <text x="335" y="86" text-anchor="middle" class="v42" font-size="8" opacity=".7">Does this still sound</text>
+    <text x="335" y="97" text-anchor="middle" class="v42" font-size="8" opacity=".7">like YOU?</text>
+    <line x1="400" y1="68" x2="418" y2="68" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a42)"/>
+    <!-- Step 4: Final -->
+    <rect x="420" y="38" width="130" height="60" rx="8" fill="rgba(34,197,94,.13)"  stroke="rgba(34,197,94,.5)"   stroke-width="1.5"/>
+    <text x="485" y="62" text-anchor="middle" class="v42" font-size="20">📄</text>
+    <text x="485" y="80" text-anchor="middle" class="v42" font-size="9" font-weight="700">Final statement</text>
+    <text x="485" y="92" text-anchor="middle" class="v42" font-size="8" opacity=".6">Genuinely yours</text>
+    <!-- Warning below -->
+    <rect x="10" y="114" width="540" height="34" rx="7" fill="rgba(239,68,68,.08)" stroke="rgba(239,68,68,.3)" stroke-width="1"/>
+    <text x="280" y="130" text-anchor="middle" class="v42" font-size="9" font-weight="700" fill="#ef4444">⚠  Admissions tutors spot AI-generated prose. Accepting AI suggestions that flatten your voice is self-sabotage.</text>
+    <text x="280" y="144" text-anchor="middle" class="v42" font-size="8" opacity=".6">Use AI to improve your writing — not to replace your thinking.</text>
+    <text x="280" y="172" text-anchor="middle" class="v42" font-size="8" opacity=".45" font-style="italic">The goal: a better version of your authentic voice, not a generic AI essay</text>
+  </svg>`,
+
+  /* ── L43:1 — Course Retrospective — Start / Stop / Continue ──────────── */
+  '43:1': `<svg viewBox="0 0 560 185" xmlns="http://www.w3.org/2000/svg" aria-label="Course retrospective framework">
+    <defs><style>.v43{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
+    <text x="280" y="18" text-anchor="middle" class="v43" font-size="12" font-weight="800">Course Retrospective — Three Questions</text>
+    <!-- Three columns -->
+    <rect x="18"  y="30" width="162" height="145" rx="9" fill="rgba(34,197,94,.1)"   stroke="rgba(34,197,94,.45)"  stroke-width="1.5"/>
+    <text x="99"  y="58" text-anchor="middle" class="v43" font-size="28">▶</text>
+    <text x="99"  y="80" text-anchor="middle" class="v43" font-size="13" font-weight="800" fill="#22c55e">START</text>
+    <text x="99"  y="98" text-anchor="middle" class="v43" font-size="8.5" opacity=".7">What should you begin</text>
+    <text x="99"  y="110" text-anchor="middle" class="v43" font-size="8.5" opacity=".7">doing in your next phase</text>
+    <text x="99"  y="122" text-anchor="middle" class="v43" font-size="8.5" opacity=".7">of learning — at uni,</text>
+    <text x="99"  y="134" text-anchor="middle" class="v43" font-size="8.5" opacity=".7">work, or independently?</text>
+    <text x="99"  y="160" text-anchor="middle" class="v43" font-size="8" opacity=".5" font-style="italic">e.g. weekly AI reading</text>
+
+    <rect x="199" y="30" width="162" height="145" rx="9" fill="rgba(239,68,68,.1)"   stroke="rgba(239,68,68,.45)"  stroke-width="1.5"/>
+    <text x="280" y="58" text-anchor="middle" class="v43" font-size="28">⏹</text>
+    <text x="280" y="80" text-anchor="middle" class="v43" font-size="13" font-weight="800" fill="#ef4444">STOP</text>
+    <text x="280" y="98" text-anchor="middle" class="v43" font-size="8.5" opacity=".7">What habit or belief</text>
+    <text x="280" y="110" text-anchor="middle" class="v43" font-size="8.5" opacity=".7">about AI did this course</text>
+    <text x="280" y="122" text-anchor="middle" class="v43" font-size="8.5" opacity=".7">change? What should</text>
+    <text x="280" y="134" text-anchor="middle" class="v43" font-size="8.5" opacity=".7">you leave behind?</text>
+    <text x="280" y="160" text-anchor="middle" class="v43" font-size="8" opacity=".5" font-style="italic">e.g. accepting AI blindly</text>
+
+    <rect x="380" y="30" width="162" height="145" rx="9" fill="rgba(99,102,241,.1)"  stroke="rgba(99,102,241,.45)" stroke-width="1.5"/>
+    <text x="461" y="58" text-anchor="middle" class="v43" font-size="28">🔁</text>
+    <text x="461" y="80" text-anchor="middle" class="v43" font-size="13" font-weight="800" fill="#818cf8">CONTINUE</text>
+    <text x="461" y="98" text-anchor="middle" class="v43" font-size="8.5" opacity=".7">Which skills from this</text>
+    <text x="461" y="110" text-anchor="middle" class="v43" font-size="8.5" opacity=".7">course are most worth</text>
+    <text x="461" y="122" text-anchor="middle" class="v43" font-size="8.5" opacity=".7">keeping? What will you</text>
+    <text x="461" y="134" text-anchor="middle" class="v43" font-size="8.5" opacity=".7">actually use?</text>
+    <text x="461" y="160" text-anchor="middle" class="v43" font-size="8" opacity=".5" font-style="italic">e.g. prompt iteration</text>
+  </svg>`,
+
+
+  /* ── L45:1 — What Can You Trust? — epistemic framework ───────────────── */
+  '45:1': `<svg viewBox="0 0 560 185" xmlns="http://www.w3.org/2000/svg" aria-label="Epistemic framework for evaluating AI claims">
+    <defs><style>.v45{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
+    <text x="280" y="18" text-anchor="middle" class="v45" font-size="12" font-weight="800">Evaluating Any AI Claim — Four Lenses</text>
+    <!-- Four quadrants -->
+    <line x1="280" y1="28" x2="280" y2="178" stroke="currentColor" stroke-opacity=".2" stroke-width="1"/>
+    <line x1="20"  y1="103" x2="540" y2="103" stroke="currentColor" stroke-opacity=".2" stroke-width="1"/>
+
+    <rect x="22"  y="30"  width="250" height="68" rx="8" fill="rgba(99,102,241,.1)"  stroke="rgba(99,102,241,.4)" stroke-width="1.2"/>
+    <text x="36"  y="52"  class="v45" font-size="20">🔍</text>
+    <text x="70"  y="50"  class="v45" font-size="10" font-weight="700">Evidence</text>
+    <text x="70"  y="64"  class="v45" font-size="8.5" opacity=".7">What is the actual claim?</text>
+    <text x="70"  y="76"  class="v45" font-size="8.5" opacity=".7">Is there verifiable evidence?</text>
+    <text x="70"  y="88"  class="v45" font-size="8.5" opacity=".7">How recent is it?</text>
+
+    <rect x="288" y="30"  width="250" height="68" rx="8" fill="rgba(6,182,212,.1)"   stroke="rgba(6,182,212,.4)"  stroke-width="1.2"/>
+    <text x="302" y="52"  class="v45" font-size="20">🏛</text>
+    <text x="336" y="50"  class="v45" font-size="10" font-weight="700">Source</text>
+    <text x="336" y="64"  class="v45" font-size="8.5" opacity=".7">Who made this claim?</text>
+    <text x="336" y="76"  class="v45" font-size="8.5" opacity=".7">What do they stand to gain?</text>
+    <text x="336" y="88"  class="v45" font-size="8.5" opacity=".7">Peer-reviewed or primary?</text>
+
+    <rect x="22"  y="107" width="250" height="68" rx="8" fill="rgba(245,158,11,.1)"  stroke="rgba(245,158,11,.4)" stroke-width="1.2"/>
+    <text x="36"  y="129" class="v45" font-size="20">🧩</text>
+    <text x="70"  y="127" class="v45" font-size="10" font-weight="700">Logic</text>
+    <text x="70"  y="141" class="v45" font-size="8.5" opacity=".7">Does the reasoning hold?</text>
+    <text x="70"  y="153" class="v45" font-size="8.5" opacity=".7">Correlation ≠ causation?</text>
+    <text x="70"  y="165" class="v45" font-size="8.5" opacity=".7">Any hidden assumptions?</text>
+
+    <rect x="288" y="107" width="250" height="68" rx="8" fill="rgba(34,197,94,.1)"   stroke="rgba(34,197,94,.4)"  stroke-width="1.2"/>
+    <text x="302" y="129" class="v45" font-size="20">🎯</text>
+    <text x="336" y="127" class="v45" font-size="10" font-weight="700">Purpose</text>
+    <text x="336" y="141" class="v45" font-size="8.5" opacity=".7">Why is this being shared?</text>
+    <text x="336" y="153" class="v45" font-size="8.5" opacity=".7">Who benefits if you believe it?</text>
+    <text x="336" y="165" class="v45" font-size="8.5" opacity=".7">What's the emotional hook?</text>
+  </svg>`,
+
+  /* ── L46:1 — Trust But Verify — VERIFY workflow ───────────────────────── */
+  '46:1': `<svg viewBox="0 0 560 185" xmlns="http://www.w3.org/2000/svg" aria-label="VERIFY workflow for fact-checking AI outputs">
+    <defs>
+      <style>.v46{font-family:system-ui,sans-serif;fill:currentColor}</style>
+      <marker id="a46" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <polygon points="0 0,7 3.5,0 7" fill="currentColor" opacity=".4"/>
+      </marker>
+    </defs>
+    <text x="280" y="18" text-anchor="middle" class="v46" font-size="13" font-weight="800">The VERIFY Workflow</text>
+    <!-- Six steps in two rows -->
+    <!-- Row 1 -->
+    <rect x="10"  y="30" width="82" height="62" rx="7" fill="rgba(99,102,241,.16)" stroke="rgba(99,102,241,.55)" stroke-width="1.5"/>
+    <text x="51"  y="52" text-anchor="middle" class="v46" font-size="15" font-weight="900" fill="#818cf8">V</text>
+    <text x="51"  y="66" text-anchor="middle" class="v46" font-size="9"  font-weight="700">Vet the claim</text>
+    <text x="51"  y="78" text-anchor="middle" class="v46" font-size="7.5" opacity=".6">Exact wording?</text>
+    <line x1="92" y1="61" x2="107" y2="61" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a46)"/>
+
+    <rect x="109" y="30" width="82" height="62" rx="7" fill="rgba(6,182,212,.13)"   stroke="rgba(6,182,212,.5)"   stroke-width="1.5"/>
+    <text x="150" y="52" text-anchor="middle" class="v46" font-size="15" font-weight="900" fill="#06b6d4">E</text>
+    <text x="150" y="66" text-anchor="middle" class="v46" font-size="9"  font-weight="700">Evidence check</text>
+    <text x="150" y="78" text-anchor="middle" class="v46" font-size="7.5" opacity=".6">Primary source?</text>
+    <line x1="191" y1="61" x2="206" y2="61" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a46)"/>
+
+    <rect x="208" y="30" width="82" height="62" rx="7" fill="rgba(34,197,94,.12)"   stroke="rgba(34,197,94,.5)"   stroke-width="1.5"/>
+    <text x="249" y="52" text-anchor="middle" class="v46" font-size="15" font-weight="900" fill="#22c55e">R</text>
+    <text x="249" y="66" text-anchor="middle" class="v46" font-size="9"  font-weight="700">Recency</text>
+    <text x="249" y="78" text-anchor="middle" class="v46" font-size="7.5" opacity=".6">Still current?</text>
+    <line x1="290" y1="61" x2="305" y2="61" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a46)"/>
+
+    <rect x="307" y="30" width="82" height="62" rx="7" fill="rgba(245,158,11,.13)"  stroke="rgba(245,158,11,.5)"  stroke-width="1.5"/>
+    <text x="348" y="52" text-anchor="middle" class="v46" font-size="15" font-weight="900" fill="#f59e0b">I</text>
+    <text x="348" y="66" text-anchor="middle" class="v46" font-size="9"  font-weight="700">Intent</text>
+    <text x="348" y="78" text-anchor="middle" class="v46" font-size="7.5" opacity=".6">Who benefits?</text>
+    <line x1="389" y1="61" x2="404" y2="61" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a46)"/>
+
+    <rect x="406" y="30" width="82" height="62" rx="7" fill="rgba(168,85,247,.13)"  stroke="rgba(168,85,247,.5)"  stroke-width="1.5"/>
+    <text x="447" y="52" text-anchor="middle" class="v46" font-size="15" font-weight="900" fill="#a855f7">F</text>
+    <text x="447" y="66" text-anchor="middle" class="v46" font-size="9"  font-weight="700">Find consensus</text>
+    <text x="447" y="78" text-anchor="middle" class="v46" font-size="7.5" opacity=".6">3 sources agree?</text>
+    <line x1="488" y1="61" x2="503" y2="61" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a46)"/>
+
+    <rect x="505" y="30" width="45" height="62" rx="7" fill="rgba(239,68,68,.13)"   stroke="rgba(239,68,68,.5)"   stroke-width="1.5"/>
+    <text x="527" y="52" text-anchor="middle" class="v46" font-size="15" font-weight="900" fill="#ef4444">Y</text>
+    <text x="527" y="66" text-anchor="middle" class="v46" font-size="8"  font-weight="700">Your</text>
+    <text x="527" y="78" text-anchor="middle" class="v46" font-size="8"  font-weight="700">call</text>
+
+    <text x="280" y="120" text-anchor="middle" class="v46" font-size="11" font-weight="800">Verify  ·  Evidence  ·  Recency  ·  Intent  ·  Find consensus  ·  Your call</text>
+    <rect x="20" y="132" width="520" height="38" rx="7" fill="rgba(99,102,241,.07)" stroke="rgba(99,102,241,.2)" stroke-width="1"/>
+    <text x="280" y="149" text-anchor="middle" class="v46" font-size="9" opacity=".75">Apply this to every AI-generated claim before you cite it, share it, or act on it.</text>
+    <text x="280" y="163" text-anchor="middle" class="v46" font-size="8.5" opacity=".55">If it fails at any step — flag it, don't forward it.</text>
+  </svg>`,
+
+  /* ── L47:1 — The AI Content Flood — SIFT methodology ─────────────────── */
+  '47:1': `<svg viewBox="0 0 560 185" xmlns="http://www.w3.org/2000/svg" aria-label="SIFT media literacy methodology">
+    <defs><style>.v47{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
+    <text x="280" y="18" text-anchor="middle" class="v47" font-size="13" font-weight="800">SIFT — Your Media Literacy Toolkit</text>
+    <!-- Four large cards -->
+    <rect x="10"  y="30" width="126" height="140" rx="9" fill="rgba(99,102,241,.12)"  stroke="rgba(99,102,241,.5)" stroke-width="2"/>
+    <text x="73"  y="62" text-anchor="middle" class="v47" font-size="28" font-weight="900" fill="#818cf8">S</text>
+    <text x="73"  y="82" text-anchor="middle" class="v47" font-size="11" font-weight="800">Stop</text>
+    <text x="73"  y="98" text-anchor="middle" class="v47" font-size="8.5" opacity=".7">Pause before</text>
+    <text x="73"  y="110" text-anchor="middle" class="v47" font-size="8.5" opacity=".7">you share or react</text>
+    <text x="73"  y="128" text-anchor="middle" class="v47" font-size="8" opacity=".5" font-style="italic">Emotional content</text>
+    <text x="73"  y="140" text-anchor="middle" class="v47" font-size="8" opacity=".5" font-style="italic">triggers fast sharing</text>
+    <text x="73"  y="158" text-anchor="middle" class="v47" font-size="8" opacity=".5" font-style="italic">Slow down</text>
+
+    <rect x="144" y="30" width="126" height="140" rx="9" fill="rgba(6,182,212,.11)"   stroke="rgba(6,182,212,.5)"  stroke-width="2"/>
+    <text x="207" y="62" text-anchor="middle" class="v47" font-size="28" font-weight="900" fill="#06b6d4">I</text>
+    <text x="207" y="82" text-anchor="middle" class="v47" font-size="11" font-weight="800">Investigate</text>
+    <text x="207" y="98" text-anchor="middle" class="v47" font-size="8.5" opacity=".7">Check the source,</text>
+    <text x="207" y="110" text-anchor="middle" class="v47" font-size="8.5" opacity=".7">not just the content</text>
+    <text x="207" y="128" text-anchor="middle" class="v47" font-size="8" opacity=".5" font-style="italic">Google the site</text>
+    <text x="207" y="140" text-anchor="middle" class="v47" font-size="8" opacity=".5" font-style="italic">before reading it</text>
+
+    <rect x="278" y="30" width="126" height="140" rx="9" fill="rgba(34,197,94,.11)"   stroke="rgba(34,197,94,.5)"  stroke-width="2"/>
+    <text x="341" y="62" text-anchor="middle" class="v47" font-size="28" font-weight="900" fill="#22c55e">F</text>
+    <text x="341" y="82" text-anchor="middle" class="v47" font-size="11" font-weight="800">Find coverage</text>
+    <text x="341" y="98" text-anchor="middle" class="v47" font-size="8.5" opacity=".7">Search for other</text>
+    <text x="341" y="110" text-anchor="middle" class="v47" font-size="8.5" opacity=".7">sources on this claim</text>
+    <text x="341" y="128" text-anchor="middle" class="v47" font-size="8" opacity=".5" font-style="italic">Lateral reading —</text>
+    <text x="341" y="140" text-anchor="middle" class="v47" font-size="8" opacity=".5" font-style="italic">leave the page</text>
+
+    <rect x="412" y="30" width="138" height="140" rx="9" fill="rgba(245,158,11,.11)"  stroke="rgba(245,158,11,.5)" stroke-width="2"/>
+    <text x="481" y="62" text-anchor="middle" class="v47" font-size="28" font-weight="900" fill="#f59e0b">T</text>
+    <text x="481" y="82" text-anchor="middle" class="v47" font-size="11" font-weight="800">Trace claims</text>
+    <text x="481" y="98" text-anchor="middle" class="v47" font-size="8.5" opacity=".7">Go upstream to the</text>
+    <text x="481" y="110" text-anchor="middle" class="v47" font-size="8.5" opacity=".7">original source</text>
+    <text x="481" y="128" text-anchor="middle" class="v47" font-size="8" opacity=".5" font-style="italic">AI often cites real</text>
+    <text x="481" y="140" text-anchor="middle" class="v47" font-size="8" opacity=".5" font-style="italic">sources incorrectly</text>
+    <text x="481" y="158" text-anchor="middle" class="v47" font-size="8" opacity=".5" font-style="italic">— always check</text>
+  </svg>`,
+
+  /* ── L49:1 — AI and Democracy — influence operation pipeline ──────────── */
+  '49:1': `<svg viewBox="0 0 560 185" xmlns="http://www.w3.org/2000/svg" aria-label="AI influence operation pipeline diagram">
+    <defs>
+      <style>.v49{font-family:system-ui,sans-serif;fill:currentColor}</style>
+      <marker id="a49" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <polygon points="0 0,7 3.5,0 7" fill="rgba(239,68,68,.7)"/>
+      </marker>
+    </defs>
+    <text x="280" y="18" text-anchor="middle" class="v49" font-size="12" font-weight="800">How AI-Driven Influence Operations Work</text>
+    <!-- Pipeline: 5 stages -->
+    <rect x="10"  y="40" width="90" height="60" rx="7" fill="rgba(99,102,241,.13)"  stroke="rgba(99,102,241,.45)" stroke-width="1.5"/>
+    <text x="55"  y="62" text-anchor="middle" class="v49" font-size="18">🎯</text>
+    <text x="55"  y="78" text-anchor="middle" class="v49" font-size="9"  font-weight="700">Target</text>
+    <text x="55"  y="90" text-anchor="middle" class="v49" font-size="7.5" opacity=".6">Identify swing</text>
+    <text x="55"  y="100" text-anchor="middle" class="v49" font-size="7.5" opacity=".6">groups via data</text>
+    <line x1="100" y1="70" x2="117" y2="70" stroke="rgba(239,68,68,.6)" stroke-width="1.8" marker-end="url(#a49)"/>
+
+    <rect x="119" y="40" width="90" height="60" rx="7" fill="rgba(239,68,68,.1)"   stroke="rgba(239,68,68,.4)"  stroke-width="1.5"/>
+    <text x="164" y="62" text-anchor="middle" class="v49" font-size="18">🤖</text>
+    <text x="164" y="78" text-anchor="middle" class="v49" font-size="9"  font-weight="700">Generate</text>
+    <text x="164" y="90" text-anchor="middle" class="v49" font-size="7.5" opacity=".6">AI creates 1000s</text>
+    <text x="164" y="100" text-anchor="middle" class="v49" font-size="7.5" opacity=".6">of tailored posts</text>
+    <line x1="209" y1="70" x2="226" y2="70" stroke="rgba(239,68,68,.6)" stroke-width="1.8" marker-end="url(#a49)"/>
+
+    <rect x="228" y="40" width="104" height="60" rx="7" fill="rgba(239,68,68,.12)"  stroke="rgba(239,68,68,.45)" stroke-width="1.5"/>
+    <text x="280" y="62" text-anchor="middle" class="v49" font-size="18">👥</text>
+    <text x="280" y="78" text-anchor="middle" class="v49" font-size="9"  font-weight="700">Amplify</text>
+    <text x="280" y="90" text-anchor="middle" class="v49" font-size="7.5" opacity=".6">Bot networks push</text>
+    <text x="280" y="100" text-anchor="middle" class="v49" font-size="7.5" opacity=".6">content to trending</text>
+    <line x1="332" y1="70" x2="349" y2="70" stroke="rgba(239,68,68,.6)" stroke-width="1.8" marker-end="url(#a49)"/>
+
+    <rect x="351" y="40" width="90" height="60" rx="7" fill="rgba(239,68,68,.13)"  stroke="rgba(239,68,68,.5)"  stroke-width="2"/>
+    <text x="396" y="62" text-anchor="middle" class="v49" font-size="18">📺</text>
+    <text x="396" y="78" text-anchor="middle" class="v49" font-size="9"  font-weight="700">Mainstream</text>
+    <text x="396" y="90" text-anchor="middle" class="v49" font-size="7.5" opacity=".6">Real media picks</text>
+    <text x="396" y="100" text-anchor="middle" class="v49" font-size="7.5" opacity=".6">up the narrative</text>
+    <line x1="441" y1="70" x2="458" y2="70" stroke="rgba(239,68,68,.6)" stroke-width="1.8" marker-end="url(#a49)"/>
+
+    <rect x="460" y="40" width="90" height="60" rx="7" fill="rgba(245,158,11,.12)"  stroke="rgba(245,158,11,.45)" stroke-width="1.5"/>
+    <text x="505" y="62" text-anchor="middle" class="v49" font-size="18">🗳</text>
+    <text x="505" y="78" text-anchor="middle" class="v49" font-size="9"  font-weight="700">Influence</text>
+    <text x="505" y="90" text-anchor="middle" class="v49" font-size="7.5" opacity=".6">Voters shift</text>
+    <text x="505" y="100" text-anchor="middle" class="v49" font-size="7.5" opacity=".6">behaviour</text>
+
+    <!-- Defence row -->
+    <rect x="10" y="118" width="540" height="54" rx="8" fill="rgba(34,197,94,.07)" stroke="rgba(34,197,94,.3)" stroke-width="1"/>
+    <text x="280" y="136" text-anchor="middle" class="v49" font-size="10" font-weight="700" fill="#22c55e">🛡 Defences Being Developed</text>
+    <text x="90"  y="155" text-anchor="middle" class="v49" font-size="8.5" opacity=".7">AI watermarking</text>
+    <text x="220" y="155" text-anchor="middle" class="v49" font-size="8.5" opacity=".7">Platform detection</text>
+    <text x="350" y="155" text-anchor="middle" class="v49" font-size="8.5" opacity=".7">Electoral AI laws</text>
+    <text x="480" y="155" text-anchor="middle" class="v49" font-size="8.5" opacity=".7">Media literacy</text>
+  </svg>`,
+
+  /* ── L50:1 — Mini-Project — design-prompt-test-present cycle ─────────── */
+  '50:1': `<svg viewBox="0 0 560 185" xmlns="http://www.w3.org/2000/svg" aria-label="Mini project design build test present cycle">
+    <defs>
+      <style>.v50{font-family:system-ui,sans-serif;fill:currentColor}</style>
+      <marker id="a50" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+        <polygon points="0 0,8 4,0 8" fill="currentColor" opacity=".45"/>
+      </marker>
+    </defs>
+    <text x="280" y="18" text-anchor="middle" class="v50" font-size="12" font-weight="800">Mini-Project — The Process in One Lesson</text>
+    <!-- Cycle of 4 stages arranged in a square -->
+    <!-- Top-left: Design -->
+    <rect x="60" y="36" width="162" height="60" rx="9" fill="rgba(99,102,241,.14)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
+    <text x="141" y="60" text-anchor="middle" class="v50" font-size="22">🎯</text>
+    <text x="141" y="78" text-anchor="middle" class="v50" font-size="11" font-weight="700">1. Design</text>
+    <text x="141" y="90" text-anchor="middle" class="v50" font-size="8" opacity=".65">Problem · User · Scope</text>
+    <!-- Top-right: Prompt & Build -->
+    <rect x="338" y="36" width="162" height="60" rx="9" fill="rgba(6,182,212,.13)"  stroke="rgba(6,182,212,.5)"  stroke-width="1.5"/>
+    <text x="419" y="60" text-anchor="middle" class="v50" font-size="22">✍️</text>
+    <text x="419" y="78" text-anchor="middle" class="v50" font-size="11" font-weight="700">2. Prompt &amp; Build</text>
+    <text x="419" y="90" text-anchor="middle" class="v50" font-size="8" opacity=".65">PTFC · Iterate · Create</text>
+    <!-- Bottom-left: Present -->
+    <rect x="60" y="116" width="162" height="60" rx="9" fill="rgba(168,85,247,.13)" stroke="rgba(168,85,247,.5)" stroke-width="1.5"/>
+    <text x="141" y="140" text-anchor="middle" class="v50" font-size="22">🎤</text>
+    <text x="141" y="158" text-anchor="middle" class="v50" font-size="11" font-weight="700">4. Present</text>
+    <text x="141" y="170" text-anchor="middle" class="v50" font-size="8" opacity=".65">Share · Reflect · Learn</text>
+    <!-- Bottom-right: Test -->
+    <rect x="338" y="116" width="162" height="60" rx="9" fill="rgba(34,197,94,.13)"  stroke="rgba(34,197,94,.5)"  stroke-width="1.5"/>
+    <text x="419" y="140" text-anchor="middle" class="v50" font-size="22">🧪</text>
+    <text x="419" y="158" text-anchor="middle" class="v50" font-size="11" font-weight="700">3. Test</text>
+    <text x="419" y="170" text-anchor="middle" class="v50" font-size="8" opacity=".65">Real user · Edge cases</text>
+    <!-- Arrows -->
+    <line x1="222" y1="66"  x2="336" y2="66"  stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a50)"/>
+    <line x1="419" y1="96"  x2="419" y2="114" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a50)"/>
+    <line x1="336" y1="146" x2="222" y2="146" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a50)"/>
+    <line x1="141" y1="114" x2="141" y2="96"  stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a50)"/>
+    <!-- Centre note -->
+    <text x="280" y="112" text-anchor="middle" class="v50" font-size="9" opacity=".55" font-style="italic">One lesson. Low stakes.</text>
+    <text x="280" y="124" text-anchor="middle" class="v50" font-size="9" opacity=".55" font-style="italic">Practise the process.</text>
+  </svg>`,
+
 };
