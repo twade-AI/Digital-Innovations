@@ -472,7 +472,8 @@ function getLessonSlides(id, lesson, unit) {
   var all = Object.assign({}, (typeof SLIDES_U1U2 !== 'undefined' ? SLIDES_U1U2 : {}),
                                (typeof SLIDES_U3U4 !== 'undefined' ? SLIDES_U3U4 : {}),
                                (typeof SLIDES_U5U6 !== 'undefined' ? SLIDES_U5U6 : {}),
-                               (typeof SLIDES_CRITICAL !== 'undefined' ? SLIDES_CRITICAL : {}));
+                               (typeof SLIDES_CRITICAL !== 'undefined' ? SLIDES_CRITICAL : {}),
+                               (typeof SLIDES_ADVANCED !== 'undefined' ? SLIDES_ADVANCED : {}));
   if (all[id]) return all[id];
   return generateSlides(lesson, unit);
 }
