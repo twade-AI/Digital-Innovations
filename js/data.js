@@ -995,7 +995,7 @@ const GLOSSARY = [
   { term: 'Human-on-the-Loop', definition: 'A system where AI operates autonomously but a human monitors and can intervene. Used in contexts like autonomous vehicles with human override capability.', lessons: [8] },
   { term: 'Human-out-of-the-Loop', definition: 'Fully autonomous AI operation with no human oversight. Examples include high-frequency trading and the controversial concept of autonomous weapons.', lessons: [8] },
   { term: 'Inference', definition: 'The process of running a trained AI model to generate outputs from new inputs. Inference costs (energy, compute) are increasingly significant at scale.', lessons: [15] },
-  { term: 'LLM (Large Language Model)', definition: 'An AI model trained on vast amounts of text data that can generate, summarise, translate, and reason about language. Examples include GPT-4, Claude, Gemini, and Llama.', lessons: [2, 9, 15] },
+  { term: 'LLM (Large Language Model)', definition: 'An AI model trained on vast amounts of text data that can generate, summarise, translate, and reason about language. Examples include GPT-5.4 (OpenAI), Claude 4.6 (Anthropic), Gemini 3.1 Pro (Google), and Llama (Meta).', lessons: [2, 9, 15] },
   { term: 'Machine Learning', definition: 'A subset of AI where systems learn patterns from data rather than being explicitly programmed. Includes supervised, unsupervised, and reinforcement learning.', lessons: [1, 3] },
   { term: 'Model Interpretability', definition: 'How easily a human can understand the reasoning behind a model\'s predictions. Decision trees are highly interpretable; deep neural networks are not.', lessons: [4] },
   { term: 'Narrow AI', definition: 'AI designed for a single specific task — such as playing chess, filtering spam, or recognising faces. All current AI is narrow AI; it cannot generalise across domains.', lessons: [1] },
@@ -1006,7 +1006,7 @@ const GLOSSARY = [
   { term: 'Stochastic Parrot', definition: 'A term coined by Bender & Gebru (2021) describing LLMs as sophisticated pattern-matchers that predict probable next tokens without genuine understanding of meaning.', lessons: [2] },
   { term: 'Supervised Learning', definition: 'A type of machine learning where the model learns from labelled examples — data paired with the correct answer. The model learns to map inputs to outputs.', lessons: [3] },
   { term: 'Temperature (AI)', definition: 'A parameter that controls the randomness of AI outputs. Low temperature produces more predictable, focused text; high temperature produces more creative, varied text.', lessons: [9] },
-  { term: 'Token', definition: 'The basic unit of text that LLMs process — roughly a word or word fragment. GPT-4 processes text as sequences of tokens, not as whole sentences or meanings.', lessons: [2, 9] },
+  { term: 'Token', definition: 'The basic unit of text that LLMs process — roughly a word or word fragment. Models like GPT-5.4 and Claude 4.6 process text as sequences of tokens, not as whole sentences or meanings.', lessons: [2, 9] },
   { term: 'Training Data', definition: 'The dataset used to teach a machine learning model. The quality, representativeness, and biases in training data directly determine the model\'s capabilities and limitations.', lessons: [3, 5] },
   { term: 'Utilitarianism', definition: 'An ethical framework that judges actions by their consequences — the right action is the one that produces the greatest good for the greatest number of people.', lessons: [7] },
   { term: 'Viva Voce', definition: 'An oral examination where pupils defend their work by answering questions from examiners. Tests understanding, reasoning, and the ability to articulate decisions.', lessons: [39, 40] },
@@ -1017,7 +1017,7 @@ const GLOSSARY = [
 // Teachers: add new articles via the Admin Dashboard → Manage News tab.
 const AI_NEWS = [
   /* ── 2026 — from The Neuron ── */
-  { headline: "Google just gave away its best AI — Gemini 2.5 Pro goes free for all users", source: "The Neuron", date: "Apr 2026", tag: "tools", url: "https://www.theneuron.ai/newsletter/google-just-gave-away-its-best-ai/" },
+  { headline: "Google opens up its best AI — Gemini 3.1 Pro made free for all users", source: "The Neuron", date: "Apr 2026", tag: "tools", url: "https://www.theneuron.ai/newsletter/google-just-gave-away-its-best-ai/" },
   { headline: "OpenAI's President reveals what the company is betting everything on", source: "The Neuron", date: "Apr 2026", tag: "industry", url: "https://www.theneuron.ai/newsletter/openai-s-president-just-told-you-exactly-what-the-company-is-betting-everything-on/" },
   { headline: "This is how we'd teach AI from scratch in 2026", source: "The Neuron", date: "Mar 2026", tag: "policy", url: "https://www.theneuron.ai/newsletter/this-is-how-we-d-teach-ai-from-scratch-in-2026/" },
   { headline: "Anthropic leaked Claude Mythos — and cybersecurity stocks crashed", source: "The Neuron", date: "Mar 2026", tag: "industry", url: "https://www.theneuron.ai/newsletter/anthropic-leaked-claude-mythos-cybersecurity-stocks-crashed/" },
@@ -1691,7 +1691,7 @@ const AI_TIMELINE = [
   {
     year: 2025,
     title: "Claude 4 and the Frontier Consolidates",
-    summary: "Anthropic releases Claude Sonnet 4 and Opus 4. Three labs — OpenAI, Google DeepMind, and Anthropic — now compete at the frontier with models that can work autonomously on complex tasks for extended periods.",
+    summary: "Anthropic releases Claude 4 (Sonnet and Opus). Three labs — OpenAI, Google DeepMind, and Anthropic — now compete at the frontier with models that can work autonomously on complex tasks for extended periods.",
     detail: "Claude 4's Opus model set new standards for agentic tasks — autonomous multi-step work requiring minimal human oversight. All three frontier labs had now released reasoning models, agentic capabilities, and multimodal tools. The consolidation raised questions about market structure: would AI become a utility controlled by three US companies? Calls for open-source alternatives, regulation, and international competition intensified. The race had produced enormous capability gains but also deepened concentration of power.",
     people: ["Dario Amodei"],
     category: "milestone",
@@ -1705,6 +1705,33 @@ const AI_TIMELINE = [
     people: [],
     category: "industry",
     icon: "💻"
+  },
+  {
+    year: 2026,
+    title: "GPT-5.4 — OpenAI's Most Capable Model",
+    summary: "OpenAI releases GPT-5.4, its most capable model, combining advanced reasoning, multimodal inputs, and long-context understanding. Consumer access via ChatGPT Plus (around £16–£20/month in the UK).",
+    detail: "GPT-5.4 extended OpenAI's leadership in general-purpose capability, combining the reasoning improvements of the o-series with GPT's conversational breadth. The model handled extended, multi-step tasks across coding, analysis, and creative work. For the first time, ChatGPT's capabilities were meaningfully differentiated from free-tier alternatives, intensifying debate about equity of access in education. UK subscriptions were priced around £16–£20/month — equivalent to a school textbook per month.",
+    people: ["Sam Altman"],
+    category: "tools",
+    icon: "🔮"
+  },
+  {
+    year: 2026,
+    title: "Gemini 3.1 Pro — Google's Integrated Frontier Model",
+    summary: "Google releases Gemini 3.1 Pro, deeply integrated into Google Workspace, Android, and Google Search — making frontier AI accessible to anyone with a Google account.",
+    detail: "Gemini 3.1 Pro brought frontier-level capability to users through Google's existing product ecosystem: Gmail, Docs, Drive, and Search. For education, its integration with Google Workspace for Education meant many schools — including those on Google accounts — could access state-of-the-art AI without a separate subscription. Haileybury pupils have access to Gemini through their school Google accounts. The release intensified competition with OpenAI and Anthropic and raised questions about data privacy when pupils use school-integrated AI tools.",
+    people: ["Demis Hassabis", "Sundar Pichai"],
+    category: "tools",
+    icon: "⭐"
+  },
+  {
+    year: 2026,
+    title: "Claude 4.6 — Anthropic's Latest Sonnet and Opus",
+    summary: "Anthropic releases Claude 4.6 Sonnet and Opus — models combining strong reasoning, a 200,000-token context window, and Anthropic's Constitutional AI safety approach.",
+    detail: "Claude 4.6 extended Anthropic's focus on safe, steerable AI. The Sonnet model balanced speed and capability for everyday tasks; Opus targeted complex reasoning and agentic workflows. Both offered a 200,000-token context window — roughly 150,000 words, about two full novels. Claude.ai remained accessible via web, with a free tier and paid subscriptions. Anthropic's continued focus on safety and transparency made Claude a frequent choice for education and research contexts where reliability and honest uncertainty-signalling mattered.",
+    people: ["Dario Amodei", "Daniela Amodei"],
+    category: "tools",
+    icon: "🔵"
   },
   {
     year: 2026,

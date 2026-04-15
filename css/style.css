@@ -123,9 +123,10 @@ img{max-width:100%}
 /* ── Sections ──────────────────────────────────── */
 .section{display:none;max-width:1200px;margin:0 auto;padding:32px 24px 64px}
 .section.active{display:block}
-.section-header{margin-bottom:32px}
-.section-header h2{font-size:1.8rem;font-weight:800;margin-bottom:8px}
-.section-header p{color:var(--text-muted);font-size:1rem}
+.section-header{margin-bottom:32px;display:flex;flex-wrap:wrap;align-items:flex-start;gap:12px}
+.section-header h2{font-size:1.8rem;font-weight:800;margin-bottom:8px;flex:1 1 100%}
+.section-header p{color:var(--text-muted);font-size:1rem;flex:1 1 100%}
+.section-header-action{flex-shrink:0;align-self:flex-end;margin-top:-4px}
 
 /* ── Hero ──────────────────────────────────────── */
 .hero{
@@ -256,6 +257,8 @@ img{max-width:100%}
   background:transparent;color:var(--text-muted);font-size:.85rem;font-weight:500;transition:all .2s;
 }
 .filter-btn:hover,.filter-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.filter-btn--glossary{border-color:var(--primary-light);color:var(--primary-light);margin-left:auto}
+.filter-btn--glossary:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
 .resources-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
 .resource-card{
   background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
@@ -621,7 +624,9 @@ body.teacher-mode .nav-link[data-section="progress"]{ display:none }
 .nav-explore-item:hover { background:var(--bg-card-hover); color:var(--text); }
 .nav-explore-item[data-section="exemplars"].active,
 .nav-explore-item[data-section="timeline"].active,
-.nav-explore-item[data-section="news"].active { color:var(--primary-light); }
+.nav-explore-item[data-section="news"].active,
+.nav-explore-item[data-section="glossary"].active { color:var(--primary-light); }
+.nav-explore-quiz{width:100%;text-align:left;background:none;border:none;cursor:pointer;color:var(--primary-light);font-weight:600}
 
 /* ── Settings Dropdown ───────────────────────── */
 .settings-wrap{ position:relative;margin-left:6px;flex-shrink:0; }
@@ -1030,9 +1035,9 @@ kbd{
 
 /* ── News Ticker ──────────────────────────────── */
 .news-ticker{
-  background:rgba(99,102,241,.06);border-bottom:1px solid var(--border);
-  padding:0 20px;display:flex;align-items:center;gap:12px;
-  overflow:hidden;height:34px;
+  background:rgba(99,102,241,.06);border:1px solid var(--border);border-radius:8px;
+  padding:0 16px;display:flex;align-items:center;gap:12px;
+  overflow:hidden;height:36px;margin-bottom:24px;
 }
 [data-theme="light"] .news-ticker{background:rgba(99,102,241,.04)}
 .news-ticker-label{
