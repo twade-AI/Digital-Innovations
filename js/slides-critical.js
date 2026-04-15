@@ -7,7 +7,7 @@ var SLIDES_CRITICAL = {
     {
       type: 'hook',
       title: 'Thinking With vs. Thinking For',
-      body: 'A 2023 study by MIT researchers gave 758 professionals a writing task. One group used ChatGPT for every step. One group used no AI. One group used AI only for specific, defined subtasks. The results: the full-AI group produced work that scored highly on surface quality — clarity, structure, fluency. But when participants were tested on their understanding of what they had written, full-AI users scored 47% lower than no-AI users on comprehension. They had produced better-looking work they understood less well. A separate study found that frequent GPS users show measurable decline in hippocampal spatial reasoning ability over two years — the brain physically restructures around the tool.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">47%</span><span class="sl">lower comprehension when students used AI for all writing steps (MIT, 2023)</span></div><div class="hook-stat-mini"><span class="sv">2 yrs</span><span class="sl">for measurable hippocampal decline in heavy GPS users</span></div><div class="hook-stat-mini"><span class="sv">40%</span><span class="sl">higher quality output when AI is used iteratively, not totally (Wharton)</span></div></div>There is a difference between AI that extends your thinking and AI that replaces it. Only one of those makes you more capable over time.'
+      body: 'A 2023 study by MIT researchers gave 758 professionals a writing task. One group used ChatGPT for every step. One group used no AI. One group used AI only for specific, defined subtasks. The results: the full-AI group produced work that scored highly on surface quality — clarity, structure, fluency. But when participants were tested on their understanding of what they had written, full-AI users scored 47% lower than no-AI users on comprehension. They had produced better-looking work they understood less well. A separate study found that frequent GPS users show measurable decline in hippocampal spatial reasoning ability over two years — the brain physically restructures around the tool.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">47%</span><span class="sl">lower comprehension when pupils used AI for all writing steps (MIT, 2023)</span></div><div class="hook-stat-mini"><span class="sv">2 yrs</span><span class="sl">for measurable hippocampal decline in heavy GPS users</span></div><div class="hook-stat-mini"><span class="sv">40%</span><span class="sl">higher quality output when AI is used iteratively, not totally (Wharton)</span></div></div>There is a difference between AI that extends your thinking and AI that replaces it. Only one of those makes you more capable over time.'
     },
     {
       type: 'concept',
@@ -37,8 +37,8 @@ var SLIDES_CRITICAL = {
     },
     {
       type: 'scenario',
-      title: 'Two Students, One Year On',
-      situation: 'Two students take the same Digital Innovations course. Amara uses AI for everything from day one: essay plans, argument structures, slide summaries, first drafts. She produces consistently high-quality submitted work all year. She finds the course comfortable. Jonas uses AI only after attempting tasks himself — he drafts essay plans before asking AI to critique them, attempts summaries before comparing to AI output, struggles with argument structures before using AI to check his reasoning. His submitted work is sometimes weaker than Amara\'s. At the end-of-year viva voce (oral examination), both students are asked to explain their thinking and respond to unexpected questions without AI.',
+      title: 'Two Pupils, One Year On',
+      situation: 'Two pupils take the same Digital Innovations course. Amara uses AI for everything from day one: essay plans, argument structures, slide summaries, first drafts. She produces consistently high-quality submitted work all year. She finds the course comfortable. Jonas uses AI only after attempting tasks himself — he drafts essay plans before asking AI to critique them, attempts summaries before comparing to AI output, struggles with argument structures before using AI to check his reasoning. His submitted work is sometimes weaker than Amara\'s. At the end-of-year viva voce (oral examination), both pupils are asked to explain their thinking and respond to unexpected questions without AI.',
       question: 'What do you predict happens at the viva — and what does this reveal about the purpose of the course?',
       choices: [
         {
@@ -51,7 +51,7 @@ var SLIDES_CRITICAL = {
         },
         {
           text: 'Both perform similarly — the viva tests communication skills as much as understanding, and Amara has practised producing clear, well-structured communication all year',
-          outcome: 'There is genuine truth to this. Amara\'s year of AI-assisted work has made her a clearer communicator, and clear communication is part of what the viva tests. But on the questions specifically designed to probe original reasoning — "What would you do if this assumption were false?" "What evidence would change your mind?" — the gap between the students emerges. Preparation for novel thinking cannot be outsourced.'
+          outcome: 'There is genuine truth to this. Amara\'s year of AI-assisted work has made her a clearer communicator, and clear communication is part of what the viva tests. But on the questions specifically designed to probe original reasoning — "What would you do if this assumption were false?" "What evidence would change your mind?" — the gap between the pupils emerges. Preparation for novel thinking cannot be outsourced.'
         }
       ]
     },
@@ -72,8 +72,8 @@ var SLIDES_CRITICAL = {
       type: 'discussion',
       title: 'Choosing How You Think',
       questions: [
-        { num: 1, text: 'The GPS analogy suggests that tools we rely on consistently change our cognitive architecture over years. If that is true of AI assistance in school, what kind of adults will today\'s students become — and is that something they should get to choose consciously?' },
-        { num: 2, text: 'Is there a meaningful difference between a student who uses AI to generate their essay plan versus one who reads widely and lets the ideas of others structure their thinking? Both are outsourcing cognitive work. Where is the real line?' },
+        { num: 1, text: 'The GPS analogy suggests that tools we rely on consistently change our cognitive architecture over years. If that is true of AI assistance in school, what kind of adults will today\'s pupils become — and is that something they should get to choose consciously?' },
+        { num: 2, text: 'Is there a meaningful difference between a pupil who uses AI to generate their essay plan versus one who reads widely and lets the ideas of others structure their thinking? Both are outsourcing cognitive work. Where is the real line?' },
         { num: 3, text: 'Some researchers argue that offloading low-level cognitive tasks to AI frees humans for higher-order creative thinking — just as calculators freed mathematicians from arithmetic. Is cognitive offloading in education a temporary problem of adjustment, or a permanent risk?' }
       ]
     },
@@ -93,9 +93,9 @@ var SLIDES_CRITICAL = {
       type: 'summary',
       title: 'Key Takeaways',
       points: [
-        { icon: '🧩', label: 'Not all offloading is equal', text: 'Productive offloading frees cognitive capacity for higher-order work. Harmful offloading skips the struggle that builds genuine capability — and the difference depends on whether you needed to develop that skill' },
-        { icon: '💪', label: 'Struggle is the mechanism of learning', text: 'Desirable difficulties — retrieval practice, generation effect, interleaving — are consistently erased when AI provides answers before you attempt them. Slower practice, better outcomes.' },
-        { icon: '🗺️', label: 'Design your own protocol', text: 'The students who get the most from AI are those who have made explicit, conscious decisions about when to use it — not those who reach for it by default every time' }
+        { icon: '▸', label: 'Not all offloading is equal', text: 'Productive offloading frees cognitive capacity for higher-order work. Harmful offloading skips the struggle that builds genuine capability — and the difference depends on whether you needed to develop that skill' },
+        { icon: '▸', label: 'Struggle is the mechanism of learning', text: 'Desirable difficulties — retrieval practice, generation effect, interleaving — are consistently erased when AI provides answers before you attempt them. Slower practice, better outcomes.' },
+        { icon: '▸', label: 'Design your own protocol', text: 'The pupils who get the most from AI are those who have made explicit, conscious decisions about when to use it — not those who reach for it by default every time' }
       ]
     }
   ],
@@ -118,7 +118,7 @@ var SLIDES_CRITICAL = {
         '<strong>Detection tools:</strong> GPTZero, Originality.ai, and Copyleaks achieve 80–90% accuracy on longer texts (>500 words). Accuracy drops significantly on shorter texts and on AI-assisted (not fully AI-generated) content',
         '<strong>Perplexity and burstiness:</strong> Human writing has uneven complexity — simple sentences next to complex ones, predictable phrases next to surprising ones. AI text has unnaturally consistent complexity throughout'
       ],
-      callout: 'No AI detector is reliable enough to be used as sole evidence of AI generation. A student with a distinctive, fluid writing style will sometimes trigger false positives. A student who carefully edits AI output into their own voice may not trigger any detector at all. Context, comparison with known work, and direct conversation remain essential.'
+      callout: 'No AI detector is reliable enough to be used as sole evidence of AI generation. A pupil with a distinctive, fluid writing style will sometimes trigger false positives. A pupil who carefully edits AI output into their own voice may not trigger any detector at all. Context, comparison with known work, and direct conversation remain essential.'
     },
     {
       type: 'concept',
@@ -191,9 +191,9 @@ var SLIDES_CRITICAL = {
       type: 'summary',
       title: 'Key Takeaways',
       points: [
-        { icon: '🌊', label: 'The flood is already here', text: 'AI-generated content is already a majority of new internet content in some domains. Media literacy is not future-proofing — it is a current necessity' },
-        { icon: '🔎', label: 'Linguistic and visual tells are real but imperfect', text: 'Identical paragraph lengths, hedged language, missing specificity; wrong fingers, absent metadata, impossible shadows — combine multiple signals before concluding' },
-        { icon: '⚖️', label: 'Detectors are tools, not verdicts', text: 'No AI detector is reliable enough to be used as sole evidence. Context, comparison with known work, and direct conversation remain essential in high-stakes situations' }
+        { icon: '▸', label: 'The flood is already here', text: 'AI-generated content is already a majority of new internet content in some domains. Media literacy is not future-proofing — it is a current necessity' },
+        { icon: '▸', label: 'Linguistic and visual tells are real but imperfect', text: 'Identical paragraph lengths, hedged language, missing specificity; wrong fingers, absent metadata, impossible shadows — combine multiple signals before concluding' },
+        { icon: '▸', label: 'Detectors are tools, not verdicts', text: 'No AI detector is reliable enough to be used as sole evidence. Context, comparison with known work, and direct conversation remain essential in high-stakes situations' }
       ]
     }
   ],
@@ -289,9 +289,9 @@ var SLIDES_CRITICAL = {
       type: 'summary',
       title: 'Key Takeaways',
       points: [
-        { icon: '🔬', label: '4 hallucination types', text: 'Factual, citation, logical, and temporal — each requires a different verification strategy. Statistics and citations are the most commonly fabricated.' },
-        { icon: '✅', label: 'The VERIFY workflow', text: 'Validate the claim type → Extract the specific claim → Reach for a primary source → Investigate the numbers → Find counter-evidence → Your conclusion in writing' },
-        { icon: '↔️', label: 'Lateral reading beats deep reading', text: 'Checking what multiple independent sources say about a claim is faster and more reliable than reading any single source deeply' }
+        { icon: '▸', label: '4 hallucination types', text: 'Factual, citation, logical, and temporal — each requires a different verification strategy. Statistics and citations are the most commonly fabricated.' },
+        { icon: '▸', label: 'The VERIFY workflow', text: 'Validate the claim type → Extract the specific claim → Reach for a primary source → Investigate the numbers → Find counter-evidence → Your conclusion in writing' },
+        { icon: '▸', label: 'Lateral reading beats deep reading', text: 'Checking what multiple independent sources say about a claim is faster and more reliable than reading any single source deeply' }
       ]
     }
   ],
@@ -301,7 +301,7 @@ var SLIDES_CRITICAL = {
     {
       type: 'hook',
       title: 'What Can You Trust?',
-      body: 'In May 2024, Google launched AI Overviews — an AI-generated summary appearing above all search results. Within days, users discovered it was recommending eating one small rock per day for minerals, suggesting you add glue to pizza to stop the cheese sliding off, and advising that a medical professional would tell you to run with scissors. Google had trained its AI on satirical articles and Reddit jokes — and presented them as factual health advice to millions of users. The AI was not lying. It simply had no concept of what truth is.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">~20%</span><span class="sl">of AI-generated citations in academic studies are fabricated</span></div><div class="hook-stat-mini"><span class="sv">1 in 3</span><span class="sl">students cannot distinguish AI-generated text from expert writing</span></div><div class="hook-stat-mini"><span class="sv">$100B</span><span class="sl">wiped from Alphabet\'s value after a single AI factual error in a demo</span></div></div>If AI can produce confident, fluent, completely false information — how do you know what to trust? The answer starts with understanding how knowledge works.'
+      body: 'In May 2024, Google launched AI Overviews — an AI-generated summary appearing above all search results. Within days, users discovered it was recommending eating one small rock per day for minerals, suggesting you add glue to pizza to stop the cheese sliding off, and advising that a medical professional would tell you to run with scissors. Google had trained its AI on satirical articles and Reddit jokes — and presented them as factual health advice to millions of users. The AI was not lying. It simply had no concept of what truth is.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">~20%</span><span class="sl">of AI-generated citations in academic studies are fabricated</span></div><div class="hook-stat-mini"><span class="sv">1 in 3</span><span class="sl">pupils cannot distinguish AI-generated text from expert writing</span></div><div class="hook-stat-mini"><span class="sv">$100B</span><span class="sl">wiped from Alphabet\'s value after a single AI factual error in a demo</span></div></div>If AI can produce confident, fluent, completely false information — how do you know what to trust? The answer starts with understanding how knowledge works.'
     },
     {
       type: 'concept',
@@ -387,9 +387,9 @@ var SLIDES_CRITICAL = {
       type: 'summary',
       title: 'Key Takeaways',
       points: [
-        { icon: '🧠', label: 'Epistemology is now a practical skill', text: 'Understanding how knowledge is justified — not just what you believe — is essential when AI produces fluent falsehoods at scale' },
-        { icon: '🔍', label: 'CRAAP applies to AI outputs', text: 'Currency, Relevance, Authority, Accuracy, Purpose — every claim needs a traceable primary source, not a confident AI assertion' },
-        { icon: '⚠️', label: 'AI cannot verify itself', text: 'Asking an AI to confirm its own output is not verification. The same mechanism that generated the claim will confirm it with equal confidence' }
+        { icon: '▸', label: 'Epistemology is now a practical skill', text: 'Understanding how knowledge is justified — not just what you believe — is essential when AI produces fluent falsehoods at scale' },
+        { icon: '▸', label: 'CRAAP applies to AI outputs', text: 'Currency, Relevance, Authority, Accuracy, Purpose — every claim needs a traceable primary source, not a confident AI assertion' },
+        { icon: '▸', label: 'AI cannot verify itself', text: 'Asking an AI to confirm its own output is not verification. The same mechanism that generated the claim will confirm it with equal confidence' }
       ]
     }
   ],
@@ -410,7 +410,7 @@ var SLIDES_CRITICAL = {
         '<strong>Phase 1 — Define (5 minutes):</strong> Choose a problem. Write one sentence: "I am building [what] for [who] that helps them [do what]." Do not spend more than 5 minutes on this.',
         '<strong>Phase 2 — Design (10 minutes):</strong> Write your core PTFC prompt. Identify one ethical consideration. Sketch the user flow in 3 steps maximum.',
         '<strong>Phase 3 — Build (20 minutes):</strong> Run your prompt. Iterate at least twice. Get something that works — even if imperfectly.',
-        '<strong>Phase 4 — Test (5 minutes):</strong> Give your tool to one other student. Watch them use it without explaining it. Note what confuses them.',
+        '<strong>Phase 4 — Test (5 minutes):</strong> Give your tool to one other pupil. Watch them use it without explaining it. Note what confuses them.',
         '<strong>Phase 5 — Reflect (5 minutes):</strong> Three sentences: What worked? What failed? What would you do differently in 60 minutes?'
       ],
       callout: 'The most valuable output from this lesson is not the tool you build — it is your 3-sentence reflection. Write it honestly. It will directly inform your capstone brief.'
@@ -452,9 +452,9 @@ var SLIDES_CRITICAL = {
       type: 'summary',
       title: 'Key Takeaways',
       points: [
-        { icon: '🏗️', label: 'Process over product', text: 'The goal was not a polished tool — it was experiencing the define/design/build/test/reflect cycle under real conditions before the capstone stakes are high' },
-        { icon: '👁️', label: 'Watch, don\'t explain', text: 'Unmoderated user testing consistently reveals problems that creator-led demos miss. Your classmate\'s confusion is your most valuable data point' },
-        { icon: '📝', label: 'Your 3-sentence reflection is the deliverable', text: 'What worked, what failed, and what you\'d do differently — keep this somewhere visible when you write your capstone brief' }
+        { icon: '▸', label: 'Process over product', text: 'The goal was not a polished tool — it was experiencing the define/design/build/test/reflect cycle under real conditions before the capstone stakes are high' },
+        { icon: '▸', label: 'Watch, don\'t explain', text: 'Unmoderated user testing consistently reveals problems that creator-led demos miss. Your classmate\'s confusion is your most valuable data point' },
+        { icon: '▸', label: 'Your 3-sentence reflection is the deliverable', text: 'What worked, what failed, and what you\'d do differently — keep this somewhere visible when you write your capstone brief' }
       ]
     }
   ],
@@ -495,7 +495,7 @@ var SLIDES_CRITICAL = {
     {
       type: 'scenario',
       title: 'The Viral Clip',
-      situation: 'Three days before a UK general election, a 45-second audio clip is shared widely on TikTok. In it, a voice that sounds exactly like the prime ministerial candidate discusses a secret plan to raise taxes by 15% immediately after the election — a policy completely at odds with their public platform. The clip has 4 million views. Audio forensics experts say it is consistent with AI voice cloning. The candidate\'s team denies it is real. Under UK electoral law, there is no rapid takedown mechanism for electoral deepfakes. You are a sixth-form student with 2,400 Instagram followers, many of whom are first-time voters.',
+      situation: 'Three days before a UK general election, a 45-second audio clip is shared widely on TikTok. In it, a voice that sounds exactly like the prime ministerial candidate discusses a secret plan to raise taxes by 15% immediately after the election — a policy completely at odds with their public platform. The clip has 4 million views. Audio forensics experts say it is consistent with AI voice cloning. The candidate\'s team denies it is real. Under UK electoral law, there is no rapid takedown mechanism for electoral deepfakes. You are a sixth-form pupil with 2,400 Instagram followers, many of whom are first-time voters.',
       question: 'What should you do — and what does this situation reveal about the gap between technology and law?',
       choices: [
         {
@@ -550,9 +550,9 @@ var SLIDES_CRITICAL = {
       type: 'summary',
       title: 'Key Takeaways',
       points: [
-        { icon: '🗳️', label: 'AI is already reshaping elections', text: 'Documented AI influence operations ran in 16+ countries in 2024 — synthetic audio, micro-targeting, AI-generated text at scale. This is not a hypothetical threat.' },
-        { icon: '⚖️', label: 'Law is behind the technology', text: 'The EU AI Act covers high-risk AI in democratic processes; UK and US law has significant gaps. Platform self-regulation is inconsistent and slower than the technology.' },
-        { icon: '🛡️', label: 'Pre-bunking beats debunking', text: 'Teaching critical evaluation before encountering manipulation is more effective than correcting afterwards. The asymmetry between generating and verifying AI content will not close soon.' }
+        { icon: '▸', label: 'AI is already reshaping elections', text: 'Documented AI influence operations ran in 16+ countries in 2024 — synthetic audio, micro-targeting, AI-generated text at scale. This is not a hypothetical threat.' },
+        { icon: '▸', label: 'Law is behind the technology', text: 'The EU AI Act covers high-risk AI in democratic processes; UK and US law has significant gaps. Platform self-regulation is inconsistent and slower than the technology.' },
+        { icon: '▸', label: 'Pre-bunking beats debunking', text: 'Teaching critical evaluation before encountering manipulation is more effective than correcting afterwards. The asymmetry between generating and verifying AI content will not close soon.' }
       ]
     }
   ],
