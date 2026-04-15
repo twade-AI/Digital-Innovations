@@ -44,17 +44,16 @@
         <a href="#" class="nav-link" data-section="units" onclick="showSection('units')">Units</a>
         <a href="#" class="nav-link" data-section="resources" onclick="showSection('resources')">Resources</a>
         <a href="#" class="nav-link" data-section="progress" onclick="showSection('progress')">My Progress</a>
-        <a href="#" class="nav-link" data-section="map" onclick="showSection('map')">Course Map</a>
-        <a href="#" class="nav-link" data-section="glossary" onclick="showSection('glossary')">Glossary</a>
         <div class="nav-explore-wrap" id="navExploreWrap">
           <button class="nav-link nav-explore-btn" id="navExploreBtn" onclick="toggleExploreMenu()" aria-haspopup="true" aria-expanded="false">Explore ▾</button>
           <div class="nav-explore-menu" id="navExploreMenu" role="menu" aria-hidden="true">
             <a href="#" class="nav-explore-item" data-section="exemplars" onclick="showSection('exemplars');closeExploreMenu()">📌 Prompt Gallery</a>
             <a href="#" class="nav-explore-item" data-section="timeline" onclick="showSection('timeline');closeExploreMenu()">📅 AI History</a>
             <a href="#" class="nav-explore-item" data-section="news" onclick="showSection('news');closeExploreMenu()">📰 AI News</a>
+            <a href="#" class="nav-explore-item" data-section="glossary" onclick="showSection('glossary');closeExploreMenu()">📖 Glossary</a>
+            <button class="nav-explore-item nav-explore-quiz" onclick="startQuickQuiz();closeExploreMenu()" title="Quick Quiz — test yourself on completed lessons">⚡ Quiz Me</button>
           </div>
         </div>
-        <a href="#" class="nav-link nav-link-quiz" onclick="startQuickQuiz()" title="Quick Quiz — test yourself on completed lessons">⚡ Quiz Me</a>
       </div>
       <div class="nav-search">
         <input type="text" id="searchInput" placeholder="Search… (⌘K)" oninput="handleSearch(this.value)" aria-label="Search lessons, glossary, and resources">
@@ -96,12 +95,6 @@
       <button class="mobile-toggle" onclick="toggleMobileNav()" aria-label="Menu">☰</button>
     </div>
   </nav>
-
-  <!-- AI News Ticker -->
-  <div id="newsTicker" class="news-ticker" aria-label="AI news headlines" role="marquee">
-    <span class="news-ticker-label">📰 AI in the News</span>
-    <div class="news-ticker-track" id="tickerTrack"></div>
-  </div>
 
   <!-- XP Level Strip -->
   <div class="xp-strip" id="xpStrip">
@@ -172,6 +165,12 @@
       </div>
     </div>
 
+    <!-- AI News Ticker (inside home section so it doesn't show during lessons) -->
+    <div id="newsTicker" class="news-ticker" aria-label="AI news headlines" role="marquee">
+      <span class="news-ticker-label">📰 AI in the News</span>
+      <div class="news-ticker-track" id="tickerTrack"></div>
+    </div>
+
     <!-- Returning-user strip -->
     <div id="firstLessonBanner" class="first-lesson-banner" style="display:none">
       <div class="flb-icon">🚀</div>
@@ -205,6 +204,7 @@
     <div class="section-header">
       <h2>Course Units</h2>
       <p>Click any lesson to expand its details. Track your progress as you go.</p>
+      <button class="btn btn-secondary section-header-action" onclick="showSection('map')" title="View all 55 lessons as a visual grid">🗺 Course Map</button>
     </div>
     <div id="tagFilters" class="tag-filters"></div>
     <div id="diffFilters" class="diff-filters"></div>
@@ -237,6 +237,7 @@
       <button class="filter-btn" onclick="filterResources('assessment')">Assessment</button>
       <button class="filter-btn" onclick="filterResources('debate')">Debate</button>
       <button class="filter-btn" onclick="filterResources('reference')">Reference</button>
+      <button class="filter-btn filter-btn--glossary" onclick="showSection('glossary')" title="Browse key terms from across the course">📖 Glossary</button>
     </div>
     <div id="resourcesGrid" class="resources-grid"></div>
   </section>
