@@ -1,5 +1,5 @@
-/* Digital Innovations — Service Worker (offline-first) v7 */
-const CACHE = 'di-v7';
+/* Digital Innovations — Service Worker (offline-first) v8 */
+const CACHE = 'di-v8';
 const ASSETS = [
   './',
   './index.html',
