@@ -288,6 +288,11 @@
         <div class="sc-label">Avg Quiz Score</div>
         <div class="sc-sub">correct answers</div>
       </div>
+      <div class="summary-card">
+        <div class="sc-num" id="sumNeverStarted">—</div>
+        <div class="sc-label">Not Started</div>
+        <div class="sc-sub">registered but no progress</div>
+      </div>
     </div>
 
     <!-- Dashboard Tabs -->
@@ -633,6 +638,7 @@ async function loadData() {
       qTotal:      qs.length,
       qPct:        qPct,
       lastActive:  lastActive,
+      neverSynced: !prog,
       completedIds: Array.isArray(data.completed) ? data.completed : [],
       quizScores:  data.quiz_scores || {},
       joinedAt:    p.created_at
@@ -657,11 +663,13 @@ function renderSummary() {
   var avgXP      = s.length ? Math.round(s.reduce(function(a, b) { return a + b.xp; }, 0) / s.length) : 0;
   var qStudents  = s.filter(function(st) { return st.qTotal > 0; });
   var avgQ       = qStudents.length ? Math.round(qStudents.reduce(function(a, b) { return a + b.qPct; }, 0) / qStudents.length) : 0;
-  document.getElementById('sumStudents').textContent = s.length;
-  document.getElementById('sumAvgPct').textContent   = avgPct + '%';
-  document.getElementById('sumActive').textContent   = active;
-  document.getElementById('sumAvgXP').textContent    = avgXP;
-  document.getElementById('sumQuizPct').textContent  = qStudents.length ? avgQ + '%' : '—';
+  var neverStarted = s.filter(function(st) { return st.neverSynced; }).length;
+  document.getElementById('sumStudents').textContent     = s.length;
+  document.getElementById('sumAvgPct').textContent       = avgPct + '%';
+  document.getElementById('sumActive').textContent       = active;
+  document.getElementById('sumAvgXP').textContent        = avgXP;
+  document.getElementById('sumQuizPct').textContent      = qStudents.length ? avgQ + '%' : '—';
+  document.getElementById('sumNeverStarted').textContent = neverStarted || '0';
 }
 
 /* ── Table rendering ──────────────────────────────── */
@@ -694,8 +702,11 @@ function renderTable(students) {
     return [
       '<tr class="student-row" onclick="toggleDetail(' + i + ')" data-idx="' + i + '">',
         '<td>',
-          '<div class="student-name">' + esc(s.name) + '</div>',
+          '<div class="student-name">' + esc(s.name) +
+            (s.neverSynced ? ' <span style="font-size:.65rem;font-weight:700;background:rgba(245,158,11,.15);color:#f59e0b;border:1px solid rgba(245,158,11,.3);padding:1px 6px;border-radius:4px;vertical-align:middle">Not started</span>' : '') +
+          '</div>',
           '<div class="student-email">' + esc(s.email) + '</div>',
+          '<div style="font-size:.72rem;color:var(--text-dim);margin-top:1px">Joined ' + new Date(s.joinedAt).toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'}) + '</div>',
         '</td>',
         '<td class="progress-cell">',
           '<div class="pct-text">' + s.completed + ' / ' + TOTAL_LESSONS + ' (' + s.pct + '%)</div>',
