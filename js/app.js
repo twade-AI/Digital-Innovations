@@ -230,7 +230,7 @@ function saveQuizScore(lessonId, correct) {
 function showSection(name) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById('section-' + name)?.classList.add('active');
-  var exploreSections = ['exemplars','timeline','news'];
+  var exploreSections = ['exemplars','timeline','news','glossary'];
   document.querySelectorAll('.nav-link').forEach(l => {
     l.classList.toggle('active', l.dataset.section === name);
   });
