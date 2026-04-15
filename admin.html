@@ -267,12 +267,12 @@
     <div class="summary-grid" id="summaryGrid">
       <div class="summary-card">
         <div class="sc-num" id="sumStudents">—</div>
-        <div class="sc-label">Registered Students</div>
+        <div class="sc-label">Registered Pupils</div>
       </div>
       <div class="summary-card">
         <div class="sc-num" id="sumAvgPct">—</div>
         <div class="sc-label">Avg Completion</div>
-        <div class="sc-sub">across all students</div>
+        <div class="sc-sub">across all pupils</div>
       </div>
       <div class="summary-card">
         <div class="sc-num" id="sumActive">—</div>
@@ -292,7 +292,7 @@
 
     <!-- Dashboard Tabs -->
     <div class="dash-tabs">
-      <button class="dash-tab active" onclick="switchDashTab('students')">👥 Students</button>
+      <button class="dash-tab active" onclick="switchDashTab('students')"> Pupils</button>
       <button class="dash-tab" onclick="switchDashTab('class')">📊 Class Dashboard</button>
       <button class="dash-tab" onclick="switchDashTab('reflections')">💬 Reflections</button>
       <button class="dash-tab" onclick="switchDashTab('ratings')">⭐ Lesson Ratings</button>
@@ -313,7 +313,7 @@
         <table class="student-table" id="studentTable">
           <thead>
             <tr>
-              <th>Student</th><th>Lessons</th><th>XP / Level</th>
+              <th>Pupil</th><th>Lessons</th><th>XP / Level</th>
               <th>Streak</th><th>Quiz Score</th><th>Last Active</th><th></th>
             </tr>
           </thead>
@@ -327,7 +327,7 @@
     <!-- Class Dashboard Tab -->
     <div id="tabClass" style="display:none">
       <div id="classDashboardBody">
-        <div class="empty-state" style="padding:40px">Load student data first, then open this tab.</div>
+        <div class="empty-state" style="padding:40px">Load pupil data first, then open this tab.</div>
       </div>
     </div>
 
@@ -356,7 +356,7 @@ CREATE POLICY "Admins read all reflections" ON public.reflections
         <span id="refSqlCopied" style="font-size:.78rem;color:var(--success);display:none;margin-left:8px">✓ Copied!</span>
       </div>
       <div class="table-controls" style="margin-bottom:16px">
-        <input class="search-input" type="text" id="reflectionSearch" placeholder="Filter by student or lesson…" oninput="filterReflections()">
+        <input class="search-input" type="text" id="reflectionSearch" placeholder="Filter by pupil or lesson…" oninput="filterReflections()">
         <button class="btn btn-ghost btn-sm" onclick="exportReflectionsCSV()">⬇ Export CSV</button>
       </div>
       <div id="reflectionsBody">
@@ -366,7 +366,7 @@ CREATE POLICY "Admins read all reflections" ON public.reflections
 
     <!-- Ratings Tab -->
     <div id="tabRatings" style="display:none">
-      <div class="cd-section-title" style="margin-bottom:16px">⭐ Lesson Ratings — student thumbs up/down feedback</div>
+      <div class="cd-section-title" style="margin-bottom:16px">⭐ Lesson Ratings — pupil thumbs up/down feedback</div>
       <details class="ref-setup-box" style="margin-bottom:16px">
         <summary style="cursor:pointer;font-size:.85rem;font-weight:600;color:var(--text-dim)">▶ First-time setup — run this SQL in Supabase</summary>
         <pre class="ref-sql-box" id="ratingsSqlBox">CREATE TABLE IF NOT EXISTS public.lesson_ratings (
@@ -479,7 +479,7 @@ CREATE POLICY "Admins can manage news" ON public.site_news FOR ALL USING (
 
   <!-- Footer -->
   <div class="admin-footer">
-    <span>Digital Innovations <abbr title="Advanced Extension Programme">AEP</abbr> &bull; Admin Dashboard</span>
+    <span>Digital Innovations <abbr title="Academic Extension Programme">AEP</abbr> &bull; Admin Dashboard</span>
     <a href="https://supabase.com/dashboard" target="_blank" rel="noopener">Open Supabase Dashboard ↗</a>
     <span id="lastRefresh"></span>
   </div>
@@ -685,7 +685,7 @@ function relativeDate(iso) {
 function renderTable(students) {
   var tbody = document.getElementById('studentTableBody');
   if (!students.length) {
-    tbody.innerHTML = '<tr><td colspan="7" class="empty-state">No students found.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="7" class="empty-state">No pupils found.</td></tr>';
     return;
   }
   tbody.innerHTML = students.map(function(s, i) {
@@ -897,7 +897,7 @@ var TOTAL_LESSONS_FULL = 50;
 function renderClassDashboard() {
   var el = document.getElementById('classDashboardBody');
   if (!_allStudents || !_allStudents.length) {
-    el.innerHTML = '<div class="empty-state" style="padding:40px">No student data loaded yet. Refresh the Students tab first.</div>';
+    el.innerHTML = '<div class="empty-state" style="padding:40px">No pupil data loaded yet. Refresh the Pupils tab first.</div>';
     return;
   }
   var s = _allStudents;
@@ -929,7 +929,7 @@ function renderClassDashboard() {
   var unitHtml = '<div class="cd-section"><div class="cd-section-title">Unit Completion — class average</div><div class="cd-unit-grid">' +
     UNITS_META.map(function(u) {
       var lessonCount = u.lessons.length;
-      // Average % of this unit's lessons completed across all students
+      // Average % of this unit's lessons completed across all pupils
       var avgCompleted = s.reduce(function(sum, st) {
         var done = u.lessons.filter(function(lid) { return st.completedIds.indexOf(lid) !== -1; }).length;
         return sum + (done / lessonCount * 100);
@@ -942,7 +942,7 @@ function renderClassDashboard() {
         '<div class="cd-unit-header"><span>' + u.icon + ' Unit ' + (u.id+1) + ': ' + u.title + '</span>' +
         '<span class="cd-unit-pct">' + pct + '%</span></div>' +
         '<div class="cd-bar-track"><div class="cd-bar-fill" style="width:' + pct + '%"></div></div>' +
-        '<div class="cd-unit-sub">' + studentsStarted + ' of ' + n + ' students started</div>' +
+        '<div class="cd-unit-sub">' + studentsStarted + ' of ' + n + ' pupils started</div>' +
       '</div>';
     }).join('') + '</div></div>';
 
@@ -955,7 +955,7 @@ function renderClassDashboard() {
   }).sort(function(a,b) { return b.count - a.count; });
   var topRow = function(l) {
     return '<tr><td><strong>L' + l.id + '</strong> ' + esc(l.title) + '</td>' +
-      '<td><span class="cd-lesson-bar"><span class="cd-lesson-fill" style="width:' + l.pct + '%"></span></span>' + l.count + ' students (' + l.pct + '%)</td></tr>';
+      '<td><span class="cd-lesson-bar"><span class="cd-lesson-fill" style="width:' + l.pct + '%"></span></span>' + l.count + ' pupils (' + l.pct + '%)</td></tr>';
   };
   var lessonHtml = '<div class="cd-section"><div class="cd-section-title">Lesson Engagement</div>' +
     '<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">' +
@@ -972,9 +972,9 @@ function renderClassDashboard() {
   var atRisk = s.filter(function(st) {
     return st.pct === 0 || !st.lastActive || st.lastActive < twoWeeksAgo;
   }).sort(function(a,b) { return a.pct - b.pct; });
-  var riskHtml = '<div class="cd-section"><div class="cd-section-title">At-Risk Students (' + atRisk.length + ')</div>';
+  var riskHtml = '<div class="cd-section"><div class="cd-section-title">At-Risk Pupils (' + atRisk.length + ')</div>';
   if (!atRisk.length) {
-    riskHtml += '<div class="empty-state" style="padding:16px">No at-risk students — great!</div>';
+    riskHtml += '<div class="empty-state" style="padding:16px">No at-risk pupils — great!</div>';
   } else {
     riskHtml += '<div class="cd-risk-list">' + atRisk.map(function(st) {
       var badge = st.pct === 0
@@ -1049,7 +1049,7 @@ function filterReflections() {
 }
 function exportReflectionsCSV() {
   if (!_allReflections.length) return;
-  var rows = [['Student','Lesson','Slide','Text','Date']];
+  var rows = [['Pupil','Lesson','Slide','Text','Date']];
   _allReflections.forEach(function(r) {
     rows.push([r.studentName, (r.lesson_title || 'L'+r.lesson_id), r.slide_idx, r.text.replace(/\n/g,' '), r.updated_at ? r.updated_at.slice(0,10) : '']);
   });
@@ -1113,7 +1113,7 @@ function renderRatings() {
     '<h3 style="font-size:.95rem;font-weight:700;margin-bottom:12px">Lesson summary (' + _allRatings.length + ' total ratings)</h3>' +
     '<table class="student-table" style="margin-bottom:24px"><thead><tr><th>Lesson</th><th>👍</th><th>👎</th><th>Satisfaction</th></tr></thead><tbody>' + summaryRows + '</tbody></table>' +
     '<h3 style="font-size:.95rem;font-weight:700;margin-bottom:12px">Individual ratings</h3>' +
-    '<table class="student-table"><thead><tr><th>Student</th><th>Lesson</th><th>Rating</th><th>Date</th></tr></thead><tbody>' +
+    '<table class="student-table"><thead><tr><th>Pupil</th><th>Lesson</th><th>Rating</th><th>Date</th></tr></thead><tbody>' +
     _allRatings.map(function(r) {
       var name = (r.profiles && r.profiles.display_name) ? esc(r.profiles.display_name) : (r.profiles && r.profiles.email ? esc(r.profiles.email) : r.user_id.slice(0,8) + '…');
       return '<tr><td>' + name + '</td><td>L' + r.lesson_id + '</td><td>' + (r.rating === 'up' ? '👍' : '👎') + '</td><td style="color:var(--text-dim);font-size:.8rem">' + (r.rated_at ? r.rated_at.slice(0,10) : '') + '</td></tr>';
@@ -1123,7 +1123,7 @@ function renderRatings() {
 
 function exportRatingsCSV() {
   if (!_allRatings.length) return;
-  var rows = [['Student','Lesson','Rating','Date']];
+  var rows = [['Pupil','Lesson','Rating','Date']];
   _allRatings.forEach(function(r) {
     var name = (r.profiles && r.profiles.display_name) ? r.profiles.display_name : (r.profiles && r.profiles.email ? r.profiles.email : r.user_id);
     rows.push([name, 'L' + r.lesson_id, r.rating, r.rated_at ? r.rated_at.slice(0,10) : '']);

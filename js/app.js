@@ -472,7 +472,8 @@ function getLessonSlides(id, lesson, unit) {
   var all = Object.assign({}, (typeof SLIDES_U1U2 !== 'undefined' ? SLIDES_U1U2 : {}),
                                (typeof SLIDES_U3U4 !== 'undefined' ? SLIDES_U3U4 : {}),
                                (typeof SLIDES_U5U6 !== 'undefined' ? SLIDES_U5U6 : {}),
-                               (typeof SLIDES_CRITICAL !== 'undefined' ? SLIDES_CRITICAL : {}));
+                               (typeof SLIDES_CRITICAL !== 'undefined' ? SLIDES_CRITICAL : {}),
+                               (typeof SLIDES_ADVANCED !== 'undefined' ? SLIDES_ADVANCED : {}));
   if (all[id]) return all[id];
   return generateSlides(lesson, unit);
 }
@@ -846,7 +847,7 @@ function renderSlide(index) {
   area.style.position = 'relative';
   area.appendChild(confBtn);
 
-  // Per-slide student notes
+  // Per-slide pupil notes
   var noteKey = 'di_note_' + currentLessonId + '_' + index;
   var savedNote = localStorage.getItem(noteKey) || '';
   var notesWrap = document.createElement('div');
@@ -1618,7 +1619,7 @@ function exportFullProgressPDF() {
       '<div class="rh-brand">Digital Innovations &bull; KS5 AI Course</div>' +
       '<div class="rh-title">📊 Progress Report</div>' +
       '<div class="rh-sub">Exported ' + exportDate + '</div>' +
-      (studentName ? '<div class="rh-name">Student: ' + studentName + '</div>' : '') +
+      (studentName ? '<div class="rh-name">Pupil: ' + studentName + '</div>' : '') +
     '</div>' +
     /* Stats grid */
     '<div class="stats">' +
@@ -2848,7 +2849,7 @@ function loadPTFCExample() {
     ptfc_p: 'You are an experienced AQA A-Level Biology examiner who marks at distinction level.',
     ptfc_t: 'Explain the light-dependent reactions of photosynthesis — specifically what happens to electrons in the thylakoid membrane.',
     ptfc_f: 'Brief overview (2 sentences), then numbered step-by-step with maximum 2 sentences per step, then 3 self-test questions with answers.',
-    ptfc_c: 'I understand basic redox reactions but always confuse Photosystem I and II. Year 13 OCR student. Exam in 4 weeks. I need to understand the mechanism, not just memorise it.'
+    ptfc_c: 'I understand basic redox reactions but always confuse Photosystem I and II. Year 13 OCR pupil. Exam in 4 weeks. I need to understand the mechanism, not just memorise it.'
   };
   Object.keys(vals).forEach(function(id) { var el = document.getElementById(id); if (el) el.value = vals[id]; });
   assemblePTFC();

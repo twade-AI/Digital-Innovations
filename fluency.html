@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Fluency Track — Digital Innovations</title>
-  <meta name="description" content="A free, self-directed 15-lesson pathway to AI fluency. No login needed. Works offline.">
+  <meta name="description" content="A free, self-directed 20-lesson pathway to AI fluency. No login needed. Works offline.">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <!-- Apply saved theme BEFORE CSS loads — eliminates flash of unstyled content -->
@@ -264,7 +264,7 @@
 </head>
 <body>
   <div id="offlineBanner" class="offline-banner" style="display:none" role="status" aria-live="polite">
-    You are offline — all 15 lessons are available from cache
+    You are offline — all 20 lessons are available from cache
   </div>
 
   <div class="fl-shell">
@@ -280,7 +280,7 @@
     <div class="fl-progress-wrap">
       <div class="fl-progress-label">
         <span>Your progress</span>
-        <span id="flProgressLabel">0 / 15 lessons</span>
+        <span id="flProgressLabel">0 / 20 lessons</span>
       </div>
       <div class="fl-progress-track">
         <div class="fl-progress-fill" id="flProgressFill" style="width:0%"></div>
@@ -291,7 +291,7 @@
     <div class="fl-complete" id="flComplete">
       <div class="fl-complete-icon">🏆</div>
       <h2>AI Fluency Achieved!</h2>
-      <p>You've completed all 15 lessons. You now have the knowledge to use AI clearly, critically, and responsibly.</p>
+      <p>You've completed all 20 lessons. You now have the knowledge to use AI clearly, critically, and responsibly.</p>
       <div class="fl-cert-name-row">
         <label class="fl-cert-name-label" for="flCertNameInput">Your name (for the certificate)</label>
         <input id="flCertNameInput" class="fl-cert-name-input" type="text" placeholder="Enter your full name…" oninput="flUpdateCertName(this.value)" maxlength="60">
@@ -315,7 +315,7 @@
         <div class="fl-cert-recipient" id="flCertRecipient">—</div>
         <div class="fl-cert-course">has successfully completed the</div>
         <div class="fl-cert-title-main">AI Fluency Track</div>
-        <div class="fl-cert-detail">15 lessons · ~6 hours · AI literacy, critical thinking &amp; responsible use</div>
+        <div class="fl-cert-detail">20 lessons · ~8 hours · AI literacy, critical thinking &amp; responsible use</div>
         <div class="fl-cert-divider"></div>
         <div class="fl-cert-footer">
           <div class="fl-cert-date-wrap">
@@ -335,10 +335,10 @@
     <div class="fl-hero" id="flHero">
       <div class="fl-hero-badge">Self-Directed · Free · Works Offline</div>
       <h1>AI Fluency Track</h1>
-      <p class="fl-hero-sub">15 lessons. No teacher required. Work at your own pace and build genuine AI literacy — from understanding how LLMs work to protecting yourself from deepfakes.</p>
+      <p class="fl-hero-sub">20 lessons. No teacher required. Work at your own pace and build genuine AI literacy — from understanding how LLMs work to protecting yourself from deepfakes.</p>
       <div class="fl-hero-stats">
-        <div class="fl-stat"><span class="fl-stat-num">15</span><span class="fl-stat-label">Lessons</span></div>
-        <div class="fl-stat"><span class="fl-stat-num">~6h</span><span class="fl-stat-label">Total time</span></div>
+        <div class="fl-stat"><span class="fl-stat-num">20</span><span class="fl-stat-label">Lessons</span></div>
+        <div class="fl-stat"><span class="fl-stat-num">~8h</span><span class="fl-stat-label">Total time</span></div>
         <div class="fl-stat"><span class="fl-stat-num">0</span><span class="fl-stat-label">Prerequisites</span></div>
         <div class="fl-stat"><span class="fl-stat-num">Free</span><span class="fl-stat-label">Always</span></div>
       </div>
@@ -380,6 +380,7 @@
   <script src="js/slides-u3u4.js"></script>
   <script src="js/slides-u5u6.js"></script>
   <script src="js/slides-critical.js"></script>
+  <script src="js/slides-advanced.js"></script>
   <script src="js/quiz-bank.js"></script>
   <script src="js/visuals.js"></script>
   <script>
@@ -389,15 +390,20 @@
   var FL_TRACK = [
     { id:1,  section:'Understanding AI',       icon:'🤖', time:'~20 min' },
     { id:2,  section:'Understanding AI',       icon:'🦜', time:'~25 min' },
+    { id:51, section:'Understanding AI',       icon:'🔢', time:'~25 min' },
     { id:5,  section:'Understanding AI',       icon:'⚖️', time:'~25 min' },
     { id:8,  section:'Understanding AI',       icon:'👤', time:'~20 min' },
     { id:9,  section:'Using AI Effectively',   icon:'✍️', time:'~30 min' },
     { id:12, section:'Using AI Effectively',   icon:'🔄', time:'~25 min' },
+    { id:52, section:'Using AI Effectively',   icon:'🎯', time:'~25 min' },
+    { id:53, section:'Using AI Effectively',   icon:'📚', time:'~25 min' },
     { id:45, section:'Thinking Critically',    icon:'🔍', time:'~25 min' },
     { id:46, section:'Thinking Critically',    icon:'✅', time:'~25 min' },
     { id:47, section:'Thinking Critically',    icon:'🌊', time:'~25 min' },
     { id:13, section:'AI & Society',           icon:'🎭', time:'~25 min' },
     { id:15, section:'AI & Society',           icon:'🌍', time:'~20 min' },
+    { id:54, section:'AI & Society',           icon:'⚡', time:'~25 min' },
+    { id:55, section:'AI & Society',           icon:'⚖️', time:'~25 min' },
     { id:49, section:'AI & Society',           icon:'🗳️', time:'~25 min' },
     { id:48, section:'Your AI Future',         icon:'🧠', time:'~25 min' },
     { id:41, section:'Your AI Future',         icon:'🎓', time:'~20 min' },
@@ -434,7 +440,8 @@
       ...(typeof SLIDES_U1U2 !== 'undefined' ? SLIDES_U1U2 : {}),
       ...(typeof SLIDES_U3U4 !== 'undefined' ? SLIDES_U3U4 : {}),
       ...(typeof SLIDES_U5U6 !== 'undefined' ? SLIDES_U5U6 : {}),
-      ...(typeof SLIDES_CRITICAL !== 'undefined' ? SLIDES_CRITICAL : {})
+      ...(typeof SLIDES_CRITICAL !== 'undefined' ? SLIDES_CRITICAL : {}),
+      ...(typeof SLIDES_ADVANCED !== 'undefined' ? SLIDES_ADVANCED : {})
     };
     // Find lesson in UNITS
     var lesson = null, unit = null;
@@ -650,7 +657,7 @@
       }
     }
 
-    // Per-slide student notes
+    // Per-slide pupil notes
     var flNoteKey = 'di_note_' + flCurrentLessonId + '_' + idx;
     var flSavedNote = localStorage.getItem(flNoteKey) || '';
     var flNotesWrap = document.createElement('div');

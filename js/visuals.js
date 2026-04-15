@@ -935,7 +935,7 @@ var SLIDE_VISUALS = {
     <!-- Central statement block -->
     <rect x="20" y="28" width="520" height="60" rx="10" fill="rgba(99,102,241,.06)" stroke="rgba(99,102,241,.3)" stroke-width="1.5"/>
     <!-- Statement text split into 4 colored segments -->
-    <text x="30" y="52" class="vlc" font-size="9" font-weight="700" fill="rgba(99,102,241,.9)">[Year 12 students]</text>
+    <text x="30" y="52" class="vlc" font-size="9" font-weight="700" fill="rgba(99,102,241,.9)">[Year 12 pupils]</text>
     <text x="165" y="52" class="vlc" font-size="9" font-weight="700" fill="rgba(239,68,68,.85)"> who [struggle to revise effectively]</text>
     <text x="30" y="70" class="vlc" font-size="9" font-weight="700" fill="rgba(245,158,11,.85)">lack [adaptive, curriculum-specific support]</text>
     <text x="305" y="70" class="vlc" font-size="9" font-weight="700" fill="rgba(6,182,212,.85)"> — current tools are [generic and don't map to their exam board].</text>

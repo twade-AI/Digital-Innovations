@@ -1,5 +1,5 @@
-/* Digital Innovations — Service Worker (offline-first) v6 */
-const CACHE = 'di-v6';
+/* Digital Innovations — Service Worker (offline-first) v7 */
+const CACHE = 'di-v7';
 const ASSETS = [
   './',
   './index.html',
@@ -15,6 +15,7 @@ const ASSETS = [
   './js/slides-u3u4.js',
   './js/slides-u5u6.js',
   './js/slides-critical.js',
+  './js/slides-advanced.js',
   './icon.svg',
   './manifest.json',
 ];

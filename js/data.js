@@ -16,6 +16,7 @@ const UNITS = [
       { id:7, difficulty:"beginner", title:"The Trolley Problem Goes Digital",   desc:"Apply classic ethical dilemmas to autonomous systems and AI decision-making.", tags:["debate","ethics"], objectives:["Apply utilitarian and deontological frameworks to AI","Debate autonomous vehicle ethics","Evaluate moral agency of AI systems"], resources:["r9","r4"] },
       { id:8, difficulty:"intermediate", title:"Human in the Loop",                  desc:"Analyse when and why human oversight is essential in AI-assisted decisions.", tags:["case-study","theory"], objectives:["Define human-in-the-loop, on-the-loop, out-of-the-loop","Evaluate oversight requirements by domain","Design appropriate human-AI collaboration models"], resources:["r9","r4"] },
       { id:45, difficulty:"intermediate", title:"What Can You Trust?",               desc:"Examine how AI challenges the foundations of knowledge — and build a personal framework for evaluating information in an AI-saturated world.", tags:["theory","discussion","critical-thinking"], objectives:["Define epistemic concepts: truth, evidence, justified belief","Analyse how AI undermines traditional sources of knowledge","Apply the CRAAP test and epistemic calibration to AI outputs","Build a personal verification framework for AI-era claims"], resources:["r4","r5"] },
+      { id:51, difficulty:"intermediate", title:"Breaking the Illusion: Tokens & How LLMs Work", desc:"Discover that AI doesn't read text — it processes numbers. Understand tokenisation, the autocomplete engine, and why this architecture explains both AI's greatest strengths and its strangest, most consistent failures.", tags:["theory","skills"], objectives:["Explain how LLMs convert text to tokens and tokens to probabilities","Demonstrate why LLMs fail at character-level tasks like the Strawberry Problem","Connect the token architecture to hallucination and generic output","Use structured prompting techniques to work with — not against — the token architecture"], resources:["r3"] },
     ]
   },
   {
@@ -29,6 +30,8 @@ const UNITS = [
       { id:11, difficulty:"intermediate", title:"Deep Research & Career Disruption",   desc:"Use AI research tools to investigate how AI is reshaping industries and careers.", tags:["research","discussion"], objectives:["Conduct AI-assisted deep research","Triangulate AI research claims against primary sources","Analyse career disruption data","Evaluate future workforce scenarios with appropriate scepticism"], resources:["r5"], prereqs:[9] },
       { id:12, difficulty:"intermediate", title:"The Revision Loop",                   desc:"Use iterative prompt refinement to improve AI outputs for academic tasks.", tags:["practical","activity"], objectives:["Implement systematic prompt iteration","Use AI as a revision partner","Critically evaluate and reject AI suggestions that weaken your argument"], resources:["r3","r17"], prereqs:[9] },
       { id:46, difficulty:"intermediate", title:"Trust, But Verify",                  desc:"Build practical skills for fact-checking AI outputs — identifying hallucinations, tracing claims to primary sources, and knowing when AI simply cannot be trusted.", tags:["practical","skills","critical-thinking"], objectives:["Identify and classify the four main types of AI hallucination","Apply the VERIFY workflow to any AI-generated research","Establish personal habits for responsible AI-assisted work","Evaluate which sources can and cannot corroborate AI claims"], resources:["r3"] },
+      { id:52, difficulty:"advanced", title:"Prompt Injection & Adversarial AI",     desc:"Understand the #1 security risk for AI applications: prompt injection. Learn how attackers embed instructions in content AI reads, why defence is genuinely hard, and what least-privilege design means in practice.", tags:["theory","skills","ethics"], objectives:["Distinguish direct from indirect prompt injection and explain why both work","Evaluate the limits of common defensive techniques against prompt injection","Apply least-privilege principles when designing AI-powered systems","Assess ethical and legal responsibility when AI systems are compromised"], resources:["r9"], prereqs:[9,46] },
+      { id:53, difficulty:"advanced", title:"RAG & AI Agents",                       desc:"Go beyond the chatbox — understand how Retrieval-Augmented Generation grounds AI in real documents, and how agents use tools to take actions in the world. Learn to design, evaluate, and question these systems.", tags:["theory","practical"], objectives:["Explain the RAG pipeline from document indexing to grounded generation","Describe the ReAct agent architecture and common tool types","Design a RAG system for a real use case and identify its failure modes","Evaluate the oversight challenges that arise when agents act faster than humans can supervise"], resources:["r1","r3"], prereqs:[9,52] },
     ]
   },
   {
@@ -43,6 +46,8 @@ const UNITS = [
       { id:16, difficulty:"advanced", title:"Global Regulation",                   desc:"Compare AI regulation approaches across the EU, US, UK and China.", tags:["research","policy"], objectives:["Map global regulatory landscape","Compare regulatory philosophies","Evaluate effectiveness of different approaches"], resources:["r12"] },
       { id:47, difficulty:"intermediate", title:"The AI Content Flood",             desc:"Develop practical media literacy for an internet saturated with AI-generated text, images, and arguments — and learn to navigate it without being misled.", tags:["practical","skills","case-study","critical-thinking"], objectives:["Identify linguistic and visual markers of AI-generated content","Apply SIFT methodology and detection tools to real examples","Evaluate the societal consequences of AI-generated misinformation at scale","Develop a personal media literacy protocol for AI-era content"], resources:["r16","r5"] },
       { id:49, difficulty:"advanced", title:"AI and Democracy",                    desc:"Investigate how AI-generated content, micro-targeting, and influence operations are reshaping elections — and what democratic societies can do about it.", tags:["debate","ethics","policy","critical-thinking"], objectives:["Analyse documented cases of AI-driven electoral interference","Evaluate the effectiveness of platform policies and electoral AI laws","Debate the tension between free expression and election integrity","Propose evidence-based safeguards for AI in democratic processes"], resources:["r12","r10"] },
+      { id:54, difficulty:"intermediate", title:"The Hidden Costs: Energy & Human Labour", desc:"Investigate the physical and human costs that don't appear on AI's pricing page — from nuclear-powered data centres to the Kenyan workers paid $1.32/hr to label trauma so models would learn to refuse it.", tags:["research","ethics","data","case-study"], objectives:["Quantify the energy and water consumption of AI training and inference","Explain how RLHF works and identify the human labour supply chain that underpins it","Evaluate the argument that AI companies bear supply chain responsibility for contractor welfare","Analyse how the costs and benefits of AI are distributed across different communities globally"], resources:["r18","r9"] },
+      { id:55, difficulty:"advanced", title:"Copyright & Training Data",             desc:"Examine the landmark NYT vs. OpenAI lawsuit and the contested legal and ethical questions around training data — who owns what AI learned from, and what a fair system might look like.", tags:["debate","ethics","policy","research"], objectives:["Explain how modern LLMs are trained and the role of large-scale text corpora","Analyse the four fair-use factors and apply them to AI training data cases","Compare US and EU legal frameworks for AI copyright compliance","Evaluate what a fair licensing or compensation regime for training data creators would require"], resources:["r14","r12"] },
     ]
   },
   {
@@ -169,7 +174,7 @@ const RESOURCE_CONTENT = {
 <p>Build your pitch deck slide-by-slide. Each section below maps to one slide in your presentation.</p>
 <div class="resource-template-section"><h5>Slide 1 — Hook / Problem</h5>
 <p style="font-size:.8rem;color:var(--text-muted)">Open with a striking statistic, question or story that makes the problem feel real. One sentence max.</p>
-<textarea class="resource-field" rows="2" placeholder="e.g. &quot;Every year, 800,000 students fail to access the mental health support they need...&quot;"></textarea></div>
+<textarea class="resource-field" rows="2" placeholder="e.g. &quot;Every year, 800,000 pupils fail to access the mental health support they need...&quot;"></textarea></div>
 <div class="resource-template-section"><h5>Slide 2 — Your Solution</h5>
 <p style="font-size:.8rem;color:var(--text-muted)">Describe your project in plain language. What does it do? How does it work?</p>
 <textarea class="resource-field" rows="3" placeholder="Our project is... It works by... The key feature is..."></textarea></div>
@@ -193,7 +198,7 @@ const RESOURCE_CONTENT = {
 <p>Log each version of your prompt here. Tracking iterations helps you understand what works and why.</p>
 <div class="resource-template-section"><h5>Task / Goal</h5>
 <p style="font-size:.8rem;color:var(--text-muted)">What are you trying to get the AI to produce?</p>
-<textarea class="resource-field" rows="2" placeholder="e.g. Write a paragraph explaining neural networks to a Year 9 student..."></textarea></div>
+<textarea class="resource-field" rows="2" placeholder="e.g. Write a paragraph explaining neural networks to a Year 9 pupil..."></textarea></div>
 <div class="resource-template-section"><h5>Iteration 1</h5>
 <label style="font-size:.8rem;color:var(--text-muted)">Prompt used</label>
 <textarea class="resource-field" rows="2" placeholder="Paste your first prompt here..."></textarea>
@@ -453,13 +458,13 @@ const RESOURCE_CONTENT = {
 <li>Describe a moment when you were wrong about something related to AI. What changed your mind?</li>
 <li>How has your view of AI's potential — and its risks — changed since the start of the course?</li>
 <li>What skill from this course will be most useful to you in five years?</li>
-<li>What would you tell a student starting this course next year?</li>
+<li>What would you tell a pupil starting this course next year?</li>
 </ul>
 <label style="font-size:.8rem;color:var(--text-muted)">Practice answer — choose one question above</label>
 <textarea class="resource-field" rows="3" placeholder="Question chosen: ... / My answer: ..."></textarea></div>
 <div class="resource-template-section"><h5>Section 5: Policy &amp; Society</h5>
 <ul>
-<li>Should AI tools like the ones you used be available to all students, or should access be restricted?</li>
+<li>Should AI tools like the ones you used be available to all pupils, or should access be restricted?</li>
 <li>Which global AI regulation approach (EU, US, UK, China) do you find most convincing and why?</li>
 <li>If you were advising your school's leadership on AI policy, what one rule would you insist on?</li>
 <li>What jobs or roles do you think AI will not replace in the next 20 years, and why?</li>
@@ -490,7 +495,7 @@ const RESOURCE_CONTENT = {
   r10: `<h4>AI Policy Drafting Template</h4>
 <p>Use this template to draft a formal AI acceptable use policy. Use clear, precise language — avoid ambiguity.</p>
 <div class="resource-template-section"><h5>1. Policy Title &amp; Scope</h5>
-<textarea class="resource-field" rows="2" placeholder="Title: AI Acceptable Use Policy — [Institution Name]\nScope: This policy applies to all students, staff and visitors who use AI tools in..."></textarea></div>
+<textarea class="resource-field" rows="2" placeholder="Title: AI Acceptable Use Policy — [Institution Name]\nScope: This policy applies to all pupils, staff and visitors who use AI tools in..."></textarea></div>
 <div class="resource-template-section"><h5>2. Definitions</h5>
 <p style="font-size:.8rem;color:var(--text-muted)">Define key terms to prevent ambiguity. What counts as an "AI tool"? What is "AI-generated content"?</p>
 <textarea class="resource-field" rows="4" placeholder="For the purposes of this policy:\n&quot;AI tool&quot; means any software that uses machine learning to generate, summarise, translate or transform content, including but not limited to...\n&quot;AI-generated content&quot; means any text, image, code or data produced by..."></textarea></div>
@@ -571,27 +576,27 @@ const RESOURCE_CONTENT = {
 <textarea class="resource-field" rows="3" placeholder="Which approach best balances innovation and safety? Which approach best protects citizens? Is global coordination possible? Why or why not?"></textarea></div>`,
 
   r13: `<h4>University AI Policy Comparison</h4>
-<p>Review how leading universities approach AI use by students. Use this to identify patterns, gaps and best practices for your own policy drafting.</p>
+<p>Review how leading universities approach AI use by pupils. Use this to identify patterns, gaps and best practices for your own policy drafting.</p>
 <div class="resource-template-section"><h5>Policy A — Conservative Approach</h5>
 <ul>
 <li><strong>Stance:</strong> AI use is prohibited in assessed work unless explicitly stated otherwise.</li>
 <li><strong>Disclosure:</strong> Not required (use is banned).</li>
 <li><strong>Enforcement:</strong> AI-generated text treated as academic misconduct; same penalties as plagiarism.</li>
 <li><strong>Strengths:</strong> Clear, simple to understand and enforce.</li>
-<li><strong>Weaknesses:</strong> Does not prepare students for AI-integrated workplaces; hard to enforce reliably.</li>
+<li><strong>Weaknesses:</strong> Does not prepare pupils for AI-integrated workplaces; hard to enforce reliably.</li>
 </ul>
 <label style="font-size:.8rem;color:var(--text-muted)">Your analysis</label>
-<textarea class="resource-field" rows="2" placeholder="I think this approach works / fails because... A student at this university would..."></textarea></div>
+<textarea class="resource-field" rows="2" placeholder="I think this approach works / fails because... A pupil at this university would..."></textarea></div>
 <div class="resource-template-section"><h5>Policy B — Permissive with Disclosure</h5>
 <ul>
-<li><strong>Stance:</strong> AI use is permitted; students must declare it with a standardised statement.</li>
+<li><strong>Stance:</strong> AI use is permitted; pupils must declare it with a standardised statement.</li>
 <li><strong>Disclosure:</strong> Mandatory declaration specifying which tools used and how.</li>
 <li><strong>Enforcement:</strong> Failure to disclose = misconduct; content itself is not penalised.</li>
 <li><strong>Strengths:</strong> Builds AI literacy; mirrors professional norms; transparent.</li>
 <li><strong>Weaknesses:</strong> Risk of over-reliance; assessment validity questions; unequal AI tool access.</li>
 </ul>
 <label style="font-size:.8rem;color:var(--text-muted)">Your analysis</label>
-<textarea class="resource-field" rows="2" placeholder="I think this approach works / fails because... A student at this university would..."></textarea></div>
+<textarea class="resource-field" rows="2" placeholder="I think this approach works / fails because... A pupil at this university would..."></textarea></div>
 <div class="resource-template-section"><h5>Policy C — Task-by-Task Specification</h5>
 <ul>
 <li><strong>Stance:</strong> Each assessment brief specifies exactly which AI use is permitted for that task.</li>
@@ -601,7 +606,7 @@ const RESOURCE_CONTENT = {
 <li><strong>Weaknesses:</strong> Confusing across modules; extra burden on lecturers to specify clearly.</li>
 </ul>
 <label style="font-size:.8rem;color:var(--text-muted)">Your analysis</label>
-<textarea class="resource-field" rows="2" placeholder="I think this approach works / fails because... A student at this university would..."></textarea></div>
+<textarea class="resource-field" rows="2" placeholder="I think this approach works / fails because... A pupil at this university would..."></textarea></div>
 <div class="resource-template-section"><h5>Cross-Policy Observations</h5>
 <textarea class="resource-field" rows="3" placeholder="Common elements across all three: ... / The biggest gap I noticed: ... / The approach I would recommend for our school: ..."></textarea></div>
 <div class="resource-template-section"><h5>Design Principles for Your Own Policy</h5>
@@ -662,7 +667,7 @@ const RESOURCE_CONTENT = {
   r8: `<h4>Peer Review Feedback Form</h4>
 <p>Give honest, specific feedback. Vague comments like "it was good" are not helpful. Use evidence from what you actually saw or read.</p>
 <div class="resource-template-section"><h5>Project Reviewed</h5>
-<input class="resource-field" placeholder="Student / team name and project title...">
+<input class="resource-field" placeholder="Pupil / team name and project title...">
 </div>
 <div class="resource-template-section"><h5>Two Stars — What is working well?</h5>
 <p style="font-size:.8rem;color:var(--text-muted)">Identify two specific strengths. Say what they are AND why they work.</p>
@@ -687,7 +692,7 @@ const RESOURCE_CONTENT = {
 <p>Use this template to draft a formal AI Acceptable Use Policy. Each section includes guidance notes. Delete the guidance notes before submitting your final policy.</p>
 <div class="resource-template-section"><h5>Section 1 — Purpose and Scope</h5>
 <p style="font-size:.8rem;color:var(--text-muted)">State clearly what this policy covers, who it applies to, and why it exists. Avoid vague language — be specific about which AI tools and which people are covered.</p>
-<textarea class="resource-field" rows="4" placeholder="This policy governs the use of artificial intelligence tools by [students / staff / both] at [school name]. It applies to all AI-assisted activities including [list specific tools or categories]. The purpose of this policy is to..."></textarea>
+<textarea class="resource-field" rows="4" placeholder="This policy governs the use of artificial intelligence tools by [pupils / staff / both] at [school name]. It applies to all AI-assisted activities including [list specific tools or categories]. The purpose of this policy is to..."></textarea>
 </div>
 <div class="resource-template-section"><h5>Section 2 — Definitions</h5>
 <p style="font-size:.8rem;color:var(--text-muted)">Define key terms so there is no ambiguity. What counts as an AI tool? What is AI-generated content? What is acceptable use?</p>
@@ -695,15 +700,15 @@ const RESOURCE_CONTENT = {
 </div>
 <div class="resource-template-section"><h5>Section 3 — Acceptable Uses</h5>
 <p style="font-size:.8rem;color:var(--text-muted)">Be specific. 'Acceptable use' means different things in different contexts — research, drafting, coding, revision, and accessibility all have different norms.</p>
-<textarea class="resource-field" rows="5" placeholder="The following uses of AI tools are permitted:\n• Using AI to research topics, provided all AI-generated claims are independently verified\n• Using AI to generate a first draft, provided the student substantially revises and takes ownership\n• Using AI for accessibility purposes (e.g. text-to-speech, grammar assistance)\n• [Add your own...]"></textarea>
+<textarea class="resource-field" rows="5" placeholder="The following uses of AI tools are permitted:\n• Using AI to research topics, provided all AI-generated claims are independently verified\n• Using AI to generate a first draft, provided the pupil substantially revises and takes ownership\n• Using AI for accessibility purposes (e.g. text-to-speech, grammar assistance)\n• [Add your own...]"></textarea>
 </div>
 <div class="resource-template-section"><h5>Section 4 — Prohibited Uses</h5>
 <p style="font-size:.8rem;color:var(--text-muted)">Be equally specific about what is not allowed. Include academic integrity implications.</p>
 <textarea class="resource-field" rows="5" placeholder="The following uses are prohibited:\n• Submitting AI-generated content as your own original work in any assessed task\n• Using AI to generate exam answers or controlled assessment responses\n• Using AI to fabricate citations, references, or evidence\n• [Add your own...]"></textarea>
 </div>
 <div class="resource-template-section"><h5>Section 5 — Transparency Requirements</h5>
-<p style="font-size:.8rem;color:var(--text-muted)">How should students disclose AI use? A simple, clear mechanism is better than a complex one nobody follows.</p>
-<textarea class="resource-field" rows="3" placeholder="Where AI tools have been used in the preparation of any work, students must disclose this by [method — e.g. adding a brief note at the end of the submission stating which tool was used and how]..."></textarea>
+<p style="font-size:.8rem;color:var(--text-muted)">How should pupils disclose AI use? A simple, clear mechanism is better than a complex one nobody follows.</p>
+<textarea class="resource-field" rows="3" placeholder="Where AI tools have been used in the preparation of any work, pupils must disclose this by [method — e.g. adding a brief note at the end of the submission stating which tool was used and how]..."></textarea>
 </div>
 <div class="resource-template-section"><h5>Section 6 — Enforcement and Review</h5>
 <textarea class="resource-field" rows="3" placeholder="Breaches of this policy will be treated as [academic misconduct / a disciplinary matter]. This policy will be reviewed annually. Last reviewed: [date]. Next review: [date]."></textarea>
@@ -1004,7 +1009,7 @@ const GLOSSARY = [
   { term: 'Token', definition: 'The basic unit of text that LLMs process — roughly a word or word fragment. GPT-4 processes text as sequences of tokens, not as whole sentences or meanings.', lessons: [2, 9] },
   { term: 'Training Data', definition: 'The dataset used to teach a machine learning model. The quality, representativeness, and biases in training data directly determine the model\'s capabilities and limitations.', lessons: [3, 5] },
   { term: 'Utilitarianism', definition: 'An ethical framework that judges actions by their consequences — the right action is the one that produces the greatest good for the greatest number of people.', lessons: [7] },
-  { term: 'Viva Voce', definition: 'An oral examination where students defend their work by answering questions from examiners. Tests understanding, reasoning, and the ability to articulate decisions.', lessons: [39, 40] },
+  { term: 'Viva Voce', definition: 'An oral examination where pupils defend their work by answering questions from examiners. Tests understanding, reasoning, and the ability to articulate decisions.', lessons: [39, 40] },
 ];
 
 /* ── AI News Headlines (curated, verified) ───────────────────────── */
@@ -1045,7 +1050,7 @@ const AI_NEWS = [
   { headline: "Over 1,800 AI researchers sign letter calling for pause on giant AI experiments", source: "Future of Life Institute", date: "Mar 2023", tag: "policy" },
 ];
 
-/* ── Student Exemplar Gallery ─────────────────────────────────────── */
+/* ── Pupil Exemplar Gallery ─────────────────────────────────────── */
 const EXEMPLARS = [
   /* ── STRONG EXAMPLES ── */
   {
@@ -1055,7 +1060,7 @@ const EXEMPLARS = [
     persona: "You are an experienced A-Level Biology teacher who specialises in the AQA specification and marks at distinction level.",
     taskText: "Create a detailed essay plan for the question: 'Evaluate the evidence for evolution by natural selection.'",
     format: "A structured plan with: an introduction hook, 4 main points each with a named example, one counter-argument paragraph, and a conclusion strategy. Use bullet points throughout.",
-    context: "I am a Year 12 AQA Biology student. I find it difficult to structure longer essays and scored 12/20 on my last attempt. I have 3 weeks until my mock exam.",
+    context: "I am a Year 12 AQA Biology pupil. I find it difficult to structure longer essays and scored 12/20 on my last attempt. I have 3 weeks until my mock exam.",
     teacherNote: "Excellent use of Context — Aisha tells Claude her level, her board (AQA), her specific weakness AND her timeline. This is what turns a generic response into genuinely useful, personalised feedback.",
     tool: "Claude"
   },
@@ -1085,11 +1090,11 @@ const EXEMPLARS = [
     name: "Jamie, Year 13",
     task: "Chemistry titration calculation walkthrough",
     quality: "strong",
-    persona: "You are an A-Level Chemistry examiner who has marked thousands of titration questions and knows exactly where students lose marks.",
+    persona: "You are an A-Level Chemistry examiner who has marked thousands of titration questions and knows exactly where pupils lose marks.",
     taskText: "Walk me through how to calculate the concentration of sodium hydroxide from a titration where 23.5 cm³ of 0.100 mol/dm³ HCl neutralises 25.0 cm³ of NaOH, explaining every step.",
-    format: "Step-by-step working with: the equation used, a one-sentence explanation of why each step is necessary, and a final answer box. Flag any step where students commonly make errors.",
+    format: "Step-by-step working with: the equation used, a one-sentence explanation of why each step is necessary, and a final answer box. Flag any step where pupils commonly make errors.",
     context: "I am revising for my A-Level Chemistry Paper 1 next month. I understand the theory but keep losing marks in calculations. I need to understand the reasoning, not just the method.",
-    teacherNote: "Jamie's Persona requests an examiner — not just a teacher. This shifts the AI's focus onto mark-scheme thinking and common student errors, which is exactly what revision needs.",
+    teacherNote: "Jamie's Persona requests an examiner — not just a teacher. This shifts the AI's focus onto mark-scheme thinking and common pupil errors, which is exactly what revision needs.",
     tool: "Claude"
   },
   {
@@ -1121,7 +1126,7 @@ const EXEMPLARS = [
     persona: "You are an AQA Psychology teacher who specialises in the Approaches topic and knows the mark scheme inside out.",
     taskText: "Apply the Behaviourist approach to explain why a child praised for sharing at age 5 consistently shares as an adult. Include classical conditioning, operant conditioning, and social learning theory.",
     format: "Three paragraphs — one per concept. Each: define the concept in one sentence, apply it to the scenario in two sentences, name at least one psychologist or study.",
-    context: "I am a Year 12 AQA Psychology student. I can define the concepts but my teacher says I lose marks by not applying them specifically enough to the scenario in exam questions.",
+    context: "I am a Year 12 AQA Psychology pupil. I can define the concepts but my teacher says I lose marks by not applying them specifically enough to the scenario in exam questions.",
     teacherNote: "Fatima's Format requires named psychologists in every paragraph — this stops the AI writing generic theory and forces application-level responses that match the mark scheme.",
     tool: "Claude"
   },
@@ -1129,10 +1134,10 @@ const EXEMPLARS = [
     name: "Oliver, Year 13",
     task: "Python debugging — guided, not given",
     quality: "strong",
-    persona: "You are a senior software engineer who mentors students and explains bugs without just handing over corrected code.",
+    persona: "You are a senior software engineer who mentors pupils and explains bugs without just handing over corrected code.",
     taskText: "My Python function returns incorrect results: def get_average(nums): total = 0 / for num in nums: / total = total + num / return total / len(nums[0]). Identify the bug, explain why it causes wrong output, and guide me to the fix without writing corrected code.",
     format: "1) Bug identified — one sentence. 2) Why this causes wrong output — 2–3 sentences with an example. 3) A guiding question that leads me to the fix without giving it away.",
-    context: "I am a Year 13 Computer Science student. I want to understand the bug, not copy a fix. My teacher says I need to demonstrate debugging skills in my coursework write-up.",
+    context: "I am a Year 13 Computer Science pupil. I want to understand the bug, not copy a fix. My teacher says I need to demonstrate debugging skills in my coursework write-up.",
     teacherNote: "Oliver explicitly asks the AI NOT to give him the answer. Requesting a 'guiding question' instead of a solution is academically honest AI use — using it as a tutor rather than an answer machine.",
     tool: "Claude"
   },
@@ -1162,10 +1167,10 @@ const EXEMPLARS = [
     name: "Mei, Year 12",
     task: "Physics concept — wave-particle duality",
     quality: "strong",
-    persona: "You are a physics tutor who makes abstract quantum concepts accessible to A-Level students without over-simplifying.",
+    persona: "You are a physics tutor who makes abstract quantum concepts accessible to A-Level pupils without over-simplifying.",
     taskText: "Explain wave-particle duality using the double-slit experiment. Cover: what the experiment shows, why classical physics cannot explain it, and what the Copenhagen interpretation concludes.",
     format: "Three sections with bold headings. Use an analogy per section. End with two exam-style questions (with mark allocations) that test understanding of this topic.",
-    context: "I am a Year 12 AQA Physics student. I understand the maths behind waves and particles separately but cannot conceptually reconcile how something can be both. My teacher says the Copenhagen interpretation is enough for A-Level — I do not need to go beyond it.",
+    context: "I am a Year 12 AQA Physics pupil. I understand the maths behind waves and particles separately but cannot conceptually reconcile how something can be both. My teacher says the Copenhagen interpretation is enough for A-Level — I do not need to go beyond it.",
     teacherNote: "Mei includes her teacher's explicit boundary: 'the Copenhagen interpretation is enough for A-Level'. This stops the AI going down quantum rabbit holes and keeps output exam-relevant — excellent use of the C in PTFC.",
     tool: "Claude"
   },
@@ -1190,7 +1195,7 @@ const EXEMPLARS = [
     taskText: "Can you explain supply and demand to me?",
     format: "Just explain it.",
     context: "I'm studying Economics.",
-    teacherNote: "🚩 Without a Persona, the AI defaults to a generalist voice — the explanation could be pitched at a 10-year-old or a university student. 'I'm studying Economics' gives almost nothing useful (what level? what aspect? what do you already know?). Compare this to Reuben's prompt above — same subject, dramatically different output quality.",
+    teacherNote: "🚩 Without a Persona, the AI defaults to a generalist voice — the explanation could be pitched at a 10-year-old or a university pupil. 'I'm studying Economics' gives almost nothing useful (what level? what aspect? what do you already know?). Compare this to Reuben's prompt above — same subject, dramatically different output quality.",
     tool: "ChatGPT"
   },
   {
@@ -1281,7 +1286,7 @@ const AI_PEOPLE = {
   "Geoffrey Hinton": {
     role: "Cognitive Psychologist & Computer Scientist",
     dates: "1947 –",
-    bio: "Often called the 'Godfather of Deep Learning'. Co-authored the key backpropagation paper (1986) and, with his students, created AlexNet (2012) which triggered the deep learning revolution. Left Google in 2023 to speak freely about AI risks. Awarded the 2024 Nobel Prize in Physics alongside John Hopfield.",
+    bio: "Often called the 'Godfather of Deep Learning'. Co-authored the key backpropagation paper (1986) and, with his pupils, created AlexNet (2012) which triggered the deep learning revolution. Left Google in 2023 to speak freely about AI risks. Awarded the 2024 Nobel Prize in Physics alongside John Hopfield.",
     icon: "🇬🇧🇨🇦"
   },
   "Yann LeCun": {
@@ -1705,7 +1710,7 @@ const AI_TIMELINE = [
     year: 2026,
     title: "AI in Every Pocket — and Every Classroom",
     summary: "Frontier AI models are embedded in smartphones, laptops, search engines, and school software. Every major tech platform integrates AI by default, and educational institutions worldwide debate how to teach alongside it.",
-    detail: "By 2026, AI had moved from a specialised tool to ambient infrastructure. Apple Intelligence processed queries on-device; Microsoft Copilot was embedded in Windows and Office; Google AI mode transformed Search. In education, the question shifted from 'should students use AI?' to 'how do we teach with and about AI responsibly?' The UK Department for Education published its first national AI in education framework. Research showed students who used AI effectively outperformed those who avoided it — but also those who over-relied on it without critical engagement.",
+    detail: "By 2026, AI had moved from a specialised tool to ambient infrastructure. Apple Intelligence processed queries on-device; Microsoft Copilot was embedded in Windows and Office; Google AI mode transformed Search. In education, the question shifted from 'should pupils use AI?' to 'how do we teach with and about AI responsibly?' The UK Department for Education published its first national AI in education framework. Research showed pupils who used AI effectively outperformed those who avoided it — but also those who over-relied on it without critical engagement.",
     people: [],
     category: "policy",
     icon: "🌍"
