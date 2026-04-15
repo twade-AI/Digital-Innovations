@@ -233,4 +233,89 @@ var SLIDES_ADVANCED = {
     }
   ],
 
+
+  // ── L54: The Hidden Costs — Energy & the Human Labour Behind AI (Unit 2) ──────
+  54: [
+    {
+      type: 'hook',
+      title: 'The Price That Does Not Appear on the Invoice',
+      body: 'When you send a message to ChatGPT, you trigger a chain of physical consequences that are entirely invisible from the chat interface. The query travels to a data centre — likely in Iowa, Virginia, or Dublin — where thousands of specialised processors run your inference. Cooling those processors requires water, pumped continuously through massive systems. Microsoft\'s global water consumption increased by 34% in a single year — the year it deployed GPT-4 at scale. Google\'s rose 17%.<br><br>Before those data centres ever ran your query, thousands of workers — most of them in Kenya, Uganda, the Philippines, and India — spent hours reviewing some of the most disturbing content imaginable: graphic violence, child exploitation material, detailed suicide instructions, extremist propaganda. They labelled it so that the model would learn to refuse to produce similar outputs. A TIME magazine investigation in 2023 found that Sama, a Kenyan outsourcing firm contracted by OpenAI, paid these workers between $1.32 and $2 per hour. Many described lasting psychological harm. Several reported receiving inadequate mental health support.<br><br>None of this appears on OpenAI\'s pricing page.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">~10x</span><span class="sl">more electricity per query than a Google Search (International Energy Agency, 2024)</span></div><div class="hook-stat-mini"><span class="sv">34%</span><span class="sl">increase in Microsoft\'s global water consumption in 2023, attributed to AI expansion</span></div><div class="hook-stat-mini"><span class="sv">$1.32–$2</span><span class="sl">hourly wage paid to Kenyan content moderators labelling traumatic data for OpenAI (TIME, 2023)</span></div></div>The question this lesson asks is not "should we stop using AI?" It is: whose costs are we not counting — and what do we owe the people who bear them?'
+    },
+    {
+      type: 'concept',
+      title: 'The Energy Architecture of AI',
+      body: 'AI\'s energy consumption has two distinct profiles: training (intermittent, enormous) and inference (continuous, cumulative). Understanding both is necessary for evaluating the actual environmental footprint of the systems we use every day.',
+      bullets: [
+        '<strong>Training costs:</strong> Training a frontier model requires running GPU clusters continuously for weeks or months. GPT-3 training consumed an estimated 1,287 MWh — equivalent to the annual electricity use of around 120 US households. GPT-4\'s training energy is estimated by researchers at 50–100 GWh (Anthropic has not published exact figures). This happens once per major model version — but "once" at this scale is enormous, and retraining and fine-tuning cycles add up',
+        '<strong>Inference costs:</strong> Every query at scale is small in isolation but enormous in aggregate. OpenAI processes an estimated 10 million ChatGPT queries per day (2024). At the IEA\'s estimate of approximately 10x a Google Search per query, that is the energy equivalent of 100 million Google Searches daily — from a single product, on top of all existing internet infrastructure. AI inference is already a material contributor to data centre energy demand',
+        '<strong>Water and physical infrastructure:</strong> Processors generate heat. Heat requires cooling. Most large data centres use evaporative cooling: water absorbs heat, evaporates, carries it away. This is not a closed loop — it is a one-way consumption. AI companies are now siting data centres near rivers for water access, building dedicated substations, and signing nuclear power purchase agreements (Microsoft with Constellation Energy, 2024; Amazon\'s nuclear reactor deal) to meet demand that renewable capacity alone cannot supply',
+        '<strong>The paradox:</strong> AI is simultaneously being deployed to optimise energy grids, model climate systems, and accelerate materials research for renewable energy — while itself consuming energy at accelerating rates. Whether the net effect is positive depends on assumptions about how much useful work AI actually replaces and on timelines that are genuinely uncertain'
+      ],
+      callout: 'The energy cost of training a single frontier model is not secret — it is calculable from published compute requirements and known hardware energy profiles. What is rarely published is the full lifecycle cost: training, retraining, fine-tuning, inference at scale, data centre construction, and cooling infrastructure. The headline "it\'s like 120 households" obscures that this happens continuously, not once.'
+    },
+    {
+      type: 'concept',
+      title: 'RLHF and the Human Labour Hidden Inside "Safe" AI',
+      body: 'Reinforcement Learning from Human Feedback (RLHF) is the technique that transformed raw next-token predictors into the helpful, safety-conscious assistants we use today. It is also one of the AI industry\'s least-discussed supply chains.',
+      bullets: [
+        '<strong>What RLHF actually involves:</strong> (1) Generate diverse outputs from a base model. (2) Human raters — contractors — rank those outputs: which is more helpful, which is harmful, which is accurate? (3) Train a reward model on those rankings. (4) Fine-tune the LLM using reinforcement learning to maximise the reward model\'s score. (5) Repeat. This loop is what produces a model that answers helpfully and declines to produce harmful content',
+        '<strong>What raters actually review:</strong> To teach a model to refuse violent, sexual, or hateful content, raters must evaluate that content and label it as harmful. In volume. Repeatedly. This means human workers are systematically exposed to graphic violence, child sexual abuse material, detailed self-harm instructions, extremist recruitment content, and the full range of the worst things humans produce and ask AI to generate',
+        '<strong>The TIME investigation (2023):</strong> TIME obtained Sama\'s contract with OpenAI. Workers in Nairobi were paid $1.32–$2 per hour for this work — below a living wage in Kenya. The investigation found workers who described intrusive thoughts, nightmares, and symptoms consistent with PTSD. OpenAI\'s response acknowledged the importance of the work; Sama subsequently terminated its content moderation contract, citing worker welfare concerns',
+        '<strong>This is not historical:</strong> Every major AI company — Google, Meta, Anthropic, OpenAI, Amazon — relies on similar supply chains for RLHF and content moderation. The workers are typically employed through intermediary outsourcing firms in low-income countries. The psychological burden is inherent to the task: someone must evaluate harmful content to train models to refuse it, and that someone is almost never in the same country as the product\'s users'
+      ],
+      callout: 'The "safety" feature you rely on when an AI declines to produce a harmful output was built by outsourcing exposure to harmful content to the world\'s least-protected workers, at the world\'s lowest wages. This is not a side effect of AI development. It is a structural feature of how alignment is currently implemented — and it applies to every commercially deployed AI assistant in use today.'
+    },
+    {
+      type: 'scenario',
+      title: 'The Responsible Purchaser',
+      situation: 'Riverdale School is deploying an AI assistant for student use across all subjects. The head of IT has shortlisted three options: a major US provider that does not disclose its data centre energy sources or RLHF supply chain; a European provider that publishes an annual sustainability report showing 85% renewable energy and lists its content moderation partners, though wages are not disclosed; and an open-source model run on the school\'s own servers using electricity from the school\'s solar installation, but requiring significant technical setup and lacking safety fine-tuning on the scale of commercial models. The head of IT asks you — as the student representative on the AI steering group — for a recommendation.',
+      question: 'Which option do you recommend, and on what grounds? What additional information would you want before making a final decision?',
+      choices: [
+        {
+          text: 'Recommend the major US provider — it has the best safety record and most capable model',
+          outcome: 'The major provider does have strong safety features and significant resources for ongoing improvement. But the absence of any disclosure about energy sources or supply chain means the school is purchasing a product with unknown environmental and human rights implications — and has no way to assess them. "Best safety record" refers to AI output safety, not supply chain safety. These are different things, and conflating them is a choice the school would need to defend if challenged. Capability is not the only consideration in a school context.'
+        },
+        {
+          text: 'Recommend the European provider with the sustainability report — transparency is the starting point',
+          outcome: 'Transparency is a genuine starting point: a provider that publishes a sustainability report and names its content moderation partners is at minimum accountable in a way an opaque provider is not. The undisclosed wages remain a concern, and the school could use its position as a customer to request that information. This approach treats procurement as a lever — which it is. Schools that collectively demand supply chain disclosure have more influence than any individual user. The 85% renewable figure still leaves 15% unaccounted for, and the disclosure should be verified, not assumed accurate.'
+        },
+        {
+          text: 'Recommend the open-source model on school servers — local control, solar power, no supply chain issues',
+          outcome: 'Solar-powered local inference genuinely eliminates the data centre energy and water concerns. But "no supply chain issues" is not quite right: the open-source model was almost certainly trained using similar RLHF processes — just not by the school. The lack of commercial-grade safety fine-tuning is a significant risk in a school context, where vulnerable students may encounter the system. And the technical burden of running and maintaining a local model is substantial. This option trades one set of risks (supply chain, energy) for another set (safety, maintainability, expertise). Neither trade is obviously wrong — but it is a trade, not an escape.'
+        }
+      ]
+    },
+    {
+      type: 'discussion',
+      title: 'Who Bears the Cost of Convenience?',
+      questions: [
+        { num: 1, text: 'AI companies argue that RLHF outsourcing creates employment in low-income countries, and that fair wages are the responsibility of the outsourcing partner, not the AI company. Evaluate this argument against the principle that companies are responsible for the conditions of their supply chains — a standard applied to clothing manufacturers, food producers, and electronics companies.' },
+        { num: 2, text: 'If the energy cost of AI inference continues to grow at current rates alongside AI adoption, at what point — if any — does the environmental cost outweigh the productivity benefit? Is that calculation even possible to make, given the distributed nature of both costs and benefits? Who has the standing and the obligation to make it?' },
+        { num: 3, text: 'A pattern runs through this lesson: the people who benefit most from AI (knowledge workers in high-income countries) are not the people who bear its costs (data centre workers, RLHF contractors in the Global South, communities near data centres bearing water and energy costs). Is this a problem specific to AI — or a structural feature of how global technology has always worked? Does the answer change what we should do about it?' }
+      ]
+    },
+    {
+      type: 'quiz',
+      question: 'RLHF (Reinforcement Learning from Human Feedback) is primarily used in AI development to:',
+      options: [
+        'Automate the training process entirely, removing the need for human-labelled data',
+        'Have human raters evaluate and rank model outputs so those preferences can be used to fine-tune the model toward more helpful and less harmful responses',
+        'Allow AI models to update their weights in real time based on user interactions after deployment',
+        'Train AI systems to generate their own reward signals without exposure to harmful content'
+      ],
+      correct: 1,
+      explanation: 'RLHF involves human workers rating AI outputs — typically across dimensions like helpfulness, harmlessness, and honesty — and using those ratings to train a reward model. The reward model then guides further fine-tuning of the LLM through reinforcement learning. It is not automated (option A requires human raters by definition), does not happen in real time after deployment (option C), and does not generate its own reward signals autonomously (option D — that would be something closer to constitutional AI or AI feedback methods, which are partial alternatives). The human labour is substantial and ongoing, and the workers who perform it are often exposed to the most harmful content the model will eventually learn to refuse.'
+    },
+    {
+      type: 'summary',
+      title: 'Key Takeaways',
+      points: [
+        { icon: '⚡', label: 'Energy costs are physical and growing', text: 'Each AI query uses roughly 10x the electricity of a web search. Training frontier models consumes enough energy to power thousands of homes for a year. AI companies are now signing nuclear power agreements to meet demand that renewables alone cannot supply' },
+        { icon: '💧', label: 'Water, not just watts', text: 'Evaporative cooling in data centres consumes millions of litres of water annually — a one-way resource consumption. Microsoft\'s global water use rose 34% in the year it deployed GPT-4. These are irreversible physical costs borne by local communities, not the companies\' balance sheets' },
+        { icon: '👷', label: 'Alignment has a human cost', text: 'The safety filters built into every commercial AI assistant were constructed by outsourced workers in the Global South, earning $1–2 per hour, reviewing content that causes lasting psychological harm. This is not a historical practice — it is ongoing, at every major AI company, right now' },
+        { icon: '🌍', label: 'Benefits and burdens do not fall on the same people', text: 'Productivity gains flow primarily to knowledge workers in high-income countries. Environmental and psychological costs fall disproportionately on communities in the Global South. Ethical AI use requires acknowledging this asymmetry explicitly — not as guilt, but as the starting point for accountability' }
+      ]
+    }
+  ],
+
 };
