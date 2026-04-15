@@ -100,9 +100,29 @@ async function authSignOut() {
   updateAuthUI();
 }
 
+/* ── Ensure profiles row exists (so admin dashboard can see this user) */
+async function ensureProfile() {
+  if (!isSupabaseReady() || !_currentUser) return;
+  try {
+    var displayName = (_currentUser.user_metadata && _currentUser.user_metadata.display_name)
+      ? _currentUser.user_metadata.display_name
+      : _currentUser.email.split('@')[0];
+    // INSERT … ON CONFLICT DO NOTHING — never overwrites an existing row (preserves is_admin flag)
+    await _sb.from('profiles').upsert({
+      user_id:      _currentUser.id,
+      email:        _currentUser.email,
+      display_name: displayName,
+      is_admin:     false
+    }, { onConflict: 'user_id', ignoreDuplicates: true });
+  } catch(e) {
+    console.warn('[auth] ensureProfile failed:', e.message);
+  }
+}
+
 /* ── Load remote → local (on login) ─────────────────────────────── */
 async function loadProgressFromSupabase() {
   if (!isSupabaseReady() || !_currentUser) return;
+  ensureProfile(); // create profiles row if this is their first login
   try {
     var res = await _sb
       .from('progress')
