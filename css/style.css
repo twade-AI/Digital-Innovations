@@ -123,10 +123,10 @@ img{max-width:100%}
 /* ── Sections ──────────────────────────────────── */
 .section{display:none;max-width:1200px;margin:0 auto;padding:32px 24px 64px}
 .section.active{display:block}
-.section-header{margin-bottom:32px;display:flex;flex-wrap:wrap;align-items:flex-start;gap:12px}
-.section-header h2{font-size:1.8rem;font-weight:800;margin-bottom:8px;flex:1 1 100%}
-.section-header p{color:var(--text-muted);font-size:1rem;flex:1 1 100%}
-.section-header-action{flex-shrink:0;align-self:flex-end;margin-top:-4px}
+.section-header{margin-bottom:32px;display:flex;flex-wrap:wrap;align-items:center;gap:4px 16px}
+.section-header h2{font-size:1.8rem;font-weight:800;flex:1 1 auto;margin-bottom:0}
+.section-header p{color:var(--text-muted);font-size:1rem;flex:1 1 100%;order:3;margin-top:4px}
+.section-header-action{flex-shrink:0;order:2}
 
 /* ── Hero ──────────────────────────────────────── */
 .hero{
@@ -1233,7 +1233,7 @@ a.ticker-item-link:hover{color:var(--text);text-decoration:none;}
 .ob-step{font-size:.72rem;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
 .ob-title{font-size:1.3rem;font-weight:700;margin-bottom:10px}
 .ob-text{font-size:.9rem;color:var(--text-muted);line-height:1.6;margin-bottom:20px}
-.ob-text kbd{background:var(--border);border-radius:4px;padding:1px 6px;font-size:.82em;font-family:var(--font-mono)}
+.ob-text kbd{background:var(--border);border-radius:4px;padding:1px 6px;font-size:.82em;font-family:var(--mono)}
 .ob-actions{display:flex;gap:10px;justify-content:center;margin-bottom:16px}
 .ob-dots{display:flex;gap:6px;justify-content:center}
 .ob-dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:background .2s}
