@@ -156,4 +156,81 @@ var SLIDES_ADVANCED = {
     }
   ],
 
+
+  // ── L53: RAG & AI Agents (Unit 1 — Prompt Engineering & Research) ────────────
+  53: [
+    {
+      type: 'hook',
+      title: 'Beyond the Context Window',
+      body: 'Ask ChatGPT what happened in the news yesterday. It will either confess ignorance or — more dangerously — generate a plausible-sounding story that did not happen. Every language model has a training cutoff: a date beyond which it knows nothing, because its weights were frozen at that point. In high-stakes domains — legal research, financial analysis, medical guidance, live customer support — a model that is perpetually out of date is not just inconvenient. It is unusable.<br><br>Retrieval-Augmented Generation (RAG) was developed to solve this. The principle is conceptually simple: instead of asking the model to recall facts from training, retrieve the relevant documents at query time and inject them into the prompt. The model\'s job shifts from <em>"remember what you were trained on"</em> to <em>"reason carefully over what I have just given you."</em> That shift makes a significant difference to accuracy — and to trust.<br><br>AI agents go further still. They do not just retrieve. They search the web, execute code, query databases, draft and send emails, and take actions in the world — automatically, at machine speed, chained across dozens of steps before a human sees the result.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">10–50x</span><span class="sl">reduction in hallucination rate when RAG is applied to domain-specific queries</span></div><div class="hook-stat-mini"><span class="sv">2020</span><span class="sl">year RAG was formally introduced in a Meta AI research paper by Lewis et al.</span></div><div class="hook-stat-mini"><span class="sv">$200B+</span><span class="sl">estimated enterprise spending on AI agents by 2028 (Goldman Sachs, 2024)</span></div></div>Understanding RAG and agents is not optional for anyone building with AI. It is where almost all serious AI application development now lives.'
+    },
+    {
+      type: 'concept',
+      title: 'How RAG Works: From Documents to Grounded Answers',
+      body: 'RAG has two distinct phases: indexing (done in advance, once) and retrieval (done at query time, every time). Understanding both is essential for evaluating whether a RAG system is trustworthy.',
+      bullets: [
+        '<strong>Indexing phase:</strong> Take your document collection — company policy, legal corpus, research papers, past exam questions, product documentation. Split each document into chunks (typically 200–500 tokens each). Convert each chunk into an <em>embedding</em> — a dense numerical vector that represents its semantic meaning — using a separate embedding model. Store those vectors in a vector database (Pinecone, Weaviate, pgvector, Chroma)',
+        '<strong>Retrieval phase:</strong> At query time, convert the user\'s question into an embedding using the same embedding model. The vector database finds the chunks whose embeddings are most similar (nearest neighbours in vector space). The top-k most similar chunks are injected directly into the prompt alongside the user\'s question',
+        '<strong>Generation phase:</strong> The model reads the injected chunks and generates an answer grounded in that retrieved context. Critically, the model is not recalling training data — it is reasoning over documents you control, with known provenance and freshness',
+        '<strong>Where RAG fails:</strong> The retrieval step matches on semantic similarity, not relevance — these are not the same thing. A chunk about "Apple the company" and a chunk about "apple orchards" may have similar embeddings depending on context. Retrieval failures are silent: the model receives wrong context and generates a confident, wrong answer with no indication that the source was inappropriate. Chunk size matters too: too small and you lose context; too large and you dilute relevance'
+      ],
+      callout: 'RAG does not solve hallucination. It reduces it on factual queries where the retrieved documents contain the answer. The model can still hallucinate about the retrieved documents themselves, misquote them, or fail to retrieve the right document. Trust the sources, verify the claims, always.'
+    },
+    {
+      type: 'concept',
+      title: 'AI Agents: When Models Take Actions',
+      body: 'A RAG system retrieves and responds. An AI agent does something more consequential: it decides what to do, takes an action, observes the result, and decides what to do next. The loop continues — automatically, potentially for hundreds of steps — until a goal is reached or a failure is detected.',
+      bullets: [
+        '<strong>The ReAct pattern (Reason + Act):</strong> The dominant architecture for AI agents. At each step, the model reasons about what it knows and what it needs ("I need recent data on UK AI regulation"), selects a tool ("web search"), executes it, observes the result, and reasons again. This thought-action-observation loop is the foundation of tools like Claude\'s extended thinking mode, AutoGPT, and most production agent frameworks',
+        '<strong>Common tool types:</strong> Web search (Bing, Brave, Tavily APIs); code execution (Python interpreter, shell commands); file I/O (read, write, delete documents); database queries (SQL, vector DB lookups); external APIs (calendar, email, payment systems, CRM); and other AI models (specialist sub-agents called by an orchestrator)',
+        '<strong>Multi-agent systems:</strong> An orchestrator agent decomposes a complex task — "write a market research report on electric vehicles in the UK" — and dispatches it to specialist worker agents: one searches for statistics, one analyses competitor filings, one drafts the executive summary, one checks citations. Each runs in parallel. The orchestrator synthesises the results. This is how products like Devin (coding agent) and complex research pipelines work',
+        '<strong>Supervision at machine speed:</strong> An agent can execute 50 steps — web searches, code runs, file writes — in the time it takes a human to read one intermediate result. Meaningful human oversight in this context is not "a human checks every action." It is "the system requires confirmation before irreversible actions." The distinction between reversible and irreversible decisions is now an architectural choice, not an afterthought'
+      ],
+      callout: 'An agent that can send emails cannot be trusted without access controls. An agent that can delete files cannot be trusted without confirmation steps. An agent that can call APIs cannot be trusted without rate limits and audit logs. The capability that makes agents powerful is inseparable from the capability that makes them dangerous when things go wrong.'
+    },
+    {
+      type: 'activity',
+      title: 'Design a RAG Pipeline for a Real Problem',
+      instructions: 'This is a genuine engineering design task — junior developers at AI companies do exactly this. You are going to design (on paper) a RAG system for a school use case, then stress-test your own design.',
+      steps: [
+        '<strong>Choose your use case:</strong> Pick one from: (a) a system that answers student questions using school policy documents, (b) a past-paper question finder that retrieves relevant practice questions by topic, (c) a reading list assistant that recommends specific book chapters based on an essay topic. Define who the users are and what a successful response looks like',
+        '<strong>Define your document collection:</strong> What documents would you index? List them specifically. Are they current? Who is responsible for keeping them updated? What happens if a document is outdated and the system confidently retrieves it?',
+        '<strong>Choose your chunk strategy:</strong> How would you split the documents — by paragraph? Fixed token count? By section heading? What is the risk of each approach for your specific use case?',
+        '<strong>Identify failure modes:</strong> For each of these, describe what a failure would look like in your system: (a) the right document exists but retrieval misses it, (b) the retrieved document is outdated, (c) two retrieved chunks contradict each other, (d) the user asks something genuinely not covered by your document collection',
+        '<strong>Define your oversight model:</strong> Which outputs from your system, if wrong, would cause real harm? For those outputs, what human review step would you build in before the response reaches the user?'
+      ]
+    },
+    {
+      type: 'discussion',
+      title: 'Trust, Autonomy, and the Speed Problem',
+      questions: [
+        { num: 1, text: 'RAG retrieves chunks based on semantic similarity, but the person who assembled the document collection made choices about what to include, what to exclude, and how to chunk it. In what sense is a RAG system "objective"? What does this mean for users who assume the system is neutral?' },
+        { num: 2, text: 'A multi-agent system can complete a hundred-step research task faster than a human can read a single step. If meaningful human oversight is impossible at agent execution speed, what does "human-in-the-loop" actually mean for agentic AI — and is the phrase becoming dishonest shorthand for "human at the start and end, machine in the middle"?' },
+        { num: 3, text: 'In L52 we covered prompt injection in agents. Combining that knowledge with what you now know about RAG: if an AI research agent is given a task to "summarise the top five news stories about our competitor," and one of those news stories contains an injected instruction, what could happen? What would a safe architecture look like?' }
+      ]
+    },
+    {
+      type: 'quiz',
+      question: 'What is the primary purpose of Retrieval-Augmented Generation (RAG) — and what does it NOT solve?',
+      options: [
+        'RAG fine-tunes the model\'s weights using domain-specific documents, permanently updating what the model knows. It solves the knowledge cutoff problem entirely',
+        'RAG retrieves relevant documents at query time and injects them into the prompt, allowing the model to reason over current, controlled information. It reduces but does not eliminate hallucination — the model can still misread or misquote retrieved content',
+        'RAG stores common responses in a cache, returning them for similar queries. It solves hallucination by avoiding generation altogether for known questions',
+        'RAG compresses the model\'s parameters to reduce inference cost, with document retrieval as a side effect. It does not affect output accuracy'
+      ],
+      correct: 1,
+      explanation: 'RAG does not change the model\'s weights — that is fine-tuning, a separate and more expensive process. RAG retrieves documents at query time and injects them into the prompt context, allowing the model to reason over fresh, domain-specific information rather than relying solely on what was in the training data. This significantly reduces hallucination on factual queries — but not to zero. The model still generates its response through next-token prediction and can still misinterpret, misquote, or confabulate about the retrieved documents. The retrieval step can also fail silently, returning irrelevant chunks that the model then reasons over incorrectly. Trust improved; trust unconditionally, never.'
+    },
+    {
+      type: 'summary',
+      title: 'Key Takeaways',
+      points: [
+        { icon: '📚', label: 'RAG: retrieval, not recall', text: 'RAG replaces the model\'s unreliable training-data memory with real-time document retrieval. Index your documents, retrieve the most semantically similar chunks at query time, inject them into the prompt. The model reasons over what you give it — it does not remember' },
+        { icon: '⚡', label: 'Agents take actions in the world', text: 'The ReAct loop — Reason, Act, Observe, repeat — is the foundation of all serious agent architectures. Agents can use web search, code execution, file access, and APIs. Multi-agent systems run specialist workers in parallel, coordinated by an orchestrator' },
+        { icon: '⚠️', label: 'Power and risk scale together', text: 'Every tool you give an agent is also a tool an injected instruction could weaponise. Every capability that makes agents useful makes them more dangerous when compromised or wrong. Oversight must be architected in from the start, not added as an afterthought' },
+        { icon: '🏗️', label: 'This is a design skill in demand', text: 'Designing RAG pipelines — choosing document collections, chunk strategy, retrieval approach, failure handling, and oversight model — is a real engineering skill. Every organisation deploying AI is making these choices, often without the vocabulary to make them well. Now you have that vocabulary' }
+      ]
+    }
+  ],
+
 };
