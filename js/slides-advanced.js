@@ -51,7 +51,7 @@ var SLIDES_ADVANCED = {
       questions: [
         { num: 1, text: 'You are a junior doctor. Your hospital has deployed an AI tool that reads patient notes and produces a structured summary before each consultation. Knowing what you now know about how tokens work, identify three specific categories of error you would build a checking protocol around — and explain why each one follows directly from the token architecture. What does your answer reveal about which parts of any AI-generated document should never be trusted at face value?' },
         { num: 2, text: 'A classmate argues: "I don\'t care how AI works internally — I just care whether the output is useful." Make the strongest possible case that understanding the token architecture actually changes how you use the tool. Give a specific, concrete example of a mistake someone without this knowledge would make that you would now avoid.' },
-        { num: 3, text: 'GPT-4\'s training data contains billions of examples of humans being wrong — textbook errors, medical misinformation, confident falsehoods stated in plausible prose. The model has learned the statistical patterns of all of it. What does this imply about the default level of trust we should place in AI-generated information — and does the answer change depending on the domain?' }
+        { num: 3, text: 'A frontier model\'s training data contains billions of examples of humans being wrong — textbook errors, medical misinformation, confident falsehoods stated in plausible prose. The model has learned the statistical patterns of all of it. What does this imply about the default level of trust we should place in AI-generated information — and does the answer change depending on the domain?' }
       ]
     },
     {

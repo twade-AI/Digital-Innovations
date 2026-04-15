@@ -1006,7 +1006,7 @@ const GLOSSARY = [
   { term: 'Stochastic Parrot', definition: 'A term coined by Bender & Gebru (2021) describing LLMs as sophisticated pattern-matchers that predict probable next tokens without genuine understanding of meaning.', lessons: [2] },
   { term: 'Supervised Learning', definition: 'A type of machine learning where the model learns from labelled examples — data paired with the correct answer. The model learns to map inputs to outputs.', lessons: [3] },
   { term: 'Temperature (AI)', definition: 'A parameter that controls the randomness of AI outputs. Low temperature produces more predictable, focused text; high temperature produces more creative, varied text.', lessons: [9] },
-  { term: 'Token', definition: 'The basic unit of text that LLMs process — roughly a word or word fragment. GPT-4 processes text as sequences of tokens, not as whole sentences or meanings.', lessons: [2, 9] },
+  { term: 'Token', definition: 'The basic unit of text that LLMs process — roughly a word or word fragment. Models like GPT-5.4 and Claude 4.6 process text as sequences of tokens, not as whole sentences or meanings.', lessons: [2, 9] },
   { term: 'Training Data', definition: 'The dataset used to teach a machine learning model. The quality, representativeness, and biases in training data directly determine the model\'s capabilities and limitations.', lessons: [3, 5] },
   { term: 'Utilitarianism', definition: 'An ethical framework that judges actions by their consequences — the right action is the one that produces the greatest good for the greatest number of people.', lessons: [7] },
   { term: 'Viva Voce', definition: 'An oral examination where pupils defend their work by answering questions from examiners. Tests understanding, reasoning, and the ability to articulate decisions.', lessons: [39, 40] },
@@ -1017,7 +1017,7 @@ const GLOSSARY = [
 // Teachers: add new articles via the Admin Dashboard → Manage News tab.
 const AI_NEWS = [
   /* ── 2026 — from The Neuron ── */
-  { headline: "Google just gave away its best AI — Gemini 2.5 Pro goes free for all users", source: "The Neuron", date: "Apr 2026", tag: "tools", url: "https://www.theneuron.ai/newsletter/google-just-gave-away-its-best-ai/" },
+  { headline: "Google opens up its best AI — Gemini 3.1 Pro made free for all users", source: "The Neuron", date: "Apr 2026", tag: "tools", url: "https://www.theneuron.ai/newsletter/google-just-gave-away-its-best-ai/" },
   { headline: "OpenAI's President reveals what the company is betting everything on", source: "The Neuron", date: "Apr 2026", tag: "industry", url: "https://www.theneuron.ai/newsletter/openai-s-president-just-told-you-exactly-what-the-company-is-betting-everything-on/" },
   { headline: "This is how we'd teach AI from scratch in 2026", source: "The Neuron", date: "Mar 2026", tag: "policy", url: "https://www.theneuron.ai/newsletter/this-is-how-we-d-teach-ai-from-scratch-in-2026/" },
   { headline: "Anthropic leaked Claude Mythos — and cybersecurity stocks crashed", source: "The Neuron", date: "Mar 2026", tag: "industry", url: "https://www.theneuron.ai/newsletter/anthropic-leaked-claude-mythos-cybersecurity-stocks-crashed/" },
