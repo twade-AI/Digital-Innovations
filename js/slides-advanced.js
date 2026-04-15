@@ -318,4 +318,81 @@ var SLIDES_ADVANCED = {
     }
   ],
 
+
+  // ── L55: Copyright & Training Data (Unit 2 — AI & Society) ──────────────────
+  55: [
+    {
+      type: 'hook',
+      title: 'The New York Times vs. The Future of AI',
+      body: 'On 27 December 2023, The New York Times filed a federal lawsuit against OpenAI and Microsoft. The claim: OpenAI trained its GPT models on millions of Times articles without permission or payment. The lawsuit did not just assert this — it demonstrated it. Embedded in the legal complaint were direct comparisons: a ChatGPT prompt beginning with the opening lines of a Pulitzer Prize-winning investigative article, followed by hundreds of words of near-verbatim reproduction. The model was not paraphrasing. It was reciting.<br><br>OpenAI\'s defence: this is fair use — the same legal doctrine that allows scholars to quote books in essays, critics to excerpt films in reviews, and researchers to study copyrighted material. Training on text found on the internet is transformative, they argue. The resulting model is a new tool, not a copy.<br><br>The Times\'s reply: there is no precedent for training a commercial product on tens of millions of copyrighted works at this scale, with this fidelity of reproduction, in direct commercial competition with the original publishers. Scale matters. Competition matters. Reproduction matters.<br><br>The case was ongoing as of 2025. Its outcome will likely set the legal framework for AI training data across the entire industry — for every model that came before, and every model yet to be built.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">Dec 2023</span><span class="sl">date of the NYT\'s landmark federal AI copyright complaint against OpenAI and Microsoft</span></div><div class="hook-stat-mini"><span class="sv">$1B+</span><span class="sl">estimated value of claimed damages in the NYT case</span></div><div class="hook-stat-mini"><span class="sv">2,000+</span><span class="sl">other creators and organisations who had filed related AI copyright lawsuits by early 2025</span></div></div>This is not an abstract legal dispute. It will determine who owns what AI learned from — and whether you have any rights over your own creative work in the age of generative AI.'
+    },
+    {
+      type: 'concept',
+      title: 'How Training Data Works — and the Memorisation Problem',
+      body: 'Modern LLMs are trained on text at a scale that is genuinely difficult to comprehend. The legal and ethical questions about training data cannot be understood without first understanding what training actually does to that text — and what it does not do.',
+      bullets: [
+        '<strong>What goes in:</strong> The major training corpora include Common Crawl (a continuous crawl of the public web — petabytes of text), Books3 (a dataset reportedly containing ~196,000 books, assembled from pirated sources), GitHub (public code repositories), Wikipedia, arXiv research papers, and a growing set of licensed sources (OpenAI has deals with AP, Reuters, Axel Springer, and others). These corpora are assembled, deduplicated, and filtered before training begins',
+        '<strong>What the model does with it:</strong> The model does not store training data like a database. It learns statistical relationships between tokens across the entire corpus, compressing those patterns into billions of floating-point weight values. In the vast majority of cases, it cannot reproduce training text verbatim — it generates new text that reflects learned patterns. But "vast majority" is not "all"',
+        '<strong>The memorisation problem:</strong> A 2023 paper (Nasr et al., Carlini et al.) demonstrated that GPT-4 could reproduce significant portions of its training data when prompted with specific prefixes — particularly text that appeared frequently in the training corpus. The NYT lawyers exploited this directly: they found prompts that triggered near-verbatim reproduction of Times articles. Copyright law has never previously had to deal with a system that "learns from" content without "copying" it — but can sometimes reproduce it anyway',
+        '<strong>The "seen it many times" effect:</strong> Memorisation is not uniform. A New York Times article scraped by Common Crawl once might survive training without being recoverable. An article that also appeared in licensed datasets, was widely quoted, and triggered many fine-tuning examples has been seen many times — and is far more likely to be memorisable. Frequently-cited journalism, canonical literary texts, and popular code snippets are disproportionately at risk'
+      ],
+      callout: 'The distinction between "the model learned from this text" and "the model copied this text" is the core of the legal dispute — and it is genuinely blurry. A human who reads a book and then writes a novel influenced by it is clearly not infringing copyright. A machine trained on a book that can reproduce passages verbatim on request is clearly closer to copying. The line between those two cases is where the entire AI copyright debate lives.'
+    },
+    {
+      type: 'concept',
+      title: 'The Copyright Arguments: Fair Use and Its Limits',
+      body: 'US copyright law\'s "fair use" doctrine allows use of copyrighted material without permission under certain conditions. Four factors are weighed — and the AI industry\'s legal position depends on how courts assess each one in the context of large-scale AI training.',
+      bullets: [
+        '<strong>Factor 1 — Purpose and character of the use:</strong> Is the use transformative — does it add new meaning, commentary, or purpose? AI companies argue training creates a new tool. Critics argue training to compete with the original source (a news article → a model that answers news questions) is not transformative in any meaningful sense. The commercial nature of the use weighs against fair use',
+        '<strong>Factor 2 — Nature of the copyrighted work:</strong> Factual works receive less copyright protection than creative works. A fact-checking tool trained on news articles sits in grey territory — news articles blend factual reporting (less protected) with creative expression in word choice and structure (more protected). Fiction, poetry, and creative non-fiction are more clearly creative and therefore better protected',
+        '<strong>Factor 3 — Amount and substantiality used:</strong> Google Books scanned millions of books but only displayed short snippets — this was a key reason it survived a fair use challenge (2015). AI training uses entire documents. The NYT demonstrated verbatim reproduction of entire articles. Even if the model "only" memorised 1% of training documents, 1% of billions of documents is still an enormous quantity of reproduced text',
+        '<strong>Factor 4 — Market effect — the most important factor:</strong> Does the use harm the market for the original? This is where AI companies\' position is weakest. ChatGPT can answer questions that previously required a NYT subscription, summarise articles without users visiting the site, and reproduce content verbatim when prompted. The market substitution argument is strong. The EU AI Act (2024) takes a different approach entirely: it requires AI companies to disclose training data sources and comply with copyright opt-out requests — the US has no equivalent'
+      ],
+      callout: 'The precedent most often cited by AI companies is Google Books — where scanning millions of books for search indexing was upheld as fair use. The disanalogy is significant: Google Books displayed snippets and drove traffic to books; ChatGPT competes with the original source and reduces the need to go there. Precedents are not templates. Courts will decide whether the analogy holds — and creators are watching closely.'
+    },
+    {
+      type: 'discussion',
+      title: 'Who Owns What AI Learned From?',
+      questions: [
+        { num: 1, text: 'A musician\'s entire recorded discography was used to train an AI music generator that now produces tracks "in their style" for commercial licensing. The musician receives nothing — the AI company argues they trained on style, not copyrighted works, and style is not protectable. Is there a meaningful legal and moral difference between a human musician being influenced by a genre and an AI being trained on a specific artist\'s complete catalogue? Where, precisely, is the line?' },
+        { num: 2, text: 'If AI companies are required to license training data — paying publishers, authors, and creators for the right to train on their work — what happens to open-source AI development, which cannot afford licensing fees? Does mandatory licensing entrench the largest players (who can pay) and shut out smaller competitors and academic researchers? Is there a version of copyright reform that does not have this effect?' },
+        { num: 3, text: 'Your own creative work — essays on school websites, stories entered in competitions, social media posts, art uploaded to public platforms — may already be in someone\'s training dataset. You were not asked. You received nothing. Does this feel like a violation? Should it be illegal? If so, who would enforce it — and against whom?' }
+      ]
+    },
+    {
+      type: 'activity',
+      title: 'Trace Your Own Creative Footprint',
+      instructions: 'This activity makes the abstract concrete. You are going to investigate your own relationship to the training data question — as a creator, as a user, and as a future professional.',
+      steps: [
+        '<strong>Audit the tools you use:</strong> For two AI tools you use regularly (ChatGPT, Claude, Gemini, Midjourney, GitHub Copilot), look up their model cards or training data disclosures. What do they say about sources? What do they not say? Where is the disclosure vague or absent?',
+        '<strong>Find your own footprint:</strong> Think about any creative work you have published online — school website, published articles, public social media, competition entries, GitHub repositories. Is it indexed by search engines? If so, it was almost certainly in Common Crawl at some point. How does it feel to know this?',
+        '<strong>Research opt-out mechanisms:</strong> Look up: (a) the "AI training opt-out" offered by major platforms (Instagram, X/Twitter, Substack); (b) the no-AI robots.txt directive and whether it is honoured; (c) C2PA content credentials and what they do. How effective are these mechanisms? Who do they require to act, and what happens if they do not?',
+        '<strong>Design a fairer system:</strong> Working in pairs, propose one specific, implementable change to current practice that you believe would make AI training data use fairer. It should address: who has the right to decide, what compensation (if any) is owed, and how this is enforced. Be realistic about what is technically feasible',
+        '<strong>Write your position:</strong> In exactly 100 words, state your own view on the core question: should AI companies be required to license the creative work they train on? Justify it. Use evidence from this lesson.'
+      ]
+    },
+    {
+      type: 'quiz',
+      question: 'Under US copyright law\'s fair use doctrine, which factor would MOST undermine OpenAI\'s defence in the New York Times lawsuit?',
+      options: [
+        'The fact that the training data was collected from the public internet, which is freely accessible',
+        'The fact that ChatGPT competes commercially with NYT content and demonstrably reproduces articles near-verbatim, directly harming the market for the original',
+        'The fact that OpenAI used automated systems, not human readers, to process the articles during training',
+        'The sheer scale of the training dataset — hundreds of billions of words drawn from across the web'
+      ],
+      correct: 1,
+      explanation: 'US fair use analysis weighs four factors, and the fourth — market effect — is consistently held by courts to be the most important. The NYT\'s case is strongest here: ChatGPT can answer questions that previously required a Times subscription, can summarise articles without users visiting the site, and can reproduce content verbatim on prompting. This directly harms the market for the original works. The fact that training data came from the public internet (A) is not a fair use defence — publicly accessible does not mean copyright-free. Automation (C) is legally irrelevant. Scale alone (D) is not a fair use factor, though it is relevant to the reproduction argument. The market substitution effect is the NYT\'s strongest ground.'
+    },
+    {
+      type: 'summary',
+      title: 'Key Takeaways',
+      points: [
+        { icon: '⚖️', label: 'Fair use is genuinely contested', text: 'The NYT lawsuit has no clean legal precedent. Training on content to build a commercially competing product, at unprecedented scale, with demonstrable verbatim reproduction — each element strains standard fair use analysis. Courts will decide, and the outcome affects every AI model in existence' },
+        { icon: '📋', label: 'The EU moved first, and differently', text: 'The EU AI Act requires training data disclosure and copyright compliance, with opt-out rights for creators. The US has no equivalent. This means the same AI systems operate under fundamentally different legal obligations depending on jurisdiction — a situation that cannot persist long-term' },
+        { icon: '✍️', label: 'Creators bear the current uncertainty', text: 'In the present legal ambiguity, individual writers, artists, journalists, and coders whose work is in training sets receive neither credit nor compensation. Some have licensed deals (AP, Reuters); most do not. The cost of uncertainty falls on those least able to litigate it' },
+        { icon: '🔍', label: 'Transparency is the minimum', text: 'Model cards, training data disclosures, and opt-out registries are imperfect — but they make accountability possible. Knowing what was used to train a model is the precondition for any fair compensation or rights framework. Demand it from the tools you use' }
+      ]
+    }
+  ],
+
 };
