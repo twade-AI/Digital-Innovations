@@ -1659,8 +1659,9 @@ a.ticker-item-link:hover{color:var(--text);text-decoration:none;}
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
 .pathway-sub{ color:var(--text-dim);font-size:.97rem;margin:0;max-width:480px;display:block;margin:0 auto }
-.pathway-cards{ display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px;margin-top:8px }
-@media(max-width:700px){ .pathway-cards{ grid-template-columns:1fr } }
+.pathway-cards{ display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:28px;margin-top:8px }
+@media(max-width:900px){ .pathway-cards{ grid-template-columns:1fr 1fr } }
+@media(max-width:600px){ .pathway-cards{ grid-template-columns:1fr } }
 
 /* Cards */
 .pathway-card{
@@ -1689,11 +1690,22 @@ a.ticker-item-link:hover{color:var(--text);text-decoration:none;}
   border-color:#f59e0b;
   box-shadow:0 0 0 1px rgba(245,158,11,.25), 0 16px 48px rgba(245,158,11,.14);
 }
+.pathway-card--gcse{
+  background:linear-gradient(160deg,var(--bg-card) 60%,rgba(16,185,129,.06));
+}
+.pathway-card--gcse:hover{
+  border-color:#10b981;
+  box-shadow:0 0 0 1px rgba(16,185,129,.25), 0 16px 48px rgba(16,185,129,.14);
+}
+.pc-badge--gcse{ background:rgba(16,185,129,.12);color:#10b981;border:1px solid rgba(16,185,129,.25) }
+.pc-cta--gcse{ background:linear-gradient(135deg,#10b981,#059669);color:#fff;border:none }
+.pc-cta--gcse:hover{ background:linear-gradient(135deg,#059669,#047857) }
 
 .pc-icon{ font-size:2.2rem;line-height:1 }
 .pc-badge{ display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:999px;width:fit-content }
 .pc-badge--full{ background:rgba(99,102,241,.15);color:var(--primary-light,#818cf8);border:1px solid rgba(99,102,241,.25) }
 .pc-badge--fluency{ background:rgba(245,158,11,.12);color:#f59e0b;border:1px solid rgba(245,158,11,.25) }
+.pc-badge--gcse{ background:rgba(16,185,129,.12);color:#10b981;border:1px solid rgba(16,185,129,.25) }
 .pc-title{ font-size:1.25rem;font-weight:800;line-height:1.2;margin:0;color:var(--text);letter-spacing:-.01em }
 .pc-desc{ font-size:.86rem;color:var(--text-dim);line-height:1.6;margin:0 }
 .pc-features{ list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px }

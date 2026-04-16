@@ -108,15 +108,41 @@
     <div class="pathway-header">
       <div class="pathway-badge">Digital Innovations</div>
       <h1 class="pathway-title">Choose your learning pathway</h1>
-      <p class="pathway-sub">Two routes — same goal: understanding AI clearly and using it responsibly.</p>
+      <p class="pathway-sub">Three routes — same goal: understanding AI clearly and using it responsibly.</p>
     </div>
 
     <div class="pathway-cards">
-      <!-- Full Course -->
+      <!-- Year 10/11 Course -->
+      <div class="pathway-card pathway-card--gcse" onclick="window.location.href='gcse.html'">
+        <div class="pc-icon">🌱</div>
+        <div class="pc-badge pc-badge--gcse">Year 10 &amp; 11</div>
+        <h2 class="pc-title">Digital Innovations</h2>
+        <p class="pc-desc">33 lessons across 6 units for Year 10 &amp; 11 students. Covers AI foundations, ethics, and an unmissable unit on using AI for revision and exam technique.</p>
+        <ul class="pc-features">
+          <li>33 lessons · 6 units</li>
+          <li>AI for Study &amp; Revision unit</li>
+          <li>Works fully offline</li>
+          <li>Completion certificate</li>
+          <li>~13 hours total</li>
+        </ul>
+        <div class="pc-actions">
+          <button class="btn pc-cta pc-cta--gcse">Start Year 10/11 Course →</button>
+        </div>
+        <div class="pc-topic-pills">
+          <span class="pc-pill">How AI works</span>
+          <span class="pc-pill">Revision skills</span>
+          <span class="pc-pill">Deepfakes</span>
+          <span class="pc-pill">Bias &amp; ethics</span>
+          <span class="pc-pill">Privacy</span>
+          <span class="pc-pill">Your future</span>
+        </div>
+      </div>
+
+      <!-- AEP Full Course -->
       <div class="pathway-card pathway-card--full" onclick="showSection('units')">
         <div class="pc-icon">📚</div>
-        <div class="pc-badge pc-badge--full">Classroom Course</div>
-        <h2 class="pc-title">Digital Innovations<br>Full Course</h2>
+        <div class="pc-badge pc-badge--full">Classroom Course · AEP</div>
+        <h2 class="pc-title">Digital Innovations<br>AEP</h2>
         <p class="pc-desc">The complete KS5 programme — 55 lessons across 6 units covering AI foundations, prompt engineering, ethics, policy and a supervised capstone project.</p>
         <ul class="pc-features">
           <li>55 lessons · 6 units</li>
@@ -138,11 +164,11 @@
         <button class="btn btn-secondary pwa-install-btn" id="pwaInstallBtn" onclick="event.stopPropagation();installPWA()" style="display:none;margin-top:10px;font-size:.8rem" title="Install for offline use">📲 Install App</button>
       </div>
 
-      <!-- AI Fluency Track -->
+      <!-- AI Fluency Online -->
       <div class="pathway-card pathway-card--fluency" onclick="window.location.href='fluency.html'">
         <div class="pc-icon">⚡</div>
         <div class="pc-badge pc-badge--fluency">Self-Directed · Works Offline</div>
-        <h2 class="pc-title">AI Fluency Track</h2>
+        <h2 class="pc-title">AI Fluency Online</h2>
         <p class="pc-desc">A curated 20-lesson pathway for independent learners. No teacher needed — work at your own pace and earn your AI Fluency certificate.</p>
         <ul class="pc-features">
           <li>20 carefully chosen lessons</li>
