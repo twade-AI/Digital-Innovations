@@ -263,6 +263,52 @@
   <!-- Dashboard (shown after auth) -->
   <div id="dashboard">
 
+    <!-- DB Permissions Fix -->
+    <details id="permissionsBox" style="margin-bottom:20px">
+      <summary style="cursor:pointer;font-size:.85rem;font-weight:700;color:var(--text-muted);padding:10px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px">
+        🔧 If pupils are missing from this dashboard — run this SQL fix in Supabase
+      </summary>
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;padding:16px">
+        <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:12px">
+          Copy and run this in your <a href="https://supabase.com/dashboard" target="_blank" rel="noopener" style="color:var(--primary-light)">Supabase SQL Editor ↗</a>.
+          It fixes recursive RLS policies and adds the missing INSERT permission so pupils can create their own profile row.
+          Safe to run multiple times.
+        </p>
+        <pre id="permSql" style="background:rgba(0,0,0,.35);border-radius:6px;padding:14px;font-size:.72rem;overflow-x:auto;white-space:pre;color:#e2e8f0;line-height:1.6">-- 1. Non-recursive helper function (SECURITY DEFINER bypasses RLS)
+CREATE OR REPLACE FUNCTION public.is_admin_user()
+RETURNS boolean LANGUAGE sql SECURITY DEFINER STABLE AS $$
+  SELECT EXISTS (SELECT 1 FROM public.profiles WHERE user_id = auth.uid() AND is_admin = true);
+$$;
+
+-- 2. Drop old recursive policies
+DROP POLICY IF EXISTS "Admin read profiles" ON public.profiles;
+DROP POLICY IF EXISTS "Admin read progress" ON public.progress;
+
+-- 3. Recreate with non-recursive check
+CREATE POLICY "Admin read profiles" ON public.profiles
+  FOR SELECT USING (auth.uid() = user_id OR public.is_admin_user());
+
+CREATE POLICY "Admin read progress" ON public.progress
+  FOR SELECT USING (auth.uid() = user_id OR public.is_admin_user());
+
+-- 4. Allow pupils to INSERT their own profile row (needed for first login)
+DROP POLICY IF EXISTS "Own profile insert" ON public.profiles;
+CREATE POLICY "Own profile insert" ON public.profiles
+  FOR INSERT WITH CHECK (auth.uid() = user_id AND is_admin = false);
+
+-- 5. Backfill any auth users who are missing a profiles row
+INSERT INTO public.profiles (user_id, email, display_name)
+SELECT id, email, COALESCE(raw_user_meta_data->>'display_name', split_part(email,'@',1))
+FROM auth.users
+WHERE id NOT IN (SELECT user_id FROM public.profiles)
+ON CONFLICT (user_id) DO NOTHING;</pre>
+        <div style="margin-top:10px;display:flex;align-items:center;gap:12px">
+          <button class="btn btn-ghost btn-sm" onclick="copyPermSql()">📋 Copy SQL</button>
+          <span id="permSqlCopied" style="font-size:.78rem;color:var(--success);display:none">✓ Copied — paste into Supabase SQL Editor and click Run</span>
+        </div>
+      </div>
+    </details>
+
     <!-- Summary cards -->
     <div class="summary-grid" id="summaryGrid">
       <div class="summary-card">
@@ -610,6 +656,15 @@ async function loadData() {
     _sb.from('profiles').select('user_id, email, display_name, is_admin, created_at'),
     _sb.from('progress').select('user_id, data, updated_at')
   ]);
+
+  // Surface Supabase errors clearly rather than silently showing empty table
+  if (profRes.error || progRes.error) {
+    var msg = profRes.error ? profRes.error.message : progRes.error.message;
+    document.getElementById('studentTableBody').innerHTML =
+      '<tr><td colspan="7" class="empty-state" style="color:var(--danger)">⚠ Supabase query failed: ' + esc(msg) +
+      '<br><small style="color:var(--text-dim)">Most likely cause: missing or recursive RLS policy. Run the SQL fix in the Permissions section above.</small></td></tr>';
+    return;
+  }
 
   var profiles  = (profRes.data  || []).filter(function(p) { return !p.is_admin; });
   var progressMap = {};
@@ -1004,6 +1059,12 @@ function renderClassDashboard() {
 
 /* ── Reflections ──────────────────────────────── */
 var _allReflections = [];
+function copyPermSql() {
+  var sql = document.getElementById('permSql').textContent;
+  navigator.clipboard.writeText(sql).then(function() {
+    var el = document.getElementById('permSqlCopied'); if (el) { el.style.display='inline'; setTimeout(function(){el.style.display='none';},3000); }
+  });
+}
 function copyRefSql() {
   var sql = document.getElementById('refSetupSql').textContent;
   navigator.clipboard.writeText(sql).then(function() {
