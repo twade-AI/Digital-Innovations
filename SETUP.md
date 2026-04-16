@@ -69,32 +69,31 @@ CREATE TABLE IF NOT EXISTS public.progress (
 ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.progress ENABLE ROW LEVEL SECURITY;
 
+-- Non-recursive helper — SECURITY DEFINER bypasses RLS when called from policies
+-- (avoids infinite recursion when policies query the same table they protect)
+CREATE OR REPLACE FUNCTION public.is_admin_user()
+RETURNS boolean LANGUAGE sql SECURITY DEFINER STABLE AS $$
+  SELECT EXISTS (SELECT 1 FROM public.profiles WHERE user_id = auth.uid() AND is_admin = true);
+$$;
+
 -- Students can read/write their own progress
 CREATE POLICY "Own progress" ON public.progress
   FOR ALL USING (auth.uid() = user_id)
   WITH CHECK (auth.uid() = user_id);
 
--- Students can read their own profile
+-- Students can read/insert their own profile
 CREATE POLICY "Own profile" ON public.profiles
   FOR SELECT USING (auth.uid() = user_id);
 
--- Admins can read all profiles
-CREATE POLICY "Admin read profiles" ON public.profiles
-  FOR SELECT USING (
-    EXISTS (
-      SELECT 1 FROM public.profiles p
-      WHERE p.user_id = auth.uid() AND p.is_admin = true
-    )
-  );
+CREATE POLICY "Own profile insert" ON public.profiles
+  FOR INSERT WITH CHECK (auth.uid() = user_id AND is_admin = false);
 
--- Admins can read all progress
+-- Admins can read all profiles and progress (non-recursive via helper function)
+CREATE POLICY "Admin read profiles" ON public.profiles
+  FOR SELECT USING (auth.uid() = user_id OR public.is_admin_user());
+
 CREATE POLICY "Admin read progress" ON public.progress
-  FOR SELECT USING (
-    EXISTS (
-      SELECT 1 FROM public.profiles p
-      WHERE p.user_id = auth.uid() AND p.is_admin = true
-    )
-  );
+  FOR SELECT USING (auth.uid() = user_id OR public.is_admin_user());
 
 -- ── Auto-create profile on sign-up ─────────────────────────────────
 CREATE OR REPLACE FUNCTION public.handle_new_user()
