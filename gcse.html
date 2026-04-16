@@ -91,6 +91,20 @@
     .slide-disc-q{display:flex;align-items:flex-start;gap:12px;background:rgba(16,185,129,.06);border:1px solid var(--border);border-radius:8px;padding:12px 14px}
     .sdq-num{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;border-radius:50%;background:#10b981;color:#fff;font-size:.75rem;font-weight:700;flex-shrink:0}
     .sdq-text{font-size:.9rem;color:var(--text-muted,var(--text));line-height:1.5;flex:1}
+    .hook-stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin:18px 0}
+    .hook-stat-mini{background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(6,182,212,.08));border:1px solid rgba(16,185,129,.25);border-radius:8px;padding:14px 10px;text-align:center}
+    .hook-stat-mini .sv{font-size:1.6rem;font-weight:900;color:#10b981;display:block;line-height:1}
+    .hook-stat-mini .sl{font-size:.67rem;color:var(--text-muted,#64748b);margin-top:5px;display:block;line-height:1.35}
+    [data-theme="light"] .hook-stat-mini .sv{color:#059669}
+    .scenario-choices{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+    .scenario-choice{display:flex;align-items:flex-start;gap:12px;padding:14px 18px;border-radius:10px;border:2px solid var(--border,#1e2d3d);background:var(--bg-card,#0f1923);cursor:pointer;transition:all .2s;text-align:left;font-size:.92rem;color:var(--text-muted,#94a3b8);line-height:1.45;width:100%}
+    .scenario-choice:hover:not(:disabled){border-color:#10b981;color:var(--text,#e2e8f0)}
+    .scenario-choice-letter{min-width:30px;height:30px;border-radius:50%;background:rgba(16,185,129,.12);color:#10b981;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;flex-shrink:0;margin-top:1px}
+    .scenario-choices.scenario-answered .scenario-choice{pointer-events:none;opacity:.5}
+    .scenario-choices.scenario-answered .scenario-choice.scenario-chosen{opacity:1;border-color:#10b981;background:rgba(16,185,129,.08)}
+    .scenario-choices.scenario-answered .scenario-choice.scenario-chosen .scenario-choice-letter{background:#10b981;color:#fff}
+    .scenario-outcome{padding:16px 18px;border-radius:10px;background:rgba(16,185,129,.06);border-left:4px solid #10b981;font-size:.9rem;color:var(--text-muted,#94a3b8);line-height:1.6;margin-top:14px}
+    .scenario-outcome strong{color:#10b981}
     @media print{
       *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
       body{background:#fff !important}
@@ -392,7 +406,14 @@
       if(slide.bullets&&slide.bullets.length){bHtml='<ul class="slide-bullets">'+slide.bullets.map(function(b){if(typeof b==='string')return '<li>'+b+'</li>';return '<li><strong>'+(b.term||b.label||'')+'</strong>'+(b.def||b.text?' — '+(b.def||b.text):'')+'</li>';}).join('')+'</ul>';}
       return '<div class="slide-concept"><span class="slide-badge badge-concept">Concept</span><div class="slide-title">'+(slide.title||'')+'</div>'+(slide.body?'<div class="slide-body">'+slide.body+'</div>':'')+bHtml+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+'</div>';
     }
-    if (type==='scenario') return '<div class="slide-scenario"><span class="slide-badge badge-scenario">Scenario</span><div class="slide-title">'+(slide.title||'Scenario')+'</div><div class="slide-body">'+(slide.situation||'')+'</div>'+(slide.question?'<div class="slide-callout"><strong>Consider:</strong> '+slide.question+'</div>':'')+'</div>';
+    if (type==='scenario') {
+      var choicesHtml='';
+      if(slide.choices&&slide.choices.length){
+        var letters=['A','B','C','D'];
+        choicesHtml='<div class="scenario-choices" id="gsScChoices">'+(slide.question?'<div class="slide-callout" style="margin-bottom:10px"><strong>Choose:</strong> '+slide.question+'</div>':'')+slide.choices.map(function(c,i){return '<button class="scenario-choice" onclick="gsRevealOutcome(this,'+i+')" data-outcome="'+encodeURIComponent(c.outcome||'')+'"><span class="scenario-choice-letter">'+letters[i]+'</span>'+c.text+'</button>';}).join('')+'<div id="gsScOutcome" style="display:none" class="scenario-outcome"></div></div>';
+      }
+      return '<div class="slide-scenario"><span class="slide-badge badge-scenario">Scenario</span><div class="slide-title">'+(slide.title||'Scenario')+'</div><div class="slide-body">'+(slide.situation||'')+'</div>'+choicesHtml+((!slide.choices||!slide.choices.length)&&slide.question?'<div class="slide-callout"><strong>Consider:</strong> '+slide.question+'</div>':'')+'</div>';
+    }
     if (type==='activity') return '<div class="slide-activity"><span class="slide-badge badge-activity">Activity</span><div class="slide-title">'+(slide.title||'')+'</div>'+(slide.task?'<div class="slide-body">'+slide.task+'</div>':'')+(slide.steps?'<ol class="slide-steps">'+slide.steps.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ol>':'')+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+'</div>';
     if (type==='discussion') {
       var qHtml=(slide.questions||[]).map(function(q){return '<div class="slide-disc-q"><span class="sdq-num">'+(q.num||'')+'</span><span class="sdq-text">'+(q.text||q)+'</span></div>';}).join('');
@@ -418,6 +439,16 @@
     });
     var fb=document.getElementById('gsQuizFb');
     if(fb){var s=gsSlides[gsSlideIdx];fb.style.display='block';fb.innerHTML=(chosen===correct?'✅ Correct! ':'❌ Not quite. ')+(s.explanation||'');}
+  }
+
+  function gsRevealOutcome(btn, idx) {
+    var container = btn.closest('.scenario-choices');
+    if (!container) return;
+    container.classList.add('scenario-answered');
+    btn.classList.add('scenario-chosen');
+    var outcome = decodeURIComponent(btn.getAttribute('data-outcome')||'');
+    var ob = document.getElementById('gsScOutcome');
+    if (ob && outcome) { ob.style.display='block'; ob.innerHTML='<strong>Outcome:</strong> '+outcome; }
   }
 
   document.addEventListener('keydown',function(e){
