@@ -1,9 +1,10 @@
 /* Digital Innovations — Service Worker (offline-first) v8 */
-const CACHE = 'di-v12';
+const CACHE = 'di-v13';
 const ASSETS = [
   './',
   './index.html',
   './fluency.html',
+  './gcse.html',
   './css/style.css',
   './css/lesson.css',
   './js/app.js',
@@ -16,6 +17,7 @@ const ASSETS = [
   './js/slides-u5u6.js',
   './js/slides-critical.js',
   './js/slides-advanced.js',
+  './js/slides-gcse.js',
   './icon.svg',
   './manifest.json',
 ];

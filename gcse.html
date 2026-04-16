@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Innovations — Year 10/11</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <script>try{var _t=localStorage.getItem('di_theme');if(_t)document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/lesson.css">
+  <style>
+    .gs-shell{max-width:820px;margin:0 auto;padding:0 16px 80px}
+    .gs-header{display:flex;align-items:center;gap:12px;padding:18px 0 0;border-bottom:1px solid var(--border);margin-bottom:24px}
+    .gs-back{background:none;border:none;color:var(--text-dim);font-size:.85rem;cursor:pointer;padding:6px 0;display:flex;align-items:center;gap:4px}
+    .gs-back:hover{color:var(--text)}
+    .gs-brand{font-size:.8rem;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em}
+    .gs-header-title{font-weight:800;font-size:1.05rem;color:var(--text);margin-left:auto}
+    .gs-progress-wrap{margin-bottom:28px}
+    .gs-progress-label{display:flex;justify-content:space-between;font-size:.78rem;color:var(--text-dim);margin-bottom:6px;font-weight:600}
+    .gs-progress-track{height:6px;background:var(--border);border-radius:999px;overflow:hidden}
+    .gs-progress-fill{height:100%;background:linear-gradient(90deg,#10b981,#059669);border-radius:999px;transition:width .5s}
+    .gs-hero{text-align:center;padding:8px 0 32px}
+    .gs-hero-badge{display:inline-block;background:rgba(16,185,129,.15);color:#10b981;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:999px;margin-bottom:14px}
+    .gs-hero h1{font-size:clamp(1.6rem,4vw,2.2rem);font-weight:800;margin:0 0 10px}
+    .gs-hero-sub{color:var(--text-dim);font-size:.95rem;line-height:1.6;max-width:540px;margin:0 auto 20px}
+    .gs-hero-stats{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+    .gs-stat{text-align:center}
+    .gs-stat-num{display:block;font-size:1.5rem;font-weight:800;color:#10b981}
+    .gs-stat-label{font-size:.75rem;color:var(--text-dim)}
+    .gs-track{display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
+    .gs-unit-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#10b981;margin:20px 0 8px 4px;padding-bottom:4px;border-bottom:1px solid rgba(16,185,129,.2)}
+    .gs-lesson{display:flex;align-items:center;gap:14px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:var(--radius);padding:14px 16px;cursor:pointer;transition:all .15s;position:relative}
+    .gs-lesson:hover{border-color:#10b981;transform:translateX(3px)}
+    .gs-lesson.gs-done{border-color:rgba(16,185,129,.4);background:rgba(16,185,129,.04)}
+    .gs-lesson.gs-active{border-color:#10b981;box-shadow:0 0 0 1px rgba(16,185,129,.3)}
+    .gs-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;flex-shrink:0;background:var(--border);color:var(--text-dim)}
+    .gs-done .gs-num{background:rgba(16,185,129,.2);color:#10b981}
+    .gs-active .gs-num{background:rgba(16,185,129,.2);color:#10b981}
+    .gs-lesson-info{flex:1;min-width:0}
+    .gs-lesson-title{font-size:.9rem;font-weight:700;color:var(--text)}
+    .gs-lesson-meta{font-size:.75rem;color:var(--text-dim);margin-top:2px}
+    .gs-lesson-check{font-size:1.1rem;flex-shrink:0}
+    .gs-lesson-arrow{font-size:.9rem;color:var(--text-dim);flex-shrink:0}
+    .gs-connector{width:2px;height:10px;background:var(--border);margin-left:30px;border-radius:1px}
+    .gs-connector.gs-done-conn{background:rgba(16,185,129,.4)}
+    .gs-complete{display:none;text-align:center;padding:40px 20px;background:var(--bg-card);border:1.5px solid rgba(16,185,129,.4);border-radius:var(--radius);margin-bottom:24px}
+    .gs-complete.visible{display:block}
+    .gs-complete-icon{font-size:3rem;margin-bottom:16px}
+    .gs-complete h2{font-size:1.5rem;font-weight:800;margin:0 0 8px}
+    .gs-complete p{color:var(--text-dim);font-size:.9rem;margin:0 0 20px}
+    .gs-cert-name-row{margin:0 auto 20px;max-width:400px;text-align:left}
+    .gs-cert-name-label{display:block;font-size:.78rem;font-weight:600;color:var(--text-dim);margin-bottom:6px}
+    .gs-cert-name-input{width:100%;padding:10px 14px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-size:.95rem;font-family:var(--font);outline:none;transition:border-color .15s}
+    .gs-cert-name-input:focus{border-color:#10b981}
+    .gs-cert-card{position:relative;overflow:hidden;background:linear-gradient(145deg,rgba(16,185,129,.1),rgba(5,150,105,.04));border:2px solid rgba(16,185,129,.35);border-radius:16px;padding:36px 36px 28px;margin:0 auto 20px;max-width:560px;text-align:center}
+    .gs-cert-watermark{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:16rem;font-weight:900;color:rgba(16,185,129,.04);pointer-events:none;line-height:1}
+    .gs-cert-header{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px}
+    .gs-cert-issuer{font-size:.9rem;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:.08em}
+    .gs-cert-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:#10b981;margin-bottom:16px}
+    .gs-cert-presented{font-size:.85rem;color:var(--text-dim);margin-bottom:8px}
+    .gs-cert-recipient{font-size:2rem;font-weight:800;color:var(--text);margin:0 0 8px;font-style:italic;min-height:2.5rem}
+    .gs-cert-course{font-size:.85rem;color:var(--text-dim);margin-bottom:6px}
+    .gs-cert-title-main{font-size:1.3rem;font-weight:800;color:#10b981;margin-bottom:6px}
+    .gs-cert-detail{font-size:.75rem;color:var(--text-dim);margin-bottom:20px}
+    .gs-cert-divider{height:1px;background:rgba(16,185,129,.2);margin:0 0 16px}
+    .gs-cert-footer{display:flex;justify-content:space-around}
+    .gs-cert-date,.gs-cert-id{font-size:.85rem;font-weight:700;color:var(--text)}
+    .gs-cert-date-label{font-size:.68rem;color:var(--text-dim);margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
+    .gs-print-btn{background:linear-gradient(135deg,#10b981,#059669);color:#fff;border:none;border-radius:var(--radius);padding:10px 24px;font-weight:700;cursor:pointer;margin-top:8px;font-size:.9rem}
+    .gs-print-btn:hover{background:linear-gradient(135deg,#059669,#047857)}
+    .modal-inner{background:var(--bg-card);border-radius:18px;border:1px solid var(--border);box-shadow:0 32px 80px rgba(0,0,0,.55);width:100%;max-width:860px;max-height:90vh;display:flex;flex-direction:column;overflow:hidden}
+    .modal-header{display:flex;align-items:center;justify-content:space-between;padding:14px 24px 10px;border-bottom:1px solid var(--border);flex-shrink:0;background:linear-gradient(180deg,rgba(16,185,129,.04) 0%,transparent 100%)}
+    .lv-progress{padding:10px 24px 0;flex-shrink:0}
+    .modal-body{flex:1;overflow-y:auto;padding:28px 32px;background:var(--bg-card)}
+    .modal-footer{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;border-top:1px solid var(--border);flex-shrink:0;background:var(--bg-card)}
+    [data-theme="light"] .modal-inner{border-color:rgba(16,185,129,.15)}
+    [data-theme="light"] .modal-body{background:#f8fafc}
+    [data-theme="light"] .modal-footer{background:#f8fafc}
+    .slide-body{font-size:.97rem;color:var(--text-muted,#475569);line-height:1.75;margin-top:8px;margin-bottom:14px}
+    .slide-callout{background:rgba(16,185,129,.08);border-left:3px solid #10b981;border-radius:0 8px 8px 0;padding:14px 18px;margin-top:16px;font-size:.92rem;color:var(--text-muted,#475569);line-height:1.6}
+    [data-theme="light"] .slide-callout{background:rgba(16,185,129,.07);color:#1e3a4a}
+    .slide-bullets{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:12px;padding:0}
+    .slide-bullets li{display:flex;align-items:flex-start;gap:10px;font-size:.93rem;color:var(--text-muted,#475569);line-height:1.5}
+    .slide-bullets li::before{content:'▸';color:#10b981;font-size:.85rem;flex-shrink:0;margin-top:2px}
+    [data-theme="light"] .slide-bullets li{color:#334155}
+    .slide-steps{list-style:none;counter-reset:step;display:flex;flex-direction:column;gap:10px;margin-top:14px;padding:0}
+    .slide-steps li{counter-increment:step;display:flex;align-items:flex-start;gap:12px;font-size:.93rem;color:var(--text-muted,#475569);line-height:1.5}
+    .slide-steps li::before{content:counter(step);min-width:24px;height:24px;background:#10b981;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;flex-shrink:0}
+    .slide-disc-qs{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+    .slide-disc-q{display:flex;align-items:flex-start;gap:12px;background:rgba(16,185,129,.06);border:1px solid var(--border);border-radius:8px;padding:12px 14px}
+    .sdq-num{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;border-radius:50%;background:#10b981;color:#fff;font-size:.75rem;font-weight:700;flex-shrink:0}
+    .sdq-text{font-size:.9rem;color:var(--text-muted,var(--text));line-height:1.5;flex:1}
+    @media print{
+      *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      body{background:#fff !important}
+      .gs-shell{max-width:100%;padding:0}
+      .gs-header,.gs-back,.gs-progress-wrap,.gs-track,.gs-hero,.gs-unit-label,.gs-complete-icon,.gs-complete h2,.gs-complete>p,.gs-cert-name-row,.gs-print-btn,#gsModal,.offline-banner{display:none !important}
+      .gs-complete{display:block !important;border:none;padding:0;background:#fff}
+      .gs-cert-card{max-width:100%;margin:0;border:3px solid #059669 !important;background:linear-gradient(145deg,rgba(16,185,129,.08),rgba(255,255,255,1)) !important;padding:60px}
+    }
+  </style>
+</head>
+<body>
+  <div id="offlineBanner" class="offline-banner" style="display:none" role="status">You are offline — all 33 lessons are available from cache</div>
+
+  <div class="gs-shell">
+    <div class="gs-header">
+      <button class="gs-back" onclick="window.location.href='index.html'">← Back</button>
+      <span class="gs-brand">Digital Innovations</span>
+      <span class="gs-header-title">Year 10 &amp; 11 🌱</span>
+    </div>
+
+    <div class="gs-progress-wrap">
+      <div class="gs-progress-label">
+        <span>Your progress</span>
+        <span id="gsProgressLabel">0 / 33 lessons</span>
+      </div>
+      <div class="gs-progress-track">
+        <div class="gs-progress-fill" id="gsProgressFill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <div class="gs-complete" id="gsComplete">
+      <div class="gs-complete-icon">🏆</div>
+      <h2>Course Complete!</h2>
+      <p>You've completed all 33 lessons. You now have the knowledge to use AI clearly, critically, and responsibly.</p>
+      <div class="gs-cert-name-row">
+        <label class="gs-cert-name-label" for="gsCertNameInput">Your name (for the certificate)</label>
+        <input id="gsCertNameInput" class="gs-cert-name-input" type="text" placeholder="Enter your full name…" oninput="gsUpdateCertName(this.value)" maxlength="60">
+      </div>
+      <div class="gs-cert-card" id="gsCertCard">
+        <div class="gs-cert-watermark" aria-hidden="true">AI</div>
+        <div class="gs-cert-header">
+          <svg width="32" height="32" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="18" cy="18" r="17" stroke="#10b981" stroke-width="1.5"/>
+            <path d="M12 14l4 8 4-6 3 4" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="25" cy="11" r="2.5" fill="#059669"/>
+          </svg>
+          <span class="gs-cert-issuer">Digital Innovations</span>
+        </div>
+        <div class="gs-cert-label">Certificate of Completion</div>
+        <div class="gs-cert-presented">This certifies that</div>
+        <div class="gs-cert-recipient" id="gsCertRecipient">—</div>
+        <div class="gs-cert-course">has successfully completed the</div>
+        <div class="gs-cert-title-main">Digital Innovations — Year 10/11</div>
+        <div class="gs-cert-detail">33 lessons · 6 units · AI literacy, ethics &amp; real-world skills</div>
+        <div class="gs-cert-divider"></div>
+        <div class="gs-cert-footer">
+          <div><div class="gs-cert-date" id="gsCertDate"></div><div class="gs-cert-date-label">Date of completion</div></div>
+          <div><div class="gs-cert-id" id="gsCertId"></div><div class="gs-cert-date-label">Certificate ID</div></div>
+        </div>
+      </div>
+      <button class="gs-print-btn" onclick="window.print()">🖨 Print Certificate</button>
+    </div>
+
+    <div class="gs-hero" id="gsHero">
+      <div class="gs-hero-badge">Year 10 &amp; 11 · Works Offline</div>
+      <h1>Digital Innovations</h1>
+      <p class="gs-hero-sub">33 lessons across 6 units. Build genuine AI literacy — from understanding how it works to using it wisely for revision, creativity, and your future.</p>
+      <div class="gs-hero-stats">
+        <div class="gs-stat"><span class="gs-stat-num">33</span><span class="gs-stat-label">Lessons</span></div>
+        <div class="gs-stat"><span class="gs-stat-num">6</span><span class="gs-stat-label">Units</span></div>
+        <div class="gs-stat"><span class="gs-stat-num">~13h</span><span class="gs-stat-label">Total time</span></div>
+      </div>
+    </div>
+
+    <div class="gs-track" id="gsTrack"></div>
+  </div>
+
+  <div id="gsModal" class="modal" role="dialog" aria-modal="true" aria-label="Lesson viewer">
+    <div class="modal-inner">
+      <div class="modal-header">
+        <div>
+          <div class="lv-unit-label" id="gsUnitLabel"></div>
+          <div class="lv-lesson-title" id="gsLessonTitle"></div>
+        </div>
+        <button class="modal-close" onclick="gsCloseLesson()" aria-label="Close">✕</button>
+      </div>
+      <div class="lv-progress">
+        <div class="lv-progress-track"><div class="lv-progress-fill" id="gsLvFill" style="width:0%"></div></div>
+        <div class="lv-dots" id="gsDots"></div>
+      </div>
+      <div class="modal-body">
+        <div class="slide-area" id="gsSlideArea"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="gsPrevBtn" onclick="gsPrevSlide()">← Back</button>
+        <span class="lv-slide-count" id="gsSlideCount"></span>
+        <button class="btn btn-primary" id="gsNextBtn" onclick="gsNextSlide()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/slides-gcse.js"></script>
+  <script>
+  /* ── Digital Innovations Year 10/11 — track engine ── */
+  var GS_KEY = 'di_gcse_v1';
+  var gsDone = new Set();
+  var gsCurrentId = null;
+  var gsSlideIdx = 0;
+  var gsSlides = [];
+
+  function gsLoadProgress() {
+    try { gsDone = new Set(JSON.parse(localStorage.getItem(GS_KEY)) || []); } catch(e) { gsDone = new Set(); }
+  }
+  function gsSaveProgress() {
+    localStorage.setItem(GS_KEY, JSON.stringify([...gsDone]));
+  }
+  function gsMarkDone(id) {
+    gsDone.add(id);
+    gsSaveProgress();
+    gsRenderTrack();
+    gsUpdateProgress();
+    var total = GCSE_UNITS.reduce(function(s,u){return s+u.lessons.length;},0);
+    if (gsDone.size === total) gsShowComplete();
+  }
+
+  function gsGetLesson(id) {
+    for (var i=0;i<GCSE_UNITS.length;i++) {
+      for (var j=0;j<GCSE_UNITS[i].lessons.length;j++) {
+        if (GCSE_UNITS[i].lessons[j].id===id) return {lesson:GCSE_UNITS[i].lessons[j],unit:GCSE_UNITS[i]};
+      }
+    }
+    return null;
+  }
+
+  function gsRenderTrack() {
+    var container = document.getElementById('gsTrack');
+    var html = '';
+    var overall = 0;
+    GCSE_UNITS.forEach(function(unit) {
+      html += '<div class="gs-unit-label">' + unit.title + '</div>';
+      unit.lessons.forEach(function(lesson, li) {
+        overall++;
+        var done = gsDone.has(lesson.id);
+        var isNext = !done && overall === (function(){
+          var n=0;
+          for(var i=0;i<GCSE_UNITS.length;i++){
+            for(var j=0;j<GCSE_UNITS[i].lessons.length;j++){
+              n++;
+              if(!gsDone.has(GCSE_UNITS[i].lessons[j].id)) return n;
+            }
+          }
+          return -1;
+        })();
+        if (li > 0) {
+          html += '<div class="gs-connector' + (done ? ' gs-done-conn' : '') + '"></div>';
+        }
+        html += '<div class="gs-lesson' + (done?' gs-done':'') + (isNext?' gs-active':'') + '" onclick="gsOpenLesson(' + lesson.id + ')">' +
+          '<div class="gs-num">' + (done ? '✓' : overall) + '</div>' +
+          '<div class="gs-lesson-info">' +
+            '<div class="gs-lesson-title">' + lesson.icon + ' ' + lesson.title + '</div>' +
+            '<div class="gs-lesson-meta">' + lesson.time + (done?' · Completed':isNext?' · Up next':'') + '</div>' +
+          '</div>' +
+          (done ? '<span class="gs-lesson-check">✅</span>' : '<span class="gs-lesson-arrow">→</span>') +
+        '</div>';
+      });
+    });
+    container.innerHTML = html;
+    if (gsDone.size > 0) { var h=document.getElementById('gsHero'); if(h) h.style.display='none'; }
+  }
+
+  function gsUpdateProgress() {
+    var total = GCSE_UNITS.reduce(function(s,u){return s+u.lessons.length;},0);
+    var done = gsDone.size;
+    var pct = Math.round(done/total*100);
+    var fill = document.getElementById('gsProgressFill');
+    var label = document.getElementById('gsProgressLabel');
+    if (fill) fill.style.width = pct + '%';
+    if (label) label.textContent = done + ' / ' + total + ' lessons';
+  }
+
+  function gsShowComplete() {
+    var el = document.getElementById('gsComplete');
+    if (el) el.classList.add('visible');
+    var completedDate = localStorage.getItem('gs_completed_date') || new Date().toISOString().slice(0,10);
+    var dateEl = document.getElementById('gsCertDate');
+    if (dateEl) dateEl.textContent = new Date(completedDate).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+    var certId = localStorage.getItem('gs_cert_id');
+    if (!certId) {
+      certId = 'DI-Y10-' + completedDate.replace(/-/g,'') + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
+      localStorage.setItem('gs_cert_id', certId);
+    }
+    var idEl = document.getElementById('gsCertId');
+    if (idEl) idEl.textContent = certId;
+    var savedName = localStorage.getItem('gs_cert_name') || '';
+    var inp = document.getElementById('gsCertNameInput');
+    if (inp && savedName) inp.value = savedName;
+    gsUpdateCertName(savedName);
+    localStorage.setItem('gs_completed_date', completedDate);
+  }
+
+  function gsUpdateCertName(val) {
+    var el = document.getElementById('gsCertRecipient');
+    if (el) el.textContent = val && val.trim() ? val.trim() : '—';
+    if (val && val.trim()) localStorage.setItem('gs_cert_name', val.trim());
+  }
+
+  function gsOpenLesson(id) {
+    var found = gsGetLesson(id);
+    if (!found) return;
+    gsCurrentId = id;
+    gsSlides = SLIDES_GCSE[id] || [];
+    if (!gsSlides.length) return;
+    gsSlideIdx = 0;
+    document.getElementById('gsUnitLabel').textContent = found.unit.title;
+    document.getElementById('gsLessonTitle').textContent = found.lesson.title;
+    gsRenderSlide();
+    document.getElementById('gsModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    var sa = document.getElementById('gsSlideArea');
+    if (sa && !sa._swipeInit) {
+      sa._swipeInit = true;
+      var sx=0,sy=0;
+      sa.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
+      sa.addEventListener('touchend',function(e){
+        var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+        if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){if(dx<0)gsNextSlide();else gsPrevSlide();}
+      },{passive:true});
+    }
+  }
+
+  function gsCloseLesson() {
+    document.getElementById('gsModal').classList.remove('open');
+    document.body.style.overflow = '';
+    gsCurrentId = null;
+  }
+
+  function gsRenderSlide() {
+    var slide = gsSlides[gsSlideIdx];
+    var total = gsSlides.length;
+    var fill = document.getElementById('gsLvFill');
+    if (fill) fill.style.width = ((gsSlideIdx+1)/total*100)+'%';
+    var dotsEl = document.getElementById('gsDots');
+    if (dotsEl) dotsEl.innerHTML = gsSlides.map(function(s,i){
+      return '<button class="lv-dot'+(i===gsSlideIdx?' active':'')+'" onclick="gsJumpSlide('+i+')" title="Slide '+(i+1)+'"></button>';
+    }).join('');
+    var countEl = document.getElementById('gsSlideCount');
+    if (countEl) countEl.textContent = (gsSlideIdx+1)+' / '+total;
+    var prev = document.getElementById('gsPrevBtn');
+    var next = document.getElementById('gsNextBtn');
+    if (prev) prev.disabled = gsSlideIdx === 0;
+    var isLast = gsSlideIdx === total-1;
+    var isDone = gsDone.has(gsCurrentId);
+    if (next) {
+      if (isLast) { next.textContent = isDone ? 'Close ✕' : '✓ Mark Complete'; next.className = isDone ? 'btn btn-secondary' : 'btn btn-primary'; }
+      else { next.textContent = 'Next →'; next.className = 'btn btn-primary'; }
+    }
+    var area = document.getElementById('gsSlideArea');
+    area.innerHTML = gsRenderSlideHTML(slide);
+    area.scrollTop = 0;
+    var noteKey = 'di_note_' + gsCurrentId + '_' + gsSlideIdx;
+    var savedNote = localStorage.getItem(noteKey) || '';
+    var notesWrap = document.createElement('div');
+    notesWrap.className = 'slide-notes';
+    notesWrap.innerHTML = '<div class="slide-notes-header"><span class="slide-notes-label">✏ My Notes</span><span class="slide-notes-saved" id="gsNotesSaved">Saved</span></div><textarea class="slide-notes-ta" id="gsNotesTa" placeholder="Jot your own thoughts, questions, or key points…" maxlength="2000"></textarea>';
+    area.appendChild(notesWrap);
+    var ta = document.getElementById('gsNotesTa');
+    if (ta) {
+      ta.value = savedNote;
+      var timer=null, ind=document.getElementById('gsNotesSaved');
+      ta.addEventListener('input',function(){
+        clearTimeout(timer);
+        timer=setTimeout(function(){
+          localStorage.setItem(noteKey,ta.value);
+          if(ind){ind.classList.add('visible');setTimeout(function(){ind.classList.remove('visible');},1500);}
+        },500);
+      });
+    }
+  }
+
+  function gsNextSlide() {
+    if (gsSlideIdx === gsSlides.length-1) {
+      if (gsDone.has(gsCurrentId)) { gsCloseLesson(); return; }
+      gsMarkDone(gsCurrentId);
+      gsCloseLesson();
+      return;
+    }
+    gsSlideIdx++;
+    gsRenderSlide();
+  }
+  function gsPrevSlide() { if(gsSlideIdx>0){gsSlideIdx--;gsRenderSlide();} }
+  function gsJumpSlide(i) { gsSlideIdx=i; gsRenderSlide(); }
+
+  function gsRenderSlideHTML(slide) {
+    if (!slide) return '';
+    var type = slide.type || 'concept';
+    if (type==='hook') return '<div class="slide-hook"><span class="slide-badge badge-hook">Hook</span><div class="slide-title">'+(slide.title||'')+'</div><div class="slide-body">'+(slide.body||'')+'</div>'+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+'</div>';
+    if (type==='concept') {
+      var bHtml='';
+      if(slide.bullets&&slide.bullets.length){bHtml='<ul class="slide-bullets">'+slide.bullets.map(function(b){if(typeof b==='string')return '<li>'+b+'</li>';return '<li><strong>'+(b.term||b.label||'')+'</strong>'+(b.def||b.text?' — '+(b.def||b.text):'')+'</li>';}).join('')+'</ul>';}
+      return '<div class="slide-concept"><span class="slide-badge badge-concept">Concept</span><div class="slide-title">'+(slide.title||'')+'</div>'+(slide.body?'<div class="slide-body">'+slide.body+'</div>':'')+bHtml+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+'</div>';
+    }
+    if (type==='scenario') return '<div class="slide-scenario"><span class="slide-badge badge-scenario">Scenario</span><div class="slide-title">'+(slide.title||'Scenario')+'</div><div class="slide-body">'+(slide.situation||'')+'</div>'+(slide.question?'<div class="slide-callout"><strong>Consider:</strong> '+slide.question+'</div>':'')+'</div>';
+    if (type==='activity') return '<div class="slide-activity"><span class="slide-badge badge-activity">Activity</span><div class="slide-title">'+(slide.title||'')+'</div>'+(slide.task?'<div class="slide-body">'+slide.task+'</div>':'')+(slide.steps?'<ol class="slide-steps">'+slide.steps.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ol>':'')+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+'</div>';
+    if (type==='discussion') {
+      var qHtml=(slide.questions||[]).map(function(q){return '<div class="slide-disc-q"><span class="sdq-num">'+(q.num||'')+'</span><span class="sdq-text">'+(q.text||q)+'</span></div>';}).join('');
+      return '<div class="slide-concept"><span class="slide-badge badge-concept">Discussion</span><div class="slide-title">'+(slide.title||'Discussion')+'</div>'+(slide.body?'<div class="slide-body">'+slide.body+'</div>':'')+'<div class="slide-disc-qs">'+qHtml+'</div></div>';
+    }
+    if (type==='quiz') {
+      var opts=(slide.options||[]).map(function(opt,i){return '<button class="quiz-option" data-idx="'+i+'" onclick="gsAnswerQuiz(this,'+slide.correct+','+i+')">'+opt+'</button>';}).join('');
+      return '<div class="slide-quiz"><span class="slide-badge badge-quiz">Quiz</span><div class="slide-title">'+(slide.question||'')+'</div><div class="quiz-options">'+opts+'</div><div id="gsQuizFb" style="display:none;margin-top:12px" class="slide-callout"></div></div>';
+    }
+    if (type==='summary') {
+      var pts=(slide.points||[]).map(function(p){return '<div class="summary-point"><span class="sp-icon">'+(p.icon||'•')+'</span><div><strong>'+(p.label||'')+'</strong>'+(p.text?' — '+p.text:'')+'</div></div>';}).join('');
+      return '<div class="slide-summary"><span class="slide-badge badge-summary">Summary</span><div class="slide-title">'+(slide.title||'Key Takeaways')+'</div><div class="summary-points">'+pts+'</div></div>';
+    }
+    return '<div class="slide-concept"><div class="slide-title">'+(slide.title||'')+'</div><div class="slide-body">'+(slide.body||'')+'</div></div>';
+  }
+
+  function gsAnswerQuiz(btn, correct, chosen) {
+    var area = document.getElementById('gsSlideArea');
+    area.querySelectorAll('.quiz-option').forEach(function(b,i){
+      b.disabled=true;
+      if(i===correct)b.classList.add('correct');
+      else if(i===chosen&&chosen!==correct)b.classList.add('incorrect');
+    });
+    var fb=document.getElementById('gsQuizFb');
+    if(fb){var s=gsSlides[gsSlideIdx];fb.style.display='block';fb.innerHTML=(chosen===correct?'✅ Correct! ':'❌ Not quite. ')+(s.explanation||'');}
+  }
+
+  document.addEventListener('keydown',function(e){
+    if(!document.getElementById('gsModal').classList.contains('open'))return;
+    if(e.key==='ArrowRight'||e.key==='ArrowDown')gsNextSlide();
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp')gsPrevSlide();
+    if(e.key==='Escape')gsCloseLesson();
+  });
+
+  (function(){var s=localStorage.getItem('di_theme');if(s)document.documentElement.setAttribute('data-theme',s);})();
+
+  function initOffline(){
+    var b=document.getElementById('offlineBanner');
+    function u(){if(b)b.style.display=navigator.onLine?'none':'flex';}
+    window.addEventListener('online',u);window.addEventListener('offline',u);u();
+  }
+
+  gsLoadProgress();
+  gsRenderTrack();
+  gsUpdateProgress();
+  var gsTotal=GCSE_UNITS.reduce(function(s,u){return s+u.lessons.length;},0);
+  if(gsDone.size===gsTotal)gsShowComplete();
+  initOffline();
+  if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function(){});
+</script>
+</body>
+</html>
