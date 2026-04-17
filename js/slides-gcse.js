@@ -101,6 +101,18 @@ SLIDES_GCSE[101] = [
     ]
   },
   {
+    type: 'concept',
+    title: 'How a Machine Learns (Unplugged)',
+    body: 'Imagine you\'ve never seen a cat. Someone shows you 10,000 photos labelled "cat" and 10,000 labelled "not cat". You start spotting patterns — pointed ears, whiskers, vertical pupils. Show you a new photo, and you guess "cat" correctly most of the time. That is exactly what supervised machine learning does.',
+    bullets: [
+      { term: 'Training set', def: 'The labelled examples the system learns from — most of the data (around 80%)' },
+      { term: 'Test set', def: 'Examples the system has never seen — used at the end to check if it really learned, or just memorised' },
+      { term: 'Golden rule', def: 'Never test on training data — like marking your own homework. The score means nothing' },
+      { term: 'Overfitting', def: 'When a system memorises the training examples but fails on new ones — it learned the wrong patterns' }
+    ],
+    callout: 'A famous US military AI was trained to spot tanks in photos. It scored 100% on training — then failed completely on new images. The "tank" photos had all been taken on sunny days; the "no tank" photos on cloudy days. It had learned to detect sunshine, not tanks.'
+  },
+  {
     type: 'activity',
     title: 'Spot the AI',
     task: 'Which of these uses AI? Tick the ones you think do in the notes box, then check the answers below.',
@@ -113,6 +125,19 @@ SLIDES_GCSE[101] = [
       'Face unlock on your phone'
     ],
     callout: 'Answers: 1, 3, 5, 6 use AI. The calculator and alarm clock follow fixed rules — no learning involved.'
+  },
+  {
+    type: 'activity',
+    title: 'Your AI Footprint — 24-Hour Audit',
+    task: 'In the notes box, map every AI interaction you\'ve had in the last 24 hours. Be exhaustive — go hour by hour if you have to.',
+    steps: [
+      'List every app, device or service you\'ve used since yesterday',
+      'For each one, tick if it uses AI (recommendation, prediction, recognition, generation)',
+      'Group them: Communication / Entertainment / Education / Health / Finance / Other',
+      'Circle your top 3 — the AI systems that most shape what you see, hear or do',
+      'Write one sentence: what would today have looked like without those three?'
+    ],
+    callout: 'Research suggests the average person now interacts with AI over 200 times a day — most without realising it. Awareness is the first step towards agency.'
   },
   {
     type: 'quiz',
@@ -131,8 +156,8 @@ SLIDES_GCSE[101] = [
     title: 'What You\'ve Learned',
     points: [
       { icon: '🔑', label: 'AI = pattern recognition', text: 'not thinking, understanding, or consciousness' },
-      { icon: '📊', label: 'Learns from data', text: 'not rules written by humans' },
-      { icon: '📱', label: 'Already everywhere', text: 'embedded in most digital products you use daily' },
+      { icon: '📊', label: 'Learns from data', text: 'training set teaches, test set checks — never confuse them' },
+      { icon: '📱', label: 'Already everywhere', text: 'most people interact with AI 200+ times a day without noticing' },
       { icon: '💡', label: 'Not magic', text: 'it can be understood — and that understanding matters' }
     ]
   }
@@ -155,6 +180,29 @@ SLIDES_GCSE[102] = [
       '"The capital of Australia is ___" → sometimes "Sydney" (wrong) because it appears near similar phrases in training data',
       'Fluently wrong: AI can be completely incorrect while sounding completely confident'
     ]
+  },
+  {
+    type: 'scenario',
+    title: 'The Strawberry Problem',
+    situation: 'Type this into almost any chatbot: "How many letter r\'s are in the word strawberry?" Until very recently, most models would confidently answer "2". The real answer is 3 (s-t-r-a-w-b-e-r-r-y). A task a five-year-old can do — and the machine that passes medical exams gets it wrong.',
+    question: 'Why does such a simple task break the AI?',
+    choices: [
+      { text: 'The AI is deliberately sabotaged for this question', outcome: 'No — it\'s a structural limitation. The AI isn\'t "trying" to trick you. It simply cannot see letters the way you do.' },
+      { text: 'The AI never saw the word "strawberry" during training', outcome: 'Not the issue — "strawberry" is a common word. The problem is what the AI actually sees when it reads the word.' },
+      { text: 'The AI doesn\'t see individual letters — it sees tokens (chunks of letters)', outcome: 'Correct. The word "strawberry" gets split into chunks like /Str/aw/berry/. The AI never sees the letter "r" as a separate thing — so it can\'t count them directly. It\'s a bit like being asked to count the bricks in a photo of a wall when all you can see is the wall as a whole.' }
+    ]
+  },
+  {
+    type: 'concept',
+    title: 'How Tokens Actually Look',
+    body: 'Text → tokens → numbers. The AI never reads letters. Here\'s a rough visualisation of how "strawberry" gets broken up before the model sees it:',
+    bullets: [
+      'You type: strawberry',
+      'Tokeniser splits it: /Str/ /aw/ /berry/',
+      'Each chunk becomes a number: e.g. 1034, 564, 9912',
+      'The AI only ever sees numbers — never the individual letters'
+    ],
+    callout: 'This is why AI can write a beautiful essay about strawberries but struggle to count the r\'s in the word. Fluent language, weak character-level tasks. Knowing this helps you spot where AI is likely to slip up.'
   },
   {
     type: 'concept',
@@ -218,6 +266,20 @@ SLIDES_GCSE[103] = [
       { term: 'Computer vision', def: 'Interprets images — face recognition, medical scans, self-driving car cameras' },
       { term: 'Speech recognition', def: 'Converts audio to text (Siri, Alexa, live subtitles)' }
     ]
+  },
+  {
+    type: 'activity',
+    title: 'Match the Tool to the Type',
+    task: 'In the notes box, match each tool to the most accurate AI type. Some tools use more than one — note which.',
+    steps: [
+      'ChatGPT → ?',
+      'TikTok "For You" feed → ?',
+      'Spotify Discover Weekly → ?',
+      'Siri / Alexa → ?',
+      'Google Photos face grouping → ?',
+      'Gmail spam folder → ?'
+    ],
+    callout: 'Answers: ChatGPT = Generative. TikTok & Spotify = Recommendation engines. Siri/Alexa = Speech recognition + Generative (when answering). Google Photos = Computer vision (+ classifier). Gmail spam = Classifier. Many real tools stack several AI types together.'
   },
   {
     type: 'discussion',
@@ -285,14 +347,17 @@ SLIDES_GCSE[104] = [
   },
   {
     type: 'activity',
-    title: 'Map Your Last 24 Hours',
-    task: 'In the notes box, list every AI interaction you can think of from the last day. Think about: waking up, unlocking your phone, messaging, music, video, searching, any purchases.',
-    callout: 'Most people find 10–20 interactions. The point isn\'t to be scared — it\'s to be aware. Awareness gives you more control over how these systems affect you.'
+    title: 'Map Your Last 24 Hours — and What You Consented To',
+    task: 'In the notes box, map every AI interaction you can think of from the last day. Then add a consent column — which of these did you actively agree to?',
+    steps: [
+      'List every AI interaction: waking, unlocking, messaging, music, video, search, purchases',
+      'For each, tick one: Active consent (you chose it) / Passive consent (you clicked through a T&Cs screen you didn\'t read) / No idea it was happening',
+      'Circle the three systems with the most influence over what you see, hear or believe',
+      'For those three: what would today have looked like without them?',
+      'One sentence: which of these would you switch off if you could, and why?'
+    ],
+    callout: 'You cannot meaningfully consent to AI influence you\'ve never noticed. Awareness is the precondition for agency — which is exactly why companies prefer you don\'t notice.'
   },
-  {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
   {
     type: 'quiz',
     question: 'What do TikTok, Spotify and Netflix all have in common regarding how their AI works?',
@@ -326,6 +391,18 @@ SLIDES_GCSE[105] = [
   },
   {
     type: 'concept',
+    title: 'A Pattern-Matching Machine That Got Very Good',
+    body: 'A useful way to think about a modern chatbot: it\'s a pattern-matching machine that got extraordinarily good at predicting text. Some researchers call this a "stochastic parrot" — it produces language that sounds right because it\'s seen billions of examples of text that sounds right. It\'s not "thinking" the thoughts behind the words.',
+    bullets: [
+      'It has read more text than any human ever will — trillions of words',
+      'It has noticed which words tend to follow which, in which contexts',
+      'When it "answers" a question, it\'s predicting the most plausible next words',
+      'That can be incredibly useful — and also completely wrong, while sounding fine'
+    ],
+    callout: 'Fluent does not mean true. A parrot that has been trained for thousands of years can sound wise — but there\'s no one home behind the beak.'
+  },
+  {
+    type: 'concept',
     title: 'Performance vs Understanding',
     body: 'AI can produce correct answers by pattern-matching — no understanding required. A student who memorises every possible answer can pass without understanding anything.',
     bullets: [
@@ -333,6 +410,17 @@ SLIDES_GCSE[105] = [
       'It predicts what answer text looks like for medical questions — not what medicine is',
       'This is sometimes called the "Chinese Room" problem — following rules vs understanding meaning',
       'Impressive performance on a test tells us about the test, not about the AI\'s "mind"'
+    ]
+  },
+  {
+    type: 'scenario',
+    title: 'Two Students, Same Mark',
+    situation: 'Priya memorises every past-paper answer for her Biology exam. She can recite them word-perfect. Marco works through the topics properly — he can explain photosynthesis in his own words, draw it, answer weird variations, and link it to other processes. Both sit the exam. Both get an 8.',
+    question: 'They scored the same. Is there any difference?',
+    choices: [
+      { text: 'No difference — the grade is the grade, and the exam is the objective measure', outcome: 'Fair point on the grade. But give them a slightly different question next year — or ask them to explain photosynthesis to a younger student — and the gap shows up fast. Priya\'s performance was brittle. Marco\'s wasn\'t.' },
+      { text: 'Marco actually understands the subject — Priya just matched patterns', outcome: 'Exactly. They produced the same output but through completely different processes. Modern AI is like Priya: it can score extraordinarily well on tests by matching patterns, without understanding anything. The exam is a bad way to tell the two apart — which is one reason we shouldn\'t confuse "AI passes medical exam" with "AI understands medicine".' },
+      { text: 'Priya is the more impressive one — memorising perfectly is harder', outcome: 'Memorising is impressive, but it\'s not understanding. If the exam asks a question Priya hasn\'t seen before, she has nothing to fall back on. Understanding is what allows you to handle new situations — which is why, for humans and for AI, understanding matters more than performance on known tests.' }
     ]
   },
   {
@@ -356,10 +444,6 @@ SLIDES_GCSE[105] = [
       { num: 3, text: 'Should we treat AI differently depending on whether we think it can "think"?' }
     ]
   },
-  {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
   {
     type: 'quiz',
     question: 'An AI passes a medical licensing exam with a score that would get a doctor hired. What can we conclude?',
@@ -416,6 +500,18 @@ SLIDES_GCSE[106] = [
     ]
   },
   {
+    type: 'concept',
+    title: 'Why Struggle Is Good — "Desirable Difficulties"',
+    body: 'Psychologists Robert and Elizabeth Bjork coined the term "desirable difficulties": the things that make learning feel harder in the moment but make it stick far better in the long run. AI can accidentally remove all of them — unless you use it carefully.',
+    bullets: [
+      { term: 'Generation effect', def: 'You remember things better when you generate the answer yourself — even a wrong one — before seeing the correct version' },
+      { term: 'Retrieval practice', def: 'Pulling information out of your head is what builds memory. Re-reading notes barely does anything' },
+      { term: 'Spacing effect', def: 'Spreading revision over days beats cramming the night before — every time' },
+      { term: 'Why this matters for AI', def: 'If you ask AI for the answer before you\'ve tried, you skip the bit that actually builds learning. Use AI AFTER you try — not instead of trying' }
+    ],
+    callout: 'Rule of thumb: always attempt the problem first. Struggle a bit. Then bring AI in to check, explain, or quiz you. The struggle is the point — not a problem to be engineered away.'
+  },
+  {
     type: 'scenario',
     title: 'Two Students, Same Exam',
     situation: 'Maya and Callum both have a Biology exam on cell division tomorrow. Maya asks Claude: "Explain mitosis like I\'m 14, then give me 5 questions to check I\'ve understood — and don\'t give me the answers until I\'ve tried each one." Callum pastes the exam practice question directly into ChatGPT and copies the full answer into his revision notes without reading it. It\'s now 10pm. What happens in the exam?',
@@ -426,10 +522,6 @@ SLIDES_GCSE[106] = [
       { text: 'Both perform equally — it\'s the same information either way', outcome: 'Not quite. The method matters as much as the content. Testing yourself (retrieval practice) is consistently shown to be 2-3× more effective than re-reading the same material. Maya practiced recalling information under pressure; Callum practiced reading information passively. That\'s a significant difference by exam day.' }
     ]
   },
-  {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
   {
     type: 'quiz',
     question: 'Which approach gets the most learning value from AI when revising?',
@@ -463,7 +555,7 @@ SLIDES_GCSE[107] = [
   },
   {
     type: 'concept',
-    title: 'The Anatomy of a Great Prompt',
+    title: 'The Anatomy of a Great Prompt — CTFC',
     bullets: [
       { term: 'Context', def: 'Who you are and what you\'re doing: "I\'m a Year 11 student revising for GCSE Geography"' },
       { term: 'Task', def: 'Exactly what you want: "explain the water cycle"' },
@@ -471,6 +563,18 @@ SLIDES_GCSE[107] = [
       { term: 'Constraint', def: 'Any limits: "in under 100 words / avoid jargon / include real examples"' }
     ],
     callout: 'The single biggest upgrade: add "I\'m studying for GCSE [subject]" or "explain this like I\'m 14". Immediately better responses.'
+  },
+  {
+    type: 'concept',
+    title: 'The Pro Version — PTFC',
+    body: 'Professionals and prompt engineers often use a slightly different four-letter framework: PTFC. It\'s the same idea with one tweak — they put Persona (who the AI should act as) at the front.',
+    bullets: [
+      { term: 'P — Persona', def: 'Who you want the AI to be: "Act as an experienced GCSE History examiner"' },
+      { term: 'T — Task', def: 'Exactly what you want done: "analyse the causes of the First World War"' },
+      { term: 'F — Format', def: 'How you want it: "3 paragraphs, each with a specific example, max 300 words"' },
+      { term: 'C — Context (or Constraint)', def: 'Your situation and any limits: "I\'m a Year 10 student, AQA board, I struggle with evaluation"' }
+    ],
+    callout: 'CTFC and PTFC are basically the same framework. If you see "PTFC" in a tutorial or job advert for a prompt engineer, it\'s the same skill you\'re learning here.'
   },
   {
     type: 'concept',
@@ -484,6 +588,18 @@ SLIDES_GCSE[107] = [
     ]
   },
   {
+    type: 'concept',
+    title: 'Before and After — Real Upgrades',
+    body: 'Look at the difference context and format make. Same AI, same second, completely different output.',
+    bullets: [
+      { term: '❌ Before', def: '"Tell me about QE."' },
+      { term: '✅ After', def: '"Act as an AQA A-Level Economics examiner. Analyse how Quantitative Easing affected UK inflation 2009–2022, in a structured essay plan with an intro, three analytical paragraphs with named economists, and a conclusion. Max 600 words. UK English."' },
+      { term: '❌ Before', def: '"Explain photosynthesis."' },
+      { term: '✅ After', def: '"I\'m a GCSE Biology student. Explain the light-dependent reactions in 4 numbered steps (max 2 sentences each), then give me 3 self-test questions. I always confuse photosystems I and II."' }
+    ],
+    callout: 'The AI\'s capability is identical in each pair. The only thing that changed is how precisely you told it what you wanted.'
+  },
+  {
     type: 'activity',
     title: 'Upgrade These Prompts',
     task: 'Each prompt below is too vague. In the notes box, rewrite each one using: Context + Task + Format + Constraint.',
@@ -495,10 +611,6 @@ SLIDES_GCSE[107] = [
     ],
     callout: 'Example upgrade: "What is osmosis?" → "I\'m revising GCSE Biology. Explain osmosis in 4 bullet points using a simple real-world example, avoiding technical jargon."'
   },
-  {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
   {
     type: 'quiz',
     question: 'What is the single biggest improvement you can make to almost any AI prompt?',
@@ -552,6 +664,30 @@ SLIDES_GCSE[108] = [
     ]
   },
   {
+    type: 'concept',
+    title: 'The Revision Loop',
+    body: 'Great revision isn\'t a one-way street of reading then hoping. It\'s a loop. Every time you go round, you learn more. AI makes the loop faster — but you still have to travel it.',
+    bullets: [
+      { term: '1. Explain', def: 'Ask AI to explain the topic clearly. Read it. Try to re-say it without looking' },
+      { term: '2. Quiz', def: 'Ask AI to test you — questions first, answers later. Try to answer from memory' },
+      { term: '3. Feedback', def: 'Check your answers against the AI\'s. Note specifically what you got wrong and why' },
+      { term: '4. Consolidate', def: 'Write your own summary from memory. Check it. Round back to step 1 on anything shaky' }
+    ],
+    callout: 'Explain → Quiz → Feedback → Consolidate → Explain again. Each loop tightens your understanding. The loop is what expert tutors do — AI just lets you run it alone, on demand.'
+  },
+  {
+    type: 'concept',
+    title: 'The Cross-Check Habit',
+    body: 'AI summaries compress — and compression means information is lost. Some of what gets lost may be exactly what your examiner rewards. Build the cross-check habit now — it will save you marks.',
+    bullets: [
+      'Cross-check against your exam board specification (the official list of what you must know)',
+      'Cross-check against your textbook or class notes — does the AI match?',
+      'If something is different, don\'t assume AI is right — find which source is correct',
+      'For any number, date, or citation: verify independently before you trust it'
+    ],
+    callout: 'AI cannot verify itself. Asking the AI "are you sure?" will usually get you the same confident wrong answer, in slightly different words. You need an outside source.'
+  },
+  {
     type: 'activity',
     title: 'Summarise and Check',
     task: 'Think of a topic you\'re currently revising. In the notes box, answer these questions:',
@@ -563,10 +699,6 @@ SLIDES_GCSE[108] = [
     ],
     callout: 'Power tip: ask AI to summarise, then separately ask "What are the most commonly missed points in GCSE exams on this topic?" — it gives you the high-value gaps.'
   },
-  {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
   {
     type: 'quiz',
     question: 'Why should you always check an AI summary against your specification or textbook?',
@@ -610,6 +742,17 @@ SLIDES_GCSE[109] = [
   },
   {
     type: 'concept',
+    title: 'The Science — Three Named Effects',
+    body: 'Self-quizzing with AI isn\'t just "a good idea". It taps three of the most well-replicated findings in cognitive science. Name them so you know why you\'re doing what you\'re doing.',
+    bullets: [
+      { term: 'Retrieval practice (the testing effect)', def: 'Trying to pull information out of your head strengthens the memory more than anything else. Quizzing > re-reading, every time' },
+      { term: 'Spacing effect', def: 'The SAME amount of revision, spread over days, produces much better retention than crammed into one session. Short daily quizzes > one long one' },
+      { term: 'Generation effect', def: 'Producing an answer yourself — even a wrong one — before seeing the right answer creates a stronger memory than reading the right answer first. Try, THEN check' }
+    ],
+    callout: 'These aren\'t tricks. They\'re how human memory actually works. AI just makes it easy to apply them to any subject, any time. If you use AI but skip these principles, you lose most of the benefit.'
+  },
+  {
+    type: 'concept',
     title: 'Writing a Quiz Prompt That Actually Works',
     body: 'The more specific your request, the more useful the questions.',
     bullets: [
@@ -632,10 +775,6 @@ SLIDES_GCSE[109] = [
     ],
     callout: 'If you have access to an AI tool right now, try your prompt and see what you get!'
   },
-  {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
   {
     type: 'quiz',
     question: 'Why is testing yourself with AI-generated questions more effective than re-reading your notes?',
@@ -691,24 +830,41 @@ SLIDES_GCSE[110] = [
     ]
   },
   {
+    type: 'concept',
+    title: 'Worked Example — PTFC for Feedback',
+    body: 'Apply the PTFC framework from Lesson 107 to a real feedback prompt. Here\'s one for a GCSE History essay plan on the causes of the First World War.',
+    bullets: [
+      { term: 'P — Persona', def: '"Act as an experienced AQA GCSE History examiner who marks at Grade 9 level."' },
+      { term: 'T — Task', def: '"Critique the essay plan below. Identify what is missing, what is weakest, and what a Grade 9 answer would include that mine does not."' },
+      { term: 'F — Format', def: '"Give me: (a) 3 bullet points of what\'s missing, (b) 1 specific sentence I could add to strengthen my argument, (c) 1 follow-up question I should answer myself."' },
+      { term: 'C — Context', def: '"Question: \'Explain why the Schlieffen Plan failed.\' My plan: [paste 5 bullet points]. I\'m a Year 11 student. My weakest skill is linking evidence to the question."' }
+    ],
+    callout: 'Give AI the exam question, the plan, and your known weak spot. You\'ll get targeted feedback, not generic advice.'
+  },
+  {
     type: 'activity',
     title: 'Critique Your Own Work',
     task: 'Think of an essay question from a subject you\'re currently revising. In the notes box:',
     steps: [
       'Write the exam question (or make up a realistic one)',
       'Write a brief 3–5 bullet point essay plan',
-      'Write the follow-up prompt you\'d use to get AI feedback on it',
+      'Write the follow-up prompt you\'d use to get AI feedback on it — using PTFC',
       'Include: the original question, your plan, and what specifically you want critiqued'
     ],
     callout: 'Key: give AI the actual exam question alongside your plan — it needs to know what you\'re being asked to answer.'
   },
   {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
-      { icon: '🏗️', label: 'Structure can be improved before the exam', text: 'AI can critique your plan, not just your final answer' },
-      { icon: '❓', label: 'Ask specific questions', text: '"What\'s missing?" beats "Is this good?"' },
-      { icon: '✍️', label: 'You still write the answer', text: 'AI helps you write a better one, not write it for you' },
+    type: 'concept',
+    title: 'What AI Cannot Tell You',
+    body: 'AI can critique structure, point out gaps, and suggest phrasing. It cannot tell you whether you actually understand the material — only you (and your teacher) can do that.',
+    bullets: [
+      'AI cannot tell whether you could reproduce this answer without its help',
+      'AI cannot tell whether you understand the concept or just matched its phrasing',
+      'AI cannot tell whether you\'ll be able to adapt when the exam question is worded differently',
+      'The acid test: close the laptop, put the plan away, try to explain the topic aloud — to yourself, to a friend, to the wall. If you can\'t, you don\'t understand it yet'
+    ],
+    callout: 'If AI rewrites your introduction and it "sounds better" — ask yourself: could I have written that? Could I do it again under exam conditions? If no, the improvement is borrowed, not earned.'
+  },
   {
     type: 'quiz',
     question: 'You get AI feedback saying your essay introduction is "well-structured but could be more specific." What\'s the right next step?',
@@ -725,6 +881,10 @@ SLIDES_GCSE[110] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
+      { icon: '🏗️', label: 'Structure can be improved before the exam', text: 'AI can critique your plan, not just your final answer' },
+      { icon: '❓', label: 'Ask specific questions', text: '"What\'s missing?" beats "Is this good?"' },
+      { icon: '✍️', label: 'You still write the answer', text: 'AI helps you write a better one, not write it for you' },
+      { icon: '🔍', label: 'PTFC for feedback', text: 'Persona + Task + Format + Context works for critique prompts too' },
       { icon: '📊', label: 'Technique is learnable', text: 'practising with feedback closes gaps before they cost you marks' }
     ]
   }
@@ -821,13 +981,6 @@ SLIDES_GCSE[112] = [
     callout: 'Make it specific — "explain osmosis" is better than "help with biology".'
   },
   {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
-      { icon: '🔄', label: 'Understand → Practise → Feedback → Consolidate', text: 'a cycle that works for any subject' },
-      { icon: '✋', label: 'Always try first', text: 'AI improves your effort — it doesn\'t replace it' },
-      { icon: '🚫', label: 'Know when not to use it', text: 'some skills only develop through struggle' },
-  {
     type: 'quiz',
     question: 'When should you NOT use AI for studying?',
     options: [
@@ -843,9 +996,10 @@ SLIDES_GCSE[112] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
+      { icon: '🔄', label: 'Understand → Practise → Feedback → Consolidate', text: 'a cycle that works for any subject' },
+      { icon: '✋', label: 'Always try first', text: 'AI improves your effort — it doesn\'t replace it' },
+      { icon: '🚫', label: 'Know when not to use it', text: 'some skills only develop through struggle' },
       { icon: '🛠️', label: 'A complete toolkit', text: 'explain, quiz, feedback, summarise — four powerful uses' },
-      { icon: '⚠️', label: 'Know the limits', text: 'verify facts, avoid plagiarism, don\'t over-rely' },
-      { icon: '🔄', label: 'Stay in the loop', text: 'AI assists, you think — never the other way round' },
       { icon: '🧑‍🎓', label: 'You are the learner', text: 'AI is the tool. That distinction matters.' }
     ]
   }
@@ -893,10 +1047,6 @@ SLIDES_GCSE[113] = [
     ],
     callout: 'In every case, B is better — because it\'s specific about what\'s needed, who it\'s for, and what format works.'
   },
-  {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
   {
     type: 'quiz',
     question: 'Which of these prompts will get the most useful response from an AI?',
@@ -1011,10 +1161,6 @@ SLIDES_GCSE[115] = [
     ]
   },
   {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
-  {
     type: 'quiz',
     question: 'In 2022, an AI-generated image won a fine art competition. What does this most clearly demonstrate?',
     options: [
@@ -1079,10 +1225,6 @@ SLIDES_GCSE[116] = [
       { term: 'Dependence risk', def: 'If AI tools become unavailable, what can you still do without them?' }
     ]
   },
-  {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
   {
     type: 'quiz',
     question: 'Which of these is the best use of AI automation?',
@@ -1149,10 +1291,6 @@ SLIDES_GCSE[117] = [
     explanation: 'Most AI chatbots have a knowledge cut-off and won\'t know about last week. Tools with live web search (Gemini, Bing) can retrieve current information — but still verify what they return.'
   },
   {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
-  {
     type: 'quiz',
     question: 'You need to research something that happened last month for a project. Which AI tool is most suitable?',
     options: [
@@ -1216,10 +1354,6 @@ SLIDES_GCSE[118] = [
       { term: '"Flag uncertainty"', def: 'Asking AI to say when it\'s unsure catches hallucinations before they mislead you' }
     ]
   },
-  {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
   {
     type: 'quiz',
     question: 'What is the most effective way to improve an AI response that\'s too vague?',
@@ -1312,13 +1446,6 @@ SLIDES_GCSE[119] = [
     ]
   },
   {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
-      { icon: '⚠️', label: 'Deepfakes are increasingly easy to make', text: 'free tools, no technical skills, from a single photo or seconds of audio' },
-      { icon: '⚖️', label: 'Non-consensual deepfakes are illegal in the UK', text: 'Online Safety Act — up to 2 years imprisonment' },
-      { icon: '🔍', label: 'Source verification beats visual spotting', text: 'check who posted it and what credible outlets say' },
-  {
     type: 'quiz',
     question: 'A convincing audio clip of a politician surfaces on social media two days before an election. The posting account was created yesterday. What is the most reliable first step?',
     options: [
@@ -1334,6 +1461,9 @@ SLIDES_GCSE[119] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
+      { icon: '⚠️', label: 'Deepfakes are increasingly easy to make', text: 'free tools, no technical skills, from a single photo or seconds of audio' },
+      { icon: '⚖️', label: 'Non-consensual deepfakes are illegal in the UK', text: 'Online Safety Act — up to 2 years imprisonment' },
+      { icon: '🔍', label: 'Source verification beats visual spotting', text: 'check who posted it and what credible outlets say' },
       { icon: '⏸️', label: 'The liar\'s dividend', text: 'deepfakes make ALL evidence less trusted — that\'s the real long-term harm' }
     ]
   }
@@ -1378,10 +1508,6 @@ SLIDES_GCSE[120] = [
     ],
     callout: 'Text A: very likely AI — balanced, formal, hedged, vague, no personal voice. Text B: very likely human — personal, specific, contradicts its own expectations, has a real point of view.'
   },
-  {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
   {
     type: 'quiz',
     question: 'Which is the most reliable way to deal with a piece of content you suspect is AI-generated?',
@@ -1443,10 +1569,6 @@ SLIDES_GCSE[121] = [
       { num: 3, text: 'If you share something false by accident and it reaches hundreds of people, are you responsible for the harm?' }
     ]
   },
-  {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
   {
     type: 'quiz',
     question: 'Why does false news spread faster than true news on social media?',
@@ -1514,10 +1636,6 @@ SLIDES_GCSE[122] = [
     callout: 'This claim should raise flags: "scientists have proven" is rarely accurate (science rarely proves things definitively). The claim also contradicts a substantial body of peer-reviewed sleep research.'
   },
   {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
-  {
     type: 'quiz',
     question: 'In the SIFT method, what does "F — Find better coverage" mean?',
     options: [
@@ -1579,10 +1697,6 @@ SLIDES_GCSE[123] = [
       { num: 3, text: 'Who should be responsible for filter bubbles — the platform, the algorithm designers, or you?' }
     ]
   },
-  {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
   {
     type: 'quiz',
     question: 'What does a recommendation algorithm primarily optimise for?',
@@ -1647,10 +1761,6 @@ SLIDES_GCSE[124] = [
       { num: 3, text: 'What could make AI development more globally representative — in the data, the teams, and the tools?' }
     ]
   },
-  {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
   {
     type: 'quiz',
     question: 'Why do AI healthcare tools often perform worse for patients from certain parts of the world?',
