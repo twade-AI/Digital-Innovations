@@ -1011,7 +1011,7 @@ SLIDES_GCSE[113] = [
   {
     type: 'hook',
     title: 'Prompting 101',
-    body: 'Two students ask AI for help with the same task. One gets a clear, useful response. One gets a wall of generic text. The difference isn\'t which AI they used — it\'s how they asked.',
+    body: 'Two students ask AI for help with the same task. One gets a clear, useful response. One gets a wall of generic text. The difference isn\'t which AI they used — it\'s how they asked.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">40%</span><span class="sl">better quality from students who iterate 3+ times (Wharton, 2023)</span></div><div class="hook-stat-mini"><span class="sv">3–5×</span><span class="sl">iterations expert prompt engineers use to reach a final output</span></div><div class="hook-stat-mini"><span class="sv">Worse</span><span class="sl">than no AI at all — students who accept the first AI draft</span></div></div>',
     callout: 'Prompting is a learnable skill. A well-crafted prompt consistently unlocks better results than a vague one.'
   },
   {
@@ -1035,6 +1035,19 @@ SLIDES_GCSE[113] = [
       { term: 'No iteration', def: 'Accepting the first response even when it\'s not quite right' },
       { term: 'Treating it like a search engine', def: 'AI is best in conversation, not single one-shot queries' }
     ]
+  },
+  {
+    type: 'concept',
+    title: 'Worked Example: A GCSE Biology Revision Prompt',
+    body: 'Here is the difference a full prompt makes. Paste either of these into Claude or Gemini and compare the output — same AI, very different results.',
+    bullets: [
+      { term: 'Vague', def: '"Explain photosynthesis." → You get a Wikipedia-style overview that could be for a 10-year-old or a uni student. Not calibrated to you.' },
+      { term: 'Role', def: '"You are a patient GCSE Biology tutor who explains things step-by-step."' },
+      { term: 'Task', def: '"Explain the light-dependent reactions of photosynthesis."' },
+      { term: 'Format', def: '"Brief overview in 2 sentences, then numbered steps (max 2 sentences each), then 3 self-test questions."' },
+      { term: 'Context', def: '"I\'m a Year 11 student on AQA. My weakness is confusing Photosystem I and II. I need to understand — not just memorise."' }
+    ],
+    callout: 'Put those four lines together and you have a prompt that produces targeted, exam-ready revision — in seconds. Save the Role + Context as a Claude Project or Gemini Gem so you never re-type them.'
   },
   {
     type: 'activity',
@@ -1090,6 +1103,18 @@ SLIDES_GCSE[114] = [
   },
   {
     type: 'concept',
+    title: 'The Four Types of Hallucination',
+    body: 'When AI makes things up, it doesn\'t happen randomly — it happens in predictable ways. Recognising the type helps you catch it faster.',
+    bullets: [
+      { term: 'Factual', def: 'Wrong dates, wrong names, wrong numbers. "The Treaty of Versailles was signed in 1920" — wrong, it was 1919.' },
+      { term: 'Citation', def: 'Invented books, papers, URLs, or quotes. The title sounds real. The author sounds real. The source doesn\'t exist.' },
+      { term: 'Logical', def: 'The steps don\'t add up, but each sentence sounds reasonable. Common in maths workings and multi-step reasoning.' },
+      { term: 'Temporal', def: 'Out-of-date information presented as current. The AI\'s training data has a cut-off — anything after is guesswork.' }
+    ],
+    callout: 'Hallucinations happen because AI is predicting plausible-sounding text, not recalling facts. Plausible is not the same as true.'
+  },
+  {
+    type: 'concept',
     title: 'Red Flags in AI Responses',
     bullets: [
       'Specific statistics with no source — frequently invented',
@@ -1111,10 +1136,23 @@ SLIDES_GCSE[114] = [
     callout: 'Answers: Treaty of Versailles was signed in 1919 (not 1920), and it ended WW1 (not WW2). The reparations figure is approximately correct. The territorial losses detail is partially correct.'
   },
   {
+    type: 'quiz',
+    question: 'An AI confidently tells you: "According to a 2022 study by Dr. Sarah Mitchell at Oxford, 73% of teenagers report better focus when using study apps." What should you do first?',
+    options: [
+      'Cite it — the name, university, year and percentage are all specific so it must be real',
+      'Search for the study independently — specific names, stats, and citations are the most commonly hallucinated type',
+      'Assume it\'s probably right because Oxford is a reliable source',
+      'Use it but change the percentage to something rounder'
+    ],
+    correct: 1,
+    explanation: 'This has every hallmark of a citation hallucination: a specific-sounding name, a prestigious university, a precise year, and an exact percentage. Those details make it sound credible — but they\'re also exactly what AI invents most often. Search Google Scholar, the Oxford website, or the researcher\'s name directly before quoting anything like this.'
+  },
+  {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
       { icon: '🔍', label: 'Always evaluate', text: 'confident output is not the same as correct output' },
+      { icon: '🎭', label: 'Four types of hallucination', text: 'factual, citation, logical, temporal — know the shape of each' },
       { icon: '🔢', label: 'Specific numbers and citations are red flags', text: 'these are frequently hallucinated' },
       { icon: '📚', label: 'Cross-check against reliable sources', text: 'textbooks, official sites, reputable journalism' },
       { icon: '🛡️', label: 'Verification is a habit', text: 'build it into every AI interaction' }
@@ -1126,7 +1164,7 @@ SLIDES_GCSE[115] = [
   {
     type: 'hook',
     title: 'AI and Creativity',
-    body: 'In 2022, an AI-generated image won a prestigious fine art competition. The judges didn\'t know it was AI. The human artists were furious. The creator was unapologetic. Who do you think was right?',
+    body: 'September 2022: Jason Allen enters "Théâtre D\'opéra Spatial" into the Colorado State Fair\'s fine art competition. It wins first place. Allen had generated it with Midjourney — an AI image tool. Artists were furious: "we should put a red X over all AI art." Allen refused to apologise: "I\'m not going back on my art." Meanwhile Getty Images is suing Stability AI for scraping 12 million photos without permission. The New York Times is suing OpenAI. The creative industry is in open war with AI companies — and every ruling sets precedent.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">12M+</span><span class="sl">images scraped by Stability AI, per Getty lawsuit</span></div><div class="hook-stat-mini"><span class="sv">$0</span><span class="sl">paid to artists whose work trained Midjourney</span></div><div class="hook-stat-mini"><span class="sv">2025</span><span class="sl">NYT v. OpenAI heading toward trial</span></div></div>',
     callout: 'This lesson explores what AI can create, what human creativity adds, and why the distinction matters.'
   },
   {
@@ -1149,6 +1187,17 @@ SLIDES_GCSE[115] = [
       'Humans are better at: original vision, emotional resonance, cultural context, intention',
       'Key question: is AI being creative, or recombining patterns from millions of human creators?',
       'Real risk: if AI produces "good enough" content at near-zero cost, what happens to creative industries?'
+    ]
+  },
+  {
+    type: 'scenario',
+    title: 'Who Owns the Art?',
+    situation: 'You run the Instagram account for a small clothing brand. You use Midjourney to generate 12 campaign images for a new collection. The images look great — the brand owner loves them and wants to register them as the brand\'s copyrighted artwork so competitors can\'t copy them.',
+    question: 'What do you tell the owner?',
+    choices: [
+      { text: 'Go ahead — you wrote the prompts, so the copyright is yours to assign to the brand.', outcome: 'A few months later a competitor posts near-identical images generated from Midjourney. The brand tries to sue — but the UK IPO confirms purely AI-generated images aren\'t protected by copyright. The whole "brand IP" is worthless.' },
+      { text: 'Be honest: under current UK/US law, purely AI-generated images can\'t be copyrighted. Suggest paying an illustrator for the core hero images and using AI for secondary assets.', outcome: 'The brand gets legally-protected hero artwork and uses AI where protection doesn\'t matter. The owner respects your honesty. You become the person they ask about every AI decision going forward.' },
+      { text: 'Add significant human edits — recolouring, compositing, hand-drawn elements — to create a "human authorship" claim.', outcome: 'The US Copyright Office has granted partial copyright where humans made "sufficient creative contributions." You document your process carefully. The protection is partial but legitimate — a real-world workaround used by working illustrators.' }
     ]
   },
   {
@@ -1218,11 +1267,13 @@ SLIDES_GCSE[116] = [
   {
     type: 'concept',
     title: 'The Hidden Cost of Automation',
+    body: 'Researchers call this "cognitive offloading" — moving mental work from your brain to a tool. Some offloading is fine (calculators). Some quietly erodes skills you actually need.',
     bullets: [
       { term: 'Skills you don\'t practise, you lose', def: 'Writing, mental arithmetic, memory — regular use keeps them sharp' },
       { term: 'Writing shapes thinking', def: 'Outsourcing writing can mean outsourcing the thinking that writing forces you to do' },
       { term: 'Productive struggle', def: 'Some tasks are hard for a reason — that difficulty is where the learning happens' },
-      { term: 'Dependence risk', def: 'If AI tools become unavailable, what can you still do without them?' }
+      { term: 'Dependence risk', def: 'If AI tools become unavailable, what can you still do without them?' },
+      { term: 'The GPS effect', def: 'Studies show heavy GPS users lose navigation ability. Heavy AI users risk losing the thinking skills they delegate.' }
     ]
   },
   {
@@ -1291,16 +1342,17 @@ SLIDES_GCSE[117] = [
     explanation: 'Most AI chatbots have a knowledge cut-off and won\'t know about last week. Tools with live web search (Gemini, Bing) can retrieve current information — but still verify what they return.'
   },
   {
-    type: 'quiz',
-    question: 'You need to research something that happened last month for a project. Which AI tool is most suitable?',
-    options: [
-      'ChatGPT — it\'s the most popular so it must have the latest information',
-      'Claude — it\'s best for long documents',
-      'Gemini or Bing — they connect to live web search for current information',
-      'Any of them — all AI tools have up-to-date information'
+    type: 'activity',
+    title: 'Match the Tool to the Task',
+    task: 'For each of these real student tasks, decide which tool you\'d reach for first and write one sentence explaining why.',
+    steps: [
+      'Task 1: Summarise a 20-page PDF of your History reading and highlight the key arguments',
+      'Task 2: Research what happened in a news story that broke this week for a Citizenship project',
+      'Task 3: Debug a Python error message you can\'t work out',
+      'Task 4: Reformat a long set of messy revision notes into a clean table inside a Google Doc',
+      'Task 5: Get patient, detailed feedback on a draft English essay'
     ],
-    correct: 2,
-    explanation: 'Most AI models have a training data cut-off and don\'t know about recent events. Gemini (Google) and Microsoft Copilot/Bing connect to live web search, making them better for current information. Always check which tools have web access enabled.'
+    callout: 'Model answers: 1 — Claude (long docs). 2 — Gemini or Copilot (live search). 3 — ChatGPT or Claude. 4 — Gemini in Docs (built-in). 5 — Claude. No tool is universally best — matching matters.'
   },
   {
     type: 'summary',
@@ -1318,7 +1370,7 @@ SLIDES_GCSE[118] = [
   {
     type: 'hook',
     title: 'Prompt Engineering Challenge',
-    body: 'Everything you\'ve learned about prompting — specificity, context, format, iteration — comes down to this: can you write a prompt that actually does what you need? Time to find out.',
+    body: 'A 2023 Wharton Business School study split writers into three groups: no AI, AI without iteration, and AI with 3+ iterations. The result was startling. The zero-iteration group produced <strong>worse</strong> work than the no-AI group. The iteration group produced work rated <strong>40% higher</strong> than either. Translation: AI without iteration makes you worse. AI with deliberate iteration makes you dramatically better. Today you find out which group you\'re in.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">40%</span><span class="sl">higher quality with 3+ iterations</span></div><div class="hook-stat-mini"><span class="sv">Worse</span><span class="sl">than no AI at all: zero-iteration AI use</span></div><div class="hook-stat-mini"><span class="sv">$300K+</span><span class="sl">senior prompt engineer salaries at top AI firms</span></div></div>',
     callout: 'Prompt engineering is a genuine professional skill increasingly valued by employers. You\'re building it right now.'
   },
   {
