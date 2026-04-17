@@ -115,6 +115,18 @@ SLIDES_GCSE[101] = [
     callout: 'Answers: 1, 3, 5, 6 use AI. The calculator and alarm clock follow fixed rules — no learning involved.'
   },
   {
+    type: 'quiz',
+    question: 'Which of the following is the most accurate description of what AI does?',
+    options: [
+      'It thinks and reasons like a human brain',
+      'It finds patterns in large amounts of data and uses them to make predictions',
+      'It follows instructions programmed in by a human for every situation',
+      'It randomly generates responses based on chance'
+    ],
+    correct: 1,
+    explanation: 'AI is fundamentally pattern recognition at scale — it learns statistical patterns from training data and uses them to predict outputs. It doesn\'t think, understand, or have consciousness. It doesn\'t follow pre-written rules for every case (that\'s traditional software).'
+  },
+  {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
@@ -218,6 +230,18 @@ SLIDES_GCSE[103] = [
     ]
   },
   {
+    type: 'quiz',
+    question: 'An AI beats every human at chess but cannot write an essay or recognise a face. What does this tell us?',
+    options: [
+      'The AI is not really intelligent',
+      'All current AI is narrow — outstanding in one domain, useless outside it',
+      'The AI needs more training data to become generally intelligent',
+      'AGI already exists but is kept secret'
+    ],
+    correct: 1,
+    explanation: 'All current AI is narrow AI. The chess AI (like DeepMind\'s AlphaZero) was built specifically for chess and has no capability beyond that domain. No general-purpose AI (AGI) currently exists — every AI system is specialised.'
+  },
+  {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
@@ -264,6 +288,22 @@ SLIDES_GCSE[104] = [
     title: 'Map Your Last 24 Hours',
     task: 'In the notes box, list every AI interaction you can think of from the last day. Think about: waking up, unlocking your phone, messaging, music, video, searching, any purchases.',
     callout: 'Most people find 10–20 interactions. The point isn\'t to be scared — it\'s to be aware. Awareness gives you more control over how these systems affect you.'
+  },
+  {
+    type: 'summary',
+    title: 'What You\'ve Learned',
+    points: [
+  {
+    type: 'quiz',
+    question: 'What do TikTok, Spotify and Netflix all have in common regarding how their AI works?',
+    options: [
+      'They use AI to check whether content is legal before publishing it',
+      'Their recommendation algorithms optimise for your long-term wellbeing',
+      'They use AI to predict what keeps you engaged longest — not what\'s best for you',
+      'They show the same content to everyone to avoid bias'
+    ],
+    correct: 2,
+    explanation: 'Recommendation algorithms optimise for engagement — specifically the time you spend on the platform. This is different from what\'s good for you. The algorithm doesn\'t know what\'s "best" — it only knows what you\'ve clicked on before.'
   },
   {
     type: 'summary',
@@ -320,6 +360,22 @@ SLIDES_GCSE[105] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
+  {
+    type: 'quiz',
+    question: 'An AI passes a medical licensing exam with a score that would get a doctor hired. What can we conclude?',
+    options: [
+      'The AI understands medicine and could safely treat patients',
+      'The AI is conscious and experiences what illness feels like',
+      'The AI predicts what correct-looking answers look like — without understanding medicine',
+      'The exam is too easy and needs to be made harder'
+    ],
+    correct: 2,
+    explanation: 'Passing a test and understanding the subject are fundamentally different. The AI produces correct-looking text by pattern-matching — it has no idea what illness, pain, or care means. This is sometimes called the "Chinese Room" problem: following rules without understanding meaning.'
+  },
+  {
+    type: 'summary',
+    title: 'What You\'ve Learned',
+    points: [
       { icon: '🎭', label: 'Performance ≠ understanding', text: 'passing a medical exam and knowing medicine are different things' },
       { icon: '🧠', label: 'No consciousness', text: 'there is no inner experience or understanding inside an AI system' },
       { icon: '🔮', label: 'Sophisticated prediction', text: 'AI mimics the outputs of intelligence without the process' },
@@ -334,7 +390,7 @@ SLIDES_GCSE[106] = [
   {
     type: 'hook',
     title: 'AI as Your Study Partner',
-    body: 'Students who use AI tools well are outperforming those who don\'t — but not because AI does their work for them. Because it helps them understand, practise and fill gaps faster than any textbook.',
+    body: 'MIT researchers found AI tutoring systems produced learning gains equivalent to a human tutor — in 30% of the time. Khan Academy\'s AI tutor "Khanmigo" provides Socratic dialogue 24/7, adapting to each student\'s level. Students who use AI tools well are outperforming those who don\'t — but not because AI does their work for them. Because it helps them understand, practise, and fill gaps faster.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">30%</span><span class="sl">of the time — AI tutoring matched human tutors in MIT study</span></div><div class="hook-stat-mini"><span class="sv">3am</span><span class="sl">AI is available when no human tutor is — patient, unlimited, judgment-free</span></div><div class="hook-stat-mini"><span class="sv">10×</span><span class="sl">you can ask the same question 10 ways until it clicks — without embarrassment</span></div><div class="hook-stat-mini"><span class="sv">0</span><span class="sl">AI can\'t sit your exam for you — the understanding must be yours</span></div></div>',
     callout: 'Think of AI as a private tutor available at 3am who never gets impatient, never judges you, and will explain the same thing ten different ways until it clicks.'
   },
   {
@@ -362,8 +418,29 @@ SLIDES_GCSE[106] = [
   {
     type: 'scenario',
     title: 'Two Students, Same Exam',
-    situation: 'Maya and Callum both have a Biology exam on cell division tomorrow. Maya asks Claude to "explain mitosis like I\'m 14, then give me 5 questions to check I\'ve understood." Callum pastes a question into ChatGPT and copies the answer into his notes without reading it.',
-    question: 'Who learns more? Who\'s in trouble when the exam question is worded differently? What\'s the single change Callum could make?'
+    situation: 'Maya and Callum both have a Biology exam on cell division tomorrow. Maya asks Claude: "Explain mitosis like I\'m 14, then give me 5 questions to check I\'ve understood — and don\'t give me the answers until I\'ve tried each one." Callum pastes the exam practice question directly into ChatGPT and copies the full answer into his revision notes without reading it. It\'s now 10pm. What happens in the exam?',
+    question: 'Whose approach gets the better result — and why?',
+    choices: [
+      { text: 'Maya\'s approach — she gets asked to explain mitosis in a diagram and scores well because she understands the process, not just memorised text', outcome: 'Correct. Because Maya retrieved the information herself (answering AI questions), the testing effect strengthened her memory. She can explain mitosis in her own words, in any format. The exam question is worded differently to the revision question — she adapts easily.' },
+      { text: 'Callum\'s approach — he has detailed notes and can re-read them in the morning before the exam', outcome: 'Re-reading notes has among the lowest effectiveness of all revision strategies. When the exam question is worded differently, Callum struggles to adapt — he memorised wording, not understanding. He also has no way to know which parts he actually retained versus which parts he just read.' },
+      { text: 'Both perform equally — it\'s the same information either way', outcome: 'Not quite. The method matters as much as the content. Testing yourself (retrieval practice) is consistently shown to be 2-3× more effective than re-reading the same material. Maya practiced recalling information under pressure; Callum practiced reading information passively. That\'s a significant difference by exam day.' }
+    ]
+  },
+  {
+    type: 'summary',
+    title: 'What You\'ve Learned',
+    points: [
+  {
+    type: 'quiz',
+    question: 'Which approach gets the most learning value from AI when revising?',
+    options: [
+      'Paste the exam question in and copy the AI\'s answer into your notes',
+      'Ask AI to explain a topic, then ask it to quiz you without giving answers until you\'ve tried',
+      'Ask AI to write a full essay so you can see what a good answer looks like',
+      'Use AI to find the textbook pages so you can read them yourself'
+    ],
+    correct: 1,
+    explanation: 'The testing effect is one of the most robust findings in learning science: actively trying to retrieve information (answering quiz questions) strengthens memory far more than reading or copying. Using AI to explain then quiz you combines both explanation and retrieval practice.'
   },
   {
     type: 'summary',
@@ -422,6 +499,22 @@ SLIDES_GCSE[107] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
+  {
+    type: 'quiz',
+    question: 'What is the single biggest improvement you can make to almost any AI prompt?',
+    options: [
+      'Make it longer with more words',
+      'Add your name and school at the start',
+      'Add context: who you are, what level you\'re at, and what format you need',
+      'Ask the same question three times to get a more reliable answer'
+    ],
+    correct: 2,
+    explanation: 'Context is the biggest upgrade: telling AI who you are ("Year 11 student revising GCSE Biology"), what you need ("explain osmosis"), and the format ("in 4 bullet points, no jargon") transforms a generic response into a targeted one. Specificity is the lever.'
+  },
+  {
+    type: 'summary',
+    title: 'What You\'ve Learned',
+    points: [
       { icon: '🎯', label: 'Specificity is the upgrade', text: 'vague prompts get vague answers' },
       { icon: '📋', label: 'Context + Task + Format + Constraint', text: 'the formula that works every time' },
       { icon: '🔄', label: 'Iterate', text: 'the first answer is rarely the best — the conversation improves it' },
@@ -469,6 +562,22 @@ SLIDES_GCSE[108] = [
       'Write a prompt to turn the summary into a 5-question quiz'
     ],
     callout: 'Power tip: ask AI to summarise, then separately ask "What are the most commonly missed points in GCSE exams on this topic?" — it gives you the high-value gaps.'
+  },
+  {
+    type: 'summary',
+    title: 'What You\'ve Learned',
+    points: [
+  {
+    type: 'quiz',
+    question: 'Why should you always check an AI summary against your specification or textbook?',
+    options: [
+      'Because AI summaries are usually wrong',
+      'Because AI compresses content and may leave out exactly what your examiner values',
+      'Because AI summaries are always too long',
+      'Because your teacher won\'t accept AI-generated summaries'
+    ],
+    correct: 1,
+    explanation: 'AI summarises by keeping the most frequently emphasised points — but it doesn\'t know what YOUR examiner values. A key detail that gets cut might be exactly what the exam asks about. Always cross-check against your specification.'
   },
   {
     type: 'summary',
@@ -522,6 +631,22 @@ SLIDES_GCSE[109] = [
       'Add: "Explain why each wrong answer is wrong" — the most powerful version'
     ],
     callout: 'If you have access to an AI tool right now, try your prompt and see what you get!'
+  },
+  {
+    type: 'summary',
+    title: 'What You\'ve Learned',
+    points: [
+  {
+    type: 'quiz',
+    question: 'Why is testing yourself with AI-generated questions more effective than re-reading your notes?',
+    options: [
+      'AI questions are always identical to real exam questions',
+      'Re-reading uses more time so testing is more efficient',
+      'The effort of retrieving information from memory strengthens it — passive reading doesn\'t',
+      'AI quizzes are marked automatically, saving time'
+    ],
+    correct: 2,
+    explanation: 'Retrieval practice works because the act of struggling to remember something strengthens the memory trace. Re-reading is passive — you recognise information without having to retrieve it. Getting a question wrong and learning the right answer is especially powerful for long-term retention.'
   },
   {
     type: 'summary',
@@ -584,6 +709,22 @@ SLIDES_GCSE[110] = [
       { icon: '🏗️', label: 'Structure can be improved before the exam', text: 'AI can critique your plan, not just your final answer' },
       { icon: '❓', label: 'Ask specific questions', text: '"What\'s missing?" beats "Is this good?"' },
       { icon: '✍️', label: 'You still write the answer', text: 'AI helps you write a better one, not write it for you' },
+  {
+    type: 'quiz',
+    question: 'You get AI feedback saying your essay introduction is "well-structured but could be more specific." What\'s the right next step?',
+    options: [
+      'Ask AI to rewrite the introduction for you and submit that version',
+      'Ignore the feedback — AI doesn\'t know your marking criteria',
+      'Use the feedback to identify the gap, then rewrite the introduction yourself',
+      'Ask AI for a higher mark to override its feedback'
+    ],
+    correct: 2,
+    explanation: 'AI feedback is most valuable when it identifies a gap you then fill yourself. If AI rewrites for you, you haven\'t practised the skill — and you won\'t be able to reproduce it in an exam. The feedback tells you what to fix; your brain does the actual fixing.'
+  },
+  {
+    type: 'summary',
+    title: 'What You\'ve Learned',
+    points: [
       { icon: '📊', label: 'Technique is learnable', text: 'practising with feedback closes gaps before they cost you marks' }
     ]
   }
@@ -593,8 +734,8 @@ SLIDES_GCSE[111] = [
   {
     type: 'hook',
     title: 'Avoiding the Traps',
-    body: 'A student submitted an AI-written chemistry essay. Their teacher knew immediately. Not because they ran it through a detector — because it didn\'t sound like the student\'s work, contained a factual error the student would never have made, and was too perfectly structured.',
-    callout: 'There are three traps that catch students out: plagiarism, hallucinations, and over-reliance. All three are avoidable.'
+    body: 'A 2024 study found that 89% of UK universities now have an AI policy — but only 23% of students had actually read it. Meanwhile, 67% admitted to using AI for coursework regularly. AI detection tools have accuracy rates of only 39–76% — barely better than guessing in some cases. And AI frequently "hallucinates" confident-sounding facts that are completely false.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">67%</span><span class="sl">of students use AI for coursework — but most don\'t know their school\'s rules</span></div><div class="hook-stat-mini"><span class="sv">39–76%</span><span class="sl">accuracy of AI detection tools — this is why they aren\'t reliable evidence</span></div><div class="hook-stat-mini"><span class="sv">🎭</span><span class="sl">AI "hallucinations" — confident wrong answers — are common and hard to spot</span></div><div class="hook-stat-mini"><span class="sv">3</span><span class="sl">traps: plagiarism, hallucinations, over-reliance — all avoidable</span></div></div>',
+    callout: 'There are three traps that catch students out: plagiarism, hallucinations, and over-reliance. All three are avoidable — if you know what to look for.'
   },
   {
     type: 'concept',
@@ -686,6 +827,25 @@ SLIDES_GCSE[112] = [
       { icon: '🔄', label: 'Understand → Practise → Feedback → Consolidate', text: 'a cycle that works for any subject' },
       { icon: '✋', label: 'Always try first', text: 'AI improves your effort — it doesn\'t replace it' },
       { icon: '🚫', label: 'Know when not to use it', text: 'some skills only develop through struggle' },
+  {
+    type: 'quiz',
+    question: 'When should you NOT use AI for studying?',
+    options: [
+      'When you want to understand something faster',
+      'When you need practice questions on a topic',
+      'When you\'re about to submit AI output as your own work without engaging with it',
+      'When you want feedback on your essay structure'
+    ],
+    correct: 2,
+    explanation: 'The key rule is that you must engage with and own the output. Submitting AI-generated work as your own is plagiarism — and more importantly, you learn nothing from it. AI should accelerate your learning, not replace it.'
+  },
+  {
+    type: 'summary',
+    title: 'What You\'ve Learned',
+    points: [
+      { icon: '🛠️', label: 'A complete toolkit', text: 'explain, quiz, feedback, summarise — four powerful uses' },
+      { icon: '⚠️', label: 'Know the limits', text: 'verify facts, avoid plagiarism, don\'t over-rely' },
+      { icon: '🔄', label: 'Stay in the loop', text: 'AI assists, you think — never the other way round' },
       { icon: '🧑‍🎓', label: 'You are the learner', text: 'AI is the tool. That distinction matters.' }
     ]
   }
@@ -732,6 +892,22 @@ SLIDES_GCSE[113] = [
       'A: "What causes climate change?" vs B: "List the 5 main human causes of climate change with one specific piece of evidence for each"'
     ],
     callout: 'In every case, B is better — because it\'s specific about what\'s needed, who it\'s for, and what format works.'
+  },
+  {
+    type: 'summary',
+    title: 'What You\'ve Learned',
+    points: [
+  {
+    type: 'quiz',
+    question: 'Which of these prompts will get the most useful response from an AI?',
+    options: [
+      '"What is photosynthesis?"',
+      '"Explain photosynthesis for a GCSE Biology student in 5 bullet points, avoiding jargon, including one real-world example"',
+      '"Photosynthesis please"',
+      '"Write everything you know about photosynthesis"'
+    ],
+    correct: 1,
+    explanation: 'The second prompt includes context (GCSE Biology student), format (5 bullet points), and constraints (no jargon, real-world example). These elements shape the response to be directly useful. Vague prompts produce vague answers — the AI can only work with what you give it.'
   },
   {
     type: 'summary',
@@ -838,6 +1014,22 @@ SLIDES_GCSE[115] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
+  {
+    type: 'quiz',
+    question: 'In 2022, an AI-generated image won a fine art competition. What does this most clearly demonstrate?',
+    options: [
+      'AI has genuine artistic feelings and intentional creativity',
+      'AI can produce outputs that humans judge as creative — without any understanding or intent behind them',
+      'Human artists are no longer needed in competitive art',
+      'The judges were wrong and should have disqualified the entry'
+    ],
+    correct: 1,
+    explanation: 'The key distinction is between producing creative-looking output and being creative. AI recombines patterns from millions of human-made works — it has no intent, emotion, or meaning behind what it makes. The output can look creative; the process is statistical prediction.'
+  },
+  {
+    type: 'summary',
+    title: 'What You\'ve Learned',
+    points: [
       { icon: '🎨', label: 'AI creates in almost every medium', text: 'text, images, music, video, voice' },
       { icon: '🔄', label: 'Recombination, not origination', text: 'AI remixes patterns from human-made content' },
       { icon: '💡', label: 'Human creativity adds intent and meaning', text: 'experience, vision, emotion — what AI lacks' },
@@ -886,6 +1078,22 @@ SLIDES_GCSE[116] = [
       { term: 'Productive struggle', def: 'Some tasks are hard for a reason — that difficulty is where the learning happens' },
       { term: 'Dependence risk', def: 'If AI tools become unavailable, what can you still do without them?' }
     ]
+  },
+  {
+    type: 'summary',
+    title: 'What You\'ve Learned',
+    points: [
+  {
+    type: 'quiz',
+    question: 'Which of these is the best use of AI automation?',
+    options: [
+      'Writing your English essay so you can spend time on other subjects',
+      'Solving your Maths problem set so you can check your answers',
+      'Converting a set of notes into a formatted table or summary sheet',
+      'Re-reading your History notes while AI summarises them for you'
+    ],
+    correct: 2,
+    explanation: 'Converting notes into a formatted table is genuinely repetitive — AI saves time without replacing a skill you need to build. Writing your essay or solving your problem set removes the learning. Re-reading while AI summarises means you do neither activity properly.'
   },
   {
     type: 'summary',
@@ -944,6 +1152,22 @@ SLIDES_GCSE[117] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
+  {
+    type: 'quiz',
+    question: 'You need to research something that happened last month for a project. Which AI tool is most suitable?',
+    options: [
+      'ChatGPT — it\'s the most popular so it must have the latest information',
+      'Claude — it\'s best for long documents',
+      'Gemini or Bing — they connect to live web search for current information',
+      'Any of them — all AI tools have up-to-date information'
+    ],
+    correct: 2,
+    explanation: 'Most AI models have a training data cut-off and don\'t know about recent events. Gemini (Google) and Microsoft Copilot/Bing connect to live web search, making them better for current information. Always check which tools have web access enabled.'
+  },
+  {
+    type: 'summary',
+    title: 'What You\'ve Learned',
+    points: [
       { icon: '🔧', label: 'Different tools have different strengths', text: 'match the tool to the task' },
       { icon: '📅', label: 'For current events, use live search', text: 'Gemini or Bing for recent information' },
       { icon: '📜', label: 'Check your school\'s policy', text: 'permitted tools vary between schools' },
@@ -996,6 +1220,22 @@ SLIDES_GCSE[118] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
+  {
+    type: 'quiz',
+    question: 'What is the most effective way to improve an AI response that\'s too vague?',
+    options: [
+      'Try a completely different AI tool',
+      'Ask the same question again in the same way',
+      'Follow up with a specific instruction: "That\'s too general — focus only on [X] and give me concrete examples"',
+      'Accept the response — AI can\'t do better than its first answer'
+    ],
+    correct: 2,
+    explanation: 'Iteration is a core prompting skill. The first response is rarely the best. A specific follow-up that narrows the topic, requests a different format, or asks for examples usually produces a significantly more useful response than starting over or accepting a mediocre answer.'
+  },
+  {
+    type: 'summary',
+    title: 'What You\'ve Learned',
+    points: [
       { icon: '🏆', label: 'Prompting is a learnable skill', text: 'it improves with deliberate practice' },
       { icon: '🎯', label: 'Specificity, format, context', text: 'your three main levers' },
       { icon: '🔄', label: 'Always iterate', text: 'rarely get the best result first time' },
@@ -1010,8 +1250,8 @@ SLIDES_GCSE[119] = [
   {
     type: 'hook',
     title: 'Deepfakes & Synthetic Media',
-    body: 'In 2024, a deepfake video of a headteacher making offensive statements circulated to students. It was completely fabricated. The damage to the real person happened before anyone confirmed it was fake.',
-    callout: 'Deepfakes aren\'t a future problem. They\'re being used right now — in schools, in politics, and against ordinary people.'
+    body: 'In January 2024, thousands of US voters received robocalls from a fake AI-cloned voice of President Biden telling Democrats not to vote. The same month, a Hong Kong finance worker was tricked into transferring £20 million after a video call where every person on screen — including his CFO — was synthetic. Two days before Slovakia\'s 2023 election, an AI audio clip of an opposition leader "admitting" to rigging votes went viral during the legally mandated silence period when media couldn\'t respond. He lost.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">£20M</span><span class="sl">stolen via deepfake video call (Hong Kong, 2024)</span></div><div class="hook-stat-mini"><span class="sv">48hrs</span><span class="sl">before Slovakia\'s election — during legal media silence</span></div><div class="hook-stat-mini"><span class="sv">$6M</span><span class="sl">FCC fine for the Biden deepfake robocall</span></div><div class="hook-stat-mini"><span class="sv">38</span><span class="sl">countries targeted by election deepfakes in 2024</span></div></div>',
+    callout: 'Deepfakes don\'t need to be believed by everyone — they just need to cause enough doubt, at the right moment, for the damage to be done.'
   },
   {
     type: 'concept',
@@ -1036,6 +1276,18 @@ SLIDES_GCSE[119] = [
     ]
   },
   {
+    type: 'concept',
+    title: 'Protecting Yourself — What Actually Works',
+    bullets: [
+      { term: 'Check the source first', def: 'A new account, no history, no verification badge — all red flags before you even watch the content' },
+      { term: 'Lateral reading', def: 'Immediately search what credible outlets (BBC, Reuters) say about the claim — not what the video says about itself' },
+      { term: 'The liar\'s dividend', def: 'Deepfakes don\'t just spread lies — they let people dismiss real evidence as "probably fake". This undermines all trust in video' },
+      { term: 'C2PA standard', def: 'A new technical standard backed by Adobe, Google and Microsoft that embeds a verified "content passport" in authentic media' },
+      { term: 'UK law', def: 'The Online Safety Act 2023 makes sharing non-consensual intimate deepfakes illegal in the UK, with up to 2 years imprisonment' }
+    ],
+    callout: 'Free online deepfake detectors achieve only 65–85% accuracy. Don\'t rely on them — source verification is more reliable than trying to "spot" the fake.'
+  },
+  {
     type: 'activity',
     title: 'Visual Clues to Look For',
     task: 'When reviewing suspicious video or images, these are the signs to check. In the notes box, note which you think would be hardest to spot in a high-quality fake.',
@@ -1046,16 +1298,43 @@ SLIDES_GCSE[119] = [
       'Mouth movements that don\'t quite sync with the words',
       'Skin texture that looks too smooth or inconsistent'
     ],
-    callout: 'Important: high-quality deepfakes defeat these checks. Context and source matter more: who shared it? Can you verify the original source?'
+    callout: 'Important: high-quality deepfakes defeat these checks. Context and source matter more: who shared it? Can you find an established news source covering it?'
+  },
+  {
+    type: 'scenario',
+    title: 'The Viral Video',
+    situation: 'You have 3,500 followers on social media interested in local news. At 11pm, a video appears showing your local MP "admitting" to accepting bribes. It already has 400,000 views. Your friends are telling you to share it. The video looks convincing — good lighting, realistic voice. But the source account was created four days ago and has no other posts.',
+    question: 'What do you do?',
+    choices: [
+      { text: 'Share immediately — 400K people can\'t all be wrong, and this is too important to ignore', outcome: 'By morning, the video is confirmed as a deepfake. Your name appears in coverage of accounts that spread the disinformation. You\'ve lost followers and your credibility on local issues is damaged. Your share added 2,000 views before removal.' },
+      { text: 'Search the MP\'s name on BBC News and Reuters. Find nothing. Wait 30 minutes before deciding.', outcome: 'A Reuters fact-check appears 20 minutes later confirming it\'s AI-generated audio spliced onto stock footage. You share the fact-check instead. Your followers thank you for responsible sourcing and your credibility improves.' },
+      { text: 'Share with a caption: "Unverified — possibly fake. Sharing for discussion."', outcome: 'Your caveat gets stripped as people screenshot and reshare the original video without it. You still contributed to its spread. The platform logs your account as part of a disinformation amplification chain.' }
+    ]
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '⚠️', label: 'Deepfakes are increasingly easy to make', text: 'no technical skills needed anymore' },
-      { icon: '⚖️', label: 'Non-consensual deepfakes are illegal in the UK', text: 'Online Safety Act covers this' },
-      { icon: '👁️', label: 'Visual checks help but aren\'t foolproof', text: 'high-quality fakes defeat them' },
-      { icon: '🔍', label: 'Trust context and source', text: 'who shared it? Can you find the original?' }
+      { icon: '⚠️', label: 'Deepfakes are increasingly easy to make', text: 'free tools, no technical skills, from a single photo or seconds of audio' },
+      { icon: '⚖️', label: 'Non-consensual deepfakes are illegal in the UK', text: 'Online Safety Act — up to 2 years imprisonment' },
+      { icon: '🔍', label: 'Source verification beats visual spotting', text: 'check who posted it and what credible outlets say' },
+  {
+    type: 'quiz',
+    question: 'A convincing audio clip of a politician surfaces on social media two days before an election. The posting account was created yesterday. What is the most reliable first step?',
+    options: [
+      'Listen carefully — your ears can usually detect AI-generated speech',
+      'Run it through a free online deepfake detector',
+      'Check whether BBC, Reuters or other established outlets have independently verified the audio',
+      'Share it with a "possibly fake" warning so others can judge'
+    ],
+    correct: 2,
+    explanation: 'Audio deepfakes can be created from seconds of real audio and are very hard to detect by ear. Free detectors achieve only 65–85% accuracy. Sharing with a caveat still amplifies the content. Lateral reading — checking whether credible outlets have covered the story — is the most reliable step.'
+  },
+  {
+    type: 'summary',
+    title: 'What You\'ve Learned',
+    points: [
+      { icon: '⏸️', label: 'The liar\'s dividend', text: 'deepfakes make ALL evidence less trusted — that\'s the real long-term harm' }
     ]
   }
 ];
@@ -1103,6 +1382,22 @@ SLIDES_GCSE[120] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
+  {
+    type: 'quiz',
+    question: 'Which is the most reliable way to deal with a piece of content you suspect is AI-generated?',
+    options: [
+      'Run it through an AI detection tool — they\'re highly accurate',
+      'Look for spelling mistakes — AI always makes them',
+      'Evaluate the accuracy and source regardless of origin — the key question is whether it\'s correct and credible',
+      'Reject it entirely — AI content is always unreliable'
+    ],
+    correct: 2,
+    explanation: 'AI detection tools have accuracy rates of 39–76% — not reliable enough to use as evidence. AI doesn\'t reliably make spelling mistakes. The most useful question is always: is this accurate, and what is the source? Origin matters less than accuracy and credibility.'
+  },
+  {
+    type: 'summary',
+    title: 'What You\'ve Learned',
+    points: [
       { icon: '📝', label: 'AI text is structured but lacks personal voice', text: 'vague, balanced, filler-heavy' },
       { icon: '🔍', label: 'Detection tools are unreliable', text: 'develop your own critical reading instead' },
       { icon: '❓', label: 'Accuracy matters more than origin', text: 'the real question is: is it correct?' },
@@ -1115,7 +1410,7 @@ SLIDES_GCSE[121] = [
   {
     type: 'hook',
     title: 'Misinformation & AI',
-    body: 'A false story travels 6 times faster on social media than a true one — and reaches 10 times more people before any correction appears. AI is dramatically accelerating both the creation and the spread of misinformation.',
+    body: 'A false story travels 6 times faster on social media than a true one — and reaches 10 times more people before any correction appears. AI is dramatically accelerating both the creation and the spread of misinformation. During COVID-19, false cures and conspiracy theories spread so fast that the WHO declared an "infodemic" — a pandemic of misinformation running alongside the real one.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">6×</span><span class="sl">faster than truth — false stories spread on social media (MIT study)</span></div><div class="hook-stat-mini"><span class="sv">10×</span><span class="sl">more reach before any correction appears</span></div><div class="hook-stat-mini"><span class="sv">70%</span><span class="sl">of retweets spread false news faster than corrections ever catch up</span></div><div class="hook-stat-mini"><span class="sv">AI</span><span class="sl">can generate thousands of convincing fake articles in minutes</span></div></div>',
     callout: 'This isn\'t just a media problem. It affects elections, public health, and what ordinary people believe about their communities.'
   },
   {
@@ -1147,6 +1442,22 @@ SLIDES_GCSE[121] = [
       { num: 2, text: 'Should social media platforms be legally responsible for misinformation that spreads on them?' },
       { num: 3, text: 'If you share something false by accident and it reaches hundreds of people, are you responsible for the harm?' }
     ]
+  },
+  {
+    type: 'summary',
+    title: 'What You\'ve Learned',
+    points: [
+  {
+    type: 'quiz',
+    question: 'Why does false news spread faster than true news on social media?',
+    options: [
+      'Algorithms are programmed to prioritise false stories',
+      'False stories are usually shorter and easier to read',
+      'False stories tend to trigger stronger emotions — outrage, fear, surprise — which drives sharing',
+      'People deliberately share content they know is false'
+    ],
+    correct: 2,
+    explanation: 'MIT research found false news spreads 6× faster because it is typically more novel and emotionally stimulating — triggering outrage, fear, or surprise. These emotions drive sharing before checking. Algorithms then amplify emotional content because it generates more engagement.'
   },
   {
     type: 'summary',
@@ -1206,6 +1517,22 @@ SLIDES_GCSE[122] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
+  {
+    type: 'quiz',
+    question: 'In the SIFT method, what does "F — Find better coverage" mean?',
+    options: [
+      'Find a more detailed version of the same article',
+      'Find the article with the most shares or likes',
+      'Search for what other independent sources say about the same claim — don\'t evaluate it on the original page alone',
+      'Find the original author\'s social media profile'
+    ],
+    correct: 2,
+    explanation: 'Lateral reading — what fact-checkers actually do — means immediately leaving the source page and searching for what other credible outlets report about the same claim. A claim cited thousands of times may trace back to one unreliable origin. Never judge a source solely from its own page.'
+  },
+  {
+    type: 'summary',
+    title: 'What You\'ve Learned',
+    points: [
       { icon: '🔍', label: 'SIFT: Stop, Investigate, Find, Trace', text: 'a 2-minute habit that works on any claim' },
       { icon: '↔️', label: 'Lateral reading', text: 'look at what others say about a source, not just the source itself' },
       { icon: '🇬🇧', label: 'UK fact-checkers', text: 'Full Fact, BBC Reality Check, Reuters Fact Check' },
@@ -1256,6 +1583,22 @@ SLIDES_GCSE[123] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
+  {
+    type: 'quiz',
+    question: 'What does a recommendation algorithm primarily optimise for?',
+    options: [
+      'Showing you the most accurate and balanced information available',
+      'Showing you content that keeps you on the platform as long as possible',
+      'Showing you content from people you personally know and trust',
+      'Rotating content fairly between all creators equally'
+    ],
+    correct: 1,
+    explanation: 'Recommendation algorithms optimise for engagement — specifically time spent on the platform — because that drives advertising revenue. Accuracy, balance, and your wellbeing are not part of the objective. This is why emotionally stimulating content (outrage, envy, fear) gets promoted over calm, balanced content.'
+  },
+  {
+    type: 'summary',
+    title: 'What You\'ve Learned',
+    points: [
       { icon: '🔄', label: 'Algorithms optimise for engagement', text: 'not your knowledge or wellbeing' },
       { icon: '🫧', label: 'Filter bubbles narrow your world view', text: 'gradually and invisibly' },
       { icon: '🌍', label: 'Actively seek out what the algorithm hides', text: 'follow diverse sources deliberately' },
@@ -1270,7 +1613,7 @@ SLIDES_GCSE[124] = [
   {
     type: 'hook',
     title: 'Who Benefits from AI?',
-    body: 'The AI industry is worth over $1 trillion. The vast majority of that investment, computing power, and talent is concentrated in three countries. Most of the world is watching from the outside.',
+    body: 'The AI industry is worth over $1 trillion. Around 90% of global AI investment goes to just three countries: the US, China, and the UK. Meanwhile, 2.6 billion people have no internet access at all. Most advanced AI tools work primarily in English — meaning non-English speakers globally get dramatically less value. AI diagnostic tools trained on Western patient data perform measurably worse on patients from Africa and Asia.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">2.6bn</span><span class="sl">people have no internet access — the foundation AI needs</span></div><div class="hook-stat-mini"><span class="sv">90%</span><span class="sl">of AI investment concentrated in just 3 countries</span></div><div class="hook-stat-mini"><span class="sv">7,000+</span><span class="sl">languages in the world — AI works well in fewer than 100</span></div><div class="hook-stat-mini"><span class="sv">Worse</span><span class="sl">diagnostic AI performs measurably worse on under-represented populations</span></div></div>',
     callout: 'Powerful technology doesn\'t automatically benefit everyone equally. Who gets access — and who gets left out — is one of the defining questions of the AI era.'
   },
   {
@@ -1308,6 +1651,22 @@ SLIDES_GCSE[124] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
+  {
+    type: 'quiz',
+    question: 'Why do AI healthcare tools often perform worse for patients from certain parts of the world?',
+    options: [
+      'The tools deliberately exclude some populations',
+      'Those populations don\'t have the diseases the AI was designed to detect',
+      'Training data is predominantly from Western populations, so the AI performs worse on under-represented groups',
+      'Healthcare AI is equally accurate for all populations globally'
+    ],
+    correct: 2,
+    explanation: 'AI systems learn from their training data. If that data over-represents certain demographics (typically Western, lighter-skinned populations), the system performs measurably worse on everyone else. This isn\'t intentional discrimination — it\'s a direct result of who the data was collected from.'
+  },
+  {
+    type: 'summary',
+    title: 'What You\'ve Learned',
+    points: [
       { icon: '🌍', label: 'AI development is geographically concentrated', text: 'a few wealthy nations dominate' },
       { icon: '📡', label: 'Access is unequal', text: '2.6 billion people have no internet at all' },
       { icon: '⚠️', label: 'AI works worse for under-represented groups', text: 'training data bias has real consequences' },
@@ -1320,8 +1679,8 @@ SLIDES_GCSE[125] = [
   {
     type: 'hook',
     title: 'Bias In, Bias Out',
-    body: 'An AI system used by US courts to predict which defendants were likely to reoffend was found to be twice as likely to flag Black defendants as high-risk compared to white defendants with similar records. The AI learned this from historical conviction data — which itself reflected decades of unequal policing.',
-    callout: 'The AI wasn\'t broken. It worked exactly as designed. The problem was what it was trained on.'
+    body: 'In January 2020, Robert Williams was arrested in front of his daughters on his front lawn in Detroit. He spent 30 hours in a cell. The evidence: a facial recognition AI matched his face to CCTV footage from a shoplifting case. The AI was wrong. Separately, an AI risk tool used by US courts was found to flag Black defendants as twice as likely to reoffend compared to white defendants with similar records. In both cases, the AI wasn\'t broken — it had learned these patterns from data reflecting decades of unequal policing and sentencing.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">100×</span><span class="sl">higher error rate for dark-skinned women vs. white men (NIST study)</span></div><div class="hook-stat-mini"><span class="sv">2×</span><span class="sl">more likely to flag Black defendants as high-risk (COMPAS study)</span></div><div class="hook-stat-mini"><span class="sv">5yr</span><span class="sl">FTC ban on Rite Aid using facial recognition after biased false matches</span></div><div class="hook-stat-mini"><span class="sv">0</span><span class="sl">wrongdoing by Robert Williams — he was innocent</span></div></div>',
+    callout: 'The AI wasn\'t broken. It worked exactly as designed. The problem was what it was trained on — and who those decisions affected.'
   },
   {
     type: 'concept',
@@ -1346,18 +1705,35 @@ SLIDES_GCSE[125] = [
   },
   {
     type: 'scenario',
-    title: 'Think It Through',
-    situation: 'A large employer uses an AI tool to screen CVs before any human reads them. The AI was trained on 10 years of successful hires. During that period, almost all senior appointments were male and came from three specific universities.',
-    question: 'What will the AI learn to look for? Who gets filtered out? How would you detect this bias? What would you do to fix it?'
+    title: 'The CV Screening System',
+    situation: 'A large employer uses an AI tool to screen CVs before any human reads them. The AI was trained on 10 years of successful hires. During that period, almost all senior appointments were male and came from three specific universities. An internal audit reveals the AI now ranks women applicants 14% lower than men with identical qualifications. You\'re a junior member of the HR team and have just discovered this.',
+    question: 'What do you do?',
+    choices: [
+      { text: 'Report the bias to your manager immediately and recommend pausing the tool until it\'s investigated', outcome: 'Your manager escalates it. A full audit confirms the 14% gap. The tool is suspended for 3 months while the training data is audited and rebalanced. The company\'s legal team later says this prevented a significant Equality Act liability.' },
+      { text: 'Add a human review step for all borderline candidates, to catch cases where the AI may be wrong', outcome: 'The band-aid works partially. A human reviewer catches several strong female candidates the AI had filtered. But the underlying bias continues — and a rejected candidate later obtains a subject access request showing the AI was involved in her rejection.' },
+      { text: 'Say nothing — the tool passed its initial compliance check, and raising it could make your department look bad', outcome: 'Six months later, a journalist publishes an investigation. The company is named as using biased AI in recruitment. You are called to give evidence in the resulting Employment Tribunal. The reputational damage far outweighs the discomfort of raising the issue internally.' }
+    ]
+  },
+  {
+    type: 'quiz',
+    question: 'An AI hiring tool trained on 10 years of CVs from a male-dominated industry rejects more female applicants. Why does this happen?',
+    options: [
+      'The AI has been programmed with sexist rules by its developers',
+      'Women apply for fewer roles, so the AI has less data about them',
+      'The historical data reflects past discrimination, and the AI learns to replicate those patterns',
+      'The AI cannot read female names correctly'
+    ],
+    correct: 2,
+    explanation: 'AI systems learn statistical patterns from their training data. If historical hiring was biased against women, that bias is encoded in the data — and the AI learns to replicate it. Amazon discovered this exact problem and scrapped their AI hiring tool in 2018.'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '📥', label: 'Biased data produces biased AI', text: 'the model reflects the patterns in its training' },
-      { icon: '🤖', label: 'The AI isn\'t "trying" to discriminate', text: 'it\'s replicating patterns in human decisions' },
-      { icon: '⚖️', label: 'Real consequences', text: 'justice, employment, health — lives affected' },
-      { icon: '🔍', label: 'Detecting and fixing bias requires effort', text: 'diverse teams, representative data, rigorous testing' }
+      { icon: '📥', label: 'Biased data produces biased AI', text: 'the model reflects the patterns in its training — including human discrimination' },
+      { icon: '🤖', label: 'The AI isn\'t "trying" to discriminate', text: 'it\'s replicating patterns from history — but the harm is the same' },
+      { icon: '⚖️', label: 'Real consequences', text: 'Robert Williams arrested wrongly. CV systems filtering out women. Healthcare AI working worse for some patients.' },
+      { icon: '🔍', label: 'Detecting and fixing bias requires effort', text: 'diverse teams, representative data, demographic testing, human oversight' }
     ]
   }
 ];
@@ -1366,7 +1742,7 @@ SLIDES_GCSE[126] = [
   {
     type: 'hook',
     title: 'Jobs & Automation',
-    body: 'McKinsey estimates AI could automate around 30% of current work tasks by 2030. In every previous technological revolution, new jobs appeared to replace the old ones. Will this time be different — or is the pattern the same?',
+    body: 'McKinsey estimates AI could automate around 30% of current work tasks by 2030. Goldman Sachs puts the figure at 300 million jobs globally. But in every previous technological revolution — the printing press, the industrial revolution, electricity, the internet — new jobs appeared to replace the old ones. The question is whether this time is different.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">30%</span><span class="sl">of current work tasks could be automated by 2030 (McKinsey)</span></div><div class="hook-stat-mini"><span class="sv">300M</span><span class="sl">jobs exposed to automation globally (Goldman Sachs)</span></div><div class="hook-stat-mini"><span class="sv">#1</span><span class="sl">AI literacy is the top graduate skills gap (WEF 2023)</span></div><div class="hook-stat-mini"><span class="sv">?</span><span class="sl">the most in-demand job of 2030 probably doesn\'t have a name yet</span></div></div>',
     callout: 'The honest answer is: nobody knows exactly. But the skills you build now will matter regardless of how it plays out.'
   },
   {
@@ -1400,6 +1776,18 @@ SLIDES_GCSE[126] = [
       { num: 2, text: 'Which jobs do you think are most and least vulnerable to automation — and why?' },
       { num: 3, text: 'Whose responsibility is it to prepare people for AI-driven change — government, employers, or individuals?' }
     ]
+  },
+  {
+    type: 'quiz',
+    question: 'Which of the following best describes how AI affects employment?',
+    options: [
+      'AI will replace all jobs within 10 years',
+      'AI only affects manual factory work, not office jobs',
+      'AI automates specific tasks within jobs, changing roles rather than eliminating them entirely',
+      'AI creates more jobs than it removes in every industry'
+    ],
+    correct: 2,
+    explanation: 'Research consistently shows AI automates tasks, not entire jobs. A radiologist\'s job won\'t disappear — but the routine image scanning part might be automated, freeing them for complex diagnosis. The key skill is knowing which parts of your future job to develop that AI cannot easily replicate.'
   },
   {
     type: 'summary',
@@ -1454,6 +1842,18 @@ SLIDES_GCSE[127] = [
     callout: 'You have rights under UK GDPR: to see what data a company holds about you, to correct it, and to request deletion. Most people never exercise these rights.'
   },
   {
+    type: 'quiz',
+    question: 'Why is biometric data (like your face or fingerprint) considered more sensitive than a password?',
+    options: [
+      'Biometric data is stored on government servers, making it more valuable',
+      'You cannot change your face or fingerprints if the data is leaked or misused',
+      'Biometric data is always collected without consent',
+      'Passwords are not personal data under UK GDPR'
+    ],
+    correct: 1,
+    explanation: 'If your password is compromised, you change it. If your face, fingerprints, or iris scans are leaked, you cannot change them — ever. That\'s why biometric data is classed as "special category" data under UK GDPR and requires explicit consent to collect.'
+  },
+  {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
@@ -1469,29 +1869,39 @@ SLIDES_GCSE[128] = [
   {
     type: 'hook',
     title: 'Regulation & Control',
-    body: 'The EU passed the world\'s first comprehensive AI law in 2024. China has its own AI rules. The UK is developing a separate approach. Meanwhile, AI capabilities are advancing faster than any government can legislate.',
-    callout: 'Regulation is needed. Getting it right — protecting people without stifling useful innovation — is genuinely hard.'
+    body: 'The EU AI Act became the world\'s first comprehensive AI law — banning the highest-risk uses from February 2025. The US took the opposite approach: President Trump revoked Biden\'s AI safety executive order on day one of his second term, January 2025. The UK announced £14 billion in AI investment but still had no specific AI law. Four major powers: four completely different approaches — and they\'re diverging, not converging.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">459</span><span class="sl">pages in the final EU AI Act text</span></div><div class="hook-stat-mini"><span class="sv">Day 1</span><span class="sl">Trump revoked Biden\'s AI safety order (Jan 2025)</span></div><div class="hook-stat-mini"><span class="sv">€35M</span><span class="sl">maximum fine for breaking EU AI Act rules</span></div><div class="hook-stat-mini"><span class="sv">£14bn</span><span class="sl">UK AI investment plan — with no specific AI law yet</span></div></div>',
+    callout: 'The EU regulates to protect citizens. The US deregulates to accelerate competition. The UK tries to balance both. China regulates to maintain state control.'
   },
   {
     type: 'concept',
-    title: 'The EU AI Act — What It Does',
+    title: 'The EU AI Act — Four Risk Tiers',
     bullets: [
-      { term: 'Bans highest-risk uses', def: 'Mass surveillance by governments, social scoring systems, real-time biometric tracking in public spaces' },
-      { term: 'Regulates high-risk uses', def: 'AI in hiring, lending, criminal justice, education must meet safety and transparency standards' },
-      { term: 'Requires transparency', def: 'AI-generated content must be labelled; users must know when they\'re talking to AI' },
-      { term: 'Significant fines', def: 'Up to €35 million or 7% of global annual revenue for violations' },
-      { term: 'Global reach', def: 'Applies to any AI product used in the EU — including those made in the US or UK' }
+      { term: 'Banned (unacceptable risk)', def: 'Government social scoring, real-time biometric surveillance in public spaces, emotion recognition at work' },
+      { term: 'High-risk', def: 'AI in hiring, lending, criminal justice, education — must meet safety, transparency and audit standards before use' },
+      { term: 'Limited risk', def: 'Chatbots, deepfake generators — must be labelled so users know they\'re interacting with AI' },
+      { term: 'Minimal risk', def: 'Spam filters, video game AI — no specific rules beyond general law' }
+    ],
+    callout: 'The Act applies to any AI used in the EU — even if the company making it is based in the US or UK. This gives the EU enormous global reach over AI products.'
+  },
+  {
+    type: 'concept',
+    title: 'Four Countries, Four Philosophies',
+    bullets: [
+      { term: 'EU', def: 'Risk-based rules, serious fines, human rights focused. Slowest to adapt but most comprehensive protection.' },
+      { term: 'USA (post-2025)', def: 'Deregulated approach under Trump — prioritise US AI competitiveness over consumer protection rules.' },
+      { term: 'UK', def: '£14bn investment plan, no AI-specific law yet — existing regulators apply current law until new legislation passes.' },
+      { term: 'China', def: 'Deepfake labelling rules, generative AI measures — strict controls on content, but state deploys AI extensively for surveillance.' }
     ]
   },
   {
-    type: 'concept',
-    title: 'The Challenge of Regulating Fast-Moving Technology',
-    bullets: [
-      'AI capabilities advance every few months — laws take years to pass',
-      'Different countries, different rules — hard to enforce consistently across borders',
-      'Companies lobby governments on regulations that affect their business',
-      'Over-regulation risks stifling genuinely useful innovation',
-      'Under-regulation allows real harms to go unchecked'
+    type: 'scenario',
+    title: 'The AI Recruitment Startup',
+    situation: 'You\'ve co-founded an AI tool that screens CVs and ranks job candidates. An internal test reveals it ranks women 12% lower than men with equal qualifications — probably because the training data reflects past hiring discrimination. Your Series A funding pitch is next week. You need to decide your launch strategy.',
+    question: 'What do you do?',
+    choices: [
+      { text: 'Launch in the US first — no AI-specific law, fastest route to market, lower compliance cost', outcome: 'You grow fast. Eighteen months later an investigation exposes the gender bias. Three class-action lawsuits are filed. Legal fees exceed your Series A funding. Two board members resign. You\'re fixing a problem you knew about before launch.' },
+      { text: 'Pause, fix the gender bias, then pursue EU compliance certification — slower but legally clean from day one', outcome: 'The 4-month delay costs you one deal. But your compliance documentation becomes your strongest sales pitch to HR teams worried about legal liability. You close a significant NHS contract specifically because you can demonstrate algorithmic fairness audits.' },
+      { text: 'Disclose the bias in your terms of service — transparency, not paternalism', outcome: 'The ICO investigates after a journalist reads your terms. They rule that disclosing discrimination does not make it lawful under the Equality Act 2010. You are fined and ordered to withdraw from the UK market pending a full audit.' }
     ]
   },
   {
@@ -1499,18 +1909,30 @@ SLIDES_GCSE[128] = [
     title: 'Think & Discuss',
     questions: [
       { num: 1, text: 'Who should set the rules for AI — elected governments, tech companies, independent experts, or international bodies?' },
-      { num: 2, text: 'If an AI system makes a decision that harms you (rejects your job application, flags you as a risk), who should be legally responsible?' },
-      { num: 3, text: 'Should the UK have stricter or looser AI rules than the EU? What are the trade-offs either way?' }
+      { num: 2, text: 'If an AI system makes a decision that harms you (rejects your job application, flags you incorrectly), who should be legally responsible?' },
+      { num: 3, text: 'Should the UK have stricter or looser AI rules than the EU? What are the real trade-offs either way?' }
     ]
+  },
+  {
+    type: 'quiz',
+    question: 'What is the EU AI Act\'s approach to facial recognition in public spaces?',
+    options: [
+      'It is permitted if police obtain a warrant first',
+      'It is banned entirely in all circumstances',
+      'It is permitted for commercial use but not by governments',
+      'Real-time facial recognition in public is banned, with narrow exceptions for serious crime'
+    ],
+    correct: 3,
+    explanation: 'The EU AI Act places real-time biometric surveillance in public spaces in its "unacceptable risk" category — banned by default. Narrow exceptions exist for serious threats like terrorism. This represents one of the strongest stances on facial recognition anywhere in the world.'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '📜', label: 'EU AI Act is the most comprehensive AI law so far', text: 'banning highest-risk uses, regulating the rest' },
-      { icon: '⏱️', label: 'Technology moves faster than legislation', text: 'a fundamental tension in AI governance' },
-      { icon: '🌍', label: 'Different countries, different rules', text: 'creating a complex patchwork globally' },
-      { icon: '⚖️', label: 'The debate is how to regulate well', text: 'not whether regulation is needed' }
+      { icon: '📜', label: 'EU AI Act is the world\'s first comprehensive AI law', text: 'banning highest-risk uses, regulating the rest — fully active from 2025' },
+      { icon: '🌍', label: 'Four approaches diverging, not converging', text: 'EU, US, UK, China all taking fundamentally different paths' },
+      { icon: '⏱️', label: 'Technology moves faster than legislation', text: 'ChatGPT launched while the EU Act was still being drafted' },
+      { icon: '⚖️', label: 'The debate is how to regulate well', text: 'not whether regulation is needed — everyone agrees it is' }
     ]
   }
 ];
@@ -1545,18 +1967,35 @@ SLIDES_GCSE[129] = [
   },
   {
     type: 'scenario',
-    title: 'The Self-Driving Dilemma',
-    situation: 'A self-driving car must choose between two unavoidable outcomes in a crash: swerve left and hit a child, or continue straight and hit an elderly pedestrian. No human is controlling the car. The decision happens in 0.3 seconds.',
-    question: 'Who should decide what the car does? The manufacturer? Government regulators? The car owner? Should it be random? Use the notes box to think through your reasoning.'
+    title: 'The Medical AI Override',
+    situation: 'You\'re a junior doctor. An AI diagnostic system flags your patient with a rare blood condition and recommends urgent treatment. Your senior consultant disagrees — based on experience, he says the AI is picking up a false positive. He tells you to follow his judgment, not the machine. You\'ve read that this AI has a 94% accuracy rate on this type of case. The patient has not been told the AI was involved.',
+    question: 'What do you do?',
+    choices: [
+      { text: 'Follow your senior consultant\'s judgment — he has decades of experience and you\'re junior', outcome: 'Three days later, the patient\'s condition worsens significantly. The AI was right. In the investigation, it emerges the consultant routinely overrides the AI without documentation. The hospital now requires all AI overrides to be logged and reviewed — a direct result of this case.' },
+      { text: 'Raise your concern to the consultant — explain the AI\'s track record and ask him to reconsider or document his reasoning', outcome: 'The consultant is initially irritated, but agrees to order a confirmatory test. It comes back positive. The patient receives prompt treatment. Your willingness to speak up — respectfully, with evidence — is noted positively in your appraisal. You didn\'t override him; you made him re-examine his reasoning.' },
+      { text: 'Do nothing now, but document your concern in the patient\'s notes', outcome: 'The documentation becomes crucial: when the patient deteriorates, the notes show you flagged the AI\'s recommendation and your concern was not acted on. This shifts some moral responsibility — but doesn\'t change the outcome for the patient. Documentation is important; raising it in the moment would have been better.' }
+    ]
+  },
+  {
+    type: 'quiz',
+    question: 'A judge uses an AI tool to help decide prison sentences. Who bears moral responsibility if the tool produces a biased outcome?',
+    options: [
+      'The AI, because it made the recommendation',
+      'Nobody — the AI tool was independently certified',
+      'The company that built the tool, but not the judge who used it',
+      'The humans involved — the developers who built it, and the judge who used it without adequate scrutiny'
+    ],
+    correct: 3,
+    explanation: 'Moral responsibility doesn\'t transfer to machines. The COMPAS recidivism tool controversy showed that both developers (for building a biased system) and courts (for relying on it without challenge) bear responsibility. A consequentialist would focus on the harm caused; a rights-based approach would say the defendant\'s right to an unbiased hearing was violated by both.'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '⚖️', label: 'AI ethics has real stakes', text: 'real decisions with real consequences for real people' },
-      { icon: '👤', label: 'Responsibility doesn\'t disappear', text: 'just because a machine was involved' },
-      { icon: '🔭', label: 'Different frameworks give different answers', text: 'there\'s rarely one right answer' },
-      { icon: '🧑‍💼', label: 'Human oversight matters', text: 'some decisions may always need a human in the loop' }
+      { icon: '⚖️', label: 'AI ethics has real stakes', text: 'real decisions, real systems, real consequences for real people' },
+      { icon: '👤', label: 'Responsibility doesn\'t disappear', text: 'just because a machine was involved — humans who deploy and use AI still bear responsibility' },
+      { icon: '🔭', label: 'Different frameworks give different answers', text: 'consequentialism, rights-based, fairness, dignity — all matter' },
+      { icon: '🧑‍💼', label: 'Human oversight matters', text: 'especially for high-stakes, irreversible decisions — but oversight means genuinely engaging, not rubber-stamping' }
     ]
   }
 ];
@@ -1567,8 +2006,8 @@ SLIDES_GCSE[130] = [
   {
     type: 'hook',
     title: 'Algorithms & Your Mental Health',
-    body: 'TikTok\'s algorithm is not designed to make you feel good. It\'s designed to keep you watching. Those are very different goals — and your mental health is what gets caught in between.',
-    callout: 'This isn\'t about banning social media. It\'s about understanding the system well enough to use it on your terms.'
+    body: 'Facebook\'s internal research — leaked by whistleblower Frances Haugen in 2021 — showed the company knew its algorithm was making teenage girls feel worse about their bodies. Its own data showed Instagram was "harmful" for one in three teenage girls. They knew. They didn\'t change it. TikTok\'s algorithm is not designed to make you feel good — it\'s designed to keep you watching. Those are very different goals.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">1 in 3</span><span class="sl">teenage girls said Instagram made them feel worse about their bodies (Meta\'s own research)</span></div><div class="hook-stat-mini"><span class="sv">13%</span><span class="sl">of teen girls say suicidal thoughts increased with Instagram use (Meta internal)</span></div><div class="hook-stat-mini"><span class="sv">40%</span><span class="sl">longer sessions when Facebook showed more "outrage" content (internal experiment)</span></div><div class="hook-stat-mini"><span class="sv">2021</span><span class="sl">Frances Haugen leaked documents proving Meta knew — and didn\'t act</span></div></div>',
+    callout: 'This isn\'t about banning social media. It\'s about understanding the system well enough to use it on your terms — not the platform\'s.'
   },
   {
     type: 'concept',
@@ -1603,6 +2042,18 @@ SLIDES_GCSE[130] = [
       'What\'s one change you could make to your algorithm diet this week?'
     ],
     callout: 'You can curate your feed. Unfollow, mark "not interested", diversify sources. The algorithm is responding to your behaviour — change the behaviour, and the algorithm changes.'
+  },
+  {
+    type: 'quiz',
+    question: 'Why do social media algorithms tend to show you more emotionally charged content over time?',
+    options: [
+      'The platforms deliberately want to make users unhappy',
+      'Emotional content generates more engagement (clicks, shares, time spent), which the algorithm is optimised to maximise',
+      'Users specifically request more emotional content in their settings',
+      'Emotional content is easier for AI to generate than factual content'
+    ],
+    correct: 1,
+    explanation: 'Recommendation algorithms are optimised for engagement metrics — likes, shares, watch time. Emotionally charged content (outrage, fear, envy) generates stronger reactions and more engagement. The algorithm isn\'t trying to upset you — it\'s doing exactly what it was designed to do. Your wellbeing simply isn\'t what it\'s optimising for.'
   },
   {
     type: 'summary',
@@ -1652,6 +2103,18 @@ SLIDES_GCSE[131] = [
       { num: 2, text: 'If an AI relationship makes someone genuinely happier and less lonely, does it matter that the AI doesn\'t actually care?' },
       { num: 3, text: 'What responsibilities do AI companion companies have to the emotional wellbeing of their users?' }
     ]
+  },
+  {
+    type: 'quiz',
+    question: 'Which of the following is a specific risk of relying heavily on AI companion apps for emotional support?',
+    options: [
+      'The AI will eventually become sentient and end the relationship',
+      'Human relationships require vulnerability and effort — AI ones don\'t — so you may not develop the skills needed for human connection',
+      'AI companions are too honest and will tell users things they don\'t want to hear',
+      'AI companion apps share your data only with government agencies'
+    ],
+    correct: 1,
+    explanation: 'Human relationships are hard because they require compromise, vulnerability, and genuine emotional investment from both sides. AI companions are designed to be accommodating, patient, and always available — without reciprocating real care. Relying on them instead of building human skills can leave you less equipped for real relationships, not more.'
   },
   {
     type: 'summary',
@@ -1707,6 +2170,18 @@ SLIDES_GCSE[132] = [
     callout: 'There are no wrong answers here. The point is to start thinking about your future with AI as a real factor — not an abstract concern.'
   },
   {
+    type: 'quiz',
+    question: 'Which career skill is likely to be most valuable in an AI-dominated workplace?',
+    options: [
+      'Memorising large amounts of factual information quickly',
+      'Being able to type faster than the average person',
+      'Rapidly learning new tools and applying critical judgment to their outputs',
+      'Specialising in a single narrow skill set for 40 years'
+    ],
+    correct: 2,
+    explanation: 'In a world where AI handles much routine information work, the people who thrive will be those who can evaluate AI outputs critically, adapt as tools change, and apply human judgment in situations where accountability matters. Adaptability and AI literacy are the durable skills — specific tool knowledge becomes outdated quickly.'
+  },
+  {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
@@ -1752,6 +2227,18 @@ SLIDES_GCSE[133] = [
     title: 'The Future Is Yours to Shape',
     body: 'AI will be one of the defining forces of your lifetime — in your career, your relationships, your politics, your health, and your sense of self. The people who understand it will have more control over it than those who don\'t.',
     callout: 'This course exists not to make you afraid of AI, or impressed by it — but to help you think clearly about it. That\'s the most valuable thing you can do.'
+  },
+  {
+    type: 'quiz',
+    question: 'Which statement best describes the right relationship between you and AI tools?',
+    options: [
+      'Trust AI outputs because they\'re based on vast amounts of data',
+      'Avoid AI tools completely — they undermine human thinking',
+      'Use AI as a powerful tool while maintaining your own critical judgment and not outsourcing your thinking',
+      'Only use AI when teachers or employers specifically authorise it'
+    ],
+    correct: 2,
+    explanation: 'AI is a powerful tool — not an authority. It can be wrong, biased, outdated, or manipulated. The goal is to use it effectively while maintaining your own ability to evaluate, question, and think independently. Avoiding it entirely is also impractical — it\'s increasingly everywhere. The skill is thoughtful, critical engagement.'
   },
   {
     type: 'summary',
