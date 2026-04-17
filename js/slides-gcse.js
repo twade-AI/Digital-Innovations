@@ -1561,6 +1561,17 @@ SLIDES_GCSE[120] = [
     callout: 'Text A: very likely AI — balanced, formal, hedged, vague, no personal voice. Text B: very likely human — personal, specific, contradicts its own expectations, has a real point of view.'
   },
   {
+    type: 'scenario',
+    title: 'The "Expert Review" Blog',
+    situation: 'You\'re researching the best revision apps for GCSE. You find a blog that tops Google\'s results: "TOP 10 REVISION APPS REVIEWED BY STUDENTS." Every app gets between 4.5 and 4.8 stars. Each review is exactly 180 words. Every entry has the same structure: "Overview, Key Features, Pros, Cons, Verdict." There\'s an affiliate link on every app.',
+    question: 'Do you trust this blog\'s recommendations?',
+    choices: [
+      { text: 'Yes — it\'s ranked #1 on Google and covers everything in depth.', outcome: 'You download the top app. It\'s full of intrusive ads. You realise the "reviews" are identical-structure AI content optimised for Google, not for you. The affiliate link paid the blog a commission for your download.' },
+      { text: 'No — the signs are all there: suspiciously uniform length and structure, no personal voice, no specific memory of using the app, affiliate links on every entry. Find actual student reviews on Reddit or TikTok.', outcome: 'You find three genuine student reviews on r/GCSE — each is different length, with specific complaints ("crashes on Samsung tablets") and specific praise. You pick an app that genuinely suits you. You also start noticing AI-generated "review" blogs everywhere.' },
+      { text: 'Maybe — but rely on the star ratings since those summarise everyone\'s view.', outcome: 'Those ratings aren\'t from real users — the blog made them up. Star ratings from a source you don\'t trust are meaningless. Origin of the ratings matters as much as the ratings themselves.' }
+    ]
+  },
+  {
     type: 'quiz',
     question: 'Which is the most reliable way to deal with a piece of content you suspect is AI-generated?',
     options: [
@@ -1611,6 +1622,18 @@ SLIDES_GCSE[121] = [
       { term: 'Lower cost', def: 'Creating convincing fake content used to require resources and skills — now it doesn\'t' },
       { term: 'AI chatbots', def: 'Can inadvertently repeat false claims when asked about contested topics' }
     ]
+  },
+  {
+    type: 'concept',
+    title: 'The Illusory Truth Effect',
+    body: 'Psychologists have shown that repeated exposure to a statement makes us believe it — even when we initially knew it was false. AI-powered misinformation exploits this at industrial scale.',
+    bullets: [
+      { term: 'The mechanism', def: 'Your brain mistakes familiarity for truth. The more you\'ve seen a claim, the "truer" it feels — regardless of evidence.' },
+      { term: 'Why it matters now', def: 'AI lets bad actors repeat the same false claim in thousands of slightly different articles, videos and comments — bypassing the protections that individual fact-checks provide.' },
+      { term: 'Even knowing about it doesn\'t immunise you', def: 'Studies show warnings reduce but don\'t eliminate the effect. Repetition still shifts belief.' },
+      { term: 'Corrections rarely catch up', def: 'False claims spread fast. Corrections reach fewer people — and people who saw the original often never see the correction.' }
+    ],
+    callout: 'This is why "I saw it somewhere" feels like evidence to us. It isn\'t. Repetition is not verification.'
   },
   {
     type: 'discussion',
@@ -1738,6 +1761,17 @@ SLIDES_GCSE[123] = [
       'Your sense of what\'s "normal" gets shaped by a narrow sample',
       'You may think your view is shared by everyone — because your feed agrees with you',
       'Political filter bubbles affect how people understand entirely different communities'
+    ]
+  },
+  {
+    type: 'scenario',
+    title: 'Two Feeds, Same Event',
+    situation: 'A major news story breaks about a change to UK voting rules. Two friends in the same class check TikTok at the same time. Friend A sees six videos — all framing the change as a dangerous attack on democracy. Friend B sees six videos — all framing it as a sensible reform against fraud. They argue over lunch and can\'t understand why the other seems so "badly informed."',
+    question: 'What\'s actually happening here?',
+    choices: [
+      { text: 'One friend is right and the other is wrong — the facts will sort this out.', outcome: 'The "facts" aren\'t in dispute. The framing is. Both friends have been shown true statements selected to produce opposite emotional responses. Neither is "wrong" — but neither has seen the full picture either.' },
+      { text: 'Their algorithms have built two different realities based on prior engagement — and both friends are now sampling a narrow slice of the debate, not the debate itself.', outcome: 'Exactly. The algorithms optimised for engagement based on their past behaviour. Neither has seen what the other has seen. To understand the full picture they need to deliberately seek the other side — search Reuters or BBC coverage, read the original government statement, look for sceptics of both framings.' },
+      { text: 'TikTok is a bad place to get news — they should only use Instagram or YouTube.', outcome: 'The problem isn\'t the platform — every algorithmic feed (Instagram, YouTube, X, even Google Search) personalises. Switching platforms just changes which filter bubble you\'re in. The solution is awareness plus deliberate diversification, not platform swapping.' }
     ]
   },
   {
