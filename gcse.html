@@ -123,6 +123,54 @@
     .slide-video-frame{position:relative;width:100%;padding-top:56.25%;border-radius:10px;overflow:hidden;background:#000;border:1px solid var(--border);box-shadow:0 6px 24px rgba(0,0,0,.15)}
     .slide-video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
     .slide-video-credit{margin-top:10px;font-size:.78rem;color:var(--text-dim);font-style:italic}
+    /* ── Widget shared styles ── */
+    .widget{margin-top:14px;padding:18px;border-radius:12px;background:var(--bg-card,#0f1923);border:1px solid var(--border)}
+    .widget-row{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px}
+    .widget-label{flex-shrink:0;width:104px;display:flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;color:var(--text-muted);padding-top:9px}
+    .widget-label span{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;color:#fff;font-size:.78rem;font-weight:800}
+    .widget-input{flex:1;min-height:54px;padding:10px 12px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--font);font-size:.88rem;line-height:1.5;resize:vertical;transition:border-color .15s}
+    .widget-input:focus{outline:none;border-color:#10b981}
+    .widget-output{margin-top:14px;padding:14px 16px;border-radius:8px;background:rgba(16,185,129,.06);border-left:3px solid #10b981;font-size:.86rem;color:var(--text);line-height:1.65;white-space:pre-wrap;min-height:60px}
+    .widget-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .widget-btn{padding:8px 14px;border-radius:6px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-size:.82rem;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .15s}
+    .widget-btn:hover{border-color:#10b981;color:#10b981}
+    .widget-btn-primary{background:#10b981;color:#fff;border-color:#10b981}
+    .widget-btn-primary:hover{background:#059669;color:#fff;border-color:#059669}
+    .ptfc-p span{background:#06b6d4}
+    .ptfc-t span{background:#6366f1}
+    .ptfc-f span{background:#22c55e}
+    .ptfc-c span{background:#f59e0b}
+    /* ── Hallucination picker ── */
+    .hp-snippets{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+    .hp-snippet{padding:14px 16px;border:1.5px solid var(--border);border-radius:10px;background:var(--bg);cursor:pointer;font-size:.88rem;color:var(--text);line-height:1.55;transition:all .15s;text-align:left;font-family:var(--font);width:100%}
+    .hp-snippet:hover:not(:disabled){border-color:#10b981}
+    .hp-snippet.hp-correct{border-color:#10b981;background:rgba(16,185,129,.08)}
+    .hp-snippet.hp-wrong{border-color:#ef4444;background:rgba(239,68,68,.06);opacity:.7}
+    .hp-snippet:disabled{cursor:default}
+    .hp-feedback{margin-top:14px;padding:14px 16px;border-radius:8px;background:rgba(16,185,129,.08);border-left:3px solid #10b981;font-size:.85rem;line-height:1.6;color:var(--text)}
+    .hp-feedback strong{color:#10b981}
+    /* ── Fact-check simulator ── */
+    .fc-step{margin-top:12px;padding:14px 16px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg)}
+    .fc-step-num{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:#10b981;color:#fff;font-size:.78rem;font-weight:800;margin-right:8px}
+    .fc-step-q{font-weight:700;color:var(--text);font-size:.92rem;margin-bottom:8px}
+    .fc-step-input{width:100%;min-height:48px;padding:10px 12px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg-card,#0f1923);color:var(--text);font-family:var(--font);font-size:.86rem;resize:vertical}
+    .fc-step-input:focus{outline:none;border-color:#10b981}
+    .fc-hint{margin-top:8px;font-size:.78rem;color:var(--text-dim);font-style:italic}
+    .fc-verdict{margin-top:14px;padding:14px 16px;border-radius:8px;background:rgba(16,185,129,.08);border-left:3px solid #10b981;font-size:.86rem;line-height:1.6;color:var(--text);display:none}
+    .fc-verdict.fc-shown{display:block;animation:revealFade .25s ease-out}
+    .fc-verdict strong{color:#10b981}
+    /* ── Feed audit ── */
+    .fa-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:14px}
+    .fa-item{padding:12px 14px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);cursor:pointer;text-align:left;font-family:var(--font);transition:all .15s}
+    .fa-item:hover{border-color:#10b981}
+    .fa-item.fa-on{border-color:#10b981;background:rgba(16,185,129,.06)}
+    .fa-item-title{font-weight:700;color:var(--text);font-size:.86rem;display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .fa-item-toggle{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#fff}
+    .fa-item.fa-on .fa-item-toggle{background:#10b981;border-color:#10b981}
+    .fa-item-desc{font-size:.76rem;color:var(--text-muted);margin-top:6px;line-height:1.45}
+    .fa-summary{margin-top:14px;padding:14px 16px;border-radius:8px;background:rgba(16,185,129,.06);border-left:3px solid #10b981;font-size:.85rem;color:var(--text);line-height:1.6;display:none}
+    .fa-summary.fa-shown{display:block;animation:revealFade .25s ease-out}
+    .fa-summary strong{color:#10b981}
     @media print{
       *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
       body{background:#fff !important}
@@ -441,6 +489,109 @@
     else { el.style.display='none'; if(btn)btn.classList.remove('revealed'); }
   }
 
+  function gsEscape(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  function gsWidgetHTML(slide){
+    var w = slide.widget;
+    if (w==='ptfc') {
+      return '<div class="widget">'+
+        '<div class="widget-row"><label class="widget-label ptfc-p"><span>P</span>Persona</label><textarea class="widget-input" id="gsPtfc_p" placeholder="You are an experienced GCSE Biology tutor who explains things step-by-step." oninput="gsPtfcAssemble()"></textarea></div>'+
+        '<div class="widget-row"><label class="widget-label ptfc-t"><span>T</span>Task</label><textarea class="widget-input" id="gsPtfc_t" placeholder="Explain the light-dependent reactions of photosynthesis." oninput="gsPtfcAssemble()"></textarea></div>'+
+        '<div class="widget-row"><label class="widget-label ptfc-f"><span>F</span>Format</label><textarea class="widget-input" id="gsPtfc_f" placeholder="2-sentence overview, then numbered steps, then 3 self-test questions with answers." oninput="gsPtfcAssemble()"></textarea></div>'+
+        '<div class="widget-row"><label class="widget-label ptfc-c"><span>C</span>Context</label><textarea class="widget-input" id="gsPtfc_c" placeholder="Year 11 AQA student. I confuse Photosystem I and II. Need understanding, not memorisation." oninput="gsPtfcAssemble()"></textarea></div>'+
+        '<div class="widget-output" id="gsPtfcOut"><span style="color:var(--text-dim);font-style:italic">Fill in the fields above to see your assembled prompt…</span></div>'+
+        '<div class="widget-actions"><button class="widget-btn widget-btn-primary" id="gsPtfcCopyBtn" onclick="gsPtfcCopy()">Copy to clipboard</button><button class="widget-btn" onclick="gsPtfcExample()">Load example</button><button class="widget-btn" onclick="gsPtfcClear()">Clear</button></div>'+
+      '</div>';
+    }
+    if (w==='hallucination') {
+      var snippets = (slide.snippets||[]).map(function(s,i){
+        return '<button class="hp-snippet" id="gsHp_'+i+'" data-correct="'+(s.correct?'1':'0')+'" data-why="'+gsEscape(s.why||'')+'" onclick="gsHpPick(this,'+i+')">'+gsEscape(s.text)+'</button>';
+      }).join('');
+      return '<div class="widget"><p style="margin:0 0 8px;font-size:.86rem;color:var(--text-muted)">Click the response you think contains a hallucination.</p><div class="hp-snippets">'+snippets+'</div><div id="gsHpFb" class="hp-feedback" style="display:none"></div></div>';
+    }
+    if (w==='factcheck') {
+      var steps = (slide.steps||[]).map(function(st,i){
+        return '<div class="fc-step"><div class="fc-step-q"><span class="fc-step-num">'+(i+1)+'</span>'+gsEscape(st.question)+'</div><textarea class="fc-step-input" id="gsFc_'+i+'" rows="2" placeholder="Your answer…"></textarea>'+(st.hint?'<div class="fc-hint">'+gsEscape(st.hint)+'</div>':'')+'</div>';
+      }).join('');
+      return '<div class="widget">'+(slide.claim?'<div class="slide-callout" style="margin-bottom:12px"><strong>Claim to check:</strong> '+gsEscape(slide.claim)+'</div>':'')+steps+'<div class="widget-actions"><button class="widget-btn widget-btn-primary" onclick="gsFcReveal()">Reveal expert verdict</button></div><div id="gsFcVerdict" class="fc-verdict"><strong>Expert verdict:</strong> '+(slide.verdict||'')+'</div></div>';
+    }
+    if (w==='feed-audit') {
+      var items = (slide.items||[]).map(function(it,i){
+        return '<button class="fa-item" id="gsFa_'+i+'" onclick="gsFaToggle(this)"><div class="fa-item-title"><span>'+gsEscape(it.label)+'</span><span class="fa-item-toggle">✓</span></div>'+(it.desc?'<div class="fa-item-desc">'+gsEscape(it.desc)+'</div>':'')+'</button>';
+      }).join('');
+      return '<div class="widget"><div class="fa-grid">'+items+'</div><div class="widget-actions"><button class="widget-btn widget-btn-primary" onclick="gsFaSummarise()">See what your feed is optimising for</button></div><div id="gsFaOut" class="fa-summary"></div></div>';
+    }
+    return '';
+  }
+
+  function gsPtfcAssemble(){
+    var p=(document.getElementById('gsPtfc_p')||{}).value||'';
+    var t=(document.getElementById('gsPtfc_t')||{}).value||'';
+    var f=(document.getElementById('gsPtfc_f')||{}).value||'';
+    var c=(document.getElementById('gsPtfc_c')||{}).value||'';
+    var out=document.getElementById('gsPtfcOut'); if(!out)return;
+    if(!p.trim()&&!t.trim()&&!f.trim()&&!c.trim()){ out.innerHTML='<span style="color:var(--text-dim);font-style:italic">Fill in the fields above to see your assembled prompt…</span>'; return; }
+    var parts=[];
+    if(p.trim())parts.push('<strong style="color:#06b6d4">[Persona]</strong> '+gsEscape(p.trim()).replace(/\n/g,'<br>'));
+    if(t.trim())parts.push('<strong style="color:#6366f1">[Task]</strong> '+gsEscape(t.trim()).replace(/\n/g,'<br>'));
+    if(f.trim())parts.push('<strong style="color:#22c55e">[Format]</strong> '+gsEscape(f.trim()).replace(/\n/g,'<br>'));
+    if(c.trim())parts.push('<strong style="color:#f59e0b">[Context]</strong> '+gsEscape(c.trim()).replace(/\n/g,'<br>'));
+    out.innerHTML=parts.join('<br><br>');
+  }
+  function gsPtfcCopy(){
+    var ids=['gsPtfc_p','gsPtfc_t','gsPtfc_f','gsPtfc_c'];
+    var lbls=['[Persona] ','[Task] ','[Format] ','[Context] '];
+    var text=ids.map(function(id,i){var v=((document.getElementById(id)||{}).value||'').trim();return v?(lbls[i]+v):'';}).filter(Boolean).join('\n\n');
+    if(!text)return;
+    var btn=document.getElementById('gsPtfcCopyBtn');
+    var done=function(){if(btn){btn.textContent='✓ Copied!';setTimeout(function(){btn.textContent='Copy to clipboard';},2000);}};
+    if(navigator.clipboard){navigator.clipboard.writeText(text).then(done).catch(done);}
+    else{var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}
+  }
+  function gsPtfcExample(){
+    var vals={gsPtfc_p:'You are a patient GCSE Biology tutor who explains things step-by-step.',
+      gsPtfc_t:'Explain the light-dependent reactions of photosynthesis — specifically what happens to electrons in the thylakoid membrane.',
+      gsPtfc_f:'Brief 2-sentence overview, then numbered steps (max 2 sentences each), then 3 self-test questions with answers.',
+      gsPtfc_c:'Year 11 AQA student. I always confuse Photosystem I and II. I need to understand, not just memorise.'};
+    Object.keys(vals).forEach(function(k){var el=document.getElementById(k);if(el)el.value=vals[k];});
+    gsPtfcAssemble();
+  }
+  function gsPtfcClear(){
+    ['gsPtfc_p','gsPtfc_t','gsPtfc_f','gsPtfc_c'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+    gsPtfcAssemble();
+  }
+  function gsHpPick(btn,i){
+    var parent=btn.parentElement;
+    var chosenCorrect=btn.getAttribute('data-correct')==='1';
+    Array.prototype.forEach.call(parent.querySelectorAll('.hp-snippet'),function(b){
+      b.disabled=true;
+      if(b.getAttribute('data-correct')==='1')b.classList.add('hp-correct');
+      else if(b===btn)b.classList.add('hp-wrong');
+    });
+    var fb=document.getElementById('gsHpFb'); if(!fb)return;
+    var why=btn.getAttribute('data-why')||'';
+    fb.style.display='block';
+    fb.innerHTML=(chosenCorrect?'✅ <strong>Correct.</strong> ':'❌ <strong>Not this one.</strong> The highlighted snippet is the hallucination. ')+why;
+  }
+  function gsFcReveal(){
+    var v=document.getElementById('gsFcVerdict'); if(v)v.classList.add('fc-shown');
+  }
+  function gsFaToggle(btn){
+    btn.classList.toggle('fa-on');
+  }
+  function gsFaSummarise(){
+    var on=document.querySelectorAll('.fa-item.fa-on').length;
+    var total=document.querySelectorAll('.fa-item').length;
+    var out=document.getElementById('gsFaOut'); if(!out)return;
+    var msg;
+    if(on===0) msg='You didn\'t tick anything — but the algorithm is still optimising. If you\'re passive, it optimises for whatever keeps <em>most</em> users watching, which skews to outrage and insecurity by default. The remedy is to give it deliberate signals.';
+    else if(on<=2) msg='You ticked '+on+'/'+total+'. A lean signal set — the algorithm still has room to fill the gaps with whatever maximises watch time. Consider actively un-following or muting accounts that make you feel worse.';
+    else if(on<=4) msg='You ticked '+on+'/'+total+'. That\'s a fairly active curation habit — you\'re nudging the feed rather than drifting with it. Keep doing it: every "not interested" tap is training data.';
+    else msg='You ticked '+on+'/'+total+'. You\'re curating deliberately — the algorithm is responding to a clear signal of what you want. This is the behaviour that most blunts the feed\'s ability to hijack your mood.';
+    out.innerHTML='<strong>Your audit:</strong> '+msg;
+    out.classList.add('fa-shown');
+  }
+
   function gsRenderSlideHTML(slide) {
     if (!slide) return '';
     var type = slide.type || 'concept';
@@ -451,6 +602,9 @@
       var src='https://www.youtube-nocookie.com/embed/'+vid+'?rel=0&modestbranding=1';
       var frame=vid?'<div class="slide-video-frame"><iframe src="'+src+'" title="'+(slide.title||'Video').replace(/"/g,'&quot;')+'" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>':'';
       return '<div class="slide-concept slide-video"><span class="slide-badge badge-concept">Video</span><div class="slide-title">'+(slide.title||'')+'</div>'+(slide.intro?'<div class="slide-body slide-video-intro">'+slide.intro+'</div>':'')+frame+(slide.credit?'<div class="slide-video-credit">'+slide.credit+'</div>':'')+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
+    }
+    if (type==='widget') {
+      return '<div class="slide-activity"><span class="slide-badge badge-activity">Interactive</span><div class="slide-title">'+(slide.title||'Interactive')+'</div>'+(slide.intro?'<div class="slide-body">'+slide.intro+'</div>':'')+gsWidgetHTML(slide)+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
     }
     if (type==='hook') return '<div class="slide-hook"><span class="slide-badge badge-hook">Hook</span><div class="slide-title">'+(slide.title||'')+'</div><div class="slide-body">'+(slide.body||'')+'</div>'+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
     if (type==='concept') {

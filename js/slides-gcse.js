@@ -1073,6 +1073,13 @@ SLIDES_GCSE[113] = [
     reveal: '<strong>In every case, B is better</strong> — because it\'s specific about what\'s needed, who it\'s for, and what format works.'
   },
   {
+    type: 'widget',
+    widget: 'ptfc',
+    title: 'Build a Prompt — PTFC Builder',
+    intro: 'Type into each of the four fields below. As you type, the assembled prompt appears at the bottom — ready to copy into Claude, Gemini or ChatGPT. Use "Load example" if you want to see a worked GCSE Biology prompt.',
+    callout: 'The habit you\'re building: never type a one-line prompt. Always think Persona, Task, Format, Context.'
+  },
+  {
     type: 'quiz',
     question: 'Which of these prompts will get the most useful response from an AI?',
     options: [
@@ -1139,6 +1146,17 @@ SLIDES_GCSE[114] = [
       'Very confident language about genuinely uncertain topics',
       'Perfect-sounding answers to genuinely complex questions',
       'No nuance — real issues rarely have clean, simple answers'
+    ]
+  },
+  {
+    type: 'widget',
+    widget: 'hallucination',
+    title: 'Spot the Hallucination',
+    intro: 'Three AI-style responses below. Only one contains a hallucination — a confidently-stated fact that isn\'t true. Click the one you think is made up.',
+    snippets: [
+      { text: 'Photosynthesis occurs in chloroplasts, which contain chlorophyll. The light-dependent reactions take place in the thylakoid membranes, while the light-independent reactions (Calvin cycle) occur in the stroma.', correct: false, why: 'This is textbook-accurate GCSE Biology — nothing invented.' },
+      { text: 'According to a 2022 study by Dr. Sarah Mitchell at Oxford University, 73.2% of UK GCSE students using study apps reported a "statistically significant" improvement in exam focus across STEM subjects.', correct: true, why: 'Classic citation hallucination: a plausible-sounding researcher, a prestigious institution, a precise year, and an oddly-specific percentage. There is no such study or researcher on record. The specificity is what makes it convincing — and is also exactly what AI invents most often.' },
+      { text: 'The Treaty of Versailles was signed in 1919 and formally ended the First World War. It imposed significant reparations on Germany and is widely credited with creating the economic conditions that contributed to the rise of Nazism in the 1930s.', correct: false, why: 'Dates, event, and cause-and-effect analysis are all historically accurate.' }
     ]
   },
   {
@@ -1735,17 +1753,18 @@ SLIDES_GCSE[122] = [
     ]
   },
   {
-    type: 'activity',
-    title: 'Fact-Check This Claim',
-    task: 'Use the SIFT method on the claim below. In the notes box, write each step.',
+    type: 'widget',
+    widget: 'factcheck',
+    title: 'Fact-Check Simulator — SIFT in Action',
+    intro: 'Work the claim below through all four SIFT steps. Write your own answers, then reveal the expert verdict to compare.',
+    claim: 'Scientists have proven that using your phone before bed has no effect on sleep quality.',
     steps: [
-      'Claim: "Scientists have proven that using your phone before bed has no effect on sleep quality."',
-      'S — Stop: what\'s your gut reaction? What does your emotional response tell you?',
-      'I — Investigate: who might make this claim? What would their agenda be?',
-      'F — Find: how would you search for other coverage of this claim?',
-      'T — Trace: what would the original source look like? Is "scientists have proven" a reliable phrase?'
+      { question: 'S — Stop. What\'s your gut reaction to this claim, and why?', hint: 'Emotional pull (relief, surprise, outrage) is a flag to slow down, not a signal it\'s true.' },
+      { question: 'I — Investigate the source. Who might say this, and what agenda could they have?', hint: 'Think about who benefits if this claim is believed.' },
+      { question: 'F — Find better coverage. What exact search would you run to see what other sources report?', hint: 'Try a lateral-reading query: the claim itself plus the word "study" or "evidence".' },
+      { question: 'T — Trace the claim. What is "Scientists have proven" actually doing in this sentence?', hint: 'Real science rarely "proves" anything definitively — it finds evidence, with caveats.' }
     ],
-    callout: 'This claim should raise flags: "scientists have proven" is rarely accurate (science rarely proves things definitively). The claim also contradicts a substantial body of peer-reviewed sleep research.'
+    verdict: '"Scientists have proven" is a red-flag phrase — real science publishes evidence with uncertainty, not proof. The claim also contradicts a substantial peer-reviewed body of work linking late-evening screen use, blue light exposure and sleep-onset latency. A 30-second lateral-reading check (Full Fact / BBC Reality Check / Reuters Fact Check) will show no such consensus exists. <strong>Verdict:</strong> misleading.'
   },
   {
     type: 'quiz',
@@ -2349,6 +2368,23 @@ SLIDES_GCSE[130] = [
       'What\'s one change you could make to your algorithm diet this week?'
     ],
     callout: 'You can curate your feed. Unfollow, mark "not interested", diversify sources. The algorithm is responding to your behaviour — change the behaviour, and the algorithm changes.'
+  },
+  {
+    type: 'widget',
+    widget: 'feed-audit',
+    title: 'Feed Audit — What Signals Are You Sending?',
+    intro: 'Tick every habit below that you actually do, honestly, in a typical week. Then reveal what those signals teach your algorithm.',
+    items: [
+      { label: 'I mute / unfollow accounts that make me feel worse', desc: 'Direct negative signal — the strongest correction you can send.' },
+      { label: 'I tap "Not interested" on content I don\'t want more of', desc: 'Explicit feedback the algorithm is designed to act on fast.' },
+      { label: 'I follow a mix of accounts (not all one topic or mood)', desc: 'Broader positive-signal set = harder for the feed to funnel you.' },
+      { label: 'I set a time limit on at least one app', desc: 'Caps session length so the algorithm has less runway to drift.' },
+      { label: 'I check the time when I open an app, and again when I close it', desc: 'Awareness itself changes the behaviour the algorithm trains on.' },
+      { label: 'I occasionally clear watch / search history', desc: 'Resets the signal stack — useful if you\'ve gone down a rabbit hole.' },
+      { label: 'I follow creators outside my usual bubble on purpose', desc: 'Actively widens the distribution the algorithm can draw from.' },
+      { label: 'I don\'t scroll in bed / first thing in the morning', desc: 'Protects mood-vulnerable windows from whatever the feed is serving.' }
+    ],
+    callout: 'There\'s no score here — just a mirror. The algorithm is responding to whatever you do. Do nothing, and it fills the gaps with whatever keeps most users watching — which skews toward outrage and insecurity by default.'
   },
   {
     type: 'quiz',
