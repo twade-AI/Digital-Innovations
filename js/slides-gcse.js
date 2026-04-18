@@ -473,6 +473,22 @@ SLIDES_GCSE[105] = [
       { icon: '🔮', label: 'Sophisticated prediction', text: 'AI mimics the outputs of intelligence without the process' },
       { icon: '⚖️', label: 'This distinction matters', text: 'for how we design, trust, and regulate AI systems' }
     ]
+  },
+  {
+    type: 'unit-test',
+    title: 'Unit 1 Recap',
+    body: 'Three questions covering the core ideas of Unit 1. Choose an answer to see the explanation.',
+    questions: [
+      { q: 'Which phrase best describes what a modern AI system does?', options: ['Thinks the way a human does', 'Follows explicit rules written by programmers', 'Recognises patterns in large amounts of data and predicts the next most likely answer', 'Stores a copy of the entire internet and looks things up'], correct: 2, explanation: 'AI learns from data rather than explicit rules, and its core operation is statistical prediction — not understanding.' },
+      { q: 'A spam filter that you show 100,000 labelled emails, so it works out the patterns itself, is an example of…', options: ['Traditional rule-based software', 'Machine learning', 'Artificial general intelligence', 'A search engine'], correct: 1, explanation: 'The defining move of machine learning is that the system learns rules from labelled examples rather than being programmed with them.' },
+      { q: 'Why is passing a test not the same as understanding the subject, for an AI?', options: ['Because the AI cheats', 'Because tests are too easy', 'Because the AI produces correct-looking outputs via pattern matching — without any inner experience or comprehension', 'Because AIs are only good at science subjects'], correct: 2, explanation: 'This is the Unit 1 takeaway: performance and understanding can come apart. AI mimics the outputs of intelligence without the process.' }
+    ]
+  },
+  {
+    type: 'exit-ticket',
+    title: 'Unit 1 Exit Ticket',
+    prompt: 'In one sentence — what is the single most surprising thing you now know about how AI actually works?',
+    body: 'Your answer saves to this device only. You can come back and edit it any time.'
   }
 ];
 
@@ -1010,6 +1026,22 @@ SLIDES_GCSE[112] = [
       { icon: '🛠️', label: 'A complete toolkit', text: 'explain, quiz, feedback, summarise — four powerful uses' },
       { icon: '🧑‍🎓', label: 'You are the learner', text: 'AI is the tool. That distinction matters.' }
     ]
+  },
+  {
+    type: 'unit-test',
+    title: 'Unit 2 Recap',
+    body: 'Three questions covering the core ideas of AI for study and revision.',
+    questions: [
+      { q: 'Which sequence describes the healthy AI study cycle?', options: ['Ask AI → copy the answer → submit it', 'Try first → ask AI for feedback or explanation → consolidate what you learn', 'Memorise AI output → repeat back in exam', 'Use AI for every question regardless of difficulty'], correct: 1, explanation: 'Effort before assistance. AI should improve your own attempt, not replace it.' },
+      { q: 'An AI confidently tells you: "Oxford\'s 2022 study by Dr Mitchell found 73% of students improved focus with study apps." What should you do before quoting it?', options: ['Cite it — the specifics make it credible', 'Assume Oxford is reliable and move on', 'Independently verify — specific-sounding citations are the single most common hallucination type', 'Change the percentage to something rounder'], correct: 2, explanation: 'Specific names, universities, years and percentages are exactly what AI fabricates most convincingly. Always verify before quoting.' },
+      { q: 'Which task is LEAST appropriate to offload to an AI during GCSE revision?', options: ['Generating practice questions on a topic you\'ve already studied', 'Explaining a concept in simpler terms after you\'ve attempted to understand it yourself', 'Writing a whole essay that you will submit as your own', 'Giving feedback on an essay plan you\'ve drafted'], correct: 2, explanation: 'Two reasons: it\'s plagiarism, and — more importantly — you don\'t learn anything. AI should accelerate learning, not bypass it.' }
+    ]
+  },
+  {
+    type: 'exit-ticket',
+    title: 'Unit 2 Exit Ticket',
+    prompt: 'Describe, in one sentence, the AI study habit you will keep — and the one you will deliberately stop.',
+    body: 'Saved to this device only. Come back and edit it any time.'
   }
 ];
 
@@ -1071,6 +1103,13 @@ SLIDES_GCSE[113] = [
       'A: "What causes climate change?" vs B: "List the 5 main human causes of climate change with one specific piece of evidence for each"'
     ],
     reveal: '<strong>In every case, B is better</strong> — because it\'s specific about what\'s needed, who it\'s for, and what format works.'
+  },
+  {
+    type: 'widget',
+    widget: 'ptfc',
+    title: 'Build a Prompt — PTFC Builder',
+    intro: 'Type into each of the four fields below. As you type, the assembled prompt appears at the bottom — ready to copy into Claude, Gemini or ChatGPT. Use "Load example" if you want to see a worked GCSE Biology prompt.',
+    callout: 'The habit you\'re building: never type a one-line prompt. Always think Persona, Task, Format, Context.'
   },
   {
     type: 'quiz',
@@ -1139,6 +1178,17 @@ SLIDES_GCSE[114] = [
       'Very confident language about genuinely uncertain topics',
       'Perfect-sounding answers to genuinely complex questions',
       'No nuance — real issues rarely have clean, simple answers'
+    ]
+  },
+  {
+    type: 'widget',
+    widget: 'hallucination',
+    title: 'Spot the Hallucination',
+    intro: 'Three AI-style responses below. Only one contains a hallucination — a confidently-stated fact that isn\'t true. Click the one you think is made up.',
+    snippets: [
+      { text: 'Photosynthesis occurs in chloroplasts, which contain chlorophyll. The light-dependent reactions take place in the thylakoid membranes, while the light-independent reactions (Calvin cycle) occur in the stroma.', correct: false, why: 'This is textbook-accurate GCSE Biology — nothing invented.' },
+      { text: 'According to a 2022 study by Dr. Sarah Mitchell at Oxford University, 73.2% of UK GCSE students using study apps reported a "statistically significant" improvement in exam focus across STEM subjects.', correct: true, why: 'Classic citation hallucination: a plausible-sounding researcher, a prestigious institution, a precise year, and an oddly-specific percentage. There is no such study or researcher on record. The specificity is what makes it convincing — and is also exactly what AI invents most often.' },
+      { text: 'The Treaty of Versailles was signed in 1919 and formally ended the First World War. It imposed significant reparations on Germany and is widely credited with creating the economic conditions that contributed to the rise of Nazism in the 1930s.', correct: false, why: 'Dates, event, and cause-and-effect analysis are all historically accurate.' }
     ]
   },
   {
@@ -1455,6 +1505,22 @@ SLIDES_GCSE[118] = [
       { icon: '🔄', label: 'Always iterate', text: 'rarely get the best result first time' },
       { icon: '💼', label: 'This is a professional skill', text: 'increasingly valued across every industry' }
     ]
+  },
+  {
+    type: 'unit-test',
+    title: 'Unit 3 Recap',
+    body: 'Three questions covering prompting, evaluation and creativity.',
+    questions: [
+      { q: 'Which five levers make up the anatomy of a strong prompt?', options: ['Length, formality, speed, topic, audience', 'Role / Task / Context / Format / Constraint', 'Question, fact, example, image, reference', 'Input, output, model, prompt, reply'], correct: 1, explanation: 'Role, Task, Context, Format, Constraint — the five levers taught in L113. You don\'t need all five every time, but the more precise you are, the less room for unhelpful guesses.' },
+      { q: 'Why did Wharton\'s 2023 "jagged frontier" study find that some AI users produced WORSE work than people with no AI at all?', options: ['The AI was broken', 'They accepted the first draft without iteration', 'They used the wrong model', 'They typed too fast'], correct: 1, explanation: 'Dell\'Acqua et al. found that zero-iteration AI use degraded output. The benefit only appeared with 3+ deliberate iterations.' },
+      { q: 'Under current UK and US law, who owns the copyright on a purely AI-generated image?', options: ['The person who wrote the prompt', 'The AI company that made the model', 'Nobody — purely AI-generated images are generally not protected by copyright (per US Copyright Office guidance)', 'The first person to publish it online'], correct: 2, explanation: 'The US Copyright Office\'s March 2023 guidance and subsequent decisions are clear: human authorship is required. Minor prompt selection alone does not qualify.' }
+    ]
+  },
+  {
+    type: 'exit-ticket',
+    title: 'Unit 3 Exit Ticket',
+    prompt: 'Write one PTFC-structured prompt you plan to use this week for an actual task. Include all four parts.',
+    body: 'Saved to this device only. Come back and edit it any time.'
   }
 ];
 
@@ -1673,6 +1739,22 @@ SLIDES_GCSE[121] = [
     callout: 'This is why "I saw it somewhere" feels like evidence to us. It isn\'t. Repetition is not verification.'
   },
   {
+    type: 'concept',
+    title: 'AI at Industrial Scale — Elections 2024',
+    body: 'The 2024 election year was the first time AI-generated political content operated at serious global scale. Researchers catalogued what happened — and who it targeted.',
+    bullets: [
+      { term: 'Taiwan 2024', def: 'Stanford Internet Observatory documented networks of 800+ coordinated AI-generated accounts seeding narratives during the presidential election.' },
+      { term: '38 countries', def: 'Recorded Future identified AI-generated electoral interference content targeting 38 democracies in 2024 alone.' },
+      { term: 'Still mostly cheap fakes', def: 'Harvard\'s Ash Center found crude manipulations — slowed video, out-of-context clips, misleading captions — were 7× more prevalent than AI-generated content. Both matter.' },
+      { term: 'Paid AI political ads', def: 'Over 900 AI-generated political adverts ran on Facebook in US swing states in a single week in 2024.' }
+    ],
+    sources: [
+      { label: 'Stanford Internet Observatory — Taiwan 2024 election influence operations (DFR Lab partner reporting)', url: 'https://cyber.fsi.stanford.edu/io/' },
+      { label: 'Harvard Ash Center / Kennedy School — "Generative AI and the 2024 U.S. Election" (Allen Lab / Schneier, 2024)', url: 'https://ash.harvard.edu/articles/how-ai-threatens-democracy/' },
+      { label: 'Recorded Future — Insikt Group reports on AI-enabled influence operations (2024)', url: 'https://www.recordedfuture.com/research' }
+    ]
+  },
+  {
     type: 'discussion',
     title: 'Think & Discuss',
     questions: [
@@ -1735,17 +1817,33 @@ SLIDES_GCSE[122] = [
     ]
   },
   {
-    type: 'activity',
-    title: 'Fact-Check This Claim',
-    task: 'Use the SIFT method on the claim below. In the notes box, write each step.',
-    steps: [
-      'Claim: "Scientists have proven that using your phone before bed has no effect on sleep quality."',
-      'S — Stop: what\'s your gut reaction? What does your emotional response tell you?',
-      'I — Investigate: who might make this claim? What would their agenda be?',
-      'F — Find: how would you search for other coverage of this claim?',
-      'T — Trace: what would the original source look like? Is "scientists have proven" a reliable phrase?'
+    type: 'concept',
+    title: 'Pre-bunking — Stronger Than Debunking',
+    body: 'Once you\'ve seen a false claim, correcting it is surprisingly weak — the "illusory truth" effect has already done some of its work. What psychologists have found is that <em>teaching people the manipulation tactic before they meet it</em> builds real resistance.',
+    bullets: [
+      { term: 'The Jigsaw / Google study (2022)', def: 'Two-minute videos teaching specific manipulation tactics (scapegoating, emotional hijack, false dichotomy) produced a measurable 20% reduction in people\'s susceptibility — tested across millions of YouTube views.' },
+      { term: 'Why it works', def: 'You\'re inoculated against a technique, not just one specific claim. When you then meet that tactic in the wild, you recognise it.' },
+      { term: 'What this means for you', def: 'Consuming media-literacy content isn\'t a waste of time. Every "how scams work" explainer you watch quietly trains your filter.' },
+      { term: 'Pair it with SIFT', def: 'Pre-bunking builds the reflex; SIFT gives you the step-by-step when the reflex fires.' }
     ],
-    callout: 'This claim should raise flags: "scientists have proven" is rarely accurate (science rarely proves things definitively). The claim also contradicts a substantial body of peer-reviewed sleep research.'
+    sources: [
+      { label: 'Roozenbeek, J., van der Linden, S., et al. — "Psychological inoculation improves resilience against misinformation on social media" (Science Advances, 2022)', url: 'https://www.science.org/doi/10.1126/sciadv.abo6254' },
+      { label: 'Jigsaw (Google) — Prebunking campaign results with Google Jigsaw and University of Cambridge', url: 'https://jigsaw.google.com/the-current/misinformation/prebunking/' }
+    ]
+  },
+  {
+    type: 'widget',
+    widget: 'factcheck',
+    title: 'Fact-Check Simulator — SIFT in Action',
+    intro: 'Work the claim below through all four SIFT steps. Write your own answers, then reveal the expert verdict to compare.',
+    claim: 'Scientists have proven that using your phone before bed has no effect on sleep quality.',
+    steps: [
+      { question: 'S — Stop. What\'s your gut reaction to this claim, and why?', hint: 'Emotional pull (relief, surprise, outrage) is a flag to slow down, not a signal it\'s true.' },
+      { question: 'I — Investigate the source. Who might say this, and what agenda could they have?', hint: 'Think about who benefits if this claim is believed.' },
+      { question: 'F — Find better coverage. What exact search would you run to see what other sources report?', hint: 'Try a lateral-reading query: the claim itself plus the word "study" or "evidence".' },
+      { question: 'T — Trace the claim. What is "Scientists have proven" actually doing in this sentence?', hint: 'Real science rarely "proves" anything definitively — it finds evidence, with caveats.' }
+    ],
+    verdict: '"Scientists have proven" is a red-flag phrase — real science publishes evidence with uncertainty, not proof. The claim also contradicts a substantial peer-reviewed body of work linking late-evening screen use, blue light exposure and sleep-onset latency. A 30-second lateral-reading check (Full Fact / BBC Reality Check / Reuters Fact Check) will show no such consensus exists. <strong>Verdict:</strong> misleading.'
   },
   {
     type: 'quiz',
@@ -1841,6 +1939,22 @@ SLIDES_GCSE[123] = [
       { icon: '🌍', label: 'Actively seek out what the algorithm hides', text: 'follow diverse sources deliberately' },
       { icon: '💡', label: 'Awareness changes behaviour', text: 'knowing the algorithm exists gives you more control over it' }
     ]
+  },
+  {
+    type: 'unit-test',
+    title: 'Unit 4 Recap',
+    body: 'Three questions on deepfakes, misinformation and the algorithm.',
+    questions: [
+      { q: 'Why does false news spread measurably faster than true news on social media (Vosoughi et al., Science 2018)?', options: ['Because it is written by bots', 'Because humans share novel, emotionally charged stories faster than mundane true ones — the algorithm then amplifies that', 'Because platforms translate it into more languages', 'Because it gets more editorial promotion'], correct: 1, explanation: 'The MIT study found human behaviour — not bots — was the main driver, because novelty and strong emotion trigger more sharing.' },
+      { q: 'In 2024, a finance worker in Hong Kong transferred £20M after a video call with the "CFO". What actually happened?', options: ['Normal fraud — no AI involved', 'The entire video call was a deepfake: every "colleague" on the call was AI-generated', 'The CFO really ordered it but blamed AI', 'The money was never actually moved'], correct: 1, explanation: 'The victim believed they were on a call with multiple real colleagues. Every other participant was a real-time deepfake (CNN, Feb 2024).' },
+      { q: 'Which is the most effective personal defence against recommendation-algorithm drift?', options: ['Only use private browsing', 'Delete all apps', 'Deliberately and repeatedly tell the platform what you don\'t want (mute, not-interested, unfollow) and diversify what you do follow', 'Trust the default feed'], correct: 2, explanation: 'The algorithm responds to signals. Passive use lets it drift toward whatever keeps most users watching — typically outrage and insecurity. Active signals pull it back.' }
+    ]
+  },
+  {
+    type: 'exit-ticket',
+    title: 'Unit 4 Exit Ticket',
+    prompt: 'Name one specific behaviour change you will make to the way you interact with social media or AI-generated content this week.',
+    body: 'Saved to this device only. Come back and edit it any time.'
   }
 ];
 
@@ -1877,6 +1991,23 @@ SLIDES_GCSE[124] = [
       { term: 'Facial recognition', def: 'Significantly higher error rates for darker-skinned faces — documented in multiple studies' },
       { term: 'Rural communities', def: 'May not benefit from AI health tools, educational support, or economic opportunities' },
       { term: 'Global inequality', def: 'The AI productivity boom may widen the gap between rich and developing nations' }
+    ]
+  },
+  {
+    type: 'concept',
+    title: 'The Hidden Costs — Who Pays So You Can Use AI',
+    body: 'Every time you use ChatGPT, Gemini, or Claude, resources and labour were expended somewhere. Those costs fall overwhelmingly on people who aren\'t using the tools themselves.',
+    bullets: [
+      { term: 'Energy', def: 'Training GPT-3 used an estimated 1,287 MWh — roughly the annual electricity of 120 US households. GPT-4 is estimated at 50–100 GWh. Retraining cycles multiply this.' },
+      { term: 'Water', def: 'Evaporative cooling in data centres consumes millions of litres a year. Microsoft\'s global water use rose 34% in the year it deployed GPT-4 — often drawn from water-scarce regions.' },
+      { term: 'Content-moderation labour', def: 'Every commercial AI assistant\'s safety filters were built by outsourced workers, largely in the Global South, reviewing harmful content for hours at a time.' },
+      { term: 'A named case', def: 'TIME\'s 2023 investigation found OpenAI\'s Kenyan contractors were paid $1.32–$2/hour for this work, with many reporting PTSD-like symptoms. Sama ended the contract citing worker welfare.' }
+    ],
+    callout: 'This is not history. Every major AI company still relies on similar supply chains, right now, to make its products usable and safe.',
+    sources: [
+      { label: 'Perrigo, B. — "OpenAI Used Kenyan Workers on Less Than $2 Per Hour to Make ChatGPT Less Toxic" (TIME, 18 Jan 2023)', url: 'https://time.com/6247678/openai-chatgpt-kenya-workers/' },
+      { label: 'Microsoft — 2023 Environmental Sustainability Report (34% water increase)', url: 'https://www.microsoft.com/en-us/corporate-responsibility/sustainability/report' },
+      { label: 'Patterson, D. et al. — "Carbon Emissions and Large Neural Network Training" (Google/UC Berkeley, 2021)', url: 'https://arxiv.org/abs/2104.10350' }
     ]
   },
   {
@@ -2298,6 +2429,22 @@ SLIDES_GCSE[129] = [
       { icon: '🔭', label: 'Different frameworks give different answers', text: 'consequentialism, rights-based, fairness, dignity — all matter' },
       { icon: '🧑‍💼', label: 'Human oversight matters', text: 'especially for high-stakes, irreversible decisions — but oversight means genuinely engaging, not rubber-stamping' }
     ]
+  },
+  {
+    type: 'unit-test',
+    title: 'Unit 5 Recap',
+    body: 'Three questions on society and ethics.',
+    questions: [
+      { q: 'Why did the Robert Williams wrongful-arrest case (Detroit, 2020) happen?', options: ['The facial-recognition system was hacked', 'The police ignored the AI\'s warning', 'The AI was trained on data that made it significantly less accurate for dark-skinned faces, and officers treated its match as evidence', 'The CCTV footage was fake'], correct: 2, explanation: 'NIST\'s 2019 study (NISTIR 8280) found demographic error gaps of up to 100× across commercial systems. The AI wasn\'t broken — it worked as designed on biased data, and humans over-trusted it.' },
+      { q: 'In 2024 the EU\'s AI Act became the first comprehensive AI law in the world. What is its core design?', options: ['Ban all AI', 'Risk-tiered rules: the higher the risk of the use-case, the stricter the obligations', 'Tax every AI query', 'Require every AI company to be based in the EU'], correct: 1, explanation: 'The Act creates four risk tiers (unacceptable / high / limited / minimal) with proportionate obligations. Extraterritorial reach means non-EU providers are covered when their systems touch EU users.' },
+      { q: 'Who bears responsibility when an AI system causes harm?', options: ['Only the AI', 'Only the user', 'The humans and organisations who design, deploy, and use the system — responsibility doesn\'t disappear because software is involved', 'Nobody'], correct: 2, explanation: 'A unit-5 takeaway: accountability follows the decisions humans make about what to build, deploy, and trust. "The AI did it" is never a complete explanation.' }
+    ]
+  },
+  {
+    type: 'exit-ticket',
+    title: 'Unit 5 Exit Ticket',
+    prompt: 'Of the ethical issues in this unit — bias, privacy, jobs, regulation — which one will you pay attention to over the next year, and why?',
+    body: 'Saved to this device only. Come back and edit it any time.'
   }
 ];
 
@@ -2349,6 +2496,23 @@ SLIDES_GCSE[130] = [
       'What\'s one change you could make to your algorithm diet this week?'
     ],
     callout: 'You can curate your feed. Unfollow, mark "not interested", diversify sources. The algorithm is responding to your behaviour — change the behaviour, and the algorithm changes.'
+  },
+  {
+    type: 'widget',
+    widget: 'feed-audit',
+    title: 'Feed Audit — What Signals Are You Sending?',
+    intro: 'Tick every habit below that you actually do, honestly, in a typical week. Then reveal what those signals teach your algorithm.',
+    items: [
+      { label: 'I mute / unfollow accounts that make me feel worse', desc: 'Direct negative signal — the strongest correction you can send.' },
+      { label: 'I tap "Not interested" on content I don\'t want more of', desc: 'Explicit feedback the algorithm is designed to act on fast.' },
+      { label: 'I follow a mix of accounts (not all one topic or mood)', desc: 'Broader positive-signal set = harder for the feed to funnel you.' },
+      { label: 'I set a time limit on at least one app', desc: 'Caps session length so the algorithm has less runway to drift.' },
+      { label: 'I check the time when I open an app, and again when I close it', desc: 'Awareness itself changes the behaviour the algorithm trains on.' },
+      { label: 'I occasionally clear watch / search history', desc: 'Resets the signal stack — useful if you\'ve gone down a rabbit hole.' },
+      { label: 'I follow creators outside my usual bubble on purpose', desc: 'Actively widens the distribution the algorithm can draw from.' },
+      { label: 'I don\'t scroll in bed / first thing in the morning', desc: 'Protects mood-vulnerable windows from whatever the feed is serving.' }
+    ],
+    callout: 'There\'s no score here — just a mirror. The algorithm is responding to whatever you do. Do nothing, and it fills the gaps with whatever keeps most users watching — which skews toward outrage and insecurity by default.'
   },
   {
     type: 'quiz',
@@ -2578,5 +2742,23 @@ SLIDES_GCSE[133] = [
       { icon: '💡', label: 'Your skills and judgment matter more', text: 'not less, in an AI world' },
       { icon: '🌟', label: 'Stay curious, stay sceptical, keep learning', text: 'the best possible approach to an uncertain future' }
     ]
+  },
+  {
+    type: 'unit-test',
+    title: 'Capstone Check — The Whole Course',
+    body: 'Five questions drawing across all six units. No pressure — this is about recalling what stuck, not passing a gate.',
+    questions: [
+      { q: 'In one phrase, what is modern AI actually doing when it answers you?', options: ['Thinking, like a person', 'Pattern-matching on training data to predict the next most likely answer', 'Looking things up in a database', 'Following rules a programmer wrote'], correct: 1, explanation: 'Prediction, not understanding. This is the Unit 1 foundation that makes everything else make sense — including why AI hallucinates.' },
+      { q: 'Which habit does the Wharton 2023 "jagged frontier" study say turns AI users into the WORST-performing group?', options: ['Asking AI too often', 'Accepting the first draft without iterating', 'Using multiple AI tools at once', 'Writing long prompts'], correct: 1, explanation: 'Dell\'Acqua et al. found zero-iteration AI use produced worse output than no AI at all. Deliberate iteration is what unlocks the upside.' },
+      { q: 'You see a news clip of a politician saying something explosive. What is the single highest-leverage thing to do before sharing?', options: ['Re-post — speed matters', 'Stop, check original source, lateral-read for corroboration (SIFT)', 'Trust your gut', 'Ignore it'], correct: 1, explanation: 'SIFT — Stop, Investigate, Find, Trace. The Hong Kong £20M deepfake fraud and the Slovakia election audio show why synthetic media now warrants this habit by default.' },
+      { q: 'Who is responsible when an AI system causes real-world harm?', options: ['Just the AI', 'Just the end user', 'The humans and organisations who design, deploy and rely on the system', 'Nobody — "the AI did it"'], correct: 2, explanation: 'Accountability follows decisions humans make about what to build, deploy, and trust. This is the moral backbone of the course.' },
+      { q: 'Which of these best captures the course\'s "right relationship" between you and AI?', options: ['Trust everything AI says — it\'s smarter than you', 'Reject AI entirely — it\'s dangerous', 'Use AI as a tool while maintaining your own ability to evaluate, question, and think', 'Only use AI for homework'], correct: 2, explanation: 'AI is a powerful tool — not an authority. Thoughtful, critical engagement is the skill you\'ve been building for 33 lessons.' }
+    ]
+  },
+  {
+    type: 'exit-ticket',
+    title: 'Final Commitment',
+    prompt: 'After 33 lessons — write the one sentence you most want your future self (in one year\'s time) to read back about how you will engage with AI.',
+    body: 'This saves to your device. Come back and re-read it. See if you\'ve kept your word.'
   }
 ];
