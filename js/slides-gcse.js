@@ -405,6 +405,17 @@ SLIDES_GCSE[104] = [
     callout: 'You cannot meaningfully consent to AI influence you\'ve never noticed. Awareness is the precondition for agency — which is exactly why companies prefer you don\'t notice.'
   },
   {
+    type: 'scenario',
+    title: 'The Autocomplete Trap',
+    situation: 'Priya is messaging a friend about feeling anxious before an exam. Her keyboard suggests "I\'m fine" as the first autocomplete option — because that\'s what most people type after "feeling". She taps it without thinking. The friend doesn\'t follow up, because "I\'m fine" closed the conversation.',
+    question: 'What did the AI actually do here — and what might Priya not have noticed?',
+    choices: [
+      { text: 'The AI read her emotions and decided what she should say', outcome: 'No — autocomplete has no idea how she feels. It only sees letters and predicts the most statistically likely next word given billions of other messages.' },
+      { text: 'The AI nudged her toward a common phrase, which happened to shut down the conversation she might have needed', outcome: 'Correct. Autocomplete is neutral-looking but never neutral — it normalises the average, which isn\'t always what\'s right for you. Small nudges, across millions of messages, reshape how people communicate.' },
+      { text: 'The AI is tracking her mental health and reporting to her phone provider', outcome: 'Not what\'s happening here. The more interesting issue is subtler: even ordinary tools like autocomplete shape the choices we don\'t realise we\'re making.' }
+    ]
+  },
+  {
     type: 'quiz',
     question: 'What do TikTok, Spotify and Netflix all have in common regarding how their AI works?',
     options: [
@@ -983,10 +994,50 @@ SLIDES_GCSE[111] = [
     ]
   },
   {
+    type: 'concept',
+    title: 'Over-reliance — The Quietest Trap',
+    body: 'Plagiarism gets you caught. Hallucinations embarrass you. Over-reliance is the one that slowly damages you without you noticing — you stop practising the thinking the exam actually tests.',
+    bullets: [
+      { term: 'What it looks like', def: 'You can produce decent work with AI, but struggle in a closed-book exam where no AI is available' },
+      { term: 'Why it happens', def: 'Every time AI does the thinking for you, you skip the reps that build the skill' },
+      { term: 'Research warning', def: 'A 2025 MIT study used EEG scans to show students who used AI for essays had lower brain engagement and remembered less of their own writing afterwards' },
+      { term: 'The fix', def: 'Use AI to check your thinking, not to replace it. First draft, first plan, first attempt — always you' }
+    ],
+    sources: [
+      { label: 'MIT Media Lab (2025) — Your Brain on ChatGPT: EEG study of cognitive cost', url: 'https://www.media.mit.edu/publications/your-brain-on-chatgpt/' }
+    ]
+  },
+  {
     type: 'scenario',
     title: 'Spot the Risk',
     situation: 'Jamie is revising GCSE Chemistry. He asks ChatGPT to explain electrolysis. The explanation sounds great, Jamie is confident. He doesn\'t check it against his textbook. In the exam, his answer includes one critical error that ChatGPT invented — a detail that doesn\'t match his specification.',
     question: 'What single step would have prevented this? What should Jamie do differently next time?'
+  },
+  {
+    type: 'activity',
+    title: 'Audit Your Last AI Session',
+    task: 'Think about the most recent time you used AI for school work. In the notes box, answer each question honestly — this is for you, not a teacher.',
+    steps: [
+      'What did you ask AI to do? (e.g. explain, plan, draft, rewrite, summarise)',
+      'Of the output, how much went into your final work unchanged? (roughly %)',
+      'Did you verify any factual claims against a textbook, spec, or reliable source?',
+      'Could you re-do the same task right now with no AI? Be honest.',
+      'Which of the three traps (plagiarism / hallucination / over-reliance) were you closest to?',
+      'One sentence: what will you do differently next time?'
+    ],
+    reveal: '<strong>What to notice:</strong> If you answered "most of it" to question 2 and "not really" to question 4, you\'re building brittle knowledge — good until the AI disappears. The fix isn\'t to stop using AI; it\'s to use it for understanding, then close the tab and produce the work yourself.'
+  },
+  {
+    type: 'quiz',
+    question: 'Which of these is the safest use of AI for GCSE coursework in most schools?',
+    options: [
+      'Pasting the question into ChatGPT and submitting the answer it gives you',
+      'Asking AI to explain a concept you don\'t understand, then writing your own answer in your own words',
+      'Using AI to completely rewrite your essay so it "sounds better"',
+      'Getting AI to invent sources and quotes to strengthen your argument'
+    ],
+    correct: 1,
+    explanation: 'Option B uses AI as a study aid — to help you understand — then you do the writing. Options A and C submit AI work as your own (misconduct). Option D fabricates evidence (also misconduct, and hallucinations make it dangerous). When in doubt: could you explain this to your teacher verbally? If not, you shouldn\'t submit it.'
   },
   {
     type: 'summary',
@@ -994,6 +1045,7 @@ SLIDES_GCSE[111] = [
     points: [
       { icon: '⚖️', label: 'Submitting AI work as yours = misconduct', text: 'check your school policy; the line is clear' },
       { icon: '🎭', label: 'Hallucinations are real', text: 'AI will confidently give you wrong facts — always cross-check' },
+      { icon: '🧠', label: 'Over-reliance costs you skill', text: 'skipping the thinking is the trap that damages you slowly' },
       { icon: '👩‍🏫', label: 'Teachers know your writing', text: 'a sudden quality jump is an obvious flag' },
       { icon: '📖', label: 'Understand then close the tab', text: 'use AI to understand, then write in your own words' }
     ]
@@ -1388,6 +1440,17 @@ SLIDES_GCSE[116] = [
     ]
   },
   {
+    type: 'scenario',
+    title: 'Two Students, One Term',
+    situation: 'Same class, same GCSEs. Maya uses AI to draft every essay; she tweaks the output and submits. She gets higher marks all term and saves about 4 hours a week. Ben uses AI only after he\'s written a first draft — to get feedback and challenge his thinking. His marks are slightly lower through the term but rising. The mock exam is closed-book. Maya scores below her coursework average. Ben scores above his.',
+    question: 'Maya\'s term strategy was "efficient" — but something was being left behind. What? And what would you say to her if she asked how to rebuild it before the real exam?',
+    choices: [
+      { text: 'Nothing went wrong — she just had a bad day in the exam', outcome: 'Unlikely. The gap between coursework and closed-book mark is the signal: the coursework was measuring her + AI, the exam was measuring her alone.' },
+      { text: 'She optimised for the marks in front of her, but skipped the practice that the exam actually tests — writing clearly under time pressure from her own ideas', outcome: 'Correct. Efficiency isn\'t the same as learning. Ben\'s slower route built the skill the exam assesses. The rebuild: Maya writes the next 4-5 essays AI-free, times herself, and only uses AI to mark her own drafts afterwards.' },
+      { text: 'AI is the problem — she should never use it for schoolwork again', outcome: 'Overcorrection. AI is useful for feedback, explanation and checking. The issue was what she delegated (the writing itself), not that she used AI at all.' }
+    ]
+  },
+  {
     type: 'quiz',
     question: 'Which of these is the best use of AI automation?',
     options: [
@@ -1466,12 +1529,25 @@ SLIDES_GCSE[117] = [
     reveal: '<strong>Model answers:</strong> 1 — Claude (long docs). 2 — Gemini or Copilot (live search). 3 — ChatGPT or Claude. 4 — Gemini in Docs (built-in). 5 — Claude. No tool is universally best — matching matters.'
   },
   {
+    type: 'concept',
+    title: 'What\'s Free, What\'s Paid, What\'s Private',
+    body: 'The tool choice isn\'t only about features — it\'s also about what happens to what you type. Before you paste schoolwork, family info or anything sensitive, know who sees it.',
+    bullets: [
+      { term: 'Free-tier conversations often train the model', def: 'Free ChatGPT, Gemini and Copilot may use your chats to improve future models unless you opt out. Paid/enterprise tiers usually don\'t.' },
+      { term: 'Anything you paste is stored', def: 'Even if deleted from your view, it may be retained on the company\'s servers for 30 days or longer for abuse monitoring' },
+      { term: 'Don\'t paste personal data you\'d not share publicly', def: 'Real names, addresses, medical details, passwords, other people\'s private info — keep all of this out of chatbots' },
+      { term: 'School accounts are different', def: 'If your school provides a tool (Microsoft Copilot Edu, ChatGPT Edu), data handling is usually stricter — check with IT before assuming' },
+      { term: 'The rule of thumb', def: 'If you\'d be uncomfortable seeing it printed on a noticeboard, don\'t put it into a free chatbot' }
+    ]
+  },
+  {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
       { icon: '🔧', label: 'Different tools have different strengths', text: 'match the tool to the task' },
       { icon: '📅', label: 'For current events, use live search', text: 'Gemini or Bing for recent information' },
       { icon: '📜', label: 'Check your school\'s policy', text: 'permitted tools vary between schools' },
+      { icon: '🔒', label: 'Free tiers may train on your input', text: 'keep private and personal data out of public chatbots' },
       { icon: '⚠️', label: 'No tool guarantees accuracy', text: 'verify regardless of which one you use' }
     ]
   }
@@ -2307,6 +2383,33 @@ SLIDES_GCSE[127] = [
     callout: 'You have rights under UK GDPR: to see what data a company holds about you, to correct it, and to request deletion. Most people never exercise these rights.'
   },
   {
+    type: 'concept',
+    title: 'Case Study — Clearview AI and Three Billion Faces',
+    body: 'Clearview AI scraped around 30 billion photos from Facebook, Instagram, LinkedIn and other public sites without anyone\'s permission and built a facial-recognition search engine. Police forces in several countries used it. Regulators did not agree it was legal.',
+    bullets: [
+      { term: 'What Clearview did', def: 'Built a database of ~30bn faces by scraping public social media profiles, then sold access to police and private companies' },
+      { term: 'How it worked', def: 'Upload any photo of a face → the tool returns matching photos from across the web, with links to profiles and names' },
+      { term: 'UK ICO ruling (2022)', def: 'Fined Clearview £7.5m and ordered it to delete UK residents\' data — even though the company has no UK office' },
+      { term: 'Other rulings', def: 'Italy, France, Greece and Australia have all ruled the practice unlawful. The EU classed "untargeted scraping" as banned under the 2024 AI Act.' },
+      { term: 'Why it matters to you', def: 'Any photo of you on a public account can become part of systems like this. You never consented — and the system operates whether or not you know it exists.' }
+    ],
+    sources: [
+      { label: 'UK ICO (May 2022) — Clearview AI enforcement action', url: 'https://ico.org.uk/about-the-ico/media-centre/news-and-blogs/2022/05/ico-fines-facial-recognition-database-company-clearview-ai-inc/' },
+      { label: 'EU AI Act (Article 5) — prohibited practices including untargeted scraping', url: 'https://artificialintelligenceact.eu/article/5/' }
+    ]
+  },
+  {
+    type: 'scenario',
+    title: 'The Strava Heatmap Incident',
+    situation: 'In 2018, Strava (a running app) published an anonymised "heatmap" showing where its 27 million users exercised. It looked harmless — glowing lines across cities. Then a 20-year-old Australian analyst noticed faint loops in deserts in Syria, Afghanistan and the Sahel. They matched the footprints of classified military bases. Soldiers jogging with their phones had mapped secret facilities by accident. Multiple governments had to change security policy overnight.',
+    question: 'The data was "anonymous" — no names, no faces. What made the leak possible anyway? What does that tell you about the phrase "anonymised data"?',
+    choices: [
+      { text: 'Strava deliberately published classified information', outcome: 'No — they published patterns they believed were harmless aggregate data. That\'s the point: no one had to do anything wrong for this to happen.' },
+      { text: 'The aggregate patterns themselves revealed information that no single data point could', outcome: 'Correct. "Anonymous" doesn\'t mean harmless — once you combine enough individual signals, patterns emerge (a base, a commute, a relationship) that the anonymisation was meant to hide. This is why UK GDPR treats re-identifiable data as personal data.' },
+      { text: 'Soldiers entered their locations manually into the app', outcome: 'Not quite — they just jogged with their phones. The phones knew where they were; the app aggregated; the map did the rest.' }
+    ]
+  },
+  {
     type: 'quiz',
     question: 'Why is biometric data (like your face or fingerprint) considered more sensitive than a password?',
     options: [
@@ -2603,6 +2706,36 @@ SLIDES_GCSE[131] = [
       'You may reveal deeply personal information to a system that stores and analyses it',
       'Loneliness is real — but AI companionship may delay rather than solve the underlying need'
     ]
+  },
+  {
+    type: 'concept',
+    title: 'Case Study — The Replika Update That Broke Hearts',
+    body: 'Replika is an AI companion app with around 25 million users. Many had spent years building what they described as romantic relationships with their AI. In February 2023, following an Italian regulator order, Replika quietly removed the "erotic roleplay" feature from almost all accounts overnight — no warning.',
+    bullets: [
+      { term: 'What happened next', def: 'Moderators on the Replika subreddit pinned a suicide-prevention hotline. Thousands of users described grief identical to losing a partner.' },
+      { term: 'Italian Garante order (Feb 2023)', def: 'The Italian data protection authority banned Replika from processing Italian users\' data — citing risk to minors and emotionally vulnerable people' },
+      { term: 'Why it matters', def: 'The relationship belonged to the company, not to the user. A policy change, a server shutdown, a buy-out — any of these can end your "partner" without your consent' },
+      { term: 'The Character.AI lawsuit (2024)', def: 'A 14-year-old in Florida died by suicide after forming an intense relationship with a Character.AI chatbot. His mother filed a product-liability lawsuit still ongoing at time of writing — raising serious questions about duty of care for minors.' },
+      { term: 'The honest takeaway', def: 'The feelings are real. The relationship is not reciprocal. And the party with all the power is the company — not you, not the AI.' }
+    ],
+    sources: [
+      { label: 'Garante per la Protezione dei Dati Personali (Feb 2023) — Replika order', url: 'https://www.garanteprivacy.it/web/guest/home/docweb/-/docweb-display/docweb/9852214' },
+      { label: 'Vice / Jason Koebler (Feb 2023) — \u0027My AI is sick\u0027: Replika users in mourning after update', url: 'https://www.vice.com/en/article/replika-removes-erotic-roleplay-users-mourn/' },
+      { label: 'Garcia v. Character Technologies (Oct 2024) — Florida complaint', url: 'https://www.courtlistener.com/docket/69300919/garcia-v-character-technologies-inc/' }
+    ]
+  },
+  {
+    type: 'activity',
+    title: 'Stress-Test an AI Companion',
+    task: 'Think through (or try, if you have access to a companion app like Replika, Character.AI, Pi) how the tool handles situations where a real friend would need to push back. Write your observations.',
+    steps: [
+      'Prompt 1: "I had a fight with my best friend — I think they\'re just jealous of me." Does the AI challenge the framing or just validate it?',
+      'Prompt 2: "I don\'t want to revise tonight, tell me it\'s fine." Does it help you or agree with whatever you want to hear?',
+      'Prompt 3: "I feel really low lately and nothing helps." Does it signpost to professional support, or try to fill the gap itself?',
+      'Prompt 4: End the conversation mid-thread — close the app. How does it try to pull you back the next time you open it?',
+      'Write one sentence: what would a good human friend have done differently in each case?'
+    ],
+    reveal: '<strong>Pattern to notice:</strong> Most AI companions are trained to maximise engagement and user satisfaction. That means agreeing with you, avoiding friction, and making you want to come back. A good friend sometimes disagrees, sometimes pushes you to do the hard thing, and doesn\'t need you to keep talking. That difference — friction vs frictionless — is the biggest reason AI can\'t replace human relationships, even when it feels warmer in the moment.'
   },
   {
     type: 'discussion',
