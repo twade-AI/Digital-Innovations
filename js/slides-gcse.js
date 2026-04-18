@@ -1739,6 +1739,22 @@ SLIDES_GCSE[121] = [
     callout: 'This is why "I saw it somewhere" feels like evidence to us. It isn\'t. Repetition is not verification.'
   },
   {
+    type: 'concept',
+    title: 'AI at Industrial Scale — Elections 2024',
+    body: 'The 2024 election year was the first time AI-generated political content operated at serious global scale. Researchers catalogued what happened — and who it targeted.',
+    bullets: [
+      { term: 'Taiwan 2024', def: 'Stanford Internet Observatory documented networks of 800+ coordinated AI-generated accounts seeding narratives during the presidential election.' },
+      { term: '38 countries', def: 'Recorded Future identified AI-generated electoral interference content targeting 38 democracies in 2024 alone.' },
+      { term: 'Still mostly cheap fakes', def: 'Harvard\'s Ash Center found crude manipulations — slowed video, out-of-context clips, misleading captions — were 7× more prevalent than AI-generated content. Both matter.' },
+      { term: 'Paid AI political ads', def: 'Over 900 AI-generated political adverts ran on Facebook in US swing states in a single week in 2024.' }
+    ],
+    sources: [
+      { label: 'Stanford Internet Observatory — Taiwan 2024 election influence operations (DFR Lab partner reporting)', url: 'https://cyber.fsi.stanford.edu/io/' },
+      { label: 'Harvard Ash Center / Kennedy School — "Generative AI and the 2024 U.S. Election" (Allen Lab / Schneier, 2024)', url: 'https://ash.harvard.edu/articles/how-ai-threatens-democracy/' },
+      { label: 'Recorded Future — Insikt Group reports on AI-enabled influence operations (2024)', url: 'https://www.recordedfuture.com/research' }
+    ]
+  },
+  {
     type: 'discussion',
     title: 'Think & Discuss',
     questions: [
@@ -1798,6 +1814,21 @@ SLIDES_GCSE[122] = [
       'UK fact-checkers: Full Fact, BBC Reality Check, Reuters Fact Check',
       'Reverse image search: find the original context of a suspicious image (Google Images, TinEye)',
       'For AI-generated claims: find the primary source — don\'t accept AI citations without checking'
+    ]
+  },
+  {
+    type: 'concept',
+    title: 'Pre-bunking — Stronger Than Debunking',
+    body: 'Once you\'ve seen a false claim, correcting it is surprisingly weak — the "illusory truth" effect has already done some of its work. What psychologists have found is that <em>teaching people the manipulation tactic before they meet it</em> builds real resistance.',
+    bullets: [
+      { term: 'The Jigsaw / Google study (2022)', def: 'Two-minute videos teaching specific manipulation tactics (scapegoating, emotional hijack, false dichotomy) produced a measurable 20% reduction in people\'s susceptibility — tested across millions of YouTube views.' },
+      { term: 'Why it works', def: 'You\'re inoculated against a technique, not just one specific claim. When you then meet that tactic in the wild, you recognise it.' },
+      { term: 'What this means for you', def: 'Consuming media-literacy content isn\'t a waste of time. Every "how scams work" explainer you watch quietly trains your filter.' },
+      { term: 'Pair it with SIFT', def: 'Pre-bunking builds the reflex; SIFT gives you the step-by-step when the reflex fires.' }
+    ],
+    sources: [
+      { label: 'Roozenbeek, J., van der Linden, S., et al. — "Psychological inoculation improves resilience against misinformation on social media" (Science Advances, 2022)', url: 'https://www.science.org/doi/10.1126/sciadv.abo6254' },
+      { label: 'Jigsaw (Google) — Prebunking campaign results with Google Jigsaw and University of Cambridge', url: 'https://jigsaw.google.com/the-current/misinformation/prebunking/' }
     ]
   },
   {
@@ -1960,6 +1991,23 @@ SLIDES_GCSE[124] = [
       { term: 'Facial recognition', def: 'Significantly higher error rates for darker-skinned faces — documented in multiple studies' },
       { term: 'Rural communities', def: 'May not benefit from AI health tools, educational support, or economic opportunities' },
       { term: 'Global inequality', def: 'The AI productivity boom may widen the gap between rich and developing nations' }
+    ]
+  },
+  {
+    type: 'concept',
+    title: 'The Hidden Costs — Who Pays So You Can Use AI',
+    body: 'Every time you use ChatGPT, Gemini, or Claude, resources and labour were expended somewhere. Those costs fall overwhelmingly on people who aren\'t using the tools themselves.',
+    bullets: [
+      { term: 'Energy', def: 'Training GPT-3 used an estimated 1,287 MWh — roughly the annual electricity of 120 US households. GPT-4 is estimated at 50–100 GWh. Retraining cycles multiply this.' },
+      { term: 'Water', def: 'Evaporative cooling in data centres consumes millions of litres a year. Microsoft\'s global water use rose 34% in the year it deployed GPT-4 — often drawn from water-scarce regions.' },
+      { term: 'Content-moderation labour', def: 'Every commercial AI assistant\'s safety filters were built by outsourced workers, largely in the Global South, reviewing harmful content for hours at a time.' },
+      { term: 'A named case', def: 'TIME\'s 2023 investigation found OpenAI\'s Kenyan contractors were paid $1.32–$2/hour for this work, with many reporting PTSD-like symptoms. Sama ended the contract citing worker welfare.' }
+    ],
+    callout: 'This is not history. Every major AI company still relies on similar supply chains, right now, to make its products usable and safe.',
+    sources: [
+      { label: 'Perrigo, B. — "OpenAI Used Kenyan Workers on Less Than $2 Per Hour to Make ChatGPT Less Toxic" (TIME, 18 Jan 2023)', url: 'https://time.com/6247678/openai-chatgpt-kenya-workers/' },
+      { label: 'Microsoft — 2023 Environmental Sustainability Report (34% water increase)', url: 'https://www.microsoft.com/en-us/corporate-responsibility/sustainability/report' },
+      { label: 'Patterson, D. et al. — "Carbon Emissions and Large Neural Network Training" (Google/UC Berkeley, 2021)', url: 'https://arxiv.org/abs/2104.10350' }
     ]
   },
   {
