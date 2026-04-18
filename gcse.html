@@ -105,6 +105,19 @@
     .scenario-choices.scenario-answered .scenario-choice.scenario-chosen .scenario-choice-letter{background:#10b981;color:#fff}
     .scenario-outcome{padding:16px 18px;border-radius:10px;background:rgba(16,185,129,.06);border-left:4px solid #10b981;font-size:.9rem;color:var(--text-muted,#94a3b8);line-height:1.6;margin-top:14px}
     .scenario-outcome strong{color:#10b981}
+    .slide-reveal-btn{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:10px 18px;border-radius:8px;border:1.5px dashed rgba(16,185,129,.45);background:rgba(16,185,129,.04);color:#10b981;font-size:.88rem;font-weight:700;cursor:pointer;transition:all .15s;font-family:var(--font)}
+    .slide-reveal-btn:hover{background:rgba(16,185,129,.1);border-style:solid}
+    .slide-reveal-btn.revealed{display:none}
+    .slide-reveal{margin-top:14px;padding:14px 18px;border-radius:8px;background:rgba(16,185,129,.1);border-left:3px solid #10b981;font-size:.92rem;color:var(--text-muted,#475569);line-height:1.6;animation:revealFade .25s ease-out}
+    .slide-reveal strong{color:#10b981}
+    @keyframes revealFade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+    .slide-sources{margin-top:18px;padding-top:12px;border-top:1px dashed var(--border);font-size:.75rem;color:var(--text-dim)}
+    .slide-sources-label{display:block;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim);margin-bottom:6px;font-size:.68rem}
+    .slide-sources ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px}
+    .slide-sources li{line-height:1.45;padding-left:12px;position:relative}
+    .slide-sources li::before{content:'↪';position:absolute;left:0;color:#10b981;opacity:.6}
+    .slide-sources a{color:#10b981;text-decoration:none}
+    .slide-sources a:hover{text-decoration:underline}
     @media print{
       *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
       body{background:#fff !important}
@@ -397,14 +410,42 @@
   function gsPrevSlide() { if(gsSlideIdx>0){gsSlideIdx--;gsRenderSlide();} }
   function gsJumpSlide(i) { gsSlideIdx=i; gsRenderSlide(); }
 
+  function gsRevealHTML(slide) {
+    if (!slide || !slide.reveal) return '';
+    var rid = 'gsRev_' + gsCurrentId + '_' + gsSlideIdx;
+    var label = slide.revealLabel || '💡 Click to reveal answer';
+    return '<button class="slide-reveal-btn" id="'+rid+'_btn" onclick="gsToggleReveal(\''+rid+'\')">'+label+'</button>' +
+           '<div class="slide-reveal" id="'+rid+'" style="display:none">'+slide.reveal+'</div>';
+  }
+
+  function gsSourcesHTML(slide) {
+    if (!slide || !slide.sources || !slide.sources.length) return '';
+    return '<div class="slide-sources"><span class="slide-sources-label">Sources</span><ul>' +
+      slide.sources.map(function(s){
+        if (typeof s === 'string') return '<li>'+s+'</li>';
+        if (s && s.url) return '<li><a href="'+s.url+'" target="_blank" rel="noopener">'+s.label+'</a></li>';
+        return '<li>'+(s.label||'')+'</li>';
+      }).join('') + '</ul></div>';
+  }
+
+  function gsToggleReveal(id) {
+    var el = document.getElementById(id);
+    var btn = document.getElementById(id+'_btn');
+    if (!el) return;
+    if (el.style.display === 'none') { el.style.display='block'; if(btn)btn.classList.add('revealed'); }
+    else { el.style.display='none'; if(btn)btn.classList.remove('revealed'); }
+  }
+
   function gsRenderSlideHTML(slide) {
     if (!slide) return '';
     var type = slide.type || 'concept';
-    if (type==='hook') return '<div class="slide-hook"><span class="slide-badge badge-hook">Hook</span><div class="slide-title">'+(slide.title||'')+'</div><div class="slide-body">'+(slide.body||'')+'</div>'+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+'</div>';
+    var reveal = gsRevealHTML(slide);
+    var sources = gsSourcesHTML(slide);
+    if (type==='hook') return '<div class="slide-hook"><span class="slide-badge badge-hook">Hook</span><div class="slide-title">'+(slide.title||'')+'</div><div class="slide-body">'+(slide.body||'')+'</div>'+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
     if (type==='concept') {
       var bHtml='';
       if(slide.bullets&&slide.bullets.length){bHtml='<ul class="slide-bullets">'+slide.bullets.map(function(b){if(typeof b==='string')return '<li>'+b+'</li>';return '<li><strong>'+(b.term||b.label||'')+'</strong>'+(b.def||b.text?' — '+(b.def||b.text):'')+'</li>';}).join('')+'</ul>';}
-      return '<div class="slide-concept"><span class="slide-badge badge-concept">Concept</span><div class="slide-title">'+(slide.title||'')+'</div>'+(slide.body?'<div class="slide-body">'+slide.body+'</div>':'')+bHtml+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+'</div>';
+      return '<div class="slide-concept"><span class="slide-badge badge-concept">Concept</span><div class="slide-title">'+(slide.title||'')+'</div>'+(slide.body?'<div class="slide-body">'+slide.body+'</div>':'')+bHtml+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
     }
     if (type==='scenario') {
       var choicesHtml='';
@@ -412,22 +453,22 @@
         var letters=['A','B','C','D'];
         choicesHtml='<div class="scenario-choices" id="gsScChoices">'+(slide.question?'<div class="slide-callout" style="margin-bottom:10px"><strong>Choose:</strong> '+slide.question+'</div>':'')+slide.choices.map(function(c,i){return '<button class="scenario-choice" onclick="gsRevealOutcome(this,'+i+')" data-outcome="'+encodeURIComponent(c.outcome||'')+'"><span class="scenario-choice-letter">'+letters[i]+'</span>'+c.text+'</button>';}).join('')+'<div id="gsScOutcome" style="display:none" class="scenario-outcome"></div></div>';
       }
-      return '<div class="slide-scenario"><span class="slide-badge badge-scenario">Scenario</span><div class="slide-title">'+(slide.title||'Scenario')+'</div><div class="slide-body">'+(slide.situation||'')+'</div>'+choicesHtml+((!slide.choices||!slide.choices.length)&&slide.question?'<div class="slide-callout"><strong>Consider:</strong> '+slide.question+'</div>':'')+'</div>';
+      return '<div class="slide-scenario"><span class="slide-badge badge-scenario">Scenario</span><div class="slide-title">'+(slide.title||'Scenario')+'</div><div class="slide-body">'+(slide.situation||'')+'</div>'+choicesHtml+((!slide.choices||!slide.choices.length)&&slide.question?'<div class="slide-callout"><strong>Consider:</strong> '+slide.question+'</div>':'')+reveal+sources+'</div>';
     }
-    if (type==='activity') return '<div class="slide-activity"><span class="slide-badge badge-activity">Activity</span><div class="slide-title">'+(slide.title||'')+'</div>'+(slide.task?'<div class="slide-body">'+slide.task+'</div>':'')+(slide.steps?'<ol class="slide-steps">'+slide.steps.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ol>':'')+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+'</div>';
+    if (type==='activity') return '<div class="slide-activity"><span class="slide-badge badge-activity">Activity</span><div class="slide-title">'+(slide.title||'')+'</div>'+(slide.task?'<div class="slide-body">'+slide.task+'</div>':'')+(slide.steps?'<ol class="slide-steps">'+slide.steps.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ol>':'')+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
     if (type==='discussion') {
       var qHtml=(slide.questions||[]).map(function(q){return '<div class="slide-disc-q"><span class="sdq-num">'+(q.num||'')+'</span><span class="sdq-text">'+(q.text||q)+'</span></div>';}).join('');
-      return '<div class="slide-concept"><span class="slide-badge badge-concept">Discussion</span><div class="slide-title">'+(slide.title||'Discussion')+'</div>'+(slide.body?'<div class="slide-body">'+slide.body+'</div>':'')+'<div class="slide-disc-qs">'+qHtml+'</div></div>';
+      return '<div class="slide-concept"><span class="slide-badge badge-concept">Discussion</span><div class="slide-title">'+(slide.title||'Discussion')+'</div>'+(slide.body?'<div class="slide-body">'+slide.body+'</div>':'')+'<div class="slide-disc-qs">'+qHtml+'</div>'+reveal+sources+'</div>';
     }
     if (type==='quiz') {
       var opts=(slide.options||[]).map(function(opt,i){return '<button class="quiz-option" data-idx="'+i+'" onclick="gsAnswerQuiz(this,'+slide.correct+','+i+')">'+opt+'</button>';}).join('');
-      return '<div class="slide-quiz"><span class="slide-badge badge-quiz">Quiz</span><div class="slide-title">'+(slide.question||'')+'</div><div class="quiz-options">'+opts+'</div><div id="gsQuizFb" style="display:none;margin-top:12px" class="slide-callout"></div></div>';
+      return '<div class="slide-quiz"><span class="slide-badge badge-quiz">Quiz</span><div class="slide-title">'+(slide.question||'')+'</div><div class="quiz-options">'+opts+'</div><div id="gsQuizFb" style="display:none;margin-top:12px" class="slide-callout"></div>'+sources+'</div>';
     }
     if (type==='summary') {
       var pts=(slide.points||[]).map(function(p){return '<div class="summary-point"><span class="sp-icon">'+(p.icon||'•')+'</span><div><strong>'+(p.label||'')+'</strong>'+(p.text?' — '+p.text:'')+'</div></div>';}).join('');
-      return '<div class="slide-summary"><span class="slide-badge badge-summary">Summary</span><div class="slide-title">'+(slide.title||'Key Takeaways')+'</div><div class="summary-points">'+pts+'</div></div>';
+      return '<div class="slide-summary"><span class="slide-badge badge-summary">Summary</span><div class="slide-title">'+(slide.title||'Key Takeaways')+'</div><div class="summary-points">'+pts+'</div>'+sources+'</div>';
     }
-    return '<div class="slide-concept"><div class="slide-title">'+(slide.title||'')+'</div><div class="slide-body">'+(slide.body||'')+'</div></div>';
+    return '<div class="slide-concept"><div class="slide-title">'+(slide.title||'')+'</div><div class="slide-body">'+(slide.body||'')+'</div>'+reveal+sources+'</div>';
   }
 
   function gsAnswerQuiz(btn, correct, chosen) {

@@ -124,7 +124,7 @@ SLIDES_GCSE[101] = [
       'A spam filter moving junk email',
       'Face unlock on your phone'
     ],
-    callout: 'Answers: 1, 3, 5, 6 use AI. The calculator and alarm clock follow fixed rules — no learning involved.'
+    reveal: '<strong>Answers:</strong> 1, 3, 5, 6 use AI. The calculator and alarm clock follow fixed rules — no learning involved.'
   },
   {
     type: 'activity',
@@ -279,7 +279,7 @@ SLIDES_GCSE[103] = [
       'Google Photos face grouping → ?',
       'Gmail spam folder → ?'
     ],
-    callout: 'Answers: ChatGPT = Generative. TikTok & Spotify = Recommendation engines. Siri/Alexa = Speech recognition + Generative (when answering). Google Photos = Computer vision (+ classifier). Gmail spam = Classifier. Many real tools stack several AI types together.'
+    reveal: '<strong>Answers:</strong> ChatGPT = Generative. TikTok &amp; Spotify = Recommendation engines. Siri/Alexa = Speech recognition + Generative (when answering). Google Photos = Computer vision (+ classifier). Gmail spam = Classifier. Many real tools stack several AI types together.'
   },
   {
     type: 'discussion',
@@ -1012,7 +1012,11 @@ SLIDES_GCSE[113] = [
     type: 'hook',
     title: 'Prompting 101',
     body: 'Two students ask AI for help with the same task. One gets a clear, useful response. One gets a wall of generic text. The difference isn\'t which AI they used — it\'s how they asked.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">40%</span><span class="sl">better quality from students who iterate 3+ times (Wharton, 2023)</span></div><div class="hook-stat-mini"><span class="sv">3–5×</span><span class="sl">iterations expert prompt engineers use to reach a final output</span></div><div class="hook-stat-mini"><span class="sv">Worse</span><span class="sl">than no AI at all — students who accept the first AI draft</span></div></div>',
-    callout: 'Prompting is a learnable skill. A well-crafted prompt consistently unlocks better results than a vague one.'
+    callout: 'Prompting is a learnable skill. A well-crafted prompt consistently unlocks better results than a vague one.',
+    sources: [
+      { label: 'Dell\'Acqua, F. et al. (Harvard/Wharton, 2023) — "Navigating the Jagged Technological Frontier: Field Experimental Evidence of the Effects of AI on Knowledge Worker Productivity and Quality"', url: 'https://www.hbs.edu/faculty/Pages/item.aspx?num=64700' },
+      { label: 'Mollick, E. — "Centaurs and Cyborgs on the Jagged Frontier" (Wharton, One Useful Thing, 2023)', url: 'https://www.oneusefulthing.org/p/centaurs-and-cyborgs-on-the-jagged' }
+    ]
   },
   {
     type: 'concept',
@@ -1058,7 +1062,7 @@ SLIDES_GCSE[113] = [
       'A: "Write me an essay" vs B: "Give feedback on this essay plan: [plan]. What would improve it for a top grade?"',
       'A: "What causes climate change?" vs B: "List the 5 main human causes of climate change with one specific piece of evidence for each"'
     ],
-    callout: 'In every case, B is better — because it\'s specific about what\'s needed, who it\'s for, and what format works.'
+    reveal: '<strong>In every case, B is better</strong> — because it\'s specific about what\'s needed, who it\'s for, and what format works.'
   },
   {
     type: 'quiz',
@@ -1111,7 +1115,12 @@ SLIDES_GCSE[114] = [
       { term: 'Logical', def: 'The steps don\'t add up, but each sentence sounds reasonable. Common in maths workings and multi-step reasoning.' },
       { term: 'Temporal', def: 'Out-of-date information presented as current. The AI\'s training data has a cut-off — anything after is guesswork.' }
     ],
-    callout: 'Hallucinations happen because AI is predicting plausible-sounding text, not recalling facts. Plausible is not the same as true.'
+    callout: 'Hallucinations happen because AI is predicting plausible-sounding text, not recalling facts. Plausible is not the same as true.',
+    sources: [
+      { label: 'Ji, Z. et al. (2023) — "Survey of Hallucination in Natural Language Generation", ACM Computing Surveys', url: 'https://dl.acm.org/doi/10.1145/3571730' },
+      { label: 'Stanford HAI — "AI Hallucinations: A Misnomer Worth Clarifying" (2024)', url: 'https://hai.stanford.edu/news/hallucinating-law-legal-mistakes-large-language-models-are-pervasive' },
+      { label: 'Mata v. Avianca (S.D.N.Y. 2023) — lawyers sanctioned for filing ChatGPT-invented case citations', url: 'https://www.nytimes.com/2023/06/22/nyregion/lawyers-chatgpt-schwartz-loduca.html' }
+    ]
   },
   {
     type: 'concept',
@@ -1133,7 +1142,7 @@ SLIDES_GCSE[114] = [
       'What is wrong? (there are at least two errors)',
       'What would you check? Which sources would you use?'
     ],
-    callout: 'Answers: Treaty of Versailles was signed in 1919 (not 1920), and it ended WW1 (not WW2). The reparations figure is approximately correct. The territorial losses detail is partially correct.'
+    reveal: '<strong>Answers:</strong> Treaty of Versailles was signed in 1919 (not 1920), and it ended WW1 (not WW2). The reparations figure is approximately correct. The territorial losses detail is partially correct.'
   },
   {
     type: 'quiz',
@@ -1165,7 +1174,13 @@ SLIDES_GCSE[115] = [
     type: 'hook',
     title: 'AI and Creativity',
     body: 'September 2022: Jason Allen enters "Théâtre D\'opéra Spatial" into the Colorado State Fair\'s fine art competition. It wins first place. Allen had generated it with Midjourney — an AI image tool. Artists were furious: "we should put a red X over all AI art." Allen refused to apologise: "I\'m not going back on my art." Meanwhile Getty Images is suing Stability AI for scraping 12 million photos without permission. The New York Times is suing OpenAI. The creative industry is in open war with AI companies — and every ruling sets precedent.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">12M+</span><span class="sl">images scraped by Stability AI, per Getty lawsuit</span></div><div class="hook-stat-mini"><span class="sv">$0</span><span class="sl">paid to artists whose work trained Midjourney</span></div><div class="hook-stat-mini"><span class="sv">2025</span><span class="sl">NYT v. OpenAI heading toward trial</span></div></div>',
-    callout: 'This lesson explores what AI can create, what human creativity adds, and why the distinction matters.'
+    callout: 'This lesson explores what AI can create, what human creativity adds, and why the distinction matters.',
+    sources: [
+      { label: 'Roose, K. — "An A.I.-Generated Picture Won an Art Prize. Artists Aren\'t Happy." (The New York Times, 2 Sep 2022)', url: 'https://www.nytimes.com/2022/09/02/technology/ai-artificial-intelligence-artists.html' },
+      { label: 'Getty Images (US), Inc. v. Stability AI, Inc. — Complaint filed Delaware District Court, Feb 2023', url: 'https://copyrightlately.com/wp-content/uploads/2023/02/Getty-Images-v.-Stability-AI-Complaint.pdf' },
+      { label: 'The New York Times Company v. Microsoft & OpenAI — Complaint filed S.D.N.Y., 27 Dec 2023', url: 'https://nytco-assets.nytimes.com/2023/12/NYT_Complaint_Dec2023.pdf' },
+      { label: 'US Copyright Office — "Copyright Registration Guidance: Works Containing Material Generated by AI" (March 2023)', url: 'https://www.copyright.gov/ai/ai_policy_guidance.pdf' }
+    ]
   },
   {
     type: 'concept',
@@ -1352,7 +1367,7 @@ SLIDES_GCSE[117] = [
       'Task 4: Reformat a long set of messy revision notes into a clean table inside a Google Doc',
       'Task 5: Get patient, detailed feedback on a draft English essay'
     ],
-    callout: 'Model answers: 1 — Claude (long docs). 2 — Gemini or Copilot (live search). 3 — ChatGPT or Claude. 4 — Gemini in Docs (built-in). 5 — Claude. No tool is universally best — matching matters.'
+    reveal: '<strong>Model answers:</strong> 1 — Claude (long docs). 2 — Gemini or Copilot (live search). 3 — ChatGPT or Claude. 4 — Gemini in Docs (built-in). 5 — Claude. No tool is universally best — matching matters.'
   },
   {
     type: 'summary',
@@ -1371,7 +1386,12 @@ SLIDES_GCSE[118] = [
     type: 'hook',
     title: 'Prompt Engineering Challenge',
     body: 'A 2023 Wharton Business School study split writers into three groups: no AI, AI without iteration, and AI with 3+ iterations. The result was startling. The zero-iteration group produced <strong>worse</strong> work than the no-AI group. The iteration group produced work rated <strong>40% higher</strong> than either. Translation: AI without iteration makes you worse. AI with deliberate iteration makes you dramatically better. Today you find out which group you\'re in.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">40%</span><span class="sl">higher quality with 3+ iterations</span></div><div class="hook-stat-mini"><span class="sv">Worse</span><span class="sl">than no AI at all: zero-iteration AI use</span></div><div class="hook-stat-mini"><span class="sv">$300K+</span><span class="sl">senior prompt engineer salaries at top AI firms</span></div></div>',
-    callout: 'Prompt engineering is a genuine professional skill increasingly valued by employers. You\'re building it right now.'
+    callout: 'Prompt engineering is a genuine professional skill increasingly valued by employers. You\'re building it right now.',
+    sources: [
+      { label: 'Dell\'Acqua, F., McFowland III, E., Mollick, E. et al. — "Navigating the Jagged Technological Frontier" (Harvard Business School Working Paper 24-013, 2023)', url: 'https://www.hbs.edu/faculty/Pages/item.aspx?num=64700' },
+      { label: 'Anthropic — "Anthropic hiring: Prompt Engineer & Librarian" ($280k–$375k listed salary range, 2023)', url: 'https://web.archive.org/web/20230503175334/https://jobs.lever.co/Anthropic/e3cde481-d446-460f-b628-a65b3cf3fa3e' },
+      { label: 'Bloomberg — "AI Prompt Engineer Jobs Pay up to $335,000 a Year" (Mar 2023)', url: 'https://www.bloomberg.com/news/articles/2023-03-29/ai-chatgpt-related-prompt-engineer-jobs-pay-up-to-335-000' }
+    ]
   },
   {
     type: 'concept',
@@ -1437,7 +1457,12 @@ SLIDES_GCSE[119] = [
     type: 'hook',
     title: 'Deepfakes & Synthetic Media',
     body: 'In January 2024, thousands of US voters received robocalls from a fake AI-cloned voice of President Biden telling Democrats not to vote. The same month, a Hong Kong finance worker was tricked into transferring £20 million after a video call where every person on screen — including his CFO — was synthetic. Two days before Slovakia\'s 2023 election, an AI audio clip of an opposition leader "admitting" to rigging votes went viral during the legally mandated silence period when media couldn\'t respond. He lost.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">£20M</span><span class="sl">stolen via deepfake video call (Hong Kong, 2024)</span></div><div class="hook-stat-mini"><span class="sv">48hrs</span><span class="sl">before Slovakia\'s election — during legal media silence</span></div><div class="hook-stat-mini"><span class="sv">$6M</span><span class="sl">FCC fine for the Biden deepfake robocall</span></div><div class="hook-stat-mini"><span class="sv">38</span><span class="sl">countries targeted by election deepfakes in 2024</span></div></div>',
-    callout: 'Deepfakes don\'t need to be believed by everyone — they just need to cause enough doubt, at the right moment, for the damage to be done.'
+    callout: 'Deepfakes don\'t need to be believed by everyone — they just need to cause enough doubt, at the right moment, for the damage to be done.',
+    sources: [
+      { label: 'CNN — Hong Kong finance worker scammed out of $25M in deepfake video call (Feb 2024)', url: 'https://edition.cnn.com/2024/02/04/asia/deepfake-cfo-scam-hong-kong-intl-hnk/index.html' },
+      { label: 'Wired — How an AI deepfake helped sway the Slovak election (Oct 2023)', url: 'https://www.wired.com/story/slovakias-election-deepfakes-show-ai-is-a-danger-to-democracy/' },
+      { label: 'FCC — $6M fine proposed over Biden AI robocall (May 2024)', url: 'https://www.fcc.gov/document/fcc-proposes-6-million-fine-illegal-biden-robocalls' }
+    ]
   },
   {
     type: 'concept',
@@ -1558,7 +1583,7 @@ SLIDES_GCSE[120] = [
       'Text A: "The impact of social media on mental health is multifaceted and has been the subject of significant academic debate. While some studies suggest negative effects, others point to positive community-building aspects. It is important to consider the nuanced relationship between usage patterns and wellbeing outcomes."',
       'Text B: "I deleted Instagram for three months last year. Honestly, I thought I\'d feel liberated, but mostly I just felt left out. Turns out the problem wasn\'t the app — it was that all my friends were still on it and stopped inviting me to things."'
     ],
-    callout: 'Text A: very likely AI — balanced, formal, hedged, vague, no personal voice. Text B: very likely human — personal, specific, contradicts its own expectations, has a real point of view.'
+    reveal: '<strong>Text A:</strong> very likely AI — balanced, formal, hedged, vague, no personal voice.<br><strong>Text B:</strong> very likely human — personal, specific, contradicts its own expectations, has a real point of view.'
   },
   {
     type: 'scenario',
@@ -1600,7 +1625,11 @@ SLIDES_GCSE[121] = [
     type: 'hook',
     title: 'Misinformation & AI',
     body: 'A false story travels 6 times faster on social media than a true one — and reaches 10 times more people before any correction appears. AI is dramatically accelerating both the creation and the spread of misinformation. During COVID-19, false cures and conspiracy theories spread so fast that the WHO declared an "infodemic" — a pandemic of misinformation running alongside the real one.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">6×</span><span class="sl">faster than truth — false stories spread on social media (MIT study)</span></div><div class="hook-stat-mini"><span class="sv">10×</span><span class="sl">more reach before any correction appears</span></div><div class="hook-stat-mini"><span class="sv">70%</span><span class="sl">of retweets spread false news faster than corrections ever catch up</span></div><div class="hook-stat-mini"><span class="sv">AI</span><span class="sl">can generate thousands of convincing fake articles in minutes</span></div></div>',
-    callout: 'This isn\'t just a media problem. It affects elections, public health, and what ordinary people believe about their communities.'
+    callout: 'This isn\'t just a media problem. It affects elections, public health, and what ordinary people believe about their communities.',
+    sources: [
+      { label: 'Vosoughi, Roy & Aral — "The spread of true and false news online", Science (2018)', url: 'https://www.science.org/doi/10.1126/science.aap9559' },
+      { label: 'WHO — Infodemic management (COVID-19)', url: 'https://www.who.int/health-topics/infodemic' }
+    ]
   },
   {
     type: 'concept',
@@ -1814,7 +1843,11 @@ SLIDES_GCSE[124] = [
     type: 'hook',
     title: 'Who Benefits from AI?',
     body: 'The AI industry is worth over $1 trillion. Around 90% of global AI investment goes to just three countries: the US, China, and the UK. Meanwhile, 2.6 billion people have no internet access at all. Most advanced AI tools work primarily in English — meaning non-English speakers globally get dramatically less value. AI diagnostic tools trained on Western patient data perform measurably worse on patients from Africa and Asia.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">2.6bn</span><span class="sl">people have no internet access — the foundation AI needs</span></div><div class="hook-stat-mini"><span class="sv">90%</span><span class="sl">of AI investment concentrated in just 3 countries</span></div><div class="hook-stat-mini"><span class="sv">7,000+</span><span class="sl">languages in the world — AI works well in fewer than 100</span></div><div class="hook-stat-mini"><span class="sv">Worse</span><span class="sl">diagnostic AI performs measurably worse on under-represented populations</span></div></div>',
-    callout: 'Powerful technology doesn\'t automatically benefit everyone equally. Who gets access — and who gets left out — is one of the defining questions of the AI era.'
+    callout: 'Powerful technology doesn\'t automatically benefit everyone equally. Who gets access — and who gets left out — is one of the defining questions of the AI era.',
+    sources: [
+      { label: 'ITU — Facts and Figures 2023 (2.6 billion offline)', url: 'https://www.itu.int/itu-d/reports/statistics/facts-figures-2023/' },
+      { label: 'Stanford AI Index Report 2024 (AI investment by country)', url: 'https://aiindex.stanford.edu/report/' }
+    ]
   },
   {
     type: 'concept',
@@ -1876,7 +1909,13 @@ SLIDES_GCSE[125] = [
     type: 'hook',
     title: 'Bias In, Bias Out',
     body: 'In January 2020, Robert Williams was arrested in front of his daughters on his front lawn in Detroit. He spent 30 hours in a cell. The evidence: a facial recognition AI matched his face to CCTV footage from a shoplifting case. The AI was wrong. Separately, an AI risk tool used by US courts was found to flag Black defendants as twice as likely to reoffend compared to white defendants with similar records. In both cases, the AI wasn\'t broken — it had learned these patterns from data reflecting decades of unequal policing and sentencing.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">100×</span><span class="sl">higher error rate for dark-skinned women vs. white men (NIST study)</span></div><div class="hook-stat-mini"><span class="sv">2×</span><span class="sl">more likely to flag Black defendants as high-risk (COMPAS study)</span></div><div class="hook-stat-mini"><span class="sv">5yr</span><span class="sl">FTC ban on Rite Aid using facial recognition after biased false matches</span></div><div class="hook-stat-mini"><span class="sv">0</span><span class="sl">wrongdoing by Robert Williams — he was innocent</span></div></div>',
-    callout: 'The AI wasn\'t broken. It worked exactly as designed. The problem was what it was trained on — and who those decisions affected.'
+    callout: 'The AI wasn\'t broken. It worked exactly as designed. The problem was what it was trained on — and who those decisions affected.',
+    sources: [
+      { label: 'ACLU — Wrongfully Arrested Because Face Recognition Can\'t Tell Black People Apart (Robert Williams, 2020)', url: 'https://www.aclu.org/news/privacy-technology/wrongfully-arrested-because-face-recognition-cant-tell-black-people-apart' },
+      { label: 'ProPublica — Machine Bias (COMPAS investigation, Angwin et al., 2016)', url: 'https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing' },
+      { label: 'NIST — Face Recognition Vendor Test Part 3: Demographic Effects (NISTIR 8280, 2019)', url: 'https://nvlpubs.nist.gov/nistpubs/ir/2019/NIST.IR.8280.pdf' },
+      { label: 'FTC — Rite Aid banned from using facial recognition for 5 years (Dec 2023)', url: 'https://www.ftc.gov/news-events/news/press-releases/2023/12/rite-aid-banned-using-ai-facial-recognition-after-ftc-says-retailer-deployed-technology-without' }
+    ]
   },
   {
     type: 'concept',
@@ -1909,7 +1948,10 @@ SLIDES_GCSE[125] = [
       { term: 'Data labelling', def: 'Training a self-driving car involves millions of images labelled by humans. Those humans are rarely the ones buying Teslas.' },
       { term: 'Why it matters', def: 'Bias doesn\'t only enter through datasets. Who labels the data, under what conditions, shapes what the AI treats as "normal" and "acceptable".' }
     ],
-    callout: 'AI looks automated to the user. Behind it is a global labour force doing repetitive, sometimes traumatic work for low wages — a hidden cost that rarely appears in the glossy product demos.'
+    callout: 'AI looks automated to the user. Behind it is a global labour force doing repetitive, sometimes traumatic work for low wages — a hidden cost that rarely appears in the glossy product demos.',
+    sources: [
+      { label: 'Time — OpenAI used Kenyan workers on less than $2 per hour to make ChatGPT less toxic (Billy Perrigo, Jan 2023)', url: 'https://time.com/6247678/openai-chatgpt-kenya-workers/' }
+    ]
   },
   {
     type: 'scenario',
@@ -1932,7 +1974,10 @@ SLIDES_GCSE[125] = [
       'The AI cannot read female names correctly'
     ],
     correct: 2,
-    explanation: 'AI systems learn statistical patterns from their training data. If historical hiring was biased against women, that bias is encoded in the data — and the AI learns to replicate it. Amazon discovered this exact problem and scrapped their AI hiring tool in 2018.'
+    explanation: 'AI systems learn statistical patterns from their training data. If historical hiring was biased against women, that bias is encoded in the data — and the AI learns to replicate it. Amazon discovered this exact problem and scrapped their AI hiring tool in 2018.',
+    sources: [
+      { label: 'Reuters — Amazon scraps secret AI recruiting tool that showed bias against women (Dastin, Oct 2018)', url: 'https://www.reuters.com/article/us-amazon-com-jobs-automation-insight-idUSKCN1MK08G' }
+    ]
   },
   {
     type: 'summary',
@@ -1951,7 +1996,12 @@ SLIDES_GCSE[126] = [
     type: 'hook',
     title: 'Jobs & Automation',
     body: 'McKinsey estimates AI could automate around 30% of current work tasks by 2030. Goldman Sachs puts the figure at 300 million jobs globally. But in every previous technological revolution — the printing press, the industrial revolution, electricity, the internet — new jobs appeared to replace the old ones. The question is whether this time is different.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">30%</span><span class="sl">of current work tasks could be automated by 2030 (McKinsey)</span></div><div class="hook-stat-mini"><span class="sv">300M</span><span class="sl">jobs exposed to automation globally (Goldman Sachs)</span></div><div class="hook-stat-mini"><span class="sv">#1</span><span class="sl">AI literacy is the top graduate skills gap (WEF 2023)</span></div><div class="hook-stat-mini"><span class="sv">?</span><span class="sl">the most in-demand job of 2030 probably doesn\'t have a name yet</span></div></div>',
-    callout: 'The honest answer is: nobody knows exactly. But the skills you build now will matter regardless of how it plays out.'
+    callout: 'The honest answer is: nobody knows exactly. But the skills you build now will matter regardless of how it plays out.',
+    sources: [
+      { label: 'McKinsey Global Institute — Generative AI and the future of work in America (July 2023)', url: 'https://www.mckinsey.com/mgi/our-research/generative-ai-and-the-future-of-work-in-america' },
+      { label: 'Goldman Sachs — The Potentially Large Effects of AI on Economic Growth (Hatzius et al., March 2023)', url: 'https://www.gspublishing.com/content/research/en/reports/2023/03/27/d64e052b-0f6e-45d7-967b-d7be35fabd16.html' },
+      { label: 'World Economic Forum — Future of Jobs Report 2025', url: 'https://www.weforum.org/publications/the-future-of-jobs-report-2025/' }
+    ]
   },
   {
     type: 'concept',
@@ -1986,7 +2036,11 @@ SLIDES_GCSE[126] = [
       { term: 'Radiologists still have jobs', def: 'In 2016 a famous AI researcher predicted radiologists would be replaced in 5 years. Radiology job postings are now at record highs — the AI does the first scan, the human interprets.' },
       { term: 'The implication', def: 'The career question isn\'t "will AI do my job?" — it\'s "can I become the human who works best with AI in my field?"' }
     ],
-    callout: 'Pure AI and pure humans both lose to humans + AI working together. The durable skill is collaboration, not delegation or defiance.'
+    callout: 'Pure AI and pure humans both lose to humans + AI working together. The durable skill is collaboration, not delegation or defiance.',
+    sources: [
+      { label: 'Financial Times — Klarna rethinks AI-driven cost cuts, rehires humans (May 2024)', url: 'https://www.ft.com/content/6372b55a-9cd5-4ec3-b24d-3cc63c3c16dd' },
+      { label: 'Geoffrey Hinton, NeurIPS 2016 — "People should stop training radiologists now"', url: 'https://www.newyorker.com/magazine/2017/04/03/ai-versus-md' }
+    ]
   },
   {
     type: 'discussion',
@@ -2090,7 +2144,12 @@ SLIDES_GCSE[128] = [
     type: 'hook',
     title: 'Regulation & Control',
     body: 'The EU AI Act became the world\'s first comprehensive AI law — banning the highest-risk uses from February 2025. The US took the opposite approach: President Trump revoked Biden\'s AI safety executive order on day one of his second term, January 2025. The UK announced £14 billion in AI investment but still had no specific AI law. Four major powers: four completely different approaches — and they\'re diverging, not converging.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">459</span><span class="sl">pages in the final EU AI Act text</span></div><div class="hook-stat-mini"><span class="sv">Day 1</span><span class="sl">Trump revoked Biden\'s AI safety order (Jan 2025)</span></div><div class="hook-stat-mini"><span class="sv">€35M</span><span class="sl">maximum fine for breaking EU AI Act rules</span></div><div class="hook-stat-mini"><span class="sv">£14bn</span><span class="sl">UK AI investment plan — with no specific AI law yet</span></div></div>',
-    callout: 'The EU regulates to protect citizens. The US deregulates to accelerate competition. The UK tries to balance both. China regulates to maintain state control.'
+    callout: 'The EU regulates to protect citizens. The US deregulates to accelerate competition. The UK tries to balance both. China regulates to maintain state control.',
+    sources: [
+      { label: 'European Commission — AI Act (official text, in force Aug 2024)', url: 'https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai' },
+      { label: 'The White House — Removing Barriers to American Leadership in AI (Executive Order, Jan 23 2025)', url: 'https://www.whitehouse.gov/presidential-actions/2025/01/removing-barriers-to-american-leadership-in-artificial-intelligence/' },
+      { label: 'UK Government — AI Opportunities Action Plan (Jan 2025)', url: 'https://www.gov.uk/government/publications/ai-opportunities-action-plan' }
+    ]
   },
   {
     type: 'concept',
@@ -2227,7 +2286,13 @@ SLIDES_GCSE[130] = [
     type: 'hook',
     title: 'Algorithms & Your Mental Health',
     body: 'Facebook\'s internal research — leaked by whistleblower Frances Haugen in 2021 — showed the company knew its algorithm was making teenage girls feel worse about their bodies. Its own data showed Instagram was "harmful" for one in three teenage girls. They knew. They didn\'t change it. TikTok\'s algorithm is not designed to make you feel good — it\'s designed to keep you watching. Those are very different goals.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">1 in 3</span><span class="sl">teenage girls said Instagram made them feel worse about their bodies (Meta\'s own research)</span></div><div class="hook-stat-mini"><span class="sv">13%</span><span class="sl">of teen girls say suicidal thoughts increased with Instagram use (Meta internal)</span></div><div class="hook-stat-mini"><span class="sv">40%</span><span class="sl">longer sessions when Facebook showed more "outrage" content (internal experiment)</span></div><div class="hook-stat-mini"><span class="sv">2021</span><span class="sl">Frances Haugen leaked documents proving Meta knew — and didn\'t act</span></div></div>',
-    callout: 'This isn\'t about banning social media. It\'s about understanding the system well enough to use it on your terms — not the platform\'s.'
+    callout: 'This isn\'t about banning social media. It\'s about understanding the system well enough to use it on your terms — not the platform\'s.',
+    sources: [
+      { label: 'Wells, G., Horwitz, J. & Seetharaman, D. — "Facebook Knows Instagram Is Toxic for Teen Girls" (The Wall Street Journal, 14 Sep 2021, part of "The Facebook Files")', url: 'https://www.wsj.com/articles/facebook-knows-instagram-is-toxic-for-teen-girls-company-documents-show-11631620739' },
+      { label: 'US Senate Commerce Subcommittee — Frances Haugen testimony on Facebook harms (5 Oct 2021)', url: 'https://www.commerce.senate.gov/2021/10/protecting%20kids%20online:%20testimony%20from%20a%20facebook%20whistleblower' },
+      { label: 'Meta Internal Research — "Teen Mental Health Deep Dive" (2019, released 29 Sep 2021)', url: 'https://about.fb.com/wp-content/uploads/2021/09/Instagram-Teen-Annotated-Research-Deck-1.pdf' },
+      { label: 'Haidt, J. — "The Anxious Generation" (Penguin, 2024) — meta-analysis of teen mental health and social media', url: 'https://www.anxiousgeneration.com/book' }
+    ]
   },
   {
     type: 'concept',
