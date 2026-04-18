@@ -415,6 +415,142 @@ const RESOURCE_CONTENT = {
 </table>
 <div class="resource-template-section" style="margin-top:14px"><h5>Analysis: What gaps or inconsistencies do you notice?</h5><textarea class="resource-field" rows="3" placeholder="Across these policies, I notice that..."></textarea></div>
 <div class="resource-template-section"><h5>Your Recommendation</h5><textarea class="resource-field" rows="2" placeholder="If I were writing a university AI policy, I would..."></textarea></div>`,
+
+  r14: `<h4>Copyright Debate Brief</h4>
+<p>This debate asks: <strong>Should AI-generated creative works be eligible for copyright protection?</strong></p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0">
+<div style="border:2px solid #2ECC71;border-radius:10px;padding:14px">
+<h5 style="color:#2ECC71;margin:0 0 8px 0">FOR — AI works deserve copyright</h5>
+<ul style="font-size:.85rem;margin:0;padding-left:18px;line-height:1.8">
+<li>Human creativity is embedded in the training and prompting process</li>
+<li>Without protection, businesses cannot invest in AI-generated content</li>
+<li>Copyright is a tool to encourage creation — AI creation still has value</li>
+<li>Existing law already protects works where authorship is indirect</li>
+</ul>
+</div>
+<div style="border:2px solid #E74C3C;border-radius:10px;padding:14px">
+<h5 style="color:#E74C3C;margin:0 0 8px 0">AGAINST — Copyright requires a human author</h5>
+<ul style="font-size:.85rem;margin:0;padding-left:18px;line-height:1.8">
+<li>Copyright law historically requires human authorship in most jurisdictions</li>
+<li>AI cannot own rights or be held liable — so who benefits?</li>
+<li>Granting copyright could harm human creatives competing with infinite AI output</li>
+<li>Public domain benefits everyone — AI outputs should be freely available</li>
+</ul>
+</div>
+</div>
+<div style="background:rgba(99,102,241,.08);border-radius:10px;padding:14px;font-size:.85rem">
+<strong>Key Cases to Reference:</strong> Thaler v. Perlmutter (USA, 2023) — court ruled AI cannot be copyright author. DABUS patent cases (UK, EU, USA) — AI listed as inventor, rejected by courts. Chinese court (2023) — AI-generated image granted copyright to the human prompter.
+</div>
+<div class="resource-template-section" style="margin-top:12px"><h5>Your Position</h5><input class="resource-field" placeholder="I argue that... because..."></div>
+<div class="resource-template-section"><h5>Strongest Counter-argument to Address</h5><textarea class="resource-field" rows="2" placeholder="The strongest objection to my view is... I would respond by..."></textarea></div>`,
+
+  r15: `<h4>Surveillance Debate Pack</h4>
+<p>This debate asks: <strong>Should facial recognition technology be permitted in public spaces?</strong></p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0">
+<div style="border:2px solid #2ECC71;border-radius:10px;padding:14px">
+<h5 style="color:#2ECC71;margin:0 0 8px 0">FOR — Permitted with safeguards</h5>
+<ul style="font-size:.85rem;margin:0;padding-left:18px;line-height:1.8">
+<li>Proven effective in identifying suspects and finding missing persons</li>
+<li>Already used at airports, stadiums and borders with public acceptance</li>
+<li>Safeguards (warrants, audit trails, human review) can address misuse</li>
+<li>Criminals use anonymity — surveillance restores accountability</li>
+</ul>
+</div>
+<div style="border:2px solid #E74C3C;border-radius:10px;padding:14px">
+<h5 style="color:#E74C3C;margin:0 0 8px 0">AGAINST — Ban in public spaces</h5>
+<ul style="font-size:.85rem;margin:0;padding-left:18px;line-height:1.8">
+<li>High error rates for darker skin tones — proven racial bias</li>
+<li>Chilling effect on free assembly and political protest</li>
+<li>Mass data collection without consent violates GDPR and human rights</li>
+<li>Function creep — surveillance systems expand beyond original purpose</li>
+</ul>
+</div>
+</div>
+<div style="background:rgba(99,102,241,.08);border-radius:10px;padding:14px;font-size:.85rem">
+<strong>Evidence to use:</strong> NIST study (2019) found error rates up to 100x higher for Black and Asian faces. Met Police (London) — 81% false positive rate in 2019 trial. San Francisco, Portland, Boston — banned government use. China — 600M+ cameras, social credit integration.
+</div>
+<div class="resource-template-section" style="margin-top:12px"><h5>Your Opening Statement (90 seconds)</h5><textarea class="resource-field" rows="4" placeholder="Write your opening argument here..."></textarea></div>`,
+
+  r16: `<h4>Deepfake Detection Checklist</h4>
+<p>Work through this checklist when evaluating whether an image, video or audio clip may be AI-generated or manipulated.</p>
+<h5>&#128247; Images</h5>
+<ul style="line-height:2">
+<li><input type="checkbox"> <strong>Eyes:</strong> Look for unnatural reflections, asymmetry or blurring at the edges</li>
+<li><input type="checkbox"> <strong>Hair:</strong> Fine strands often blur together or disappear at the edges</li>
+<li><input type="checkbox"> <strong>Teeth:</strong> Check for unnatural uniformity or geometry</li>
+<li><input type="checkbox"> <strong>Ears & jewellery:</strong> Often asymmetric or structurally inconsistent</li>
+<li><input type="checkbox"> <strong>Background:</strong> Look for repeating patterns, warped architecture or text</li>
+<li><input type="checkbox"> <strong>Hands & fingers:</strong> Incorrect number of fingers or unnatural joint structure</li>
+<li><input type="checkbox"> <strong>Metadata:</strong> Check EXIF data — missing camera data may indicate generation</li>
+<li><input type="checkbox"> <strong>Reverse image search:</strong> Use Google Lens or TinEye to find the original</li>
+</ul>
+<h5>&#127909; Video</h5>
+<ul style="line-height:2">
+<li><input type="checkbox"> <strong>Blinking:</strong> Unnatural blink rate or partially closed eyes during speech</li>
+<li><input type="checkbox"> <strong>Lip sync:</strong> Mouth movements that don't match audio precisely</li>
+<li><input type="checkbox"> <strong>Lighting:</strong> Face lighting inconsistent with background across frames</li>
+<li><input type="checkbox"> <strong>Edges:</strong> Flickering or blurring at the hairline or around the face</li>
+</ul>
+<h5>&#127908; Audio</h5>
+<ul style="line-height:2">
+<li><input type="checkbox"> <strong>Prosody:</strong> Unnatural rhythm, stress or pausing in speech</li>
+<li><input type="checkbox"> <strong>Background:</strong> Consistent, clean audio with no room noise is suspicious</li>
+<li><input type="checkbox"> <strong>Emotional range:</strong> Cloned voices often lack natural emotional variation</li>
+</ul>
+<div class="resource-template-section" style="margin-top:12px"><h5>Verdict</h5><input class="resource-field" placeholder="My conclusion is... based on..."></div>`,
+
+  r18: `<h4>AI Environmental Impact Factsheet</h4>
+<p>The computational cost of AI is significant and growing. Here are the key facts.</p>
+<div style="display:grid;gap:10px;margin:12px 0">
+<div style="background:rgba(231,76,60,.1);border-left:4px solid #E74C3C;border-radius:0 10px 10px 0;padding:14px">
+<h5 style="margin:0 0 4px 0;color:#E74C3C">Training Costs</h5>
+<p style="font-size:.85rem;margin:0">Training GPT-3 emitted approximately <strong>552 tonnes of CO&#8322;</strong> — equivalent to 300 return flights from London to New York. Training a large language model can consume more electricity than 100 US homes use in a year.</p>
+</div>
+<div style="background:rgba(243,156,18,.1);border-left:4px solid #F39C12;border-radius:0 10px 10px 0;padding:14px">
+<h5 style="margin:0 0 4px 0;color:#F39C12">Inference Costs</h5>
+<p style="font-size:.85rem;margin:0">Every ChatGPT query uses approximately <strong>10x more energy</strong> than a Google search. With billions of daily queries, inference (running the model) now rivals training in total energy consumption.</p>
+</div>
+<div style="background:rgba(46,204,113,.1);border-left:4px solid #2ECC71;border-radius:0 10px 10px 0;padding:14px">
+<h5 style="margin:0 0 4px 0;color:#2ECC71">Water Usage</h5>
+<p style="font-size:.85rem;margin:0">Data centres use water for cooling. Microsoft reported that training GPT-4 consumed approximately <strong>700,000 litres</strong> of water — enough to fill 370 Olympic swimming pools.</p>
+</div>
+<div style="background:rgba(79,142,247,.1);border-left:4px solid #4F8EF7;border-radius:0 10px 10px 0;padding:14px">
+<h5 style="margin:0 0 4px 0;color:#4F8EF7">What Can Be Done?</h5>
+<p style="font-size:.85rem;margin:0">Smaller, specialised models. Renewable-powered data centres. Efficient inference techniques (quantisation, pruning). Being intentional about when and how we use AI.</p>
+</div>
+</div>
+<div class="resource-template-section"><h5>Reflection: Does knowing this change how you use AI?</h5><textarea class="resource-field" rows="3" placeholder="After reading this, I think... In my own use of AI I will..."></textarea></div>`,
+
+  r19: `<h4>Viva Voce Question Bank</h4>
+<p>Practise answering these questions aloud. Aim for 2–3 minutes per answer, with specific evidence from your project.</p>
+<h5 style="margin-top:16px">Project Understanding</h5>
+<ul style="line-height:2;font-size:.9rem">
+<li>Explain your project to someone who has never heard of it. What problem does it solve?</li>
+<li>Why did you choose this particular problem to address?</li>
+<li>Walk me through the most important technical decision you made. Why did you make it?</li>
+<li>What does your project do that could not be done without AI?</li>
+</ul>
+<h5 style="margin-top:16px">Ethical Reasoning</h5>
+<ul style="line-height:2;font-size:.9rem">
+<li>What is the greatest ethical risk your project poses, and how did you mitigate it?</li>
+<li>Who could be harmed by your project, even unintentionally?</li>
+<li>How did you test your project for bias or unfairness?</li>
+<li>If your project were deployed at scale, what new problems might emerge?</li>
+</ul>
+<h5 style="margin-top:16px">Reflection & Learning</h5>
+<ul style="line-height:2;font-size:.9rem">
+<li>What was the hardest part of this project, and what did you learn from it?</li>
+<li>What would you do differently if you started again?</li>
+<li>How has this project changed your view of AI?</li>
+<li>What skills have you developed that you will carry forward?</li>
+</ul>
+<h5 style="margin-top:16px">Future Thinking</h5>
+<ul style="line-height:2;font-size:.9rem">
+<li>Where could this project go next? What would version 2 look like?</li>
+<li>How might this technology develop over the next five years?</li>
+<li>What policy or regulation would you put in place around a project like yours?</li>
+</ul>
+<div class="resource-template-section" style="margin-top:12px"><h5>My Weakest Answer (practise this one)</h5><textarea class="resource-field" rows="3" placeholder="The question I find hardest is... My best answer so far is..."></textarea></div>`,
 };
 
 /* ── Lesson Slide Content ──────────────────────── */
