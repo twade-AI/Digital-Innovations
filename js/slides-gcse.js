@@ -76,8 +76,12 @@ SLIDES_GCSE[101] = [
   {
     type: 'hook',
     title: 'What Is AI?',
-    body: '3 billion people used an AI tool in 2024. But most couldn\'t explain how it actually works. Let\'s fix that — because understanding AI gives you power over it.',
-    callout: 'AI is not robots. It\'s not magic. It\'s not thinking. It\'s pattern recognition at massive scale — and once you understand that, everything else makes sense.'
+    body: 'In 2024, ChatGPT alone crossed 300 million weekly users and Google Search processed AI-generated summaries for around a billion queries a month. Most people using these tools couldn\'t explain how they actually work. Let\'s fix that — because understanding AI gives you power over it.',
+    callout: 'AI is not robots. It\'s not magic. It\'s not thinking. It\'s pattern recognition at massive scale — and once you understand that, everything else makes sense.',
+    sources: [
+      { label: 'OpenAI (Dec 2024) — 300m weekly ChatGPT users milestone', url: 'https://openai.com/index/12-days-of-openai/' },
+      { label: 'Reuters/DeepMind Ipsos (2024) — global public views on AI', url: 'https://www.ipsos.com/en/global-views-ai-2024' }
+    ]
   },
   {
     type: 'video',
@@ -118,7 +122,10 @@ SLIDES_GCSE[101] = [
       { term: 'Golden rule', def: 'Never test on training data — like marking your own homework. The score means nothing' },
       { term: 'Overfitting', def: 'When a system memorises the training examples but fails on new ones — it learned the wrong patterns' }
     ],
-    callout: 'A famous US military AI was trained to spot tanks in photos. It scored 100% on training — then failed completely on new images. The "tank" photos had all been taken on sunny days; the "no tank" photos on cloudy days. It had learned to detect sunshine, not tanks.'
+    callout: 'A widely-told cautionary tale: a US military AI was said to be trained to spot tanks, scored 100% on training data, then failed on new images. The "tank" photos had been taken on sunny days; the "no tank" on cloudy days. It had learned to detect weather, not tanks. (The specific story is partly folklore — but the phenomenon it describes, "shortcut learning", is well-documented in peer-reviewed ML research.)',
+    sources: [
+      { label: 'Geirhos et al. (2020) — Shortcut Learning in Deep Neural Networks (Nature Machine Intelligence)', url: 'https://www.nature.com/articles/s42256-020-00257-z' }
+    ]
   },
   {
     type: 'activity',
@@ -145,7 +152,10 @@ SLIDES_GCSE[101] = [
       'Circle your top 3 — the AI systems that most shape what you see, hear or do',
       'Write one sentence: what would today have looked like without those three?'
     ],
-    callout: 'Research suggests the average person now interacts with AI over 200 times a day — most without realising it. Awareness is the first step towards agency.'
+    callout: 'Counts vary by how broadly you define "AI interaction" — from a few dozen deliberate uses to several hundred when you include recommendation, autocomplete and spam filtering. What matters isn\'t the exact number; it\'s that AI decisions are shaping your day well beyond the chatbots you chose to open.',
+    sources: [
+      { label: 'Ofcom (2024) — Online Nation: UK adults\' everyday encounters with AI', url: 'https://www.ofcom.org.uk/research-and-data/online-research/online-nation' }
+    ]
   },
   {
     type: 'quiz',
@@ -387,12 +397,15 @@ SLIDES_GCSE[104] = [
   {
     type: 'concept',
     title: 'Recommendation Engines — The Hidden DJ',
-    body: 'TikTok, Spotify, Netflix, YouTube — all use AI to predict what you\'ll watch or listen to next. Every second of your attention is data.',
+    body: 'TikTok, Spotify, Netflix, YouTube — all use AI to predict what you\'ll watch or listen to next. Every second of your attention is data. A leaked TikTok internal document in 2021 confirmed the algorithm\'s four explicit goals: user value, long-term user value, creator value, platform value — in that order, measured mostly by time spent on app.',
     bullets: [
       'They optimise for engagement — keeping you watching, not for your wellbeing',
       'They don\'t know what\'s "good for you" — only what you\'ve clicked on before',
       'Over time, they build a feedback loop: you see more of what you already like',
       'Your "For You" page isn\'t for you — it\'s for keeping you on the platform'
+    ],
+    sources: [
+      { label: 'Smith, B. (NYT, Dec 2021) — How TikTok Reads Your Mind (internal doc on the ranking algorithm)', url: 'https://www.nytimes.com/2021/12/05/business/media/tiktok-algorithm.html' }
     ]
   },
   {
@@ -459,20 +472,27 @@ SLIDES_GCSE[105] = [
   {
     type: 'hook',
     title: 'Can AI Think?',
-    body: 'In 2023, an AI passed the US medical licensing exam — the test doctors take to practice medicine — with a score that would get it hired. Does that mean it can think? Does it understand medicine?',
-    callout: 'Passing a test and understanding the subject are very different things. This lesson explores what that difference actually means.'
+    body: 'In early 2023, GPT-4 scored in the top 10% on the US Uniform Bar Exam, passed the US Medical Licensing Exam, and cleared GCSE and A-level papers it had never seen. Does that mean it can think? Does it understand medicine, law or your English coursework?',
+    callout: 'Passing a test and understanding the subject are very different things. This lesson explores what that difference actually means.',
+    sources: [
+      { label: 'Katz et al. (2023) — GPT-4 Passes the Bar Exam (SSRN)', url: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4389233' },
+      { label: 'Kung et al. (2023) — Performance of ChatGPT on USMLE (PLOS Digital Health)', url: 'https://journals.plos.org/digitalhealth/article?id=10.1371/journal.pdig.0000198' }
+    ]
   },
   {
     type: 'concept',
     title: 'A Pattern-Matching Machine That Got Very Good',
-    body: 'A useful way to think about a modern chatbot: it\'s a pattern-matching machine that got extraordinarily good at predicting text. Some researchers call this a "stochastic parrot" — it produces language that sounds right because it\'s seen billions of examples of text that sounds right. It\'s not "thinking" the thoughts behind the words.',
+    body: 'A useful way to think about a modern chatbot: it\'s a pattern-matching machine that got extraordinarily good at predicting text. Researchers Bender, Gebru, McMillan-Major and Shmitchell coined the phrase "stochastic parrot" in a landmark 2021 paper — it produces language that sounds right because it\'s seen billions of examples of text that sounds right. It\'s not "thinking" the thoughts behind the words.',
     bullets: [
       'It has read more text than any human ever will — trillions of words',
       'It has noticed which words tend to follow which, in which contexts',
       'When it "answers" a question, it\'s predicting the most plausible next words',
       'That can be incredibly useful — and also completely wrong, while sounding fine'
     ],
-    callout: 'Fluent does not mean true. A parrot that has been trained for thousands of years can sound wise — but there\'s no one home behind the beak.'
+    callout: 'Fluent does not mean true. A parrot that has been trained for thousands of years can sound wise — but there\'s no one home behind the beak.',
+    sources: [
+      { label: 'Bender, Gebru, McMillan-Major & Shmitchell (2021) — On the Dangers of Stochastic Parrots (FAccT \u002721)', url: 'https://dl.acm.org/doi/10.1145/3442188.3445922' }
+    ]
   },
   {
     type: 'concept',
@@ -563,8 +583,12 @@ SLIDES_GCSE[106] = [
   {
     type: 'hook',
     title: 'AI as Your Study Partner',
-    body: 'MIT researchers found AI tutoring systems produced learning gains equivalent to a human tutor — in 30% of the time. Khan Academy\'s AI tutor "Khanmigo" provides Socratic dialogue 24/7, adapting to each student\'s level. Students who use AI tools well are outperforming those who don\'t — but not because AI does their work for them. Because it helps them understand, practise, and fill gaps faster.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">30%</span><span class="sl">of the time — AI tutoring matched human tutors in MIT study</span></div><div class="hook-stat-mini"><span class="sv">3am</span><span class="sl">AI is available when no human tutor is — patient, unlimited, judgment-free</span></div><div class="hook-stat-mini"><span class="sv">10×</span><span class="sl">you can ask the same question 10 ways until it clicks — without embarrassment</span></div><div class="hook-stat-mini"><span class="sv">0</span><span class="sl">AI can\'t sit your exam for you — the understanding must be yours</span></div></div>',
-    callout: 'Think of AI as a private tutor available at 3am who never gets impatient, never judges you, and will explain the same thing ten different ways until it clicks.'
+    body: 'A 2024 randomised trial at Harvard found students using an AI tutor learned more than twice as much in the same time compared to students in an active-learning classroom. Khan Academy\'s AI tutor "Khanmigo" is already used by hundreds of thousands of students for Socratic-style dialogue 24/7. Students who use AI tools well are pulling ahead — but not because AI does the work for them. Because it helps them understand, practise and fill gaps faster.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">2×</span><span class="sl">learning gain vs active classroom in Harvard 2024 AI-tutor trial</span></div><div class="hook-stat-mini"><span class="sv">3am</span><span class="sl">AI is available when no human tutor is — patient, unlimited, judgment-free</span></div><div class="hook-stat-mini"><span class="sv">10×</span><span class="sl">you can ask the same question 10 ways until it clicks — without embarrassment</span></div><div class="hook-stat-mini"><span class="sv">0</span><span class="sl">AI can\'t sit your exam for you — the understanding must be yours</span></div></div>',
+    callout: 'Think of AI as a private tutor available at 3am who never gets impatient, never judges you, and will explain the same thing ten different ways until it clicks.',
+    sources: [
+      { label: 'Kestin, Miller, Klales, Milbourne & Ponti (2024) — AI Tutoring Outperforms Active Learning (Harvard, SSRN preprint)', url: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4941592' },
+      { label: 'Khan Academy (2023) — Introducing Khanmigo: AI-powered tutor', url: 'https://blog.khanacademy.org/introducing-khanmigo/' }
+    ]
   },
   {
     type: 'concept',
@@ -2020,8 +2044,12 @@ SLIDES_GCSE[123] = [
   {
     type: 'hook',
     title: 'Filter Bubbles & Algorithms',
-    body: 'Two people can search the exact same thing on Google and see completely different results. Your algorithm has built you a personalised version of the internet — and you might not know how narrow it\'s become.',
-    callout: 'A filter bubble isn\'t something that happens to other people. It\'s happening to all of us — including you.'
+    body: 'Activist Eli Pariser coined "filter bubble" in 2011 after noticing his Facebook feed had quietly dropped his conservative friends without asking him. Today, Reuters Institute\'s 2024 Digital News Report found that only 22% of UK 18–24s pay for any news — the rest get it from algorithmic feeds that personalise what they see. Two people can search the exact same thing on Google and see completely different results. Your algorithm has built you a personalised version of the internet — and you might not know how narrow it\'s become.',
+    callout: 'A filter bubble isn\'t something that happens to other people. It\'s happening to all of us — including you.',
+    sources: [
+      { label: 'Pariser, E. (2011) — The Filter Bubble: TED Talk (also book, Penguin 2011)', url: 'https://www.ted.com/talks/eli_pariser_beware_online_filter_bubbles' },
+      { label: 'Reuters Institute Digital News Report (2024) — UK chapter', url: 'https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2024/uk' }
+    ]
   },
   {
     type: 'concept',
@@ -2547,8 +2575,11 @@ SLIDES_GCSE[129] = [
   {
     type: 'hook',
     title: 'AI Ethics in Action',
-    body: 'An AI correctly diagnosed a patient with a rare condition. The doctor overrode the AI\'s diagnosis based on his own clinical judgment. The patient died. Later analysis confirmed the AI was right. Who bears responsibility?',
-    callout: 'AI ethics isn\'t a philosophy exercise. It involves real decisions, real systems, and real consequences.'
+    body: 'MIT\'s "Moral Machine" asked 40 million people across 233 countries to choose who a self-driving car should save in unavoidable crashes. The answers varied wildly by culture — some protected the young, some the elderly, some pedestrians over passengers. There is no universal right answer. And yet an engineer in Mountain View has to ship a car that does <em>something</em>. That is AI ethics in action: not a philosophy debate, but a decision that somebody has to make before the product ships.',
+    callout: 'AI ethics isn\'t a philosophy exercise. It involves real decisions, real systems, and real consequences.',
+    sources: [
+      { label: 'Awad et al. (2018) — The Moral Machine experiment (Nature)', url: 'https://www.nature.com/articles/s41586-018-0637-6' }
+    ]
   },
   {
     type: 'concept',
