@@ -328,6 +328,22 @@ SLIDES_GCSE[103] = [
     reveal: '<strong>Answers:</strong> ChatGPT = Generative. TikTok &amp; Spotify = Recommendation engines. Siri/Alexa = Speech recognition + Generative (when answering). Google Photos = Computer vision (+ classifier). Gmail spam = Classifier. Many real tools stack several AI types together.'
   },
   {
+    type: 'concept',
+    title: 'Case Study — AlphaFold, the Narrow AI That Cracked Biology',
+    body: 'In 2020, DeepMind\'s AlphaFold solved a problem biologists had been stuck on for 50 years: predicting how a protein will fold from its amino acid sequence. This one narrow AI system has changed medical research more than any chatbot.',
+    bullets: [
+      { term: 'What it does', def: 'Predicts the 3D shape of a protein from its sequence — accuracy comparable to lab experiments, in hours instead of years' },
+      { term: 'The scale', def: 'By 2022 AlphaFold had predicted structures for over 200 million proteins — essentially every known protein on Earth — and made them free for researchers' },
+      { term: 'Real impact', def: 'Used to design antimalarial vaccines, map plastic-eating enzymes, accelerate antibiotic discovery, and understand neglected tropical diseases. Over 2 million researchers in 190 countries have used it.' },
+      { term: '2024 Nobel Prize', def: 'Demis Hassabis and John Jumper shared the Nobel Prize in Chemistry for AlphaFold — the first Nobel given largely for an AI system' },
+      { term: 'The lesson for you', def: 'Narrow AI is not a lesser form of AI. A system that does one thing extraordinarily well can change a field. Most real-world AI value comes from narrow, focused systems — not from chatbots aiming to do everything.' }
+    ],
+    sources: [
+      { label: 'Nobel Prize in Chemistry 2024 — press release', url: 'https://www.nobelprize.org/prizes/chemistry/2024/press-release/' },
+      { label: 'DeepMind (2022) — AlphaFold reveals the structure of the protein universe', url: 'https://deepmind.google/discover/blog/alphafold-reveals-the-structure-of-the-protein-universe/' }
+    ]
+  },
+  {
     type: 'discussion',
     title: 'Think & Discuss',
     body: 'A chess AI beats every human on earth. A language AI passes medical exams. But neither can do what the other does.',
@@ -1772,6 +1788,23 @@ SLIDES_GCSE[120] = [
       'Text B: "I deleted Instagram for three months last year. Honestly, I thought I\'d feel liberated, but mostly I just felt left out. Turns out the problem wasn\'t the app — it was that all my friends were still on it and stopped inviting me to things."'
     ],
     reveal: '<strong>Text A:</strong> very likely AI — balanced, formal, hedged, vague, no personal voice.<br><strong>Text B:</strong> very likely human — personal, specific, contradicts its own expectations, has a real point of view.'
+  },
+  {
+    type: 'concept',
+    title: 'Case Study — Four Viral AI Images You Probably Saw',
+    body: 'These are real images that fooled real people at scale. Each teaches a different lesson about what to look for.',
+    bullets: [
+      { term: 'Balenciaga Pope (Mar 2023)', def: 'An AI image of Pope Francis in a white Balenciaga puffer jacket went viral on Reddit and Twitter with 20m+ views. Most viewers believed it was real for days. Tell: fingers blurred into the coffee cup, glasses distorted at the temple, crucifix chain dissolving into fabric.' },
+      { term: 'Pentagon "explosion" (May 2023)', def: 'A fake AI image of smoke rising near the Pentagon briefly knocked the S&P 500 down 0.3% (about $500bn in market cap) before being debunked. Tell: the building architecture didn\'t match real Pentagon imagery; fence posts merged into each other.' },
+      { term: 'Trump arrest images (Mar 2023)', def: 'Eliot Higgins of Bellingcat generated photorealistic images of Donald Trump being arrested — to demonstrate Midjourney\'s capability. The images were shared as genuine by millions. Tell: extra fingers, inconsistent police badges, warped faces of officers.' },
+      { term: 'Taylor Swift deepfakes (Jan 2024)', def: 'Non-consensual explicit AI images spread to 47m views on X before the platform blocked searches for her name for 24 hours. Led to bipartisan DEFIANCE Act in the US Senate and the UK adding deepfake-creation offences to the Online Safety Act in 2024.' },
+      { term: 'The pattern', def: 'Speed of virality beats speed of correction. By the time verification catches up, the belief is already formed. This is why pre-bunking (lesson 122) matters more than debunking.' }
+    ],
+    sources: [
+      { label: 'BBC (Jan 2024) — Taylor Swift deepfakes spur US and UK legal response', url: 'https://www.bbc.co.uk/news/technology-68110476' },
+      { label: 'AP News (May 2023) — Fake Pentagon explosion image causes brief stock dip', url: 'https://apnews.com/article/pentagon-explosion-misinformation-stock-market-ai-96f534c790872fde67012ee81b5ed6a4' },
+      { label: 'UK Online Safety Act 2023 / 2024 amendments — deepfake offences', url: 'https://www.gov.uk/government/news/government-cracks-down-on-deepfakes-creation' }
+    ]
   },
   {
     type: 'scenario',
