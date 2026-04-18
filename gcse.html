@@ -171,6 +171,30 @@
     .fa-summary{margin-top:14px;padding:14px 16px;border-radius:8px;background:rgba(16,185,129,.06);border-left:3px solid #10b981;font-size:.85rem;color:var(--text);line-height:1.6;display:none}
     .fa-summary.fa-shown{display:block;animation:revealFade .25s ease-out}
     .fa-summary strong{color:#10b981}
+    /* ── Exit ticket ── */
+    .exit-ticket{margin-top:14px;padding:18px;border-radius:12px;background:linear-gradient(135deg,rgba(139,92,246,.06),rgba(16,185,129,.04));border:1.5px dashed rgba(139,92,246,.35)}
+    .exit-ticket-label{display:block;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#8b5cf6;margin-bottom:6px;font-size:.7rem}
+    .exit-ticket-prompt{font-size:.95rem;color:var(--text);line-height:1.55;margin-bottom:10px;font-weight:600}
+    .exit-ticket-input{width:100%;min-height:90px;padding:12px 14px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--font);font-size:.9rem;line-height:1.55;resize:vertical}
+    .exit-ticket-input:focus{outline:none;border-color:#8b5cf6}
+    .exit-ticket-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center}
+    .exit-ticket-status{font-size:.8rem;color:var(--text-dim);font-style:italic}
+    .exit-ticket-status.et-saved{color:#10b981;font-style:normal;font-weight:600}
+    /* ── Unit test ── */
+    .unit-test{margin-top:14px}
+    .ut-q{padding:14px 16px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);margin-bottom:12px}
+    .ut-q-title{font-weight:700;color:var(--text);font-size:.92rem;margin-bottom:10px;line-height:1.45}
+    .ut-q-title .ut-q-num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#10b981;color:#fff;font-size:.72rem;font-weight:800;margin-right:8px;vertical-align:middle}
+    .ut-options{display:flex;flex-direction:column;gap:6px}
+    .ut-option{text-align:left;padding:10px 14px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg-card,#0f1923);color:var(--text);font-size:.86rem;cursor:pointer;font-family:var(--font);line-height:1.45;transition:all .15s}
+    .ut-option:hover:not(:disabled){border-color:#10b981}
+    .ut-option.ut-correct{border-color:#10b981;background:rgba(16,185,129,.1);color:var(--text)}
+    .ut-option.ut-wrong{border-color:#ef4444;background:rgba(239,68,68,.06);opacity:.7}
+    .ut-option:disabled{cursor:default}
+    .ut-explain{margin-top:8px;padding:10px 12px;border-radius:6px;background:rgba(16,185,129,.06);border-left:3px solid #10b981;font-size:.8rem;color:var(--text-muted);line-height:1.5;display:none}
+    .ut-explain.ut-shown{display:block}
+    .ut-score{margin-top:14px;padding:14px 16px;border-radius:8px;background:rgba(16,185,129,.08);border-left:3px solid #10b981;font-size:.9rem;color:var(--text);font-weight:600;display:none}
+    .ut-score.ut-final{display:block}
     @media print{
       *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
       body{background:#fff !important}
@@ -579,6 +603,39 @@
   function gsFaToggle(btn){
     btn.classList.toggle('fa-on');
   }
+  function gsExitSave(key){
+    var el=document.getElementById('gsExitInput'); if(!el)return;
+    var v=(el.value||'').trim();
+    try{ if(v)localStorage.setItem(key,v); else localStorage.removeItem(key); }catch(e){}
+    var s=document.getElementById('gsExitStatus');
+    if(s){ s.textContent=v?'✓ Saved — you can edit and save again':'Cleared'; s.classList.toggle('et-saved',!!v); }
+  }
+  function gsUtAnswer(btn, qi, oi, correct){
+    var q=btn.closest('.ut-q'); if(!q||q.dataset.answered==='1')return;
+    q.dataset.answered='1';
+    Array.prototype.forEach.call(q.querySelectorAll('.ut-option'),function(b){
+      b.disabled=true;
+      var j=parseInt(b.getAttribute('data-oi'),10);
+      if(j===correct)b.classList.add('ut-correct');
+      else if(j===oi)b.classList.add('ut-wrong');
+    });
+    var ex=document.getElementById('gsUtEx_'+qi); if(ex)ex.classList.add('ut-shown');
+    var test=btn.closest('.unit-test'); if(!test)return;
+    var total=parseInt(test.dataset.total,10)||0;
+    var got=parseInt(test.dataset.got,10)||0;
+    if(oi===correct)got+=1;
+    test.dataset.got=got;
+    var answered=test.querySelectorAll('.ut-q[data-answered="1"]').length;
+    if(answered===total){
+      var score=document.getElementById('gsUtScore');
+      if(score){
+        var pct=Math.round((got/total)*100);
+        var msg=pct>=80?'Strong recall — you\'ve locked in the core ideas of this unit.':pct>=60?'Solid grasp — a second pass on the slides you hesitated on will push this higher.':'Worth going back through this unit\'s summary slides before moving on — the concepts build on each other.';
+        score.textContent='Score: '+got+' / '+total+' ('+pct+'%) — '+msg;
+        score.classList.add('ut-final');
+      }
+    }
+  }
   function gsFaSummarise(){
     var on=document.querySelectorAll('.fa-item.fa-on').length;
     var total=document.querySelectorAll('.fa-item').length;
@@ -605,6 +662,20 @@
     }
     if (type==='widget') {
       return '<div class="slide-activity"><span class="slide-badge badge-activity">Interactive</span><div class="slide-title">'+(slide.title||'Interactive')+'</div>'+(slide.intro?'<div class="slide-body">'+slide.intro+'</div>':'')+gsWidgetHTML(slide)+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
+    }
+    if (type==='exit-ticket') {
+      var key='di_gcse_exit_'+gsCurrentId;
+      var saved='';
+      try{saved=localStorage.getItem(key)||'';}catch(e){}
+      return '<div class="slide-activity"><span class="slide-badge badge-activity">Exit Ticket</span><div class="slide-title">'+(slide.title||'Before you go…')+'</div>'+(slide.body?'<div class="slide-body">'+slide.body+'</div>':'')+'<div class="exit-ticket"><span class="exit-ticket-label">One-sentence commitment</span><div class="exit-ticket-prompt">'+(slide.prompt||'What is one thing you will do differently after this lesson?')+'</div><textarea class="exit-ticket-input" id="gsExitInput" placeholder="Write your commitment here…">'+gsEscape(saved)+'</textarea><div class="exit-ticket-actions"><button class="widget-btn widget-btn-primary" onclick="gsExitSave(\''+key+'\')">Save for later</button><span class="exit-ticket-status'+(saved?' et-saved':'')+'" id="gsExitStatus">'+(saved?'✓ Saved — you can edit and save again':'Saves to this device only')+'</span></div></div>'+sources+'</div>';
+    }
+    if (type==='unit-test') {
+      var qs=(slide.questions||[]).map(function(q,i){
+        var opts=(q.options||[]).map(function(o,j){ return '<button class="ut-option" data-qi="'+i+'" data-oi="'+j+'" onclick="gsUtAnswer(this,'+i+','+j+','+q.correct+')">'+gsEscape(o)+'</button>'; }).join('');
+        return '<div class="ut-q"><div class="ut-q-title"><span class="ut-q-num">'+(i+1)+'</span>'+gsEscape(q.q||q.question||'')+'</div><div class="ut-options">'+opts+'</div><div class="ut-explain" id="gsUtEx_'+i+'">'+gsEscape(q.explanation||'')+'</div></div>';
+      }).join('');
+      var total=(slide.questions||[]).length;
+      return '<div class="slide-quiz"><span class="slide-badge badge-quiz">Unit Check</span><div class="slide-title">'+(slide.title||'Unit Recap')+'</div>'+(slide.body?'<div class="slide-body">'+slide.body+'</div>':'')+'<div class="unit-test" data-total="'+total+'" data-got="0">'+qs+'<div class="ut-score" id="gsUtScore"></div></div>'+sources+'</div>';
     }
     if (type==='hook') return '<div class="slide-hook"><span class="slide-badge badge-hook">Hook</span><div class="slide-title">'+(slide.title||'')+'</div><div class="slide-body">'+(slide.body||'')+'</div>'+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
     if (type==='concept') {

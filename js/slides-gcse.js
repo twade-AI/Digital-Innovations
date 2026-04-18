@@ -473,6 +473,22 @@ SLIDES_GCSE[105] = [
       { icon: '🔮', label: 'Sophisticated prediction', text: 'AI mimics the outputs of intelligence without the process' },
       { icon: '⚖️', label: 'This distinction matters', text: 'for how we design, trust, and regulate AI systems' }
     ]
+  },
+  {
+    type: 'unit-test',
+    title: 'Unit 1 Recap',
+    body: 'Three questions covering the core ideas of Unit 1. Choose an answer to see the explanation.',
+    questions: [
+      { q: 'Which phrase best describes what a modern AI system does?', options: ['Thinks the way a human does', 'Follows explicit rules written by programmers', 'Recognises patterns in large amounts of data and predicts the next most likely answer', 'Stores a copy of the entire internet and looks things up'], correct: 2, explanation: 'AI learns from data rather than explicit rules, and its core operation is statistical prediction — not understanding.' },
+      { q: 'A spam filter that you show 100,000 labelled emails, so it works out the patterns itself, is an example of…', options: ['Traditional rule-based software', 'Machine learning', 'Artificial general intelligence', 'A search engine'], correct: 1, explanation: 'The defining move of machine learning is that the system learns rules from labelled examples rather than being programmed with them.' },
+      { q: 'Why is passing a test not the same as understanding the subject, for an AI?', options: ['Because the AI cheats', 'Because tests are too easy', 'Because the AI produces correct-looking outputs via pattern matching — without any inner experience or comprehension', 'Because AIs are only good at science subjects'], correct: 2, explanation: 'This is the Unit 1 takeaway: performance and understanding can come apart. AI mimics the outputs of intelligence without the process.' }
+    ]
+  },
+  {
+    type: 'exit-ticket',
+    title: 'Unit 1 Exit Ticket',
+    prompt: 'In one sentence — what is the single most surprising thing you now know about how AI actually works?',
+    body: 'Your answer saves to this device only. You can come back and edit it any time.'
   }
 ];
 
@@ -1010,6 +1026,22 @@ SLIDES_GCSE[112] = [
       { icon: '🛠️', label: 'A complete toolkit', text: 'explain, quiz, feedback, summarise — four powerful uses' },
       { icon: '🧑‍🎓', label: 'You are the learner', text: 'AI is the tool. That distinction matters.' }
     ]
+  },
+  {
+    type: 'unit-test',
+    title: 'Unit 2 Recap',
+    body: 'Three questions covering the core ideas of AI for study and revision.',
+    questions: [
+      { q: 'Which sequence describes the healthy AI study cycle?', options: ['Ask AI → copy the answer → submit it', 'Try first → ask AI for feedback or explanation → consolidate what you learn', 'Memorise AI output → repeat back in exam', 'Use AI for every question regardless of difficulty'], correct: 1, explanation: 'Effort before assistance. AI should improve your own attempt, not replace it.' },
+      { q: 'An AI confidently tells you: "Oxford\'s 2022 study by Dr Mitchell found 73% of students improved focus with study apps." What should you do before quoting it?', options: ['Cite it — the specifics make it credible', 'Assume Oxford is reliable and move on', 'Independently verify — specific-sounding citations are the single most common hallucination type', 'Change the percentage to something rounder'], correct: 2, explanation: 'Specific names, universities, years and percentages are exactly what AI fabricates most convincingly. Always verify before quoting.' },
+      { q: 'Which task is LEAST appropriate to offload to an AI during GCSE revision?', options: ['Generating practice questions on a topic you\'ve already studied', 'Explaining a concept in simpler terms after you\'ve attempted to understand it yourself', 'Writing a whole essay that you will submit as your own', 'Giving feedback on an essay plan you\'ve drafted'], correct: 2, explanation: 'Two reasons: it\'s plagiarism, and — more importantly — you don\'t learn anything. AI should accelerate learning, not bypass it.' }
+    ]
+  },
+  {
+    type: 'exit-ticket',
+    title: 'Unit 2 Exit Ticket',
+    prompt: 'Describe, in one sentence, the AI study habit you will keep — and the one you will deliberately stop.',
+    body: 'Saved to this device only. Come back and edit it any time.'
   }
 ];
 
@@ -1473,6 +1505,22 @@ SLIDES_GCSE[118] = [
       { icon: '🔄', label: 'Always iterate', text: 'rarely get the best result first time' },
       { icon: '💼', label: 'This is a professional skill', text: 'increasingly valued across every industry' }
     ]
+  },
+  {
+    type: 'unit-test',
+    title: 'Unit 3 Recap',
+    body: 'Three questions covering prompting, evaluation and creativity.',
+    questions: [
+      { q: 'Which five levers make up the anatomy of a strong prompt?', options: ['Length, formality, speed, topic, audience', 'Role / Task / Context / Format / Constraint', 'Question, fact, example, image, reference', 'Input, output, model, prompt, reply'], correct: 1, explanation: 'Role, Task, Context, Format, Constraint — the five levers taught in L113. You don\'t need all five every time, but the more precise you are, the less room for unhelpful guesses.' },
+      { q: 'Why did Wharton\'s 2023 "jagged frontier" study find that some AI users produced WORSE work than people with no AI at all?', options: ['The AI was broken', 'They accepted the first draft without iteration', 'They used the wrong model', 'They typed too fast'], correct: 1, explanation: 'Dell\'Acqua et al. found that zero-iteration AI use degraded output. The benefit only appeared with 3+ deliberate iterations.' },
+      { q: 'Under current UK and US law, who owns the copyright on a purely AI-generated image?', options: ['The person who wrote the prompt', 'The AI company that made the model', 'Nobody — purely AI-generated images are generally not protected by copyright (per US Copyright Office guidance)', 'The first person to publish it online'], correct: 2, explanation: 'The US Copyright Office\'s March 2023 guidance and subsequent decisions are clear: human authorship is required. Minor prompt selection alone does not qualify.' }
+    ]
+  },
+  {
+    type: 'exit-ticket',
+    title: 'Unit 3 Exit Ticket',
+    prompt: 'Write one PTFC-structured prompt you plan to use this week for an actual task. Include all four parts.',
+    body: 'Saved to this device only. Come back and edit it any time.'
   }
 ];
 
@@ -1860,6 +1908,22 @@ SLIDES_GCSE[123] = [
       { icon: '🌍', label: 'Actively seek out what the algorithm hides', text: 'follow diverse sources deliberately' },
       { icon: '💡', label: 'Awareness changes behaviour', text: 'knowing the algorithm exists gives you more control over it' }
     ]
+  },
+  {
+    type: 'unit-test',
+    title: 'Unit 4 Recap',
+    body: 'Three questions on deepfakes, misinformation and the algorithm.',
+    questions: [
+      { q: 'Why does false news spread measurably faster than true news on social media (Vosoughi et al., Science 2018)?', options: ['Because it is written by bots', 'Because humans share novel, emotionally charged stories faster than mundane true ones — the algorithm then amplifies that', 'Because platforms translate it into more languages', 'Because it gets more editorial promotion'], correct: 1, explanation: 'The MIT study found human behaviour — not bots — was the main driver, because novelty and strong emotion trigger more sharing.' },
+      { q: 'In 2024, a finance worker in Hong Kong transferred £20M after a video call with the "CFO". What actually happened?', options: ['Normal fraud — no AI involved', 'The entire video call was a deepfake: every "colleague" on the call was AI-generated', 'The CFO really ordered it but blamed AI', 'The money was never actually moved'], correct: 1, explanation: 'The victim believed they were on a call with multiple real colleagues. Every other participant was a real-time deepfake (CNN, Feb 2024).' },
+      { q: 'Which is the most effective personal defence against recommendation-algorithm drift?', options: ['Only use private browsing', 'Delete all apps', 'Deliberately and repeatedly tell the platform what you don\'t want (mute, not-interested, unfollow) and diversify what you do follow', 'Trust the default feed'], correct: 2, explanation: 'The algorithm responds to signals. Passive use lets it drift toward whatever keeps most users watching — typically outrage and insecurity. Active signals pull it back.' }
+    ]
+  },
+  {
+    type: 'exit-ticket',
+    title: 'Unit 4 Exit Ticket',
+    prompt: 'Name one specific behaviour change you will make to the way you interact with social media or AI-generated content this week.',
+    body: 'Saved to this device only. Come back and edit it any time.'
   }
 ];
 
@@ -2317,6 +2381,22 @@ SLIDES_GCSE[129] = [
       { icon: '🔭', label: 'Different frameworks give different answers', text: 'consequentialism, rights-based, fairness, dignity — all matter' },
       { icon: '🧑‍💼', label: 'Human oversight matters', text: 'especially for high-stakes, irreversible decisions — but oversight means genuinely engaging, not rubber-stamping' }
     ]
+  },
+  {
+    type: 'unit-test',
+    title: 'Unit 5 Recap',
+    body: 'Three questions on society and ethics.',
+    questions: [
+      { q: 'Why did the Robert Williams wrongful-arrest case (Detroit, 2020) happen?', options: ['The facial-recognition system was hacked', 'The police ignored the AI\'s warning', 'The AI was trained on data that made it significantly less accurate for dark-skinned faces, and officers treated its match as evidence', 'The CCTV footage was fake'], correct: 2, explanation: 'NIST\'s 2019 study (NISTIR 8280) found demographic error gaps of up to 100× across commercial systems. The AI wasn\'t broken — it worked as designed on biased data, and humans over-trusted it.' },
+      { q: 'In 2024 the EU\'s AI Act became the first comprehensive AI law in the world. What is its core design?', options: ['Ban all AI', 'Risk-tiered rules: the higher the risk of the use-case, the stricter the obligations', 'Tax every AI query', 'Require every AI company to be based in the EU'], correct: 1, explanation: 'The Act creates four risk tiers (unacceptable / high / limited / minimal) with proportionate obligations. Extraterritorial reach means non-EU providers are covered when their systems touch EU users.' },
+      { q: 'Who bears responsibility when an AI system causes harm?', options: ['Only the AI', 'Only the user', 'The humans and organisations who design, deploy, and use the system — responsibility doesn\'t disappear because software is involved', 'Nobody'], correct: 2, explanation: 'A unit-5 takeaway: accountability follows the decisions humans make about what to build, deploy, and trust. "The AI did it" is never a complete explanation.' }
+    ]
+  },
+  {
+    type: 'exit-ticket',
+    title: 'Unit 5 Exit Ticket',
+    prompt: 'Of the ethical issues in this unit — bias, privacy, jobs, regulation — which one will you pay attention to over the next year, and why?',
+    body: 'Saved to this device only. Come back and edit it any time.'
   }
 ];
 
@@ -2614,5 +2694,23 @@ SLIDES_GCSE[133] = [
       { icon: '💡', label: 'Your skills and judgment matter more', text: 'not less, in an AI world' },
       { icon: '🌟', label: 'Stay curious, stay sceptical, keep learning', text: 'the best possible approach to an uncertain future' }
     ]
+  },
+  {
+    type: 'unit-test',
+    title: 'Capstone Check — The Whole Course',
+    body: 'Five questions drawing across all six units. No pressure — this is about recalling what stuck, not passing a gate.',
+    questions: [
+      { q: 'In one phrase, what is modern AI actually doing when it answers you?', options: ['Thinking, like a person', 'Pattern-matching on training data to predict the next most likely answer', 'Looking things up in a database', 'Following rules a programmer wrote'], correct: 1, explanation: 'Prediction, not understanding. This is the Unit 1 foundation that makes everything else make sense — including why AI hallucinates.' },
+      { q: 'Which habit does the Wharton 2023 "jagged frontier" study say turns AI users into the WORST-performing group?', options: ['Asking AI too often', 'Accepting the first draft without iterating', 'Using multiple AI tools at once', 'Writing long prompts'], correct: 1, explanation: 'Dell\'Acqua et al. found zero-iteration AI use produced worse output than no AI at all. Deliberate iteration is what unlocks the upside.' },
+      { q: 'You see a news clip of a politician saying something explosive. What is the single highest-leverage thing to do before sharing?', options: ['Re-post — speed matters', 'Stop, check original source, lateral-read for corroboration (SIFT)', 'Trust your gut', 'Ignore it'], correct: 1, explanation: 'SIFT — Stop, Investigate, Find, Trace. The Hong Kong £20M deepfake fraud and the Slovakia election audio show why synthetic media now warrants this habit by default.' },
+      { q: 'Who is responsible when an AI system causes real-world harm?', options: ['Just the AI', 'Just the end user', 'The humans and organisations who design, deploy and rely on the system', 'Nobody — "the AI did it"'], correct: 2, explanation: 'Accountability follows decisions humans make about what to build, deploy, and trust. This is the moral backbone of the course.' },
+      { q: 'Which of these best captures the course\'s "right relationship" between you and AI?', options: ['Trust everything AI says — it\'s smarter than you', 'Reject AI entirely — it\'s dangerous', 'Use AI as a tool while maintaining your own ability to evaluate, question, and think', 'Only use AI for homework'], correct: 2, explanation: 'AI is a powerful tool — not an authority. Thoughtful, critical engagement is the skill you\'ve been building for 33 lessons.' }
+    ]
+  },
+  {
+    type: 'exit-ticket',
+    title: 'Final Commitment',
+    prompt: 'After 33 lessons — write the one sentence you most want your future self (in one year\'s time) to read back about how you will engage with AI.',
+    body: 'This saves to your device. Come back and re-read it. See if you\'ve kept your word.'
   }
 ];
