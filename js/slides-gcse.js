@@ -1900,6 +1900,18 @@ SLIDES_GCSE[125] = [
     ]
   },
   {
+    type: 'concept',
+    title: 'The Hidden Workers Behind "AI"',
+    body: 'The word "AI" suggests a machine working alone. The reality: millions of low-paid workers label data, filter toxic content, and rate model outputs — often in countries where wages are lowest.',
+    bullets: [
+      { term: 'Kenyan RLHF workers', def: 'In 2023, Time magazine revealed OpenAI paid Kenyan workers around $1.32 per hour to read disturbing content and label it — to make ChatGPT safer for users elsewhere.' },
+      { term: 'Content moderation', def: 'Workers in the Philippines, Kenya and India view graphic content daily to keep AI outputs "clean" for Western users — often without adequate mental health support.' },
+      { term: 'Data labelling', def: 'Training a self-driving car involves millions of images labelled by humans. Those humans are rarely the ones buying Teslas.' },
+      { term: 'Why it matters', def: 'Bias doesn\'t only enter through datasets. Who labels the data, under what conditions, shapes what the AI treats as "normal" and "acceptable".' }
+    ],
+    callout: 'AI looks automated to the user. Behind it is a global labour force doing repetitive, sometimes traumatic work for low wages — a hidden cost that rarely appears in the glossy product demos.'
+  },
+  {
     type: 'scenario',
     title: 'The CV Screening System',
     situation: 'A large employer uses an AI tool to screen CVs before any human reads them. The AI was trained on 10 years of successful hires. During that period, almost all senior appointments were male and came from three specific universities. An internal audit reveals the AI now ranks women applicants 14% lower than men with identical qualifications. You\'re a junior member of the HR team and have just discovered this.',
@@ -1963,6 +1975,18 @@ SLIDES_GCSE[126] = [
       { term: 'AI literacy', def: 'Understanding what AI can and can\'t do is increasingly valuable in every field' },
       { term: 'Adaptability', def: 'The ability to keep learning as tools and industries change' }
     ]
+  },
+  {
+    type: 'concept',
+    title: 'The "Centaur" Finding',
+    body: 'When chess players started using AI assistants, something surprising happened. Pure AI beat pure humans. But humans working *with* AI — "centaurs" — beat pure AI. The same pattern is now showing up in medicine, law and coding.',
+    bullets: [
+      { term: 'Human + AI > AI alone', def: 'The best outcomes come from humans directing, questioning and overriding AI — not replacing humans entirely' },
+      { term: 'Klarna reversed course', def: 'In 2023 Klarna replaced 700 customer service agents with AI. By 2025 they announced rehiring humans after customer satisfaction scores dropped.' },
+      { term: 'Radiologists still have jobs', def: 'In 2016 a famous AI researcher predicted radiologists would be replaced in 5 years. Radiology job postings are now at record highs — the AI does the first scan, the human interprets.' },
+      { term: 'The implication', def: 'The career question isn\'t "will AI do my job?" — it\'s "can I become the human who works best with AI in my field?"' }
+    ],
+    callout: 'Pure AI and pure humans both lose to humans + AI working together. The durable skill is collaboration, not delegation or defiance.'
   },
   {
     type: 'discussion',
@@ -2340,7 +2364,8 @@ SLIDES_GCSE[132] = [
       { term: 'Interpersonal skills', def: 'Trust-building, empathy, negotiation, leadership, care' },
       { term: 'Physical trades', def: 'Plumbers, electricians, care workers — AI can\'t unblock a drain or hold someone\'s hand' },
       { term: 'AI literacy itself', def: 'People who understand AI are increasingly needed to design, audit, and challenge it' }
-    ]
+    ],
+    callout: 'Predictions about automation are often wrong. In 2016 a leading researcher said radiologists would be obsolete by 2021 — radiology job postings are now at record highs. In 2023 Klarna replaced 700 agents with AI; in 2025 they started rehiring. Be sceptical of confident automation predictions.'
   },
   {
     type: 'concept',
@@ -2410,13 +2435,24 @@ SLIDES_GCSE[133] = [
   {
     type: 'activity',
     title: 'Write Your Personal AI Manifesto',
-    task: 'In the notes box, write 3 personal principles for how you\'ll engage with AI. Make them real and specific — not generic aspirations.',
+    task: 'In the notes box, write 5 personal principles for how you\'ll engage with AI. Make them real and specific — not generic aspirations. Think about what has genuinely changed in how you see this technology.',
     steps: [
-      'Principle 1: How I\'ll use AI for learning — and what I won\'t use it for',
-      'Principle 2: How I\'ll protect my critical thinking and privacy online',
-      'Principle 3: One concrete thing I\'ll do differently based on what I\'ve learned'
+      'Principle 1 — Learning: when AI helps my thinking and when I will deliberately work without it',
+      'Principle 2 — Verification: my personal habit for checking AI claims before I use them',
+      'Principle 3 — Creativity: what I will and won\'t delegate to AI in creative work',
+      'Principle 4 — Privacy: one specific app permission or account setting I\'ll change this week',
+      'Principle 5 — Influence: one piece of advice I\'ll give to a younger student about AI'
     ],
-    callout: 'There are no right answers — only yours. The best manifestos are specific and honest, not vague and aspirational.'
+    callout: 'There are no right answers — only yours. The best manifestos are specific and honest, not vague and aspirational. Keep this document — review it in six months and see how your thinking has changed.'
+  },
+  {
+    type: 'discussion',
+    title: 'The Conversations Ahead',
+    questions: [
+      { num: 1, text: 'Of everything you\'ve learned in this course, which one topic do you want your family to understand better — and how would you explain it to them over dinner?' },
+      { num: 2, text: 'Looking back at the Robert Williams case, the Slovakia deepfake, the Hong Kong £20M fraud, the Kenyan RLHF workers on $1.32/hour — which story has stuck with you most, and why?' },
+      { num: 3, text: 'If you could change one thing about how AI is currently being developed or deployed — globally, nationally, or in your own school — what would it be?' }
+    ]
   },
   {
     type: 'concept',
