@@ -179,6 +179,14 @@ SLIDES_GCSE[102] = [
     callout: 'This is the most important thing to understand about AI: confident output does not mean correct output.'
   },
   {
+    type: 'video',
+    title: 'But what is a GPT? A visual intro to transformers',
+    videoId: 'wjZofJX0v4M',
+    credit: '3Blue1Brown · Deep Learning Series, Chapter 5 · 27 min',
+    intro: 'Grant Sanderson unpacks what actually happens inside a chatbot. Watch the first 7 minutes minimum — that covers tokens and next-word prediction, which is the single most important mental model for this whole course. You don\'t need to follow every animation; the goal is to see that it\'s maths, not magic.',
+    callout: 'If you only remember one thing: a chatbot is autocomplete trained on almost everything humans have ever written — not a thinker, not a search engine, not a friend.'
+  },
+  {
     type: 'concept',
     title: 'Tokens and Prediction',
     body: 'Your text is broken into chunks called tokens (roughly word-sized pieces). The model then predicts the most likely next token, over and over, until the response is complete.',
@@ -224,6 +232,34 @@ SLIDES_GCSE[102] = [
     callout: 'Think of a chatbot as the world\'s most sophisticated autocomplete. Impressive — but not a source of truth.'
   },
   {
+    type: 'activity',
+    title: 'Test It Yourself — Break a Chatbot in 5 Minutes',
+    task: 'Pick any chatbot (ChatGPT, Claude, Gemini, Copilot — whichever you have access to) and run these three tests. Record what happens in the notes box.',
+    steps: [
+      'Letter-counting: "How many t\'s are in the sentence: The quick brown fox jumps over the lazy dog?"',
+      'Maths with a twist: "What is 23 × 47? Show the steps." Then check with a calculator.',
+      'Recent news: "Who won the most recent FIFA World Cup?" — then compare to the real answer',
+      'Made-up reference: "Summarise the key findings of Patel et al. (2023) on teenage sleep patterns." (This paper may not exist — watch what happens.)',
+      'For each test, note: did it answer confidently? Was it right? What does that tell you about when to trust it?'
+    ],
+    reveal: '<strong>What you\'ll usually see:</strong> Task 1 — often wrong (tokens, not letters). Task 2 — sometimes wrong in the middle step but with a confident final answer. Task 3 — depends on knowledge cut-off; may give an out-of-date winner. Task 4 — many chatbots will fabricate a convincing summary of a paper that doesn\'t exist. This is hallucination in action. The pattern to notice: fluent, confident, and wrong.'
+  },
+  {
+    type: 'concept',
+    title: 'Why Hallucinations Happen',
+    body: 'The model\'s job is to produce the most likely next token — not the most truthful one. When it has no reliable pattern to draw on, it still has to produce something, so it produces something plausible-sounding. That is a hallucination.',
+    bullets: [
+      { term: 'No "I don\'t know" default', def: 'The system is always predicting the next token — silence is not an option unless it\'s been explicitly trained to say so' },
+      { term: 'Plausibility ≠ truth', def: 'The output that sounds most like its training data wins, whether or not it matches reality' },
+      { term: 'Edges of knowledge', def: 'Hallucinations spike at the edges — recent events, niche topics, specific people, exact numbers' },
+      { term: 'The fix', def: 'Verify anything that matters. Treat AI like a very fast, very confident intern — useful, but you sign off the work' }
+    ],
+    callout: 'A Stanford 2024 study of legal AI tools found hallucination rates of 17–33% even on legal-specific models. If specialists get this wrong one time in five, a general chatbot on a random question is not safer.',
+    sources: [
+      { label: 'Stanford HAI (2024) — Hallucination-Free? Legal AI benchmarks', url: 'https://hai.stanford.edu/news/ai-legal-research-tools-matter-hallucinations' }
+    ]
+  },
+  {
     type: 'quiz',
     question: 'A chatbot tells you that London is the capital of Australia. What\'s the most likely reason?',
     options: [
@@ -240,7 +276,9 @@ SLIDES_GCSE[102] = [
     title: 'What You\'ve Learned',
     points: [
       { icon: '🔮', label: 'Prediction, not thinking', text: 'chatbots predict the next word/token, over and over' },
+      { icon: '🔤', label: 'Tokens, not letters', text: 'the AI sees chunks and numbers — never individual characters' },
       { icon: '⚠️', label: 'Confident ≠ correct', text: 'always verify important facts from AI responses' },
+      { icon: '🎭', label: 'Hallucinations are structural', text: 'a chatbot with nothing to say will still say something plausible' },
       { icon: '📅', label: 'Knowledge cut-off', text: 'recent events may be wrong or missing' },
       { icon: '🌐', label: 'Training data shapes output', text: 'biases in the internet end up in the model' }
     ]
