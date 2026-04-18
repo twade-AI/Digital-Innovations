@@ -118,6 +118,11 @@
     .slide-sources li::before{content:'↪';position:absolute;left:0;color:#10b981;opacity:.6}
     .slide-sources a{color:#10b981;text-decoration:none}
     .slide-sources a:hover{text-decoration:underline}
+    .slide-video{margin-top:10px}
+    .slide-video-intro{margin:0 0 14px;line-height:1.55;color:var(--text-muted,#475569)}
+    .slide-video-frame{position:relative;width:100%;padding-top:56.25%;border-radius:10px;overflow:hidden;background:#000;border:1px solid var(--border);box-shadow:0 6px 24px rgba(0,0,0,.15)}
+    .slide-video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+    .slide-video-credit{margin-top:10px;font-size:.78rem;color:var(--text-dim);font-style:italic}
     @media print{
       *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
       body{background:#fff !important}
@@ -441,6 +446,12 @@
     var type = slide.type || 'concept';
     var reveal = gsRevealHTML(slide);
     var sources = gsSourcesHTML(slide);
+    if (type==='video') {
+      var vid=(slide.videoId||'').replace(/[^A-Za-z0-9_-]/g,'');
+      var src='https://www.youtube-nocookie.com/embed/'+vid+'?rel=0&modestbranding=1';
+      var frame=vid?'<div class="slide-video-frame"><iframe src="'+src+'" title="'+(slide.title||'Video').replace(/"/g,'&quot;')+'" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>':'';
+      return '<div class="slide-concept slide-video"><span class="slide-badge badge-concept">Video</span><div class="slide-title">'+(slide.title||'')+'</div>'+(slide.intro?'<div class="slide-body slide-video-intro">'+slide.intro+'</div>':'')+frame+(slide.credit?'<div class="slide-video-credit">'+slide.credit+'</div>':'')+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
+    }
     if (type==='hook') return '<div class="slide-hook"><span class="slide-badge badge-hook">Hook</span><div class="slide-title">'+(slide.title||'')+'</div><div class="slide-body">'+(slide.body||'')+'</div>'+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
     if (type==='concept') {
       var bHtml='';

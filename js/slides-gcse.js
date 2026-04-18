@@ -80,6 +80,14 @@ SLIDES_GCSE[101] = [
     callout: 'AI is not robots. It\'s not magic. It\'s not thinking. It\'s pattern recognition at massive scale — and once you understand that, everything else makes sense.'
   },
   {
+    type: 'video',
+    title: 'But what is a neural network?',
+    videoId: 'aircAruvnKk',
+    credit: '3Blue1Brown · Deep Learning Series, Chapter 1 · 19 min',
+    intro: 'Grant Sanderson\'s beautifully animated explainer shows how a neural network learns to recognise handwritten digits. Focus on two things as you watch: (1) what "learning" actually means — adjusting weights to reduce error; and (2) how the network builds up its own internal "features" layer by layer. You don\'t need the maths. The pictures do the work.',
+    callout: 'You can pause any time. Watch the first 6 minutes if you\'re short on time — that covers the core idea.'
+  },
+  {
     type: 'concept',
     title: 'What AI Really Is',
     body: 'AI learns from data rather than from explicit rules written by programmers. It finds patterns in enormous amounts of text, images and numbers — then uses those patterns to make predictions.',
@@ -1918,6 +1926,13 @@ SLIDES_GCSE[125] = [
     ]
   },
   {
+    type: 'video',
+    title: 'How I\'m Fighting Bias in Algorithms',
+    videoId: 'UG_X_7g63rY',
+    credit: 'Joy Buolamwini · TEDxBeaconStreet · 8 min',
+    intro: 'MIT researcher Joy Buolamwini discovered that facial recognition software couldn\'t detect her dark-skinned face — but could detect a white mask she held in front of it. This 8-minute talk introduces the "coded gaze" and launched the Algorithmic Justice League. As you watch, note the specific biases she identifies and the changes she demands from the industry.'
+  },
+  {
     type: 'concept',
     title: 'How Bias Gets Into AI Systems',
     bullets: [
@@ -2002,6 +2017,13 @@ SLIDES_GCSE[126] = [
       { label: 'Goldman Sachs — The Potentially Large Effects of AI on Economic Growth (Hatzius et al., March 2023)', url: 'https://www.gspublishing.com/content/research/en/reports/2023/03/27/d64e052b-0f6e-45d7-967b-d7be35fabd16.html' },
       { label: 'World Economic Forum — Future of Jobs Report 2025', url: 'https://www.weforum.org/publications/the-future-of-jobs-report-2025/' }
     ]
+  },
+  {
+    type: 'video',
+    title: 'The Rise of the Machines — Why Automation Is Different This Time',
+    videoId: 'WSKi8HfcxEk',
+    credit: 'Kurzgesagt – In a Nutshell · 2017 · 12 min',
+    intro: 'Why might this wave of automation be different from every previous one? Kurzgesagt argues that for the first time, machines are developing "cognitive muscles" — threatening not just physical labour but intellectual work too. Watch for the distinction between mechanical and cognitive automation, and ask: which parts of your future career are on which side of that line?'
   },
   {
     type: 'concept',
@@ -2419,6 +2441,16 @@ SLIDES_GCSE[132] = [
     title: 'Careers in an AI World',
     body: 'The most in-demand job of 2030 probably doesn\'t have a name yet. But the people who\'ll get it are building specific skills right now — and most of those skills have nothing to do with coding.',
     callout: 'The goal isn\'t to predict the future. It\'s to build skills resilient enough to be valuable whatever that future looks like.'
+  },
+  {
+    type: 'video',
+    title: 'Humans Need Not Apply',
+    videoId: '7Pq-S557XQU',
+    credit: 'CGP Grey · 2014 · 15 min',
+    intro: 'Made in 2014 — before ChatGPT existed — this landmark video argued that automation would eliminate not just factory jobs but creative and white-collar ones too, using the analogy of how the car made the horse economically obsolete. Watch it critically: which predictions have already come true? Which haven\'t? What does Grey get right that still applies to your generation — and where would he update his argument today?',
+    sources: [
+      { label: 'CGP Grey — "Humans Need Not Apply" (YouTube, Aug 2014)', url: 'https://www.youtube.com/watch?v=7Pq-S557XQU' }
+    ]
   },
   {
     type: 'concept',
