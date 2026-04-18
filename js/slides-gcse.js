@@ -2195,6 +2195,22 @@ SLIDES_GCSE[124] = [
     ]
   },
   {
+    type: 'widget',
+    title: 'Where Would You Put £100 Million?',
+    intro: 'You\'ve been handed £100m to direct at AI investment. Tick the <em>three</em> you\'d fund. There\'s no right answer — but your choices reveal what you think "benefit" means, and who should get it.',
+    widget: 'feed-audit',
+    items: [
+      { label: 'Open-source translation for 100+ under-served languages', desc: 'Masakhane, Lelapa and similar African NLP groups build models that actually work for Swahili, Yoruba, Amharic — languages big AI companies often skip' },
+      { label: 'AI for medical diagnosis in rural clinics', desc: 'Train diagnostic tools on local patient data, so they work as well in Lagos or Lima as they do in London' },
+      { label: 'UK frontier-model safety research', desc: 'Fund AISI (the UK AI Safety Institute) to evaluate risks from the most capable AI systems before they\'re widely deployed' },
+      { label: 'Scholarships for AI-ethics researchers from under-represented regions', desc: 'The people most affected by biased AI should be setting the research agenda, not just reviewing finished products' },
+      { label: 'AI literacy for every UK secondary school', desc: 'Every student gets what you\'re doing now — so the next generation can tell when AI is helping them vs. manipulating them' },
+      { label: 'A UK national compute cluster for academic researchers', desc: 'Right now only the big US labs can train frontier models. This would let universities actually do competitive research.' },
+      { label: 'Solar-powered micro data centres for off-grid communities', desc: 'Bring AI usefulness to the 2.6bn people currently offline — without waiting for them to come online' },
+      { label: 'AI accessibility tools for disabled people', desc: 'Live captioning, navigation for blind users, communication tools for non-verbal people — where AI can change a life, not just a workflow' }
+    ]
+  },
+  {
     type: 'quiz',
     question: 'Why do AI healthcare tools often perform worse for patients from certain parts of the world?',
     options: [
@@ -2301,12 +2317,28 @@ SLIDES_GCSE[125] = [
     ]
   },
   {
+    type: 'widget',
+    title: 'Audit a Real Biased System — Dutch Childcare Scandal',
+    widget: 'factcheck',
+    claim: 'Between 2013 and 2019 the Dutch tax authority used an algorithmic risk-scoring system called SyRI to flag families suspected of childcare-benefit fraud. Tens of thousands were falsely accused, forced to repay huge sums, driven into poverty, and in some cases had children taken into state care. The Dutch government resigned en masse in January 2021 over the scandal.',
+    steps: [
+      { question: 'Which single feature, above all others, drove the risk scores?', hint: 'Think about which group was dramatically over-represented in the false accusations. It wasn\'t income or postcode.' },
+      { question: 'If you were auditing this system before launch, which three things would you test to catch this bias earlier?', hint: 'Demographic breakdown of false positives; who decides what data is used; how easy it is for an accused family to see the evidence and appeal.' },
+      { question: 'The engineers, the ministry, and the algorithm were all involved. Where does responsibility sit — and why?', hint: 'Who designed the inputs? Who signed off deployment? Who had the power to pause it once harms appeared?' }
+    ],
+    verdict: 'Dual nationality was one of the biggest drivers. Families with non-Dutch heritage — Moroccan, Turkish, Ghanaian — were flagged far more often than those without. A 2020 Dutch court ruling found SyRI violated human rights law (the right to private life) because it was opaque, disproportionate, and gave citizens no meaningful way to contest their score. Responsibility is shared: engineers chose the features, ministers authorised the deployment, and the political pressure to "catch fraud" created the incentive to ignore the early warning signs. The lesson for bias auditing: test for disparate impact on protected groups <em>before</em> deployment, and build a real appeal route — not after the harm is already baked in.',
+    sources: [
+      { label: 'Amnesty International (2021) — Xenophobic Machines: Dutch Child Benefits Scandal', url: 'https://www.amnesty.org/en/documents/eur35/4686/2021/en/' },
+      { label: 'The Guardian (Jan 2021) — Dutch government resigns over childcare benefits scandal', url: 'https://www.theguardian.com/world/2021/jan/15/dutch-government-resigns-over-child-benefits-scandal' }
+    ]
+  },
+  {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
       { icon: '📥', label: 'Biased data produces biased AI', text: 'the model reflects the patterns in its training — including human discrimination' },
       { icon: '🤖', label: 'The AI isn\'t "trying" to discriminate', text: 'it\'s replicating patterns from history — but the harm is the same' },
-      { icon: '⚖️', label: 'Real consequences', text: 'Robert Williams arrested wrongly. CV systems filtering out women. Healthcare AI working worse for some patients.' },
+      { icon: '⚖️', label: 'Real consequences', text: 'Robert Williams arrested wrongly. CV systems filtering out women. Dutch families driven into poverty by SyRI.' },
       { icon: '🔍', label: 'Detecting and fixing bias requires effort', text: 'diverse teams, representative data, demographic testing, human oversight' }
     ]
   }
@@ -2528,6 +2560,27 @@ SLIDES_GCSE[128] = [
     ]
   },
   {
+    type: 'widget',
+    title: 'Tier-Sort — Six Real AI Systems Under the EU AI Act',
+    widget: 'classify',
+    intro: 'The EU AI Act sorts every AI system into one of four risk tiers. Your job: decide where each of these real systems belongs. Some are deliberately on the border — read the explanation for each.',
+    categories: ['Banned (unacceptable)', 'High-risk', 'Limited risk', 'Minimal risk'],
+    items: [
+      { text: 'A live facial-recognition system deployed at a shopping centre that flags shoppers matching a private "suspicious persons" list.', correct: 0, why: 'Real-time remote biometric identification in public spaces is banned by Article 5 of the EU AI Act, with only narrow exceptions for serious crime. Commercial use by a shopping centre is the clearest possible case of unacceptable risk.' },
+      { text: 'An AI system used by a bank to decide which customers qualify for mortgages.', correct: 1, why: 'Creditworthiness assessment is explicitly listed in Annex III of the AI Act as high-risk because it materially affects people\'s access to essential services. It must meet transparency, audit and human-oversight requirements.' },
+      { text: 'A university using an AI to automatically grade students\' A-level mock exams.', correct: 1, why: 'AI for determining educational access or assessment outcomes is high-risk under Annex III. Remember the 2020 UK A-level algorithm scandal — exactly the kind of harm this classification is designed to prevent.' },
+      { text: 'A customer-service chatbot on a retail website that answers questions about delivery times.', correct: 2, why: 'Chatbots that interact with humans fall into the limited-risk tier. The only obligation: the user must be informed they\'re talking to an AI, not a human (Article 50).' },
+      { text: 'A deepfake generator that produces realistic videos of real people.', correct: 2, why: 'Deepfake generation is limited-risk, but content produced must be clearly labelled as AI-generated when used publicly. The tool itself isn\'t banned; deceptive deployment may still break other laws.' },
+      { text: 'The spam filter that decides whether an email goes to your Gmail inbox or junk folder.', correct: 3, why: 'Spam filters are the classic minimal-risk example. No AI-Act-specific obligations beyond existing data-protection law apply — the risk of harm to the user is low.' },
+      { text: 'An "emotion recognition" system used by an employer to monitor call-centre staff for signs of stress or dishonesty.', correct: 0, why: 'Article 5 specifically prohibits emotion recognition in workplaces and educational settings (outside narrow medical or safety uses). The power imbalance between employer and employee makes consent impossible in practice.' },
+      { text: 'An AI credit-scoring tool that a government uses to calculate a "social score" affecting access to jobs, loans and travel.', correct: 0, why: 'General-purpose social scoring by public authorities is banned outright — this is the Act\'s clearest line, drawn partly in response to the direction of travel in some other countries.' }
+    ],
+    sources: [
+      { label: 'European Parliament (2024) — EU AI Act Article 5 (prohibited practices)', url: 'https://artificialintelligenceact.eu/article/5/' },
+      { label: 'European Parliament (2024) — EU AI Act Annex III (high-risk systems)', url: 'https://artificialintelligenceact.eu/annex/3/' }
+    ]
+  },
+  {
     type: 'scenario',
     title: 'The AI Recruitment Startup',
     situation: 'You\'ve co-founded an AI tool that screens CVs and ranks job candidates. An internal test reveals it ranks women 12% lower than men with equal qualifications — probably because the training data reflects past hiring discrimination. Your Series A funding pitch is next week. You need to decide your launch strategy.',
@@ -2611,6 +2664,22 @@ SLIDES_GCSE[129] = [
       { text: 'Follow your senior consultant\'s judgment — he has decades of experience and you\'re junior', outcome: 'Three days later, the patient\'s condition worsens significantly. The AI was right. In the investigation, it emerges the consultant routinely overrides the AI without documentation. The hospital now requires all AI overrides to be logged and reviewed — a direct result of this case.' },
       { text: 'Raise your concern to the consultant — explain the AI\'s track record and ask him to reconsider or document his reasoning', outcome: 'The consultant is initially irritated, but agrees to order a confirmatory test. It comes back positive. The patient receives prompt treatment. Your willingness to speak up — respectfully, with evidence — is noted positively in your appraisal. You didn\'t override him; you made him re-examine his reasoning.' },
       { text: 'Do nothing now, but document your concern in the patient\'s notes', outcome: 'The documentation becomes crucial: when the patient deteriorates, the notes show you flagged the AI\'s recommendation and your concern was not acted on. This shifts some moral responsibility — but doesn\'t change the outcome for the patient. Documentation is important; raising it in the moment would have been better.' }
+    ]
+  },
+  {
+    type: 'widget',
+    title: 'Work the Case — COMPAS and Recidivism Scoring',
+    widget: 'factcheck',
+    claim: 'Hundreds of US courts use a tool called COMPAS to predict how likely a defendant is to re-offend. Judges see the score before sentencing. A 2016 ProPublica investigation found the tool\'s errors fell unequally by race: Black defendants were roughly twice as likely to be wrongly flagged as high-risk, while white defendants were more often wrongly flagged as low-risk. The tool\'s maker disputes the finding.',
+    steps: [
+      { question: 'The company\'s defence was that the overall accuracy was equal across races. ProPublica\'s critique was that the <em>kinds of errors</em> were unequal. Why do both of those things matter — and which one matters more to the defendant in front of the judge?', hint: 'Think about the difference between being wrongly called high-risk (and serving a longer sentence) vs. being wrongly called low-risk (and being released).' },
+      { question: 'If the training data came from arrest records in US cities where Black neighbourhoods have been more heavily policed for decades, what exactly is the system learning — and what should it be learning?', hint: 'Is the label "re-offended" or "got re-arrested"? These are not the same thing.' },
+      { question: 'A judge in the State v. Loomis case in Wisconsin used a COMPAS score to justify a harsher sentence. Loomis appealed: he had no way to challenge the score because the algorithm was a trade secret. What single reform would you introduce first?', hint: 'Transparency, auditability, human oversight, ban, right-to-explanation — which is achievable and which does the most good?' }
+    ],
+    verdict: 'Two true things can coexist: overall accuracy can be similar across groups <em>and</em> the error pattern can still harm one group more than another. That\'s why "fairness" is not a single metric. The training-label problem is real: arrest data encodes policing decisions, not crime. The State v. Loomis appeal (Wisconsin, 2016) failed — the court upheld the score\'s use, noting only that judges must be told its limitations. The concrete reforms that have since passed in Idaho, California, and New Jersey: mandatory bias audits, the right to see the inputs used, and a human decision-maker who cannot be replaced by the score alone. This is what "AI ethics in action" looks like — slow, specific, contested, and genuinely consequential.',
+    sources: [
+      { label: 'Angwin, Larson, Mattu & Kirchner (2016) — Machine Bias (ProPublica)', url: 'https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing' },
+      { label: 'State v. Loomis (2016) — Wisconsin Supreme Court decision summary', url: 'https://scholar.harvard.edu/files/mlamadrid/files/state_v._loomis.pdf' }
     ]
   },
   {

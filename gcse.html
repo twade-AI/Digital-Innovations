@@ -171,6 +171,20 @@
     .fa-summary{margin-top:14px;padding:14px 16px;border-radius:8px;background:rgba(16,185,129,.06);border-left:3px solid #10b981;font-size:.85rem;color:var(--text);line-height:1.6;display:none}
     .fa-summary.fa-shown{display:block;animation:revealFade .25s ease-out}
     .fa-summary strong{color:#10b981}
+    /* ── Classify widget ── */
+    .cl-intro{margin:0 0 10px;font-size:.86rem;color:var(--text-muted);line-height:1.55}
+    .cl-item{margin-top:10px;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;background:var(--bg)}
+    .cl-item-text{font-size:.9rem;color:var(--text);line-height:1.5;margin-bottom:10px}
+    .cl-options{display:flex;flex-wrap:wrap;gap:6px}
+    .cl-opt{padding:7px 12px;border-radius:6px;border:1.5px solid var(--border);background:var(--bg-card,#0f1923);color:var(--text);font-size:.8rem;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .15s}
+    .cl-opt:hover:not(:disabled){border-color:#10b981;color:#10b981}
+    .cl-opt.cl-correct{border-color:#10b981;background:rgba(16,185,129,.1);color:#10b981}
+    .cl-opt.cl-wrong{border-color:#ef4444;background:rgba(239,68,68,.06);opacity:.7;color:#ef4444}
+    .cl-opt:disabled{cursor:default}
+    .cl-explain{margin-top:8px;padding:9px 12px;border-radius:6px;background:rgba(16,185,129,.06);border-left:3px solid #10b981;font-size:.78rem;color:var(--text);line-height:1.5;display:none}
+    .cl-explain.cl-shown{display:block}
+    .cl-score{margin-top:14px;padding:12px 14px;border-radius:8px;background:rgba(16,185,129,.08);border-left:3px solid #10b981;font-size:.86rem;color:var(--text);font-weight:600;display:none}
+    .cl-score.cl-final{display:block}
     /* ── Exit ticket ── */
     .exit-ticket{margin-top:14px;padding:18px;border-radius:12px;background:linear-gradient(135deg,rgba(139,92,246,.06),rgba(16,185,129,.04));border:1.5px dashed rgba(139,92,246,.35)}
     .exit-ticket-label{display:block;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#8b5cf6;margin-bottom:6px;font-size:.7rem}
@@ -559,6 +573,26 @@
       }).join('');
       return '<div class="widget"><div class="fa-grid">'+items+'</div><div class="widget-actions"><button class="widget-btn widget-btn-primary" onclick="gsFaSummarise()">See what your feed is optimising for</button></div><div id="gsFaOut" class="fa-summary"></div></div>';
     }
+    if (w==='classify') {
+      var catsArr = slide.categories||[];
+      var cats = catsArr.map(function(c){ return gsEscape(c); });
+      var itemsHtml = (slide.items||[]).map(function(it,i){
+        var opts = cats.map(function(c,ci){
+          return '<button class="cl-opt" data-ci="'+ci+'" onclick="gsClPick(this,'+i+','+ci+','+(it.correct||0)+')">'+c+'</button>';
+        }).join('');
+        return '<div class="cl-item" data-i="'+i+'">'+
+          '<div class="cl-item-text">'+gsEscape(it.text)+'</div>'+
+          '<div class="cl-options">'+opts+'</div>'+
+          '<div class="cl-explain" id="gsClEx_'+i+'"><strong>'+gsEscape(catsArr[it.correct||0])+'.</strong> '+gsEscape(it.why||'')+'</div>'+
+        '</div>';
+      }).join('');
+      var total = (slide.items||[]).length;
+      return '<div class="widget" data-total="'+total+'" data-got="0">'+
+        (slide.intro?'<p class="cl-intro">'+gsEscape(slide.intro)+'</p>':'')+
+        itemsHtml+
+        '<div id="gsClScore" class="cl-score"></div>'+
+      '</div>';
+    }
     return '';
   }
 
@@ -616,6 +650,32 @@
   }
   function gsFaToggle(btn){
     btn.classList.toggle('fa-on');
+  }
+  function gsClPick(btn, qi, ci, correct){
+    var item=btn.closest('.cl-item'); if(!item||item.dataset.answered==='1')return;
+    item.dataset.answered='1';
+    Array.prototype.forEach.call(item.querySelectorAll('.cl-opt'),function(b){
+      b.disabled=true;
+      var j=parseInt(b.getAttribute('data-ci'),10);
+      if(j===correct)b.classList.add('cl-correct');
+      else if(j===ci)b.classList.add('cl-wrong');
+    });
+    var ex=document.getElementById('gsClEx_'+qi); if(ex)ex.classList.add('cl-shown');
+    var widget=btn.closest('.widget'); if(!widget)return;
+    var total=parseInt(widget.dataset.total,10)||0;
+    var got=parseInt(widget.dataset.got,10)||0;
+    if(ci===correct)got+=1;
+    widget.dataset.got=got;
+    var answered=widget.querySelectorAll('.cl-item[data-answered="1"]').length;
+    if(answered===total){
+      var score=document.getElementById('gsClScore');
+      if(score){
+        var pct=Math.round((got/total)*100);
+        var msg=pct>=80?'Strong read on the categories — you\'ve internalised the thresholds.':pct>=60?'A solid grasp. Re-check the ones you missed — the boundaries between tiers are often the most interesting cases.':'The boundaries are genuinely tricky. Scroll back up, read each explanation, and try the next classify slide with the rules fresh in your head.';
+        score.textContent='Score: '+got+' / '+total+' ('+pct+'%) — '+msg;
+        score.classList.add('cl-final');
+      }
+    }
   }
   function gsExitSave(key){
     var el=document.getElementById('gsExitInput'); if(!el)return;
