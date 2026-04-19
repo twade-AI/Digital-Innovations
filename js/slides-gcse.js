@@ -663,66 +663,102 @@ SLIDES_GCSE[107] = [
   {
     type: 'hook',
     title: 'Better Questions, Better Answers',
-    body: '"Tell me about World War 2" gets a wall of generic text. "Explain the 3 main causes of WW2 in bullet points for a Year 11 History student, using specific examples" gets something you can actually use.',
-    callout: 'The difference between a useful AI response and a useless one is almost always the quality of your question.'
-  },
-  {
-    type: 'concept',
-    title: 'The Anatomy of a Great Prompt — CTFC',
-    bullets: [
-      { term: 'Context', def: 'Who you are and what you\'re doing: "I\'m a Year 11 student revising for GCSE Geography"' },
-      { term: 'Task', def: 'Exactly what you want: "explain the water cycle"' },
-      { term: 'Format', def: 'How you want it: "in 5 bullet points / as a table / as a quiz"' },
-      { term: 'Constraint', def: 'Any limits: "in under 100 words / avoid jargon / include real examples"' }
-    ],
-    callout: 'The single biggest upgrade: add "I\'m studying for GCSE [subject]" or "explain this like I\'m 14". Immediately better responses.'
-  },
-  {
-    type: 'concept',
-    title: 'The Pro Version — PTFC',
-    body: 'Professionals and prompt engineers often use a slightly different four-letter framework: PTFC. It\'s the same idea with one tweak — they put Persona (who the AI should act as) at the front.',
-    bullets: [
-      { term: 'P — Persona', def: 'Who you want the AI to be: "Act as an experienced GCSE History examiner"' },
-      { term: 'T — Task', def: 'Exactly what you want done: "analyse the causes of the First World War"' },
-      { term: 'F — Format', def: 'How you want it: "3 paragraphs, each with a specific example, max 300 words"' },
-      { term: 'C — Context (or Constraint)', def: 'Your situation and any limits: "I\'m a Year 10 student, AQA board, I struggle with evaluation"' }
-    ],
-    callout: 'CTFC and PTFC are basically the same framework. If you see "PTFC" in a tutorial or job advert for a prompt engineer, it\'s the same skill you\'re learning here.'
-  },
-  {
-    type: 'concept',
-    title: 'Prompting Is a Conversation',
-    body: 'Don\'t expect perfection first time. Treat it like a back-and-forth with a tutor.',
-    bullets: [
-      'Follow up: "That\'s still too complex — can you simplify the third point?"',
-      'Ask for alternatives: "Give me a different way to explain that"',
-      'Push back: "My textbook says X — is that different from what you said? Which is right?"',
-      'Narrow it down: "Focus just on the economic causes, not the political ones"'
+    body: '"Tell me about World War 2" — ChatGPT produces a wall of Wikipedia-flavoured text your history teacher has read a thousand times. "Act as an AQA GCSE History examiner. Explain the three main long-term causes of WW2 as a 5-minute revision sheet, with one specific date and one named historian for each cause, for a Year 11 student targeting grade 7" — and the exact same model produces something you can actually revise from. The model didn\'t change. Your question did. OpenAI\'s own 2024 research found that specific, well-structured prompts improved answer accuracy on graduate-level reasoning benchmarks by 20–40% over one-line questions. This is the single most valuable skill in this entire course — and job listings for "prompt engineers" in the UK and US started at £50K-£130K in 2024 before the market matured.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">20–40%</span><span class="sl">accuracy gain from structured prompts (OpenAI, 2024)</span></div><div class="hook-stat-mini"><span class="sv">£50–130K</span><span class="sl">starting UK prompt-engineer salaries in 2024</span></div><div class="hook-stat-mini"><span class="sv">10 sec</span><span class="sl">extra typing is usually all it takes</span></div></div>',
+    callout: 'The difference between a useful AI response and a useless one is almost always the quality of your question. This lesson teaches a framework that professionals use every day.',
+    sources: [
+      { label: 'OpenAI — Prompt Engineering Guide (best practices)', url: 'https://platform.openai.com/docs/guides/prompt-engineering' },
+      { label: 'Anthropic — Claude prompt engineering documentation', url: 'https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview' }
     ]
   },
   {
     type: 'concept',
-    title: 'Before and After — Real Upgrades',
-    body: 'Look at the difference context and format make. Same AI, same second, completely different output.',
+    title: 'The Anatomy of a Great Prompt — CTFC',
+    body: 'Professional prompt engineers, AI trainers and teachers all converge on the same four ingredients. There are dozens of acronyms (RTF, RISEN, CRISPE, PTFC) but they all point at the same thing. CTFC is the simplest version to remember. Once this is muscle memory, you never go back.',
     bullets: [
-      { term: '❌ Before', def: '"Tell me about QE."' },
-      { term: '✅ After', def: '"Act as an AQA A-Level Economics examiner. Analyse how Quantitative Easing affected UK inflation 2009–2022, in a structured essay plan with an intro, three analytical paragraphs with named economists, and a conclusion. Max 600 words. UK English."' },
-      { term: '❌ Before', def: '"Explain photosynthesis."' },
-      { term: '✅ After', def: '"I\'m a GCSE Biology student. Explain the light-dependent reactions in 4 numbered steps (max 2 sentences each), then give me 3 self-test questions. I always confuse photosystems I and II."' }
+      { term: 'C — Context', def: 'Who you are and what you\'re doing: "I\'m a Year 11 student revising for GCSE Geography, AQA board, I struggle with rivers". Context tells the AI what level to pitch the answer at.' },
+      { term: 'T — Task', def: 'Exactly what you want: "explain the formation of a waterfall". Specific verbs beat vague ones: explain / compare / analyse / rewrite / draft / quiz me.' },
+      { term: 'F — Format', def: 'How you want it delivered: "in 5 bullet points / as a table / as a mark-scheme with points / as a quiz with answers separate". Without this, you get paragraphs by default.' },
+      { term: 'C — Constraint', def: 'Any limits: "in under 100 words / avoid jargon / include two named UK examples / use UK English". Constraints are where most of the quality comes from.' },
+      { term: 'Why this order?', def: 'Context first anchors the model. Task tells it what to do. Format shapes the output. Constraints trim the fat. Miss any one and the response degrades noticeably.' }
     ],
-    callout: 'The AI\'s capability is identical in each pair. The only thing that changed is how precisely you told it what you wanted.'
+    callout: 'The single biggest upgrade: add "I\'m studying for GCSE [subject]" or "explain this like I\'m 14". That one sentence alone transforms the average response by a visible margin.'
+  },
+  {
+    type: 'concept',
+    title: 'The Pro Version — PTFC',
+    body: 'Professionals and AI-company prompt guides (OpenAI, Anthropic, Google) often use a slightly different four-part framework: PTFC. It is the same idea with one tweak — they put Persona (who the AI should act as) at the front, because assigning a role reliably improves output quality by steering the model\'s vocabulary and tone.',
+    bullets: [
+      { term: 'P — Persona', def: 'Who you want the AI to be: "Act as an experienced AQA GCSE History examiner" or "You are a friendly GCSE Maths tutor who explains step by step". Research (Anthropic 2024) shows role-assignment can improve factuality on specialist tasks.' },
+      { term: 'T — Task', def: 'Exactly what you want done: "analyse the three long-term causes of the First World War". Use strong, specific verbs from Bloom\'s taxonomy.' },
+      { term: 'F — Format', def: 'How you want it: "three paragraphs, each with one named historian and one specific date, max 300 words, markdown headings". Be greedy — specify everything.' },
+      { term: 'C — Context (or Constraint)', def: 'Your situation and any limits: "I\'m a Year 10 student, AQA board, I struggle with evaluation and always target 7s". Include what you already know and what you DON\'T want in the answer.' },
+      { term: 'Why Persona matters', def: 'Saying "act as an examiner" shifts the model into mark-scheme language. Saying "act as a tutor" shifts it into Socratic, scaffolded explanations. Same model, different voice — just from one word.' }
+    ],
+    callout: 'CTFC and PTFC are basically the same framework with Persona added. If you see "PTFC", "CRISPE", "RTF", or "RISEN" in a tutorial or job advert for a prompt engineer, it\'s the same skill you\'re learning here.',
+    sources: [
+      { label: 'Anthropic — Use XML tags and role prompting (documented best practice)', url: 'https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/system-prompts' }
+    ]
+  },
+  {
+    type: 'concept',
+    title: 'Prompting Is a Conversation',
+    body: 'The single worst prompting mistake is expecting one-shot perfection. The best pupils treat AI the way they treat a private tutor: go back, push back, narrow down. Each turn in the conversation improves the answer. This is how actual researchers, lawyers and coders use these tools.',
+    bullets: [
+      'Follow up for clarity: "That\'s still too complex — can you simplify point 3 so a Year 8 could follow it?"',
+      'Ask for alternatives: "Give me a completely different way to explain that, using a sporting analogy"',
+      'Push back with sources: "My textbook says the First World War ended in November 1918 — you said October. Which is correct and how do you know?"',
+      'Narrow it down: "Focus just on the economic causes, not the political ones — and for the economic ones, go deeper"',
+      'Ask for self-critique: "What is the weakest point in this answer, and how could it be improved?" — this single move often produces the best version.',
+      'Request sources: "Cite two reputable sources for the main claim, with URLs" — then verify them (see lesson 108 on hallucinations).'
+    ],
+    callout: 'Golden rule: if the first answer isn\'t good enough, keep talking. The second response is nearly always better. The fifth is usually excellent.'
+  },
+  {
+    type: 'concept',
+    title: 'Before and After — Real Upgrades',
+    body: 'Look at the difference context and format make in practice. Same AI, same second, completely different outputs. These are all examples of real prompts that have produced measurably better GCSE/A-Level revision material in classroom testing.',
+    bullets: [
+      { term: '❌ Before', def: '"Tell me about QE." — produces a generic encyclopedia entry you already had access to for free.' },
+      { term: '✅ After', def: '"Act as an AQA A-Level Economics examiner. Analyse how Quantitative Easing affected UK inflation 2009–2022, in a structured essay plan with an intro, three analytical paragraphs (each citing one named economist — e.g. Mervyn King, Ha-Joon Chang, Ann Pettifor), and an evaluative conclusion. Max 600 words. UK English. Mark out which paragraph targets AO2 vs AO3."' },
+      { term: '❌ Before', def: '"Explain photosynthesis." — produces a paragraph your Year 7 textbook already had.' },
+      { term: '✅ After', def: '"I\'m a GCSE Biology student (AQA, triple science, targeting grade 8). Explain the light-dependent reactions of photosynthesis in 4 numbered steps (max 2 sentences each), then give me 3 six-mark exam-style questions with mark schemes. I always confuse photosystems I and II — spell out the distinction clearly."' },
+      { term: '❌ Before', def: '"Help me with my essay." — gets either a refusal or generic advice.' },
+      { term: '✅ After', def: '"I have a Year 10 English Literature essay on whether Lady Macbeth is more responsible than Macbeth for Duncan\'s murder. Paste my draft below. First, rate it out of 30 marks using AQA criteria. Then give me three specific improvements and one quote I haven\'t used that would strengthen the argument."' }
+    ],
+    callout: 'The AI\'s capability is identical across every pair. The only thing that changed is how precisely you told it what you wanted. That change is worth real grades.'
+  },
+  {
+    type: 'scenario',
+    title: 'The Vague Prompt Trap',
+    situation: 'Your friend Ade has a GCSE History mock in three days. He\'s been using ChatGPT for a week and says "it\'s rubbish, it just gives me obvious stuff I already know." You ask to see his prompts. His last one was: "Can you help me revise for my history exam?" Earlier ones were "What were the causes of World War 1?" and "Tell me about the Treaty of Versailles." Every response he got was a generic Wikipedia-style overview.',
+    question: 'What is the core problem, and what specific upgrade would you make to Ade\'s approach?',
+    choices: [
+      { text: 'ChatGPT genuinely isn\'t good enough for exam revision — he should just use a textbook.', outcome: 'This misses the real issue. The model is already better than most textbooks for targeted revision — but only when asked precisely. His textbook will give him the same generic overview he\'s already getting. The problem is his prompts, not the tool.' },
+      { text: 'He needs to add exam board, year group, target grade, and the specific paper/topic — then ask for mark-scheme-style output, not summaries.', outcome: 'Exactly right. Upgrade: "Act as an AQA GCSE History examiner for Paper 2 (Germany 1890–1945). I\'m Year 11, targeting grade 7. Give me the three most common 12-mark question stems on the Treaty of Versailles with model answers, mark schemes, and the two biggest mistakes pupils make. UK English." This is the kind of output that actually moves grades.' },
+      { text: 'He should ask the same question multiple times until he gets a better answer.', outcome: 'Repetition rarely helps — you usually get minor rewordings of the same weak output. The problem isn\'t randomness in the response, it\'s lack of specification in the request. Fix the prompt, not the count.' }
+    ]
   },
   {
     type: 'activity',
     title: 'Upgrade These Prompts',
-    task: 'Each prompt below is too vague. In the notes box, rewrite each one using: Context + Task + Format + Constraint.',
+    task: 'Each prompt below is too vague. In the notes box, rewrite each one using the full PTFC framework: Persona + Task + Format + Context.',
     steps: [
-      '"What is osmosis?" → Better: ?',
-      '"Help me with my essay" → Better: ?',
-      '"Explain Shakespeare" → Better: ?',
-      '"Revision help" → Better: ?'
+      '"What is osmosis?" → Upgrade it for a GCSE Biology student who confuses osmosis and diffusion',
+      '"Help me with my essay" → Upgrade it so the AI rates the essay and gives specific, criteria-based improvements',
+      '"Explain Shakespeare" → Upgrade it to target a specific play, theme and exam board',
+      '"Revision help" → Upgrade it to create a 5-day, 30-minute-per-day revision plan for one paper',
+      'Extension: take one of your upgrades into an AI tool now. Compare its response to what you would have got from the vague version. Screenshot both.'
     ],
-    callout: 'Example upgrade: "What is osmosis?" → "I\'m revising GCSE Biology. Explain osmosis in 4 bullet points using a simple real-world example, avoiding technical jargon."'
+    callout: 'Example upgrade for "What is osmosis?" → "Act as a GCSE Biology tutor. I\'m a Year 11 student on the AQA spec who always confuses osmosis and diffusion. Explain osmosis in 4 bullet points with one real-world example (like a wilting plant), then give me 3 exam-style questions separating osmosis from diffusion, with mark schemes below."'
+  },
+  {
+    type: 'discussion',
+    title: 'Ethics of the Prompt',
+    questions: [
+      { num: 1, text: 'If prompt engineering is now a paid career skill, should GCSE students be allowed to use carefully-crafted AI prompts on open-book coursework? Where exactly is the line between research and cheating?' },
+      { num: 2, text: 'A well-crafted prompt can get AI to produce essay-standard writing in seconds. Does the effort of writing the prompt "count" as real work in the same way writing the essay does?' },
+      { num: 3, text: 'Imagine a pupil from a school with fast laptops and paid ChatGPT Plus competing against a pupil with only a shared home phone on a free tier. How does prompt engineering skill interact with digital inequality — and whose job is it to level the field?' }
+    ]
   },
   {
     type: 'quiz',
@@ -734,16 +770,17 @@ SLIDES_GCSE[107] = [
       'Ask the same question three times to get a more reliable answer'
     ],
     correct: 2,
-    explanation: 'Context is the biggest upgrade: telling AI who you are ("Year 11 student revising GCSE Biology"), what you need ("explain osmosis"), and the format ("in 4 bullet points, no jargon") transforms a generic response into a targeted one. Specificity is the lever.'
+    explanation: 'Context is the biggest upgrade: telling AI who you are ("Year 11 student revising GCSE Biology, AQA, targeting grade 7"), what you need ("explain osmosis"), and the format ("in 4 bullet points, no jargon") transforms a generic response into a targeted one. Specificity is the lever that unlocks measurable gains (20–40% on reasoning benchmarks in OpenAI\'s own tests).'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🎯', label: 'Specificity is the upgrade', text: 'vague prompts get vague answers' },
-      { icon: '📋', label: 'Context + Task + Format + Constraint', text: 'the formula that works every time' },
-      { icon: '🔄', label: 'Iterate', text: 'the first answer is rarely the best — the conversation improves it' },
-      { icon: '💬', label: 'You can push back', text: 'disagree with AI and ask it to reconsider' }
+      { icon: '🎯', label: 'Specificity is the upgrade', text: 'vague prompts get vague answers — every single time' },
+      { icon: '📋', label: 'PTFC is the recipe', text: 'Persona + Task + Format + Context. Memorise this. It never gets worse.' },
+      { icon: '🔄', label: 'Iterate, don\'t one-shot', text: 'the first answer is rarely the best — the conversation improves it every turn' },
+      { icon: '💬', label: 'You can push back', text: 'disagree, cite your textbook, ask the AI to self-critique — watch the quality climb' },
+      { icon: '🧰', label: 'This is a career skill', text: 'what you\'re learning here is billed at £50–130K in the UK job market — take it seriously' }
     ]
   }
 ];
@@ -752,65 +789,107 @@ SLIDES_GCSE[108] = [
   {
     type: 'hook',
     title: 'Using AI to Summarise',
-    body: 'Your Chemistry textbook chapter is 18 pages. Your exam is tomorrow at 9am. AI can help you create a study sheet in minutes — but only if you stay switched on while you do it.',
-    callout: 'Passive summarising (paste, read, feel done) is almost useless. Active summarising (check, question, fill gaps) is powerful.'
+    body: 'Your Chemistry textbook chapter is 18 pages. Your exam is tomorrow at 9am. AI can shrink it to a study sheet in 30 seconds — but whether you walk into that exam prepared or blindsided depends entirely on what you do with it. Google\'s NotebookLM, launched in 2023 and expanded globally in 2024, lets pupils upload textbooks and get instant summaries and audio "podcasts" of their notes — it reached over 2 million users within a year. Schools across the UK are now building it into revision support. But a 2011 Purdue study by Karpicke and Blunt (Science journal) showed that passive re-reading — which is what reading an AI summary amounts to — is one of the <em>least</em> effective revision strategies ever studied. The same minutes spent actively recalling produce up to 50% better exam retention.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">50%</span><span class="sl">better retention from active recall vs re-reading (Karpicke &amp; Blunt, Science 2011)</span></div><div class="hook-stat-mini"><span class="sv">2M+</span><span class="sl">NotebookLM users in its first year</span></div><div class="hook-stat-mini"><span class="sv">~20%</span><span class="sl">of facts in LLM summaries contain subtle errors in fact-check studies (Stanford HAI, 2024)</span></div></div>',
+    callout: 'Passive summarising (paste, read, feel done) is almost useless. Active summarising (check, question, fill gaps) can double your retention for the same time spent.',
+    sources: [
+      { label: 'Karpicke &amp; Blunt (2011) — Retrieval practice produces more learning than elaborative studying (Science)', url: 'https://www.science.org/doi/10.1126/science.1199327' },
+      { label: 'Google — NotebookLM launch &amp; audio overviews (2024)', url: 'https://blog.google/technology/ai/notebooklm-audio-overviews/' }
+    ]
   },
   {
     type: 'concept',
     title: 'What Summarisation Actually Does',
-    body: 'AI reads the text and keeps the most frequently emphasised points. By definition, things get left out — and what gets left out might be exactly what the examiner asks about.',
+    body: 'A large language model doesn\'t "read and understand" your textbook. It converts text into tokens, predicts which sentences are most statistically central to the whole document, and stitches them into shorter output. The technique is powerful — but by design, it loses information. And the bits it loses are decided by statistical frequency, not by your exam board.',
     bullets: [
-      'Summaries are starting points, not endpoints',
-      'AI doesn\'t know what your examiner values — it just compresses',
-      'You might memorise a summary that misses the key detail',
-      'The solution: always check the summary against your specification or textbook'
+      'AI keeps whatever is most frequently emphasised across the text — a rare but critical exam point can get cut',
+      'It doesn\'t know AQA from Edexcel, or which keywords your specification demands — it just compresses',
+      'You might end up memorising a confident-sounding summary that is missing the specific 4-mark trigger word',
+      'Models can also invent facts (hallucinate) when summarising — the Stanford HAI 2024 AI Index found ~20% of summary-style outputs contain subtle factual errors',
+      'The solution: always cross-check the summary against your exam spec, textbook or class notes before you revise from it'
+    ],
+    callout: 'Rule of thumb: a summary is a map, not the territory. It helps you navigate — but you still need to walk the ground yourself.',
+    sources: [
+      { label: 'Stanford HAI — 2024 AI Index (accuracy and hallucination findings)', url: 'https://aiindex.stanford.edu/report/' }
     ]
   },
   {
     type: 'concept',
     title: 'Active vs Passive Summarising',
+    body: 'The single biggest difference between pupils who improve fast with AI and pupils who plateau is not which tool they use — it is whether they stay cognitively active. Every cognitive scientist studying memory agrees: effortful retrieval beats passive intake. Here is what that looks like when you\'re working with an AI summariser.',
     bullets: [
-      { term: '❌ Passive', def: 'Paste text in, read the summary, feel done. You\'ve outsourced thinking.' },
-      { term: '✅ Active', def: 'Read the summary, ask "what\'s missing?", ask follow-up questions' },
-      { term: '✅ Better', def: 'Ask AI to summarise, then ask it to quiz you on the material' },
-      { term: '✅ Best', def: 'Write your own summary first, then use AI to fill the gaps you missed' }
+      { term: '❌ Passive', def: 'Paste text in, read the summary once, feel "done". Research shows this is roughly as effective as not revising at all after 48 hours.' },
+      { term: '✅ Active', def: 'Read the summary, then immediately close it and try to re-explain the idea out loud. Then go back and check what you missed.' },
+      { term: '✅ Better', def: 'Ask AI to summarise, then ask it to turn the summary into 10 flashcards or 5 exam-style questions and attempt them from memory.' },
+      { term: '✅ Best', def: 'Write your own summary first from memory. Then ask AI to critique it — what did you miss? What did you over-emphasise?' },
+      { term: 'Why it works', def: 'Every retrieval attempt strengthens the memory trace. Reading does almost nothing. This is the "testing effect" — replicated in hundreds of peer-reviewed studies since the 1930s.' }
+    ],
+    sources: [
+      { label: 'Roediger &amp; Karpicke (2006) — The power of testing memory (Perspectives on Psychological Science)', url: 'https://journals.sagepub.com/doi/10.1111/j.1745-6916.2006.00012.x' }
     ]
   },
   {
     type: 'concept',
     title: 'The Revision Loop',
-    body: 'Great revision isn\'t a one-way street of reading then hoping. It\'s a loop. Every time you go round, you learn more. AI makes the loop faster — but you still have to travel it.',
+    body: 'Great revision isn\'t a one-way street of reading then hoping. It\'s a loop you run multiple times, with each pass tightening your grip on the material. This is what expert tutors do — expensive, one-to-one. AI, for the first time in history, lets you run the same loop at home, at 10pm, for free.',
     bullets: [
-      { term: '1. Explain', def: 'Ask AI to explain the topic clearly. Read it. Try to re-say it without looking' },
-      { term: '2. Quiz', def: 'Ask AI to test you — questions first, answers later. Try to answer from memory' },
-      { term: '3. Feedback', def: 'Check your answers against the AI\'s. Note specifically what you got wrong and why' },
-      { term: '4. Consolidate', def: 'Write your own summary from memory. Check it. Round back to step 1 on anything shaky' }
+      { term: '1. Explain', def: 'Ask AI to explain the topic as if to a 14-year-old. Read it. Close the tab. Try to re-explain out loud without looking.' },
+      { term: '2. Quiz', def: 'Ask AI to generate 10 exam-style questions on the topic — then ask for the mark scheme separately. Attempt each from memory first.' },
+      { term: '3. Feedback', def: 'Check your answers against the mark scheme. Note specifically what you got wrong and — crucially — WHY. A wrong answer you understand is worth more than a lucky right one.' },
+      { term: '4. Consolidate', def: 'Write your own condensed summary from memory. Compare it to the original. Anything shaky? Round back to step 1 on just that sub-topic.' },
+      { term: 'Spacing', def: 'Run the loop, then again 24 hours later, then again a week later. Spaced retrieval is the single most effective revision technique ever measured.' }
     ],
-    callout: 'Explain → Quiz → Feedback → Consolidate → Explain again. Each loop tightens your understanding. The loop is what expert tutors do — AI just lets you run it alone, on demand.'
+    callout: 'Explain → Quiz → Feedback → Consolidate → space it out → repeat. The loop is what a good private tutor does. AI just lets you run it on demand, for every topic, for free.'
+  },
+  {
+    type: 'scenario',
+    title: 'The Confident Summary',
+    situation: 'You paste the entire Biology chapter on the heart into ChatGPT and ask for a revision summary. It gives you a clear, confident 400-word breakdown covering the four chambers, valves, the cardiac cycle and blood flow. Relieved, you read it twice, make flashcards, and move on. On exam day, you are asked to explain the role of the semilunar valves in preventing backflow during diastole — and you realise the AI summary never once used the word "semilunar" or "diastole". It had flattened them into "valves close between beats".',
+    question: 'What went wrong — and how could you have spotted it before exam day?',
+    choices: [
+      { text: 'Bad luck — no one can catch every detail a summary drops. Move on.', outcome: 'This locks in the same mistake for the next topic. The AI didn\'t drop the detail randomly — it dropped it because your source text de-emphasised it or the AI chose shorter synonyms. That pattern will repeat.' },
+      { text: 'Cross-check the summary against the exam board specification — the official keyword list — before revising from it.', outcome: 'Your spec literally lists "semilunar valves" and "diastole" as required terminology. A 30-second scan of the spec alongside the AI summary would have flagged the missing keywords immediately. This one habit is worth several marks across a paper.' },
+      { text: 'Ask the AI "What technical terms are you NOT using in this summary that an examiner might expect?" — get the gaps named directly.', outcome: 'This works surprisingly well. The AI will often produce a second list: "I simplified semilunar, atrioventricular, systole and diastole into everyday language — the exam may demand the technical terms." Combining this with a spec check is the gold standard.' }
+    ]
   },
   {
     type: 'concept',
     title: 'The Cross-Check Habit',
-    body: 'AI summaries compress — and compression means information is lost. Some of what gets lost may be exactly what your examiner rewards. Build the cross-check habit now — it will save you marks.',
+    body: 'Every AI summary is compressed — and compression means information loss. Some of what gets lost may be exactly what your examiner rewards. Building the cross-check habit now will save you real marks in real exams. It takes about 90 seconds per topic. That is the single highest-return habit you can install this year.',
     bullets: [
-      'Cross-check against your exam board specification (the official list of what you must know)',
-      'Cross-check against your textbook or class notes — does the AI match?',
-      'If something is different, don\'t assume AI is right — find which source is correct',
-      'For any number, date, or citation: verify independently before you trust it'
+      'Cross-check against your exam board specification (AQA, Edexcel, OCR, WJEC) — the official list of what you MUST know. Search "[Board] [Subject] GCSE specification" to find the PDF.',
+      'Cross-check against your textbook or class notes — does the AI version match? Your teacher chose those notes for a reason.',
+      'If something is different, don\'t assume AI is right — work out which source is correct. 9 times out of 10 the spec wins.',
+      'For any number, date, citation or person\'s name: verify independently before you trust it. This is where hallucinations cluster.',
+      'Flag anything the AI hedges on ("generally", "most sources agree", "it is said that") — hedging language is usually a sign the model is uncertain.'
     ],
-    callout: 'AI cannot verify itself. Asking the AI "are you sure?" will usually get you the same confident wrong answer, in slightly different words. You need an outside source.'
+    callout: 'AI cannot reliably verify itself. Asking ChatGPT "are you sure?" typically gets you the same confident wrong answer, rephrased. You need an outside source — ideally the exam board\'s own spec.',
+    sources: [
+      { label: 'AQA — GCSE specifications (find your paper)', url: 'https://www.aqa.org.uk/subjects' },
+      { label: 'Pearson Edexcel — GCSE specifications', url: 'https://qualifications.pearson.com/en/qualifications/edexcel-gcses.html' }
+    ]
   },
   {
     type: 'activity',
     title: 'Summarise and Check',
-    task: 'Think of a topic you\'re currently revising. In the notes box, answer these questions:',
+    task: 'Pick one topic you\'re actively revising right now. Use the notes box to plan a full active-summarising run.',
     steps: [
-      'Write 3–5 key points you\'d expect a good summary to cover',
-      'Think: what would an examiner definitely want you to know?',
-      'Write a follow-up prompt you\'d use to check for gaps — e.g. "Did you cover [X]?"',
-      'Write a prompt to turn the summary into a 5-question quiz'
+      'Write 3–5 key points you would expect a good summary of this topic to cover — from memory, before you look anything up',
+      'Search your exam board spec for this topic and list the required keywords. Tick which ones you already wrote down',
+      'Draft the prompt you would use to ask AI for the summary — include the exam board and paper: e.g. "Summarise [topic] for AQA GCSE Biology Paper 1, using the required terminology: [keyword list]"',
+      'Draft a follow-up prompt to check for gaps: "What exam-important terms from the spec did you NOT use, and why?"',
+      'Draft a prompt to turn the summary into a 5-question quiz with a separate mark scheme',
+      'Decide when you will re-run this loop — 24 hours? A week? Both? Add it to your calendar now'
     ],
-    callout: 'Power tip: ask AI to summarise, then separately ask "What are the most commonly missed points in GCSE exams on this topic?" — it gives you the high-value gaps.'
+    callout: 'Power move: after the quiz, ask "Based on my answers, what are my 2 weakest sub-topics?" — then rerun Explain → Quiz only on those. This is adaptive revision, personalised, for free.'
+  },
+  {
+    type: 'discussion',
+    title: 'Summarising &amp; Responsibility',
+    questions: [
+      { num: 1, text: 'If an AI summary confidently leaves out a spec keyword and you lose marks as a result, whose fault is that — yours, the AI\'s, or your teacher\'s for not warning you? Why?' },
+      { num: 2, text: 'Is there any subject where you would refuse to use AI summarisation at all? What properties of that subject make it different?' },
+      { num: 3, text: 'Some teachers argue that making your OWN summary is part of the learning, and using AI to generate one is self-sabotage — even if you check it. Agree, disagree, or it depends? Defend your view with a specific example.' }
+    ]
   },
   {
     type: 'quiz',
@@ -822,16 +901,17 @@ SLIDES_GCSE[108] = [
       'Because your teacher won\'t accept AI-generated summaries'
     ],
     correct: 1,
-    explanation: 'AI summarises by keeping the most frequently emphasised points — but it doesn\'t know what YOUR examiner values. A key detail that gets cut might be exactly what the exam asks about. Always cross-check against your specification.'
+    explanation: 'AI summarises by keeping the most statistically frequent or central points — but it doesn\'t know what YOUR examiner values, or which technical keywords your spec demands. A key detail that gets cut might be exactly what the exam asks about. Always cross-check against your specification.'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '✂️', label: 'Summaries always lose information', text: 'check them against your spec' },
-      { icon: '🧠', label: 'Active beats passive', text: 'question the summary, don\'t just read it' },
-      { icon: '🔍', label: 'Ask for what\'s missing', text: 'the gaps matter as much as what\'s there' },
-      { icon: '⚡', label: 'AI + your brain', text: 'more powerful than either alone' }
+      { icon: '✂️', label: 'Summaries always lose information', text: 'they compress by design — check them against your spec before revising from them' },
+      { icon: '🧠', label: 'Active beats passive', text: 'retrieve, quiz, re-explain — don\'t just re-read. Fifty years of memory research is behind this.' },
+      { icon: '🔍', label: 'Ask for what\'s missing', text: 'the gaps the AI left out matter as much as what\'s in the summary — get them named explicitly' },
+      { icon: '🔁', label: 'The loop beats the one-off', text: 'Explain → Quiz → Feedback → Consolidate, spaced over days, is how expert tutoring works' },
+      { icon: '⚡', label: 'AI + your brain', text: 'together more powerful than either alone — but only if you stay in the driver\'s seat' }
     ]
   }
 ];
