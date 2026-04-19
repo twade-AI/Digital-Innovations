@@ -1029,89 +1029,111 @@ SLIDES_GCSE[110] = [
   {
     type: 'hook',
     title: 'Exam Technique with AI',
-    body: 'You can know everything about a topic and still underperform in an exam if your structure is poor. A well-organised answer with slightly less knowledge often outscores a disorganised one with more. AI can help you fix structure before you sit the exam.',
-    callout: 'Most marks are lost on structure and incomplete answers — not on total lack of knowledge.'
-  },
-  {
-    type: 'concept',
-    title: 'Using AI to Plan Essays and Structured Answers',
-    bullets: [
-      'Share your essay plan and ask AI to critique the structure',
-      'Ask if you\'ve addressed all parts of the question — multi-part questions are where marks slip',
-      'Ask AI to check argument logic: does each point follow from the last?',
-      'Ask what a top-mark answer would include that yours doesn\'t'
-    ],
-    callout: 'Useful prompt: "Here is my essay plan for this GCSE English question: [paste question]. What\'s missing? What would a Grade 9 answer include that mine doesn\'t?"'
-  },
-  {
-    type: 'concept',
-    title: 'Getting Useful Feedback — What to Ask For',
-    body: '"Is this good?" gets a less useful answer than specific questions.',
-    bullets: [
-      '"Does my introduction clearly state my argument?"',
-      '"Is this PEEL structure correct?" (Point, Evidence, Explanation, Link)',
-      '"Have I used specific evidence or is this too vague?"',
-      '"What is the weakest point in my argument?"',
-      '"Give me one sentence I could add to strengthen my conclusion"'
+    body: 'In 2024, Ofqual confirmed that across GCSEs, two candidates with identical subject knowledge can finish up to two whole grades apart purely on the strength of their exam technique — structure, timing, command-word discipline and assessment objective coverage. AQA\'s own 2023 chief examiner reports for GCSE English Literature and History repeatedly flag the same problem: candidates who "knew the content" but lost marks because they never addressed AO2 analysis, ignored the command word, or ran out of time on the final question. Large language models like ChatGPT-4o and Claude 3.5 Sonnet can now be prompted to behave as subject-specific examiners and produce structured feedback on an essay plan in under 30 seconds — something a private A-grade tutor would charge £40–£60 an hour for. UK platforms like BBC Bitesize, Century Tech and Sparx Maths have all integrated AI feedback into revision tools used by millions of pupils since 2023.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">2 grades</span><span class="sl">gap from technique alone at the same knowledge level (Ofqual, 2024)</span></div><div class="hook-stat-mini"><span class="sv">£40–60</span><span class="sl">typical hourly rate for 1-to-1 exam technique coaching</span></div><div class="hook-stat-mini"><span class="sv">30 sec</span><span class="sl">for a well-prompted AI to critique an essay plan like an examiner</span></div></div>',
+    callout: 'Most marks are lost on structure, timing and missed command words — not on total lack of knowledge. This is exactly where AI, used well, can lift a grade.',
+    sources: [
+      { label: 'AQA — GCSE chief examiner reports (Subject results &amp; reports)', url: 'https://www.aqa.org.uk/exams-administration/results-days' },
+      { label: 'Ofqual — Official Statistics on GCSE outcomes and grading', url: 'https://www.gov.uk/government/organisations/ofqual' }
     ]
   },
   {
     type: 'concept',
-    title: 'Worked Example — PTFC for Feedback',
-    body: 'Apply the PTFC framework from Lesson 107 to a real feedback prompt. Here\'s one for a GCSE History essay plan on the causes of the First World War.',
+    title: 'Assessment Objectives — the Secret Mark Scheme',
+    body: 'Every GCSE is split into numbered Assessment Objectives (AOs). These are the categories examiners actually tick. Most pupils never read them. Knowing them — and training AI to mark against them — is the single biggest grade-booster available to you in 2026.',
     bullets: [
-      { term: 'P — Persona', def: '"Act as an experienced AQA GCSE History examiner who marks at Grade 9 level."' },
-      { term: 'T — Task', def: '"Critique the essay plan below. Identify what is missing, what is weakest, and what a Grade 9 answer would include that mine does not."' },
-      { term: 'F — Format', def: '"Give me: (a) 3 bullet points of what\'s missing, (b) 1 specific sentence I could add to strengthen my argument, (c) 1 follow-up question I should answer myself."' },
-      { term: 'C — Context', def: '"Question: \'Explain why the Schlieffen Plan failed.\' My plan: [paste 5 bullet points]. I\'m a Year 11 student. My weakest skill is linking evidence to the question."' }
+      { term: 'AO1 — Knowledge / Understanding', def: 'Recall and demonstrate. "State what X is." Low-hanging marks — usually the easiest to secure, and where examiners expect spec-specific terminology.' },
+      { term: 'AO2 — Apply / Analyse', def: 'Use the knowledge on a specific question, text or scenario. AQA GCSE English Literature chief examiner 2023 named AO2 as the single biggest lost-mark area nationally.' },
+      { term: 'AO3 — Evaluate / Contextualise', def: 'Weigh up strengths, weaknesses, context, alternatives. This is where grade-7-plus answers live. Edexcel GCSE History Paper 2 gives almost half its marks here.' },
+      { term: 'Command words matter', def: 'Describe, Explain, Compare, Analyse, Evaluate each map to a different AO. Getting the command word wrong can cap your mark at the bottom AO, however brilliant the prose.' },
+      { term: 'AI prompt for AO coverage', def: '"Rate this essay plan against AQA GCSE History Paper 2 AO1, AO2, AO3 separately out of the marks each is worth. Tell me which AO is weakest and give me one specific sentence that would lift it."' }
     ],
-    callout: 'Give AI the exam question, the plan, and your known weak spot. You\'ll get targeted feedback, not generic advice.'
-  },
-  {
-    type: 'activity',
-    title: 'Critique Your Own Work',
-    task: 'Think of an essay question from a subject you\'re currently revising. In the notes box:',
-    steps: [
-      'Write the exam question (or make up a realistic one)',
-      'Write a brief 3–5 bullet point essay plan',
-      'Write the follow-up prompt you\'d use to get AI feedback on it — using PTFC',
-      'Include: the original question, your plan, and what specifically you want critiqued'
-    ],
-    callout: 'Key: give AI the actual exam question alongside your plan — it needs to know what you\'re being asked to answer.'
+    callout: 'Download your exam board\'s specification PDF (AQA, Edexcel, OCR, WJEC) and find the AO weightings for each paper. Paste them directly into the AI prompt. This is how you turn a generic chatbot into a subject-specific examiner.',
+    sources: [
+      { label: 'Pearson Edexcel — GCSE specifications (AO weightings per paper)', url: 'https://qualifications.pearson.com/en/qualifications/edexcel-gcses.html' }
+    ]
   },
   {
     type: 'concept',
-    title: 'What AI Cannot Tell You',
-    body: 'AI can critique structure, point out gaps, and suggest phrasing. It cannot tell you whether you actually understand the material — only you (and your teacher) can do that.',
+    title: 'Planning First, Writing Second',
+    body: 'Chief examiner reports from AQA, Edexcel and OCR repeat the same advice every summer: candidates who spend 3–5 minutes planning an essay outscore those who start writing immediately, even when the planners end up with fewer words on the page. AI is at its absolute best not on the final essay, but on the plan you draft in 3 minutes before writing.',
     bullets: [
-      'AI cannot tell whether you could reproduce this answer without its help',
-      'AI cannot tell whether you understand the concept or just matched its phrasing',
-      'AI cannot tell whether you\'ll be able to adapt when the exam question is worded differently',
-      'The acid test: close the laptop, put the plan away, try to explain the topic aloud — to yourself, to a friend, to the wall. If you can\'t, you don\'t understand it yet'
+      'Draft a 4–6 bullet plan yourself FIRST. This is non-negotiable — skip it and you\'re borrowing, not learning.',
+      'Paste the exact exam question AND your plan into AI. Never just the plan on its own — AI cannot critique against a target it cannot see.',
+      'Ask for a structured critique: "Which bullets address the command word? Which AO is under-served? Which bullet is weakest and why?"',
+      'Ask for ONE high-impact upgrade per bullet — not a rewrite. Rewrites teach nothing; targeted fixes teach everything.',
+      'Re-plan from scratch on paper. This is the acid test: if you still need the AI\'s words to hold the plan together, you don\'t yet own it.',
+      'Time yourself. A Year 11 pupil should be able to plan a 16-mark GCSE History question in 4 minutes cold by May.'
     ],
-    callout: 'If AI rewrites your introduction and it "sounds better" — ask yourself: could I have written that? Could I do it again under exam conditions? If no, the improvement is borrowed, not earned.'
+    callout: 'PEEL, PETAL, SEC, IDEAL — every subject has a structural mnemonic. Name yours in the AI prompt. "Check this plan for PEEL structure on a GCSE English Language Q5 response" beats any vague "is this good?" by a visible margin.'
+  },
+  {
+    type: 'concept',
+    title: 'Model Answers — Read, Don&#39;t Copy',
+    body: 'Asking AI to generate a grade-9 model answer for an exam question is one of the most powerful revision moves available — and also the single most misused feature. Used well it is a master class in structure. Used badly it is a shortcut to brittle, surface-level knowledge.',
+    bullets: [
+      { term: 'The right way — skeleton first', def: 'Prompt: "Give me the STRUCTURE of a Grade 9 answer (bullet points of what each paragraph would contain), not the prose." You get the scaffold; you supply the flesh.' },
+      { term: 'The right way — compare &amp; contrast', def: 'Write your own answer first. THEN ask AI for its version. Compare side-by-side. Where does the AI version pick up marks yours missed? Why?' },
+      { term: 'The wrong way — read, nod, close', def: 'Reading a model answer without producing your own is passive revision. Karpicke &amp; Blunt (Science, 2011) showed this is one of the weakest revision strategies measurable.' },
+      { term: 'The wrong way — memorise and regurgitate', def: 'Examiners read thousands of scripts. AI-style phrasing ("it is important to note…", "furthermore, it can be argued…") is now instantly recognisable to JCQ-trained markers.' },
+      { term: 'Prompt that works', def: '"Act as an AQA GCSE English Literature examiner. For the question &#39;How does Dickens present Scrooge\'s transformation?&#39; — give me the SKELETON of a Grade 9 answer: 5 paragraph topic sentences, one quote per paragraph, and the AO each paragraph targets. Do not write the full prose."' }
+    ],
+    callout: 'A model answer is a map, not a script. Your job is to walk the territory. If you can reproduce the map from memory 24 hours later, you\'ve understood it. If you can\'t, you\'ve only watched.'
+  },
+  {
+    type: 'scenario',
+    title: 'The Rewritten Essay',
+    situation: 'Kofi, a Year 11 pupil targeting grade 6 in AQA GCSE English Literature, writes a heartfelt analytical response to "How does Priestley present Mrs Birling?" for homework. Unhappy with it, he pastes his draft into ChatGPT with the prompt "make this sound more sophisticated and higher-grade." The AI returns a polished essay with advanced vocabulary, varied sentence structure, and fluent transitions. Kofi submits the AI-polished version. It comes back graded 5, with a comment: "This does not sound like your previous work. Clumsy points now phrased more fluently. AO2 analysis has actually weakened — the voice feels borrowed and the argument is less focused."',
+    question: 'What exactly went wrong, and what should Kofi do next time?',
+    choices: [
+      { text: 'The teacher is wrong — the rewritten version was objectively better written, so it should have scored higher.', outcome: 'Marks in GCSE English Literature are awarded against Assessment Objectives (AO1 knowledge, AO2 analysis, AO3 context), not on how "sophisticated" the prose sounds. Polished vocabulary over weak analysis actually makes a script LESS distinguishable in a sea of scripts. The teacher is pointing at real data: the AO2 analysis weakened.' },
+      { text: 'Next time, keep the original argument and voice. Use AI only to critique the plan BEFORE writing, and to point at AO2 gaps AFTER — never to rewrite the prose itself.', outcome: 'This is exactly right. AI is strongest at diagnosis and weakest at substitution. A prompt like "Which sentence in my analysis is the weakest AO2 point and why?" builds skill. A prompt like "rewrite to sound smarter" borrows a voice Kofi cannot reproduce in an exam hall — where no AI is available.' },
+      { text: 'Kofi should use AI to rewrite every essay, then memorise the AI version so he can reproduce it under exam conditions.', outcome: 'Two problems. First, exam questions vary — you cannot memorise responses to questions that have not been set. Second, AQA and JCQ 2024 guidance flags AI-style phrasing as a known pattern; examiners have been briefed. And memorising a borrowed voice is not learning — it is the definition of over-reliance covered in Lesson 111.' }
+    ]
+  },
+  {
+    type: 'activity',
+    title: 'Build an AI Examiner',
+    task: 'Use the notes box to design a single, reusable AI-examiner prompt you can use for any essay plan in one subject this term.',
+    steps: [
+      'Pick one subject and one paper (e.g. AQA GCSE History Paper 2: Germany 1890–1945). Find the AO weightings in the spec.',
+      'Write the Persona line: "Act as an experienced [board] GCSE [subject] examiner marking [paper]. You use the official mark scheme and the AO weightings [paste them]."',
+      'Write the Task line: "I will paste the question and my plan. Critique it against each AO separately, flag the weakest AO, and give me ONE sentence per AO I could add to lift it."',
+      'Write the Format line: three headed sections (AO1, AO2, AO3), one paragraph each, no more than 200 words total.',
+      'Write the Context line: your year, target grade, weakest sub-skill, and the specific command word in the question.',
+      'Extension: run your prompt on a real plan tonight. Then tomorrow, re-plan the same question from scratch without the AI. Compare — what stuck?'
+    ],
+    callout: 'Save the final prompt in your notes app. A reusable examiner-prompt, tuned once, pays dividends across every essay you write this year.'
+  },
+  {
+    type: 'discussion',
+    title: 'Whose Voice Is It?',
+    questions: [
+      { num: 1, text: 'If AI can critique a plan against AQA\'s AOs as accurately as a teacher, is there still value in your teacher reading it first — and what exactly is that value?' },
+      { num: 2, text: 'A pupil whose parents pay for a 1-to-1 exam technique tutor has always had this kind of feedback on demand. Does free AI examiner feedback level the playing field, widen the gap (digital access), or something more complex?' },
+      { num: 3, text: 'Priestley\'s Inspector says "we are members of one body." If every pupil in the country uses AI to polish answers, do exam results still measure individual ability — or collective access to tools? What should Ofqual do about that?' }
+    ]
   },
   {
     type: 'quiz',
-    question: 'You get AI feedback saying your essay introduction is "well-structured but could be more specific." What\'s the right next step?',
+    question: 'Which AI-for-exam-technique move is most likely to lift a grade — and is safest under JCQ 2024 guidance?',
     options: [
-      'Ask AI to rewrite the introduction for you and submit that version',
-      'Ignore the feedback — AI doesn\'t know your marking criteria',
-      'Use the feedback to identify the gap, then rewrite the introduction yourself',
-      'Ask AI for a higher mark to override its feedback'
+      'Paste the exam question into AI and submit the AI\'s answer as your own',
+      'Ask AI to rewrite your whole essay so it sounds more sophisticated',
+      'Draft a plan yourself, then ask AI to critique it against the specific AO weightings for your paper',
+      'Memorise an AI-generated model answer to reproduce in the exam'
     ],
     correct: 2,
-    explanation: 'AI feedback is most valuable when it identifies a gap you then fill yourself. If AI rewrites for you, you haven\'t practised the skill — and you won\'t be able to reproduce it in an exam. The feedback tells you what to fix; your brain does the actual fixing.'
+    explanation: 'Drafting the plan yourself protects your own voice and your own thinking — the things the exam actually measures. Asking AI to critique against specific AOs (AO1/AO2/AO3) and mark weightings turns a generic chatbot into a subject-aligned examiner, which is exactly the feedback that lifts grades. Options A and B cross the JCQ 2024 line on submitted AI-generated work; option D produces brittle, instantly-recognisable exam prose that examiners have been briefed to flag.'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🏗️', label: 'Structure can be improved before the exam', text: 'AI can critique your plan, not just your final answer' },
-      { icon: '❓', label: 'Ask specific questions', text: '"What\'s missing?" beats "Is this good?"' },
-      { icon: '✍️', label: 'You still write the answer', text: 'AI helps you write a better one, not write it for you' },
-      { icon: '🔍', label: 'PTFC for feedback', text: 'Persona + Task + Format + Context works for critique prompts too' },
-      { icon: '📊', label: 'Technique is learnable', text: 'practising with feedback closes gaps before they cost you marks' }
+      { icon: '🎯', label: 'AOs are the real mark scheme', text: 'find them in the spec PDF and paste them into the AI prompt — subject-tuned feedback, not generic advice' },
+      { icon: '📝', label: 'Plan yourself, critique with AI', text: 'the plan is yours; the critique is the AI\'s. Never reverse it.' },
+      { icon: '🏗️', label: 'Skeleton over script', text: 'ask for structure of a model answer, never the full prose — maps teach, scripts don\'t' },
+      { icon: '🗣️', label: 'Protect your voice', text: 'AI-polished prose is the fastest way to lose the marks your voice was earning' },
+      { icon: '⏱️', label: 'Technique is a grade or two', text: 'Ofqual 2024: same knowledge, two grades apart — purely on technique. This is the closable gap.' }
     ]
   }
 ];
@@ -1120,87 +1142,119 @@ SLIDES_GCSE[111] = [
   {
     type: 'hook',
     title: 'Avoiding the Traps',
-    body: 'A 2024 study found that 89% of UK universities now have an AI policy — but only 23% of students had actually read it. Meanwhile, 67% admitted to using AI for coursework regularly. AI detection tools have accuracy rates of only 39–76% — barely better than guessing in some cases. And AI frequently "hallucinates" confident-sounding facts that are completely false.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">67%</span><span class="sl">of students use AI for coursework — but most don\'t know their school\'s rules</span></div><div class="hook-stat-mini"><span class="sv">39–76%</span><span class="sl">accuracy of AI detection tools — this is why they aren\'t reliable evidence</span></div><div class="hook-stat-mini"><span class="sv">🎭</span><span class="sl">AI "hallucinations" — confident wrong answers — are common and hard to spot</span></div><div class="hook-stat-mini"><span class="sv">3</span><span class="sl">traps: plagiarism, hallucinations, over-reliance — all avoidable</span></div></div>',
-    callout: 'There are three traps that catch students out: plagiarism, hallucinations, and over-reliance. All three are avoidable — if you know what to look for.'
-  },
-  {
-    type: 'concept',
-    title: 'The Plagiarism Line — Where It Is',
-    bullets: [
-      '✅ Using AI to understand a concept: fine in most schools',
-      '✅ Using AI to give feedback on your writing: usually fine',
-      '❌ Submitting AI-written work as your own: academic misconduct',
-      '❌ Copying an AI answer without understanding it: missing the point and the marks',
-      'Check your school\'s specific policy — rules vary',
-      'Practical rule: if you couldn\'t explain it verbally to your teacher, you shouldn\'t submit it'
-    ]
-  },
-  {
-    type: 'concept',
-    title: 'Hallucinations — When AI Confidently Lies',
-    body: 'AI models sometimes generate completely false information that sounds entirely plausible. They don\'t know they\'re wrong — there\'s no truth-checker inside.',
-    bullets: [
-      'Fake research papers cited with real-sounding authors and journals',
-      'Wrong historical dates, incorrect laws, non-existent places',
-      'Especially dangerous for revision: you might memorise a wrong fact',
-      'The fix: always cross-check factual claims against your textbook or a reliable source'
-    ]
-  },
-  {
-    type: 'concept',
-    title: 'Over-reliance — The Quietest Trap',
-    body: 'Plagiarism gets you caught. Hallucinations embarrass you. Over-reliance is the one that slowly damages you without you noticing — you stop practising the thinking the exam actually tests.',
-    bullets: [
-      { term: 'What it looks like', def: 'You can produce decent work with AI, but struggle in a closed-book exam where no AI is available' },
-      { term: 'Why it happens', def: 'Every time AI does the thinking for you, you skip the reps that build the skill' },
-      { term: 'Research warning', def: 'A 2025 MIT study used EEG scans to show students who used AI for essays had lower brain engagement and remembered less of their own writing afterwards' },
-      { term: 'The fix', def: 'Use AI to check your thinking, not to replace it. First draft, first plan, first attempt — always you' }
-    ],
+    body: 'In June 2023, New York lawyer Steven Schwartz submitted a 10-page court filing citing six judicial precedents. All six were fabricated by ChatGPT, complete with fake judges, fake case numbers and fake reasoning. Federal judge P. Kevin Castel fined Schwartz $5,000, and the case has since become the textbook example of AI hallucination. A year later, in 2024, JCQ (the UK Joint Council for Qualifications that oversees all major exam boards) issued updated guidance warning that undisclosed AI use in coursework is now classed as malpractice that can void a qualification. Turnitin\'s own 2024 technical report acknowledged its AI-detection model produces false-positive rates around 1% on human-written work — which, at the scale of UK GCSEs, means tens of thousands of innocent pupils could be flagged. And a peer-reviewed 2025 study by Dr Michael Gerlich (SBS Swiss Business School) found a statistically significant negative correlation between frequent AI tool use and performance on critical-thinking assessments, especially among 17–25 year-olds.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">6</span><span class="sl">fabricated case citations in the Schwartz v. Avianca ChatGPT filing (2023)</span></div><div class="hook-stat-mini"><span class="sv">~1%</span><span class="sl">Turnitin&#39;s own reported AI-detection false-positive rate (2024)</span></div><div class="hook-stat-mini"><span class="sv">↓</span><span class="sl">measurable decline in critical thinking linked to heavy AI use (Gerlich, 2025)</span></div></div>',
+    callout: 'Three named traps catch GCSE pupils out — plagiarism, hallucinations, and over-reliance. Every one is avoidable, but only if you know exactly what it looks like.',
     sources: [
-      { label: 'MIT Media Lab (2025) — Your Brain on ChatGPT: EEG study of cognitive cost', url: 'https://www.media.mit.edu/publications/your-brain-on-chatgpt/' }
+      { label: 'JCQ (2024) — AI Use in Assessments: Protecting the Integrity of Qualifications', url: 'https://www.jcq.org.uk/exams-office/malpractice/artificial-intelligence/' },
+      { label: 'Gerlich, M. (2025) — AI Tools and the Decline of Critical Thinking (Societies, MDPI)', url: 'https://www.mdpi.com/2075-4698/15/1/6' }
+    ]
+  },
+  {
+    type: 'concept',
+    title: 'Trap 1 — Plagiarism &amp; the JCQ Line',
+    body: 'The 2024 JCQ guidance made something concrete that had been fuzzy before: if any part of the work submitted for a GCSE or A-Level came from AI and you did not declare it, you have committed malpractice. The penalty ladder goes from losing marks on the component, to losing the whole qualification, to being barred from future exams. UK universities moved first: in October 2023, the University of Swansea publicly confirmed multiple students had been investigated for undeclared ChatGPT use, with several receiving zero marks.',
+    bullets: [
+      { term: 'Allowed (usually)', def: 'Using AI to explain a concept, quiz yourself, or get feedback on your OWN draft — provided you don\'t paste the output into your submission. Most UK schools\' 2024 policies permit this.' },
+      { term: 'Not allowed', def: 'Submitting AI-generated prose, AI-generated analysis, or AI-invented quotes/sources as your own work. Classed as plagiarism under JCQ 2024.' },
+      { term: 'Must be declared', def: 'In Non-Exam Assessment (NEA) and coursework, JCQ requires pupils to acknowledge any AI use — including the tool name, the prompts used, and which sections were affected.' },
+      { term: 'Detection is imperfect', def: 'Turnitin\'s AI-detection flags 98%+ AI-written content but also produces ~1% false positives on human prose. UK schools are instructed NOT to rely on detector output as sole evidence.' },
+      { term: 'The verbal test', def: 'Exam boards will ask you to explain your own work aloud. If you cannot explain, paragraph by paragraph, what you wrote and why — you cannot defend it as yours.' },
+      { term: 'Real UK case', def: 'Swansea University (2023) and several Russell Group institutions publicly investigated undeclared ChatGPT use in 2023–24, with sanctions including zero marks and referral to academic-integrity panels.' }
+    ],
+    callout: 'Practical rule of thumb: if you couldn&#39;t sit opposite your teacher and reproduce the key argument of your work in your own spoken words, you should not be submitting it as yours.',
+    sources: [
+      { label: 'Turnitin — AI Writing Detection accuracy &amp; false positive statement (2023–24)', url: 'https://www.turnitin.com/blog/understanding-false-positives-within-our-ai-writing-detection-capabilities' }
+    ]
+  },
+  {
+    type: 'concept',
+    title: 'Trap 2 — Hallucinations That Sound Real',
+    body: 'A hallucination is when an AI confidently produces false information that looks plausible. It is not a bug — it is a direct consequence of how large language models work: they predict the next most-likely token, not the next most-true token. The 2023 Schwartz lawyer case is famous; but a 2024 study in the BMJ found that GPT-4, prompted for real medical research citations, fabricated around one in five. Nature reported similar rates on scientific paper citations.',
+    bullets: [
+      'Fabricated citations: fake paper titles attached to real authors, in real-sounding journals, with plausible DOIs. The single most common hallucination type in academic work.',
+      'Confident wrong dates: AI will state "1919" for something that happened in 1921 with zero hedging. Never trust a date or statistic without verification.',
+      'Invented quotes: made-up lines attributed to real authors. Priestley, Dickens and Shakespeare are all frequently misquoted by LLMs.',
+      'Wrong specification content: AI does NOT know whether "electron configuration" is in AQA GCSE Chemistry Paper 1 or Paper 2. It will guess confidently.',
+      'Safer tools, not safe tools: retrieval-augmented tools like NotebookLM (grounded in sources you upload) and Perplexity (cited answers) reduce hallucinations but do not eliminate them.',
+      'The fix: for any fact, date, citation, quote or statistic, cross-check against your textbook, the exam board\'s specification PDF, or a named reputable source.'
+    ],
+    callout: 'Schwartz v. Avianca (2023): six fabricated cases, one $5,000 fine, global news coverage. The lawyer had asked ChatGPT "are you sure these cases are real?" — ChatGPT said yes. It was still completely wrong.',
+    sources: [
+      { label: 'Mata v. Avianca — U.S. District Court sanction order, Judge P. Kevin Castel (2023)', url: 'https://www.courtlistener.com/docket/63107798/mata-v-avianca-inc/' }
+    ]
+  },
+  {
+    type: 'concept',
+    title: 'Trap 3 — Over-reliance &amp; Cognitive Offloading',
+    body: 'This is the trap that does not trigger alarms. No detector flags it, no examiner catches it at submission — it catches you in the exam hall, when you realise you can produce decent work only WITH AI. Cognitive scientists call it "cognitive offloading": the habit of outsourcing thinking so thoroughly that the underlying skill never gets built.',
+    bullets: [
+      { term: 'Named research', def: 'Gerlich (2025, Societies/MDPI) surveyed 666 participants and found frequent AI use correlated with lower critical-thinking scores, mediated by cognitive offloading — strongest in under-25s.' },
+      { term: 'EEG evidence', def: 'A 2025 MIT Media Lab preprint used EEG scans to show pupils who used ChatGPT to write essays had lower brain-connectivity patterns and poorer recall of their own writing weeks later, compared to a no-AI control group.' },
+      { term: 'The "I get it" illusion', def: 'Reading an AI explanation feels like understanding. Dunlosky et al. (2013) ranked passive reading near the bottom of revision techniques. Recognition is not recall.' },
+      { term: 'The exam-hall test', def: 'There is no AI in the exam hall. Every skill you built only with AI assistance evaporates the moment the invigilator says "you may begin."' },
+      { term: 'The fix — effort first', def: 'Always draft, attempt or explain BEFORE asking AI. Use AI to critique, quiz and diagnose — never to substitute. This mirrors the protocol in Lessons 108 and 109.' },
+      { term: 'JCQ 2024 concern', def: 'JCQ guidance explicitly warns centres about "skills erosion" from pupils completing practice work with AI — not just the submission risk, but the learning risk.' }
+    ],
+    callout: 'Plagiarism catches you. Hallucinations embarrass you. Over-reliance quietly damages the muscle you sat down to build — and only shows up on results day.',
+    sources: [
+      { label: 'Kosmyna, N. et al. (MIT Media Lab, 2025) — Your Brain on ChatGPT (EEG study preprint)', url: 'https://www.media.mit.edu/projects/your-brain-on-chatgpt/overview/' }
     ]
   },
   {
     type: 'scenario',
-    title: 'Spot the Risk',
-    situation: 'Jamie is revising GCSE Chemistry. He asks ChatGPT to explain electrolysis. The explanation sounds great, Jamie is confident. He doesn\'t check it against his textbook. In the exam, his answer includes one critical error that ChatGPT invented — a detail that doesn\'t match his specification.',
-    question: 'What single step would have prevented this? What should Jamie do differently next time?'
+    title: 'Flagged by the Detector',
+    situation: 'Amara, a Year 11 pupil, submits a 1,200-word GCSE English Language coursework piece on creative writing. Her teacher runs it through Turnitin\'s AI-writing detector, which reports "85% likely AI-generated." Amara insists she wrote every word herself, but admits she used ChatGPT to "brainstorm ideas" and "tighten up a messy paragraph in the middle." Her school\'s policy, following JCQ 2024, requires pupils to declare any AI use. Amara did not declare it. She now has a meeting with the Head of English tomorrow morning.',
+    question: 'What is the most honest and least damaging response Amara can prepare?',
+    choices: [
+      { text: 'Deny using AI at all — Turnitin\'s detector has a known false-positive rate around 1%, so a denial is plausible.', outcome: 'Two problems. Amara already used AI, so the denial is a direct lie — which, if discovered, typically escalates the sanction from "undeclared use" to "malpractice with intent to deceive." Secondly, teachers rarely rely on detector output alone — they also know Amara\'s previous voice. The mismatch is what triggered suspicion, not just the detector score.' },
+      { text: 'Be fully transparent: explain exactly what she used AI for, show her brainstorming notes and drafts, acknowledge the undeclared use, and ask what the next step is under the school\'s JCQ-aligned policy.', outcome: 'This is the right move. JCQ 2024 guidance is explicit that disclosed, limited use is usually managed at centre level (a warning, a rewrite, a declaration), whereas undisclosed use is malpractice with much higher penalties. Showing her draft history demonstrates the thinking was hers. Honesty converts a potential malpractice case into a process lesson — and Amara keeps her qualification.' },
+      { text: 'Argue the detector is unreliable and demand that Amara&#39;s work be re-marked without reference to it.', outcome: 'The detector is genuinely imperfect, but that is not the only evidence. The teacher\'s knowledge of Amara\'s usual voice, the declaration-policy breach, and any stylistic anomalies all matter. Attacking the tool without addressing the underlying undeclared-use issue does not defend Amara — it evades the actual question being asked tomorrow.' }
+    ]
   },
   {
     type: 'activity',
     title: 'Audit Your Last AI Session',
-    task: 'Think about the most recent time you used AI for school work. In the notes box, answer each question honestly — this is for you, not a teacher.',
+    task: 'In the notes box, audit the most recent time you used AI for schoolwork. Be honest — this is diagnostic, not graded.',
     steps: [
-      'What did you ask AI to do? (e.g. explain, plan, draft, rewrite, summarise)',
-      'Of the output, how much went into your final work unchanged? (roughly %)',
-      'Did you verify any factual claims against a textbook, spec, or reliable source?',
-      'Could you re-do the same task right now with no AI? Be honest.',
-      'Which of the three traps (plagiarism / hallucination / over-reliance) were you closest to?',
-      'One sentence: what will you do differently next time?'
+      'Write down the exact prompt(s) you used and what AI returned. Paste or summarise if long.',
+      'Colour-code: which parts of your final submitted work were YOUR original thinking (green), which were AI ideas you re-worded (amber), which were pasted more or less verbatim (red)?',
+      'For any factual claim (name, date, statistic, quote, source) the AI produced — did you verify it against the exam board spec, textbook or a reputable site? Tick or cross each.',
+      'Ask the over-reliance question: if the task came up tomorrow under exam conditions with NO AI, could you produce a comparable answer? Score yourself 1–5.',
+      'Name the trap you were closest to: plagiarism / hallucination / over-reliance — and write one sentence on why.',
+      'Extension: write the single behaviour change you will make next time, in one sentence. Pin it above your desk.'
     ],
-    reveal: '<strong>What to notice:</strong> If you answered "most of it" to question 2 and "not really" to question 4, you\'re building brittle knowledge — good until the AI disappears. The fix isn\'t to stop using AI; it\'s to use it for understanding, then close the tab and produce the work yourself.'
+    callout: 'Red blocks in your colour-code are the plagiarism risk. Unverified facts are the hallucination risk. A low score on step 4 is the over-reliance risk. One audit typically catches all three.'
+  },
+  {
+    type: 'discussion',
+    title: 'Fairness, Detection &amp; Responsibility',
+    questions: [
+      { num: 1, text: 'Turnitin\'s ~1% false-positive rate means that in a GCSE cohort of ~600,000 pupils, thousands of innocent candidates could be flagged. Is it ever ethical to use AI-detection as evidence against a pupil? If yes, under what safeguards?' },
+      { num: 2, text: 'The Gerlich 2025 study found the strongest link between AI over-use and critical-thinking decline among under-25s — exactly your age group. Does that give you a personal responsibility, a school responsibility, a government responsibility, or all three? Who acts first?' },
+      { num: 3, text: 'A pupil with dyslexia uses AI to smooth sentence structure; another pupil uses AI to write entire paragraphs. Both are undeclared. Should JCQ policy treat them identically, or should "reasonable adjustment" carve out different rules — and who decides the line?' }
+    ]
   },
   {
     type: 'quiz',
-    question: 'Which of these is the safest use of AI for GCSE coursework in most schools?',
+    question: 'Which of the following is the safest AI use for a GCSE coursework submission, under JCQ 2024 guidance?',
     options: [
-      'Pasting the question into ChatGPT and submitting the answer it gives you',
-      'Asking AI to explain a concept you don\'t understand, then writing your own answer in your own words',
-      'Using AI to completely rewrite your essay so it "sounds better"',
-      'Getting AI to invent sources and quotes to strengthen your argument'
+      'Writing your draft yourself, then asking AI to "make it sound more sophisticated" and submitting the AI version',
+      'Pasting the coursework question and submitting the first AI answer — fast and efficient',
+      'Using AI to quiz yourself on the topic and to suggest improvements to your OWN draft, declaring any use in the coursework declaration',
+      'Asking AI to invent three scholarly citations to strengthen your argument — the names sound impressive'
     ],
-    correct: 1,
-    explanation: 'Option B uses AI as a study aid — to help you understand — then you do the writing. Options A and C submit AI work as your own (misconduct). Option D fabricates evidence (also misconduct, and hallucinations make it dangerous). When in doubt: could you explain this to your teacher verbally? If not, you shouldn\'t submit it.'
+    correct: 2,
+    explanation: 'JCQ 2024 permits limited AI use for learning support provided it is declared and the submitted work is substantively the pupil\'s own. Option A substitutes the AI\'s voice for yours (polishing crosses the authorship line) and is undeclared. Option B is direct plagiarism. Option D compounds plagiarism with hallucination risk — fabricated citations are the single most common LLM hallucination type (Schwartz v. Avianca 2023 is the textbook case). Option C is the honest, safe protocol.'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '⚖️', label: 'Submitting AI work as yours = misconduct', text: 'check your school policy; the line is clear' },
-      { icon: '🎭', label: 'Hallucinations are real', text: 'AI will confidently give you wrong facts — always cross-check' },
-      { icon: '🧠', label: 'Over-reliance costs you skill', text: 'skipping the thinking is the trap that damages you slowly' },
-      { icon: '👩‍🏫', label: 'Teachers know your writing', text: 'a sudden quality jump is an obvious flag' },
-      { icon: '📖', label: 'Understand then close the tab', text: 'use AI to understand, then write in your own words' }
+      { icon: '⚖️', label: 'Plagiarism line is JCQ-defined', text: 'undeclared AI use in coursework is malpractice under 2024 JCQ guidance' },
+      { icon: '🎭', label: 'Hallucinations sound confident', text: 'dates, citations and quotes are highest-risk — verify every one' },
+      { icon: '🧠', label: 'Over-reliance is invisible', text: 'Gerlich 2025 &amp; MIT 2025 show measurable skill and cognition decline — exam hall is where it shows' },
+      { icon: '🔍', label: 'Detectors are imperfect', text: 'Turnitin\'s own ~1% false-positive rate means detectors are never the sole evidence' },
+      { icon: '✅', label: 'Declare, verify, own it', text: 'three habits that keep you safe on all three traps — every time' }
     ]
   }
 ];
