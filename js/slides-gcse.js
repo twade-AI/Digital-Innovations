@@ -920,53 +920,85 @@ SLIDES_GCSE[109] = [
   {
     type: 'hook',
     title: 'Quizzing Yourself with AI',
-    body: 'Re-reading your notes feels productive but barely improves exam performance. Research consistently shows that testing yourself is the single most effective revision technique. AI can generate unlimited tests on any topic.',
-    callout: 'The testing effect: the effort of trying to remember something strengthens the memory. Getting it wrong and learning the right answer is especially powerful.'
-  },
-  {
-    type: 'concept',
-    title: 'Why Quizzes Work Better Than Re-reading',
-    bullets: [
-      { term: 'Retrieval practice', def: 'The act of trying to retrieve information strengthens the memory trace' },
-      { term: 'Desirable difficulty', def: 'The struggle to remember is what causes the learning — easy revision = little learning' },
-      { term: 'Spacing effect', def: 'Spreading quizzes out over days beats cramming everything the night before' },
-      { term: 'Transfer', def: 'Being tested on unfamiliar questions (like AI generates) prepares you for exam questions you\'ve never seen' }
+    body: 'In 2013, cognitive scientists John Dunlosky and colleagues published a monumental review in Psychological Science in the Public Interest: they ranked every major revision strategy by strength of evidence. Re-reading notes — the most common technique used by UK pupils — ranked as one of the <em>least</em> effective. The top two? Practice testing and spaced practice. Self-quizzing beat highlighting, re-reading, and summarising combined. The research is so robust it has been replicated for 50+ years across every age group and subject. What changed in 2022 was that AI can now generate unlimited, tailored practice questions on any topic, at any level, in 10 seconds — something that used to require a private tutor at £40/hour.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">2×</span><span class="sl">higher retention from testing vs re-reading (Karpicke &amp; Roediger, 2008)</span></div><div class="hook-stat-mini"><span class="sv">#1</span><span class="sl">rank for practice testing in Dunlosky et al.\'s 2013 evidence review</span></div><div class="hook-stat-mini"><span class="sv">£40/hr</span><span class="sl">typical private GCSE tutor rate — AI quizzing is free</span></div></div>',
+    callout: 'The testing effect is the single most replicated finding in the science of learning. The struggle to remember something is what strengthens the memory — not reading the answer a second time.',
+    sources: [
+      { label: 'Dunlosky et al. (2013) — Improving students\' learning with effective learning techniques (Psychological Science in the Public Interest)', url: 'https://journals.sagepub.com/doi/10.1177/1529100612453266' },
+      { label: 'Karpicke &amp; Roediger (2008) — The critical importance of retrieval for learning (Science)', url: 'https://www.science.org/doi/10.1126/science.1152408' }
     ]
   },
   {
     type: 'concept',
-    title: 'The Science — Three Named Effects',
-    body: 'Self-quizzing with AI isn\'t just "a good idea". It taps three of the most well-replicated findings in cognitive science. Name them so you know why you\'re doing what you\'re doing.',
+    title: 'Why Quizzes Work Better Than Re-reading',
+    body: 'Every strong revision technique has one thing in common: it forces your brain to generate information, not just recognise it. Re-reading creates an illusion of fluency — "I\'ve seen this before, I must know it" — but recognition ≠ recall. The exam requires recall. Here is why quizzing dominates.',
     bullets: [
-      { term: 'Retrieval practice (the testing effect)', def: 'Trying to pull information out of your head strengthens the memory more than anything else. Quizzing > re-reading, every time' },
-      { term: 'Spacing effect', def: 'The SAME amount of revision, spread over days, produces much better retention than crammed into one session. Short daily quizzes > one long one' },
-      { term: 'Generation effect', def: 'Producing an answer yourself — even a wrong one — before seeing the right answer creates a stronger memory than reading the right answer first. Try, THEN check' }
+      { term: 'Retrieval practice (the testing effect)', def: 'The act of trying to retrieve information strengthens the memory trace. Replicated in over 200 peer-reviewed studies since the 1930s.' },
+      { term: 'Desirable difficulty', def: 'Coined by Robert Bjork (UCLA). The struggle to remember is exactly what causes the learning. Easy revision = little learning. If it feels hard, it\'s working.' },
+      { term: 'Spacing effect', def: 'The same total revision time spread over 5 days beats the same time crammed into one. First documented by Hermann Ebbinghaus in 1885 — still the gold standard.' },
+      { term: 'Interleaving', def: 'Mixing questions from different topics in one quiz beats doing one topic at a time. Feels worse. Works better.' },
+      { term: 'Transfer', def: 'Being tested on unfamiliar question wordings (exactly what AI generates) prepares you for the novel phrasings examiners actually use.' }
     ],
-    callout: 'These aren\'t tricks. They\'re how human memory actually works. AI just makes it easy to apply them to any subject, any time. If you use AI but skip these principles, you lose most of the benefit.'
+    callout: 'If you spend 2 hours re-reading and your friend spends 2 hours being quizzed, your friend will score noticeably higher in the exam. This isn\'t opinion — it\'s measured, repeatedly.'
+  },
+  {
+    type: 'concept',
+    title: 'The Science — Three Named Effects',
+    body: 'Self-quizzing with AI isn\'t just "a good idea". It taps three of the most well-replicated findings in cognitive science. Name them so you know WHY you\'re doing what you\'re doing — and so you can defend the technique when a friend says "just re-reading is fine".',
+    bullets: [
+      { term: 'Retrieval practice (the testing effect)', def: 'Trying to pull information out of your head strengthens the memory more than anything else. Quizzing > re-reading, every single study, every age group, since Ebbinghaus.' },
+      { term: 'Spacing effect', def: 'The SAME amount of revision, spread over days, produces dramatically better retention than crammed into one session. 20 minutes a day for 5 days beats 100 minutes the night before — every time.' },
+      { term: 'Generation effect', def: 'Producing an answer yourself — even a wrong one — before seeing the right answer creates a stronger memory than reading the right answer first. Try, THEN check. This is why "questions first, answers after" matters.' },
+      { term: 'Error-driven learning', def: 'Getting a question wrong and then learning the correct answer produces stronger memory than just getting it right. Mistakes are not failure — they are the mechanism.' }
+    ],
+    callout: 'These aren\'t tricks. They\'re how human memory actually works. AI just makes it trivially easy to apply them to any subject, any time, on demand. If you use AI but skip these principles, you lose most of the benefit.'
   },
   {
     type: 'concept',
     title: 'Writing a Quiz Prompt That Actually Works',
-    body: 'The more specific your request, the more useful the questions.',
+    body: 'The more specific your request, the more useful the questions. A generic "quiz me on photosynthesis" produces generic GCSE Year 8 questions. A precise prompt produces exam-level, board-specific, difficulty-graded questions that actually prepare you.',
     bullets: [
-      'Include: subject, topic, year level, number of questions',
-      'Specify question types: multiple choice, short answer, true/false, fill-in-the-blank',
-      'Ask for questions FIRST — then answers separately so you test yourself',
-      'Ask for explanations of wrong answers — that\'s where the learning happens'
+      'Include: exam board (AQA/Edexcel/OCR), subject, specific topic, year level, number of questions',
+      'Specify question types: multiple choice, 1-mark short answer, 4-mark structured, 6-mark extended, 9+ mark essay',
+      'Match the mark scheme: "include command words like DESCRIBE, EXPLAIN, EVALUATE matching AQA Paper 1 patterns"',
+      'Ask for questions FIRST — then answers separately so you test yourself (generation effect)',
+      'Ask for explanations of wrong answers — that\'s where the learning happens (error-driven learning)',
+      'Ask for a difficulty ramp: "start with 3 easy, then 3 medium, then 3 hard — mark each"'
     ],
-    callout: 'Example: "Generate 6 GCSE Biology multiple-choice questions on DNA structure. Give me just the questions first. When I say ANSWERS, give me the correct answers with brief explanations."'
+    callout: 'Gold-standard example: "Act as an AQA GCSE Biology examiner. Generate 6 multiple-choice questions on DNA structure for a Year 11 student targeting grade 7. Questions first. Then, when I reply ANSWERS, give the correct answer and — crucially — explain why each WRONG option is wrong. UK English."'
+  },
+  {
+    type: 'scenario',
+    title: 'The Flashcard App vs the AI Quiz',
+    situation: 'Your friend Priya has been using a popular flashcard app for months to revise GCSE History — she types her own cards and the app shows them to her on a schedule. She revises 20 minutes every day. You\'ve just started using an AI quiz generator: you give it your spec, it generates different exam-style questions each time, explains wrong answers, and adjusts difficulty based on your score. You\'re 3 weeks in. Priya challenges you: "My method has science behind it. Yours is just ChatGPT."',
+    question: 'How do you respond — and is either method scientifically stronger?',
+    choices: [
+      { text: 'Flashcards win — they have decades of research behind them and AI is too new.', outcome: 'Half right. Flashcards do tap retrieval practice and spacing — both evidence-based. But the science also favours variation, novel wordings, and error explanations — and AI quizzes do that better than static flashcards. Neither is "the winner"; both are strong.' },
+      { text: 'Both use the same core principles — retrieval practice and spacing — but AI quizzing adds variation, error explanations and exam-style wording that static cards can\'t. The best approach is probably both, used differently.', outcome: 'Correct. Flashcards excel at rote recall (dates, definitions, formulas). AI excels at applied reasoning, varied phrasings, and follow-up on your specific mistakes. A serious revision plan uses flashcards for facts and AI quizzes for application — spaced over days.' },
+      { text: 'AI quizzing wins — it\'s newer and more sophisticated.', outcome: 'Recency is not evidence. AI quizzing is powerful but not automatically better. If AI generates questions that drift from the spec, or you never attempt answers before checking, it can be worse than flashcards you\'ve carefully curated. The technique matters more than the tool.' }
+    ]
   },
   {
     type: 'activity',
     title: 'Design Your Quiz Prompt',
-    task: 'Pick a topic you\'re currently revising. In the notes box, write the best possible quiz prompt for it.',
+    task: 'Pick a topic you\'re currently revising. In the notes box, write the best possible AI quiz prompt for it, then plan the spacing.',
     steps: [
-      'Include: subject, specific topic, year level (GCSE)',
-      'Specify: number and type of questions',
-      'Include the instruction to give questions first, answers when you ask',
-      'Add: "Explain why each wrong answer is wrong" — the most powerful version'
+      'Write the prompt: include exam board, subject, topic, year, target grade, number and type of questions',
+      'Add the "questions first, answers after ANSWERS" instruction — this activates the generation effect',
+      'Add "explain why each wrong answer is wrong" — this activates error-driven learning',
+      'Plan the spacing: schedule 3 separate sessions on this topic — tomorrow, +3 days, +7 days',
+      'Plan the interleaving: in each session, mix THIS topic with one or two others — don\'t do them alone',
+      'If you have access to an AI tool now, run the prompt and do the quiz. Record your score. You\'ll redo it in 3 days.'
     ],
-    callout: 'If you have access to an AI tool right now, try your prompt and see what you get!'
+    callout: 'Scoring below 60% on an AI quiz is not failure — it\'s a map of exactly what to revise next. Scoring 90%+ usually means the questions were too easy or too similar to what you already saw. Seek discomfort.'
+  },
+  {
+    type: 'discussion',
+    title: 'Quizzing, Fairness &amp; Competition',
+    questions: [
+      { num: 1, text: 'Imagine two pupils revising the same topic for the same length of time — one re-reads notes, one uses AI-generated quizzes with error explanations. Is it fair that the second will likely score significantly higher in the exam? Why or why not?' },
+      { num: 2, text: 'AI can generate infinite variations of the same question — some easy, some impossibly hard. What responsibility does the pupil have to choose the right difficulty? Could AI quizzing make you overconfident if you only set easy questions?' },
+      { num: 3, text: 'Some schools block AI tools. If the evidence says AI quizzing beats re-reading, what should those schools do instead — and is there a version of AI quizzing they could still allow?' }
+    ]
   },
   {
     type: 'quiz',
@@ -978,16 +1010,17 @@ SLIDES_GCSE[109] = [
       'AI quizzes are marked automatically, saving time'
     ],
     correct: 2,
-    explanation: 'Retrieval practice works because the act of struggling to remember something strengthens the memory trace. Re-reading is passive — you recognise information without having to retrieve it. Getting a question wrong and learning the right answer is especially powerful for long-term retention.'
+    explanation: 'Retrieval practice (the testing effect) works because the effort of struggling to remember something strengthens the memory trace. Re-reading is passive — you recognise information without having to retrieve it, which creates an illusion of fluency. Getting a question wrong and learning the right answer is especially powerful for long-term retention — this is called error-driven learning.'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🧪', label: 'Testing beats re-reading', text: 'retrieval practice is the most effective revision technique' },
-      { icon: '🤖', label: 'AI = unlimited practice tests', text: 'on any topic, any format, any time' },
-      { icon: '📋', label: 'Get questions first', text: 'test yourself before asking for answers' },
-      { icon: '❌', label: 'Wrong answers teach most', text: 'ask AI to explain why wrong answers are wrong' }
+      { icon: '🧪', label: 'Testing beats re-reading', text: 'ranked #1 technique in Dunlosky\'s massive evidence review — backed by 50+ years of studies' },
+      { icon: '🤖', label: 'AI = unlimited practice tests', text: 'on any topic, any format, any difficulty, any time — what used to cost £40/hour' },
+      { icon: '📋', label: 'Questions first, answers after', text: 'the generation effect — try before you check, always' },
+      { icon: '❌', label: 'Wrong answers teach most', text: 'ask AI to explain why each wrong option is wrong — that\'s the learning' },
+      { icon: '📆', label: 'Space and interleave', text: 'three short sessions across a week > one long cram — every time' }
     ]
   }
 ];
