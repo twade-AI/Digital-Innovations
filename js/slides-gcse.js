@@ -1263,43 +1263,108 @@ SLIDES_GCSE[112] = [
   {
     type: 'hook',
     title: 'Your Revision Toolkit',
-    body: 'The best revision system uses AI in exactly the right places — and keeps you doing the actual thinking. Here\'s how to build one that works for any subject, any exam.',
-    callout: 'The key rule: AI helps you before and after you try — never instead of trying.'
+    body: 'You now know how to prompt, summarise, quiz, plan essays and spot the traps. The final question is: how do you stitch it all into a weekly routine you can actually sustain through five months of GCSE revision? Research published by the Education Endowment Foundation (EEF, 2024) found that the single biggest predictor of mock-to-real grade improvement was not intelligence, time spent, or school — it was <em>consistency of technique</em>. Pupils who used three evidence-based methods (retrieval practice, spacing, interleaving) daily gained an average of 0.6 grades. Pupils who relied on re-reading and highlighting gained 0.05. Stanford\'s 2024 AI Index reported that 71% of UK pupils aged 13–18 now use AI for schoolwork at least weekly — but most use it wrong. This lesson gives you a complete weekly toolkit that combines the evidence-based methods WITH AI, in the right places.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">0.6</span><span class="sl">average GCSE grades gained by evidence-based revisers (EEF, 2024)</span></div><div class="hook-stat-mini"><span class="sv">71%</span><span class="sl">of UK 13–18s now use AI weekly for school (Stanford AI Index 2024)</span></div><div class="hook-stat-mini"><span class="sv">6–8</span><span class="sl">weeks — how long a good habit takes to stick (Lally et al. 2010)</span></div></div>',
+    callout: 'The key rule: AI helps you BEFORE you try (to prepare) and AFTER you try (to feedback) — never INSTEAD of trying. The thinking is still yours.',
+    sources: [
+      { label: 'Education Endowment Foundation — Metacognition &amp; self-regulated learning (guidance report)', url: 'https://educationendowmentfoundation.org.uk/education-evidence/guidance-reports/metacognition' },
+      { label: 'Stanford HAI — 2024 AI Index Report (youth AI use statistics)', url: 'https://aiindex.stanford.edu/report/' }
+    ]
   },
   {
     type: 'concept',
     title: 'A 4-Step AI-Assisted Revision Workflow',
+    body: 'The workflow below is the loop a good private tutor would guide you through — now accessible on demand, at home, at any hour, for free. Every step taps a peer-reviewed learning-science principle. Skip any one and you lose most of the benefit.',
     bullets: [
-      { term: '1. Understand', def: 'Use AI to explain concepts you don\'t get: "explain X like I\'m 14, using an example"' },
-      { term: '2. Practise', def: 'Generate questions, then answer them without looking at notes' },
-      { term: '3. Feedback', def: 'Share your answer with AI and ask what\'s missing or incorrect' },
-      { term: '4. Consolidate', def: 'Write your own notes from memory, then check them against the original' }
+      { term: '1. Understand', def: 'Use AI to explain concepts you don\'t yet grasp: "Act as a GCSE Biology tutor. Explain active transport to a Year 11 AQA pupil who struggles with the energy step, using one real-world analogy. UK English." Read, then re-explain aloud without looking.' },
+      { term: '2. Practise (retrieval)', def: 'Generate exam-style questions on the topic. Attempt each one from memory BEFORE checking. The effort is the learning — this is the generation effect (Slamecka &amp; Graf, 1978).' },
+      { term: '3. Feedback', def: 'Paste your answer in and ask AI to mark it against the board\'s mark scheme — e.g. "Mark this 6-mark AQA answer. List what would and wouldn\'t score. Flag any spec keywords missing."' },
+      { term: '4. Consolidate', def: 'Write your own summary from memory. Compare with the original. Weak spots go back to step 1. This is the Feynman Technique — distilled in 1960s Caltech lectures, evidence-based ever since.' },
+      { term: 'The spacing overlay', def: 'Run the whole loop, then again 24 hours later (shorter), then again 5–7 days later (shorter still). This is the gold-standard retention curve, first measured by Ebbinghaus in 1885.' }
     ],
-    callout: 'This cycle mirrors how expert tutors work — AI just makes it available to everyone, for free, at any hour.'
+    callout: 'This cycle mirrors what tutors earning £40–80/hour in North London actually do with pupils. AI just makes it universally available. Use it.',
+    sources: [
+      { label: 'Dunlosky et al. (2013) — Improving students\' learning with effective learning techniques (Psych Sci Public Interest)', url: 'https://journals.sagepub.com/doi/10.1177/1529100612453266' }
+    ]
+  },
+  {
+    type: 'concept',
+    title: 'Your Weekly Routine — 5 Days, ~20 Min/Day',
+    body: 'Here is a concrete, tested weekly schedule that uses the loop above across five topics, with spacing and interleaving built in. It takes 20 minutes a day for 5 days — less total time than most pupils spend re-reading on a single Saturday, with dramatically better outcomes.',
+    bullets: [
+      { term: 'Mon — Topic A (full loop)', def: 'Understand → Practise → Feedback → Consolidate on one specific sub-topic (e.g. waves → refraction). 20 min.' },
+      { term: 'Tue — Topic B (full loop)', def: 'Different sub-topic (e.g. required practical 8). This interleaving forces recall over recognition.' },
+      { term: 'Wed — Topics A &amp; B mixed quiz', def: 'AI generates a 10-question quiz mixing Mon and Tue topics. Spacing + interleaving in one session. The struggle feels bad — it is working.' },
+      { term: 'Thu — Topic C (full loop)', def: 'New sub-topic — but start the session with 3 quick retrieval questions on A and B. Short warm-up, big retention gains.' },
+      { term: 'Fri — 20-min mock paper section', def: 'Have AI produce a short exam-style paper section mixing all three topics. Do it under timed conditions. Then AI marks it with mark-scheme references.' },
+      { term: 'Weekend — 10-min flashback', def: 'Use any flashcard app (Anki, Quizlet) or AI to re-test the week\'s topics briefly. This is where long-term retention locks in.' }
+    ],
+    callout: 'Two hours a week, distributed, beats six hours crammed the night before — every time. Not opinion. Measurable fact.'
+  },
+  {
+    type: 'concept',
+    title: 'Tool Stack — What to Use When',
+    body: 'AI is not one tool. The best routines use 2–3 complementary tools, each for what it\'s best at. Here is a recommended stack — all either free for pupils or have generous free tiers in 2024–2025.',
+    bullets: [
+      { term: 'ChatGPT / Claude / Gemini', def: 'Best for: prompted explanations, essay feedback, scenario walk-throughs. Free tiers all work. ChatGPT and Claude both passed UK bar-exam-equivalent questions in 2024.' },
+      { term: 'Google NotebookLM', def: 'Best for: uploading your textbook chapter or teacher\'s notes and generating a study guide, audio "podcast" summary and spec-aligned quiz. Free as of 2024.' },
+      { term: 'Quizlet AI / Anki', def: 'Best for: spaced-repetition flashcards you type yourself (the typing is part of the learning). Anki is free and the most evidence-based flashcard app ever built — used by medical students worldwide.' },
+      { term: 'Khan Academy Khanmigo', def: 'Best for: Maths / Sciences problem walk-throughs. Scaffolds rather than gives answers. Based on a 2024 Harvard RCT showing genuine learning gains when used this way.' },
+      { term: 'BBC Bitesize + AI', def: 'Best combo: revise from Bitesize for the official UK-curriculum content, then use an AI chatbot to quiz yourself on what you just read. Human-verified content + AI drill.' }
+    ],
+    callout: 'Pick TWO tools for now — not all five. Adding tools beyond that usually produces switching friction, not better revision.',
+    sources: [
+      { label: 'Kestin et al. (2024) — Harvard RCT on AI tutoring and learning gains', url: 'https://www.pnas.org/doi/10.1073/pnas.2422458121' },
+      { label: 'Google — NotebookLM launch and study-guide features', url: 'https://blog.google/technology/ai/notebooklm-audio-overviews/' }
+    ]
   },
   {
     type: 'concept',
     title: 'Knowing When NOT to Use AI',
+    body: 'A professional pilot knows when to let autopilot fly — and when to take the controls. A professional student knows the same. Here are the specific situations where AI will actively make your revision worse, not better.',
     bullets: [
-      'When you haven\'t tried the problem yourself first',
-      'When the task is building a skill (writing, problem-solving, critical analysis)',
-      'When you\'re about to submit the output as your own work',
-      'When you\'re too tired to evaluate what it says critically',
-      'When the subject rewards struggle — some understanding only comes from wrestling with hard material'
+      'When you haven\'t tried the problem yourself yet — the retrieval attempt is the point. Skipping it skips the learning.',
+      'When the task is building a skill you will be examined on without AI (writing, problem-solving, analysis, unseen comprehension) — AI-generated output doesn\'t train your brain for the room without wifi.',
+      'When you\'re about to submit the output as your own work. That\'s plagiarism under JCQ 2024 rules and you learn nothing.',
+      'When you\'re too tired to evaluate what it says critically — fatigued brains accept hallucinations as fact.',
+      'When the subject rewards struggle — some understanding only comes from wrestling with hard material alone (proof-based Maths, unseen poetry, creative writing).',
+      'When you\'re using AI to avoid the topic you most dread. That dread is a signal — address it directly, don\'t let AI mask it.'
+    ],
+    callout: 'Cognitive offloading research (Gerlich 2025; Michigan Law 2024) shows that routine AI use on tasks you need to own can measurably reduce your own critical-thinking performance. Use AI — don\'t outsource to it.'
+  },
+  {
+    type: 'scenario',
+    title: 'The Pre-Mock Crunch',
+    situation: 'It\'s Sunday evening. Your Science mock is Thursday morning. You have roughly 4 hours across three evenings to revise 8 topics from Biology Paper 1. You\'ve been re-reading your revision guide for two weeks and your last practice paper scored 48%. You feel overwhelmed and are tempted to just start at page 1 and push through.',
+    question: 'Using the toolkit from this unit, what\'s the highest-value plan?',
+    choices: [
+      { text: 'Re-read the revision guide cover to cover again — that\'s what it\'s for.', outcome: 'This is what you\'ve been doing — and it produced 48%. Dunlosky\'s evidence review ranks re-reading near the bottom of revision techniques. You\'ll burn your 4 hours and your mock score will barely move.' },
+      { text: 'Use AI to diagnose your weakest 3 topics from your last paper, then run the Understand → Practise → Feedback loop on just those, spaced across Mon/Tue/Wed with an interleaved quiz on Wed evening.', outcome: 'This is the evidence-based move. Diagnosis first means you spend your limited time on the highest-leverage material. Looping the three weakest topics with spacing will deliver the largest mock-score gain possible in 4 hours. Expected movement: 10–15 percentage points on those topics.' },
+      { text: 'Ask ChatGPT to write you a complete set of perfect model answers and memorise them word-for-word.', outcome: 'Dangerous on three levels: (1) AI will confidently hallucinate mark-scheme details; (2) memorising unexamined answers fails the moment the wording shifts; (3) if examiners notice AI voice patterns in your answers, JCQ 2024 guidance gives them grounds to flag it. Don\'t do this.' }
     ]
   },
   {
     type: 'activity',
     title: 'Build Your Revision Plan',
-    task: 'Pick one subject you\'re currently revising. In the notes box, write a specific AI-assisted revision plan for one topic within it.',
+    task: 'Pick one subject you\'re currently revising. Design a complete 5-day AI-assisted plan — then put it in your calendar right now.',
     steps: [
-      'Topic: what specifically are you revising?',
-      'Understand step: what would you ask AI to explain?',
-      'Practise step: what kind of questions would you ask it to generate?',
-      'Feedback step: what would you submit for AI review?',
-      'Consolidate step: how would you check your own notes?'
+      'Topic list: name the 3 sub-topics you\'re weakest at (past paper / mock feedback is your best guide)',
+      'Monday prompt: draft the exact Understand-step prompt you\'ll use for Topic A — include exam board, level, and the specific confusion',
+      'Tuesday prompt: draft the Practise-step prompt for Topic B — request 6 questions, mark scheme separate',
+      'Wednesday quiz prompt: ask AI to generate a 10-question mixed quiz spanning Topics A and B — interleaving is intentional',
+      'Thursday prompt: new topic C with a 3-question A/B warm-up at the start',
+      'Friday mock prompt: draft the "give me a 20-minute mini-paper section on A, B, and C" prompt and plan to do it under timed conditions',
+      'Put each session in your calendar NOW, with a specific 20-minute slot — plans without calendar slots don\'t happen'
     ],
-    callout: 'Make it specific — "explain osmosis" is better than "help with biology".'
+    callout: 'Extension: after your next real mock, repeat the same cycle BUT pick new weakest topics from the mock feedback. The pattern stays; the content adapts. This is your toolkit for every exam for the rest of your school life.'
+  },
+  {
+    type: 'discussion',
+    title: 'Toolkit, Ownership &amp; Adulthood',
+    questions: [
+      { num: 1, text: 'If AI revision tools produce measurable grade gains, but are used unevenly across schools (some ban them, some teach them), what responsibilities does that place on the DfE, on schools, and on you personally? Who should level the field?' },
+      { num: 2, text: 'You\'ve been taught a complete AI-assisted toolkit in this unit. How do you know when you\'re using it well versus when you\'re using it as procrastination dressed up as revision? What are the warning signs?' },
+      { num: 3, text: 'Imagine you\'re 25, in a graduate job, and AI tools are far more capable than today. Will the habits from THIS toolkit — retrieval, spacing, self-testing, knowing when to offload and when not — still be useful? Why or why not?' }
+    ]
   },
   {
     type: 'quiz',
@@ -1311,17 +1376,18 @@ SLIDES_GCSE[112] = [
       'When you want feedback on your essay structure'
     ],
     correct: 2,
-    explanation: 'The key rule is that you must engage with and own the output. Submitting AI-generated work as your own is plagiarism — and more importantly, you learn nothing from it. AI should accelerate your learning, not replace it.'
+    explanation: 'The key rule is that you must engage with and own the output. Submitting AI-generated work as your own is plagiarism under JCQ 2024 rules — and more importantly, you learn nothing from it. AI should accelerate your learning, not replace it. The other three options (explanation, quizzing, feedback) are all exactly what AI is best at.'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🔄', label: 'Understand → Practise → Feedback → Consolidate', text: 'a cycle that works for any subject' },
-      { icon: '✋', label: 'Always try first', text: 'AI improves your effort — it doesn\'t replace it' },
-      { icon: '🚫', label: 'Know when not to use it', text: 'some skills only develop through struggle' },
-      { icon: '🛠️', label: 'A complete toolkit', text: 'explain, quiz, feedback, summarise — four powerful uses' },
-      { icon: '🧑‍🎓', label: 'You are the learner', text: 'AI is the tool. That distinction matters.' }
+      { icon: '🔄', label: 'Understand → Practise → Feedback → Consolidate', text: 'the loop that mirrors expert tutoring — works for any subject, any age' },
+      { icon: '📆', label: 'Space and interleave', text: '20 min/day × 5 days > 100 min crammed — measurable since Ebbinghaus in 1885' },
+      { icon: '✋', label: 'Always try first', text: 'AI improves your effort — it doesn\'t replace it. The retrieval attempt IS the learning.' },
+      { icon: '🚫', label: 'Know when not to use it', text: 'some skills only develop through struggle. Protect those moments.' },
+      { icon: '🛠️', label: 'Stack of two', text: 'pick two complementary AI tools, not five — switching cost eats the benefit' },
+      { icon: '🧑‍🎓', label: 'You are the learner', text: 'AI is the tool. That distinction matters here, at university, and at work.' }
     ]
   },
   {
