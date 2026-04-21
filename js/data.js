@@ -5,7 +5,7 @@ const UNITS = [
     id: 0,
     title: "Foundations of AI",
     icon: "🧠",
-    colour: "#6366f1",
+    colour: "#9b1844",
     lessons: [
       { id:1, difficulty:"beginner", title:"Your AI Footprint",                 desc:"Audit your daily interactions with AI systems and map your personal AI ecosystem.", tags:["activity","discussion"], objectives:["Identify AI systems in everyday life","Map personal AI usage","Critically evaluate your reliance on AI tools and what it costs you"], resources:["r5"] },
       { id:2, difficulty:"intermediate", title:"The Parrot vs. The Librarian",       desc:"Explore the difference between pattern-matching language models and true understanding.", tags:["debate","theory"], objectives:["Distinguish stochastic parrots from knowledge retrieval","Analyse LLM capabilities and limits","Form an evidence-based opinion on AI understanding","Apply adversarial testing to reveal AI limitations"], resources:["r4"] },
@@ -38,7 +38,7 @@ const UNITS = [
     id: 2,
     title: "AI & Society",
     icon: "🌐",
-    colour: "#06b6d4",
+    colour: "#009fe3",
     lessons: [
       { id:13, difficulty:"intermediate", title:"Deepfakes and Disinformation",       desc:"Analyse deepfake technology, detection methods and societal impact.", tags:["case-study","ethics"], objectives:["Identify deepfake techniques","Apply detection strategies","Evaluate societal risks of synthetic media"], resources:["r16"] },
       { id:14, difficulty:"intermediate", title:"Surveillance and Facial Recognition", desc:"Examine the use of facial recognition in public spaces and its civil liberties implications.", tags:["debate","ethics"], objectives:["Analyse facial recognition technology","Debate surveillance vs. safety","Evaluate civil liberties implications"], resources:["r15"] },
@@ -745,7 +745,7 @@ const RESOURCE_CONTENT = {
 <p>Cut these cards out (or use the table below). Each group receives one region's card and becomes the expert on that approach. Then regroup so every new group has one expert from each region.</p>
 <div class="resource-template-section">
 <table style="width:100%;border-collapse:collapse;font-size:.82rem">
-  <thead><tr style="background:rgba(99,102,241,.15)">
+  <thead><tr style="background:rgba(155,24,68,.15)">
     <th style="padding:8px;border:1px solid var(--border);text-align:left">Region</th>
     <th style="padding:8px;border:1px solid var(--border);text-align:left">Approach</th>
     <th style="padding:8px;border:1px solid var(--border);text-align:left">Key Law / Policy</th>

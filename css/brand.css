@@ -44,3 +44,77 @@
   /* Calluna Sans for body + headings */
   --font:'Calluna Sans','Inter',system-ui,sans-serif;
 }
+
+/* ── Home flourishes — all scoped to #section-home, additive only ───── */
+
+/* 1. Aurora behind pathway-header */
+#section-home .pathway-header{position:relative;isolation:isolate}
+#section-home .pathway-header::before{
+  content:"";position:absolute;inset:-60px -40px -20px;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(ellipse 820px 320px at 50% 45%,rgba(155,24,68,.16),transparent 70%),
+    radial-gradient(ellipse 600px 260px at 18% 80%,rgba(0,159,227,.10),transparent 70%),
+    radial-gradient(ellipse 600px 260px at 82% 20%,rgba(198,75,116,.12),transparent 70%);
+  filter:blur(6px);
+}
+[data-theme="light"] #section-home .pathway-header::before{
+  background:
+    radial-gradient(ellipse 820px 320px at 50% 45%,rgba(155,24,68,.09),transparent 70%),
+    radial-gradient(ellipse 600px 260px at 18% 80%,rgba(0,159,227,.06),transparent 70%),
+    radial-gradient(ellipse 600px 260px at 82% 20%,rgba(198,75,116,.07),transparent 70%);
+}
+
+/* 2. Stronger hover lift + magenta glow on pathway cards */
+#section-home .pathway-card{transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
+#section-home .pathway-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 22px 48px -16px rgba(155,24,68,.32),0 8px 24px -12px rgba(0,0,0,.25);
+}
+
+/* 3. Staggered fade-in on the header + cards */
+@media (prefers-reduced-motion:no-preference){
+  #section-home .pathway-header,
+  #section-home .pathway-cards .pathway-card{
+    animation:di-fade-up .6s cubic-bezier(.22,.9,.3,1) both;
+  }
+  #section-home .pathway-header{animation-delay:40ms}
+  #section-home .pathway-cards .pathway-card:nth-child(1){animation-delay:180ms}
+  #section-home .pathway-cards .pathway-card:nth-child(2){animation-delay:280ms}
+  #section-home .pathway-cards .pathway-card:nth-child(3){animation-delay:380ms}
+  @keyframes di-fade-up{
+    from{opacity:0;transform:translateY(14px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+
+  /* 4. Shimmer — pan the heading gradient */
+  #section-home .pathway-title{
+    background:linear-gradient(110deg,var(--text) 18%,var(--primary-light) 42%,var(--accent) 55%,var(--primary-light) 68%,var(--text) 92%);
+    background-size:260% 100%;
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:di-title-pan 14s ease-in-out infinite;
+  }
+  @keyframes di-title-pan{
+    0%,100%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  #section-home .pathway-card,
+  #section-home .pathway-card:hover{transition:none}
+  #section-home .pathway-card:hover{transform:none}
+}
+
+/* 5. Micro corner ribbons on each pathway card */
+.pc-ribbon{
+  position:absolute;top:12px;right:12px;
+  font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 9px;border-radius:999px;line-height:1;
+  border:1px solid currentColor;background:rgba(0,0,0,.15);
+  pointer-events:none;
+}
+[data-theme="light"] .pc-ribbon{background:rgba(255,255,255,.6)}
+.pc-ribbon--gcse{color:#10b981}
+.pc-ribbon--full{color:var(--primary-light)}
+.pc-ribbon--fluency{color:#f59e0b}
+

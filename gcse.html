@@ -93,7 +93,7 @@
     .sdq-num{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;border-radius:50%;background:#10b981;color:#fff;font-size:.75rem;font-weight:700;flex-shrink:0}
     .sdq-text{font-size:.9rem;color:var(--text-muted,var(--text));line-height:1.5;flex:1}
     .hook-stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin:18px 0}
-    .hook-stat-mini{background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(6,182,212,.08));border:1px solid rgba(16,185,129,.25);border-radius:8px;padding:14px 10px;text-align:center}
+    .hook-stat-mini{background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(0,159,227,.08));border:1px solid rgba(16,185,129,.25);border-radius:8px;padding:14px 10px;text-align:center}
     .hook-stat-mini .sv{font-size:1.6rem;font-weight:900;color:#10b981;display:block;line-height:1}
     .hook-stat-mini .sl{font-size:.67rem;color:var(--text-muted,#64748b);margin-top:5px;display:block;line-height:1.35}
     [data-theme="light"] .hook-stat-mini .sv{color:#059669}
@@ -137,8 +137,8 @@
     .widget-btn:hover{border-color:#10b981;color:#10b981}
     .widget-btn-primary{background:#10b981;color:#fff;border-color:#10b981}
     .widget-btn-primary:hover{background:#059669;color:#fff;border-color:#059669}
-    .ptfc-p span{background:#06b6d4}
-    .ptfc-t span{background:#6366f1}
+    .ptfc-p span{background:#009fe3}
+    .ptfc-t span{background:#9b1844}
     .ptfc-f span{background:#22c55e}
     .ptfc-c span{background:#f59e0b}
     /* ── Hallucination picker ── */
@@ -605,8 +605,8 @@
     var out=document.getElementById('gsPtfcOut'); if(!out)return;
     if(!p.trim()&&!t.trim()&&!f.trim()&&!c.trim()){ out.innerHTML='<span style="color:var(--text-dim);font-style:italic">Fill in the fields above to see your assembled prompt…</span>'; return; }
     var parts=[];
-    if(p.trim())parts.push('<strong style="color:#06b6d4">[Persona]</strong> '+gsEscape(p.trim()).replace(/\n/g,'<br>'));
-    if(t.trim())parts.push('<strong style="color:#6366f1">[Task]</strong> '+gsEscape(t.trim()).replace(/\n/g,'<br>'));
+    if(p.trim())parts.push('<strong style="color:#009fe3">[Persona]</strong> '+gsEscape(p.trim()).replace(/\n/g,'<br>'));
+    if(t.trim())parts.push('<strong style="color:#9b1844">[Task]</strong> '+gsEscape(t.trim()).replace(/\n/g,'<br>'));
     if(f.trim())parts.push('<strong style="color:#22c55e">[Format]</strong> '+gsEscape(f.trim()).replace(/\n/g,'<br>'));
     if(c.trim())parts.push('<strong style="color:#f59e0b">[Context]</strong> '+gsEscape(c.trim()).replace(/\n/g,'<br>'));
     out.innerHTML=parts.join('<br><br>');
