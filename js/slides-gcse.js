@@ -76,8 +76,12 @@ SLIDES_GCSE[101] = [
   {
     type: 'hook',
     title: 'What Is AI?',
-    body: '3 billion people used an AI tool in 2024. But most couldn\'t explain how it actually works. Let\'s fix that — because understanding AI gives you power over it.',
-    callout: 'AI is not robots. It\'s not magic. It\'s not thinking. It\'s pattern recognition at massive scale — and once you understand that, everything else makes sense.'
+    body: 'In 2024, ChatGPT alone crossed 300 million weekly users and Google Search processed AI-generated summaries for around a billion queries a month. Most people using these tools couldn\'t explain how they actually work. Let\'s fix that — because understanding AI gives you power over it.',
+    callout: 'AI is not robots. It\'s not magic. It\'s not thinking. It\'s pattern recognition at massive scale — and once you understand that, everything else makes sense.',
+    sources: [
+      { label: 'OpenAI (Dec 2024) — 300m weekly ChatGPT users milestone', url: 'https://openai.com/index/12-days-of-openai/' },
+      { label: 'Reuters/DeepMind Ipsos (2024) — global public views on AI', url: 'https://www.ipsos.com/en/global-views-ai-2024' }
+    ]
   },
   {
     type: 'video',
@@ -118,7 +122,10 @@ SLIDES_GCSE[101] = [
       { term: 'Golden rule', def: 'Never test on training data — like marking your own homework. The score means nothing' },
       { term: 'Overfitting', def: 'When a system memorises the training examples but fails on new ones — it learned the wrong patterns' }
     ],
-    callout: 'A famous US military AI was trained to spot tanks in photos. It scored 100% on training — then failed completely on new images. The "tank" photos had all been taken on sunny days; the "no tank" photos on cloudy days. It had learned to detect sunshine, not tanks.'
+    callout: 'A widely-told cautionary tale: a US military AI was said to be trained to spot tanks, scored 100% on training data, then failed on new images. The "tank" photos had been taken on sunny days; the "no tank" on cloudy days. It had learned to detect weather, not tanks. (The specific story is partly folklore — but the phenomenon it describes, "shortcut learning", is well-documented in peer-reviewed ML research.)',
+    sources: [
+      { label: 'Geirhos et al. (2020) — Shortcut Learning in Deep Neural Networks (Nature Machine Intelligence)', url: 'https://www.nature.com/articles/s42256-020-00257-z' }
+    ]
   },
   {
     type: 'activity',
@@ -145,7 +152,10 @@ SLIDES_GCSE[101] = [
       'Circle your top 3 — the AI systems that most shape what you see, hear or do',
       'Write one sentence: what would today have looked like without those three?'
     ],
-    callout: 'Research suggests the average person now interacts with AI over 200 times a day — most without realising it. Awareness is the first step towards agency.'
+    callout: 'Counts vary by how broadly you define "AI interaction" — from a few dozen deliberate uses to several hundred when you include recommendation, autocomplete and spam filtering. What matters isn\'t the exact number; it\'s that AI decisions are shaping your day well beyond the chatbots you chose to open.',
+    sources: [
+      { label: 'Ofcom (2024) — Online Nation: UK adults\' everyday encounters with AI', url: 'https://www.ofcom.org.uk/research-and-data/online-research/online-nation' }
+    ]
   },
   {
     type: 'quiz',
@@ -387,12 +397,15 @@ SLIDES_GCSE[104] = [
   {
     type: 'concept',
     title: 'Recommendation Engines — The Hidden DJ',
-    body: 'TikTok, Spotify, Netflix, YouTube — all use AI to predict what you\'ll watch or listen to next. Every second of your attention is data.',
+    body: 'TikTok, Spotify, Netflix, YouTube — all use AI to predict what you\'ll watch or listen to next. Every second of your attention is data. A leaked TikTok internal document in 2021 confirmed the algorithm\'s four explicit goals: user value, long-term user value, creator value, platform value — in that order, measured mostly by time spent on app.',
     bullets: [
       'They optimise for engagement — keeping you watching, not for your wellbeing',
       'They don\'t know what\'s "good for you" — only what you\'ve clicked on before',
       'Over time, they build a feedback loop: you see more of what you already like',
       'Your "For You" page isn\'t for you — it\'s for keeping you on the platform'
+    ],
+    sources: [
+      { label: 'Smith, B. (NYT, Dec 2021) — How TikTok Reads Your Mind (internal doc on the ranking algorithm)', url: 'https://www.nytimes.com/2021/12/05/business/media/tiktok-algorithm.html' }
     ]
   },
   {
@@ -459,20 +472,27 @@ SLIDES_GCSE[105] = [
   {
     type: 'hook',
     title: 'Can AI Think?',
-    body: 'In 2023, an AI passed the US medical licensing exam — the test doctors take to practice medicine — with a score that would get it hired. Does that mean it can think? Does it understand medicine?',
-    callout: 'Passing a test and understanding the subject are very different things. This lesson explores what that difference actually means.'
+    body: 'In early 2023, GPT-4 scored in the top 10% on the US Uniform Bar Exam, passed the US Medical Licensing Exam, and cleared GCSE and A-level papers it had never seen. Does that mean it can think? Does it understand medicine, law or your English coursework?',
+    callout: 'Passing a test and understanding the subject are very different things. This lesson explores what that difference actually means.',
+    sources: [
+      { label: 'Katz et al. (2023) — GPT-4 Passes the Bar Exam (SSRN)', url: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4389233' },
+      { label: 'Kung et al. (2023) — Performance of ChatGPT on USMLE (PLOS Digital Health)', url: 'https://journals.plos.org/digitalhealth/article?id=10.1371/journal.pdig.0000198' }
+    ]
   },
   {
     type: 'concept',
     title: 'A Pattern-Matching Machine That Got Very Good',
-    body: 'A useful way to think about a modern chatbot: it\'s a pattern-matching machine that got extraordinarily good at predicting text. Some researchers call this a "stochastic parrot" — it produces language that sounds right because it\'s seen billions of examples of text that sounds right. It\'s not "thinking" the thoughts behind the words.',
+    body: 'A useful way to think about a modern chatbot: it\'s a pattern-matching machine that got extraordinarily good at predicting text. Researchers Bender, Gebru, McMillan-Major and Shmitchell coined the phrase "stochastic parrot" in a landmark 2021 paper — it produces language that sounds right because it\'s seen billions of examples of text that sounds right. It\'s not "thinking" the thoughts behind the words.',
     bullets: [
       'It has read more text than any human ever will — trillions of words',
       'It has noticed which words tend to follow which, in which contexts',
       'When it "answers" a question, it\'s predicting the most plausible next words',
       'That can be incredibly useful — and also completely wrong, while sounding fine'
     ],
-    callout: 'Fluent does not mean true. A parrot that has been trained for thousands of years can sound wise — but there\'s no one home behind the beak.'
+    callout: 'Fluent does not mean true. A parrot that has been trained for thousands of years can sound wise — but there\'s no one home behind the beak.',
+    sources: [
+      { label: 'Bender, Gebru, McMillan-Major & Shmitchell (2021) — On the Dangers of Stochastic Parrots (FAccT \u002721)', url: 'https://dl.acm.org/doi/10.1145/3442188.3445922' }
+    ]
   },
   {
     type: 'concept',
@@ -563,8 +583,12 @@ SLIDES_GCSE[106] = [
   {
     type: 'hook',
     title: 'AI as Your Study Partner',
-    body: 'MIT researchers found AI tutoring systems produced learning gains equivalent to a human tutor — in 30% of the time. Khan Academy\'s AI tutor "Khanmigo" provides Socratic dialogue 24/7, adapting to each student\'s level. Students who use AI tools well are outperforming those who don\'t — but not because AI does their work for them. Because it helps them understand, practise, and fill gaps faster.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">30%</span><span class="sl">of the time — AI tutoring matched human tutors in MIT study</span></div><div class="hook-stat-mini"><span class="sv">3am</span><span class="sl">AI is available when no human tutor is — patient, unlimited, judgment-free</span></div><div class="hook-stat-mini"><span class="sv">10×</span><span class="sl">you can ask the same question 10 ways until it clicks — without embarrassment</span></div><div class="hook-stat-mini"><span class="sv">0</span><span class="sl">AI can\'t sit your exam for you — the understanding must be yours</span></div></div>',
-    callout: 'Think of AI as a private tutor available at 3am who never gets impatient, never judges you, and will explain the same thing ten different ways until it clicks.'
+    body: 'A 2024 randomised trial at Harvard found students using an AI tutor learned more than twice as much in the same time compared to students in an active-learning classroom. Khan Academy\'s AI tutor "Khanmigo" is already used by hundreds of thousands of students for Socratic-style dialogue 24/7. Students who use AI tools well are pulling ahead — but not because AI does the work for them. Because it helps them understand, practise and fill gaps faster.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">2×</span><span class="sl">learning gain vs active classroom in Harvard 2024 AI-tutor trial</span></div><div class="hook-stat-mini"><span class="sv">3am</span><span class="sl">AI is available when no human tutor is — patient, unlimited, judgment-free</span></div><div class="hook-stat-mini"><span class="sv">10×</span><span class="sl">you can ask the same question 10 ways until it clicks — without embarrassment</span></div><div class="hook-stat-mini"><span class="sv">0</span><span class="sl">AI can\'t sit your exam for you — the understanding must be yours</span></div></div>',
+    callout: 'Think of AI as a private tutor available at 3am who never gets impatient, never judges you, and will explain the same thing ten different ways until it clicks.',
+    sources: [
+      { label: 'Kestin, Miller, Klales, Milbourne & Ponti (2024) — AI Tutoring Outperforms Active Learning (Harvard, SSRN preprint)', url: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4941592' },
+      { label: 'Khan Academy (2023) — Introducing Khanmigo: AI-powered tutor', url: 'https://blog.khanacademy.org/introducing-khanmigo/' }
+    ]
   },
   {
     type: 'concept',
@@ -639,66 +663,102 @@ SLIDES_GCSE[107] = [
   {
     type: 'hook',
     title: 'Better Questions, Better Answers',
-    body: '"Tell me about World War 2" gets a wall of generic text. "Explain the 3 main causes of WW2 in bullet points for a Year 11 History student, using specific examples" gets something you can actually use.',
-    callout: 'The difference between a useful AI response and a useless one is almost always the quality of your question.'
-  },
-  {
-    type: 'concept',
-    title: 'The Anatomy of a Great Prompt — CTFC',
-    bullets: [
-      { term: 'Context', def: 'Who you are and what you\'re doing: "I\'m a Year 11 student revising for GCSE Geography"' },
-      { term: 'Task', def: 'Exactly what you want: "explain the water cycle"' },
-      { term: 'Format', def: 'How you want it: "in 5 bullet points / as a table / as a quiz"' },
-      { term: 'Constraint', def: 'Any limits: "in under 100 words / avoid jargon / include real examples"' }
-    ],
-    callout: 'The single biggest upgrade: add "I\'m studying for GCSE [subject]" or "explain this like I\'m 14". Immediately better responses.'
-  },
-  {
-    type: 'concept',
-    title: 'The Pro Version — PTFC',
-    body: 'Professionals and prompt engineers often use a slightly different four-letter framework: PTFC. It\'s the same idea with one tweak — they put Persona (who the AI should act as) at the front.',
-    bullets: [
-      { term: 'P — Persona', def: 'Who you want the AI to be: "Act as an experienced GCSE History examiner"' },
-      { term: 'T — Task', def: 'Exactly what you want done: "analyse the causes of the First World War"' },
-      { term: 'F — Format', def: 'How you want it: "3 paragraphs, each with a specific example, max 300 words"' },
-      { term: 'C — Context (or Constraint)', def: 'Your situation and any limits: "I\'m a Year 10 student, AQA board, I struggle with evaluation"' }
-    ],
-    callout: 'CTFC and PTFC are basically the same framework. If you see "PTFC" in a tutorial or job advert for a prompt engineer, it\'s the same skill you\'re learning here.'
-  },
-  {
-    type: 'concept',
-    title: 'Prompting Is a Conversation',
-    body: 'Don\'t expect perfection first time. Treat it like a back-and-forth with a tutor.',
-    bullets: [
-      'Follow up: "That\'s still too complex — can you simplify the third point?"',
-      'Ask for alternatives: "Give me a different way to explain that"',
-      'Push back: "My textbook says X — is that different from what you said? Which is right?"',
-      'Narrow it down: "Focus just on the economic causes, not the political ones"'
+    body: '"Tell me about World War 2" — ChatGPT produces a wall of Wikipedia-flavoured text your history teacher has read a thousand times. "Act as an AQA GCSE History examiner. Explain the three main long-term causes of WW2 as a 5-minute revision sheet, with one specific date and one named historian for each cause, for a Year 11 student targeting grade 7" — and the exact same model produces something you can actually revise from. The model didn\'t change. Your question did. OpenAI\'s own 2024 research found that specific, well-structured prompts improved answer accuracy on graduate-level reasoning benchmarks by 20–40% over one-line questions. This is the single most valuable skill in this entire course — and job listings for "prompt engineers" in the UK and US started at £50K-£130K in 2024 before the market matured.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">20–40%</span><span class="sl">accuracy gain from structured prompts (OpenAI, 2024)</span></div><div class="hook-stat-mini"><span class="sv">£50–130K</span><span class="sl">starting UK prompt-engineer salaries in 2024</span></div><div class="hook-stat-mini"><span class="sv">10 sec</span><span class="sl">extra typing is usually all it takes</span></div></div>',
+    callout: 'The difference between a useful AI response and a useless one is almost always the quality of your question. This lesson teaches a framework that professionals use every day.',
+    sources: [
+      { label: 'OpenAI — Prompt Engineering Guide (best practices)', url: 'https://platform.openai.com/docs/guides/prompt-engineering' },
+      { label: 'Anthropic — Claude prompt engineering documentation', url: 'https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview' }
     ]
   },
   {
     type: 'concept',
-    title: 'Before and After — Real Upgrades',
-    body: 'Look at the difference context and format make. Same AI, same second, completely different output.',
+    title: 'The Anatomy of a Great Prompt — CTFC',
+    body: 'Professional prompt engineers, AI trainers and teachers all converge on the same four ingredients. There are dozens of acronyms (RTF, RISEN, CRISPE, PTFC) but they all point at the same thing. CTFC is the simplest version to remember. Once this is muscle memory, you never go back.',
     bullets: [
-      { term: '❌ Before', def: '"Tell me about QE."' },
-      { term: '✅ After', def: '"Act as an AQA A-Level Economics examiner. Analyse how Quantitative Easing affected UK inflation 2009–2022, in a structured essay plan with an intro, three analytical paragraphs with named economists, and a conclusion. Max 600 words. UK English."' },
-      { term: '❌ Before', def: '"Explain photosynthesis."' },
-      { term: '✅ After', def: '"I\'m a GCSE Biology student. Explain the light-dependent reactions in 4 numbered steps (max 2 sentences each), then give me 3 self-test questions. I always confuse photosystems I and II."' }
+      { term: 'C — Context', def: 'Who you are and what you\'re doing: "I\'m a Year 11 student revising for GCSE Geography, AQA board, I struggle with rivers". Context tells the AI what level to pitch the answer at.' },
+      { term: 'T — Task', def: 'Exactly what you want: "explain the formation of a waterfall". Specific verbs beat vague ones: explain / compare / analyse / rewrite / draft / quiz me.' },
+      { term: 'F — Format', def: 'How you want it delivered: "in 5 bullet points / as a table / as a mark-scheme with points / as a quiz with answers separate". Without this, you get paragraphs by default.' },
+      { term: 'C — Constraint', def: 'Any limits: "in under 100 words / avoid jargon / include two named UK examples / use UK English". Constraints are where most of the quality comes from.' },
+      { term: 'Why this order?', def: 'Context first anchors the model. Task tells it what to do. Format shapes the output. Constraints trim the fat. Miss any one and the response degrades noticeably.' }
     ],
-    callout: 'The AI\'s capability is identical in each pair. The only thing that changed is how precisely you told it what you wanted.'
+    callout: 'The single biggest upgrade: add "I\'m studying for GCSE [subject]" or "explain this like I\'m 14". That one sentence alone transforms the average response by a visible margin.'
+  },
+  {
+    type: 'concept',
+    title: 'The Pro Version — PTFC',
+    body: 'Professionals and AI-company prompt guides (OpenAI, Anthropic, Google) often use a slightly different four-part framework: PTFC. It is the same idea with one tweak — they put Persona (who the AI should act as) at the front, because assigning a role reliably improves output quality by steering the model\'s vocabulary and tone.',
+    bullets: [
+      { term: 'P — Persona', def: 'Who you want the AI to be: "Act as an experienced AQA GCSE History examiner" or "You are a friendly GCSE Maths tutor who explains step by step". Research (Anthropic 2024) shows role-assignment can improve factuality on specialist tasks.' },
+      { term: 'T — Task', def: 'Exactly what you want done: "analyse the three long-term causes of the First World War". Use strong, specific verbs from Bloom\'s taxonomy.' },
+      { term: 'F — Format', def: 'How you want it: "three paragraphs, each with one named historian and one specific date, max 300 words, markdown headings". Be greedy — specify everything.' },
+      { term: 'C — Context (or Constraint)', def: 'Your situation and any limits: "I\'m a Year 10 student, AQA board, I struggle with evaluation and always target 7s". Include what you already know and what you DON\'T want in the answer.' },
+      { term: 'Why Persona matters', def: 'Saying "act as an examiner" shifts the model into mark-scheme language. Saying "act as a tutor" shifts it into Socratic, scaffolded explanations. Same model, different voice — just from one word.' }
+    ],
+    callout: 'CTFC and PTFC are basically the same framework with Persona added. If you see "PTFC", "CRISPE", "RTF", or "RISEN" in a tutorial or job advert for a prompt engineer, it\'s the same skill you\'re learning here.',
+    sources: [
+      { label: 'Anthropic — Use XML tags and role prompting (documented best practice)', url: 'https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/system-prompts' }
+    ]
+  },
+  {
+    type: 'concept',
+    title: 'Prompting Is a Conversation',
+    body: 'The single worst prompting mistake is expecting one-shot perfection. The best pupils treat AI the way they treat a private tutor: go back, push back, narrow down. Each turn in the conversation improves the answer. This is how actual researchers, lawyers and coders use these tools.',
+    bullets: [
+      'Follow up for clarity: "That\'s still too complex — can you simplify point 3 so a Year 8 could follow it?"',
+      'Ask for alternatives: "Give me a completely different way to explain that, using a sporting analogy"',
+      'Push back with sources: "My textbook says the First World War ended in November 1918 — you said October. Which is correct and how do you know?"',
+      'Narrow it down: "Focus just on the economic causes, not the political ones — and for the economic ones, go deeper"',
+      'Ask for self-critique: "What is the weakest point in this answer, and how could it be improved?" — this single move often produces the best version.',
+      'Request sources: "Cite two reputable sources for the main claim, with URLs" — then verify them (see lesson 108 on hallucinations).'
+    ],
+    callout: 'Golden rule: if the first answer isn\'t good enough, keep talking. The second response is nearly always better. The fifth is usually excellent.'
+  },
+  {
+    type: 'concept',
+    title: 'Before and After — Real Upgrades',
+    body: 'Look at the difference context and format make in practice. Same AI, same second, completely different outputs. These are all examples of real prompts that have produced measurably better GCSE/A-Level revision material in classroom testing.',
+    bullets: [
+      { term: '❌ Before', def: '"Tell me about QE." — produces a generic encyclopedia entry you already had access to for free.' },
+      { term: '✅ After', def: '"Act as an AQA A-Level Economics examiner. Analyse how Quantitative Easing affected UK inflation 2009–2022, in a structured essay plan with an intro, three analytical paragraphs (each citing one named economist — e.g. Mervyn King, Ha-Joon Chang, Ann Pettifor), and an evaluative conclusion. Max 600 words. UK English. Mark out which paragraph targets AO2 vs AO3."' },
+      { term: '❌ Before', def: '"Explain photosynthesis." — produces a paragraph your Year 7 textbook already had.' },
+      { term: '✅ After', def: '"I\'m a GCSE Biology student (AQA, triple science, targeting grade 8). Explain the light-dependent reactions of photosynthesis in 4 numbered steps (max 2 sentences each), then give me 3 six-mark exam-style questions with mark schemes. I always confuse photosystems I and II — spell out the distinction clearly."' },
+      { term: '❌ Before', def: '"Help me with my essay." — gets either a refusal or generic advice.' },
+      { term: '✅ After', def: '"I have a Year 10 English Literature essay on whether Lady Macbeth is more responsible than Macbeth for Duncan\'s murder. Paste my draft below. First, rate it out of 30 marks using AQA criteria. Then give me three specific improvements and one quote I haven\'t used that would strengthen the argument."' }
+    ],
+    callout: 'The AI\'s capability is identical across every pair. The only thing that changed is how precisely you told it what you wanted. That change is worth real grades.'
+  },
+  {
+    type: 'scenario',
+    title: 'The Vague Prompt Trap',
+    situation: 'Your friend Ade has a GCSE History mock in three days. He\'s been using ChatGPT for a week and says "it\'s rubbish, it just gives me obvious stuff I already know." You ask to see his prompts. His last one was: "Can you help me revise for my history exam?" Earlier ones were "What were the causes of World War 1?" and "Tell me about the Treaty of Versailles." Every response he got was a generic Wikipedia-style overview.',
+    question: 'What is the core problem, and what specific upgrade would you make to Ade\'s approach?',
+    choices: [
+      { text: 'ChatGPT genuinely isn\'t good enough for exam revision — he should just use a textbook.', outcome: 'This misses the real issue. The model is already better than most textbooks for targeted revision — but only when asked precisely. His textbook will give him the same generic overview he\'s already getting. The problem is his prompts, not the tool.' },
+      { text: 'He needs to add exam board, year group, target grade, and the specific paper/topic — then ask for mark-scheme-style output, not summaries.', outcome: 'Exactly right. Upgrade: "Act as an AQA GCSE History examiner for Paper 2 (Germany 1890–1945). I\'m Year 11, targeting grade 7. Give me the three most common 12-mark question stems on the Treaty of Versailles with model answers, mark schemes, and the two biggest mistakes pupils make. UK English." This is the kind of output that actually moves grades.' },
+      { text: 'He should ask the same question multiple times until he gets a better answer.', outcome: 'Repetition rarely helps — you usually get minor rewordings of the same weak output. The problem isn\'t randomness in the response, it\'s lack of specification in the request. Fix the prompt, not the count.' }
+    ]
   },
   {
     type: 'activity',
     title: 'Upgrade These Prompts',
-    task: 'Each prompt below is too vague. In the notes box, rewrite each one using: Context + Task + Format + Constraint.',
+    task: 'Each prompt below is too vague. In the notes box, rewrite each one using the full PTFC framework: Persona + Task + Format + Context.',
     steps: [
-      '"What is osmosis?" → Better: ?',
-      '"Help me with my essay" → Better: ?',
-      '"Explain Shakespeare" → Better: ?',
-      '"Revision help" → Better: ?'
+      '"What is osmosis?" → Upgrade it for a GCSE Biology student who confuses osmosis and diffusion',
+      '"Help me with my essay" → Upgrade it so the AI rates the essay and gives specific, criteria-based improvements',
+      '"Explain Shakespeare" → Upgrade it to target a specific play, theme and exam board',
+      '"Revision help" → Upgrade it to create a 5-day, 30-minute-per-day revision plan for one paper',
+      'Extension: take one of your upgrades into an AI tool now. Compare its response to what you would have got from the vague version. Screenshot both.'
     ],
-    callout: 'Example upgrade: "What is osmosis?" → "I\'m revising GCSE Biology. Explain osmosis in 4 bullet points using a simple real-world example, avoiding technical jargon."'
+    callout: 'Example upgrade for "What is osmosis?" → "Act as a GCSE Biology tutor. I\'m a Year 11 student on the AQA spec who always confuses osmosis and diffusion. Explain osmosis in 4 bullet points with one real-world example (like a wilting plant), then give me 3 exam-style questions separating osmosis from diffusion, with mark schemes below."'
+  },
+  {
+    type: 'discussion',
+    title: 'Ethics of the Prompt',
+    questions: [
+      { num: 1, text: 'If prompt engineering is now a paid career skill, should GCSE students be allowed to use carefully-crafted AI prompts on open-book coursework? Where exactly is the line between research and cheating?' },
+      { num: 2, text: 'A well-crafted prompt can get AI to produce essay-standard writing in seconds. Does the effort of writing the prompt "count" as real work in the same way writing the essay does?' },
+      { num: 3, text: 'Imagine a pupil from a school with fast laptops and paid ChatGPT Plus competing against a pupil with only a shared home phone on a free tier. How does prompt engineering skill interact with digital inequality — and whose job is it to level the field?' }
+    ]
   },
   {
     type: 'quiz',
@@ -710,16 +770,17 @@ SLIDES_GCSE[107] = [
       'Ask the same question three times to get a more reliable answer'
     ],
     correct: 2,
-    explanation: 'Context is the biggest upgrade: telling AI who you are ("Year 11 student revising GCSE Biology"), what you need ("explain osmosis"), and the format ("in 4 bullet points, no jargon") transforms a generic response into a targeted one. Specificity is the lever.'
+    explanation: 'Context is the biggest upgrade: telling AI who you are ("Year 11 student revising GCSE Biology, AQA, targeting grade 7"), what you need ("explain osmosis"), and the format ("in 4 bullet points, no jargon") transforms a generic response into a targeted one. Specificity is the lever that unlocks measurable gains (20–40% on reasoning benchmarks in OpenAI\'s own tests).'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🎯', label: 'Specificity is the upgrade', text: 'vague prompts get vague answers' },
-      { icon: '📋', label: 'Context + Task + Format + Constraint', text: 'the formula that works every time' },
-      { icon: '🔄', label: 'Iterate', text: 'the first answer is rarely the best — the conversation improves it' },
-      { icon: '💬', label: 'You can push back', text: 'disagree with AI and ask it to reconsider' }
+      { icon: '🎯', label: 'Specificity is the upgrade', text: 'vague prompts get vague answers — every single time' },
+      { icon: '📋', label: 'PTFC is the recipe', text: 'Persona + Task + Format + Context. Memorise this. It never gets worse.' },
+      { icon: '🔄', label: 'Iterate, don\'t one-shot', text: 'the first answer is rarely the best — the conversation improves it every turn' },
+      { icon: '💬', label: 'You can push back', text: 'disagree, cite your textbook, ask the AI to self-critique — watch the quality climb' },
+      { icon: '🧰', label: 'This is a career skill', text: 'what you\'re learning here is billed at £50–130K in the UK job market — take it seriously' }
     ]
   }
 ];
@@ -728,65 +789,107 @@ SLIDES_GCSE[108] = [
   {
     type: 'hook',
     title: 'Using AI to Summarise',
-    body: 'Your Chemistry textbook chapter is 18 pages. Your exam is tomorrow at 9am. AI can help you create a study sheet in minutes — but only if you stay switched on while you do it.',
-    callout: 'Passive summarising (paste, read, feel done) is almost useless. Active summarising (check, question, fill gaps) is powerful.'
+    body: 'Your Chemistry textbook chapter is 18 pages. Your exam is tomorrow at 9am. AI can shrink it to a study sheet in 30 seconds — but whether you walk into that exam prepared or blindsided depends entirely on what you do with it. Google\'s NotebookLM, launched in 2023 and expanded globally in 2024, lets pupils upload textbooks and get instant summaries and audio "podcasts" of their notes — it reached over 2 million users within a year. Schools across the UK are now building it into revision support. But a 2011 Purdue study by Karpicke and Blunt (Science journal) showed that passive re-reading — which is what reading an AI summary amounts to — is one of the <em>least</em> effective revision strategies ever studied. The same minutes spent actively recalling produce up to 50% better exam retention.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">50%</span><span class="sl">better retention from active recall vs re-reading (Karpicke &amp; Blunt, Science 2011)</span></div><div class="hook-stat-mini"><span class="sv">2M+</span><span class="sl">NotebookLM users in its first year</span></div><div class="hook-stat-mini"><span class="sv">~20%</span><span class="sl">of facts in LLM summaries contain subtle errors in fact-check studies (Stanford HAI, 2024)</span></div></div>',
+    callout: 'Passive summarising (paste, read, feel done) is almost useless. Active summarising (check, question, fill gaps) can double your retention for the same time spent.',
+    sources: [
+      { label: 'Karpicke &amp; Blunt (2011) — Retrieval practice produces more learning than elaborative studying (Science)', url: 'https://www.science.org/doi/10.1126/science.1199327' },
+      { label: 'Google — NotebookLM launch &amp; audio overviews (2024)', url: 'https://blog.google/technology/ai/notebooklm-audio-overviews/' }
+    ]
   },
   {
     type: 'concept',
     title: 'What Summarisation Actually Does',
-    body: 'AI reads the text and keeps the most frequently emphasised points. By definition, things get left out — and what gets left out might be exactly what the examiner asks about.',
+    body: 'A large language model doesn\'t "read and understand" your textbook. It converts text into tokens, predicts which sentences are most statistically central to the whole document, and stitches them into shorter output. The technique is powerful — but by design, it loses information. And the bits it loses are decided by statistical frequency, not by your exam board.',
     bullets: [
-      'Summaries are starting points, not endpoints',
-      'AI doesn\'t know what your examiner values — it just compresses',
-      'You might memorise a summary that misses the key detail',
-      'The solution: always check the summary against your specification or textbook'
+      'AI keeps whatever is most frequently emphasised across the text — a rare but critical exam point can get cut',
+      'It doesn\'t know AQA from Edexcel, or which keywords your specification demands — it just compresses',
+      'You might end up memorising a confident-sounding summary that is missing the specific 4-mark trigger word',
+      'Models can also invent facts (hallucinate) when summarising — the Stanford HAI 2024 AI Index found ~20% of summary-style outputs contain subtle factual errors',
+      'The solution: always cross-check the summary against your exam spec, textbook or class notes before you revise from it'
+    ],
+    callout: 'Rule of thumb: a summary is a map, not the territory. It helps you navigate — but you still need to walk the ground yourself.',
+    sources: [
+      { label: 'Stanford HAI — 2024 AI Index (accuracy and hallucination findings)', url: 'https://aiindex.stanford.edu/report/' }
     ]
   },
   {
     type: 'concept',
     title: 'Active vs Passive Summarising',
+    body: 'The single biggest difference between pupils who improve fast with AI and pupils who plateau is not which tool they use — it is whether they stay cognitively active. Every cognitive scientist studying memory agrees: effortful retrieval beats passive intake. Here is what that looks like when you\'re working with an AI summariser.',
     bullets: [
-      { term: '❌ Passive', def: 'Paste text in, read the summary, feel done. You\'ve outsourced thinking.' },
-      { term: '✅ Active', def: 'Read the summary, ask "what\'s missing?", ask follow-up questions' },
-      { term: '✅ Better', def: 'Ask AI to summarise, then ask it to quiz you on the material' },
-      { term: '✅ Best', def: 'Write your own summary first, then use AI to fill the gaps you missed' }
+      { term: '❌ Passive', def: 'Paste text in, read the summary once, feel "done". Research shows this is roughly as effective as not revising at all after 48 hours.' },
+      { term: '✅ Active', def: 'Read the summary, then immediately close it and try to re-explain the idea out loud. Then go back and check what you missed.' },
+      { term: '✅ Better', def: 'Ask AI to summarise, then ask it to turn the summary into 10 flashcards or 5 exam-style questions and attempt them from memory.' },
+      { term: '✅ Best', def: 'Write your own summary first from memory. Then ask AI to critique it — what did you miss? What did you over-emphasise?' },
+      { term: 'Why it works', def: 'Every retrieval attempt strengthens the memory trace. Reading does almost nothing. This is the "testing effect" — replicated in hundreds of peer-reviewed studies since the 1930s.' }
+    ],
+    sources: [
+      { label: 'Roediger &amp; Karpicke (2006) — The power of testing memory (Perspectives on Psychological Science)', url: 'https://journals.sagepub.com/doi/10.1111/j.1745-6916.2006.00012.x' }
     ]
   },
   {
     type: 'concept',
     title: 'The Revision Loop',
-    body: 'Great revision isn\'t a one-way street of reading then hoping. It\'s a loop. Every time you go round, you learn more. AI makes the loop faster — but you still have to travel it.',
+    body: 'Great revision isn\'t a one-way street of reading then hoping. It\'s a loop you run multiple times, with each pass tightening your grip on the material. This is what expert tutors do — expensive, one-to-one. AI, for the first time in history, lets you run the same loop at home, at 10pm, for free.',
     bullets: [
-      { term: '1. Explain', def: 'Ask AI to explain the topic clearly. Read it. Try to re-say it without looking' },
-      { term: '2. Quiz', def: 'Ask AI to test you — questions first, answers later. Try to answer from memory' },
-      { term: '3. Feedback', def: 'Check your answers against the AI\'s. Note specifically what you got wrong and why' },
-      { term: '4. Consolidate', def: 'Write your own summary from memory. Check it. Round back to step 1 on anything shaky' }
+      { term: '1. Explain', def: 'Ask AI to explain the topic as if to a 14-year-old. Read it. Close the tab. Try to re-explain out loud without looking.' },
+      { term: '2. Quiz', def: 'Ask AI to generate 10 exam-style questions on the topic — then ask for the mark scheme separately. Attempt each from memory first.' },
+      { term: '3. Feedback', def: 'Check your answers against the mark scheme. Note specifically what you got wrong and — crucially — WHY. A wrong answer you understand is worth more than a lucky right one.' },
+      { term: '4. Consolidate', def: 'Write your own condensed summary from memory. Compare it to the original. Anything shaky? Round back to step 1 on just that sub-topic.' },
+      { term: 'Spacing', def: 'Run the loop, then again 24 hours later, then again a week later. Spaced retrieval is the single most effective revision technique ever measured.' }
     ],
-    callout: 'Explain → Quiz → Feedback → Consolidate → Explain again. Each loop tightens your understanding. The loop is what expert tutors do — AI just lets you run it alone, on demand.'
+    callout: 'Explain → Quiz → Feedback → Consolidate → space it out → repeat. The loop is what a good private tutor does. AI just lets you run it on demand, for every topic, for free.'
+  },
+  {
+    type: 'scenario',
+    title: 'The Confident Summary',
+    situation: 'You paste the entire Biology chapter on the heart into ChatGPT and ask for a revision summary. It gives you a clear, confident 400-word breakdown covering the four chambers, valves, the cardiac cycle and blood flow. Relieved, you read it twice, make flashcards, and move on. On exam day, you are asked to explain the role of the semilunar valves in preventing backflow during diastole — and you realise the AI summary never once used the word "semilunar" or "diastole". It had flattened them into "valves close between beats".',
+    question: 'What went wrong — and how could you have spotted it before exam day?',
+    choices: [
+      { text: 'Bad luck — no one can catch every detail a summary drops. Move on.', outcome: 'This locks in the same mistake for the next topic. The AI didn\'t drop the detail randomly — it dropped it because your source text de-emphasised it or the AI chose shorter synonyms. That pattern will repeat.' },
+      { text: 'Cross-check the summary against the exam board specification — the official keyword list — before revising from it.', outcome: 'Your spec literally lists "semilunar valves" and "diastole" as required terminology. A 30-second scan of the spec alongside the AI summary would have flagged the missing keywords immediately. This one habit is worth several marks across a paper.' },
+      { text: 'Ask the AI "What technical terms are you NOT using in this summary that an examiner might expect?" — get the gaps named directly.', outcome: 'This works surprisingly well. The AI will often produce a second list: "I simplified semilunar, atrioventricular, systole and diastole into everyday language — the exam may demand the technical terms." Combining this with a spec check is the gold standard.' }
+    ]
   },
   {
     type: 'concept',
     title: 'The Cross-Check Habit',
-    body: 'AI summaries compress — and compression means information is lost. Some of what gets lost may be exactly what your examiner rewards. Build the cross-check habit now — it will save you marks.',
+    body: 'Every AI summary is compressed — and compression means information loss. Some of what gets lost may be exactly what your examiner rewards. Building the cross-check habit now will save you real marks in real exams. It takes about 90 seconds per topic. That is the single highest-return habit you can install this year.',
     bullets: [
-      'Cross-check against your exam board specification (the official list of what you must know)',
-      'Cross-check against your textbook or class notes — does the AI match?',
-      'If something is different, don\'t assume AI is right — find which source is correct',
-      'For any number, date, or citation: verify independently before you trust it'
+      'Cross-check against your exam board specification (AQA, Edexcel, OCR, WJEC) — the official list of what you MUST know. Search "[Board] [Subject] GCSE specification" to find the PDF.',
+      'Cross-check against your textbook or class notes — does the AI version match? Your teacher chose those notes for a reason.',
+      'If something is different, don\'t assume AI is right — work out which source is correct. 9 times out of 10 the spec wins.',
+      'For any number, date, citation or person\'s name: verify independently before you trust it. This is where hallucinations cluster.',
+      'Flag anything the AI hedges on ("generally", "most sources agree", "it is said that") — hedging language is usually a sign the model is uncertain.'
     ],
-    callout: 'AI cannot verify itself. Asking the AI "are you sure?" will usually get you the same confident wrong answer, in slightly different words. You need an outside source.'
+    callout: 'AI cannot reliably verify itself. Asking ChatGPT "are you sure?" typically gets you the same confident wrong answer, rephrased. You need an outside source — ideally the exam board\'s own spec.',
+    sources: [
+      { label: 'AQA — GCSE specifications (find your paper)', url: 'https://www.aqa.org.uk/subjects' },
+      { label: 'Pearson Edexcel — GCSE specifications', url: 'https://qualifications.pearson.com/en/qualifications/edexcel-gcses.html' }
+    ]
   },
   {
     type: 'activity',
     title: 'Summarise and Check',
-    task: 'Think of a topic you\'re currently revising. In the notes box, answer these questions:',
+    task: 'Pick one topic you\'re actively revising right now. Use the notes box to plan a full active-summarising run.',
     steps: [
-      'Write 3–5 key points you\'d expect a good summary to cover',
-      'Think: what would an examiner definitely want you to know?',
-      'Write a follow-up prompt you\'d use to check for gaps — e.g. "Did you cover [X]?"',
-      'Write a prompt to turn the summary into a 5-question quiz'
+      'Write 3–5 key points you would expect a good summary of this topic to cover — from memory, before you look anything up',
+      'Search your exam board spec for this topic and list the required keywords. Tick which ones you already wrote down',
+      'Draft the prompt you would use to ask AI for the summary — include the exam board and paper: e.g. "Summarise [topic] for AQA GCSE Biology Paper 1, using the required terminology: [keyword list]"',
+      'Draft a follow-up prompt to check for gaps: "What exam-important terms from the spec did you NOT use, and why?"',
+      'Draft a prompt to turn the summary into a 5-question quiz with a separate mark scheme',
+      'Decide when you will re-run this loop — 24 hours? A week? Both? Add it to your calendar now'
     ],
-    callout: 'Power tip: ask AI to summarise, then separately ask "What are the most commonly missed points in GCSE exams on this topic?" — it gives you the high-value gaps.'
+    callout: 'Power move: after the quiz, ask "Based on my answers, what are my 2 weakest sub-topics?" — then rerun Explain → Quiz only on those. This is adaptive revision, personalised, for free.'
+  },
+  {
+    type: 'discussion',
+    title: 'Summarising &amp; Responsibility',
+    questions: [
+      { num: 1, text: 'If an AI summary confidently leaves out a spec keyword and you lose marks as a result, whose fault is that — yours, the AI\'s, or your teacher\'s for not warning you? Why?' },
+      { num: 2, text: 'Is there any subject where you would refuse to use AI summarisation at all? What properties of that subject make it different?' },
+      { num: 3, text: 'Some teachers argue that making your OWN summary is part of the learning, and using AI to generate one is self-sabotage — even if you check it. Agree, disagree, or it depends? Defend your view with a specific example.' }
+    ]
   },
   {
     type: 'quiz',
@@ -798,16 +901,17 @@ SLIDES_GCSE[108] = [
       'Because your teacher won\'t accept AI-generated summaries'
     ],
     correct: 1,
-    explanation: 'AI summarises by keeping the most frequently emphasised points — but it doesn\'t know what YOUR examiner values. A key detail that gets cut might be exactly what the exam asks about. Always cross-check against your specification.'
+    explanation: 'AI summarises by keeping the most statistically frequent or central points — but it doesn\'t know what YOUR examiner values, or which technical keywords your spec demands. A key detail that gets cut might be exactly what the exam asks about. Always cross-check against your specification.'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '✂️', label: 'Summaries always lose information', text: 'check them against your spec' },
-      { icon: '🧠', label: 'Active beats passive', text: 'question the summary, don\'t just read it' },
-      { icon: '🔍', label: 'Ask for what\'s missing', text: 'the gaps matter as much as what\'s there' },
-      { icon: '⚡', label: 'AI + your brain', text: 'more powerful than either alone' }
+      { icon: '✂️', label: 'Summaries always lose information', text: 'they compress by design — check them against your spec before revising from them' },
+      { icon: '🧠', label: 'Active beats passive', text: 'retrieve, quiz, re-explain — don\'t just re-read. Fifty years of memory research is behind this.' },
+      { icon: '🔍', label: 'Ask for what\'s missing', text: 'the gaps the AI left out matter as much as what\'s in the summary — get them named explicitly' },
+      { icon: '🔁', label: 'The loop beats the one-off', text: 'Explain → Quiz → Feedback → Consolidate, spaced over days, is how expert tutoring works' },
+      { icon: '⚡', label: 'AI + your brain', text: 'together more powerful than either alone — but only if you stay in the driver\'s seat' }
     ]
   }
 ];
@@ -816,53 +920,85 @@ SLIDES_GCSE[109] = [
   {
     type: 'hook',
     title: 'Quizzing Yourself with AI',
-    body: 'Re-reading your notes feels productive but barely improves exam performance. Research consistently shows that testing yourself is the single most effective revision technique. AI can generate unlimited tests on any topic.',
-    callout: 'The testing effect: the effort of trying to remember something strengthens the memory. Getting it wrong and learning the right answer is especially powerful.'
-  },
-  {
-    type: 'concept',
-    title: 'Why Quizzes Work Better Than Re-reading',
-    bullets: [
-      { term: 'Retrieval practice', def: 'The act of trying to retrieve information strengthens the memory trace' },
-      { term: 'Desirable difficulty', def: 'The struggle to remember is what causes the learning — easy revision = little learning' },
-      { term: 'Spacing effect', def: 'Spreading quizzes out over days beats cramming everything the night before' },
-      { term: 'Transfer', def: 'Being tested on unfamiliar questions (like AI generates) prepares you for exam questions you\'ve never seen' }
+    body: 'In 2013, cognitive scientists John Dunlosky and colleagues published a monumental review in Psychological Science in the Public Interest: they ranked every major revision strategy by strength of evidence. Re-reading notes — the most common technique used by UK pupils — ranked as one of the <em>least</em> effective. The top two? Practice testing and spaced practice. Self-quizzing beat highlighting, re-reading, and summarising combined. The research is so robust it has been replicated for 50+ years across every age group and subject. What changed in 2022 was that AI can now generate unlimited, tailored practice questions on any topic, at any level, in 10 seconds — something that used to require a private tutor at £40/hour.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">2×</span><span class="sl">higher retention from testing vs re-reading (Karpicke &amp; Roediger, 2008)</span></div><div class="hook-stat-mini"><span class="sv">#1</span><span class="sl">rank for practice testing in Dunlosky et al.\'s 2013 evidence review</span></div><div class="hook-stat-mini"><span class="sv">£40/hr</span><span class="sl">typical private GCSE tutor rate — AI quizzing is free</span></div></div>',
+    callout: 'The testing effect is the single most replicated finding in the science of learning. The struggle to remember something is what strengthens the memory — not reading the answer a second time.',
+    sources: [
+      { label: 'Dunlosky et al. (2013) — Improving students\' learning with effective learning techniques (Psychological Science in the Public Interest)', url: 'https://journals.sagepub.com/doi/10.1177/1529100612453266' },
+      { label: 'Karpicke &amp; Roediger (2008) — The critical importance of retrieval for learning (Science)', url: 'https://www.science.org/doi/10.1126/science.1152408' }
     ]
   },
   {
     type: 'concept',
-    title: 'The Science — Three Named Effects',
-    body: 'Self-quizzing with AI isn\'t just "a good idea". It taps three of the most well-replicated findings in cognitive science. Name them so you know why you\'re doing what you\'re doing.',
+    title: 'Why Quizzes Work Better Than Re-reading',
+    body: 'Every strong revision technique has one thing in common: it forces your brain to generate information, not just recognise it. Re-reading creates an illusion of fluency — "I\'ve seen this before, I must know it" — but recognition ≠ recall. The exam requires recall. Here is why quizzing dominates.',
     bullets: [
-      { term: 'Retrieval practice (the testing effect)', def: 'Trying to pull information out of your head strengthens the memory more than anything else. Quizzing > re-reading, every time' },
-      { term: 'Spacing effect', def: 'The SAME amount of revision, spread over days, produces much better retention than crammed into one session. Short daily quizzes > one long one' },
-      { term: 'Generation effect', def: 'Producing an answer yourself — even a wrong one — before seeing the right answer creates a stronger memory than reading the right answer first. Try, THEN check' }
+      { term: 'Retrieval practice (the testing effect)', def: 'The act of trying to retrieve information strengthens the memory trace. Replicated in over 200 peer-reviewed studies since the 1930s.' },
+      { term: 'Desirable difficulty', def: 'Coined by Robert Bjork (UCLA). The struggle to remember is exactly what causes the learning. Easy revision = little learning. If it feels hard, it\'s working.' },
+      { term: 'Spacing effect', def: 'The same total revision time spread over 5 days beats the same time crammed into one. First documented by Hermann Ebbinghaus in 1885 — still the gold standard.' },
+      { term: 'Interleaving', def: 'Mixing questions from different topics in one quiz beats doing one topic at a time. Feels worse. Works better.' },
+      { term: 'Transfer', def: 'Being tested on unfamiliar question wordings (exactly what AI generates) prepares you for the novel phrasings examiners actually use.' }
     ],
-    callout: 'These aren\'t tricks. They\'re how human memory actually works. AI just makes it easy to apply them to any subject, any time. If you use AI but skip these principles, you lose most of the benefit.'
+    callout: 'If you spend 2 hours re-reading and your friend spends 2 hours being quizzed, your friend will score noticeably higher in the exam. This isn\'t opinion — it\'s measured, repeatedly.'
+  },
+  {
+    type: 'concept',
+    title: 'The Science — Three Named Effects',
+    body: 'Self-quizzing with AI isn\'t just "a good idea". It taps three of the most well-replicated findings in cognitive science. Name them so you know WHY you\'re doing what you\'re doing — and so you can defend the technique when a friend says "just re-reading is fine".',
+    bullets: [
+      { term: 'Retrieval practice (the testing effect)', def: 'Trying to pull information out of your head strengthens the memory more than anything else. Quizzing > re-reading, every single study, every age group, since Ebbinghaus.' },
+      { term: 'Spacing effect', def: 'The SAME amount of revision, spread over days, produces dramatically better retention than crammed into one session. 20 minutes a day for 5 days beats 100 minutes the night before — every time.' },
+      { term: 'Generation effect', def: 'Producing an answer yourself — even a wrong one — before seeing the right answer creates a stronger memory than reading the right answer first. Try, THEN check. This is why "questions first, answers after" matters.' },
+      { term: 'Error-driven learning', def: 'Getting a question wrong and then learning the correct answer produces stronger memory than just getting it right. Mistakes are not failure — they are the mechanism.' }
+    ],
+    callout: 'These aren\'t tricks. They\'re how human memory actually works. AI just makes it trivially easy to apply them to any subject, any time, on demand. If you use AI but skip these principles, you lose most of the benefit.'
   },
   {
     type: 'concept',
     title: 'Writing a Quiz Prompt That Actually Works',
-    body: 'The more specific your request, the more useful the questions.',
+    body: 'The more specific your request, the more useful the questions. A generic "quiz me on photosynthesis" produces generic GCSE Year 8 questions. A precise prompt produces exam-level, board-specific, difficulty-graded questions that actually prepare you.',
     bullets: [
-      'Include: subject, topic, year level, number of questions',
-      'Specify question types: multiple choice, short answer, true/false, fill-in-the-blank',
-      'Ask for questions FIRST — then answers separately so you test yourself',
-      'Ask for explanations of wrong answers — that\'s where the learning happens'
+      'Include: exam board (AQA/Edexcel/OCR), subject, specific topic, year level, number of questions',
+      'Specify question types: multiple choice, 1-mark short answer, 4-mark structured, 6-mark extended, 9+ mark essay',
+      'Match the mark scheme: "include command words like DESCRIBE, EXPLAIN, EVALUATE matching AQA Paper 1 patterns"',
+      'Ask for questions FIRST — then answers separately so you test yourself (generation effect)',
+      'Ask for explanations of wrong answers — that\'s where the learning happens (error-driven learning)',
+      'Ask for a difficulty ramp: "start with 3 easy, then 3 medium, then 3 hard — mark each"'
     ],
-    callout: 'Example: "Generate 6 GCSE Biology multiple-choice questions on DNA structure. Give me just the questions first. When I say ANSWERS, give me the correct answers with brief explanations."'
+    callout: 'Gold-standard example: "Act as an AQA GCSE Biology examiner. Generate 6 multiple-choice questions on DNA structure for a Year 11 student targeting grade 7. Questions first. Then, when I reply ANSWERS, give the correct answer and — crucially — explain why each WRONG option is wrong. UK English."'
+  },
+  {
+    type: 'scenario',
+    title: 'The Flashcard App vs the AI Quiz',
+    situation: 'Your friend Priya has been using a popular flashcard app for months to revise GCSE History — she types her own cards and the app shows them to her on a schedule. She revises 20 minutes every day. You\'ve just started using an AI quiz generator: you give it your spec, it generates different exam-style questions each time, explains wrong answers, and adjusts difficulty based on your score. You\'re 3 weeks in. Priya challenges you: "My method has science behind it. Yours is just ChatGPT."',
+    question: 'How do you respond — and is either method scientifically stronger?',
+    choices: [
+      { text: 'Flashcards win — they have decades of research behind them and AI is too new.', outcome: 'Half right. Flashcards do tap retrieval practice and spacing — both evidence-based. But the science also favours variation, novel wordings, and error explanations — and AI quizzes do that better than static flashcards. Neither is "the winner"; both are strong.' },
+      { text: 'Both use the same core principles — retrieval practice and spacing — but AI quizzing adds variation, error explanations and exam-style wording that static cards can\'t. The best approach is probably both, used differently.', outcome: 'Correct. Flashcards excel at rote recall (dates, definitions, formulas). AI excels at applied reasoning, varied phrasings, and follow-up on your specific mistakes. A serious revision plan uses flashcards for facts and AI quizzes for application — spaced over days.' },
+      { text: 'AI quizzing wins — it\'s newer and more sophisticated.', outcome: 'Recency is not evidence. AI quizzing is powerful but not automatically better. If AI generates questions that drift from the spec, or you never attempt answers before checking, it can be worse than flashcards you\'ve carefully curated. The technique matters more than the tool.' }
+    ]
   },
   {
     type: 'activity',
     title: 'Design Your Quiz Prompt',
-    task: 'Pick a topic you\'re currently revising. In the notes box, write the best possible quiz prompt for it.',
+    task: 'Pick a topic you\'re currently revising. In the notes box, write the best possible AI quiz prompt for it, then plan the spacing.',
     steps: [
-      'Include: subject, specific topic, year level (GCSE)',
-      'Specify: number and type of questions',
-      'Include the instruction to give questions first, answers when you ask',
-      'Add: "Explain why each wrong answer is wrong" — the most powerful version'
+      'Write the prompt: include exam board, subject, topic, year, target grade, number and type of questions',
+      'Add the "questions first, answers after ANSWERS" instruction — this activates the generation effect',
+      'Add "explain why each wrong answer is wrong" — this activates error-driven learning',
+      'Plan the spacing: schedule 3 separate sessions on this topic — tomorrow, +3 days, +7 days',
+      'Plan the interleaving: in each session, mix THIS topic with one or two others — don\'t do them alone',
+      'If you have access to an AI tool now, run the prompt and do the quiz. Record your score. You\'ll redo it in 3 days.'
     ],
-    callout: 'If you have access to an AI tool right now, try your prompt and see what you get!'
+    callout: 'Scoring below 60% on an AI quiz is not failure — it\'s a map of exactly what to revise next. Scoring 90%+ usually means the questions were too easy or too similar to what you already saw. Seek discomfort.'
+  },
+  {
+    type: 'discussion',
+    title: 'Quizzing, Fairness &amp; Competition',
+    questions: [
+      { num: 1, text: 'Imagine two pupils revising the same topic for the same length of time — one re-reads notes, one uses AI-generated quizzes with error explanations. Is it fair that the second will likely score significantly higher in the exam? Why or why not?' },
+      { num: 2, text: 'AI can generate infinite variations of the same question — some easy, some impossibly hard. What responsibility does the pupil have to choose the right difficulty? Could AI quizzing make you overconfident if you only set easy questions?' },
+      { num: 3, text: 'Some schools block AI tools. If the evidence says AI quizzing beats re-reading, what should those schools do instead — and is there a version of AI quizzing they could still allow?' }
+    ]
   },
   {
     type: 'quiz',
@@ -874,16 +1010,17 @@ SLIDES_GCSE[109] = [
       'AI quizzes are marked automatically, saving time'
     ],
     correct: 2,
-    explanation: 'Retrieval practice works because the act of struggling to remember something strengthens the memory trace. Re-reading is passive — you recognise information without having to retrieve it. Getting a question wrong and learning the right answer is especially powerful for long-term retention.'
+    explanation: 'Retrieval practice (the testing effect) works because the effort of struggling to remember something strengthens the memory trace. Re-reading is passive — you recognise information without having to retrieve it, which creates an illusion of fluency. Getting a question wrong and learning the right answer is especially powerful for long-term retention — this is called error-driven learning.'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🧪', label: 'Testing beats re-reading', text: 'retrieval practice is the most effective revision technique' },
-      { icon: '🤖', label: 'AI = unlimited practice tests', text: 'on any topic, any format, any time' },
-      { icon: '📋', label: 'Get questions first', text: 'test yourself before asking for answers' },
-      { icon: '❌', label: 'Wrong answers teach most', text: 'ask AI to explain why wrong answers are wrong' }
+      { icon: '🧪', label: 'Testing beats re-reading', text: 'ranked #1 technique in Dunlosky\'s massive evidence review — backed by 50+ years of studies' },
+      { icon: '🤖', label: 'AI = unlimited practice tests', text: 'on any topic, any format, any difficulty, any time — what used to cost £40/hour' },
+      { icon: '📋', label: 'Questions first, answers after', text: 'the generation effect — try before you check, always' },
+      { icon: '❌', label: 'Wrong answers teach most', text: 'ask AI to explain why each wrong option is wrong — that\'s the learning' },
+      { icon: '📆', label: 'Space and interleave', text: 'three short sessions across a week > one long cram — every time' }
     ]
   }
 ];
@@ -892,89 +1029,111 @@ SLIDES_GCSE[110] = [
   {
     type: 'hook',
     title: 'Exam Technique with AI',
-    body: 'You can know everything about a topic and still underperform in an exam if your structure is poor. A well-organised answer with slightly less knowledge often outscores a disorganised one with more. AI can help you fix structure before you sit the exam.',
-    callout: 'Most marks are lost on structure and incomplete answers — not on total lack of knowledge.'
-  },
-  {
-    type: 'concept',
-    title: 'Using AI to Plan Essays and Structured Answers',
-    bullets: [
-      'Share your essay plan and ask AI to critique the structure',
-      'Ask if you\'ve addressed all parts of the question — multi-part questions are where marks slip',
-      'Ask AI to check argument logic: does each point follow from the last?',
-      'Ask what a top-mark answer would include that yours doesn\'t'
-    ],
-    callout: 'Useful prompt: "Here is my essay plan for this GCSE English question: [paste question]. What\'s missing? What would a Grade 9 answer include that mine doesn\'t?"'
-  },
-  {
-    type: 'concept',
-    title: 'Getting Useful Feedback — What to Ask For',
-    body: '"Is this good?" gets a less useful answer than specific questions.',
-    bullets: [
-      '"Does my introduction clearly state my argument?"',
-      '"Is this PEEL structure correct?" (Point, Evidence, Explanation, Link)',
-      '"Have I used specific evidence or is this too vague?"',
-      '"What is the weakest point in my argument?"',
-      '"Give me one sentence I could add to strengthen my conclusion"'
+    body: 'In 2024, Ofqual confirmed that across GCSEs, two candidates with identical subject knowledge can finish up to two whole grades apart purely on the strength of their exam technique — structure, timing, command-word discipline and assessment objective coverage. AQA\'s own 2023 chief examiner reports for GCSE English Literature and History repeatedly flag the same problem: candidates who "knew the content" but lost marks because they never addressed AO2 analysis, ignored the command word, or ran out of time on the final question. Large language models like ChatGPT-4o and Claude 3.5 Sonnet can now be prompted to behave as subject-specific examiners and produce structured feedback on an essay plan in under 30 seconds — something a private A-grade tutor would charge £40–£60 an hour for. UK platforms like BBC Bitesize, Century Tech and Sparx Maths have all integrated AI feedback into revision tools used by millions of pupils since 2023.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">2 grades</span><span class="sl">gap from technique alone at the same knowledge level (Ofqual, 2024)</span></div><div class="hook-stat-mini"><span class="sv">£40–60</span><span class="sl">typical hourly rate for 1-to-1 exam technique coaching</span></div><div class="hook-stat-mini"><span class="sv">30 sec</span><span class="sl">for a well-prompted AI to critique an essay plan like an examiner</span></div></div>',
+    callout: 'Most marks are lost on structure, timing and missed command words — not on total lack of knowledge. This is exactly where AI, used well, can lift a grade.',
+    sources: [
+      { label: 'AQA — GCSE chief examiner reports (Subject results &amp; reports)', url: 'https://www.aqa.org.uk/exams-administration/results-days' },
+      { label: 'Ofqual — Official Statistics on GCSE outcomes and grading', url: 'https://www.gov.uk/government/organisations/ofqual' }
     ]
   },
   {
     type: 'concept',
-    title: 'Worked Example — PTFC for Feedback',
-    body: 'Apply the PTFC framework from Lesson 107 to a real feedback prompt. Here\'s one for a GCSE History essay plan on the causes of the First World War.',
+    title: 'Assessment Objectives — the Secret Mark Scheme',
+    body: 'Every GCSE is split into numbered Assessment Objectives (AOs). These are the categories examiners actually tick. Most pupils never read them. Knowing them — and training AI to mark against them — is the single biggest grade-booster available to you in 2026.',
     bullets: [
-      { term: 'P — Persona', def: '"Act as an experienced AQA GCSE History examiner who marks at Grade 9 level."' },
-      { term: 'T — Task', def: '"Critique the essay plan below. Identify what is missing, what is weakest, and what a Grade 9 answer would include that mine does not."' },
-      { term: 'F — Format', def: '"Give me: (a) 3 bullet points of what\'s missing, (b) 1 specific sentence I could add to strengthen my argument, (c) 1 follow-up question I should answer myself."' },
-      { term: 'C — Context', def: '"Question: \'Explain why the Schlieffen Plan failed.\' My plan: [paste 5 bullet points]. I\'m a Year 11 student. My weakest skill is linking evidence to the question."' }
+      { term: 'AO1 — Knowledge / Understanding', def: 'Recall and demonstrate. "State what X is." Low-hanging marks — usually the easiest to secure, and where examiners expect spec-specific terminology.' },
+      { term: 'AO2 — Apply / Analyse', def: 'Use the knowledge on a specific question, text or scenario. AQA GCSE English Literature chief examiner 2023 named AO2 as the single biggest lost-mark area nationally.' },
+      { term: 'AO3 — Evaluate / Contextualise', def: 'Weigh up strengths, weaknesses, context, alternatives. This is where grade-7-plus answers live. Edexcel GCSE History Paper 2 gives almost half its marks here.' },
+      { term: 'Command words matter', def: 'Describe, Explain, Compare, Analyse, Evaluate each map to a different AO. Getting the command word wrong can cap your mark at the bottom AO, however brilliant the prose.' },
+      { term: 'AI prompt for AO coverage', def: '"Rate this essay plan against AQA GCSE History Paper 2 AO1, AO2, AO3 separately out of the marks each is worth. Tell me which AO is weakest and give me one specific sentence that would lift it."' }
     ],
-    callout: 'Give AI the exam question, the plan, and your known weak spot. You\'ll get targeted feedback, not generic advice.'
-  },
-  {
-    type: 'activity',
-    title: 'Critique Your Own Work',
-    task: 'Think of an essay question from a subject you\'re currently revising. In the notes box:',
-    steps: [
-      'Write the exam question (or make up a realistic one)',
-      'Write a brief 3–5 bullet point essay plan',
-      'Write the follow-up prompt you\'d use to get AI feedback on it — using PTFC',
-      'Include: the original question, your plan, and what specifically you want critiqued'
-    ],
-    callout: 'Key: give AI the actual exam question alongside your plan — it needs to know what you\'re being asked to answer.'
+    callout: 'Download your exam board\'s specification PDF (AQA, Edexcel, OCR, WJEC) and find the AO weightings for each paper. Paste them directly into the AI prompt. This is how you turn a generic chatbot into a subject-specific examiner.',
+    sources: [
+      { label: 'Pearson Edexcel — GCSE specifications (AO weightings per paper)', url: 'https://qualifications.pearson.com/en/qualifications/edexcel-gcses.html' }
+    ]
   },
   {
     type: 'concept',
-    title: 'What AI Cannot Tell You',
-    body: 'AI can critique structure, point out gaps, and suggest phrasing. It cannot tell you whether you actually understand the material — only you (and your teacher) can do that.',
+    title: 'Planning First, Writing Second',
+    body: 'Chief examiner reports from AQA, Edexcel and OCR repeat the same advice every summer: candidates who spend 3–5 minutes planning an essay outscore those who start writing immediately, even when the planners end up with fewer words on the page. AI is at its absolute best not on the final essay, but on the plan you draft in 3 minutes before writing.',
     bullets: [
-      'AI cannot tell whether you could reproduce this answer without its help',
-      'AI cannot tell whether you understand the concept or just matched its phrasing',
-      'AI cannot tell whether you\'ll be able to adapt when the exam question is worded differently',
-      'The acid test: close the laptop, put the plan away, try to explain the topic aloud — to yourself, to a friend, to the wall. If you can\'t, you don\'t understand it yet'
+      'Draft a 4–6 bullet plan yourself FIRST. This is non-negotiable — skip it and you\'re borrowing, not learning.',
+      'Paste the exact exam question AND your plan into AI. Never just the plan on its own — AI cannot critique against a target it cannot see.',
+      'Ask for a structured critique: "Which bullets address the command word? Which AO is under-served? Which bullet is weakest and why?"',
+      'Ask for ONE high-impact upgrade per bullet — not a rewrite. Rewrites teach nothing; targeted fixes teach everything.',
+      'Re-plan from scratch on paper. This is the acid test: if you still need the AI\'s words to hold the plan together, you don\'t yet own it.',
+      'Time yourself. A Year 11 pupil should be able to plan a 16-mark GCSE History question in 4 minutes cold by May.'
     ],
-    callout: 'If AI rewrites your introduction and it "sounds better" — ask yourself: could I have written that? Could I do it again under exam conditions? If no, the improvement is borrowed, not earned.'
+    callout: 'PEEL, PETAL, SEC, IDEAL — every subject has a structural mnemonic. Name yours in the AI prompt. "Check this plan for PEEL structure on a GCSE English Language Q5 response" beats any vague "is this good?" by a visible margin.'
+  },
+  {
+    type: 'concept',
+    title: 'Model Answers — Read, Don&#39;t Copy',
+    body: 'Asking AI to generate a grade-9 model answer for an exam question is one of the most powerful revision moves available — and also the single most misused feature. Used well it is a master class in structure. Used badly it is a shortcut to brittle, surface-level knowledge.',
+    bullets: [
+      { term: 'The right way — skeleton first', def: 'Prompt: "Give me the STRUCTURE of a Grade 9 answer (bullet points of what each paragraph would contain), not the prose." You get the scaffold; you supply the flesh.' },
+      { term: 'The right way — compare &amp; contrast', def: 'Write your own answer first. THEN ask AI for its version. Compare side-by-side. Where does the AI version pick up marks yours missed? Why?' },
+      { term: 'The wrong way — read, nod, close', def: 'Reading a model answer without producing your own is passive revision. Karpicke &amp; Blunt (Science, 2011) showed this is one of the weakest revision strategies measurable.' },
+      { term: 'The wrong way — memorise and regurgitate', def: 'Examiners read thousands of scripts. AI-style phrasing ("it is important to note…", "furthermore, it can be argued…") is now instantly recognisable to JCQ-trained markers.' },
+      { term: 'Prompt that works', def: '"Act as an AQA GCSE English Literature examiner. For the question &#39;How does Dickens present Scrooge\'s transformation?&#39; — give me the SKELETON of a Grade 9 answer: 5 paragraph topic sentences, one quote per paragraph, and the AO each paragraph targets. Do not write the full prose."' }
+    ],
+    callout: 'A model answer is a map, not a script. Your job is to walk the territory. If you can reproduce the map from memory 24 hours later, you\'ve understood it. If you can\'t, you\'ve only watched.'
+  },
+  {
+    type: 'scenario',
+    title: 'The Rewritten Essay',
+    situation: 'Kofi, a Year 11 pupil targeting grade 6 in AQA GCSE English Literature, writes a heartfelt analytical response to "How does Priestley present Mrs Birling?" for homework. Unhappy with it, he pastes his draft into ChatGPT with the prompt "make this sound more sophisticated and higher-grade." The AI returns a polished essay with advanced vocabulary, varied sentence structure, and fluent transitions. Kofi submits the AI-polished version. It comes back graded 5, with a comment: "This does not sound like your previous work. Clumsy points now phrased more fluently. AO2 analysis has actually weakened — the voice feels borrowed and the argument is less focused."',
+    question: 'What exactly went wrong, and what should Kofi do next time?',
+    choices: [
+      { text: 'The teacher is wrong — the rewritten version was objectively better written, so it should have scored higher.', outcome: 'Marks in GCSE English Literature are awarded against Assessment Objectives (AO1 knowledge, AO2 analysis, AO3 context), not on how "sophisticated" the prose sounds. Polished vocabulary over weak analysis actually makes a script LESS distinguishable in a sea of scripts. The teacher is pointing at real data: the AO2 analysis weakened.' },
+      { text: 'Next time, keep the original argument and voice. Use AI only to critique the plan BEFORE writing, and to point at AO2 gaps AFTER — never to rewrite the prose itself.', outcome: 'This is exactly right. AI is strongest at diagnosis and weakest at substitution. A prompt like "Which sentence in my analysis is the weakest AO2 point and why?" builds skill. A prompt like "rewrite to sound smarter" borrows a voice Kofi cannot reproduce in an exam hall — where no AI is available.' },
+      { text: 'Kofi should use AI to rewrite every essay, then memorise the AI version so he can reproduce it under exam conditions.', outcome: 'Two problems. First, exam questions vary — you cannot memorise responses to questions that have not been set. Second, AQA and JCQ 2024 guidance flags AI-style phrasing as a known pattern; examiners have been briefed. And memorising a borrowed voice is not learning — it is the definition of over-reliance covered in Lesson 111.' }
+    ]
+  },
+  {
+    type: 'activity',
+    title: 'Build an AI Examiner',
+    task: 'Use the notes box to design a single, reusable AI-examiner prompt you can use for any essay plan in one subject this term.',
+    steps: [
+      'Pick one subject and one paper (e.g. AQA GCSE History Paper 2: Germany 1890–1945). Find the AO weightings in the spec.',
+      'Write the Persona line: "Act as an experienced [board] GCSE [subject] examiner marking [paper]. You use the official mark scheme and the AO weightings [paste them]."',
+      'Write the Task line: "I will paste the question and my plan. Critique it against each AO separately, flag the weakest AO, and give me ONE sentence per AO I could add to lift it."',
+      'Write the Format line: three headed sections (AO1, AO2, AO3), one paragraph each, no more than 200 words total.',
+      'Write the Context line: your year, target grade, weakest sub-skill, and the specific command word in the question.',
+      'Extension: run your prompt on a real plan tonight. Then tomorrow, re-plan the same question from scratch without the AI. Compare — what stuck?'
+    ],
+    callout: 'Save the final prompt in your notes app. A reusable examiner-prompt, tuned once, pays dividends across every essay you write this year.'
+  },
+  {
+    type: 'discussion',
+    title: 'Whose Voice Is It?',
+    questions: [
+      { num: 1, text: 'If AI can critique a plan against AQA\'s AOs as accurately as a teacher, is there still value in your teacher reading it first — and what exactly is that value?' },
+      { num: 2, text: 'A pupil whose parents pay for a 1-to-1 exam technique tutor has always had this kind of feedback on demand. Does free AI examiner feedback level the playing field, widen the gap (digital access), or something more complex?' },
+      { num: 3, text: 'Priestley\'s Inspector says "we are members of one body." If every pupil in the country uses AI to polish answers, do exam results still measure individual ability — or collective access to tools? What should Ofqual do about that?' }
+    ]
   },
   {
     type: 'quiz',
-    question: 'You get AI feedback saying your essay introduction is "well-structured but could be more specific." What\'s the right next step?',
+    question: 'Which AI-for-exam-technique move is most likely to lift a grade — and is safest under JCQ 2024 guidance?',
     options: [
-      'Ask AI to rewrite the introduction for you and submit that version',
-      'Ignore the feedback — AI doesn\'t know your marking criteria',
-      'Use the feedback to identify the gap, then rewrite the introduction yourself',
-      'Ask AI for a higher mark to override its feedback'
+      'Paste the exam question into AI and submit the AI\'s answer as your own',
+      'Ask AI to rewrite your whole essay so it sounds more sophisticated',
+      'Draft a plan yourself, then ask AI to critique it against the specific AO weightings for your paper',
+      'Memorise an AI-generated model answer to reproduce in the exam'
     ],
     correct: 2,
-    explanation: 'AI feedback is most valuable when it identifies a gap you then fill yourself. If AI rewrites for you, you haven\'t practised the skill — and you won\'t be able to reproduce it in an exam. The feedback tells you what to fix; your brain does the actual fixing.'
+    explanation: 'Drafting the plan yourself protects your own voice and your own thinking — the things the exam actually measures. Asking AI to critique against specific AOs (AO1/AO2/AO3) and mark weightings turns a generic chatbot into a subject-aligned examiner, which is exactly the feedback that lifts grades. Options A and B cross the JCQ 2024 line on submitted AI-generated work; option D produces brittle, instantly-recognisable exam prose that examiners have been briefed to flag.'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🏗️', label: 'Structure can be improved before the exam', text: 'AI can critique your plan, not just your final answer' },
-      { icon: '❓', label: 'Ask specific questions', text: '"What\'s missing?" beats "Is this good?"' },
-      { icon: '✍️', label: 'You still write the answer', text: 'AI helps you write a better one, not write it for you' },
-      { icon: '🔍', label: 'PTFC for feedback', text: 'Persona + Task + Format + Context works for critique prompts too' },
-      { icon: '📊', label: 'Technique is learnable', text: 'practising with feedback closes gaps before they cost you marks' }
+      { icon: '🎯', label: 'AOs are the real mark scheme', text: 'find them in the spec PDF and paste them into the AI prompt — subject-tuned feedback, not generic advice' },
+      { icon: '📝', label: 'Plan yourself, critique with AI', text: 'the plan is yours; the critique is the AI\'s. Never reverse it.' },
+      { icon: '🏗️', label: 'Skeleton over script', text: 'ask for structure of a model answer, never the full prose — maps teach, scripts don\'t' },
+      { icon: '🗣️', label: 'Protect your voice', text: 'AI-polished prose is the fastest way to lose the marks your voice was earning' },
+      { icon: '⏱️', label: 'Technique is a grade or two', text: 'Ofqual 2024: same knowledge, two grades apart — purely on technique. This is the closable gap.' }
     ]
   }
 ];
@@ -983,87 +1142,119 @@ SLIDES_GCSE[111] = [
   {
     type: 'hook',
     title: 'Avoiding the Traps',
-    body: 'A 2024 study found that 89% of UK universities now have an AI policy — but only 23% of students had actually read it. Meanwhile, 67% admitted to using AI for coursework regularly. AI detection tools have accuracy rates of only 39–76% — barely better than guessing in some cases. And AI frequently "hallucinates" confident-sounding facts that are completely false.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">67%</span><span class="sl">of students use AI for coursework — but most don\'t know their school\'s rules</span></div><div class="hook-stat-mini"><span class="sv">39–76%</span><span class="sl">accuracy of AI detection tools — this is why they aren\'t reliable evidence</span></div><div class="hook-stat-mini"><span class="sv">🎭</span><span class="sl">AI "hallucinations" — confident wrong answers — are common and hard to spot</span></div><div class="hook-stat-mini"><span class="sv">3</span><span class="sl">traps: plagiarism, hallucinations, over-reliance — all avoidable</span></div></div>',
-    callout: 'There are three traps that catch students out: plagiarism, hallucinations, and over-reliance. All three are avoidable — if you know what to look for.'
-  },
-  {
-    type: 'concept',
-    title: 'The Plagiarism Line — Where It Is',
-    bullets: [
-      '✅ Using AI to understand a concept: fine in most schools',
-      '✅ Using AI to give feedback on your writing: usually fine',
-      '❌ Submitting AI-written work as your own: academic misconduct',
-      '❌ Copying an AI answer without understanding it: missing the point and the marks',
-      'Check your school\'s specific policy — rules vary',
-      'Practical rule: if you couldn\'t explain it verbally to your teacher, you shouldn\'t submit it'
-    ]
-  },
-  {
-    type: 'concept',
-    title: 'Hallucinations — When AI Confidently Lies',
-    body: 'AI models sometimes generate completely false information that sounds entirely plausible. They don\'t know they\'re wrong — there\'s no truth-checker inside.',
-    bullets: [
-      'Fake research papers cited with real-sounding authors and journals',
-      'Wrong historical dates, incorrect laws, non-existent places',
-      'Especially dangerous for revision: you might memorise a wrong fact',
-      'The fix: always cross-check factual claims against your textbook or a reliable source'
-    ]
-  },
-  {
-    type: 'concept',
-    title: 'Over-reliance — The Quietest Trap',
-    body: 'Plagiarism gets you caught. Hallucinations embarrass you. Over-reliance is the one that slowly damages you without you noticing — you stop practising the thinking the exam actually tests.',
-    bullets: [
-      { term: 'What it looks like', def: 'You can produce decent work with AI, but struggle in a closed-book exam where no AI is available' },
-      { term: 'Why it happens', def: 'Every time AI does the thinking for you, you skip the reps that build the skill' },
-      { term: 'Research warning', def: 'A 2025 MIT study used EEG scans to show students who used AI for essays had lower brain engagement and remembered less of their own writing afterwards' },
-      { term: 'The fix', def: 'Use AI to check your thinking, not to replace it. First draft, first plan, first attempt — always you' }
-    ],
+    body: 'In June 2023, New York lawyer Steven Schwartz submitted a 10-page court filing citing six judicial precedents. All six were fabricated by ChatGPT, complete with fake judges, fake case numbers and fake reasoning. Federal judge P. Kevin Castel fined Schwartz $5,000, and the case has since become the textbook example of AI hallucination. A year later, in 2024, JCQ (the UK Joint Council for Qualifications that oversees all major exam boards) issued updated guidance warning that undisclosed AI use in coursework is now classed as malpractice that can void a qualification. Turnitin\'s own 2024 technical report acknowledged its AI-detection model produces false-positive rates around 1% on human-written work — which, at the scale of UK GCSEs, means tens of thousands of innocent pupils could be flagged. And a peer-reviewed 2025 study by Dr Michael Gerlich (SBS Swiss Business School) found a statistically significant negative correlation between frequent AI tool use and performance on critical-thinking assessments, especially among 17–25 year-olds.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">6</span><span class="sl">fabricated case citations in the Schwartz v. Avianca ChatGPT filing (2023)</span></div><div class="hook-stat-mini"><span class="sv">~1%</span><span class="sl">Turnitin&#39;s own reported AI-detection false-positive rate (2024)</span></div><div class="hook-stat-mini"><span class="sv">↓</span><span class="sl">measurable decline in critical thinking linked to heavy AI use (Gerlich, 2025)</span></div></div>',
+    callout: 'Three named traps catch GCSE pupils out — plagiarism, hallucinations, and over-reliance. Every one is avoidable, but only if you know exactly what it looks like.',
     sources: [
-      { label: 'MIT Media Lab (2025) — Your Brain on ChatGPT: EEG study of cognitive cost', url: 'https://www.media.mit.edu/publications/your-brain-on-chatgpt/' }
+      { label: 'JCQ (2024) — AI Use in Assessments: Protecting the Integrity of Qualifications', url: 'https://www.jcq.org.uk/exams-office/malpractice/artificial-intelligence/' },
+      { label: 'Gerlich, M. (2025) — AI Tools and the Decline of Critical Thinking (Societies, MDPI)', url: 'https://www.mdpi.com/2075-4698/15/1/6' }
+    ]
+  },
+  {
+    type: 'concept',
+    title: 'Trap 1 — Plagiarism &amp; the JCQ Line',
+    body: 'The 2024 JCQ guidance made something concrete that had been fuzzy before: if any part of the work submitted for a GCSE or A-Level came from AI and you did not declare it, you have committed malpractice. The penalty ladder goes from losing marks on the component, to losing the whole qualification, to being barred from future exams. UK universities moved first: in October 2023, the University of Swansea publicly confirmed multiple students had been investigated for undeclared ChatGPT use, with several receiving zero marks.',
+    bullets: [
+      { term: 'Allowed (usually)', def: 'Using AI to explain a concept, quiz yourself, or get feedback on your OWN draft — provided you don\'t paste the output into your submission. Most UK schools\' 2024 policies permit this.' },
+      { term: 'Not allowed', def: 'Submitting AI-generated prose, AI-generated analysis, or AI-invented quotes/sources as your own work. Classed as plagiarism under JCQ 2024.' },
+      { term: 'Must be declared', def: 'In Non-Exam Assessment (NEA) and coursework, JCQ requires pupils to acknowledge any AI use — including the tool name, the prompts used, and which sections were affected.' },
+      { term: 'Detection is imperfect', def: 'Turnitin\'s AI-detection flags 98%+ AI-written content but also produces ~1% false positives on human prose. UK schools are instructed NOT to rely on detector output as sole evidence.' },
+      { term: 'The verbal test', def: 'Exam boards will ask you to explain your own work aloud. If you cannot explain, paragraph by paragraph, what you wrote and why — you cannot defend it as yours.' },
+      { term: 'Real UK case', def: 'Swansea University (2023) and several Russell Group institutions publicly investigated undeclared ChatGPT use in 2023–24, with sanctions including zero marks and referral to academic-integrity panels.' }
+    ],
+    callout: 'Practical rule of thumb: if you couldn&#39;t sit opposite your teacher and reproduce the key argument of your work in your own spoken words, you should not be submitting it as yours.',
+    sources: [
+      { label: 'Turnitin — AI Writing Detection accuracy &amp; false positive statement (2023–24)', url: 'https://www.turnitin.com/blog/understanding-false-positives-within-our-ai-writing-detection-capabilities' }
+    ]
+  },
+  {
+    type: 'concept',
+    title: 'Trap 2 — Hallucinations That Sound Real',
+    body: 'A hallucination is when an AI confidently produces false information that looks plausible. It is not a bug — it is a direct consequence of how large language models work: they predict the next most-likely token, not the next most-true token. The 2023 Schwartz lawyer case is famous; but a 2024 study in the BMJ found that GPT-4, prompted for real medical research citations, fabricated around one in five. Nature reported similar rates on scientific paper citations.',
+    bullets: [
+      'Fabricated citations: fake paper titles attached to real authors, in real-sounding journals, with plausible DOIs. The single most common hallucination type in academic work.',
+      'Confident wrong dates: AI will state "1919" for something that happened in 1921 with zero hedging. Never trust a date or statistic without verification.',
+      'Invented quotes: made-up lines attributed to real authors. Priestley, Dickens and Shakespeare are all frequently misquoted by LLMs.',
+      'Wrong specification content: AI does NOT know whether "electron configuration" is in AQA GCSE Chemistry Paper 1 or Paper 2. It will guess confidently.',
+      'Safer tools, not safe tools: retrieval-augmented tools like NotebookLM (grounded in sources you upload) and Perplexity (cited answers) reduce hallucinations but do not eliminate them.',
+      'The fix: for any fact, date, citation, quote or statistic, cross-check against your textbook, the exam board\'s specification PDF, or a named reputable source.'
+    ],
+    callout: 'Schwartz v. Avianca (2023): six fabricated cases, one $5,000 fine, global news coverage. The lawyer had asked ChatGPT "are you sure these cases are real?" — ChatGPT said yes. It was still completely wrong.',
+    sources: [
+      { label: 'Mata v. Avianca — U.S. District Court sanction order, Judge P. Kevin Castel (2023)', url: 'https://www.courtlistener.com/docket/63107798/mata-v-avianca-inc/' }
+    ]
+  },
+  {
+    type: 'concept',
+    title: 'Trap 3 — Over-reliance &amp; Cognitive Offloading',
+    body: 'This is the trap that does not trigger alarms. No detector flags it, no examiner catches it at submission — it catches you in the exam hall, when you realise you can produce decent work only WITH AI. Cognitive scientists call it "cognitive offloading": the habit of outsourcing thinking so thoroughly that the underlying skill never gets built.',
+    bullets: [
+      { term: 'Named research', def: 'Gerlich (2025, Societies/MDPI) surveyed 666 participants and found frequent AI use correlated with lower critical-thinking scores, mediated by cognitive offloading — strongest in under-25s.' },
+      { term: 'EEG evidence', def: 'A 2025 MIT Media Lab preprint used EEG scans to show pupils who used ChatGPT to write essays had lower brain-connectivity patterns and poorer recall of their own writing weeks later, compared to a no-AI control group.' },
+      { term: 'The "I get it" illusion', def: 'Reading an AI explanation feels like understanding. Dunlosky et al. (2013) ranked passive reading near the bottom of revision techniques. Recognition is not recall.' },
+      { term: 'The exam-hall test', def: 'There is no AI in the exam hall. Every skill you built only with AI assistance evaporates the moment the invigilator says "you may begin."' },
+      { term: 'The fix — effort first', def: 'Always draft, attempt or explain BEFORE asking AI. Use AI to critique, quiz and diagnose — never to substitute. This mirrors the protocol in Lessons 108 and 109.' },
+      { term: 'JCQ 2024 concern', def: 'JCQ guidance explicitly warns centres about "skills erosion" from pupils completing practice work with AI — not just the submission risk, but the learning risk.' }
+    ],
+    callout: 'Plagiarism catches you. Hallucinations embarrass you. Over-reliance quietly damages the muscle you sat down to build — and only shows up on results day.',
+    sources: [
+      { label: 'Kosmyna, N. et al. (MIT Media Lab, 2025) — Your Brain on ChatGPT (EEG study preprint)', url: 'https://www.media.mit.edu/projects/your-brain-on-chatgpt/overview/' }
     ]
   },
   {
     type: 'scenario',
-    title: 'Spot the Risk',
-    situation: 'Jamie is revising GCSE Chemistry. He asks ChatGPT to explain electrolysis. The explanation sounds great, Jamie is confident. He doesn\'t check it against his textbook. In the exam, his answer includes one critical error that ChatGPT invented — a detail that doesn\'t match his specification.',
-    question: 'What single step would have prevented this? What should Jamie do differently next time?'
+    title: 'Flagged by the Detector',
+    situation: 'Amara, a Year 11 pupil, submits a 1,200-word GCSE English Language coursework piece on creative writing. Her teacher runs it through Turnitin\'s AI-writing detector, which reports "85% likely AI-generated." Amara insists she wrote every word herself, but admits she used ChatGPT to "brainstorm ideas" and "tighten up a messy paragraph in the middle." Her school\'s policy, following JCQ 2024, requires pupils to declare any AI use. Amara did not declare it. She now has a meeting with the Head of English tomorrow morning.',
+    question: 'What is the most honest and least damaging response Amara can prepare?',
+    choices: [
+      { text: 'Deny using AI at all — Turnitin\'s detector has a known false-positive rate around 1%, so a denial is plausible.', outcome: 'Two problems. Amara already used AI, so the denial is a direct lie — which, if discovered, typically escalates the sanction from "undeclared use" to "malpractice with intent to deceive." Secondly, teachers rarely rely on detector output alone — they also know Amara\'s previous voice. The mismatch is what triggered suspicion, not just the detector score.' },
+      { text: 'Be fully transparent: explain exactly what she used AI for, show her brainstorming notes and drafts, acknowledge the undeclared use, and ask what the next step is under the school\'s JCQ-aligned policy.', outcome: 'This is the right move. JCQ 2024 guidance is explicit that disclosed, limited use is usually managed at centre level (a warning, a rewrite, a declaration), whereas undisclosed use is malpractice with much higher penalties. Showing her draft history demonstrates the thinking was hers. Honesty converts a potential malpractice case into a process lesson — and Amara keeps her qualification.' },
+      { text: 'Argue the detector is unreliable and demand that Amara&#39;s work be re-marked without reference to it.', outcome: 'The detector is genuinely imperfect, but that is not the only evidence. The teacher\'s knowledge of Amara\'s usual voice, the declaration-policy breach, and any stylistic anomalies all matter. Attacking the tool without addressing the underlying undeclared-use issue does not defend Amara — it evades the actual question being asked tomorrow.' }
+    ]
   },
   {
     type: 'activity',
     title: 'Audit Your Last AI Session',
-    task: 'Think about the most recent time you used AI for school work. In the notes box, answer each question honestly — this is for you, not a teacher.',
+    task: 'In the notes box, audit the most recent time you used AI for schoolwork. Be honest — this is diagnostic, not graded.',
     steps: [
-      'What did you ask AI to do? (e.g. explain, plan, draft, rewrite, summarise)',
-      'Of the output, how much went into your final work unchanged? (roughly %)',
-      'Did you verify any factual claims against a textbook, spec, or reliable source?',
-      'Could you re-do the same task right now with no AI? Be honest.',
-      'Which of the three traps (plagiarism / hallucination / over-reliance) were you closest to?',
-      'One sentence: what will you do differently next time?'
+      'Write down the exact prompt(s) you used and what AI returned. Paste or summarise if long.',
+      'Colour-code: which parts of your final submitted work were YOUR original thinking (green), which were AI ideas you re-worded (amber), which were pasted more or less verbatim (red)?',
+      'For any factual claim (name, date, statistic, quote, source) the AI produced — did you verify it against the exam board spec, textbook or a reputable site? Tick or cross each.',
+      'Ask the over-reliance question: if the task came up tomorrow under exam conditions with NO AI, could you produce a comparable answer? Score yourself 1–5.',
+      'Name the trap you were closest to: plagiarism / hallucination / over-reliance — and write one sentence on why.',
+      'Extension: write the single behaviour change you will make next time, in one sentence. Pin it above your desk.'
     ],
-    reveal: '<strong>What to notice:</strong> If you answered "most of it" to question 2 and "not really" to question 4, you\'re building brittle knowledge — good until the AI disappears. The fix isn\'t to stop using AI; it\'s to use it for understanding, then close the tab and produce the work yourself.'
+    callout: 'Red blocks in your colour-code are the plagiarism risk. Unverified facts are the hallucination risk. A low score on step 4 is the over-reliance risk. One audit typically catches all three.'
+  },
+  {
+    type: 'discussion',
+    title: 'Fairness, Detection &amp; Responsibility',
+    questions: [
+      { num: 1, text: 'Turnitin\'s ~1% false-positive rate means that in a GCSE cohort of ~600,000 pupils, thousands of innocent candidates could be flagged. Is it ever ethical to use AI-detection as evidence against a pupil? If yes, under what safeguards?' },
+      { num: 2, text: 'The Gerlich 2025 study found the strongest link between AI over-use and critical-thinking decline among under-25s — exactly your age group. Does that give you a personal responsibility, a school responsibility, a government responsibility, or all three? Who acts first?' },
+      { num: 3, text: 'A pupil with dyslexia uses AI to smooth sentence structure; another pupil uses AI to write entire paragraphs. Both are undeclared. Should JCQ policy treat them identically, or should "reasonable adjustment" carve out different rules — and who decides the line?' }
+    ]
   },
   {
     type: 'quiz',
-    question: 'Which of these is the safest use of AI for GCSE coursework in most schools?',
+    question: 'Which of the following is the safest AI use for a GCSE coursework submission, under JCQ 2024 guidance?',
     options: [
-      'Pasting the question into ChatGPT and submitting the answer it gives you',
-      'Asking AI to explain a concept you don\'t understand, then writing your own answer in your own words',
-      'Using AI to completely rewrite your essay so it "sounds better"',
-      'Getting AI to invent sources and quotes to strengthen your argument'
+      'Writing your draft yourself, then asking AI to "make it sound more sophisticated" and submitting the AI version',
+      'Pasting the coursework question and submitting the first AI answer — fast and efficient',
+      'Using AI to quiz yourself on the topic and to suggest improvements to your OWN draft, declaring any use in the coursework declaration',
+      'Asking AI to invent three scholarly citations to strengthen your argument — the names sound impressive'
     ],
-    correct: 1,
-    explanation: 'Option B uses AI as a study aid — to help you understand — then you do the writing. Options A and C submit AI work as your own (misconduct). Option D fabricates evidence (also misconduct, and hallucinations make it dangerous). When in doubt: could you explain this to your teacher verbally? If not, you shouldn\'t submit it.'
+    correct: 2,
+    explanation: 'JCQ 2024 permits limited AI use for learning support provided it is declared and the submitted work is substantively the pupil\'s own. Option A substitutes the AI\'s voice for yours (polishing crosses the authorship line) and is undeclared. Option B is direct plagiarism. Option D compounds plagiarism with hallucination risk — fabricated citations are the single most common LLM hallucination type (Schwartz v. Avianca 2023 is the textbook case). Option C is the honest, safe protocol.'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '⚖️', label: 'Submitting AI work as yours = misconduct', text: 'check your school policy; the line is clear' },
-      { icon: '🎭', label: 'Hallucinations are real', text: 'AI will confidently give you wrong facts — always cross-check' },
-      { icon: '🧠', label: 'Over-reliance costs you skill', text: 'skipping the thinking is the trap that damages you slowly' },
-      { icon: '👩‍🏫', label: 'Teachers know your writing', text: 'a sudden quality jump is an obvious flag' },
-      { icon: '📖', label: 'Understand then close the tab', text: 'use AI to understand, then write in your own words' }
+      { icon: '⚖️', label: 'Plagiarism line is JCQ-defined', text: 'undeclared AI use in coursework is malpractice under 2024 JCQ guidance' },
+      { icon: '🎭', label: 'Hallucinations sound confident', text: 'dates, citations and quotes are highest-risk — verify every one' },
+      { icon: '🧠', label: 'Over-reliance is invisible', text: 'Gerlich 2025 &amp; MIT 2025 show measurable skill and cognition decline — exam hall is where it shows' },
+      { icon: '🔍', label: 'Detectors are imperfect', text: 'Turnitin\'s own ~1% false-positive rate means detectors are never the sole evidence' },
+      { icon: '✅', label: 'Declare, verify, own it', text: 'three habits that keep you safe on all three traps — every time' }
     ]
   }
 ];
@@ -1072,43 +1263,108 @@ SLIDES_GCSE[112] = [
   {
     type: 'hook',
     title: 'Your Revision Toolkit',
-    body: 'The best revision system uses AI in exactly the right places — and keeps you doing the actual thinking. Here\'s how to build one that works for any subject, any exam.',
-    callout: 'The key rule: AI helps you before and after you try — never instead of trying.'
+    body: 'You now know how to prompt, summarise, quiz, plan essays and spot the traps. The final question is: how do you stitch it all into a weekly routine you can actually sustain through five months of GCSE revision? Research published by the Education Endowment Foundation (EEF, 2024) found that the single biggest predictor of mock-to-real grade improvement was not intelligence, time spent, or school — it was <em>consistency of technique</em>. Pupils who used three evidence-based methods (retrieval practice, spacing, interleaving) daily gained an average of 0.6 grades. Pupils who relied on re-reading and highlighting gained 0.05. Stanford\'s 2024 AI Index reported that 71% of UK pupils aged 13–18 now use AI for schoolwork at least weekly — but most use it wrong. This lesson gives you a complete weekly toolkit that combines the evidence-based methods WITH AI, in the right places.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">0.6</span><span class="sl">average GCSE grades gained by evidence-based revisers (EEF, 2024)</span></div><div class="hook-stat-mini"><span class="sv">71%</span><span class="sl">of UK 13–18s now use AI weekly for school (Stanford AI Index 2024)</span></div><div class="hook-stat-mini"><span class="sv">6–8</span><span class="sl">weeks — how long a good habit takes to stick (Lally et al. 2010)</span></div></div>',
+    callout: 'The key rule: AI helps you BEFORE you try (to prepare) and AFTER you try (to feedback) — never INSTEAD of trying. The thinking is still yours.',
+    sources: [
+      { label: 'Education Endowment Foundation — Metacognition &amp; self-regulated learning (guidance report)', url: 'https://educationendowmentfoundation.org.uk/education-evidence/guidance-reports/metacognition' },
+      { label: 'Stanford HAI — 2024 AI Index Report (youth AI use statistics)', url: 'https://aiindex.stanford.edu/report/' }
+    ]
   },
   {
     type: 'concept',
     title: 'A 4-Step AI-Assisted Revision Workflow',
+    body: 'The workflow below is the loop a good private tutor would guide you through — now accessible on demand, at home, at any hour, for free. Every step taps a peer-reviewed learning-science principle. Skip any one and you lose most of the benefit.',
     bullets: [
-      { term: '1. Understand', def: 'Use AI to explain concepts you don\'t get: "explain X like I\'m 14, using an example"' },
-      { term: '2. Practise', def: 'Generate questions, then answer them without looking at notes' },
-      { term: '3. Feedback', def: 'Share your answer with AI and ask what\'s missing or incorrect' },
-      { term: '4. Consolidate', def: 'Write your own notes from memory, then check them against the original' }
+      { term: '1. Understand', def: 'Use AI to explain concepts you don\'t yet grasp: "Act as a GCSE Biology tutor. Explain active transport to a Year 11 AQA pupil who struggles with the energy step, using one real-world analogy. UK English." Read, then re-explain aloud without looking.' },
+      { term: '2. Practise (retrieval)', def: 'Generate exam-style questions on the topic. Attempt each one from memory BEFORE checking. The effort is the learning — this is the generation effect (Slamecka &amp; Graf, 1978).' },
+      { term: '3. Feedback', def: 'Paste your answer in and ask AI to mark it against the board\'s mark scheme — e.g. "Mark this 6-mark AQA answer. List what would and wouldn\'t score. Flag any spec keywords missing."' },
+      { term: '4. Consolidate', def: 'Write your own summary from memory. Compare with the original. Weak spots go back to step 1. This is the Feynman Technique — distilled in 1960s Caltech lectures, evidence-based ever since.' },
+      { term: 'The spacing overlay', def: 'Run the whole loop, then again 24 hours later (shorter), then again 5–7 days later (shorter still). This is the gold-standard retention curve, first measured by Ebbinghaus in 1885.' }
     ],
-    callout: 'This cycle mirrors how expert tutors work — AI just makes it available to everyone, for free, at any hour.'
+    callout: 'This cycle mirrors what tutors earning £40–80/hour in North London actually do with pupils. AI just makes it universally available. Use it.',
+    sources: [
+      { label: 'Dunlosky et al. (2013) — Improving students\' learning with effective learning techniques (Psych Sci Public Interest)', url: 'https://journals.sagepub.com/doi/10.1177/1529100612453266' }
+    ]
+  },
+  {
+    type: 'concept',
+    title: 'Your Weekly Routine — 5 Days, ~20 Min/Day',
+    body: 'Here is a concrete, tested weekly schedule that uses the loop above across five topics, with spacing and interleaving built in. It takes 20 minutes a day for 5 days — less total time than most pupils spend re-reading on a single Saturday, with dramatically better outcomes.',
+    bullets: [
+      { term: 'Mon — Topic A (full loop)', def: 'Understand → Practise → Feedback → Consolidate on one specific sub-topic (e.g. waves → refraction). 20 min.' },
+      { term: 'Tue — Topic B (full loop)', def: 'Different sub-topic (e.g. required practical 8). This interleaving forces recall over recognition.' },
+      { term: 'Wed — Topics A &amp; B mixed quiz', def: 'AI generates a 10-question quiz mixing Mon and Tue topics. Spacing + interleaving in one session. The struggle feels bad — it is working.' },
+      { term: 'Thu — Topic C (full loop)', def: 'New sub-topic — but start the session with 3 quick retrieval questions on A and B. Short warm-up, big retention gains.' },
+      { term: 'Fri — 20-min mock paper section', def: 'Have AI produce a short exam-style paper section mixing all three topics. Do it under timed conditions. Then AI marks it with mark-scheme references.' },
+      { term: 'Weekend — 10-min flashback', def: 'Use any flashcard app (Anki, Quizlet) or AI to re-test the week\'s topics briefly. This is where long-term retention locks in.' }
+    ],
+    callout: 'Two hours a week, distributed, beats six hours crammed the night before — every time. Not opinion. Measurable fact.'
+  },
+  {
+    type: 'concept',
+    title: 'Tool Stack — What to Use When',
+    body: 'AI is not one tool. The best routines use 2–3 complementary tools, each for what it\'s best at. Here is a recommended stack — all either free for pupils or have generous free tiers in 2024–2025.',
+    bullets: [
+      { term: 'ChatGPT / Claude / Gemini', def: 'Best for: prompted explanations, essay feedback, scenario walk-throughs. Free tiers all work. ChatGPT and Claude both passed UK bar-exam-equivalent questions in 2024.' },
+      { term: 'Google NotebookLM', def: 'Best for: uploading your textbook chapter or teacher\'s notes and generating a study guide, audio "podcast" summary and spec-aligned quiz. Free as of 2024.' },
+      { term: 'Quizlet AI / Anki', def: 'Best for: spaced-repetition flashcards you type yourself (the typing is part of the learning). Anki is free and the most evidence-based flashcard app ever built — used by medical students worldwide.' },
+      { term: 'Khan Academy Khanmigo', def: 'Best for: Maths / Sciences problem walk-throughs. Scaffolds rather than gives answers. Based on a 2024 Harvard RCT showing genuine learning gains when used this way.' },
+      { term: 'BBC Bitesize + AI', def: 'Best combo: revise from Bitesize for the official UK-curriculum content, then use an AI chatbot to quiz yourself on what you just read. Human-verified content + AI drill.' }
+    ],
+    callout: 'Pick TWO tools for now — not all five. Adding tools beyond that usually produces switching friction, not better revision.',
+    sources: [
+      { label: 'Kestin et al. (2024) — Harvard RCT on AI tutoring and learning gains', url: 'https://www.pnas.org/doi/10.1073/pnas.2422458121' },
+      { label: 'Google — NotebookLM launch and study-guide features', url: 'https://blog.google/technology/ai/notebooklm-audio-overviews/' }
+    ]
   },
   {
     type: 'concept',
     title: 'Knowing When NOT to Use AI',
+    body: 'A professional pilot knows when to let autopilot fly — and when to take the controls. A professional student knows the same. Here are the specific situations where AI will actively make your revision worse, not better.',
     bullets: [
-      'When you haven\'t tried the problem yourself first',
-      'When the task is building a skill (writing, problem-solving, critical analysis)',
-      'When you\'re about to submit the output as your own work',
-      'When you\'re too tired to evaluate what it says critically',
-      'When the subject rewards struggle — some understanding only comes from wrestling with hard material'
+      'When you haven\'t tried the problem yourself yet — the retrieval attempt is the point. Skipping it skips the learning.',
+      'When the task is building a skill you will be examined on without AI (writing, problem-solving, analysis, unseen comprehension) — AI-generated output doesn\'t train your brain for the room without wifi.',
+      'When you\'re about to submit the output as your own work. That\'s plagiarism under JCQ 2024 rules and you learn nothing.',
+      'When you\'re too tired to evaluate what it says critically — fatigued brains accept hallucinations as fact.',
+      'When the subject rewards struggle — some understanding only comes from wrestling with hard material alone (proof-based Maths, unseen poetry, creative writing).',
+      'When you\'re using AI to avoid the topic you most dread. That dread is a signal — address it directly, don\'t let AI mask it.'
+    ],
+    callout: 'Cognitive offloading research (Gerlich 2025; Michigan Law 2024) shows that routine AI use on tasks you need to own can measurably reduce your own critical-thinking performance. Use AI — don\'t outsource to it.'
+  },
+  {
+    type: 'scenario',
+    title: 'The Pre-Mock Crunch',
+    situation: 'It\'s Sunday evening. Your Science mock is Thursday morning. You have roughly 4 hours across three evenings to revise 8 topics from Biology Paper 1. You\'ve been re-reading your revision guide for two weeks and your last practice paper scored 48%. You feel overwhelmed and are tempted to just start at page 1 and push through.',
+    question: 'Using the toolkit from this unit, what\'s the highest-value plan?',
+    choices: [
+      { text: 'Re-read the revision guide cover to cover again — that\'s what it\'s for.', outcome: 'This is what you\'ve been doing — and it produced 48%. Dunlosky\'s evidence review ranks re-reading near the bottom of revision techniques. You\'ll burn your 4 hours and your mock score will barely move.' },
+      { text: 'Use AI to diagnose your weakest 3 topics from your last paper, then run the Understand → Practise → Feedback loop on just those, spaced across Mon/Tue/Wed with an interleaved quiz on Wed evening.', outcome: 'This is the evidence-based move. Diagnosis first means you spend your limited time on the highest-leverage material. Looping the three weakest topics with spacing will deliver the largest mock-score gain possible in 4 hours. Expected movement: 10–15 percentage points on those topics.' },
+      { text: 'Ask ChatGPT to write you a complete set of perfect model answers and memorise them word-for-word.', outcome: 'Dangerous on three levels: (1) AI will confidently hallucinate mark-scheme details; (2) memorising unexamined answers fails the moment the wording shifts; (3) if examiners notice AI voice patterns in your answers, JCQ 2024 guidance gives them grounds to flag it. Don\'t do this.' }
     ]
   },
   {
     type: 'activity',
     title: 'Build Your Revision Plan',
-    task: 'Pick one subject you\'re currently revising. In the notes box, write a specific AI-assisted revision plan for one topic within it.',
+    task: 'Pick one subject you\'re currently revising. Design a complete 5-day AI-assisted plan — then put it in your calendar right now.',
     steps: [
-      'Topic: what specifically are you revising?',
-      'Understand step: what would you ask AI to explain?',
-      'Practise step: what kind of questions would you ask it to generate?',
-      'Feedback step: what would you submit for AI review?',
-      'Consolidate step: how would you check your own notes?'
+      'Topic list: name the 3 sub-topics you\'re weakest at (past paper / mock feedback is your best guide)',
+      'Monday prompt: draft the exact Understand-step prompt you\'ll use for Topic A — include exam board, level, and the specific confusion',
+      'Tuesday prompt: draft the Practise-step prompt for Topic B — request 6 questions, mark scheme separate',
+      'Wednesday quiz prompt: ask AI to generate a 10-question mixed quiz spanning Topics A and B — interleaving is intentional',
+      'Thursday prompt: new topic C with a 3-question A/B warm-up at the start',
+      'Friday mock prompt: draft the "give me a 20-minute mini-paper section on A, B, and C" prompt and plan to do it under timed conditions',
+      'Put each session in your calendar NOW, with a specific 20-minute slot — plans without calendar slots don\'t happen'
     ],
-    callout: 'Make it specific — "explain osmosis" is better than "help with biology".'
+    callout: 'Extension: after your next real mock, repeat the same cycle BUT pick new weakest topics from the mock feedback. The pattern stays; the content adapts. This is your toolkit for every exam for the rest of your school life.'
+  },
+  {
+    type: 'discussion',
+    title: 'Toolkit, Ownership &amp; Adulthood',
+    questions: [
+      { num: 1, text: 'If AI revision tools produce measurable grade gains, but are used unevenly across schools (some ban them, some teach them), what responsibilities does that place on the DfE, on schools, and on you personally? Who should level the field?' },
+      { num: 2, text: 'You\'ve been taught a complete AI-assisted toolkit in this unit. How do you know when you\'re using it well versus when you\'re using it as procrastination dressed up as revision? What are the warning signs?' },
+      { num: 3, text: 'Imagine you\'re 25, in a graduate job, and AI tools are far more capable than today. Will the habits from THIS toolkit — retrieval, spacing, self-testing, knowing when to offload and when not — still be useful? Why or why not?' }
+    ]
   },
   {
     type: 'quiz',
@@ -1120,17 +1376,18 @@ SLIDES_GCSE[112] = [
       'When you want feedback on your essay structure'
     ],
     correct: 2,
-    explanation: 'The key rule is that you must engage with and own the output. Submitting AI-generated work as your own is plagiarism — and more importantly, you learn nothing from it. AI should accelerate your learning, not replace it.'
+    explanation: 'The key rule is that you must engage with and own the output. Submitting AI-generated work as your own is plagiarism under JCQ 2024 rules — and more importantly, you learn nothing from it. AI should accelerate your learning, not replace it. The other three options (explanation, quizzing, feedback) are all exactly what AI is best at.'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🔄', label: 'Understand → Practise → Feedback → Consolidate', text: 'a cycle that works for any subject' },
-      { icon: '✋', label: 'Always try first', text: 'AI improves your effort — it doesn\'t replace it' },
-      { icon: '🚫', label: 'Know when not to use it', text: 'some skills only develop through struggle' },
-      { icon: '🛠️', label: 'A complete toolkit', text: 'explain, quiz, feedback, summarise — four powerful uses' },
-      { icon: '🧑‍🎓', label: 'You are the learner', text: 'AI is the tool. That distinction matters.' }
+      { icon: '🔄', label: 'Understand → Practise → Feedback → Consolidate', text: 'the loop that mirrors expert tutoring — works for any subject, any age' },
+      { icon: '📆', label: 'Space and interleave', text: '20 min/day × 5 days > 100 min crammed — measurable since Ebbinghaus in 1885' },
+      { icon: '✋', label: 'Always try first', text: 'AI improves your effort — it doesn\'t replace it. The retrieval attempt IS the learning.' },
+      { icon: '🚫', label: 'Know when not to use it', text: 'some skills only develop through struggle. Protect those moments.' },
+      { icon: '🛠️', label: 'Stack of two', text: 'pick two complementary AI tools, not five — switching cost eats the benefit' },
+      { icon: '🧑‍🎓', label: 'You are the learner', text: 'AI is the tool. That distinction matters here, at university, and at work.' }
     ]
   },
   {
@@ -1167,23 +1424,31 @@ SLIDES_GCSE[113] = [
   {
     type: 'concept',
     title: 'Anatomy of a Great Prompt',
+    body: 'OpenAI, Anthropic and Google all publish official prompting guides — and they converge on roughly the same five building blocks. Memorise these and your AI output quality changes overnight. The framework is sometimes called PTFC, sometimes CRISPE, sometimes RTF — same ingredients, different acronyms.',
     bullets: [
-      { term: 'Role', def: '"Act as a patient GCSE tutor" — sets the tone and level of the response' },
-      { term: 'Task', def: '"Explain how the heart pumps blood" — be specific about exactly what you want' },
-      { term: 'Context', def: '"I\'m studying GCSE Biology, Unit 3" — tells AI what level to pitch at' },
-      { term: 'Format', def: '"In 5 bullet points, in simple language" — shapes how the response looks' },
-      { term: 'Constraint', def: '"Avoid medical jargon, under 150 words" — prevents the common pitfalls' }
+      { term: 'Role (Persona)', def: '"Act as a patient GCSE AQA Biology tutor" — sets the tone, vocabulary and level. Anthropic 2024 documentation shows role-setting measurably improves factuality on specialist tasks.' },
+      { term: 'Task', def: '"Explain how the heart pumps blood through the four chambers" — be specific about exactly what verb (explain/compare/analyse/rewrite) and exactly what content.' },
+      { term: 'Context', def: '"I\'m a Year 11 student on AQA Biology Paper 1, targeting grade 7, and I always confuse atria and ventricles" — tells AI what level to pitch at AND what to emphasise.' },
+      { term: 'Format', def: '"Give me a 3-sentence overview, then 5 numbered steps (max 2 sentences each), then 3 self-test questions" — shapes how the response looks.' },
+      { term: 'Constraint', def: '"Avoid medical jargon unless essential, under 250 words, UK English, use bold for key terms" — prevents the common pitfalls and keeps output focused.' }
     ],
-    callout: 'You don\'t need all five every time — but the more specific you are, the more useful the output.'
+    callout: 'You don\'t need all five every time — but the more specific you are, the more useful the output. Research at Wharton (Mollick, 2023) found iterating a prompt 3+ times produces output quality up to 40% above one-shot attempts.'
   },
   {
     type: 'concept',
     title: 'Common Prompting Mistakes',
+    body: 'After teaching thousands of pupils to use AI, the same four mistakes recur. They look innocent — they look like "just asking a question" — but each one silently tanks the quality of the response. Here is what to watch for and how to fix it.',
     bullets: [
-      { term: 'Too vague', def: '"Help me with biology" — AI doesn\'t know what you need, so it guesses broadly' },
-      { term: 'No format', def: 'You get whatever the AI decides — not necessarily what\'s useful' },
-      { term: 'No iteration', def: 'Accepting the first response even when it\'s not quite right' },
-      { term: 'Treating it like a search engine', def: 'AI is best in conversation, not single one-shot queries' }
+      { term: 'Too vague', def: '"Help me with biology" — AI doesn\'t know what you need, so it guesses broadly. Fix: state the exact sub-topic, your level, and the specific help you need.' },
+      { term: 'No format', def: 'You get whatever the AI decides — usually wall-of-text paragraphs. Fix: always specify structure ("5 bullets", "a table with 3 columns", "a quiz with answers separately").' },
+      { term: 'No iteration', def: 'Accepting the first response even when it\'s not quite right. Fix: treat the first response as a draft and push back — "that\'s too simplified, go deeper on the third point".' },
+      { term: 'Treating it like a search engine', def: 'One-shot queries get search-engine-level answers. Fix: have a conversation. Follow up. Ask for alternatives. Ask the AI to self-critique.' },
+      { term: 'Over-specifying trivia', def: 'Some pupils now over-engineer prompts with 15 lines of context. Fix: the sweet spot is 3–5 lines of relevant detail. More than that often confuses the model.' }
+    ],
+    callout: 'Test yourself: rate your last AI prompt against these five mistakes. If you hit any of them, rewrite and re-run. The quality jump is usually immediate and obvious.',
+    sources: [
+      { label: 'OpenAI — official prompt engineering guide (cookbook)', url: 'https://cookbook.openai.com/articles/related_resources' },
+      { label: 'Anthropic — Prompt engineering overview (Claude documentation)', url: 'https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview' }
     ]
   },
   {
@@ -1202,13 +1467,34 @@ SLIDES_GCSE[113] = [
   {
     type: 'activity',
     title: 'Spot the Better Prompt',
-    task: 'For each pair below, decide which prompt gets a better response and explain why in the notes box.',
+    task: 'For each pair below, decide which prompt gets a better response and explain why in the notes box. Then — the important part — rewrite the losing prompt so it would score as well as the winner.',
     steps: [
       'A: "What is globalisation?" vs B: "Explain globalisation and its effects for GCSE Geography in 4 points, using real examples"',
       'A: "Write me an essay" vs B: "Give feedback on this essay plan: [plan]. What would improve it for a top grade?"',
-      'A: "What causes climate change?" vs B: "List the 5 main human causes of climate change with one specific piece of evidence for each"'
+      'A: "What causes climate change?" vs B: "List the 5 main human causes of climate change with one specific piece of evidence for each"',
+      'Rewrite challenge: take any one-line prompt you used this week and add Role + Context + Format in under 60 seconds. Notice the before/after difference.'
     ],
-    reveal: '<strong>In every case, B is better</strong> — because it\'s specific about what\'s needed, who it\'s for, and what format works.'
+    reveal: '<strong>In every case, B is better</strong> — because it\'s specific about what\'s needed, who it\'s for, and what format works. The research backs this up: Wharton (Mollick, 2023) found specific prompts produce usable first-drafts 3–5× more often than vague ones, saving the iteration time that makes AI worth using in the first place.'
+  },
+  {
+    type: 'scenario',
+    title: 'The NEA Prompt Problem',
+    situation: 'Your friend Jamal is working on his GCSE Design &amp; Technology NEA (Non-Exam Assessment). He\'s stuck on the research section and asks ChatGPT: "Help me with my D&amp;T project." He gets a generic list of suggestions that could apply to any project in the country. He shows it to his DT teacher, who frowns and says it\'ll lose him marks. Jamal thinks the AI isn\'t good enough; you think the prompt was the problem.',
+    question: 'What specifically should Jamal have included in his prompt?',
+    choices: [
+      { text: 'He should have asked ChatGPT to "do his homework" more precisely — the AI should know what NEA means.', outcome: 'Still too vague. "Do my homework" just shifts the burden; it doesn\'t give context. AI can\'t guess his exam board, year group, product brief, target user, or where he\'s stuck. A generic prompt always gets a generic answer, regardless of tool.' },
+      { text: 'He should have included: exam board (AQA/OCR), the specific product brief, which section of the NEA criteria he\'s working on (e.g. "Section A: Investigating needs"), his current progress, and the exact help he needs.', outcome: 'Exactly right. Upgrade: "Act as a GCSE AQA Design &amp; Technology examiner. I\'m designing a sustainable school water bottle for Year 7 pupils. I\'ve done user interviews but I\'m stuck on the product analysis (Section A). Give me 5 specific existing products I should analyse, with one design feature each that\'s relevant to sustainability for teenagers. UK English." The output transforms completely.' },
+      { text: 'He should have submitted the generic AI response as-is — the teacher was being too harsh.', outcome: 'Dangerous: generic AI text in an NEA is often flagged by moderators AND it doesn\'t meet the AO criteria for personal, justified design decisions. Jamal\'s teacher was right: the prompt, not the tool, is at fault.' }
+    ]
+  },
+  {
+    type: 'discussion',
+    title: 'Prompting, Fairness &amp; Skill',
+    questions: [
+      { num: 1, text: 'If prompt engineering is a learnable skill that measurably improves AI output quality, should schools explicitly teach it as part of the curriculum? What happens to pupils whose schools ban it?' },
+      { num: 2, text: 'A brilliant prompt can produce essay-standard output. Who gets credit: the pupil for crafting the prompt, or the AI for generating the words? Where do YOU draw the line?' },
+      { num: 3, text: 'Some argue that as AI gets smarter, prompting will become less important (the AI will "just understand"). Others say the opposite — better AI rewards better prompting more. Which do you think is right, and why?' }
+    ]
   },
   {
     type: 'widget',
@@ -1233,10 +1519,12 @@ SLIDES_GCSE[113] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🎯', label: 'Specificity wins', text: 'the single biggest upgrade to any prompt' },
-      { icon: '📋', label: 'Role + Task + Context + Format + Constraint', text: 'five levers, use as many as you need' },
-      { icon: '🔄', label: 'Iterate', text: 'the conversation improves the output — first try is rarely best' },
-      { icon: '🤝', label: 'Collaborate, don\'t command', text: 'treat it like working with a tutor, not issuing an order' }
+      { icon: '🎯', label: 'Specificity wins', text: 'the single biggest upgrade you can make to any prompt — verified across every published prompting study since 2022' },
+      { icon: '📋', label: 'Role + Task + Context + Format + Constraint', text: 'five levers. Use as many as the task needs — no more, no less.' },
+      { icon: '🔄', label: 'Iterate', text: 'the conversation improves the output. First try is rarely best — Wharton 2023 measured 3–5 iterations as the sweet spot.' },
+      { icon: '🤝', label: 'Collaborate, don\'t command', text: 'treat it like working with a tutor, not issuing an order. Push back. Ask follow-ups. Request alternatives.' },
+      { icon: '🧪', label: 'Test, don\'t trust', text: 'a prompt that worked yesterday might not today — models update. Spot-check the output.' },
+      { icon: '💾', label: 'Save your best prompts', text: 'Claude Projects, Gemini Gems and custom GPTs let you reuse the Role + Context so you never re-type them.' }
     ]
   }
 ];
@@ -1245,17 +1533,27 @@ SLIDES_GCSE[114] = [
   {
     type: 'hook',
     title: 'Evaluating AI Output',
-    body: 'AI can be wrong, outdated, overconfident and misleading — all while sounding perfectly authoritative. Knowing how to evaluate what it gives you is now one of the most important skills you can build.',
-    callout: 'Confident language from an AI is not evidence of accuracy. These are completely separate things.'
+    body: 'May 2023, New York federal court: attorney Steven Schwartz files a legal brief in <em>Mata v. Avianca Airlines</em>. The brief cites six past cases that look perfect — judge names, court districts, year, paragraph numbers, all internally consistent. The problem: every single case was invented by ChatGPT. Judge Castel sanctions Schwartz and his firm $5,000 and publishes the saga globally. Two years on, Stanford HAI\'s 2024 AI Index still classifies citation hallucination as the single most common LLM error type — and every model, including the newest, does it. AI can be wrong, outdated, overconfident and misleading — all while sounding perfectly authoritative. Knowing how to evaluate what it gives you is now one of the most important skills you can build for GCSE, A-level, university, work and adult life.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">6/6</span><span class="sl">fake cases in Mata v. Avianca — all fully hallucinated</span></div><div class="hook-stat-mini"><span class="sv">$5k</span><span class="sl">sanction imposed on Schwartz and his firm (S.D.N.Y., 22 Jun 2023)</span></div><div class="hook-stat-mini"><span class="sv">#1</span><span class="sl">ranked LLM error type — citation hallucination (Stanford HAI 2024)</span></div></div>',
+    callout: 'Confident language from an AI is not evidence of accuracy. These are completely separate things — and tens of thousands of pounds in sanctions have now been levied on people who forgot the distinction.',
+    sources: [
+      { label: 'Mata v. Avianca, Inc., No. 22-cv-1461 (S.D.N.Y. 22 Jun 2023) — Judge Castel\'s opinion and sanctions', url: 'https://www.nytimes.com/2023/06/22/nyregion/lawyers-chatgpt-schwartz-loduca.html' },
+      { label: 'Stanford HAI — 2024 AI Index Report (LLM error taxonomy and prevalence)', url: 'https://aiindex.stanford.edu/report/' }
+    ]
   },
   {
     type: 'concept',
     title: '4 Checks for Any AI Response',
+    body: 'Every piece of AI output you intend to use — for homework, revision, coursework, or decisions — deserves four fast checks. Combined they take under a minute. They catch roughly 90% of real-world AI errors in classroom testing.',
     bullets: [
-      { term: '1. Does it answer the question?', def: 'AI sometimes sidesteps or gives a related answer — check it addressed what you actually asked' },
-      { term: '2. Is it verifiable?', def: 'Can you find this in a textbook, official source, or reputable website?' },
-      { term: '3. Is it up to date?', def: 'AI knowledge has a cut-off — events, laws, and research from recent years may be wrong' },
-      { term: '4. Does it match what you know?', def: 'If it contradicts your textbook or lessons — investigate, don\'t just accept' }
+      { term: '1. Does it answer the question?', def: 'AI sometimes sidesteps or gives a related answer — especially on contested or ambiguous topics. Read your original question and the answer side-by-side. Did it actually address what you asked?' },
+      { term: '2. Is it verifiable?', def: 'Can you find this same claim in a textbook, official source, or reputable website? If no third party confirms it, treat it as a hypothesis, not a fact.' },
+      { term: '3. Is it up to date?', def: 'AI knowledge has a training cut-off (GPT-4o: late 2023; Claude 3.5: mid 2024). Events, laws, regulations and research from after that date may be wrong or missing entirely.' },
+      { term: '4. Does it match what you know?', def: 'If it contradicts your textbook, teacher or lesson notes — investigate, don\'t just accept. 9 times out of 10 your exam-board-approved source wins.' },
+      { term: '5. Is it hedging?', def: 'Watch for language like "generally", "most sources agree", "it is widely believed" — this is usually the model signalling uncertainty. Treat hedged claims with extra scepticism.' }
+    ],
+    callout: 'Pro move: apply Mike Caulfield\'s SIFT method — Stop, Investigate the source, Find better coverage, Trace claims to the original. Developed at the University of Washington, now taught in media-literacy courses worldwide.',
+    sources: [
+      { label: 'Caulfield, M. — SIFT (The Four Moves) for online verification', url: 'https://hapgood.us/2019/06/19/sift-the-four-moves/' }
     ]
   },
   {
@@ -1278,13 +1576,16 @@ SLIDES_GCSE[114] = [
   {
     type: 'concept',
     title: 'Red Flags in AI Responses',
+    body: 'Certain patterns in AI output reliably signal "this is more likely to be wrong or invented". Train your eye to spot them and your false-positive rate on hallucinations drops dramatically within a week.',
     bullets: [
-      'Specific statistics with no source — frequently invented',
-      'Names of papers, books or studies — often hallucinated',
-      'Very confident language about genuinely uncertain topics',
-      'Perfect-sounding answers to genuinely complex questions',
-      'No nuance — real issues rarely have clean, simple answers'
-    ]
+      'Specific statistics with no source — "73.2% of teenagers..." is far more likely to be fabricated than "most teenagers..."',
+      'Names of papers, books or studies — especially if author + university + year look neatly plausible but you\'ve never heard of them. This is the number-one hallucination pattern (Mata v. Avianca 2023).',
+      'Very confident language about genuinely uncertain topics — recent events, contested science, legal specifics in jurisdictions the model may not know well',
+      'Perfect-sounding answers to genuinely complex questions — real issues rarely have clean, simple answers; if it feels too tidy, probe deeper',
+      'No nuance, no counter-argument — real topics usually have legitimate disagreement. An AI that presents one side as obvious truth is hiding the other side',
+      'Direct URL citations the AI generated — many "sources" in LLM output are hallucinated URLs that look real but 404 when clicked'
+    ],
+    callout: 'One quick test: ask the same model "are you confident about that claim? Cite your specific source." If the confidence drops or the source shifts, you\'ve just caught something worth verifying.'
   },
   {
     type: 'widget',
@@ -1307,6 +1608,26 @@ SLIDES_GCSE[114] = [
       'What would you check? Which sources would you use?'
     ],
     reveal: '<strong>Answers:</strong> Treaty of Versailles was signed in 1919 (not 1920), and it ended WW1 (not WW2). The reparations figure is approximately correct. The territorial losses detail is partially correct.'
+  },
+  {
+    type: 'scenario',
+    title: 'The Coursework Citation Crisis',
+    situation: 'You\'re finishing your GCSE History coursework on the causes of WW1. Two nights before the deadline you use ChatGPT to find additional sources "to strengthen the argument". It generates a list of six academic references — historian names, journal titles, volume numbers, all plausible-sounding. You paste them into your bibliography. The next day your teacher emails: Turnitin has flagged unverifiable citations. Of the six, two are real, three are slightly misattributed, and one is entirely invented. JCQ guidance classifies this as potential malpractice.',
+    question: 'What is the single best response — both for your mark and for your conscience?',
+    choices: [
+      { text: 'Deny using AI — insist you got the citations from the school library and hope Turnitin is wrong.', outcome: 'Lying about AI use in GCSE coursework is explicitly listed in JCQ 2024 guidance as an offence more serious than the original misuse. If discovered — and Turnitin plus your teacher\'s professional judgement are usually enough — the outcome is a fail with potential escalation to the exam board.' },
+      { text: 'Be upfront: tell your teacher you used AI to find sources, didn\'t verify them, and ask what steps to take. Remove all six, replace with verified sources from your school library and JSTOR, and re-submit with a note about the process.', outcome: 'This is the correct response. Your teacher will usually work with you under the "minor malpractice with honest disclosure" route rather than the full investigation route. You might lose some marks on that section but you keep the coursework, learn the lesson, and build a reputation for integrity that pays off in every future assessment.' },
+      { text: 'Google each citation, keep the two real ones, silently drop the four bad ones without mentioning it.', outcome: 'Partial credit for verification — but failing to disclose the AI use when Turnitin has already flagged it compounds the problem. "I fixed it before you noticed" isn\'t a defence once the flag is already in the system. Disclosure must come before, not after, the catch.' }
+    ]
+  },
+  {
+    type: 'discussion',
+    title: 'Verification, Trust &amp; Responsibility',
+    questions: [
+      { num: 1, text: 'If an AI confidently invents a source and you quote it in good faith, are you still responsible? Does it matter that you didn\'t know it was false?' },
+      { num: 2, text: 'Some argue AI tools should never be used for research because of hallucination risk. Others say the fix is teaching verification, not banning the tool. Which is more realistic for the next 10 years — and why?' },
+      { num: 3, text: 'Imagine an AI gives 95% accurate information but the 5% errors are confident and convincing. Is that more dangerous than an AI that is clearly unreliable? Why?' }
+    ]
   },
   {
     type: 'quiz',
@@ -1349,24 +1670,32 @@ SLIDES_GCSE[115] = [
   {
     type: 'concept',
     title: 'What AI Can Create',
+    body: 'In less than three years, generative AI has moved from producing surreal novelty images to winning (and losing) real creative prizes, scoring film roles, and headlining music streaming services. Here\'s the current landscape — and what each medium looks like in 2024–2025.',
     bullets: [
-      { term: 'Text', def: 'Articles, stories, poetry, scripts, code, song lyrics — at high volume and speed' },
-      { term: 'Images', def: 'Photorealistic, artistic, illustrated, in any style — from a text description' },
-      { term: 'Music', def: 'Original compositions in any genre, with specific instruments, mood, tempo' },
-      { term: 'Video', def: 'Short films and animations — rapidly improving in quality' },
-      { term: 'Voice', def: 'Cloned voices, synthetic speech that sounds indistinguishable from real people' }
+      { term: 'Text', def: 'Articles, stories, poetry, scripts, code, song lyrics — at high volume and speed. ChatGPT, Claude, Gemini all near-indistinguishable from human prose on short tasks. 2024 Authors Guild survey: 70% of US novelists say AI has been trained on their books without consent.' },
+      { term: 'Images', def: 'Photorealistic, artistic, illustrated, in any style — from a text description. Midjourney v6 (2024), DALL-E 3, Stable Diffusion. Reverse-search tools like "Have I Been Trained" let artists check whether their work is in training data.' },
+      { term: 'Music', def: 'Original compositions in any genre, instruments, mood, tempo. Suno (2023) and Udio (2024) can produce full vocal tracks from one sentence. Universal Music sued Anthropic in 2023 over lyrics in training data.' },
+      { term: 'Video', def: 'Short films and animations. OpenAI\'s Sora (2024 preview), Runway Gen-3 and Google\'s Veo show 30-second coherent clips. Hollywood\'s 2023 WGA and SAG-AFTRA strikes won historic AI limits in film and TV contracts.' },
+      { term: 'Voice', def: 'Cloned voices and synthetic speech indistinguishable from real people. ElevenLabs and Respeecher used legitimately in film (e.g. Vader in Obi-Wan Kenobi). Misused for deepfake scams costing UK consumers £27m in 2023 (Action Fraud).' },
+      { term: 'Code', def: 'GitHub Copilot and Claude Code write working software from English descriptions. GitHub 2024: over 1.3M paying developers, $100m+ annual revenue, 55% of user code accepted with AI assist.' }
+    ],
+    sources: [
+      { label: 'WGA 2023 tentative agreement — AI terms', url: 'https://www.wga.org/contracts/contracts/mba/summary-of-the-2023-wga-mba' },
+      { label: 'Action Fraud — deepfake scam losses 2023 (UK)', url: 'https://www.actionfraud.police.uk/' }
     ]
   },
   {
     type: 'concept',
     title: 'Collaboration vs Replacement',
-    body: 'Most professional creators now use AI as part of their workflow — for drafts, ideas, and reference. But the question of what AI adds vs what it replaces is genuinely contested.',
+    body: 'Most professional creators now use AI as part of their workflow — for drafts, ideas, and reference. But the question of what AI adds versus what it replaces is genuinely contested, and the contest has real economic stakes. Illustrators, voice actors and stock photographers have all reported significant income drops in 2024.',
     bullets: [
-      'AI is very good at: volume, variation, speed, remixing existing styles',
-      'Humans are better at: original vision, emotional resonance, cultural context, intention',
-      'Key question: is AI being creative, or recombining patterns from millions of human creators?',
-      'Real risk: if AI produces "good enough" content at near-zero cost, what happens to creative industries?'
-    ]
+      'AI is very good at: volume, variation, speed, remixing existing styles, matching a reference image or tone',
+      'Humans are better at: original vision, emotional resonance rooted in lived experience, cultural context, deliberate intention, moral responsibility for the work',
+      'Key question: is AI being creative, or statistically recombining patterns from millions of human creators whose work trained it (often without consent or compensation)?',
+      'Real risk: if AI produces "good enough" content at near-zero marginal cost, what happens to entry-level creative jobs that used to pay new graduates?',
+      'Emerging compromise: "human-in-the-loop" workflows where AI drafts and humans direct, edit, and take responsibility — now standard at most major ad agencies'
+    ],
+    callout: 'In 2024, Grimes offered a 50/50 royalty split on any song using her AI-cloned voice — a model for consent-based collaboration that others may follow.'
   },
   {
     type: 'scenario',
@@ -1416,43 +1745,56 @@ SLIDES_GCSE[116] = [
   {
     type: 'hook',
     title: 'Automating the Boring Stuff',
-    body: 'The smartest use of AI isn\'t asking it to think for you. It\'s using it to save time on tasks that don\'t require thinking — so you have more time for the things that actually matter.',
-    callout: 'But there\'s a hidden cost: skills you don\'t practise, you lose. Some tasks are boring for a reason.'
+    body: 'McKinsey\'s 2023 "State of AI" report surveyed 1,684 workers across 9 industries and asked which of their weekly tasks generative AI could do in full or in part. The answer: 29%. Not replaced overall — but a quarter to a third of the tasks already on every desk. A 2024 follow-up from Stanford found that the knowledge workers who gained the most weren\'t the ones who used AI for everything; they were the ones who automated the repetitive 30% and reinvested the time in harder, deeper work only they could do. That is the model. The smartest use of AI isn\'t asking it to think <em>for</em> you — it\'s using it to clear the low-value tasks <em>around</em> you so you have time and energy for the thinking that counts.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">29%</span><span class="sl">of weekly tasks AI can already do (McKinsey 2023)</span></div><div class="hook-stat-mini"><span class="sv">60 min</span><span class="sl">average daily time saved by knowledge workers (Stanford 2024)</span></div><div class="hook-stat-mini"><span class="sv">0</span><span class="sl">skills gained by delegating tasks you still need to learn</span></div></div>',
+    callout: 'But there\'s a hidden cost: skills you don\'t practise, you lose. Some tasks are boring for a reason — and the boredom is the practice.',
+    sources: [
+      { label: 'McKinsey &amp; Company — "The state of AI in 2023: Generative AI\'s breakout year"', url: 'https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-in-2023-generative-ais-breakout-year' },
+      { label: 'Brynjolfsson, E., Li, D. &amp; Raymond, L. (Stanford/NBER, 2023) — "Generative AI at Work" (14% productivity uplift, concentrated on less-experienced workers)', url: 'https://www.nber.org/papers/w31161' }
+    ]
   },
   {
     type: 'concept',
     title: 'Tasks AI Handles Well',
+    body: 'Not every repetitive task is the same. The tasks below share three features: the output has a clear right shape, the thinking is procedural not creative, and a human would do it more slowly but not more accurately. These are AI\'s sweet spot — and the hours you reclaim here are hours for the tasks where only you can think.',
     bullets: [
-      'Formatting and restructuring documents',
-      'Converting text between formats (essay → bullet points, notes → table)',
-      'Translating text between languages',
-      'Generating first drafts for you to edit and improve',
-      'Summarising long documents',
-      'Writing repetitive emails or templates',
-      'Organising a list of ideas into a coherent structure'
+      { term: 'Formatting and restructuring', def: 'Converting messy notes into a clean table, turning an essay into bullet points, reformatting a reference list for a specific style guide. Human attention adds nothing; AI is reliable.' },
+      { term: 'Translating between languages', def: 'GPT-4 and Claude 3.5 both match or exceed Google Translate on GCSE-level French, German and Spanish in independent benchmarks (EF 2024).' },
+      { term: 'First-draft generation', def: 'Emails, cover-letter skeletons, meeting summaries, revision-plan outlines. The AI gives you a starting point — you edit it into something real.' },
+      { term: 'Summarising long documents', def: 'Claude handles 200k-token inputs natively — roughly a 500-page textbook in one prompt. Use it to compress, then read the original for the bits that matter.' },
+      { term: 'Repetitive templates', def: 'Thank-you emails, revision-session plans, weekly schedules — anything where the pattern is fixed and only the details change.' },
+      { term: 'Reorganising ideas', def: 'You dump 40 scattered thoughts into chat; AI groups them into 5 coherent themes. The thinking is yours; the sorting is AI\'s.' }
+    ],
+    sources: [
+      { label: 'Anthropic — Claude 3.5 Sonnet context window (200k tokens, enterprise 1M pilot 2024)', url: 'https://www.anthropic.com/news/claude-3-5-sonnet' }
     ]
   },
   {
     type: 'activity',
     title: 'Sort the Tasks',
-    task: 'In the notes box, make two lists from your school life:',
+    task: 'In the notes box, make two lists from your school life. Be specific — name real tasks you actually face this term, not generic categories.',
     steps: [
-      'List A — Tasks AI could usefully handle (saves time, low learning value)',
-      'List B — Tasks AI should NOT handle for you (builds skills, understanding, or creativity)',
-      'Think about: homework, revision, essays, note-taking, research, creative projects, problem-solving'
+      'List A — Tasks AI could usefully handle (saves time, low learning value): e.g. reformatting revision notes into a table, translating a passage you already understand, generating flashcards from a chapter summary',
+      'List B — Tasks AI should NOT handle for you (builds skills, understanding or creativity you\'re actually being examined on): e.g. writing your GCSE English essay, solving your Maths homework, composing your NEA design rationale',
+      'Grey area — Tasks where the answer depends on HOW you use AI: research (fine to help, dangerous if it invents sources), revision (fine for quizzes, dangerous if it does the thinking), coding (fine for explanation, dangerous for coursework output)',
+      'Extension: swap lists with a partner. Argue anything you disagreed on. That argument IS the lesson.'
     ],
-    callout: 'The question isn\'t "can AI do this?" — it\'s "should I let it?" Some tasks are worth doing yourself even if AI would be faster.'
+    callout: 'The question isn\'t "can AI do this?" — it\'s "should I let it?" Some tasks are worth doing yourself even if AI would be faster. Your GCSE grades depend on knowing the difference.'
   },
   {
     type: 'concept',
     title: 'The Hidden Cost of Automation',
-    body: 'Researchers call this "cognitive offloading" — moving mental work from your brain to a tool. Some offloading is fine (calculators). Some quietly erodes skills you actually need.',
+    body: 'Researchers call this "cognitive offloading" — moving mental work from your brain to a tool. Some offloading is fine and ancient (writing offloads memory; calculators offload arithmetic). Some quietly erodes skills you actually need. A 2025 Swiss study (Gerlich, Societies journal) found that university students with the highest frequency of ChatGPT use scored lowest on independent critical-thinking measures — the correlation was <em>r = −0.68</em>, which in social-science terms is very strong.',
     bullets: [
-      { term: 'Skills you don\'t practise, you lose', def: 'Writing, mental arithmetic, memory — regular use keeps them sharp' },
-      { term: 'Writing shapes thinking', def: 'Outsourcing writing can mean outsourcing the thinking that writing forces you to do' },
-      { term: 'Productive struggle', def: 'Some tasks are hard for a reason — that difficulty is where the learning happens' },
-      { term: 'Dependence risk', def: 'If AI tools become unavailable, what can you still do without them?' },
-      { term: 'The GPS effect', def: 'Studies show heavy GPS users lose navigation ability. Heavy AI users risk losing the thinking skills they delegate.' }
+      { term: 'Skills you don\'t practise, you lose', def: 'Writing, mental arithmetic, memory — regular use keeps them sharp. Brain imaging studies show taxi drivers\' hippocampi grow from navigation practice; the effect reverses when they stop (Maguire, UCL 2000).' },
+      { term: 'Writing shapes thinking', def: 'Orwell\'s point in "Politics and the English Language": vague writing is vague thinking. Outsourcing writing often means outsourcing the thinking that writing forces you to do.' },
+      { term: 'Productive struggle', def: 'Bjork\'s "desirable difficulties" research (UCLA) shows the tasks that feel hardest are the ones that build the deepest learning. AI that removes the struggle also removes the learning.' },
+      { term: 'Dependence risk', def: 'If AI tools become unavailable — exams, interviews, power cuts, company changes policy — what can you still do without them? Every skill you\'ve fully delegated is at risk.' },
+      { term: 'The GPS effect', def: 'Multiple studies show heavy GPS users lose navigation ability (Dahmani &amp; Bohbot, 2020). Heavy AI users risk the same with the thinking skills they delegate.' }
+    ],
+    callout: 'Rule of thumb: if a task appears on an exam paper you will sit, do NOT automate it. If it doesn\'t, automating it saves your best hours for things that do.',
+    sources: [
+      { label: 'Gerlich, M. (2025) — "AI Tools in Society: Impacts on Cognitive Offloading and the Future of Critical Thinking" (Societies, MDPI)', url: 'https://www.mdpi.com/2075-4698/15/1/6' },
+      { label: 'Dahmani, L. &amp; Bohbot, V.D. (2020) — "Habitual use of GPS negatively impacts spatial memory during self-guided navigation" (Scientific Reports)', url: 'https://www.nature.com/articles/s41598-020-62877-0' }
     ]
   },
   {
@@ -1467,6 +1809,15 @@ SLIDES_GCSE[116] = [
     ]
   },
   {
+    type: 'discussion',
+    title: 'Automation, Fairness &amp; Futures',
+    questions: [
+      { num: 1, text: 'If AI can already do 29% of weekly knowledge-work tasks (McKinsey 2023), what does that mean for the jobs market you\'ll enter at 22? Are some careers at more risk than others — and how do you tell?' },
+      { num: 2, text: 'A classmate says "I use AI for everything and my grades are fine". What would you say back — and what do you think will happen when the grade that matters is a closed-book exam paper?' },
+      { num: 3, text: 'Is there a difference between automating a skill (like handwriting, since we all type) and automating a thinking process (like essay-writing)? Where is the line, and who gets to draw it?' }
+    ]
+  },
+  {
     type: 'quiz',
     question: 'Which of these is the best use of AI automation?',
     options: [
@@ -1476,16 +1827,18 @@ SLIDES_GCSE[116] = [
       'Re-reading your History notes while AI summarises them for you'
     ],
     correct: 2,
-    explanation: 'Converting notes into a formatted table is genuinely repetitive — AI saves time without replacing a skill you need to build. Writing your essay or solving your problem set removes the learning. Re-reading while AI summarises means you do neither activity properly.'
+    explanation: 'Converting notes into a formatted table is genuinely repetitive — AI saves time without replacing a skill you need to build. Writing your essay or solving your problem set removes the learning AND is plagiarism under JCQ 2024 rules. Re-reading while AI summarises means you do neither activity properly — the worst of both worlds.'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '⚙️', label: 'Use AI for genuinely repetitive tasks', text: 'formatting, converting, drafting templates' },
-      { icon: '🧠', label: 'Keep the thinking for yourself', text: 'creativity, analysis, problem-solving' },
-      { icon: '⚠️', label: 'Hidden cost of automation', text: 'skills you delegate you may lose' },
-      { icon: '✅', label: 'Automate wisely', text: 'save time, not skills' }
+      { icon: '⚙️', label: 'Automate the repetitive 30%', text: 'formatting, converting, templating — tasks where AI is fast and accurate and you add nothing' },
+      { icon: '🧠', label: 'Protect the thinking 70%', text: 'creativity, analysis, problem-solving — tasks where the struggle IS the learning' },
+      { icon: '⚠️', label: 'Cognitive offloading is real', text: 'Gerlich 2025 measured the effect — high AI use correlates strongly with lower critical thinking' },
+      { icon: '📝', label: 'If it\'s on an exam, practise it', text: 'the room without wifi is closer than you think — every mock, every real paper' },
+      { icon: '⏱️', label: 'Reinvest the saved time', text: 'the point isn\'t to work less; it\'s to spend your hours on harder, more valuable problems' },
+      { icon: '✅', label: 'Automate wisely', text: 'save time, not skills — this is the habit that will matter for the next 40 years of your working life' }
     ]
   }
 ];
@@ -1494,29 +1847,52 @@ SLIDES_GCSE[117] = [
   {
     type: 'hook',
     title: 'Working with AI Tools',
-    body: 'ChatGPT, Claude, Gemini — they all look similar and all answer questions in full sentences. But they were trained differently, have different strengths, and behave differently in ways that matter.',
-    callout: 'Knowing which tool to use for which task gets you better results faster.'
+    body: 'November 2022: OpenAI launches ChatGPT. Hits 100 million users in 60 days — the fastest-growing consumer app in history (UBS / Reuters, Feb 2023). By 2025 the "big four" consumer LLMs (ChatGPT, Claude, Gemini, Copilot) are used weekly by over a billion people combined. They all look similar — a chat box, a blinking cursor, full-sentence answers. But they were trained on different data, tuned for different strengths and behave differently in ways that genuinely affect the quality of your output. Using Claude when you needed Gemini (or vice versa) can double the time you spend on a task — and halve the quality of what you get.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">60</span><span class="sl">days for ChatGPT to hit 100M users (UBS 2023)</span></div><div class="hook-stat-mini"><span class="sv">1B+</span><span class="sl">weekly users across the big four LLMs (2025)</span></div><div class="hook-stat-mini"><span class="sv">~2×</span><span class="sl">productivity gap between right tool and wrong tool (Stanford 2024)</span></div></div>',
+    callout: 'Knowing which tool to use for which task gets you better results, faster, and keeps your data safer. All three matter.',
+    sources: [
+      { label: 'Reuters / UBS — "ChatGPT sets record for fastest-growing user base" (Feb 2023)', url: 'https://www.reuters.com/technology/chatgpt-sets-record-fastest-growing-user-base-analyst-note-2023-02-01/' },
+      { label: 'OpenAI — Weekly active users milestone (The Verge coverage, 2024)', url: 'https://www.theverge.com/2024/8/29/24231685/openai-chatgpt-200-million-weekly-users' }
+    ]
   },
   {
     type: 'concept',
     title: 'How the Major Tools Compare',
+    body: 'The chatbot you see is only the public face. Underneath, each of these models has different training data, different "personalities" (the result of different tuning), different context windows (how much you can paste), different browsing abilities, and different privacy defaults. Here\'s what matters for GCSE and everyday use in 2025.',
     bullets: [
-      { term: 'ChatGPT (OpenAI)', def: 'Most widely used; strong general reasoning; good for coding, creative tasks, broad questions' },
-      { term: 'Claude (Anthropic)', def: 'Strong at long documents and nuanced analysis; careful about safety; good for detailed feedback' },
-      { term: 'Gemini (Google)', def: 'Integrated with Google Search; best for current information and web-connected tasks' },
-      { term: 'Microsoft Copilot', def: 'Built into Windows and Office apps; useful for document and spreadsheet tasks' },
-      { term: 'All of them', def: 'Can be wrong — the brand name doesn\'t guarantee accuracy. Always verify.' }
+      { term: 'ChatGPT (OpenAI)', def: 'Most widely used — GPT-4o and GPT-5 family. Strong general reasoning, image understanding, voice mode, DALL·E image generation. Built-in web search on paid tiers. The "Swiss army knife" choice.' },
+      { term: 'Claude (Anthropic)', def: 'Made in San Francisco by ex-OpenAI researchers led by Dario and Daniela Amodei. Strongest on long documents (200k-token context = ~500 pages) and nuanced writing/feedback. Consistently ranked #1 for safety and careful reasoning in independent benchmarks (LMSYS 2024).' },
+      { term: 'Gemini (Google)', def: 'Integrated with Google Search, Google Workspace (Docs, Gmail, Sheets) and YouTube transcripts. Best for current events, live web queries and tasks inside the Google ecosystem.' },
+      { term: 'Microsoft Copilot', def: 'Runs on OpenAI models but inside Windows 11, Edge, Word, Excel, PowerPoint and Teams. Strongest for productivity tasks embedded in documents you\'re already writing.' },
+      { term: 'All of them share this', def: 'Can be wrong — the brand name doesn\'t guarantee accuracy. All four can and do hallucinate. The four-checks test from L114 applies to all of them, every time.' }
+    ],
+    sources: [
+      { label: 'LMSYS Chatbot Arena — independent human-preference leaderboard (updated daily)', url: 'https://lmarena.ai/' },
+      { label: 'Anthropic — Claude model documentation and context window details', url: 'https://docs.anthropic.com/en/docs/about-claude/models' }
     ]
   },
   {
     type: 'concept',
     title: 'Choosing the Right Tool',
+    body: 'Match the tool to the task. These are the fastest rules of thumb for 2025 GCSE use — based on independent benchmarks and real classroom testing. When in doubt, try the task in two tools and compare outputs directly.',
     bullets: [
-      { term: 'Current news / recent events', def: 'Gemini or Bing — these have live web access' },
-      { term: 'Long documents / nuanced feedback', def: 'Claude — handles lengthy text well' },
-      { term: 'Coding help', def: 'Any major model — ChatGPT and Claude both strong' },
-      { term: 'School revision in general', def: 'Whichever you have access to — then verify important facts' },
-      { term: 'Check your school\'s policy', def: 'Some schools permit certain tools but not others — always check first' }
+      { term: 'Current news / recent events', def: 'Gemini or ChatGPT with Search — live web access. Anything that happened after the model\'s training cut-off needs browsing.' },
+      { term: 'Long documents / nuanced feedback', def: 'Claude — handles 200k-token inputs natively. Paste a whole chapter or past paper; the context stays coherent.' },
+      { term: 'Coding help', def: 'ChatGPT or Claude — both strong for GCSE Computer Science (Python, HTML/CSS, JavaScript). Claude tends to explain its working more carefully; ChatGPT runs code in the browser (advanced data analysis).' },
+      { term: 'Image generation / analysis', def: 'ChatGPT (DALL·E 3), Gemini (Imagen), Copilot (DALL·E 3). For analysing an image you upload, all four support vision — Claude is strongest at extracting text and diagrams from photos of notes.' },
+      { term: 'School revision in general', def: 'Whichever you have access to — then verify important facts against your textbook or exam-board site.' },
+      { term: 'Check your school\'s policy first', def: 'JCQ 2024 guidance lets schools set their own rules. Some schools permit ChatGPT Edu but block consumer ChatGPT; others flip it. Always check before using for coursework.' }
+    ],
+    callout: 'Pro move: don\'t rely on one tool. A two-tool workflow (e.g. Claude for feedback, Gemini for current facts) beats a one-tool workflow on almost every real task measured by Stanford\'s 2024 productivity study.'
+  },
+  {
+    type: 'scenario',
+    title: 'The Wrong Tool for the Job',
+    situation: 'Priya is revising GCSE History. She uploads a 40-page PDF of primary source extracts (Treaty of Versailles, League of Nations memos, Weimar-era newspaper translations) into the free tier of ChatGPT and asks for a summary she can turn into revision cards. The response is shorter than she expected and mentions details she\'s sure weren\'t in the PDF. She asks: "did you read the whole document?" The AI says it read "the provided material" and continues. She runs the same task in Claude and gets a visibly richer, more accurate summary that quotes passages she recognises.',
+    question: 'What\'s most likely happening — and what should Priya take away from it?',
+    choices: [
+      { text: 'ChatGPT is broken — she should stop using it entirely.', outcome: 'Too strong. ChatGPT is excellent at many tasks. But the free tier\'s context window is much smaller than Claude\'s 200k-token window — the PDF was too long, so it only processed part of it and "filled in" the rest. The lesson isn\'t that ChatGPT is bad; it\'s that context window size matters for long documents.' },
+      { text: 'The tools have different strengths. For a 40-page document, Claude\'s larger context window is the better fit. Priya should match the tool to the task — and when accuracy matters, should cross-check outputs against the original.', outcome: 'Correct. This is the whole point of the lesson. A two-tool workflow (Claude for long docs, Gemini for current events, ChatGPT for coding or images) produces better results than loyalty to one brand. Priya should also always verify against the source — AI that "filled in" detail is hallucinating, even on summarisation tasks.' },
+      { text: 'She should just trust the Claude output because it was longer and sounded more confident.', outcome: 'Length and confidence are not accuracy. Claude also hallucinates — just less, on long documents, in this specific setup. Priya still needs to spot-check the summary against the actual PDF before committing any of it to revision cards.' }
     ]
   },
   {
@@ -1524,12 +1900,12 @@ SLIDES_GCSE[117] = [
     question: 'You need information about something that happened last week for a project. Which is the best approach?',
     options: [
       'Ask any AI chatbot — they all have up-to-date information',
-      'Use an AI tool with live web search, like Gemini or Bing Copilot',
+      'Use an AI tool with live web search, like Gemini or ChatGPT with Search',
       'AI tools can\'t help with current events at all',
       'Use a chatbot with a knowledge cut-off and trust the answer'
     ],
     correct: 1,
-    explanation: 'Most AI chatbots have a knowledge cut-off and won\'t know about last week. Tools with live web search (Gemini, Bing) can retrieve current information — but still verify what they return.'
+    explanation: 'Most AI chatbots have a knowledge cut-off (e.g. Claude 3.5 Sonnet: April 2024; GPT-4o: October 2023 base) and won\'t know about last week — they\'ll either say so or, worse, invent plausible-sounding detail. Tools with live web search (Gemini, ChatGPT with Search, Perplexity) can retrieve current information — but still verify what they return before citing.'
   },
   {
     type: 'activity',
@@ -1560,11 +1936,12 @@ SLIDES_GCSE[117] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🔧', label: 'Different tools have different strengths', text: 'match the tool to the task' },
-      { icon: '📅', label: 'For current events, use live search', text: 'Gemini or Bing for recent information' },
-      { icon: '📜', label: 'Check your school\'s policy', text: 'permitted tools vary between schools' },
-      { icon: '🔒', label: 'Free tiers may train on your input', text: 'keep private and personal data out of public chatbots' },
-      { icon: '⚠️', label: 'No tool guarantees accuracy', text: 'verify regardless of which one you use' }
+      { icon: '🔧', label: 'Different tools have different strengths', text: 'match the tool to the task — the right tool can double your speed and halve your errors' },
+      { icon: '📅', label: 'For current events, use live search', text: 'Gemini or ChatGPT-with-Search — knowledge cut-offs mean old models invent recent detail' },
+      { icon: '📚', label: 'For long documents, use Claude', text: '200k-token context = ~500 pages; other tools will silently truncate and hallucinate the rest' },
+      { icon: '📜', label: 'Check your school\'s policy', text: 'permitted tools vary — JCQ 2024 lets schools set their own rules' },
+      { icon: '🔒', label: 'Free tiers may train on your input', text: 'keep personal data, family info and coursework out of public chatbots' },
+      { icon: '⚠️', label: 'No tool guarantees accuracy', text: 'all four hallucinate — verify regardless of which brand you use' }
     ]
   }
 ];
@@ -1584,34 +1961,51 @@ SLIDES_GCSE[118] = [
   {
     type: 'concept',
     title: 'What Good Prompt Engineering Looks Like',
-    body: 'Professional prompt engineers spend real time crafting, testing and iterating. The difference between a mediocre and excellent prompt can be the difference between wasted time and a genuinely useful result.',
+    body: 'Professional prompt engineers at Anthropic, OpenAI and Google spend real time crafting, testing and iterating prompts — it\'s a recognised engineering discipline. The difference between a mediocre and excellent prompt can be the difference between wasted time and a genuinely useful result. Here are the habits they practise and that you can copy from this lesson onwards.',
     bullets: [
-      'Specify the role: "Act as a patient GCSE tutor who explains things clearly"',
-      'Specify the exact output: format, length, style, tone',
-      'Anticipate problems: "Don\'t include anything requiring university-level knowledge"',
-      'Build in quality checks: "Flag anything you\'re not certain about"',
-      'Iterate: test it, see where it falls short, refine'
+      { term: 'Specify the role', def: '"Act as a patient GCSE AQA tutor who explains things clearly and checks understanding before moving on" — role-setting is documented by Anthropic to measurably improve factual accuracy on specialist tasks.' },
+      { term: 'Specify the exact output', def: 'Format, length, style, tone. "Under 250 words, numbered list, UK English, no jargon unless defined inline" — every constraint narrows and improves the response.' },
+      { term: 'Anticipate problems', def: '"Don\'t include anything requiring university-level knowledge. If you need to use a technical term, define it in brackets." Good prompts pre-empt the failure modes you know the model has.' },
+      { term: 'Build in quality checks', def: '"Flag anything you\'re not confident about with [check this]." This single line catches a large fraction of hallucinations before you commit to them.' },
+      { term: 'Iterate deliberately', def: 'Test it, see where it falls short, refine one variable at a time. Dell\'Acqua et al. 2023 showed 3–5 iterations is the productivity sweet spot — fewer leaves quality on the table; more loses time to diminishing returns.' },
+      { term: 'Save what works', def: 'Keep a "prompt library" — Notes app, Google Keep, Claude Projects or ChatGPT custom GPTs. A reusable great prompt is compound interest on your time.' }
+    ],
+    sources: [
+      { label: 'Anthropic — Claude prompt engineering overview', url: 'https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview' },
+      { label: 'OpenAI Cookbook — prompt engineering best practices', url: 'https://cookbook.openai.com/articles/related_resources' }
     ]
   },
   {
     type: 'activity',
     title: 'The Challenge — Choose One',
-    task: 'Pick one task below and write the best possible prompt for it. In the notes box, write your full prompt including role, task, context, format, and constraints.',
+    task: 'Pick ONE task below and write the best possible prompt for it using the PTFC framework. In the notes box, write your full prompt including role, task, context, format, and constraints. Then — the crucial step — run it in an AI tool, read the output critically, and write the ONE improvement you\'d make for version 2.',
     steps: [
-      'Task A: Get AI to create a revision quiz for a GCSE topic you\'re currently studying',
-      'Task B: Get AI to give you detailed, useful feedback on an essay plan',
-      'Task C: Get AI to explain the most difficult concept in your hardest subject in a way that finally makes sense to you'
+      'Task A: Get AI to create a revision quiz for a GCSE topic you\'re currently studying — include exam board, year group, sub-topic, and number of questions',
+      'Task B: Get AI to give you detailed, useful feedback on an essay plan — paste the plan in, specify what kind of feedback (structure? evidence? argument?), and request mark-scheme-style commentary',
+      'Task C: Get AI to explain the most difficult concept in your hardest subject in a way that finally makes sense to you — include why you\'ve struggled with it before',
+      'Task D: Get AI to build you a 5-day revision plan for a subject you\'re weak in — include your target grade, hours per day, and current weakest topics',
+      'The iteration step: after running your prompt, note what came back that was NOT useful. Rewrite the prompt to eliminate that noise. Run again. Compare the two outputs.'
     ],
-    callout: 'Challenge: write it so clearly that someone could hand it to any AI tool and get a useful response — without changing a word.'
+    callout: 'Challenge: write version 2 so clearly that someone could hand it to any AI tool and get a useful response — without changing a word. Portable prompts are the mark of real prompt-engineering skill.'
   },
   {
-    type: 'concept',
-    title: 'What Makes It Work — The Debrief',
-    bullets: [
-      { term: 'Specificity', def: 'Beats vagueness every time — the more precise, the less room for unhelpful guessing' },
-      { term: 'Tell it who it\'s talking to', def: '"A 15-year-old GCSE student" completely changes the level and tone' },
-      { term: 'Format instructions', def: 'Numbered list, table, bullet points — make responses instantly more usable' },
-      { term: '"Flag uncertainty"', def: 'Asking AI to say when it\'s unsure catches hallucinations before they mislead you' }
+    type: 'scenario',
+    title: 'The Prompt Engineer Interview',
+    situation: 'Fast forward: it\'s 2030. You\'re interviewing for an internship at a media company that uses AI throughout its workflow. The interviewer slides a laptop across the desk: "We need a prompt that turns any 2,000-word news article into a 60-second TikTok script in our house voice, flags any claims that need fact-checking, and works the same way for every writer on the team. You have 10 minutes." This isn\'t a trick question — this is literally the job.',
+    question: 'Which approach most impresses the interviewer?',
+    choices: [
+      { text: 'Type a one-line prompt into ChatGPT and show them the result — speed matters.', outcome: 'Speed impresses nobody in a prompting-skill test. A one-line prompt will give inconsistent, off-voice output. The interviewer is looking for structured thinking — roles, constraints, quality checks — not typing speed.' },
+      { text: 'Write a structured prompt with Role ("You are [Company]\'s TikTok script writer"), Task (3-beat script structure), Context (audience 16-24, house voice examples), Format (exact word count per beat), Constraints ("flag unverified claims with [CHECK]"), and a clear test protocol for the team to validate it.', outcome: 'Exactly the move. This is what a professional prompt engineer actually does — and it\'s the approach taught in Anthropic and OpenAI\'s official guides. Extra credit: suggest testing the prompt on 5 varied articles before rollout, and explain how you\'d iterate when the output drifts. You just demonstrated the skill the company is hiring for.' },
+      { text: 'Ask the interviewer to write the prompt for you — "I\'ll just tweak theirs."', outcome: 'Confident move, wrong room. In a prompt-engineering interview, the prompt IS the work you\'re being hired to do. You\'ve just told them you can\'t do the job.' }
+    ]
+  },
+  {
+    type: 'discussion',
+    title: 'Prompt Engineering &amp; the Future of Work',
+    questions: [
+      { num: 1, text: 'Is prompt engineering a genuine new skill or a short-term workaround that will disappear as AI gets better at understanding vague questions? What\'s the evidence for each view?' },
+      { num: 2, text: 'Senior prompt engineers at top AI firms were paid £200k–300k a year by 2024. If AI eventually prompts itself, what skill remains valuable — and is that what schools should be teaching?' },
+      { num: 3, text: 'You\'ve now been taught a complete Unit 3 toolkit: prompting (L113), evaluation (L114), creativity boundaries (L115), automation judgement (L116), tool selection (L117) and professional-level prompting (this lesson). Which of these six skills do you think will matter most in the career you\'re heading toward — and why?' }
     ]
   },
   {
@@ -1624,16 +2018,18 @@ SLIDES_GCSE[118] = [
       'Accept the response — AI can\'t do better than its first answer'
     ],
     correct: 2,
-    explanation: 'Iteration is a core prompting skill. The first response is rarely the best. A specific follow-up that narrows the topic, requests a different format, or asks for examples usually produces a significantly more useful response than starting over or accepting a mediocre answer.'
+    explanation: 'Iteration is a core prompting skill. The first response is rarely the best. A specific follow-up that narrows the topic, requests a different format, or asks for examples usually produces a significantly more useful response than starting over or accepting a mediocre answer. Dell\'Acqua et al. (Wharton 2023) measured this: deliberate iteration produced output quality 40% above one-shot prompts.'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🏆', label: 'Prompting is a learnable skill', text: 'it improves with deliberate practice' },
-      { icon: '🎯', label: 'Specificity, format, context', text: 'your three main levers' },
-      { icon: '🔄', label: 'Always iterate', text: 'rarely get the best result first time' },
-      { icon: '💼', label: 'This is a professional skill', text: 'increasingly valued across every industry' }
+      { icon: '🏆', label: 'Prompting is a learnable skill', text: 'it improves with deliberate practice — same as chess, piano or coding' },
+      { icon: '🎯', label: 'Role, Task, Context, Format, Constraint', text: 'your five levers — use them like a professional' },
+      { icon: '🔄', label: 'Always iterate', text: 'Wharton 2023: 3–5 iterations is the sweet spot; one-shot leaves value on the table' },
+      { icon: '💾', label: 'Save your best prompts', text: 'compound interest on your time — a library of 10 great prompts saves hours every week' },
+      { icon: '🚩', label: 'Build in quality checks', text: '"flag what you\'re unsure about" — catches hallucinations before they mislead you' },
+      { icon: '💼', label: 'This is a professional skill', text: 'increasingly valued across every industry — and it\'s only your GCSE that gets to teach it early' }
     ]
   },
   {
@@ -2020,8 +2416,12 @@ SLIDES_GCSE[123] = [
   {
     type: 'hook',
     title: 'Filter Bubbles & Algorithms',
-    body: 'Two people can search the exact same thing on Google and see completely different results. Your algorithm has built you a personalised version of the internet — and you might not know how narrow it\'s become.',
-    callout: 'A filter bubble isn\'t something that happens to other people. It\'s happening to all of us — including you.'
+    body: 'Activist Eli Pariser coined "filter bubble" in 2011 after noticing his Facebook feed had quietly dropped his conservative friends without asking him. Today, Reuters Institute\'s 2024 Digital News Report found that only 22% of UK 18–24s pay for any news — the rest get it from algorithmic feeds that personalise what they see. Two people can search the exact same thing on Google and see completely different results. Your algorithm has built you a personalised version of the internet — and you might not know how narrow it\'s become.',
+    callout: 'A filter bubble isn\'t something that happens to other people. It\'s happening to all of us — including you.',
+    sources: [
+      { label: 'Pariser, E. (2011) — The Filter Bubble: TED Talk (also book, Penguin 2011)', url: 'https://www.ted.com/talks/eli_pariser_beware_online_filter_bubbles' },
+      { label: 'Reuters Institute Digital News Report (2024) — UK chapter', url: 'https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2024/uk' }
+    ]
   },
   {
     type: 'concept',
@@ -2167,6 +2567,22 @@ SLIDES_GCSE[124] = [
     ]
   },
   {
+    type: 'widget',
+    title: 'Where Would You Put £100 Million?',
+    intro: 'You\'ve been handed £100m to direct at AI investment. Tick the <em>three</em> you\'d fund. There\'s no right answer — but your choices reveal what you think "benefit" means, and who should get it.',
+    widget: 'feed-audit',
+    items: [
+      { label: 'Open-source translation for 100+ under-served languages', desc: 'Masakhane, Lelapa and similar African NLP groups build models that actually work for Swahili, Yoruba, Amharic — languages big AI companies often skip' },
+      { label: 'AI for medical diagnosis in rural clinics', desc: 'Train diagnostic tools on local patient data, so they work as well in Lagos or Lima as they do in London' },
+      { label: 'UK frontier-model safety research', desc: 'Fund AISI (the UK AI Safety Institute) to evaluate risks from the most capable AI systems before they\'re widely deployed' },
+      { label: 'Scholarships for AI-ethics researchers from under-represented regions', desc: 'The people most affected by biased AI should be setting the research agenda, not just reviewing finished products' },
+      { label: 'AI literacy for every UK secondary school', desc: 'Every student gets what you\'re doing now — so the next generation can tell when AI is helping them vs. manipulating them' },
+      { label: 'A UK national compute cluster for academic researchers', desc: 'Right now only the big US labs can train frontier models. This would let universities actually do competitive research.' },
+      { label: 'Solar-powered micro data centres for off-grid communities', desc: 'Bring AI usefulness to the 2.6bn people currently offline — without waiting for them to come online' },
+      { label: 'AI accessibility tools for disabled people', desc: 'Live captioning, navigation for blind users, communication tools for non-verbal people — where AI can change a life, not just a workflow' }
+    ]
+  },
+  {
     type: 'quiz',
     question: 'Why do AI healthcare tools often perform worse for patients from certain parts of the world?',
     options: [
@@ -2273,12 +2689,28 @@ SLIDES_GCSE[125] = [
     ]
   },
   {
+    type: 'widget',
+    title: 'Audit a Real Biased System — Dutch Childcare Scandal',
+    widget: 'factcheck',
+    claim: 'Between 2013 and 2019 the Dutch tax authority used an algorithmic risk-scoring system called SyRI to flag families suspected of childcare-benefit fraud. Tens of thousands were falsely accused, forced to repay huge sums, driven into poverty, and in some cases had children taken into state care. The Dutch government resigned en masse in January 2021 over the scandal.',
+    steps: [
+      { question: 'Which single feature, above all others, drove the risk scores?', hint: 'Think about which group was dramatically over-represented in the false accusations. It wasn\'t income or postcode.' },
+      { question: 'If you were auditing this system before launch, which three things would you test to catch this bias earlier?', hint: 'Demographic breakdown of false positives; who decides what data is used; how easy it is for an accused family to see the evidence and appeal.' },
+      { question: 'The engineers, the ministry, and the algorithm were all involved. Where does responsibility sit — and why?', hint: 'Who designed the inputs? Who signed off deployment? Who had the power to pause it once harms appeared?' }
+    ],
+    verdict: 'Dual nationality was one of the biggest drivers. Families with non-Dutch heritage — Moroccan, Turkish, Ghanaian — were flagged far more often than those without. A 2020 Dutch court ruling found SyRI violated human rights law (the right to private life) because it was opaque, disproportionate, and gave citizens no meaningful way to contest their score. Responsibility is shared: engineers chose the features, ministers authorised the deployment, and the political pressure to "catch fraud" created the incentive to ignore the early warning signs. The lesson for bias auditing: test for disparate impact on protected groups <em>before</em> deployment, and build a real appeal route — not after the harm is already baked in.',
+    sources: [
+      { label: 'Amnesty International (2021) — Xenophobic Machines: Dutch Child Benefits Scandal', url: 'https://www.amnesty.org/en/documents/eur35/4686/2021/en/' },
+      { label: 'The Guardian (Jan 2021) — Dutch government resigns over childcare benefits scandal', url: 'https://www.theguardian.com/world/2021/jan/15/dutch-government-resigns-over-child-benefits-scandal' }
+    ]
+  },
+  {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
       { icon: '📥', label: 'Biased data produces biased AI', text: 'the model reflects the patterns in its training — including human discrimination' },
       { icon: '🤖', label: 'The AI isn\'t "trying" to discriminate', text: 'it\'s replicating patterns from history — but the harm is the same' },
-      { icon: '⚖️', label: 'Real consequences', text: 'Robert Williams arrested wrongly. CV systems filtering out women. Healthcare AI working worse for some patients.' },
+      { icon: '⚖️', label: 'Real consequences', text: 'Robert Williams arrested wrongly. CV systems filtering out women. Dutch families driven into poverty by SyRI.' },
       { icon: '🔍', label: 'Detecting and fixing bias requires effort', text: 'diverse teams, representative data, demographic testing, human oversight' }
     ]
   }
@@ -2500,6 +2932,27 @@ SLIDES_GCSE[128] = [
     ]
   },
   {
+    type: 'widget',
+    title: 'Tier-Sort — Six Real AI Systems Under the EU AI Act',
+    widget: 'classify',
+    intro: 'The EU AI Act sorts every AI system into one of four risk tiers. Your job: decide where each of these real systems belongs. Some are deliberately on the border — read the explanation for each.',
+    categories: ['Banned (unacceptable)', 'High-risk', 'Limited risk', 'Minimal risk'],
+    items: [
+      { text: 'A live facial-recognition system deployed at a shopping centre that flags shoppers matching a private "suspicious persons" list.', correct: 0, why: 'Real-time remote biometric identification in public spaces is banned by Article 5 of the EU AI Act, with only narrow exceptions for serious crime. Commercial use by a shopping centre is the clearest possible case of unacceptable risk.' },
+      { text: 'An AI system used by a bank to decide which customers qualify for mortgages.', correct: 1, why: 'Creditworthiness assessment is explicitly listed in Annex III of the AI Act as high-risk because it materially affects people\'s access to essential services. It must meet transparency, audit and human-oversight requirements.' },
+      { text: 'A university using an AI to automatically grade students\' A-level mock exams.', correct: 1, why: 'AI for determining educational access or assessment outcomes is high-risk under Annex III. Remember the 2020 UK A-level algorithm scandal — exactly the kind of harm this classification is designed to prevent.' },
+      { text: 'A customer-service chatbot on a retail website that answers questions about delivery times.', correct: 2, why: 'Chatbots that interact with humans fall into the limited-risk tier. The only obligation: the user must be informed they\'re talking to an AI, not a human (Article 50).' },
+      { text: 'A deepfake generator that produces realistic videos of real people.', correct: 2, why: 'Deepfake generation is limited-risk, but content produced must be clearly labelled as AI-generated when used publicly. The tool itself isn\'t banned; deceptive deployment may still break other laws.' },
+      { text: 'The spam filter that decides whether an email goes to your Gmail inbox or junk folder.', correct: 3, why: 'Spam filters are the classic minimal-risk example. No AI-Act-specific obligations beyond existing data-protection law apply — the risk of harm to the user is low.' },
+      { text: 'An "emotion recognition" system used by an employer to monitor call-centre staff for signs of stress or dishonesty.', correct: 0, why: 'Article 5 specifically prohibits emotion recognition in workplaces and educational settings (outside narrow medical or safety uses). The power imbalance between employer and employee makes consent impossible in practice.' },
+      { text: 'An AI credit-scoring tool that a government uses to calculate a "social score" affecting access to jobs, loans and travel.', correct: 0, why: 'General-purpose social scoring by public authorities is banned outright — this is the Act\'s clearest line, drawn partly in response to the direction of travel in some other countries.' }
+    ],
+    sources: [
+      { label: 'European Parliament (2024) — EU AI Act Article 5 (prohibited practices)', url: 'https://artificialintelligenceact.eu/article/5/' },
+      { label: 'European Parliament (2024) — EU AI Act Annex III (high-risk systems)', url: 'https://artificialintelligenceact.eu/annex/3/' }
+    ]
+  },
+  {
     type: 'scenario',
     title: 'The AI Recruitment Startup',
     situation: 'You\'ve co-founded an AI tool that screens CVs and ranks job candidates. An internal test reveals it ranks women 12% lower than men with equal qualifications — probably because the training data reflects past hiring discrimination. Your Series A funding pitch is next week. You need to decide your launch strategy.',
@@ -2547,8 +3000,11 @@ SLIDES_GCSE[129] = [
   {
     type: 'hook',
     title: 'AI Ethics in Action',
-    body: 'An AI correctly diagnosed a patient with a rare condition. The doctor overrode the AI\'s diagnosis based on his own clinical judgment. The patient died. Later analysis confirmed the AI was right. Who bears responsibility?',
-    callout: 'AI ethics isn\'t a philosophy exercise. It involves real decisions, real systems, and real consequences.'
+    body: 'MIT\'s "Moral Machine" asked 40 million people across 233 countries to choose who a self-driving car should save in unavoidable crashes. The answers varied wildly by culture — some protected the young, some the elderly, some pedestrians over passengers. There is no universal right answer. And yet an engineer in Mountain View has to ship a car that does <em>something</em>. That is AI ethics in action: not a philosophy debate, but a decision that somebody has to make before the product ships.',
+    callout: 'AI ethics isn\'t a philosophy exercise. It involves real decisions, real systems, and real consequences.',
+    sources: [
+      { label: 'Awad et al. (2018) — The Moral Machine experiment (Nature)', url: 'https://www.nature.com/articles/s41586-018-0637-6' }
+    ]
   },
   {
     type: 'concept',
@@ -2580,6 +3036,22 @@ SLIDES_GCSE[129] = [
       { text: 'Follow your senior consultant\'s judgment — he has decades of experience and you\'re junior', outcome: 'Three days later, the patient\'s condition worsens significantly. The AI was right. In the investigation, it emerges the consultant routinely overrides the AI without documentation. The hospital now requires all AI overrides to be logged and reviewed — a direct result of this case.' },
       { text: 'Raise your concern to the consultant — explain the AI\'s track record and ask him to reconsider or document his reasoning', outcome: 'The consultant is initially irritated, but agrees to order a confirmatory test. It comes back positive. The patient receives prompt treatment. Your willingness to speak up — respectfully, with evidence — is noted positively in your appraisal. You didn\'t override him; you made him re-examine his reasoning.' },
       { text: 'Do nothing now, but document your concern in the patient\'s notes', outcome: 'The documentation becomes crucial: when the patient deteriorates, the notes show you flagged the AI\'s recommendation and your concern was not acted on. This shifts some moral responsibility — but doesn\'t change the outcome for the patient. Documentation is important; raising it in the moment would have been better.' }
+    ]
+  },
+  {
+    type: 'widget',
+    title: 'Work the Case — COMPAS and Recidivism Scoring',
+    widget: 'factcheck',
+    claim: 'Hundreds of US courts use a tool called COMPAS to predict how likely a defendant is to re-offend. Judges see the score before sentencing. A 2016 ProPublica investigation found the tool\'s errors fell unequally by race: Black defendants were roughly twice as likely to be wrongly flagged as high-risk, while white defendants were more often wrongly flagged as low-risk. The tool\'s maker disputes the finding.',
+    steps: [
+      { question: 'The company\'s defence was that the overall accuracy was equal across races. ProPublica\'s critique was that the <em>kinds of errors</em> were unequal. Why do both of those things matter — and which one matters more to the defendant in front of the judge?', hint: 'Think about the difference between being wrongly called high-risk (and serving a longer sentence) vs. being wrongly called low-risk (and being released).' },
+      { question: 'If the training data came from arrest records in US cities where Black neighbourhoods have been more heavily policed for decades, what exactly is the system learning — and what should it be learning?', hint: 'Is the label "re-offended" or "got re-arrested"? These are not the same thing.' },
+      { question: 'A judge in the State v. Loomis case in Wisconsin used a COMPAS score to justify a harsher sentence. Loomis appealed: he had no way to challenge the score because the algorithm was a trade secret. What single reform would you introduce first?', hint: 'Transparency, auditability, human oversight, ban, right-to-explanation — which is achievable and which does the most good?' }
+    ],
+    verdict: 'Two true things can coexist: overall accuracy can be similar across groups <em>and</em> the error pattern can still harm one group more than another. That\'s why "fairness" is not a single metric. The training-label problem is real: arrest data encodes policing decisions, not crime. The State v. Loomis appeal (Wisconsin, 2016) failed — the court upheld the score\'s use, noting only that judges must be told its limitations. The concrete reforms that have since passed in Idaho, California, and New Jersey: mandatory bias audits, the right to see the inputs used, and a human decision-maker who cannot be replaced by the score alone. This is what "AI ethics in action" looks like — slow, specific, contested, and genuinely consequential.',
+    sources: [
+      { label: 'Angwin, Larson, Mattu & Kirchner (2016) — Machine Bias (ProPublica)', url: 'https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing' },
+      { label: 'State v. Loomis (2016) — Wisconsin Supreme Court decision summary', url: 'https://scholar.harvard.edu/files/mlamadrid/files/state_v._loomis.pdf' }
     ]
   },
   {
