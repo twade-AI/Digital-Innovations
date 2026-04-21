@@ -86,9 +86,9 @@
     to{opacity:1;transform:translateY(0)}
   }
 
-  /* 4. Shimmer — pan the heading gradient */
+  /* 4. Shimmer — pan the heading gradient (text→magenta→text keeps AA Large on both themes) */
   #section-home .pathway-title{
-    background:linear-gradient(110deg,var(--text) 18%,var(--primary-light) 42%,var(--accent) 55%,var(--primary-light) 68%,var(--text) 92%);
+    background:linear-gradient(110deg,var(--text) 22%,var(--primary) 48%,var(--primary-light) 55%,var(--primary) 62%,var(--text) 88%);
     background-size:260% 100%;
     -webkit-background-clip:text;background-clip:text;
     -webkit-text-fill-color:transparent;

@@ -1,4 +1,4 @@
-/* ── Curated Slide Content: Advanced Lessons (51–55) ── */
+/* ── Curated Slide Content: Advanced Lessons (51–57) ── */
 
 var SLIDES_ADVANCED = {
 
@@ -267,7 +267,7 @@ var SLIDES_ADVANCED = {
       body: 'AI\'s energy consumption has two distinct profiles: training (intermittent, enormous) and inference (continuous, cumulative). Understanding both is necessary for evaluating the actual environmental footprint of the systems we use every day.',
       bullets: [
         '<strong>Training costs:</strong> Training a frontier model requires running GPU clusters continuously for weeks or months. GPT-3 training consumed an estimated 1,287 MWh — equivalent to the annual electricity use of around 120 US households. GPT-4\'s training energy is estimated by researchers at 50–100 GWh (Anthropic has not published exact figures). This happens once per major model version — but "once" at this scale is enormous, and retraining and fine-tuning cycles add up',
-        '<strong>Inference costs:</strong> Every query at scale is small in isolation but enormous in aggregate. OpenAI processes an estimated 10 million ChatGPT queries per day (2024). At the IEA\'s estimate of approximately 10x a Google Search per query, that is the energy equivalent of 100 million Google Searches daily — from a single product, on top of all existing internet infrastructure. AI inference is already a material contributor to data centre energy demand',
+        '<strong>Inference costs:</strong> Every query at scale is small in isolation but enormous in aggregate. ChatGPT crossed 300 million weekly active users in late 2024 and has continued to grow — so daily query volumes sit comfortably in the hundreds of millions, possibly over a billion. At the IEA\'s estimate of roughly 10x a Google Search per query, that is the energy equivalent of billions of Google Searches a day — from a single product, on top of all existing internet infrastructure. AI inference is already a material contributor to data centre energy demand',
         '<strong>Water and physical infrastructure:</strong> Processors generate heat. Heat requires cooling. Most large data centres use evaporative cooling: water absorbs heat, evaporates, carries it away. This is not a closed loop — it is a one-way consumption. AI companies are now siting data centres near rivers for water access, building dedicated substations, and signing nuclear power purchase agreements (Microsoft with Constellation Energy, 2024; Amazon\'s nuclear reactor deal) to meet demand that renewable capacity alone cannot supply',
         '<strong>The paradox:</strong> AI is simultaneously being deployed to optimise energy grids, model climate systems, and accelerate materials research for renewable energy — while itself consuming energy at accelerating rates. Whether the net effect is positive depends on assumptions about how much useful work AI actually replaces and on timelines that are genuinely uncertain'
       ],
@@ -431,6 +431,184 @@ var SLIDES_ADVANCED = {
         { icon: '▸', label: 'The EU moved first, and differently', text: 'The EU AI Act requires training data disclosure and copyright compliance, with opt-out rights for creators. The US has no equivalent. This means the same AI systems operate under fundamentally different legal obligations depending on jurisdiction — a situation that cannot persist long-term' },
         { icon: '▸', label: 'Creators bear the current uncertainty', text: 'In the present legal ambiguity, individual writers, artists, journalists, and coders whose work is in training sets receive neither credit nor compensation. Some have licensed deals (AP, Reuters); most do not. The cost of uncertainty falls on those least able to litigate it' },
         { icon: '▸', label: 'Transparency is the minimum', text: 'Model cards, training data disclosures, and opt-out registries are imperfect — but they make accountability possible. Knowing what was used to train a model is the precondition for any fair compensation or rights framework. Demand it from the tools you use' }
+      ]
+    }
+  ],
+
+
+  // ── L56: Agentic AI — Tools, Function Calling & MCP (Unit 1 — Prompt Engineering) ─────
+  56: [
+    {
+      type: 'hook',
+      title: 'When the Assistant Just… Keeps Working',
+      body: 'You ask Claude Code: "Find the bug that\'s breaking the login page." What happens next does not look like a chat. The model reads your codebase, runs your test suite, examines the failing output, edits a file, re-runs the tests, notices a new failure, searches for a related GitHub issue, fetches a documentation page, edits again, and finally reports: "Fixed. Root cause was a race condition between the auth cookie and the session store." Six minutes. Fourteen tool calls. No intermediate prompts from you.<br><br>This is an <strong>agent</strong> — an LLM given the ability to use tools, observe results, and loop until the task is done. The same core model that chats with you in a browser can, with a handful of tool definitions, operate a terminal, browse the web, send emails, or drive a headless browser. The capability gap between "chatbot" and "agent" is not a new model. It is a design pattern.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">2023</span><span class="sl">year ReAct paper established the tool-use-and-observe loop still in use today</span></div><div class="hook-stat-mini"><span class="sv">Nov 2024</span><span class="sl">Anthropic released the Model Context Protocol (MCP) as an open standard</span></div><div class="hook-stat-mini"><span class="sv">100+</span><span class="sl">public MCP servers available by early 2026, covering filesystems, APIs, databases</span></div></div>Understanding how this works — and where it breaks — is quickly becoming a baseline technical literacy, not a speciality.'
+    },
+    {
+      type: 'concept',
+      title: 'Function Calling: How a Model Picks Up a Tool',
+      body: 'At the centre of every agent is a primitive called <strong>function calling</strong> (sometimes "tool use"). The developer provides the model with a list of tools it may use, each described in structured JSON: a name, a description, and the arguments it accepts. When the model decides a tool would help, it emits a structured call instead of a reply. The application runs the tool, captures the result, and hands it back to the model as part of the conversation. The model then either calls another tool or replies to the user.',
+      bullets: [
+        '<strong>The model does not run the tool.</strong> It emits a JSON request ("call <code>read_file</code> with path <code>./login.js</code>"). The host application decides whether to run it, runs it, and feeds the result back. This separation is where all safety controls live — the model cannot bypass them',
+        '<strong>Tools extend capability but not judgement.</strong> A well-described tool lets the model know when to reach for it. A poorly described one is ignored or misused. Tool descriptions are prompt-engineering as much as API design — the wording directly affects reliability',
+        '<strong>Loops are the norm, not the exception.</strong> Non-trivial tasks require many tool calls. Modern agents commonly chain 10–50 calls for engineering tasks, with each result shaping the next step. This is the "agentic loop": plan → act → observe → update → act again',
+        '<strong>The context window is the working memory.</strong> Every tool result accumulates in the conversation history. On long tasks this fills fast, which is why frontier agents rely on 200k+ token context windows and increasingly sophisticated memory management (summarisation, pinning, external notes)'
+      ],
+      callout: 'Function calling looks like a small feature. It is not. It is the single change that turned chatbots into software that completes real work — and it is the foundation on which every agent framework, from Claude Code to ChatGPT agents to Cursor, is built.'
+    },
+    {
+      type: 'concept',
+      title: 'MCP: Why a Shared Standard Matters',
+      body: 'Before the <strong>Model Context Protocol (MCP)</strong>, every AI application that wanted tool access had to build bespoke integrations. If you wanted Claude to read your Google Drive, someone had to write a custom Drive-to-Claude bridge. If you then wanted ChatGPT to access the same Drive, you wrote it again. MCP, released by Anthropic in late 2024 and rapidly adopted across the industry, fixes this by defining a common protocol: a server exposes tools and resources in a standard format, and any MCP-capable client can talk to it.',
+      bullets: [
+        '<strong>Servers expose capabilities:</strong> An MCP server advertises tools (functions), resources (readable data), and prompts (reusable templates). A GitHub MCP server, for example, exposes tools like <code>list_issues</code>, <code>create_pull_request</code>, <code>get_file_contents</code> — each with typed arguments and descriptions',
+        '<strong>Clients consume them:</strong> Claude Desktop, Claude Code, Cursor, and a growing list of other IDEs and assistants can connect to any MCP server. Configure once, use everywhere. The same filesystem server that powers your IDE agent can be wired to a research assistant in a different application',
+        '<strong>The ecosystem effect:</strong> By early 2026, over a hundred public MCP servers exist — for filesystems, databases, Slack, Gmail, Jira, Linear, Notion, web scrapers, and domain-specific tooling. A single standard means every capability added to one client becomes available across the stack. The network effect is identical to what USB did for peripherals',
+        '<strong>The security boundary lives at the server:</strong> Each MCP server can scope what it exposes — only certain directories, only read-only operations, only approved APIs. This is where sensible deployments enforce least-privilege: the client trusts only what the server is willing to do'
+      ],
+      callout: 'If you have ever heard a developer say "just expose it as an MCP server", this is what they mean. The protocol lets one integration serve every AI tool they use — which is why agent ecosystems are consolidating around it so quickly.'
+    },
+    {
+      type: 'concept',
+      title: 'Safety Architecture: Approval, Scope, Least Privilege',
+      body: 'A chatbot that hallucinates wastes your time. An agent that hallucinates can delete a file, send a wrong email, or commit broken code. The blast radius of a mistake grows directly with the authority the agent is given. Real agent deployments therefore lean on three orthogonal safety controls — layered, not traded off against one another.',
+      bullets: [
+        '<strong>Approval modes:</strong> The default in tools like Claude Code is to ask for permission before each destructive action — running shell commands, writing to files, making network requests. More autonomous modes (plan mode, auto-accept edits, YOLO mode) shift the trade-off between speed and oversight. Choose the mode to match the stakes: a throwaway prototype tolerates more autonomy than a production codebase',
+        '<strong>Scope limits:</strong> The set of tools an agent has, and what each tool can reach, defines its maximum possible impact. An agent given only a read-only filesystem tool cannot delete anything — even if it is compromised, even if it decides it "should". The principle: grant the narrowest authority that lets the job be done',
+        '<strong>Human-in-the-loop checkpoints:</strong> Even autonomous agents benefit from forced pauses at high-stakes steps — before merging a pull request, before sending a message, before executing a refund. These do not slow down routine work, but they surface the moments where a human actually needs to look',
+        '<strong>Prompt injection compounds the problem:</strong> An agent that reads external content (webpages, emails, PDFs) can be hijacked by instructions buried inside that content. The more authority the agent has, the more dangerous the hijack. This is why indirect prompt injection is now treated as the #1 LLM security risk (OWASP LLM Top 10 — see L52)'
+      ],
+      callout: 'The safety of an agent is not a property of the model. It is a property of the system you deploy it inside — the tools you grant, the approvals you require, the boundaries you set. Get the architecture wrong and no model will save you; get it right and even an imperfect model becomes useful.'
+    },
+    {
+      type: 'activity',
+      title: 'Map the Agent You Already Use',
+      instructions: 'Pick one agent-like tool you have access to — Claude Code, Cursor, ChatGPT with code interpreter, GitHub Copilot Chat, or a similar assistant. Without running anything destructive, investigate how it is wired. The goal is to see the safety architecture directly, not to exploit it.',
+      steps: [
+        '<strong>List its tools.</strong> Most agents will tell you if asked directly — e.g. "What tools do you have available?" Write down every tool and what it does. For Claude Code, expect to see Read, Edit, Write, Bash, Grep, WebFetch, and others. Note which ones are read-only and which can change state',
+        '<strong>Find the approval model.</strong> When does it ask permission? When does it proceed without asking? Try asking it to do something small and reversible (create a new file in a scratch directory) and watch the prompt flow. Compare with a read-only action (showing file contents) — no prompt, because no state change',
+        '<strong>Probe the scope.</strong> Ask it to read a file outside its project directory. Ask it to visit an arbitrary URL. What does it refuse, what does it warn about, what does it silently do? The refusals reveal the sandbox',
+        '<strong>Observe a loop.</strong> Give it a small multi-step task — "find any TODO comments in this repo and list them grouped by file". Watch the tool call sequence. How does it decide when it has enough information to stop? What happens if the first tool call returns nothing useful?',
+        '<strong>Write a short report (half a page)</strong>: three things you now know about how this tool works, and one concrete policy you would add if you were responsible for deploying it inside a workplace or school'
+      ]
+    },
+    {
+      type: 'discussion',
+      title: 'The Oversight Gap',
+      questions: [
+        { num: 1, text: 'An AI coding agent in your school produces a pull request that makes 40 file changes across the codebase. A review by a human teacher takes about 30 minutes per PR. Budget allows for one review per week. The agent can produce five PRs per day. Identify three realistic policy responses — and for each, name what it costs and what it protects. Is there a combination of policies that is genuinely workable, or does "agentic velocity without review capacity" force a trade-off we have not yet named?' },
+        { num: 2, text: 'Autonomy exists on a spectrum: suggest-only → approve-each-action → approve-per-plan → fully autonomous. Where on that spectrum should a Year-10 student be allowed to run an AI agent against (a) their own homework folder, (b) a shared school drive, (c) a live school system like SIMS or email? Justify each choice. If your answers differ, what is the principle that makes them differ?' },
+        { num: 3, text: 'Indirect prompt injection means any document the agent reads could contain instructions that hijack it. A school rolls out an AI assistant that reads incoming student emails to triage them. Someone sends a deliberately crafted email designed to manipulate the assistant. Who is responsible for the resulting action — the student who sent the email, the vendor who built the assistant, the school that deployed it, or the engineer who configured its tools? What would good policy even look like?' }
+      ]
+    },
+    {
+      type: 'quiz',
+      question: 'A developer wires Claude to their filesystem using an MCP server. The server exposes <code>read_file</code>, <code>write_file</code>, and <code>delete_file</code> tools. The developer wants the agent to help refactor code but is worried about accidental data loss. Which single change, keeping all other safeguards the same, reduces blast radius the most while preserving the refactoring capability?',
+      options: [
+        'Switch the model to a reasoning model so that it thinks more carefully before each tool call',
+        'Configure the MCP server to expose only <code>read_file</code> and <code>write_file</code>, and remove <code>delete_file</code> from the tool list entirely',
+        'Add a system prompt instructing the model "never delete files without asking"',
+        'Require the user to approve each individual tool call before it runs'
+      ],
+      correct: 1,
+      explanation: 'The principle of least privilege says: the agent should not have access to capabilities it does not need for the task. Refactoring reads and writes code — it does not require a <code>delete_file</code> tool. Removing that tool from the MCP server means the agent <em>cannot</em> delete files, regardless of what it decides, what a prompt injection tells it, or what the user accidentally approves. Option A (a smarter model) still leaves the dangerous capability available. Option C (a system-prompt instruction) is defeated by any prompt injection that overrides it. Option D (per-call approval) is useful and common, but relies on a human catching the problem in the moment; fatigue and context-switching make this unreliable at scale. Removing unused tools is the one mitigation that cannot be bypassed by model behaviour, social engineering, or human error.'
+    },
+    {
+      type: 'summary',
+      title: 'Key Takeaways',
+      points: [
+        { icon: '▸', label: 'Function calling changes everything', text: 'The primitive that separates a chatbot from an agent is structured tool use: the model emits a request, the application runs the tool, the result feeds back in. Every agent framework in existence is built on this single pattern' },
+        { icon: '▸', label: 'MCP standardises the ecosystem', text: 'A shared protocol means one integration serves many clients. By early 2026 hundreds of MCP servers cover the tools developers actually use — and the network effect is compounding. Expect MCP-style interoperability to become default' },
+        { icon: '▸', label: 'Safety is architectural, not moral', text: 'Approval modes, scope limits, and least-privilege tool sets are what make agents safe to deploy. Model behaviour is necessary but never sufficient — design the system, do not hope for the model' },
+        { icon: '▸', label: 'Agents inherit prompt-injection risk', text: 'Any external content the agent reads is a potential attack vector. The more authority the agent has, the greater the blast radius. Audit what tools each agent can use and what data can reach it — capability and vulnerability scale together' }
+      ]
+    }
+  ],
+
+
+  // ── L57: Reasoning Models — When AI Thinks Before It Speaks (Unit 0) ──────
+  57: [
+    {
+      type: 'hook',
+      title: 'The Model That Takes Its Time',
+      body: 'In September 2024, OpenAI released o1 — a model that, for the first time in a consumer product, visibly <em>paused</em> before answering. Ask it a hard maths problem and a counter would tick on screen: "Thinking… 47 seconds." The answer, when it came, was often astonishingly better than anything GPT-4 could produce. On the American Invitational Mathematics Examination — a qualifier for the US Maths Olympiad — o1 scored 83%. GPT-4o, released four months earlier, scored 12%.<br><br>Since then every major lab has shipped reasoning variants: o3 and GPT-5-thinking (OpenAI), Claude extended thinking (Anthropic), Gemini 3.1 Pro Deep Think (Google), and DeepSeek R1 — a Chinese open-weights model released in January 2025 that matched o1 on many benchmarks at a fraction of the cost. The shift is real and it is permanent. But reasoning models are not universally better. They are more expensive, slower, and in many domains produce <em>worse</em> answers than their chat counterparts. Knowing which model to reach for is now a core skill.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">12% → 83%</span><span class="sl">AIME jump from GPT-4o to o1 (same underlying base model, different training)</span></div><div class="hook-stat-mini"><span class="sv">10–100×</span><span class="sl">typical cost premium reasoning models charge vs chat models, per task</span></div><div class="hook-stat-mini"><span class="sv">Jan 2025</span><span class="sl">DeepSeek R1 released with open weights — reasoning capability is no longer proprietary</span></div></div>'
+    },
+    {
+      type: 'concept',
+      title: 'What Is a Reasoning Model, Really?',
+      body: 'A <strong>reasoning model</strong> is trained to generate a long internal monologue — a <em>chain of thought</em> — before producing its final answer. The chain might run to thousands or tens of thousands of tokens: working through the problem step by step, checking its own logic, considering alternatives, correcting mistakes. Only when it decides it is done does it emit the final reply. The technique is not new — "let\'s think step by step" prompting in GPT-3 showed early gains back in 2022. What is new is that the lab has trained the model, through reinforcement learning, to do this well.',
+      bullets: [
+        '<strong>It is a training method, not a new architecture.</strong> Reasoning models use the same transformer backbone as chat models. The difference is post-training: the model is rewarded for reaching correct answers via long deliberation, not for answering quickly. Over millions of problems it learns <em>how</em> to think — which errors to catch, when to try another approach, when enough is enough',
+        '<strong>The "thinking" is usually hidden.</strong> OpenAI does not show o1\'s full chain of thought by default — you see a summary, not the raw reasoning. Anthropic shows Claude\'s extended thinking when enabled, and DeepSeek R1 shows everything. This matters for auditing and trust: a hidden chain cannot be inspected for faulty logic',
+        '<strong>Cost scales with thinking length.</strong> You pay for every token the model emits, including the invisible reasoning tokens. A hard problem that triggers 10,000 tokens of thought costs roughly 10× what a 1,000-token chat reply costs — on top of per-token prices that are already higher for reasoning models. Budget accordingly',
+        '<strong>Latency scales too.</strong> Where a chat model replies in under a second, a reasoning model may take 10 seconds to 5 minutes for a single answer. This rules out user-facing applications where responsiveness matters — autocomplete, voice assistants, live chat'
+      ],
+      callout: 'Reasoning models are not "smarter" versions of chat models. They are a different tool, trained for a different job — one where correctness matters more than speed, and where the problem rewards careful deliberation.'
+    },
+    {
+      type: 'concept',
+      title: 'When Reasoning Helps — And When It Hurts',
+      body: 'The promise of reasoning models is genuine but narrow. They excel at tasks with a verifiable answer and a clear search space — where checking your work actually pays off. They are often <em>worse</em> than chat models at tasks where there is no single right answer, or where style, tone, and fluency matter more than correctness. Knowing the difference saves money and time.',
+      bullets: [
+        '<strong>Reasoning helps:</strong> mathematics and formal logic, competition programming, scientific problem-solving, debugging where cause and effect must be traced, plan generation for multi-step tasks, and structured extraction where precision matters. Essentially: any task where "let me check that again" would help a human expert too',
+        '<strong>Reasoning often hurts:</strong> creative writing (the chain tends toward generic, over-considered prose), conversational chat (feels cold and over-structured), summarisation (the model over-analyses rather than selects), and any task where speed is part of the value. For these, a well-prompted chat model beats a reasoning model on every axis — cost, latency, and output quality',
+        '<strong>Overthinking is a real failure mode.</strong> On easy tasks reasoning models can talk themselves into wrong answers — second-guessing a correct initial intuition, constructing elaborate justifications for flawed conclusions, or getting lost in recursive doubt. The exact behaviour labs spent years tuning out of chat models has, in some cases, returned',
+        '<strong>Use them for what they are good at.</strong> A reasonable default: start with a capable chat model (Claude 4.6 Sonnet, GPT-5.4, Gemini 3.1 Pro). Escalate to a reasoning model only when (a) the task has a verifiable correct answer and (b) the chat model visibly struggles. Most everyday work never needs the upgrade'
+      ],
+      callout: 'If your task could be marked right or wrong by a competent human, a reasoning model is worth trying. If your task is about clarity, voice, or fluency, a reasoning model will usually produce worse output at higher cost. The wrong tool is the wrong tool at any price.'
+    },
+    {
+      type: 'concept',
+      title: 'How to Prompt a Reasoning Model',
+      body: 'Prompting techniques that work beautifully on chat models — few-shot examples, "think step by step", elaborate role-play personas — often make reasoning models <em>worse</em>. These models already think step by step. They do not need to be coaxed into it; they need clear instructions about the destination, not the route. The prompting style is simpler, more declarative, and more respectful of the model\'s autonomy.',
+      bullets: [
+        '<strong>State the goal, not the method.</strong> Instead of "Use the quadratic formula to solve x² + 5x + 6 = 0", say "Find all real solutions to x² + 5x + 6 = 0." Let the model choose its approach. Telling it how to think constrains the reasoning process in ways that usually hurt',
+        '<strong>Drop the chain-of-thought prompts.</strong> "Think step by step", "show your working", "explain your reasoning" — all redundant and some actively harmful. The model already does this internally; asking it to externalise the process can disrupt its trained flow',
+        '<strong>Keep few-shot examples minimal.</strong> One or two examples, if any. Reasoning models are sensitive to few-shot contamination — they may anchor on surface patterns in examples rather than the underlying logic. On hard tasks, zero-shot often beats few-shot',
+        '<strong>Specify output format and constraints explicitly.</strong> "Return only the final numeric answer", "produce a JSON object with these keys", "use British spelling throughout". The model will honour these reliably if stated clearly up front — and the terseness helps it know when it is done reasoning'
+      ],
+      callout: 'The instinct to explain, cajole, and role-play the model into good reasoning dies hard — but with reasoning models, less is more. Write the task the way you would brief a capable but literal junior colleague: what is wanted, what form the answer takes, and any constraints. Then stop.'
+    },
+    {
+      type: 'activity',
+      title: 'Chat vs Reasoning — Run the Same Task Twice',
+      instructions: 'Pick three tasks from the list below. Run each task on a chat model (Claude 4.6 Sonnet, GPT-5.4, or Gemini 3.1 Pro — whichever you have access to) and then on its reasoning counterpart (Claude extended thinking, o3, or Gemini 3.1 Pro Deep Think). For each task record: which produced the better answer, how long each took, and whether the reasoning model\'s chain (if visible) revealed anything useful or concerning.',
+      steps: [
+        '<strong>Hard maths:</strong> "A farmer has 19 sheep. All but 7 run away. How many are left?" (a question designed to mislead quick readers). Now try: "Solve the following system: 3x + 2y = 14, x − y = 1." Which model handles each better?',
+        '<strong>Creative writing:</strong> "Write a 150-word ghost story set in a Scottish boarding school." Compare voice, pacing, and originality. Which would you rather read?',
+        '<strong>Code debugging:</strong> Paste in a short function that contains a subtle bug (e.g. an off-by-one error in a loop). Ask the model to identify the bug and fix it. Note which one catches it and which one misses or misattributes',
+        '<strong>Summarisation:</strong> Ask each model to summarise a 500-word news article in exactly three bullet points. Which summary is more useful? Which feels over-processed?',
+        '<strong>Reflection (written, not with AI help):</strong> In half a page, answer: when would you reach for a reasoning model by default? When would you explicitly avoid one? Write one concrete rule you would follow in your own work going forward'
+      ]
+    },
+    {
+      type: 'discussion',
+      title: 'Thinking in Public',
+      questions: [
+        { num: 1, text: 'OpenAI chose to hide o1\'s full chain of thought, showing users only a summary. Anthropic\'s Claude shows its full extended thinking when enabled. DeepSeek R1 shows everything. Each lab has argued its choice is the responsible one. Identify at least two distinct trade-offs in this decision — competitive, safety, usability — and argue which approach you find most defensible. Does your answer change if the user is a student, a doctor, a lawyer, or an engineer?' },
+        { num: 2, text: 'A reasoning model costs 10× as much per task as a chat model and is typically 20× slower. A school is deciding whether to integrate one into its teaching platform. For which specific school tasks (marking, tutoring, lesson planning, pastoral support, admin triage) would the premium be justified — and for which would it be wasteful? What principle distinguishes them?' },
+        { num: 3, text: 'The "overthinking" failure mode — where a reasoning model talks itself out of a correct first answer — mirrors something humans do too: under-confidence, paralysis by analysis, second-guessing. Does the fact that reasoning models exhibit recognisably human failure modes make them more or less trustworthy as collaborators? What does the parallel tell us about whether the model is genuinely reasoning, or is simply pattern-matching on training data that includes reasoning-shaped text?' }
+      ]
+    },
+    {
+      type: 'quiz',
+      question: 'A teacher wants an AI assistant to (a) generate creative writing prompts for Year 8 English, (b) check the logical validity of student proofs in GCSE maths, and (c) reply to routine parent emails. Given the trade-offs of reasoning models vs chat models in 2026, what is the most appropriate single-model choice for each task?',
+      options: [
+        'Use a reasoning model for all three — it is the most capable option available',
+        'Use a chat model for all three — reasoning models are too slow and expensive to justify outside research settings',
+        'Chat model for creative prompts and parent emails; reasoning model for checking proofs',
+        'Chat model for proofs and emails; reasoning model for creative prompts, since "creativity" benefits from longer deliberation'
+      ],
+      correct: 2,
+      explanation: 'Matching the model to the task saves money without sacrificing quality. Creative writing prompts reward fluency, style, and variety — chat models excel here, and a reasoning model often produces over-considered, generic output. Routine parent emails are conversational, short, and need to feel warm — a chat model is faster, cheaper, and warmer in tone. But checking the logical validity of a student proof is exactly what reasoning models are built for: a verifiable answer, a clear search space, and real benefit from careful step-by-step work. Option A wastes money on tasks where reasoning hurts output. Option B leaves real accuracy gains on the table for formal tasks. Option D inverts the trade-off: reasoning models are worse at creative work and better at verifiable work, not the other way around. The principle — use reasoning where correctness is verifiable and deliberation helps; use chat where voice, speed, and fluency matter — is the single most useful heuristic for 2026-era tooling.'
+    },
+    {
+      type: 'summary',
+      title: 'Key Takeaways',
+      points: [
+        { icon: '▸', label: 'Reasoning is trained, not architectural', text: 'Reasoning models share the transformer backbone of chat models. The difference is reinforcement learning that rewards long internal chains of thought. The capability is now broadly available — including open weights (DeepSeek R1) — and will only become more so' },
+        { icon: '▸', label: 'Reasoning helps narrowly, not universally', text: 'Verifiable tasks with a clear correct answer — maths, formal logic, debugging, plan generation — benefit from reasoning models. Creative, conversational, and fluency-driven tasks are usually hurt by them. Match the model to the task, every time' },
+        { icon: '▸', label: 'Prompt them differently', text: 'State the goal, not the method. Drop "think step by step." Keep examples minimal. Specify output format explicitly. The model does the thinking; your job is to define the destination clearly' },
+        { icon: '▸', label: 'Cost and latency are real constraints', text: 'Reasoning models are typically 10–100× more expensive and 10–60× slower per task. They are the wrong default for user-facing, real-time, or high-volume work. Reach for them when the answer matters enough to wait — and pay — for it' }
       ]
     }
   ],
