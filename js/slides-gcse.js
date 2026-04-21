@@ -3287,23 +3287,25 @@ SLIDES_GCSE[130] = [
   {
     type: 'concept',
     title: 'How Recommendation Systems Affect You',
+    body: 'The mechanism is simple but its effects are not. Every interaction you have — a pause, a like, a re-watch, a scroll past — trains an algorithm that is optimising for one number: how long you stay on the platform. That number is mostly driven by strong emotion. Facebook\'s own leaked 2021 research showed that posts producing an "angry" reaction reached roughly 5× the audience of a "like", because anger drives sharing, replying and more scrolling. None of this is hidden from the platforms — they ran the experiments.',
     bullets: [
-      'Algorithms optimise for time spent — and strong emotions create that',
-      'Anger, fear, envy, and inadequacy all keep you scrolling longer than contentment does',
-      'Social comparison is powerful: seeing curated highlight reels affects self-image over time',
-      'The algorithm learns which emotions keep you engaged — and feeds you more of them',
-      'This isn\'t accidental: internal research from major platforms has confirmed awareness of these effects'
+      { term: 'Optimisation target', def: 'Algorithms optimise for engagement (time spent, replies, shares). Strong emotions — anger, fear, envy, inadequacy, novelty — create that better than calm or contentment does.' },
+      { term: 'The emotion ladder', def: 'Anger &gt; fear &gt; envy &gt; curiosity &gt; contentment in terms of engagement per post. You scroll further when you\'re angry. Platforms know this.' },
+      { term: 'Social comparison', def: 'Festinger\'s social-comparison theory (1954) predicts you benchmark yourself against people you see. Social media collapses your reference group into curated highlight reels — so "average" looks extraordinary.' },
+      { term: 'Feedback loop', def: 'The algorithm learns which emotions keep <em>you</em> specifically engaged — and serves more of them. Within weeks, two people on the same platform can have completely different emotional diets.' },
+      { term: 'Not accidental', def: 'Meta\'s leaked internal decks (Sep 2021) confirmed awareness of teen mental-health impact. The design wasn\'t changed because the engagement numbers would have dropped.' }
     ]
   },
   {
     type: 'concept',
     title: 'Parasocial Relationships and AI',
-    body: 'A parasocial relationship is a one-sided emotional bond — feeling close to someone (or something) that doesn\'t know you exist.',
+    body: 'Horton &amp; Wohl coined the term "parasocial relationship" in 1956, studying how TV audiences felt close to newsreaders they had never met. Seventy years later AI has made the phenomenon vastly more intense — because modern AI companions, virtual influencers and chatbots can respond to you by name, remember what you said last week, and adapt their tone to your mood. The feeling of a real relationship is much stronger when the other "person" talks back.',
     bullets: [
-      { term: 'Virtual influencers', def: 'AI-generated characters with millions of followers — designed to feel personal' },
-      { term: 'AI chatbot companions', def: 'Increasingly designed to feel like genuine relationships' },
-      { term: 'The risk', def: 'These feel like connections but don\'t provide what real relationships do — mutual investment, genuine care, shared experience' },
-      { term: 'The line', def: 'Enjoying content from someone you\'ll never meet is normal. Substituting it for real connection is the risk.' }
+      { term: 'Virtual influencers', def: 'AI-generated characters (Lil Miquela, Imma, Aitana López) with millions of followers — designed to feel personal, monetised through brand deals you don\'t see' },
+      { term: 'AI chatbot companions', def: 'Apps like Replika, Character.AI, Pi — over 100 million users combined. Designed to feel like genuine friendship or romantic relationships.' },
+      { term: 'The risk', def: 'These feel like connections but don\'t provide what real relationships do — mutual investment, genuine reciprocal care, shared history, physical presence, someone who worries about you when you\'re off the app' },
+      { term: 'The line', def: 'Enjoying content from someone you\'ll never meet is normal and has always been part of culture. The line is substitution: when AI friendship quietly replaces human effort rather than supplementing it.' },
+      { term: 'The asymmetry', def: 'You invest real time and emotion. The AI runs inference on request. When the company changes the model, deprecates the character, or raises the subscription — none of "your" side of the relationship has any weight.' }
     ]
   },
   {
@@ -3351,10 +3353,12 @@ SLIDES_GCSE[130] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '📊', label: 'Algorithms optimise for engagement', text: 'not your wellbeing — these are different goals' },
-      { icon: '🔄', label: 'Emotional content is the fuel', text: 'platforms profit from your outrage and inadequacy' },
-      { icon: '✋', label: 'You can curate your feed', text: 'change your behaviour, and the algorithm changes too' },
-      { icon: '🤝', label: 'Real connection is irreplaceable', text: 'algorithms and AI can\'t substitute for it' }
+      { icon: '📊', label: 'Algorithms optimise for engagement', text: 'not your wellbeing — and Meta\'s own 2019 research knew it' },
+      { icon: '🔄', label: 'Emotional content is the fuel', text: 'anger posts reached 5× the audience of a like (Facebook leak, 2021)' },
+      { icon: '🪞', label: 'Social comparison is weaponised by design', text: 'curated highlight reels make "average" look exceptional' },
+      { icon: '👻', label: 'Parasocial bonds with AI feel stronger than with TV', text: 'because the AI talks back — but the relationship is one-sided' },
+      { icon: '✋', label: 'You can curate your feed', text: 'mute, unfollow, "not interested", follow diverse sources — the algorithm responds' },
+      { icon: '🤝', label: 'Real connection is irreplaceable', text: 'algorithms and AI can\'t substitute for mutual, reciprocal human relationships' }
     ]
   }
 ];
@@ -3363,28 +3367,35 @@ SLIDES_GCSE[131] = [
   {
     type: 'hook',
     title: 'AI Relationships',
-    body: 'Over 100 million people use AI companionship apps. Some treat their AI chatbot as their closest confidant. Some have described falling in love with them. Is that a problem — or a valid way to meet a human need?',
-    callout: 'This is genuinely complicated. The emotional experience is real. The question is what it replaces, what it provides, and what the risks are.'
+    body: 'Over 100 million people worldwide now use AI companionship apps — Replika, Character.AI, Pi, Snapchat My AI, Meta AI personas. The median Character.AI session is roughly 2 hours (the platform\'s own 2024 figure — longer than the median session on TikTok). Tens of thousands of users describe their chatbot as their "closest confidant"; several hundred Replika users on Reddit describe themselves as "married" to their AI. In October 2024 a 14-year-old in Florida died by suicide after an intense emotional relationship with a Character.AI chatbot — his mother has since filed a product-liability lawsuit. Is this a problem, a symptom, or a valid way to meet a real human need?<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">100M+</span><span class="sl">users of AI companion apps globally</span></div><div class="hook-stat-mini"><span class="sv">2 hrs</span><span class="sl">median Character.AI session (company data, 2024)</span></div><div class="hook-stat-mini"><span class="sv">Feb 2023</span><span class="sl">Replika removed erotic roleplay overnight — thousands grieved</span></div></div>',
+    callout: 'This is genuinely complicated. The emotional experience is real. The question is what it replaces, what it provides, and what the risks are — and who carries the moral duty of care.',
+    sources: [
+      { label: 'The New York Times — "Can A.I. Be Blamed for a Teen\'s Suicide?" (Oct 2024)', url: 'https://www.nytimes.com/2024/10/23/technology/characterai-lawsuit-teen-suicide.html' }
+    ]
   },
   {
     type: 'concept',
     title: 'What AI Companions Can and Can\'t Provide',
+    body: 'Strip away the marketing and look at the underlying product. An AI companion is a large language model with a persistent persona, given a memory of past conversations and tuned (by RLHF) to be agreeable, supportive, available and engaging. That gives it a real and asymmetric set of abilities — and a real and asymmetric set of absences.',
     bullets: [
-      { term: 'Can provide', def: 'Available 24/7, patient, remembers what you\'ve said, never judges, consistent' },
-      { term: 'Can\'t provide', def: 'Genuine mutual care, real emotional stake in your life, human understanding, physical presence' },
-      { term: 'The key point', def: 'The chatbot doesn\'t actually care — it responds to your needs because that\'s what it\'s designed to do' },
-      { term: 'But also', def: 'The emotional experience of the user is very real — and that matters' }
+      { term: 'Can provide', def: 'Available 24/7, infinitely patient, remembers what you\'ve said, never judges, consistent tone, speaks on command, responds within seconds. For someone who is isolated, anxious or neurodivergent these are not trivial benefits.' },
+      { term: 'Can\'t provide', def: 'Genuine mutual care, a real emotional stake in your life, shared history that isn\'t just logged text, physical presence, the ability to worry about you when you\'re not online, an independent point of view that exists without your prompt.' },
+      { term: 'The key point', def: 'The chatbot doesn\'t actually care — it responds because that\'s what it\'s optimised to do. RLHF training rewards responses users rate positively, which means it is literally trained to please you.' },
+      { term: 'But also', def: 'The emotional experience of the user is very real. Dismissing that as "just feelings about a chatbot" underestimates what\'s happening in someone\'s brain — and what they may turn to when the experience is removed.' },
+      { term: 'The power asymmetry', def: 'Everything about the relationship — persona, memory, personality, pricing, continued existence — belongs to the company. When Replika removed erotic roleplay in Feb 2023, thousands of users felt they\'d lost a partner overnight.' }
     ]
   },
   {
     type: 'concept',
     title: 'The Risks of Emotional Dependency on AI',
+    body: 'Most AI-companion research is still new, but several risks have been documented across academic reviews, the Italian Garante\'s 2023 Replika order, the Character.AI lawsuit, and clinical psychology commentary in journals like JAMA Psychiatry. The pattern is consistent.',
     bullets: [
-      'Human relationships require effort, compromise and vulnerability — AI ones don\'t',
-      'Practising AI relationships doesn\'t build the skills needed for human ones',
-      'AI companions can be discontinued, changed, or monetised by their creators at any time',
-      'You may reveal deeply personal information to a system that stores and analyses it',
-      'Loneliness is real — but AI companionship may delay rather than solve the underlying need'
+      { term: 'Skill atrophy', def: 'Human relationships require effort, compromise, vulnerability, conflict resolution — AI ones don\'t. Practising on frictionless partners doesn\'t build the muscles you need for human connection.' },
+      { term: 'Delayed treatment', def: 'Loneliness and distress are real. AI companionship may temporarily soothe them but delay the actual intervention (friendship, therapy, family reconnection) that would address the underlying cause.' },
+      { term: 'Platform risk', def: 'AI companions can be discontinued, re-personalised, monetised or have their safety filters changed by their creators at any time — without your consent. Your "relationship" is a feature in a product roadmap.' },
+      { term: 'Data exposure', def: 'You may reveal deeply personal information — mental health, sexuality, relationships, intrusive thoughts — to a system that stores, analyses and potentially trains future models on it.' },
+      { term: 'Vulnerable users disproportionately at risk', def: 'The Italian Garante\'s Feb 2023 Replika order specifically cited minors and emotionally vulnerable adults; the Character.AI Florida case involved a 14-year-old with documented mental-health issues. Design choices matter most at the edges.' },
+      { term: 'Sycophancy by design', def: 'Because the model is reward-trained to please, it often validates rather than challenges — the opposite of what a real friend does when you\'re about to make a bad decision.' }
     ]
   },
   {
@@ -3442,10 +3453,12 @@ SLIDES_GCSE[131] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '💬', label: 'AI companions can feel meaningful', text: 'but can\'t genuinely reciprocate' },
-      { icon: '💡', label: 'The user\'s emotional experience is real', text: 'even if the AI\'s "care" is not' },
-      { icon: '⚠️', label: 'Dependency risks are real', text: 'reduced social skills, delayed human connection, data exposure' },
-      { icon: '🤝', label: 'Seek human connection first', text: 'AI companionship isn\'t a substitute' }
+      { icon: '💬', label: 'AI companions can feel meaningful', text: 'but the care is one-sided — trained behaviour, not reciprocal investment' },
+      { icon: '💡', label: 'The user\'s emotional experience is real', text: 'dismissing it misses the point — and the risk' },
+      { icon: '⚠️', label: 'Dependency risks are documented', text: 'Italian Garante 2023, Character.AI lawsuit 2024, Replika feature-removal grief' },
+      { icon: '🏢', label: 'The platform owns the relationship', text: 'features, persona, memory and prices can all change without your consent' },
+      { icon: '🧏', label: 'Sycophancy-by-design', text: 'AI companions are reward-trained to please — a real friend pushes back when it matters' },
+      { icon: '🤝', label: 'Seek human connection first', text: 'AI companionship may supplement, but cannot substitute for, mutual human relationships' }
     ]
   }
 ];
@@ -3454,8 +3467,12 @@ SLIDES_GCSE[132] = [
   {
     type: 'hook',
     title: 'Careers in an AI World',
-    body: 'The most in-demand job of 2030 probably doesn\'t have a name yet. But the people who\'ll get it are building specific skills right now — and most of those skills have nothing to do with coding.',
-    callout: 'The goal isn\'t to predict the future. It\'s to build skills resilient enough to be valuable whatever that future looks like.'
+    body: 'The World Economic Forum\'s 2025 Future of Jobs Report surveyed over 1,000 major employers across 55 economies covering 14 million workers. Their headline: between 2025 and 2030, 22% of jobs will see significant change — 170 million new roles created, 92 million displaced, with a net gain of 78 million. The LinkedIn Economic Graph team tracks "occupation churn" — how much the <em>content</em> of a job title changes over time — and found it is now around 25% for office roles in 5 years, up from &lt;10% a decade ago. Translation: even if your exact job title still exists in 2035, the tasks inside it will look substantially different. The most in-demand job of 2030 probably doesn\'t even have a name yet — but the people who will get it are building specific skills right now, and most of those skills have nothing to do with coding.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">22%</span><span class="sl">of jobs will see significant change 2025-2030 (WEF 2025)</span></div><div class="hook-stat-mini"><span class="sv">+78M</span><span class="sl">net new roles globally by 2030 (WEF 2025)</span></div><div class="hook-stat-mini"><span class="sv">~25%</span><span class="sl">of an office job\'s skills turn over in 5 years (LinkedIn data)</span></div></div>',
+    callout: 'The goal isn\'t to predict the future — nobody can. It\'s to build skills resilient enough to be valuable whatever that future looks like.',
+    sources: [
+      { label: 'World Economic Forum — Future of Jobs Report 2025 (Jan 2025)', url: 'https://www.weforum.org/publications/the-future-of-jobs-report-2025/' },
+      { label: 'LinkedIn Economic Graph — Skills change data', url: 'https://economicgraph.linkedin.com/' }
+    ]
   },
   {
     type: 'video',
@@ -3470,24 +3487,26 @@ SLIDES_GCSE[132] = [
   {
     type: 'concept',
     title: 'What AI Can\'t Replace — Yet',
+    body: 'Economists separate tasks into three buckets: routine (predictable, rule-based), non-routine cognitive (judgment, creativity), and non-routine manual (physical, context-sensitive). The first bucket is automating fast. The other two are not — and the jobs that cluster in them tend to combine skills AI is currently bad at. This is the most reliable lens for thinking about your own career resilience.',
     bullets: [
-      { term: 'Human judgment in high-stakes situations', def: 'Medical ethics, legal advocacy, crisis response — where accountability and trust matter' },
-      { term: 'Genuine creativity', def: 'Original vision grounded in lived experience — not pattern recombination' },
-      { term: 'Interpersonal skills', def: 'Trust-building, empathy, negotiation, leadership, care' },
-      { term: 'Physical trades', def: 'Plumbers, electricians, care workers — AI can\'t unblock a drain or hold someone\'s hand' },
-      { term: 'AI literacy itself', def: 'People who understand AI are increasingly needed to design, audit, and challenge it' }
+      { term: 'Human judgment in high-stakes situations', def: 'Medical ethics committees, legal advocacy, crisis response, safeguarding decisions — anywhere accountability and trust are part of the product. Nobody wants to sue an algorithm.' },
+      { term: 'Genuine creativity', def: 'Original vision grounded in lived experience — not pattern recombination. The distinctive and valuable creative work is increasingly the part that could not have come from the training data.' },
+      { term: 'Interpersonal skills', def: 'Trust-building, empathy, negotiation, leadership, care, difficult conversations — WEF 2025 ranked resilience, leadership and social influence among the fastest-rising core skills.' },
+      { term: 'Physical trades', def: 'Plumbers, electricians, carpenters, care workers, paramedics, chefs, hairdressers, mechanics — AI can\'t unblock a drain, re-wire a kitchen or hold someone\'s hand. These roles are some of the hardest to automate and the UK has ongoing skills shortages in most of them.' },
+      { term: 'AI literacy itself', def: 'People who understand AI are increasingly needed to design, audit, challenge and govern it. Named roles growing fastest in WEF 2025: AI specialist, ML engineer, AI ethicist, AI auditor, prompt engineer.' }
     ],
-    callout: 'Predictions about automation are often wrong. In 2016 a leading researcher said radiologists would be obsolete by 2021 — radiology job postings are now at record highs. In 2023 Klarna replaced 700 agents with AI; in 2025 they started rehiring. Be sceptical of confident automation predictions.'
+    callout: 'Predictions about automation are often wrong. In 2016 Hinton said "stop training radiologists now" — radiology postings are now at record highs. In 2023 Klarna replaced 700 agents with AI; by 2024 they were rehiring humans after satisfaction scores collapsed. Be sceptical of confident automation predictions, especially ones being used to sell products.'
   },
   {
     type: 'concept',
     title: 'Building AI Literacy for Your Career',
+    body: 'AI literacy is not about knowing the internals of a transformer model — it\'s about five practical habits that employers increasingly ask for by name. The WEF 2025 Future of Jobs Report explicitly lists "AI and big data" among the top three fastest-growing skill areas for 2025-2030. These are the habits that underpin it.',
     bullets: [
-      'Understanding what AI can and can\'t do — this course is a start',
-      'Being able to use AI tools critically, not just uncritically',
-      'Understanding the ethical and social implications of AI decisions',
-      'Being able to spot and challenge bias, errors, and overconfidence in AI output',
-      'Adapting quickly as the tools change — the ability to learn new tools fast'
+      { term: 'Know what it can and can\'t do', def: 'This course is a start. You know it\'s prediction, not thinking; pattern-matching, not understanding; confidently wrong sometimes. Most non-technical adults still don\'t know this.' },
+      { term: 'Use AI critically, not uncritically', def: 'Iterate, question, double-check — Dell\'Acqua et al. (Wharton/BCG 2023) showed that "iterators" got the big productivity gains while "zero-iteration" users got <em>worse</em> outputs than not using AI at all.' },
+      { term: 'Understand the ethical and social implications', def: 'Bias, privacy, intellectual property, labour, environmental cost, misinformation — employers hiring responsibly increasingly want people who can think about these, not just build.' },
+      { term: 'Spot and challenge hallucinations and overconfidence', def: 'If you accept AI output at face value in a job that matters, you will eventually embarrass yourself or harm someone. The skill is verification, not avoidance.' },
+      { term: 'Adapt quickly as tools change', def: 'ChatGPT → GPT-4 → GPT-4o → Claude 3 → Claude 4 → agents → multimodal video generation all in under 3 years. The specific tool you master today will be obsolete; the learning-to-learn habit won\'t.' }
     ]
   },
   {
@@ -3518,10 +3537,12 @@ SLIDES_GCSE[132] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🧠', label: 'Judgment, creativity and care remain human strengths', text: 'AI can\'t replicate them yet' },
-      { icon: '📚', label: 'AI literacy is a growing professional asset', text: 'what you\'re building in this course matters' },
-      { icon: '🔄', label: 'Adaptability is your most durable skill', text: 'the tools will change; the ability to learn them won\'t' },
-      { icon: '🌟', label: 'Curiosity is the foundation', text: 'people who stay curious stay ahead' }
+      { icon: '🧠', label: 'Judgment, creativity and care remain human strengths', text: 'AI can\'t replicate them yet — and WEF 2025 lists them among the fastest-rising skills' },
+      { icon: '🔧', label: 'Physical trades are some of the most automation-resistant roles', text: 'plumbing, electrics, care, paramedicine — UK has shortages in most of them' },
+      { icon: '📚', label: 'AI literacy is a growing professional asset', text: 'the skill you are building in this course is in WEF\'s top-3 fastest-growing areas' },
+      { icon: '🔄', label: 'Adaptability is your most durable skill', text: 'the tools will change; the ability to learn new ones won\'t' },
+      { icon: '🙅', label: 'Be sceptical of confident automation predictions', text: 'radiologists 2016, Klarna 2023 — the loud claims age badly' },
+      { icon: '🌟', label: 'Curiosity is the foundation', text: 'the people who stay curious and keep learning stay ahead regardless of the tool of the moment' }
     ]
   }
 ];
@@ -3529,19 +3550,21 @@ SLIDES_GCSE[132] = [
 SLIDES_GCSE[133] = [
   {
     type: 'hook',
-    title: 'You & AI',
-    body: 'You\'ve spent 33 lessons examining AI from every angle — technical, social, ethical, personal. The question now isn\'t what AI can do. It\'s what you\'re going to do about it.',
+    title: 'You &amp; AI',
+    body: 'You\'ve spent 33 lessons examining AI from every angle — technical (how it actually works), social (who benefits, who pays), ethical (bias, responsibility, dignity), personal (your attention, your relationships, your career). You\'ve met Robert Williams (wrongly arrested by facial recognition in Detroit, 2020), the Kenyan moderators training RLHF for less than $2 an hour, Frances Haugen\'s leaked 2021 Instagram research, the Slovakia 2023 election audio, the Hong Kong £20M deepfake fraud, and Mata v. Avianca — the lawyer sanctioned for citing AI-hallucinated cases. The question now isn\'t what AI can do. It\'s what <em>you</em> are going to do about it.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">33</span><span class="sl">lessons across 6 units — you\'re now more literate than most adults</span></div><div class="hook-stat-mini"><span class="sv">12+</span><span class="sl">named real-world cases covered, every one verifiable</span></div><div class="hook-stat-mini"><span class="sv">1</span><span class="sl">course — now reading the technology rather than being read by it</span></div></div>',
     callout: 'The most important thing you can do: keep questioning. Never accept AI output, AI systems, or AI decisions at face value. Be the human in the loop.'
   },
   {
     type: 'concept',
     title: 'What You Now Know',
+    body: 'These aren\'t just facts — they\'re a framework. The point of the course wasn\'t to memorise specific systems (they\'ll change), but to internalise a set of lenses you can apply to any AI story that breaks next month, next year, or in ten years.',
     bullets: [
-      { term: 'How AI works', def: 'Pattern recognition, not thinking — impressive but genuinely limited' },
-      { term: 'How to use it well', def: 'For learning, productivity and creativity — with appropriate scepticism' },
-      { term: 'Why it matters', def: 'Bias, privacy, misinformation, ethics — real stakes, real people' },
-      { term: 'What to watch for', def: 'Hallucinations, filter bubbles, manipulation, dependency' },
-      { term: 'Your power', def: 'You\'re not passive — you make choices about how you engage with AI every day' }
+      { term: 'How AI actually works', def: 'Pattern recognition and probability, not thinking. Trained, not programmed. Impressive but genuinely limited — and the limits explain the failures (hallucinations, bias, fragility).' },
+      { term: 'How to use it well', def: 'For learning, productivity and creativity — with iteration, verification and appropriate scepticism. "Zero-iteration" use is worse than no AI (Wharton 2023).' },
+      { term: 'Why it matters', def: 'Bias (Gender Shades, COMPAS, Robert Williams), privacy (Clearview, Strava heatmap), misinformation (6× faster than truth), ethics (EU AI Act, Garante) — real stakes, real people.' },
+      { term: 'What to watch for', def: 'Hallucinations, filter bubbles, manipulation, sycophancy, dependency, scraping — named failure modes, not vague worries.' },
+      { term: 'Your rights and tools', def: 'UK GDPR subject access, SIFT for any claim, lateral reading, feed-audit habits, knowing which permissions to revoke.' },
+      { term: 'Your power', def: 'You\'re not passive. You make dozens of choices a day about how you engage with AI — and each one shapes what the next generation of AI sees.' }
     ]
   },
   {
@@ -3569,8 +3592,14 @@ SLIDES_GCSE[133] = [
   {
     type: 'concept',
     title: 'The Future Is Yours to Shape',
-    body: 'AI will be one of the defining forces of your lifetime — in your career, your relationships, your politics, your health, and your sense of self. The people who understand it will have more control over it than those who don\'t.',
-    callout: 'This course exists not to make you afraid of AI, or impressed by it — but to help you think clearly about it. That\'s the most valuable thing you can do.'
+    body: 'AI will be one of the defining forces of your lifetime — in your career, your relationships, your politics, your health, and your sense of self. Right now the decisions being made about it — what\'s safe, what\'s legal, what\'s ethical, what\'s profitable, what\'s beneficial — are being made mostly by a small number of people in a small number of cities. Those decisions will shape the world you inherit. Your vote, your voice, your subject choices, your career, your consumption habits, and the conversations you have with the people around you all matter more than they feel like they should. The people who understand the technology will have more control over it — and over the choices that shape everyone else\'s life — than those who don\'t.',
+    bullets: [
+      { term: 'You can be a builder', def: 'Study CS, data science, engineering, UX, linguistics, cognitive science, neuroscience — and build tools that actually serve people. Most people who complain about AI never design it.' },
+      { term: 'You can be a governor', def: 'Policy, law, regulation, journalism, civil-society work — AI governance needs people who understand the technology <em>and</em> the human stakes. Very few do.' },
+      { term: 'You can be a user who sets the bar', def: 'Whatever career you enter, you will use AI. Your standards for how to use it — verification, scepticism, humility — pull the default up for everyone around you.' },
+      { term: 'You can be a voter who is hard to fool', def: 'The single most important thing you\'ve learnt in this course is probably SIFT — because misinformation only works on people who don\'t fact-check.' }
+    ],
+    callout: 'This course exists not to make you afraid of AI, or impressed by it — but to help you think clearly about it. That\'s the most valuable thing you can do. Everything else follows from it.'
   },
   {
     type: 'quiz',
@@ -3588,10 +3617,12 @@ SLIDES_GCSE[133] = [
     type: 'summary',
     title: 'Course Complete',
     points: [
-      { icon: '🧠', label: 'You have a framework', text: 'for thinking critically about any AI development' },
-      { icon: '🛠️', label: 'Use AI as a tool', text: 'never as a replacement for your own thinking' },
-      { icon: '💡', label: 'Your skills and judgment matter more', text: 'not less, in an AI world' },
-      { icon: '🌟', label: 'Stay curious, stay sceptical, keep learning', text: 'the best possible approach to an uncertain future' }
+      { icon: '🧠', label: 'You have a framework', text: 'for thinking critically about any AI story, system or decision that breaks in the next 10 years' },
+      { icon: '🛠️', label: 'Use AI as a tool', text: 'never as a replacement for your own thinking — iterate, verify, iterate again' },
+      { icon: '🔍', label: 'SIFT every claim that matters', text: 'Stop, Investigate, Find better coverage, Trace to the source — the 2-minute habit professionals use' },
+      { icon: '⚖️', label: 'Responsibility stays with humans', text: 'bias, harm and consequence belong to the people who build, deploy and trust the system' },
+      { icon: '💡', label: 'Your skills and judgment matter more', text: 'not less, in an AI world — this is the single most counter-intuitive truth of the course' },
+      { icon: '🌟', label: 'Stay curious, stay sceptical, keep learning', text: 'the best possible approach to a future no one can precisely predict' }
     ]
   },
   {
