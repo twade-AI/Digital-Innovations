@@ -1,0 +1,130 @@
+/* ── Haileybury Brand System ────────────────────────────
+   Based on Haileybury Brand Guidelines (2018). Loaded AFTER
+   style.css and lesson.css so tokens win the cascade. */
+
+/* ── Calluna Sans (self-hosted from assets/brand/fonts) ── */
+@font-face{
+  font-family:'Calluna Sans';
+  src:url('../assets/brand/fonts/CallunaSans-Light.otf') format('opentype');
+  font-weight:300;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Calluna Sans';
+  src:url('../assets/brand/fonts/CallunaSans-LightItalic.otf') format('opentype');
+  font-weight:300;font-style:italic;font-display:swap;
+}
+@font-face{
+  font-family:'Calluna Sans';
+  src:url('../assets/brand/fonts/CallunaSans-Regular.otf') format('opentype');
+  font-weight:400;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Calluna Sans';
+  src:url('../assets/brand/fonts/CallunaSans-Italic.otf') format('opentype');
+  font-weight:400;font-style:italic;font-display:swap;
+}
+@font-face{
+  font-family:'Calluna Sans';
+  src:url('../assets/brand/fonts/CallunaSans-Bold.otf') format('opentype');
+  font-weight:700;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Calluna Sans';
+  src:url('../assets/brand/fonts/CallunaSans-BoldItalic.otf') format('opentype');
+  font-weight:700;font-style:italic;font-display:swap;
+}
+
+/* ── Brand Tokens (Haileybury 2018 palette) ─────────────
+   Primary:   Magenta #9b1844 (Pantone 221C), Grey #7c7c7c, White
+   Secondary: Blue #2a2b7c, Pink #e6007e, Orange #ec6608,
+              Green #009870, Cyan #009fe3 (Pantone 334C) */
+:root{
+  --font:'Calluna Sans','Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+
+  /* Core brand */
+  --hby-magenta:#9b1844;
+  --hby-magenta-dark:#7a1236;
+  --hby-magenta-light:#c04572;
+  --hby-grey:#7c7c7c;
+  --hby-grey-light:#b5b5b5;
+  --hby-grey-dark:#4a4a4a;
+
+  /* Secondary brand palette */
+  --hby-blue:#2a2b7c;
+  --hby-pink:#e6007e;
+  --hby-orange:#ec6608;
+  --hby-green:#009870;
+  --hby-cyan:#009fe3;
+  --hby-cyan-dark:#007cb3;
+
+  /* Map the site's semantic tokens to Haileybury */
+  --primary:var(--hby-magenta);
+  --primary-dark:var(--hby-magenta-dark);
+  --primary-light:var(--hby-magenta-light);
+  --accent:var(--hby-cyan);
+  --accent-dark:var(--hby-cyan-dark);
+}
+
+/* Dark theme — keep the slate chrome but tint toward Haileybury blue */
+html[data-theme="dark"],
+html:not([data-theme]){
+  --bg:#0d0e24;
+  --bg-card:#1a1c3a;
+  --bg-card-hover:#262a4d;
+  --border:#2d3252;
+}
+
+/* Light theme — crisp white with magenta accents */
+[data-theme="light"]{
+  --bg:#ffffff;
+  --bg-card:#ffffff;
+  --bg-card-hover:#fafafa;
+  --text:#1a1a1a;
+  --text-muted:#4a4a4a;
+  --text-dim:#7c7c7c;
+  --border:#e5e5e5;
+  --shadow:0 4px 24px rgba(155,24,68,.08);
+}
+[data-theme="light"] body{
+  background-image:radial-gradient(ellipse 900px 500px at 50% -60px,rgba(155,24,68,.05),transparent);
+}
+
+/* Softly tint the dark-theme aurora toward brand magenta */
+body{
+  background-image:radial-gradient(ellipse 900px 500px at 50% -60px,rgba(155,24,68,.10),transparent);
+}
+
+/* ── Navbar brand-mark ─────────────────────────────────── */
+.nav-brand{gap:10px}
+.nav-brand .brand-logo-img{
+  height:34px;width:auto;display:block;
+  filter:drop-shadow(0 1px 2px rgba(0,0,0,.2));
+}
+[data-theme="light"] .nav-brand .brand-logo-img{filter:none}
+.nav-brand .brand-text{
+  font-family:var(--font);font-weight:700;letter-spacing:-.01em;
+}
+.brand-accent{
+  background:linear-gradient(90deg,var(--hby-magenta),var(--hby-cyan));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+/* ── Body typography — Calluna Sans, brand-leaning spacing ── */
+body{font-family:var(--font)}
+h1,h2,h3,h4,h5,h6{font-family:var(--font);letter-spacing:-.015em}
+
+/* ── Buttons inherit brand gradient ────────────────────── */
+.btn-primary{
+  background:linear-gradient(135deg,var(--hby-magenta),var(--hby-magenta-dark));
+  border:1px solid var(--hby-magenta-dark);
+}
+.btn-primary:hover{
+  background:linear-gradient(135deg,var(--hby-magenta-light),var(--hby-magenta));
+}
+
+/* ── Footer signature ──────────────────────────────────── */
+.brand-footer-mark{
+  display:inline-flex;align-items:center;gap:8px;
+  color:var(--text-dim);font-size:.82rem;
+}
+.brand-footer-mark img{height:22px;width:auto;opacity:.7}

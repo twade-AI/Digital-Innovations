@@ -13,13 +13,13 @@ var SLIDE_VISUALS = {
       </style>
     </defs>
     <!-- Centre: AI -->
-    <rect x="228" y="85" width="104" height="50" rx="10" fill="rgba(99,102,241,.18)" stroke="rgba(99,102,241,.6)" stroke-width="1.5"/>
-    <text x="280" y="108" text-anchor="middle" class="vis-text" font-weight="700" font-size="13" fill="#818cf8">AI Systems</text>
+    <rect x="228" y="85" width="104" height="50" rx="10" fill="rgba(155,24,68,.18)" stroke="rgba(155,24,68,.6)" stroke-width="1.5"/>
+    <text x="280" y="108" text-anchor="middle" class="vis-text" font-weight="700" font-size="13" fill="#c04572">AI Systems</text>
     <text x="280" y="124" text-anchor="middle" class="vis-text" font-size="10" opacity=".7">in your daily life</text>
     <!-- Nodes -->
-    <rect x="20"  y="10"  width="110" height="36" rx="7" fill="rgba(6,182,212,.12)" stroke="rgba(6,182,212,.4)" stroke-width="1.2"/>
+    <rect x="20"  y="10"  width="110" height="36" rx="7" fill="rgba(0,159,227,.12)" stroke="rgba(0,159,227,.4)" stroke-width="1.2"/>
     <text x="75"  y="32" text-anchor="middle" class="vis-text" font-size="11">📱 Social Feed</text>
-    <rect x="420" y="10"  width="110" height="36" rx="7" fill="rgba(6,182,212,.12)" stroke="rgba(6,182,212,.4)" stroke-width="1.2"/>
+    <rect x="420" y="10"  width="110" height="36" rx="7" fill="rgba(0,159,227,.12)" stroke="rgba(0,159,227,.4)" stroke-width="1.2"/>
     <text x="475" y="32" text-anchor="middle" class="vis-text" font-size="11">🎵 Music Recs</text>
     <rect x="20"  y="90"  width="110" height="36" rx="7" fill="rgba(245,158,11,.12)" stroke="rgba(245,158,11,.4)" stroke-width="1.2"/>
     <text x="75"  y="112" text-anchor="middle" class="vis-text" font-size="11">🗺 Navigation</text>
@@ -45,8 +45,8 @@ var SLIDE_VISUALS = {
   '2:1': `<svg viewBox="0 0 540 190" xmlns="http://www.w3.org/2000/svg" aria-label="Token prediction diagram">
     <defs><style>.vt{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
     <!-- Prompt -->
-    <rect x="10" y="18" width="520" height="40" rx="8" fill="rgba(99,102,241,.1)" stroke="rgba(99,102,241,.35)" stroke-width="1.2"/>
-    <text x="24" y="44" class="vt" font-size="13" font-family="monospace, monospace" fill="#818cf8">"The cat sat on the </text>
+    <rect x="10" y="18" width="520" height="40" rx="8" fill="rgba(155,24,68,.1)" stroke="rgba(155,24,68,.35)" stroke-width="1.2"/>
+    <text x="24" y="44" class="vt" font-size="13" font-family="monospace, monospace" fill="#c04572">"The cat sat on the </text>
     <text x="302" y="44" class="vt" font-size="13" font-family="monospace, monospace" fill="#f59e0b" font-weight="700">___"</text>
     <text x="340" y="44" class="vt" font-size="11" opacity=".5">← predict next token</text>
     <!-- Bars -->
@@ -57,8 +57,8 @@ var SLIDE_VISUALS = {
     <text x="348" y="111" class="vt" font-size="11" fill="#22c55e" font-weight="700">62%</text>
     <!-- floor -->
     <text x="10"  y="136" class="vt" font-size="12" font-weight="600">floor</text>
-    <rect x="60"  y="124" width="120" height="18" rx="4" fill="rgba(99,102,241,.2)" stroke="rgba(99,102,241,.4)" stroke-width="1"/>
-    <text x="188" y="137" class="vt" font-size="11" fill="#818cf8" font-weight="700">21%</text>
+    <rect x="60"  y="124" width="120" height="18" rx="4" fill="rgba(155,24,68,.2)" stroke="rgba(155,24,68,.4)" stroke-width="1"/>
+    <text x="188" y="137" class="vt" font-size="11" fill="#c04572" font-weight="700">21%</text>
     <!-- chair -->
     <text x="10"  y="162" class="vt" font-size="12" font-weight="600">chair</text>
     <rect x="60"  y="150" width="70"  height="18" rx="4" fill="rgba(245,158,11,.18)" stroke="rgba(245,158,11,.4)" stroke-width="1"/>
@@ -78,7 +78,7 @@ var SLIDE_VISUALS = {
       </marker>
     </defs>
     <!-- Data split -->
-    <rect x="10" y="60" width="120" height="60" rx="8" fill="rgba(99,102,241,.12)" stroke="rgba(99,102,241,.4)" stroke-width="1.2"/>
+    <rect x="10" y="60" width="120" height="60" rx="8" fill="rgba(155,24,68,.12)" stroke="rgba(155,24,68,.4)" stroke-width="1.2"/>
     <text x="70" y="85" text-anchor="middle" class="vp" font-size="11" font-weight="700">Raw Data</text>
     <text x="70" y="100" text-anchor="middle" class="vp" font-size="10" opacity=".6">100% of examples</text>
     <!-- Arrow -->
@@ -103,8 +103,8 @@ var SLIDE_VISUALS = {
     <line x1="260" y1="42" x2="340" y2="75" class="va"/>
     <line x1="260" y1="96" x2="340" y2="90" class="va"/>
     <!-- Model box -->
-    <rect x="342" y="60" width="110" height="60" rx="8" fill="rgba(6,182,212,.12)" stroke="rgba(6,182,212,.45)" stroke-width="1.2"/>
-    <text x="397" y="85" text-anchor="middle" class="vp" font-size="11" font-weight="700" fill="#06b6d4">Model</text>
+    <rect x="342" y="60" width="110" height="60" rx="8" fill="rgba(0,159,227,.12)" stroke="rgba(0,159,227,.45)" stroke-width="1.2"/>
+    <text x="397" y="85" text-anchor="middle" class="vp" font-size="11" font-weight="700" fill="#009fe3">Model</text>
     <text x="397" y="100" text-anchor="middle" class="vp" font-size="10" opacity=".6">learns weights</text>
     <!-- Arrow to result -->
     <line x1="452" y1="90" x2="490" y2="90" class="va"/>
@@ -124,11 +124,11 @@ var SLIDE_VISUALS = {
     </defs>
     <!-- Inputs -->
     <text x="10" y="25" class="vb" font-size="10" opacity=".5" font-weight="600">INPUTS</text>
-    <rect x="10" y="35" width="100" height="28" rx="5" fill="rgba(99,102,241,.1)" stroke="rgba(99,102,241,.3)" stroke-width="1"/>
+    <rect x="10" y="35" width="100" height="28" rx="5" fill="rgba(155,24,68,.1)" stroke="rgba(155,24,68,.3)" stroke-width="1"/>
     <text x="60" y="53" text-anchor="middle" class="vb" font-size="11">CV / Résumé</text>
-    <rect x="10" y="70" width="100" height="28" rx="5" fill="rgba(99,102,241,.1)" stroke="rgba(99,102,241,.3)" stroke-width="1"/>
+    <rect x="10" y="70" width="100" height="28" rx="5" fill="rgba(155,24,68,.1)" stroke="rgba(155,24,68,.3)" stroke-width="1"/>
     <text x="60" y="88" text-anchor="middle" class="vb" font-size="11">Postcode</text>
-    <rect x="10" y="105" width="100" height="28" rx="5" fill="rgba(99,102,241,.1)" stroke="rgba(99,102,241,.3)" stroke-width="1"/>
+    <rect x="10" y="105" width="100" height="28" rx="5" fill="rgba(155,24,68,.1)" stroke="rgba(155,24,68,.3)" stroke-width="1"/>
     <text x="60" y="123" text-anchor="middle" class="vb" font-size="11">Education</text>
     <!-- Arrows in -->
     <line x1="110" y1="49"  x2="188" y2="75"  stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#arrb)"/>
@@ -200,14 +200,14 @@ var SLIDE_VISUALS = {
   '9:1': `<svg viewBox="0 0 560 140" xmlns="http://www.w3.org/2000/svg" aria-label="PTFC prompt framework diagram">
     <defs><style>.vf{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
     <!-- P -->
-    <rect x="10"  y="24" width="122" height="92" rx="10" fill="rgba(99,102,241,.13)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
-    <text x="71"  y="50" text-anchor="middle" class="vf" font-size="26" font-weight="800" fill="#818cf8">P</text>
+    <rect x="10"  y="24" width="122" height="92" rx="10" fill="rgba(155,24,68,.13)" stroke="rgba(155,24,68,.5)" stroke-width="1.5"/>
+    <text x="71"  y="50" text-anchor="middle" class="vf" font-size="26" font-weight="800" fill="#c04572">P</text>
     <text x="71"  y="70" text-anchor="middle" class="vf" font-size="12" font-weight="700">Persona</text>
     <text x="71"  y="86" text-anchor="middle" class="vf" font-size="9.5" opacity=".65">"Act as an expert</text>
     <text x="71"  y="99" text-anchor="middle" class="vf" font-size="9.5" opacity=".65">in…"</text>
     <!-- T -->
-    <rect x="146" y="24" width="122" height="92" rx="10" fill="rgba(6,182,212,.13)" stroke="rgba(6,182,212,.5)" stroke-width="1.5"/>
-    <text x="207" y="50" text-anchor="middle" class="vf" font-size="26" font-weight="800" fill="#06b6d4">T</text>
+    <rect x="146" y="24" width="122" height="92" rx="10" fill="rgba(0,159,227,.13)" stroke="rgba(0,159,227,.5)" stroke-width="1.5"/>
+    <text x="207" y="50" text-anchor="middle" class="vf" font-size="26" font-weight="800" fill="#009fe3">T</text>
     <text x="207" y="70" text-anchor="middle" class="vf" font-size="12" font-weight="700">Task</text>
     <text x="207" y="86" text-anchor="middle" class="vf" font-size="9.5" opacity=".65">"Write / summarise /</text>
     <text x="207" y="99" text-anchor="middle" class="vf" font-size="9.5" opacity=".65">analyse…"</text>
@@ -241,8 +241,8 @@ var SLIDE_VISUALS = {
     <!-- Arrow -->
     <line x1="110" y1="90" x2="148" y2="90" stroke="currentColor" stroke-opacity=".35" stroke-width="1.5" marker-end="url(#arrd)"/>
     <!-- Generator -->
-    <rect x="150" y="42" width="110" height="96" rx="9" fill="rgba(99,102,241,.14)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
-    <text x="205" y="68" text-anchor="middle" class="vd" font-size="11" font-weight="700" fill="#818cf8">Generator</text>
+    <rect x="150" y="42" width="110" height="96" rx="9" fill="rgba(155,24,68,.14)" stroke="rgba(155,24,68,.5)" stroke-width="1.5"/>
+    <text x="205" y="68" text-anchor="middle" class="vd" font-size="11" font-weight="700" fill="#c04572">Generator</text>
     <text x="205" y="84" text-anchor="middle" class="vd" font-size="10" opacity=".6">creates fake</text>
     <text x="205" y="97" text-anchor="middle" class="vd" font-size="10" opacity=".6">face/voice/</text>
     <text x="205" y="110" text-anchor="middle" class="vd" font-size="10" opacity=".6">video frames</text>
@@ -278,7 +278,7 @@ var SLIDE_VISUALS = {
       </marker>
     </defs>
     <!-- You -->
-    <rect x="10" y="65" width="100" height="50" rx="8" fill="rgba(99,102,241,.15)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
+    <rect x="10" y="65" width="100" height="50" rx="8" fill="rgba(155,24,68,.15)" stroke="rgba(155,24,68,.5)" stroke-width="1.5"/>
     <text x="60" y="87" text-anchor="middle" class="vdb" font-size="13" font-weight="700">You</text>
     <text x="60" y="102" text-anchor="middle" class="vdb" font-size="9" opacity=".65">1,500+ data points</text>
     <!-- Sources below -->
@@ -315,7 +315,7 @@ var SLIDE_VISUALS = {
       <style>.vtr { font-family: system-ui, sans-serif; fill: currentColor; }</style>
     </defs>
     <!-- Car node -->
-    <rect x="210" y="12" width="140" height="44" rx="9" fill="rgba(99,102,241,.15)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
+    <rect x="210" y="12" width="140" height="44" rx="9" fill="rgba(155,24,68,.15)" stroke="rgba(155,24,68,.5)" stroke-width="1.5"/>
     <text x="280" y="31" text-anchor="middle" class="vtr" font-size="13" font-weight="700">🚗 Autonomous Car</text>
     <text x="280" y="47" text-anchor="middle" class="vtr" font-size="10" opacity=".65">collision unavoidable · 0.2 sec to decide</text>
     <!-- Lines down -->
@@ -364,7 +364,7 @@ var SLIDE_VISUALS = {
     <path d="M398,100 C330,140 230,140 162,100" fill="none" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#arr8)"/>
     <text x="280" y="150" text-anchor="middle" class="vfc" font-size="9" opacity=".5">detects further drop → sells more</text>
     <!-- Result label -->
-    <rect x="186" y="60" width="188" height="50" rx="9" fill="rgba(99,102,241,.12)" stroke="rgba(99,102,241,.35)" stroke-width="1.5"/>
+    <rect x="186" y="60" width="188" height="50" rx="9" fill="rgba(155,24,68,.12)" stroke="rgba(155,24,68,.35)" stroke-width="1.5"/>
     <text x="280" y="79" text-anchor="middle" class="vfc" font-size="12" font-weight="700">Result</text>
     <text x="280" y="95" text-anchor="middle" class="vfc" font-size="10" opacity=".7">−1,000 pts in 36 min</text>
     <text x="280" y="108" text-anchor="middle" class="vfc" font-size="9" opacity=".55">$1 trillion wiped</text>
@@ -381,7 +381,7 @@ var SLIDE_VISUALS = {
       </marker>
     </defs>
     <!-- Artist -->
-    <rect x="10" y="55" width="105" height="56" rx="8" fill="rgba(99,102,241,.14)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
+    <rect x="10" y="55" width="105" height="56" rx="8" fill="rgba(155,24,68,.14)" stroke="rgba(155,24,68,.5)" stroke-width="1.5"/>
     <text x="62" y="76" text-anchor="middle" class="vcp" font-size="22">🎨</text>
     <text x="62" y="95" text-anchor="middle" class="vcp" font-size="11" font-weight="700">Human Artist</text>
     <text x="62" y="108" text-anchor="middle" class="vcp" font-size="9" opacity=".6">© protected work</text>
@@ -397,8 +397,8 @@ var SLIDE_VISUALS = {
     <line x1="270" y1="83" x2="305" y2="83" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#arr10)"/>
     <text x="287" y="73" text-anchor="middle" class="vcp" font-size="8" opacity=".5">trains</text>
     <!-- AI Model -->
-    <rect x="307" y="55" width="110" height="56" rx="8" fill="rgba(6,182,212,.12)" stroke="rgba(6,182,212,.45)" stroke-width="1.5"/>
-    <text x="362" y="78" text-anchor="middle" class="vcp" font-size="11" font-weight="700" fill="#06b6d4">AI Model</text>
+    <rect x="307" y="55" width="110" height="56" rx="8" fill="rgba(0,159,227,.12)" stroke="rgba(0,159,227,.45)" stroke-width="1.5"/>
+    <text x="362" y="78" text-anchor="middle" class="vcp" font-size="11" font-weight="700" fill="#009fe3">AI Model</text>
     <text x="362" y="93" text-anchor="middle" class="vcp" font-size="9" opacity=".7">Midjourney / DALL-E</text>
     <text x="362" y="107" text-anchor="middle" class="vcp" font-size="9" opacity=".55">Stable Diffusion</text>
     <!-- Arrow -->
@@ -443,7 +443,7 @@ var SLIDE_VISUALS = {
     <text x="175" y="110" text-anchor="middle" class="vjd" font-size="9" opacity=".7">Basic coding</text>
     <text x="175" y="123" text-anchor="middle" class="vjd" font-size="9" opacity=".7">Journalism</text>
 
-    <rect x="235" y="50" width="100" height="80" rx="8" fill="rgba(99,102,241,.11)" stroke="rgba(99,102,241,.4)" stroke-width="1.2"/>
+    <rect x="235" y="50" width="100" height="80" rx="8" fill="rgba(155,24,68,.11)" stroke="rgba(155,24,68,.4)" stroke-width="1.2"/>
     <text x="285" y="70" text-anchor="middle" class="vjd" font-size="10" font-weight="700">Transformed</text>
     <text x="285" y="84" text-anchor="middle" class="vjd" font-size="10" font-weight="700">Not Replaced</text>
     <text x="285" y="100" text-anchor="middle" class="vjd" font-size="9" opacity=".7">Radiologist</text>
@@ -481,7 +481,7 @@ var SLIDE_VISUALS = {
     <text x="218" y="48" class="vfr" font-size="10" font-weight="700" fill="#22c55e">0.8%</text>
     <!-- Light-skinned women: 5% -->
     <text x="200" y="74" text-anchor="end" class="vfr" font-size="10" opacity=".75">Light-skinned women</text>
-    <rect x="205" y="62" width="50" height="16" rx="2" fill="rgba(99,102,241,.6)"/>
+    <rect x="205" y="62" width="50" height="16" rx="2" fill="rgba(155,24,68,.6)"/>
     <text x="260" y="74" class="vfr" font-size="10" font-weight="700">5.0%</text>
     <!-- Dark-skinned men: 8% -->
     <text x="200" y="100" text-anchor="end" class="vfr" font-size="10" opacity=".75">Dark-skinned men</text>
@@ -516,7 +516,7 @@ var SLIDE_VISUALS = {
     <text x="185" y="152" text-anchor="middle" class="ven" font-size="9" opacity=".7">ChatGPT</text>
     <text x="185" y="163" text-anchor="middle" class="ven" font-size="9" opacity=".7">query</text>
     <!-- Image gen: ~50x -->
-    <rect x="255" y="30" width="60" height="108" rx="3" fill="rgba(99,102,241,.5)"/>
+    <rect x="255" y="30" width="60" height="108" rx="3" fill="rgba(155,24,68,.5)"/>
     <text x="285" y="82" text-anchor="middle" class="ven" font-size="9" font-weight="700">~50×</text>
     <text x="285" y="152" text-anchor="middle" class="ven" font-size="9" opacity=".7">AI image</text>
     <text x="285" y="163" text-anchor="middle" class="ven" font-size="9" opacity=".7">generation</text>
@@ -551,7 +551,7 @@ var SLIDE_VISUALS = {
     <text x="34" y="98" class="vreg" font-size="9" opacity=".5">State-led</text>
     <text x="490" y="98" text-anchor="end" class="vreg" font-size="9" opacity=".5">Market-led</text>
     <!-- EU — top right (restrictive, market) -->
-    <rect x="295" y="24" width="130" height="64" rx="9" fill="rgba(99,102,241,.14)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
+    <rect x="295" y="24" width="130" height="64" rx="9" fill="rgba(155,24,68,.14)" stroke="rgba(155,24,68,.5)" stroke-width="1.5"/>
     <text x="360" y="47" text-anchor="middle" class="vreg" font-size="13">🇪🇺</text>
     <text x="360" y="64" text-anchor="middle" class="vreg" font-size="11" font-weight="700">European Union</text>
     <text x="360" y="78" text-anchor="middle" class="vreg" font-size="9" opacity=".7">Protect citizens first</text>
@@ -561,7 +561,7 @@ var SLIDE_VISUALS = {
     <text x="200" y="64" text-anchor="middle" class="vreg" font-size="11" font-weight="700">China</text>
     <text x="200" y="78" text-anchor="middle" class="vreg" font-size="9" opacity=".7">State control first</text>
     <!-- UK — bottom right (permissive, market) -->
-    <rect x="295" y="112" width="130" height="64" rx="9" fill="rgba(6,182,212,.12)" stroke="rgba(6,182,212,.45)" stroke-width="1.5"/>
+    <rect x="295" y="112" width="130" height="64" rx="9" fill="rgba(0,159,227,.12)" stroke="rgba(0,159,227,.45)" stroke-width="1.5"/>
     <text x="360" y="135" text-anchor="middle" class="vreg" font-size="13">🇬🇧</text>
     <text x="360" y="152" text-anchor="middle" class="vreg" font-size="11" font-weight="700">United Kingdom</text>
     <text x="360" y="166" text-anchor="middle" class="vreg" font-size="9" opacity=".7">Enable innovation</text>
@@ -578,17 +578,17 @@ var SLIDE_VISUALS = {
       <style>.vmc { font-family: system-ui, sans-serif; fill: currentColor; }</style>
     </defs>
     <!-- Card background -->
-    <rect x="10" y="8" width="540" height="180" rx="12" fill="rgba(99,102,241,.06)" stroke="rgba(99,102,241,.3)" stroke-width="1.5"/>
+    <rect x="10" y="8" width="540" height="180" rx="12" fill="rgba(155,24,68,.06)" stroke="rgba(155,24,68,.3)" stroke-width="1.5"/>
     <text x="280" y="26" text-anchor="middle" class="vmc" font-size="11" font-weight="700" opacity=".6" letter-spacing=".06em">MODEL CARD</text>
     <!-- Six sections in 2×3 grid -->
     <!-- Row 1 -->
-    <rect x="22" y="34" width="162" height="65" rx="7" fill="rgba(99,102,241,.1)" stroke="rgba(99,102,241,.3)" stroke-width="1"/>
+    <rect x="22" y="34" width="162" height="65" rx="7" fill="rgba(155,24,68,.1)" stroke="rgba(155,24,68,.3)" stroke-width="1"/>
     <text x="103" y="53" text-anchor="middle" class="vmc" font-size="10" font-weight="700">📋 Model Details</text>
     <text x="103" y="67" text-anchor="middle" class="vmc" font-size="9" opacity=".7">What does it do?</text>
     <text x="103" y="79" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Which AI tools / APIs?</text>
     <text x="103" y="91" text-anchor="middle" class="vmc" font-size="9" opacity=".7">When last updated?</text>
 
-    <rect x="199" y="34" width="162" height="65" rx="7" fill="rgba(6,182,212,.09)" stroke="rgba(6,182,212,.3)" stroke-width="1"/>
+    <rect x="199" y="34" width="162" height="65" rx="7" fill="rgba(0,159,227,.09)" stroke="rgba(0,159,227,.3)" stroke-width="1"/>
     <text x="280" y="53" text-anchor="middle" class="vmc" font-size="10" font-weight="700">🎯 Intended Use</text>
     <text x="280" y="67" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Primary user group?</text>
     <text x="280" y="79" text-anchor="middle" class="vmc" font-size="9" opacity=".7">Designed tasks?</text>
@@ -630,7 +630,7 @@ var SLIDE_VISUALS = {
     </defs>
     <!-- Five stages -->
     <!-- 1. Define -->
-    <rect x="10" y="45" width="90" height="75" rx="9" fill="rgba(99,102,241,.14)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
+    <rect x="10" y="45" width="90" height="75" rx="9" fill="rgba(155,24,68,.14)" stroke="rgba(155,24,68,.5)" stroke-width="1.5"/>
     <text x="55" y="70" text-anchor="middle" class="vlc" font-size="18">🎯</text>
     <text x="55" y="87" text-anchor="middle" class="vlc" font-size="11" font-weight="700">Define</text>
     <text x="55" y="100" text-anchor="middle" class="vlc" font-size="9" opacity=".65">Problem</text>
@@ -639,7 +639,7 @@ var SLIDE_VISUALS = {
     <!-- Arrow -->
     <line x1="102" y1="82" x2="120" y2="82" stroke="currentColor" stroke-opacity=".35" stroke-width="1.5" marker-end="url(#arr24)"/>
     <!-- 2. Design -->
-    <rect x="122" y="45" width="90" height="75" rx="9" fill="rgba(6,182,212,.12)" stroke="rgba(6,182,212,.45)" stroke-width="1.5"/>
+    <rect x="122" y="45" width="90" height="75" rx="9" fill="rgba(0,159,227,.12)" stroke="rgba(0,159,227,.45)" stroke-width="1.5"/>
     <text x="167" y="70" text-anchor="middle" class="vlc" font-size="18">🏗️</text>
     <text x="167" y="87" text-anchor="middle" class="vlc" font-size="11" font-weight="700">Design</text>
     <text x="167" y="100" text-anchor="middle" class="vlc" font-size="9" opacity=".65">Architecture</text>
@@ -689,7 +689,7 @@ var SLIDE_VISUALS = {
     <!-- Divider -->
     <line x1="280" y1="22" x2="280" y2="155" stroke="currentColor" stroke-opacity=".2" stroke-width="1" stroke-dasharray="5 4"/>
     <!-- LEFT: Input -->
-    <rect x="10" y="30" width="75" height="55" rx="6" fill="rgba(99,102,241,.12)" stroke="rgba(99,102,241,.45)" stroke-width="1.2"/>
+    <rect x="10" y="30" width="75" height="55" rx="6" fill="rgba(155,24,68,.12)" stroke="rgba(155,24,68,.45)" stroke-width="1.2"/>
     <text x="47" y="48" text-anchor="middle" class="vlc" font-size="9" font-weight="700">Input</text>
     <text x="47" y="60" text-anchor="middle" class="vlc" font-size="8" opacity=".7">Age: 32</text>
     <text x="47" y="71" text-anchor="middle" class="vlc" font-size="8" opacity=".7">Income: £40k</text>
@@ -697,7 +697,7 @@ var SLIDE_VISUALS = {
     <!-- Arrow -->
     <line x1="85" y1="57" x2="98" y2="57" stroke="currentColor" stroke-opacity=".5" stroke-width="1.5" marker-end="url(#a4)"/>
     <!-- LEFT: Black box -->
-    <rect x="100" y="30" width="80" height="55" rx="6" fill="rgba(15,23,42,.6)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
+    <rect x="100" y="30" width="80" height="55" rx="6" fill="rgba(15,23,42,.6)" stroke="rgba(155,24,68,.5)" stroke-width="1.5"/>
     <text x="140" y="60" text-anchor="middle" class="vlc" font-size="26" font-weight="900">?</text>
     <text x="140" y="78" text-anchor="middle" class="vlc" font-size="7" font-style="italic" opacity=".6">hidden layers</text>
     <!-- Arrow -->
@@ -709,7 +709,7 @@ var SLIDE_VISUALS = {
     <!-- LEFT: Warning note -->
     <text x="140" y="110" text-anchor="middle" class="vlc" font-size="8" fill="rgba(239,68,68,.8)">No explanation — GDPR Art.22 may apply</text>
     <!-- RIGHT: Input -->
-    <rect x="290" y="30" width="75" height="55" rx="6" fill="rgba(99,102,241,.12)" stroke="rgba(99,102,241,.45)" stroke-width="1.2"/>
+    <rect x="290" y="30" width="75" height="55" rx="6" fill="rgba(155,24,68,.12)" stroke="rgba(155,24,68,.45)" stroke-width="1.2"/>
     <text x="327" y="48" text-anchor="middle" class="vlc" font-size="9" font-weight="700">Input</text>
     <text x="327" y="60" text-anchor="middle" class="vlc" font-size="8" opacity=".7">Age: 32</text>
     <text x="327" y="71" text-anchor="middle" class="vlc" font-size="8" opacity=".7">Income: £40k</text>
@@ -717,7 +717,7 @@ var SLIDE_VISUALS = {
     <!-- Arrow -->
     <line x1="365" y1="57" x2="378" y2="57" stroke="currentColor" stroke-opacity=".5" stroke-width="1.5" marker-end="url(#a4)"/>
     <!-- RIGHT: XAI box -->
-    <rect x="380" y="30" width="80" height="55" rx="6" fill="rgba(6,182,212,.08)" stroke="rgba(6,182,212,.5)" stroke-width="1.5"/>
+    <rect x="380" y="30" width="80" height="55" rx="6" fill="rgba(0,159,227,.08)" stroke="rgba(0,159,227,.5)" stroke-width="1.5"/>
     <text x="420" y="50" text-anchor="middle" class="vlc" font-size="8.5" opacity=".9">Income: +42%</text>
     <text x="420" y="63" text-anchor="middle" class="vlc" font-size="8.5" opacity=".9">History: +38%</text>
     <text x="420" y="76" text-anchor="middle" class="vlc" font-size="8.5" opacity=".9">Age: +20%</text>
@@ -740,7 +740,7 @@ var SLIDE_VISUALS = {
       <marker id="a5" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><polygon points="0 0,7 3.5,0 7" fill="currentColor" opacity=".55"/></marker>
     </defs>
     <!-- Node 1: Biased Training Data — top center (280,28) -->
-    <rect x="225" y="12" width="110" height="32" rx="8" fill="rgba(99,102,241,.12)" stroke="rgba(99,102,241,.45)" stroke-width="1.5"/>
+    <rect x="225" y="12" width="110" height="32" rx="8" fill="rgba(155,24,68,.12)" stroke="rgba(155,24,68,.45)" stroke-width="1.5"/>
     <text x="280" y="32" text-anchor="middle" class="vlc" font-size="9" font-weight="700">Biased Training Data</text>
     <!-- Node 2: Biased Model — right (460,80) -->
     <rect x="405" y="64" width="110" height="32" rx="8" fill="rgba(239,68,68,.12)" stroke="rgba(239,68,68,.45)" stroke-width="1.5"/>
@@ -777,7 +777,7 @@ var SLIDE_VISUALS = {
     </defs>
     <text x="280" y="18" text-anchor="middle" class="vlc" font-size="12" font-weight="800">The PTFC Prompt Framework</text>
     <!-- Block P -->
-    <rect x="10" y="30" width="125" height="110" rx="8" fill="rgba(99,102,241,.12)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
+    <rect x="10" y="30" width="125" height="110" rx="8" fill="rgba(155,24,68,.12)" stroke="rgba(155,24,68,.5)" stroke-width="1.5"/>
     <text x="72" y="80" text-anchor="middle" class="vlc" font-size="36" font-weight="900">P</text>
     <text x="72" y="98" text-anchor="middle" class="vlc" font-size="10" font-weight="700">Persona</text>
     <text x="72" y="112" text-anchor="middle" class="vlc" font-size="8" opacity=".65">Who should the</text>
@@ -801,7 +801,7 @@ var SLIDE_VISUALS = {
     <!-- Arrow F→C -->
     <line x1="415" y1="85" x2="428" y2="85" stroke="currentColor" stroke-opacity=".3" stroke-width="1.5" marker-end="url(#a9)"/>
     <!-- Block C -->
-    <rect x="430" y="30" width="120" height="110" rx="8" fill="rgba(6,182,212,.12)" stroke="rgba(6,182,212,.5)" stroke-width="1.5"/>
+    <rect x="430" y="30" width="120" height="110" rx="8" fill="rgba(0,159,227,.12)" stroke="rgba(0,159,227,.5)" stroke-width="1.5"/>
     <text x="490" y="80" text-anchor="middle" class="vlc" font-size="36" font-weight="900">C</text>
     <text x="490" y="98" text-anchor="middle" class="vlc" font-size="10" font-weight="700">Context</text>
     <text x="490" y="112" text-anchor="middle" class="vlc" font-size="8" opacity=".65">Your role, goals</text>
@@ -816,14 +816,14 @@ var SLIDE_VISUALS = {
     </defs>
     <text x="280" y="16" text-anchor="middle" class="vlc" font-size="11" font-weight="700">The Revision Loop</text>
     <!-- Box 1: Draft -->
-    <rect x="20" y="40" width="130" height="65" rx="10" fill="rgba(99,102,241,.12)" stroke="rgba(99,102,241,.45)" stroke-width="1.5"/>
+    <rect x="20" y="40" width="130" height="65" rx="10" fill="rgba(155,24,68,.12)" stroke="rgba(155,24,68,.45)" stroke-width="1.5"/>
     <text x="85" y="63" text-anchor="middle" class="vlc" font-size="18">📝</text>
     <text x="85" y="80" text-anchor="middle" class="vlc" font-size="11" font-weight="700">Your draft</text>
     <text x="85" y="95" text-anchor="middle" class="vlc" font-size="9" opacity=".65">Initial attempt</text>
     <!-- Arrow 1→2 -->
     <line x1="150" y1="72" x2="213" y2="72" stroke="currentColor" stroke-opacity=".5" stroke-width="1.5" marker-end="url(#a12)"/>
     <!-- Box 2: AI Feedback -->
-    <rect x="215" y="40" width="130" height="65" rx="10" fill="rgba(6,182,212,.1)" stroke="rgba(6,182,212,.45)" stroke-width="1.5"/>
+    <rect x="215" y="40" width="130" height="65" rx="10" fill="rgba(0,159,227,.1)" stroke="rgba(0,159,227,.45)" stroke-width="1.5"/>
     <text x="280" y="63" text-anchor="middle" class="vlc" font-size="18">🤖</text>
     <text x="280" y="80" text-anchor="middle" class="vlc" font-size="11" font-weight="700">AI suggests</text>
     <text x="280" y="95" text-anchor="middle" class="vlc" font-size="9" opacity=".65">Improvements</text>
@@ -847,14 +847,14 @@ var SLIDE_VISUALS = {
     <defs><style>.vlc{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
     <text x="280" y="16" text-anchor="middle" class="vlc" font-size="11" font-weight="700">Deepfake Detection Checklist</text>
     <!-- Row 1: indigo — Lip & eye sync -->
-    <rect x="10" y="28" width="4" height="26" rx="2" fill="rgba(99,102,241,.7)"/>
+    <rect x="10" y="28" width="4" height="26" rx="2" fill="rgba(155,24,68,.7)"/>
     <text x="20" y="47" class="vlc" font-size="14">🎭</text>
     <text x="42" y="44" class="vlc" font-size="10" font-weight="700">Lip &amp; eye sync</text>
     <text x="42" y="55" class="vlc" font-size="9" opacity=".7">Check blinking, mouth movement at edges</text>
     <rect x="460" y="31" width="88" height="18" rx="9" fill="rgba(34,197,94,.15)" stroke="rgba(34,197,94,.45)" stroke-width="1"/>
     <text x="504" y="44" text-anchor="middle" class="vlc" font-size="8" font-weight="700" fill="rgba(34,197,94,.9)">CHECK</text>
     <!-- Row 2: cyan — Reverse image search -->
-    <rect x="10" y="62" width="4" height="26" rx="2" fill="rgba(6,182,212,.7)"/>
+    <rect x="10" y="62" width="4" height="26" rx="2" fill="rgba(0,159,227,.7)"/>
     <text x="20" y="81" class="vlc" font-size="14">🔍</text>
     <text x="42" y="78" class="vlc" font-size="10" font-weight="700">Reverse image search</text>
     <text x="42" y="89" class="vlc" font-size="9" opacity=".7">Google Images or TinEye the key frame</text>
@@ -889,7 +889,7 @@ var SLIDE_VISUALS = {
       <style>.vlc{font-family:system-ui,sans-serif;fill:currentColor}</style>
       <linearGradient id="regGrad" x1="0%" y1="0%" x2="100%" y2="0%">
         <stop offset="0%" stop-color="rgba(239,68,68,.5)"/>
-        <stop offset="100%" stop-color="rgba(99,102,241,.5)"/>
+        <stop offset="100%" stop-color="rgba(155,24,68,.5)"/>
       </linearGradient>
     </defs>
     <text x="280" y="16" text-anchor="middle" class="vlc" font-size="12" font-weight="800">AI Regulatory Approaches</text>
@@ -933,19 +933,19 @@ var SLIDE_VISUALS = {
     <defs><style>.vlc{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
     <text x="280" y="16" text-anchor="middle" class="vlc" font-size="11" font-weight="700">Anatomy of a Strong Problem Statement</text>
     <!-- Central statement block -->
-    <rect x="20" y="28" width="520" height="60" rx="10" fill="rgba(99,102,241,.06)" stroke="rgba(99,102,241,.3)" stroke-width="1.5"/>
+    <rect x="20" y="28" width="520" height="60" rx="10" fill="rgba(155,24,68,.06)" stroke="rgba(155,24,68,.3)" stroke-width="1.5"/>
     <!-- Statement text split into 4 colored segments -->
-    <text x="30" y="52" class="vlc" font-size="9" font-weight="700" fill="rgba(99,102,241,.9)">[Year 12 pupils]</text>
+    <text x="30" y="52" class="vlc" font-size="9" font-weight="700" fill="rgba(155,24,68,.9)">[Year 12 pupils]</text>
     <text x="165" y="52" class="vlc" font-size="9" font-weight="700" fill="rgba(239,68,68,.85)"> who [struggle to revise effectively]</text>
     <text x="30" y="70" class="vlc" font-size="9" font-weight="700" fill="rgba(245,158,11,.85)">lack [adaptive, curriculum-specific support]</text>
-    <text x="305" y="70" class="vlc" font-size="9" font-weight="700" fill="rgba(6,182,212,.85)"> — current tools are [generic and don't map to their exam board].</text>
+    <text x="305" y="70" class="vlc" font-size="9" font-weight="700" fill="rgba(0,159,227,.85)"> — current tools are [generic and don't map to their exam board].</text>
     <!-- Drop lines -->
-    <line x1="95" y1="88" x2="75" y2="120" stroke="rgba(99,102,241,.4)" stroke-width="1" stroke-dasharray="3 3"/>
+    <line x1="95" y1="88" x2="75" y2="120" stroke="rgba(155,24,68,.4)" stroke-width="1" stroke-dasharray="3 3"/>
     <line x1="245" y1="88" x2="200" y2="120" stroke="rgba(239,68,68,.4)" stroke-width="1" stroke-dasharray="3 3"/>
     <line x1="165" y1="88" x2="340" y2="120" stroke="rgba(245,158,11,.4)" stroke-width="1" stroke-dasharray="3 3"/>
-    <line x1="420" y1="88" x2="470" y2="120" stroke="rgba(6,182,212,.4)" stroke-width="1" stroke-dasharray="3 3"/>
+    <line x1="420" y1="88" x2="470" y2="120" stroke="rgba(0,159,227,.4)" stroke-width="1" stroke-dasharray="3 3"/>
     <!-- Annotation boxes -->
-    <rect x="20" y="120" width="110" height="30" rx="5" fill="rgba(99,102,241,.12)" stroke="rgba(99,102,241,.4)" stroke-width="1"/>
+    <rect x="20" y="120" width="110" height="30" rx="5" fill="rgba(155,24,68,.12)" stroke="rgba(155,24,68,.4)" stroke-width="1"/>
     <text x="75" y="133" text-anchor="middle" class="vlc" font-size="8" font-weight="700">WHO</text>
     <text x="75" y="145" text-anchor="middle" class="vlc" font-size="7.5" opacity=".75">Target user</text>
     <rect x="145" y="120" width="110" height="30" rx="5" fill="rgba(239,68,68,.12)" stroke="rgba(239,68,68,.4)" stroke-width="1"/>
@@ -954,7 +954,7 @@ var SLIDE_VISUALS = {
     <rect x="275" y="120" width="110" height="30" rx="5" fill="rgba(245,158,11,.12)" stroke="rgba(245,158,11,.4)" stroke-width="1"/>
     <text x="330" y="133" text-anchor="middle" class="vlc" font-size="8" font-weight="700">GAP</text>
     <text x="330" y="145" text-anchor="middle" class="vlc" font-size="7.5" opacity=".75">What&apos;s missing</text>
-    <rect x="405" y="120" width="130" height="30" rx="5" fill="rgba(6,182,212,.12)" stroke="rgba(6,182,212,.4)" stroke-width="1"/>
+    <rect x="405" y="120" width="130" height="30" rx="5" fill="rgba(0,159,227,.12)" stroke="rgba(0,159,227,.4)" stroke-width="1"/>
     <text x="470" y="133" text-anchor="middle" class="vlc" font-size="8" font-weight="700">CONTEXT</text>
     <text x="470" y="145" text-anchor="middle" class="vlc" font-size="7.5" opacity=".75">Why now</text>
   </svg>`,
@@ -969,7 +969,7 @@ var SLIDE_VISUALS = {
     <text x="300" y="170" text-anchor="middle" class="vlc" font-size="9" font-weight="700" opacity=".6">EASE OF FIX →</text>
     <!-- Quadrants: top-left, top-right, bottom-left, bottom-right -->
     <!-- Top-left: High impact, Easy fix — indigo -->
-    <rect x="60" y="25" width="240" height="65" fill="rgba(99,102,241,.15)" stroke="rgba(99,102,241,.3)" stroke-width="1"/>
+    <rect x="60" y="25" width="240" height="65" fill="rgba(155,24,68,.15)" stroke="rgba(155,24,68,.3)" stroke-width="1"/>
     <text x="180" y="53" text-anchor="middle" class="vlc" font-size="13">⚡</text>
     <text x="180" y="68" text-anchor="middle" class="vlc" font-size="10" font-weight="700">FIX NOW</text>
     <text x="180" y="82" text-anchor="middle" class="vlc" font-size="8.5" opacity=".7">High value, quick win</text>
@@ -1006,10 +1006,10 @@ var SLIDE_VISUALS = {
   <rect x="8" y="22" width="162" height="110" rx="9" fill="rgba(245,158,11,.09)" stroke="rgba(245,158,11,.4)" stroke-width="1.5"/>
   <text x="89" y="38" text-anchor="middle" class="vlc" font-size="10" font-weight="700">Underfitting</text>
   <!-- Scatter dots -->
-  <circle cx="35" cy="90" r="3.5" fill="rgba(99,102,241,.5)"/><circle cx="55" cy="72" r="3.5" fill="rgba(99,102,241,.5)"/>
-  <circle cx="70" cy="80" r="3.5" fill="rgba(99,102,241,.5)"/><circle cx="88" cy="58" r="3.5" fill="rgba(99,102,241,.5)"/>
-  <circle cx="105" cy="65" r="3.5" fill="rgba(99,102,241,.5)"/><circle cx="122" cy="48" r="3.5" fill="rgba(99,102,241,.5)"/>
-  <circle cx="140" cy="55" r="3.5" fill="rgba(99,102,241,.5)"/>
+  <circle cx="35" cy="90" r="3.5" fill="rgba(155,24,68,.5)"/><circle cx="55" cy="72" r="3.5" fill="rgba(155,24,68,.5)"/>
+  <circle cx="70" cy="80" r="3.5" fill="rgba(155,24,68,.5)"/><circle cx="88" cy="58" r="3.5" fill="rgba(155,24,68,.5)"/>
+  <circle cx="105" cy="65" r="3.5" fill="rgba(155,24,68,.5)"/><circle cx="122" cy="48" r="3.5" fill="rgba(155,24,68,.5)"/>
+  <circle cx="140" cy="55" r="3.5" fill="rgba(155,24,68,.5)"/>
   <!-- Flat line (too simple) -->
   <line x1="28" y1="72" x2="152" y2="72" stroke="rgba(245,158,11,.8)" stroke-width="2.5" stroke-dasharray="5 3"/>
   <text x="89" y="115" text-anchor="middle" class="vlc" font-size="8" opacity=".65">Too simple — misses the pattern</text>
@@ -1019,10 +1019,10 @@ var SLIDE_VISUALS = {
   <rect x="199" y="22" width="162" height="110" rx="9" fill="rgba(34,197,94,.1)" stroke="rgba(34,197,94,.45)" stroke-width="1.5"/>
   <text x="280" y="38" text-anchor="middle" class="vlc" font-size="10" font-weight="700">Good Fit ✓</text>
   <!-- Same dots -->
-  <circle cx="226" cy="90" r="3.5" fill="rgba(99,102,241,.5)"/><circle cx="246" cy="72" r="3.5" fill="rgba(99,102,241,.5)"/>
-  <circle cx="261" cy="80" r="3.5" fill="rgba(99,102,241,.5)"/><circle cx="279" cy="58" r="3.5" fill="rgba(99,102,241,.5)"/>
-  <circle cx="296" cy="65" r="3.5" fill="rgba(99,102,241,.5)"/><circle cx="313" cy="48" r="3.5" fill="rgba(99,102,241,.5)"/>
-  <circle cx="331" cy="55" r="3.5" fill="rgba(99,102,241,.5)"/>
+  <circle cx="226" cy="90" r="3.5" fill="rgba(155,24,68,.5)"/><circle cx="246" cy="72" r="3.5" fill="rgba(155,24,68,.5)"/>
+  <circle cx="261" cy="80" r="3.5" fill="rgba(155,24,68,.5)"/><circle cx="279" cy="58" r="3.5" fill="rgba(155,24,68,.5)"/>
+  <circle cx="296" cy="65" r="3.5" fill="rgba(155,24,68,.5)"/><circle cx="313" cy="48" r="3.5" fill="rgba(155,24,68,.5)"/>
+  <circle cx="331" cy="55" r="3.5" fill="rgba(155,24,68,.5)"/>
   <!-- Smooth curve -->
   <path d="M219,95 Q248,82 261,78 Q276,62 296,63 Q316,50 340,50" fill="none" stroke="rgba(34,197,94,.85)" stroke-width="2.5"/>
   <text x="280" y="115" text-anchor="middle" class="vlc" font-size="8" opacity=".65">Captures the signal, not the noise</text>
@@ -1032,10 +1032,10 @@ var SLIDE_VISUALS = {
   <rect x="390" y="22" width="162" height="110" rx="9" fill="rgba(239,68,68,.09)" stroke="rgba(239,68,68,.4)" stroke-width="1.5"/>
   <text x="471" y="38" text-anchor="middle" class="vlc" font-size="10" font-weight="700">Overfitting</text>
   <!-- Same dots -->
-  <circle cx="417" cy="90" r="3.5" fill="rgba(99,102,241,.5)"/><circle cx="437" cy="72" r="3.5" fill="rgba(99,102,241,.5)"/>
-  <circle cx="452" cy="80" r="3.5" fill="rgba(99,102,241,.5)"/><circle cx="470" cy="58" r="3.5" fill="rgba(99,102,241,.5)"/>
-  <circle cx="487" cy="65" r="3.5" fill="rgba(99,102,241,.5)"/><circle cx="504" cy="48" r="3.5" fill="rgba(99,102,241,.5)"/>
-  <circle cx="522" cy="55" r="3.5" fill="rgba(99,102,241,.5)"/>
+  <circle cx="417" cy="90" r="3.5" fill="rgba(155,24,68,.5)"/><circle cx="437" cy="72" r="3.5" fill="rgba(155,24,68,.5)"/>
+  <circle cx="452" cy="80" r="3.5" fill="rgba(155,24,68,.5)"/><circle cx="470" cy="58" r="3.5" fill="rgba(155,24,68,.5)"/>
+  <circle cx="487" cy="65" r="3.5" fill="rgba(155,24,68,.5)"/><circle cx="504" cy="48" r="3.5" fill="rgba(155,24,68,.5)"/>
+  <circle cx="522" cy="55" r="3.5" fill="rgba(155,24,68,.5)"/>
   <!-- Wiggly line threading every point -->
   <path d="M410,95 C420,88 428,95 437,72 C444,55 448,88 452,80 C456,72 464,45 470,58 C476,70 480,58 487,65 C493,72 498,40 504,48 C510,56 516,48 524,52" fill="none" stroke="rgba(239,68,68,.8)" stroke-width="2.5"/>
   <text x="471" y="115" text-anchor="middle" class="vlc" font-size="8" opacity=".65">Memorised training data — fails on new data</text>
@@ -1051,14 +1051,14 @@ var SLIDE_VISUALS = {
   <defs><marker id="a20" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor" opacity=".45"/></marker></defs>
   <text x="280" y="14" text-anchor="middle" class="vlc" font-size="11" font-weight="700">The Policy Ratification Process</text>
   <!-- Stage 1: Proposal -->
-  <rect x="8" y="24" width="88" height="52" rx="8" fill="rgba(99,102,241,.12)" stroke="rgba(99,102,241,.45)" stroke-width="1.5"/>
+  <rect x="8" y="24" width="88" height="52" rx="8" fill="rgba(155,24,68,.12)" stroke="rgba(155,24,68,.45)" stroke-width="1.5"/>
   <text x="52" y="44" text-anchor="middle" class="vlc" font-size="16">📋</text>
   <text x="52" y="60" text-anchor="middle" class="vlc" font-size="9" font-weight="700">Proposal</text>
   <text x="52" y="71" text-anchor="middle" class="vlc" font-size="7.5" opacity=".6">Draft policy</text>
   <!-- Arrow -->
   <line x1="97" y1="50" x2="116" y2="50" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a20)"/>
   <!-- Stage 2: Debate -->
-  <rect x="117" y="24" width="88" height="52" rx="8" fill="rgba(6,182,212,.1)" stroke="rgba(6,182,212,.45)" stroke-width="1.5"/>
+  <rect x="117" y="24" width="88" height="52" rx="8" fill="rgba(0,159,227,.1)" stroke="rgba(0,159,227,.45)" stroke-width="1.5"/>
   <text x="161" y="44" text-anchor="middle" class="vlc" font-size="16">💬</text>
   <text x="161" y="60" text-anchor="middle" class="vlc" font-size="9" font-weight="700">Debate</text>
   <text x="161" y="71" text-anchor="middle" class="vlc" font-size="7.5" opacity=".6">Open floor</text>
@@ -1072,14 +1072,14 @@ var SLIDE_VISUALS = {
   <!-- Arrow -->
   <line x1="335" y1="50" x2="354" y2="50" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a20)"/>
   <!-- Stage 4: Vote -->
-  <rect x="355" y="24" width="88" height="52" rx="8" fill="rgba(99,102,241,.12)" stroke="rgba(99,102,241,.45)" stroke-width="1.5"/>
+  <rect x="355" y="24" width="88" height="52" rx="8" fill="rgba(155,24,68,.12)" stroke="rgba(155,24,68,.45)" stroke-width="1.5"/>
   <text x="399" y="44" text-anchor="middle" class="vlc" font-size="16">🗳️</text>
   <text x="399" y="60" text-anchor="middle" class="vlc" font-size="9" font-weight="700">Vote</text>
   <text x="399" y="71" text-anchor="middle" class="vlc" font-size="7.5" opacity=".6">Simple majority</text>
   <!-- Arrow splits down -->
   <line x1="444" y1="50" x2="464" y2="50" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a20)"/>
   <!-- Stage 5: Decision diamond -->
-  <polygon points="480,30 540,50 480,70 420,50" fill="rgba(99,102,241,.08)" stroke="rgba(99,102,241,.4)" stroke-width="1.5"/>
+  <polygon points="480,30 540,50 480,70 420,50" fill="rgba(155,24,68,.08)" stroke="rgba(155,24,68,.4)" stroke-width="1.5"/>
   <text x="480" y="54" text-anchor="middle" class="vlc" font-size="8.5" font-weight="700">Result</text>
   <!-- Down arrows from diamond -->
   <line x1="480" y1="70" x2="430" y2="95" stroke="rgba(34,197,94,.6)" stroke-width="1.5" marker-end="url(#a20)"/>
@@ -1110,12 +1110,12 @@ var SLIDE_VISUALS = {
   <text x="280" y="51" text-anchor="middle" class="vlc" font-size="8" opacity=".6">One-off, written fresh each time, no consistency</text>
   <line x1="280" y1="58" x2="280" y2="72" stroke="currentColor" stroke-opacity=".35" stroke-width="1.5" marker-end="url(#a25)"/>
   <!-- Level 2: Template (middle) -->
-  <rect x="100" y="73" width="360" height="36" rx="8" fill="rgba(6,182,212,.1)" stroke="rgba(6,182,212,.45)" stroke-width="1.5"/>
+  <rect x="100" y="73" width="360" height="36" rx="8" fill="rgba(0,159,227,.1)" stroke="rgba(0,159,227,.45)" stroke-width="1.5"/>
   <text x="280" y="88" text-anchor="middle" class="vlc" font-size="9" font-weight="700">Level 2 — Reusable Template</text>
   <text x="280" y="102" text-anchor="middle" class="vlc" font-size="8" opacity=".6">PTFC structure applied consistently · variables filled per task · saves time</text>
   <line x1="280" y1="109" x2="280" y2="123" stroke="currentColor" stroke-opacity=".35" stroke-width="1.5" marker-end="url(#a25)"/>
   <!-- Level 3: Prompt Library (bottom) -->
-  <rect x="20" y="124" width="520" height="36" rx="8" fill="rgba(99,102,241,.13)" stroke="rgba(99,102,241,.5)" stroke-width="2"/>
+  <rect x="20" y="124" width="520" height="36" rx="8" fill="rgba(155,24,68,.13)" stroke="rgba(155,24,68,.5)" stroke-width="2"/>
   <text x="280" y="139" text-anchor="middle" class="vlc" font-size="9" font-weight="700">Level 3 — Prompt Library</text>
   <text x="280" y="153" text-anchor="middle" class="vlc" font-size="8" opacity=".6">Organised · version-controlled · tested · shared with team · different prompts for each use case</text>
   <!-- Width indicators showing growth -->
@@ -1125,7 +1125,7 @@ var SLIDE_VISUALS = {
   <!-- Labels on the side -->
   <text x="545" y="45" text-anchor="end" class="vlc" font-size="7.5" opacity=".4" font-style="italic">beginner</text>
   <text x="545" y="91" text-anchor="end" class="vlc" font-size="7.5" opacity=".4" font-style="italic">intermediate</text>
-  <text x="545" y="143" text-anchor="end" class="vlc" font-size="7.5" fill="rgba(99,102,241,.6)" font-weight="600" font-style="italic">production</text>
+  <text x="545" y="143" text-anchor="end" class="vlc" font-size="7.5" fill="rgba(155,24,68,.6)" font-weight="600" font-style="italic">production</text>
 </svg>`,
 
   /* ── L44:1 — AI Manifesto: What It Contains ─────────────────────── */
@@ -1133,11 +1133,11 @@ var SLIDE_VISUALS = {
   <style>.vlc{font-family:system-ui,sans-serif;fill:currentColor}</style>
   <text x="280" y="14" text-anchor="middle" class="vlc" font-size="11" font-weight="700">Structure of a Personal AI Manifesto</text>
   <!-- Layer 1: Core Beliefs (bottom/foundation) -->
-  <rect x="20" y="126" width="520" height="38" rx="9" fill="rgba(99,102,241,.14)" stroke="rgba(99,102,241,.5)" stroke-width="2"/>
+  <rect x="20" y="126" width="520" height="38" rx="9" fill="rgba(155,24,68,.14)" stroke="rgba(155,24,68,.5)" stroke-width="2"/>
   <text x="280" y="142" text-anchor="middle" class="vlc" font-size="10" font-weight="800">Layer 1 — Core Beliefs</text>
   <text x="280" y="157" text-anchor="middle" class="vlc" font-size="8.5" opacity=".65">What do I fundamentally believe about AI — its nature, its risks, its potential?</text>
   <!-- Layer 2: Principles -->
-  <rect x="70" y="80" width="420" height="38" rx="9" fill="rgba(6,182,212,.1)" stroke="rgba(6,182,212,.45)" stroke-width="1.5"/>
+  <rect x="70" y="80" width="420" height="38" rx="9" fill="rgba(0,159,227,.1)" stroke="rgba(0,159,227,.45)" stroke-width="1.5"/>
   <text x="280" y="96" text-anchor="middle" class="vlc" font-size="10" font-weight="800">Layer 2 — Principles</text>
   <text x="280" y="111" text-anchor="middle" class="vlc" font-size="8.5" opacity=".65">How will I behave with AI? What rules guide my use — for work, for study, for society?</text>
   <!-- Layer 3: Commitments (top) -->
@@ -1159,7 +1159,7 @@ var SLIDE_VISUALS = {
   <defs>
     <linearGradient id="cog48" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="rgba(34,197,94,.55)"/>
-      <stop offset="50%" stop-color="rgba(99,102,241,.4)"/>
+      <stop offset="50%" stop-color="rgba(155,24,68,.4)"/>
       <stop offset="100%" stop-color="rgba(239,68,68,.55)"/>
     </linearGradient>
   </defs>
@@ -1178,7 +1178,7 @@ var SLIDE_VISUALS = {
   <text x="108" y="112" text-anchor="middle" class="vlc" font-size="7.5" opacity=".5" font-style="italic">e.g. AI formats your</text>
   <text x="108" y="123" text-anchor="middle" class="vlc" font-size="7.5" opacity=".5" font-style="italic">ideas into a table</text>
   <!-- Zone 2: Partnership (indigo) -->
-  <rect x="193" y="54" width="174" height="80" rx="8" fill="rgba(99,102,241,.08)" stroke="rgba(99,102,241,.3)" stroke-width="1.2"/>
+  <rect x="193" y="54" width="174" height="80" rx="8" fill="rgba(155,24,68,.08)" stroke="rgba(155,24,68,.3)" stroke-width="1.2"/>
   <text x="280" y="70" text-anchor="middle" class="vlc" font-size="8.5" font-weight="700">Co-thinking ⚠</text>
   <text x="280" y="84" text-anchor="middle" class="vlc" font-size="7.5" opacity=".65">Shared reasoning</text>
   <text x="280" y="96" text-anchor="middle" class="vlc" font-size="7.5" opacity=".65">Requires critical eval.</text>
@@ -1200,11 +1200,11 @@ var SLIDE_VISUALS = {
   '18:1': `<svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" aria-label="Acceptable use balance diagram">
     <defs><style>.v18{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
     <!-- Centre pillar -->
-    <rect x="267" y="80" width="26" height="90" rx="4" fill="rgba(99,102,241,.25)" stroke="rgba(99,102,241,.5)" stroke-width="1.2"/>
+    <rect x="267" y="80" width="26" height="90" rx="4" fill="rgba(155,24,68,.25)" stroke="rgba(155,24,68,.5)" stroke-width="1.2"/>
     <!-- Beam -->
-    <rect x="100" y="76" width="360" height="10" rx="5" fill="rgba(99,102,241,.3)" stroke="rgba(99,102,241,.5)" stroke-width="1.2"/>
+    <rect x="100" y="76" width="360" height="10" rx="5" fill="rgba(155,24,68,.3)" stroke="rgba(155,24,68,.5)" stroke-width="1.2"/>
     <!-- Pivot -->
-    <circle cx="280" cy="81" r="7" fill="rgba(99,102,241,.5)" stroke="rgba(99,102,241,.8)" stroke-width="1.5"/>
+    <circle cx="280" cy="81" r="7" fill="rgba(155,24,68,.5)" stroke="rgba(155,24,68,.8)" stroke-width="1.5"/>
     <!-- Left pan — Innovation -->
     <line x1="140" y1="86" x2="140" y2="108" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5"/>
     <rect x="80" y="108" width="120" height="56" rx="8" fill="rgba(34,197,94,.12)" stroke="rgba(34,197,94,.45)" stroke-width="1.5"/>
@@ -1228,13 +1228,13 @@ var SLIDE_VISUALS = {
   '19:1': `<svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" aria-label="Policy document anatomy">
     <defs><style>.v19{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
     <!-- Document outline -->
-    <rect x="140" y="10" width="280" height="180" rx="8" fill="rgba(99,102,241,.06)" stroke="rgba(99,102,241,.3)" stroke-width="1.5"/>
+    <rect x="140" y="10" width="280" height="180" rx="8" fill="rgba(155,24,68,.06)" stroke="rgba(155,24,68,.3)" stroke-width="1.5"/>
     <!-- Dog-ear fold -->
-    <polygon points="380,10 420,10 420,40" fill="rgba(99,102,241,.18)" stroke="rgba(99,102,241,.3)" stroke-width="1"/>
+    <polygon points="380,10 420,10 420,40" fill="rgba(155,24,68,.18)" stroke="rgba(155,24,68,.3)" stroke-width="1"/>
     <!-- Section rows -->
-    <rect x="156" y="26" width="248" height="22" rx="4" fill="rgba(99,102,241,.18)" stroke="rgba(99,102,241,.4)" stroke-width="1"/>
+    <rect x="156" y="26" width="248" height="22" rx="4" fill="rgba(155,24,68,.18)" stroke="rgba(155,24,68,.4)" stroke-width="1"/>
     <text x="280" y="41" text-anchor="middle" class="v19" font-size="10" font-weight="700">📋 Purpose &amp; Scope</text>
-    <rect x="156" y="56" width="248" height="22" rx="4" fill="rgba(6,182,212,.1)" stroke="rgba(6,182,212,.35)" stroke-width="1"/>
+    <rect x="156" y="56" width="248" height="22" rx="4" fill="rgba(0,159,227,.1)" stroke="rgba(0,159,227,.35)" stroke-width="1"/>
     <text x="280" y="71" text-anchor="middle" class="v19" font-size="10" font-weight="700">📖 Definitions</text>
     <rect x="156" y="86" width="248" height="22" rx="4" fill="rgba(34,197,94,.1)" stroke="rgba(34,197,94,.35)" stroke-width="1"/>
     <text x="280" y="101" text-anchor="middle" class="v19" font-size="10" font-weight="700">✅ Acceptable Uses</text>
@@ -1250,8 +1250,8 @@ var SLIDE_VISUALS = {
     <defs>
       <style>.v21{font-family:system-ui,sans-serif;fill:currentColor}</style>
       <linearGradient id="spg" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#06b6d4" stop-opacity=".6"/>
-        <stop offset="100%" stop-color="#6366f1" stop-opacity=".8"/>
+        <stop offset="0%" stop-color="#009fe3" stop-opacity=".6"/>
+        <stop offset="100%" stop-color="#9b1844" stop-opacity=".8"/>
       </linearGradient>
       <marker id="arr21" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
         <polygon points="0 0,8 3,0 6" fill="url(#spg)"/>
@@ -1262,24 +1262,24 @@ var SLIDE_VISUALS = {
     <rect x="40" y="70" width="480" height="14" rx="7" fill="url(#spg)" opacity=".25"/>
     <line x1="40" y1="77" x2="510" y2="77" stroke="url(#spg)" stroke-width="2.5" marker-end="url(#arr21)"/>
     <!-- Stage markers -->
-    <circle cx="80"  cy="77" r="18" fill="rgba(6,182,212,.15)"  stroke="rgba(6,182,212,.5)"  stroke-width="1.5"/>
+    <circle cx="80"  cy="77" r="18" fill="rgba(0,159,227,.15)"  stroke="rgba(0,159,227,.5)"  stroke-width="1.5"/>
     <text x="80"  y="73" text-anchor="middle" class="v21" font-size="16">👤</text>
     <text x="80"  y="108" text-anchor="middle" class="v21" font-size="9" font-weight="700">Consumer</text>
     <text x="80"  y="120" text-anchor="middle" class="v21" font-size="8" opacity=".6">Uses AI outputs</text>
 
-    <circle cx="200" cy="77" r="18" fill="rgba(99,102,241,.12)" stroke="rgba(99,102,241,.4)"  stroke-width="1.5"/>
+    <circle cx="200" cy="77" r="18" fill="rgba(155,24,68,.12)" stroke="rgba(155,24,68,.4)"  stroke-width="1.5"/>
     <text x="200" y="73" text-anchor="middle" class="v21" font-size="16">🔍</text>
     <text x="200" y="108" text-anchor="middle" class="v21" font-size="9" font-weight="700">Evaluator</text>
     <text x="200" y="120" text-anchor="middle" class="v21" font-size="8" opacity=".6">Questions &amp; tests</text>
 
-    <circle cx="320" cy="77" r="18" fill="rgba(99,102,241,.14)" stroke="rgba(99,102,241,.45)" stroke-width="1.5"/>
+    <circle cx="320" cy="77" r="18" fill="rgba(155,24,68,.14)" stroke="rgba(155,24,68,.45)" stroke-width="1.5"/>
     <text x="320" y="73" text-anchor="middle" class="v21" font-size="16">⚙️</text>
     <text x="320" y="108" text-anchor="middle" class="v21" font-size="9" font-weight="700">Customiser</text>
     <text x="320" y="120" text-anchor="middle" class="v21" font-size="8" opacity=".6">Adapts &amp; refines</text>
 
-    <circle cx="460" cy="77" r="20" fill="rgba(99,102,241,.22)" stroke="rgba(99,102,241,.65)" stroke-width="2"/>
+    <circle cx="460" cy="77" r="20" fill="rgba(155,24,68,.22)" stroke="rgba(155,24,68,.65)" stroke-width="2"/>
     <text x="460" y="73" text-anchor="middle" class="v21" font-size="18">🛠</text>
-    <text x="460" y="108" text-anchor="middle" class="v21" font-size="9" font-weight="800" fill="#818cf8">Co-Creator</text>
+    <text x="460" y="108" text-anchor="middle" class="v21" font-size="9" font-weight="800" fill="#c04572">Co-Creator</text>
     <text x="460" y="120" text-anchor="middle" class="v21" font-size="8" opacity=".6">Builds with AI</text>
 
     <text x="280" y="158" text-anchor="middle" class="v21" font-size="9" opacity=".5" font-style="italic">The capstone moves you from the left end to the right end of this spectrum</text>
@@ -1294,7 +1294,7 @@ var SLIDE_VISUALS = {
       </marker>
     </defs>
     <!-- Start -->
-    <ellipse cx="100" cy="30" rx="60" ry="18" fill="rgba(99,102,241,.18)" stroke="rgba(99,102,241,.55)" stroke-width="1.5"/>
+    <ellipse cx="100" cy="30" rx="60" ry="18" fill="rgba(155,24,68,.18)" stroke="rgba(155,24,68,.55)" stroke-width="1.5"/>
     <text x="100" y="35" text-anchor="middle" class="v26" font-size="10" font-weight="700">Start / Input</text>
     <!-- Arrow down -->
     <line x1="100" y1="48" x2="100" y2="68" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#arr26)"/>
@@ -1322,7 +1322,7 @@ var SLIDE_VISUALS = {
     <text x="430" y="95" text-anchor="middle" class="v26" font-size="9">Unexpected type</text>
     <rect x="365" y="112" width="130" height="26" rx="5" fill="rgba(245,158,11,.1)" stroke="rgba(245,158,11,.4)" stroke-width="1"/>
     <text x="430" y="129" text-anchor="middle" class="v26" font-size="9">Adversarial input</text>
-    <rect x="220" y="148" width="275" height="26" rx="5" fill="rgba(99,102,241,.1)" stroke="rgba(99,102,241,.35)" stroke-width="1"/>
+    <rect x="220" y="148" width="275" height="26" rx="5" fill="rgba(155,24,68,.1)" stroke="rgba(155,24,68,.35)" stroke-width="1"/>
     <text x="357" y="165" text-anchor="middle" class="v26" font-size="9">API failure / timeout — graceful fallback?</text>
     <text x="280" y="194" text-anchor="middle" class="v26" font-size="8.5" opacity=".5" font-style="italic">Plan every branch before you write a line of code</text>
   </svg>`,
@@ -1332,14 +1332,14 @@ var SLIDE_VISUALS = {
     <defs><style>.v27{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
     <text x="280" y="18" text-anchor="middle" class="v27" font-size="12" font-weight="800">What Sprint 0 Builds</text>
     <!-- Layer 5 (top — future) -->
-    <rect x="160" y="30" width="240" height="28" rx="6" fill="rgba(99,102,241,.07)" stroke="rgba(99,102,241,.2)" stroke-width="1" stroke-dasharray="5 3"/>
+    <rect x="160" y="30" width="240" height="28" rx="6" fill="rgba(155,24,68,.07)" stroke="rgba(155,24,68,.2)" stroke-width="1" stroke-dasharray="5 3"/>
     <text x="280" y="49" text-anchor="middle" class="v27" font-size="10" opacity=".5" font-style="italic">Future features (later sprints)</text>
     <!-- Layer 4 -->
     <rect x="120" y="62" width="320" height="28" rx="6" fill="rgba(168,85,247,.1)" stroke="rgba(168,85,247,.35)" stroke-width="1.2"/>
     <text x="280" y="78" text-anchor="middle" class="v27" font-size="10" font-weight="700">🎨 UI / Interface skeleton</text>
     <text x="280" y="88" text-anchor="middle" class="v27" font-size="8" opacity=".6">Screens, navigation, basic layout</text>
     <!-- Layer 3 -->
-    <rect x="80" y="96" width="400" height="28" rx="6" fill="rgba(6,182,212,.1)" stroke="rgba(6,182,212,.38)" stroke-width="1.2"/>
+    <rect x="80" y="96" width="400" height="28" rx="6" fill="rgba(0,159,227,.1)" stroke="rgba(0,159,227,.38)" stroke-width="1.2"/>
     <text x="280" y="112" text-anchor="middle" class="v27" font-size="10" font-weight="700">🔌 API &amp; Prompt connections</text>
     <text x="280" y="122" text-anchor="middle" class="v27" font-size="8" opacity=".6">LLM calls, data sources, error handling</text>
     <!-- Layer 2 -->
@@ -1347,7 +1347,7 @@ var SLIDE_VISUALS = {
     <text x="280" y="146" text-anchor="middle" class="v27" font-size="10" font-weight="700">🧠 Core logic &amp; data flow</text>
     <text x="280" y="156" text-anchor="middle" class="v27" font-size="8" opacity=".6">What your tool actually does — without fluff</text>
     <!-- Layer 1 (foundation) -->
-    <rect x="10" y="164" width="540" height="28" rx="6" fill="rgba(99,102,241,.2)" stroke="rgba(99,102,241,.55)" stroke-width="1.8"/>
+    <rect x="10" y="164" width="540" height="28" rx="6" fill="rgba(155,24,68,.2)" stroke="rgba(155,24,68,.55)" stroke-width="1.8"/>
     <text x="280" y="180" text-anchor="middle" class="v27" font-size="11" font-weight="800">🏗 Project setup &amp; structure</text>
     <text x="280" y="190" text-anchor="middle" class="v27" font-size="8" opacity=".65">Repo · environment · dependencies · naming conventions</text>
   </svg>`,
@@ -1363,20 +1363,20 @@ var SLIDE_VISUALS = {
     </defs>
     <text x="280" y="18" text-anchor="middle" class="v28" font-size="12" font-weight="800">The Peer Review Cycle</text>
     <!-- Builder -->
-    <rect x="30" y="60" width="120" height="70" rx="10" fill="rgba(99,102,241,.14)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
+    <rect x="30" y="60" width="120" height="70" rx="10" fill="rgba(155,24,68,.14)" stroke="rgba(155,24,68,.5)" stroke-width="1.5"/>
     <text x="90" y="88" text-anchor="middle" class="v28" font-size="22">🛠</text>
     <text x="90" y="108" text-anchor="middle" class="v28" font-size="11" font-weight="700">Builder</text>
     <text x="90" y="121" text-anchor="middle" class="v28" font-size="9" opacity=".65">Shares work</text>
     <!-- Reviewer -->
-    <rect x="410" y="60" width="120" height="70" rx="10" fill="rgba(6,182,212,.12)" stroke="rgba(6,182,212,.5)" stroke-width="1.5"/>
+    <rect x="410" y="60" width="120" height="70" rx="10" fill="rgba(0,159,227,.12)" stroke="rgba(0,159,227,.5)" stroke-width="1.5"/>
     <text x="470" y="88" text-anchor="middle" class="v28" font-size="22">🔍</text>
     <text x="470" y="108" text-anchor="middle" class="v28" font-size="11" font-weight="700">Reviewer</text>
     <text x="470" y="121" text-anchor="middle" class="v28" font-size="9" opacity=".65">Gives feedback</text>
     <!-- Top arrow: share work -->
-    <path d="M150,82 Q280,40 410,82" fill="none" stroke="rgba(99,102,241,.5)" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#a28)"/>
+    <path d="M150,82 Q280,40 410,82" fill="none" stroke="rgba(155,24,68,.5)" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#a28)"/>
     <text x="280" y="50" text-anchor="middle" class="v28" font-size="9" font-weight="700" opacity=".8">Share deliverable →</text>
     <!-- Bottom arrow: feedback -->
-    <path d="M410,112 Q280,158 150,112" fill="none" stroke="rgba(6,182,212,.5)" stroke-width="1.8" marker-end="url(#a28)"/>
+    <path d="M410,112 Q280,158 150,112" fill="none" stroke="rgba(0,159,227,.5)" stroke-width="1.8" marker-end="url(#a28)"/>
     <text x="280" y="165" text-anchor="middle" class="v28" font-size="9" font-weight="700" opacity=".8">← Structured feedback</text>
     <!-- Centre: criteria labels -->
     <text x="280" y="86" text-anchor="middle" class="v28" font-size="8.5" opacity=".65">What works · What's unclear</text>
@@ -1388,13 +1388,13 @@ var SLIDE_VISUALS = {
     <defs><style>.v29{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
     <text x="280" y="18" text-anchor="middle" class="v29" font-size="12" font-weight="800">Your Sprint Board</text>
     <!-- Column: To Do -->
-    <rect x="20" y="28" width="158" height="148" rx="8" fill="rgba(99,102,241,.06)" stroke="rgba(99,102,241,.25)" stroke-width="1.2"/>
+    <rect x="20" y="28" width="158" height="148" rx="8" fill="rgba(155,24,68,.06)" stroke="rgba(155,24,68,.25)" stroke-width="1.2"/>
     <text x="99" y="46" text-anchor="middle" class="v29" font-size="10" font-weight="700" opacity=".7">📋 TO DO</text>
-    <rect x="30" y="54" width="138" height="24" rx="5" fill="rgba(99,102,241,.12)" stroke="rgba(99,102,241,.3)" stroke-width="1"/>
+    <rect x="30" y="54" width="138" height="24" rx="5" fill="rgba(155,24,68,.12)" stroke="rgba(155,24,68,.3)" stroke-width="1"/>
     <text x="99" y="70" text-anchor="middle" class="v29" font-size="9">Add prompt error handling</text>
-    <rect x="30" y="84" width="138" height="24" rx="5" fill="rgba(99,102,241,.12)" stroke="rgba(99,102,241,.3)" stroke-width="1"/>
+    <rect x="30" y="84" width="138" height="24" rx="5" fill="rgba(155,24,68,.12)" stroke="rgba(155,24,68,.3)" stroke-width="1"/>
     <text x="99" y="100" text-anchor="middle" class="v29" font-size="9">Write unit tests</text>
-    <rect x="30" y="114" width="138" height="24" rx="5" fill="rgba(99,102,241,.12)" stroke="rgba(99,102,241,.3)" stroke-width="1"/>
+    <rect x="30" y="114" width="138" height="24" rx="5" fill="rgba(155,24,68,.12)" stroke="rgba(155,24,68,.3)" stroke-width="1"/>
     <text x="99" y="130" text-anchor="middle" class="v29" font-size="9">Update sprint diary</text>
     <!-- Column: Doing -->
     <rect x="191" y="28" width="158" height="148" rx="8" fill="rgba(245,158,11,.06)" stroke="rgba(245,158,11,.3)" stroke-width="1.2"/>
@@ -1421,12 +1421,12 @@ var SLIDE_VISUALS = {
     </defs>
     <text x="280" y="18" text-anchor="middle" class="v30" font-size="12" font-weight="800">Integrating Feedback</text>
     <!-- Three circles in triangle -->
-    <circle cx="140" cy="90"  r="52" fill="rgba(99,102,241,.1)"  stroke="rgba(99,102,241,.45)" stroke-width="1.8"/>
+    <circle cx="140" cy="90"  r="52" fill="rgba(155,24,68,.1)"  stroke="rgba(155,24,68,.45)" stroke-width="1.8"/>
     <text x="140" y="83" text-anchor="middle" class="v30" font-size="20">🛠</text>
     <text x="140" y="103" text-anchor="middle" class="v30" font-size="11" font-weight="700">Build</text>
     <text x="140" y="117" text-anchor="middle" class="v30" font-size="8.5" opacity=".65">Add &amp; improve</text>
 
-    <circle cx="420" cy="90"  r="52" fill="rgba(6,182,212,.1)"   stroke="rgba(6,182,212,.45)"  stroke-width="1.8"/>
+    <circle cx="420" cy="90"  r="52" fill="rgba(0,159,227,.1)"   stroke="rgba(0,159,227,.45)"  stroke-width="1.8"/>
     <text x="420" y="83" text-anchor="middle" class="v30" font-size="20">💬</text>
     <text x="420" y="103" text-anchor="middle" class="v30" font-size="11" font-weight="700">Review</text>
     <text x="420" y="117" text-anchor="middle" class="v30" font-size="8.5" opacity=".65">Peer + self critique</text>
@@ -1455,11 +1455,11 @@ var SLIDE_VISUALS = {
     <text x="280" y="116" text-anchor="middle" class="v31" font-size="11" font-weight="700">🔗 Integration tests</text>
     <text x="280" y="128" text-anchor="middle" class="v31" font-size="8.5" opacity=".65">Do the parts work together?</text>
     <!-- Layer 3: User -->
-    <polygon points="190,93 370,93 330,57 230,57" fill="rgba(6,182,212,.14)" stroke="rgba(6,182,212,.5)" stroke-width="1.5"/>
+    <polygon points="190,93 370,93 330,57 230,57" fill="rgba(0,159,227,.14)" stroke="rgba(0,159,227,.5)" stroke-width="1.5"/>
     <text x="280" y="78" text-anchor="middle" class="v31" font-size="10" font-weight="700">👤 User tests</text>
     <text x="280" y="89" text-anchor="middle" class="v31" font-size="8" opacity=".65">Can a real person use it?</text>
     <!-- Apex -->
-    <polygon points="230,55 330,55 280,28" fill="rgba(99,102,241,.2)" stroke="rgba(99,102,241,.6)" stroke-width="1.5"/>
+    <polygon points="230,55 330,55 280,28" fill="rgba(155,24,68,.2)" stroke="rgba(155,24,68,.6)" stroke-width="1.5"/>
     <text x="280" y="46" text-anchor="middle" class="v31" font-size="9" font-weight="800">🎯 Goal</text>
     <text x="500" y="160" class="v31" font-size="8" opacity=".5">More</text>
     <text x="500" y="100" class="v31" font-size="8" opacity=".5">↑</text>
@@ -1472,7 +1472,7 @@ var SLIDE_VISUALS = {
     <text x="280" y="18" text-anchor="middle" class="v32" font-size="12" font-weight="800">Pre-Audit Checklist</text>
     <!-- Two-column grid -->
     <!-- Left column -->
-    <rect x="20" y="28" width="250" height="152" rx="8" fill="rgba(99,102,241,.06)" stroke="rgba(99,102,241,.25)" stroke-width="1.2"/>
+    <rect x="20" y="28" width="250" height="152" rx="8" fill="rgba(155,24,68,.06)" stroke="rgba(155,24,68,.25)" stroke-width="1.2"/>
     <text x="145" y="46" text-anchor="middle" class="v32" font-size="10" font-weight="700">⚙️ Functionality</text>
     <text x="36" y="66" class="v32" font-size="9">☐  Core feature works end-to-end</text>
     <text x="36" y="84" class="v32" font-size="9">☐  Edge cases handled gracefully</text>
@@ -1481,7 +1481,7 @@ var SLIDE_VISUALS = {
     <text x="36" y="142" class="v32" font-size="9">☐  A stranger can use it without help</text>
     <text x="36" y="160" class="v32" font-size="9">☐  Output is clear &amp; formatted</text>
     <!-- Right column -->
-    <rect x="290" y="28" width="250" height="152" rx="8" fill="rgba(99,102,241,.06)" stroke="rgba(99,102,241,.25)" stroke-width="1.2"/>
+    <rect x="290" y="28" width="250" height="152" rx="8" fill="rgba(155,24,68,.06)" stroke="rgba(155,24,68,.25)" stroke-width="1.2"/>
     <text x="415" y="46" text-anchor="middle" class="v32" font-size="10" font-weight="700">⚖️ Ethics</text>
     <text x="306" y="66" class="v32" font-size="9">☐  No harmful output possible</text>
     <text x="306" y="84" class="v32" font-size="9">☐  Bias considered &amp; documented</text>
@@ -1510,7 +1510,7 @@ var SLIDE_VISUALS = {
 
     <line x1="98"  y1="75" x2="116" y2="75" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a33)"/>
 
-    <rect x="118" y="40" width="88" height="70" rx="8" fill="rgba(6,182,212,.12)"   stroke="rgba(6,182,212,.45)"   stroke-width="1.5"/>
+    <rect x="118" y="40" width="88" height="70" rx="8" fill="rgba(0,159,227,.12)"   stroke="rgba(0,159,227,.45)"   stroke-width="1.5"/>
     <text x="162" y="65" text-anchor="middle" class="v33" font-size="18">📄</text>
     <text x="162" y="83" text-anchor="middle" class="v33" font-size="9.5" font-weight="700">Sprint</text>
     <text x="162" y="95" text-anchor="middle" class="v33" font-size="9.5" font-weight="700">Diary</text>
@@ -1531,7 +1531,7 @@ var SLIDE_VISUALS = {
 
     <line x1="422" y1="75" x2="440" y2="75" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a33)"/>
 
-    <rect x="442" y="40" width="108" height="70" rx="8" fill="rgba(99,102,241,.18)"  stroke="rgba(99,102,241,.55)"  stroke-width="2"/>
+    <rect x="442" y="40" width="108" height="70" rx="8" fill="rgba(155,24,68,.18)"  stroke="rgba(155,24,68,.55)"  stroke-width="2"/>
     <text x="496" y="65" text-anchor="middle" class="v33" font-size="18">🏆</text>
     <text x="496" y="83" text-anchor="middle" class="v33" font-size="9.5" font-weight="700">Submission</text>
     <text x="496" y="95" text-anchor="middle" class="v33" font-size="8" opacity=".65">Complete &amp; polished</text>
@@ -1544,13 +1544,13 @@ var SLIDE_VISUALS = {
     <defs><style>.v35{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
     <text x="280" y="18" text-anchor="middle" class="v35" font-size="12" font-weight="800">Pitch Deck Structure</text>
     <!-- Five slide thumbnails -->
-    <rect x="12"  y="30" width="92" height="68" rx="6" fill="rgba(99,102,241,.15)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
+    <rect x="12"  y="30" width="92" height="68" rx="6" fill="rgba(155,24,68,.15)" stroke="rgba(155,24,68,.5)" stroke-width="1.5"/>
     <text x="58"  y="55" text-anchor="middle" class="v35" font-size="20">🎯</text>
     <text x="58"  y="73" text-anchor="middle" class="v35" font-size="9"  font-weight="700">The Problem</text>
     <text x="58"  y="85" text-anchor="middle" class="v35" font-size="7.5" opacity=".6">Who suffers &amp; why?</text>
     <text x="58"  y="112" text-anchor="middle" class="v35" font-size="9"  opacity=".6">1</text>
 
-    <rect x="118" y="30" width="92" height="68" rx="6" fill="rgba(6,182,212,.12)"  stroke="rgba(6,182,212,.5)"  stroke-width="1.5"/>
+    <rect x="118" y="30" width="92" height="68" rx="6" fill="rgba(0,159,227,.12)"  stroke="rgba(0,159,227,.5)"  stroke-width="1.5"/>
     <text x="164" y="55" text-anchor="middle" class="v35" font-size="20">💡</text>
     <text x="164" y="73" text-anchor="middle" class="v35" font-size="9"  font-weight="700">Your Solution</text>
     <text x="164" y="85" text-anchor="middle" class="v35" font-size="7.5" opacity=".6">What it does</text>
@@ -1590,13 +1590,13 @@ var SLIDE_VISUALS = {
     <!-- Timeline bar -->
     <line x1="40" y1="85" x2="520" y2="85" stroke="currentColor" stroke-opacity=".25" stroke-width="2" marker-end="url(#a36)"/>
     <!-- Segment 1 -->
-    <circle cx="80"  cy="85" r="14" fill="rgba(99,102,241,.2)"  stroke="rgba(99,102,241,.55)" stroke-width="1.5"/>
+    <circle cx="80"  cy="85" r="14" fill="rgba(155,24,68,.2)"  stroke="rgba(155,24,68,.55)" stroke-width="1.5"/>
     <text x="80"  y="90" text-anchor="middle" class="v36" font-size="10" font-weight="800">1</text>
     <text x="80"  y="112" text-anchor="middle" class="v36" font-size="9" font-weight="700">Full run</text>
     <text x="80"  y="124" text-anchor="middle" class="v36" font-size="8" opacity=".6">No stopping</text>
     <text x="80"  y="60"  text-anchor="middle" class="v36" font-size="8" opacity=".5">~8 min</text>
     <!-- Segment 2 -->
-    <circle cx="210" cy="85" r="14" fill="rgba(6,182,212,.18)"  stroke="rgba(6,182,212,.55)"  stroke-width="1.5"/>
+    <circle cx="210" cy="85" r="14" fill="rgba(0,159,227,.18)"  stroke="rgba(0,159,227,.55)"  stroke-width="1.5"/>
     <text x="210" y="90" text-anchor="middle" class="v36" font-size="10" font-weight="800">2</text>
     <text x="210" y="112" text-anchor="middle" class="v36" font-size="9" font-weight="700">Self-assess</text>
     <text x="210" y="124" text-anchor="middle" class="v36" font-size="8" opacity=".6">What felt off?</text>
@@ -1621,13 +1621,13 @@ var SLIDE_VISUALS = {
     <defs><style>.v37{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
     <text x="280" y="18" text-anchor="middle" class="v37" font-size="12" font-weight="800">What the Panel Is Looking For</text>
     <!-- Four criteria boxes -->
-    <rect x="20"  y="30" width="242" height="64" rx="8" fill="rgba(99,102,241,.1)"  stroke="rgba(99,102,241,.4)" stroke-width="1.5"/>
+    <rect x="20"  y="30" width="242" height="64" rx="8" fill="rgba(155,24,68,.1)"  stroke="rgba(155,24,68,.4)" stroke-width="1.5"/>
     <text x="36"  y="52" class="v37" font-size="22">🎯</text>
     <text x="68"  y="50" class="v37" font-size="10" font-weight="700">Clarity of problem &amp; solution</text>
     <text x="68"  y="64" class="v37" font-size="8.5" opacity=".65">Does the panel understand what you built</text>
     <text x="68"  y="76" class="v37" font-size="8.5" opacity=".65">and why it matters?</text>
 
-    <rect x="298" y="30" width="242" height="64" rx="8" fill="rgba(6,182,212,.1)"   stroke="rgba(6,182,212,.4)"  stroke-width="1.5"/>
+    <rect x="298" y="30" width="242" height="64" rx="8" fill="rgba(0,159,227,.1)"   stroke="rgba(0,159,227,.4)"  stroke-width="1.5"/>
     <text x="314" y="52" class="v37" font-size="22">🖥</text>
     <text x="346" y="50" class="v37" font-size="10" font-weight="700">Demo quality</text>
     <text x="346" y="64" class="v37" font-size="8.5" opacity=".65">Does it work live? Is output meaningful?</text>
@@ -1651,7 +1651,7 @@ var SLIDE_VISUALS = {
     <defs><style>.v38{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
     <text x="280" y="18" text-anchor="middle" class="v38" font-size="12" font-weight="800">Presentation Day — What to Remember</text>
     <!-- Three tip cards -->
-    <rect x="20"  y="30" width="158" height="140" rx="10" fill="rgba(99,102,241,.1)"  stroke="rgba(99,102,241,.4)" stroke-width="1.5"/>
+    <rect x="20"  y="30" width="158" height="140" rx="10" fill="rgba(155,24,68,.1)"  stroke="rgba(155,24,68,.4)" stroke-width="1.5"/>
     <text x="99"  y="58" text-anchor="middle" class="v38" font-size="28">🧘</text>
     <text x="99"  y="80" text-anchor="middle" class="v38" font-size="11" font-weight="800">Before</text>
     <text x="99"  y="96" text-anchor="middle" class="v38" font-size="8.5" opacity=".7">Test your demo on</text>
@@ -1685,23 +1685,23 @@ var SLIDE_VISUALS = {
     <defs><style>.v39{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
     <text x="280" y="18" text-anchor="middle" class="v39" font-size="12" font-weight="800">Viva Question Types — Be Ready for All Three</text>
     <!-- Three columns -->
-    <rect x="18"  y="30" width="162" height="140" rx="9" fill="rgba(6,182,212,.1)"   stroke="rgba(6,182,212,.45)"  stroke-width="1.5"/>
+    <rect x="18"  y="30" width="162" height="140" rx="9" fill="rgba(0,159,227,.1)"   stroke="rgba(0,159,227,.45)"  stroke-width="1.5"/>
     <text x="99"  y="56" text-anchor="middle" class="v39" font-size="24">📖</text>
     <text x="99"  y="76" text-anchor="middle" class="v39" font-size="11" font-weight="700">Knowledge</text>
     <text x="99"  y="92" text-anchor="middle" class="v39" font-size="8.5" opacity=".7">"What does X mean?"</text>
     <text x="99"  y="106" text-anchor="middle" class="v39" font-size="8.5" opacity=".7">"How does Y work?"</text>
     <text x="99"  y="124" text-anchor="middle" class="v39" font-size="8" opacity=".55" font-style="italic">Can you explain your</text>
     <text x="99"  y="136" text-anchor="middle" class="v39" font-size="8" opacity=".55" font-style="italic">own design choices?</text>
-    <text x="99"  y="158" text-anchor="middle" class="v39" font-size="9" fill="#06b6d4" font-weight="700">→ Know your project</text>
+    <text x="99"  y="158" text-anchor="middle" class="v39" font-size="9" fill="#009fe3" font-weight="700">→ Know your project</text>
 
-    <rect x="199" y="30" width="162" height="140" rx="9" fill="rgba(99,102,241,.1)"  stroke="rgba(99,102,241,.45)" stroke-width="1.5"/>
+    <rect x="199" y="30" width="162" height="140" rx="9" fill="rgba(155,24,68,.1)"  stroke="rgba(155,24,68,.45)" stroke-width="1.5"/>
     <text x="280" y="56" text-anchor="middle" class="v39" font-size="24">🔧</text>
     <text x="280" y="76" text-anchor="middle" class="v39" font-size="11" font-weight="700">Application</text>
     <text x="280" y="92" text-anchor="middle" class="v39" font-size="8.5" opacity=".7">"What if X went wrong?"</text>
     <text x="280" y="106" text-anchor="middle" class="v39" font-size="8.5" opacity=".7">"How would you improve it?"</text>
     <text x="280" y="124" text-anchor="middle" class="v39" font-size="8" opacity=".55" font-style="italic">Can you think on your</text>
     <text x="280" y="136" text-anchor="middle" class="v39" font-size="8" opacity=".55" font-style="italic">feet under pressure?</text>
-    <text x="280" y="158" text-anchor="middle" class="v39" font-size="9" fill="#818cf8" font-weight="700">→ Think aloud</text>
+    <text x="280" y="158" text-anchor="middle" class="v39" font-size="9" fill="#c04572" font-weight="700">→ Think aloud</text>
 
     <rect x="380" y="30" width="162" height="140" rx="9" fill="rgba(245,158,11,.1)"  stroke="rgba(245,158,11,.45)" stroke-width="1.5"/>
     <text x="461" y="56" text-anchor="middle" class="v39" font-size="24">🪞</text>
@@ -1735,13 +1735,13 @@ var SLIDE_VISUALS = {
 
     <line x1="210" y1="80" x2="228" y2="80" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a40)"/>
 
-    <rect x="230" y="55" width="100" height="50" rx="8" fill="rgba(99,102,241,.13)"  stroke="rgba(99,102,241,.45)"  stroke-width="1.5"/>
+    <rect x="230" y="55" width="100" height="50" rx="8" fill="rgba(155,24,68,.13)"  stroke="rgba(155,24,68,.45)"  stroke-width="1.5"/>
     <text x="280" y="76" text-anchor="middle" class="v40" font-size="20">🗂</text>
     <text x="280" y="95" text-anchor="middle" class="v40" font-size="9" font-weight="700">Structure first</text>
 
     <line x1="330" y1="80" x2="348" y2="80" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a40)"/>
 
-    <rect x="350" y="55" width="85" height="50" rx="8" fill="rgba(6,182,212,.12)"   stroke="rgba(6,182,212,.45)"   stroke-width="1.5"/>
+    <rect x="350" y="55" width="85" height="50" rx="8" fill="rgba(0,159,227,.12)"   stroke="rgba(0,159,227,.45)"   stroke-width="1.5"/>
     <text x="392" y="76" text-anchor="middle" class="v40" font-size="20">💬</text>
     <text x="392" y="95" text-anchor="middle" class="v40" font-size="9" font-weight="700">Answer clearly</text>
 
@@ -1795,13 +1795,13 @@ var SLIDE_VISUALS = {
     </defs>
     <text x="280" y="18" text-anchor="middle" class="v42" font-size="12" font-weight="800">AI-Assisted Writing — The Right Way</text>
     <!-- Step 1: Your raw draft -->
-    <rect x="10" y="38" width="110" height="60" rx="8" fill="rgba(99,102,241,.14)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
+    <rect x="10" y="38" width="110" height="60" rx="8" fill="rgba(155,24,68,.14)" stroke="rgba(155,24,68,.5)" stroke-width="1.5"/>
     <text x="65" y="62" text-anchor="middle" class="v42" font-size="20">✍️</text>
     <text x="65" y="80" text-anchor="middle" class="v42" font-size="9" font-weight="700">Your first draft</text>
     <text x="65" y="92" text-anchor="middle" class="v42" font-size="8" opacity=".6">Authentic voice</text>
     <line x1="120" y1="68" x2="138" y2="68" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a42)"/>
     <!-- Step 2: AI suggestions -->
-    <rect x="140" y="38" width="110" height="60" rx="8" fill="rgba(6,182,212,.12)"  stroke="rgba(6,182,212,.45)"  stroke-width="1.5"/>
+    <rect x="140" y="38" width="110" height="60" rx="8" fill="rgba(0,159,227,.12)"  stroke="rgba(0,159,227,.45)"  stroke-width="1.5"/>
     <text x="195" y="62" text-anchor="middle" class="v42" font-size="20">🤖</text>
     <text x="195" y="80" text-anchor="middle" class="v42" font-size="9" font-weight="700">AI feedback</text>
     <text x="195" y="92" text-anchor="middle" class="v42" font-size="8" opacity=".6">Structure · Clarity</text>
@@ -1848,9 +1848,9 @@ var SLIDE_VISUALS = {
     <text x="280" y="134" text-anchor="middle" class="v43" font-size="8.5" opacity=".7">you leave behind?</text>
     <text x="280" y="160" text-anchor="middle" class="v43" font-size="8" opacity=".5" font-style="italic">e.g. accepting AI blindly</text>
 
-    <rect x="380" y="30" width="162" height="145" rx="9" fill="rgba(99,102,241,.1)"  stroke="rgba(99,102,241,.45)" stroke-width="1.5"/>
+    <rect x="380" y="30" width="162" height="145" rx="9" fill="rgba(155,24,68,.1)"  stroke="rgba(155,24,68,.45)" stroke-width="1.5"/>
     <text x="461" y="58" text-anchor="middle" class="v43" font-size="28">🔁</text>
-    <text x="461" y="80" text-anchor="middle" class="v43" font-size="13" font-weight="800" fill="#818cf8">CONTINUE</text>
+    <text x="461" y="80" text-anchor="middle" class="v43" font-size="13" font-weight="800" fill="#c04572">CONTINUE</text>
     <text x="461" y="98" text-anchor="middle" class="v43" font-size="8.5" opacity=".7">Which skills from this</text>
     <text x="461" y="110" text-anchor="middle" class="v43" font-size="8.5" opacity=".7">course are most worth</text>
     <text x="461" y="122" text-anchor="middle" class="v43" font-size="8.5" opacity=".7">keeping? What will you</text>
@@ -1867,14 +1867,14 @@ var SLIDE_VISUALS = {
     <line x1="280" y1="28" x2="280" y2="178" stroke="currentColor" stroke-opacity=".2" stroke-width="1"/>
     <line x1="20"  y1="103" x2="540" y2="103" stroke="currentColor" stroke-opacity=".2" stroke-width="1"/>
 
-    <rect x="22"  y="30"  width="250" height="68" rx="8" fill="rgba(99,102,241,.1)"  stroke="rgba(99,102,241,.4)" stroke-width="1.2"/>
+    <rect x="22"  y="30"  width="250" height="68" rx="8" fill="rgba(155,24,68,.1)"  stroke="rgba(155,24,68,.4)" stroke-width="1.2"/>
     <text x="36"  y="52"  class="v45" font-size="20">🔍</text>
     <text x="70"  y="50"  class="v45" font-size="10" font-weight="700">Evidence</text>
     <text x="70"  y="64"  class="v45" font-size="8.5" opacity=".7">What is the actual claim?</text>
     <text x="70"  y="76"  class="v45" font-size="8.5" opacity=".7">Is there verifiable evidence?</text>
     <text x="70"  y="88"  class="v45" font-size="8.5" opacity=".7">How recent is it?</text>
 
-    <rect x="288" y="30"  width="250" height="68" rx="8" fill="rgba(6,182,212,.1)"   stroke="rgba(6,182,212,.4)"  stroke-width="1.2"/>
+    <rect x="288" y="30"  width="250" height="68" rx="8" fill="rgba(0,159,227,.1)"   stroke="rgba(0,159,227,.4)"  stroke-width="1.2"/>
     <text x="302" y="52"  class="v45" font-size="20">🏛</text>
     <text x="336" y="50"  class="v45" font-size="10" font-weight="700">Source</text>
     <text x="336" y="64"  class="v45" font-size="8.5" opacity=".7">Who made this claim?</text>
@@ -1907,14 +1907,14 @@ var SLIDE_VISUALS = {
     <text x="280" y="18" text-anchor="middle" class="v46" font-size="13" font-weight="800">The VERIFY Workflow</text>
     <!-- Six steps in two rows -->
     <!-- Row 1 -->
-    <rect x="10"  y="30" width="82" height="62" rx="7" fill="rgba(99,102,241,.16)" stroke="rgba(99,102,241,.55)" stroke-width="1.5"/>
-    <text x="51"  y="52" text-anchor="middle" class="v46" font-size="15" font-weight="900" fill="#818cf8">V</text>
+    <rect x="10"  y="30" width="82" height="62" rx="7" fill="rgba(155,24,68,.16)" stroke="rgba(155,24,68,.55)" stroke-width="1.5"/>
+    <text x="51"  y="52" text-anchor="middle" class="v46" font-size="15" font-weight="900" fill="#c04572">V</text>
     <text x="51"  y="66" text-anchor="middle" class="v46" font-size="9"  font-weight="700">Vet the claim</text>
     <text x="51"  y="78" text-anchor="middle" class="v46" font-size="7.5" opacity=".6">Exact wording?</text>
     <line x1="92" y1="61" x2="107" y2="61" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a46)"/>
 
-    <rect x="109" y="30" width="82" height="62" rx="7" fill="rgba(6,182,212,.13)"   stroke="rgba(6,182,212,.5)"   stroke-width="1.5"/>
-    <text x="150" y="52" text-anchor="middle" class="v46" font-size="15" font-weight="900" fill="#06b6d4">E</text>
+    <rect x="109" y="30" width="82" height="62" rx="7" fill="rgba(0,159,227,.13)"   stroke="rgba(0,159,227,.5)"   stroke-width="1.5"/>
+    <text x="150" y="52" text-anchor="middle" class="v46" font-size="15" font-weight="900" fill="#009fe3">E</text>
     <text x="150" y="66" text-anchor="middle" class="v46" font-size="9"  font-weight="700">Evidence check</text>
     <text x="150" y="78" text-anchor="middle" class="v46" font-size="7.5" opacity=".6">Primary source?</text>
     <line x1="191" y1="61" x2="206" y2="61" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a46)"/>
@@ -1943,7 +1943,7 @@ var SLIDE_VISUALS = {
     <text x="527" y="78" text-anchor="middle" class="v46" font-size="8"  font-weight="700">call</text>
 
     <text x="280" y="120" text-anchor="middle" class="v46" font-size="11" font-weight="800">Verify  ·  Evidence  ·  Recency  ·  Intent  ·  Find consensus  ·  Your call</text>
-    <rect x="20" y="132" width="520" height="38" rx="7" fill="rgba(99,102,241,.07)" stroke="rgba(99,102,241,.2)" stroke-width="1"/>
+    <rect x="20" y="132" width="520" height="38" rx="7" fill="rgba(155,24,68,.07)" stroke="rgba(155,24,68,.2)" stroke-width="1"/>
     <text x="280" y="149" text-anchor="middle" class="v46" font-size="9" opacity=".75">Apply this to every AI-generated claim before you cite it, share it, or act on it.</text>
     <text x="280" y="163" text-anchor="middle" class="v46" font-size="8.5" opacity=".55">If it fails at any step — flag it, don't forward it.</text>
   </svg>`,
@@ -1953,8 +1953,8 @@ var SLIDE_VISUALS = {
     <defs><style>.v47{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
     <text x="280" y="18" text-anchor="middle" class="v47" font-size="13" font-weight="800">SIFT — Your Media Literacy Toolkit</text>
     <!-- Four large cards -->
-    <rect x="10"  y="30" width="126" height="140" rx="9" fill="rgba(99,102,241,.12)"  stroke="rgba(99,102,241,.5)" stroke-width="2"/>
-    <text x="73"  y="62" text-anchor="middle" class="v47" font-size="28" font-weight="900" fill="#818cf8">S</text>
+    <rect x="10"  y="30" width="126" height="140" rx="9" fill="rgba(155,24,68,.12)"  stroke="rgba(155,24,68,.5)" stroke-width="2"/>
+    <text x="73"  y="62" text-anchor="middle" class="v47" font-size="28" font-weight="900" fill="#c04572">S</text>
     <text x="73"  y="82" text-anchor="middle" class="v47" font-size="11" font-weight="800">Stop</text>
     <text x="73"  y="98" text-anchor="middle" class="v47" font-size="8.5" opacity=".7">Pause before</text>
     <text x="73"  y="110" text-anchor="middle" class="v47" font-size="8.5" opacity=".7">you share or react</text>
@@ -1962,8 +1962,8 @@ var SLIDE_VISUALS = {
     <text x="73"  y="140" text-anchor="middle" class="v47" font-size="8" opacity=".5" font-style="italic">triggers fast sharing</text>
     <text x="73"  y="158" text-anchor="middle" class="v47" font-size="8" opacity=".5" font-style="italic">Slow down</text>
 
-    <rect x="144" y="30" width="126" height="140" rx="9" fill="rgba(6,182,212,.11)"   stroke="rgba(6,182,212,.5)"  stroke-width="2"/>
-    <text x="207" y="62" text-anchor="middle" class="v47" font-size="28" font-weight="900" fill="#06b6d4">I</text>
+    <rect x="144" y="30" width="126" height="140" rx="9" fill="rgba(0,159,227,.11)"   stroke="rgba(0,159,227,.5)"  stroke-width="2"/>
+    <text x="207" y="62" text-anchor="middle" class="v47" font-size="28" font-weight="900" fill="#009fe3">I</text>
     <text x="207" y="82" text-anchor="middle" class="v47" font-size="11" font-weight="800">Investigate</text>
     <text x="207" y="98" text-anchor="middle" class="v47" font-size="8.5" opacity=".7">Check the source,</text>
     <text x="207" y="110" text-anchor="middle" class="v47" font-size="8.5" opacity=".7">not just the content</text>
@@ -1998,7 +1998,7 @@ var SLIDE_VISUALS = {
     </defs>
     <text x="280" y="18" text-anchor="middle" class="v49" font-size="12" font-weight="800">How AI-Driven Influence Operations Work</text>
     <!-- Pipeline: 5 stages -->
-    <rect x="10"  y="40" width="90" height="60" rx="7" fill="rgba(99,102,241,.13)"  stroke="rgba(99,102,241,.45)" stroke-width="1.5"/>
+    <rect x="10"  y="40" width="90" height="60" rx="7" fill="rgba(155,24,68,.13)"  stroke="rgba(155,24,68,.45)" stroke-width="1.5"/>
     <text x="55"  y="62" text-anchor="middle" class="v49" font-size="18">🎯</text>
     <text x="55"  y="78" text-anchor="middle" class="v49" font-size="9"  font-weight="700">Target</text>
     <text x="55"  y="90" text-anchor="middle" class="v49" font-size="7.5" opacity=".6">Identify swing</text>
@@ -2052,12 +2052,12 @@ var SLIDE_VISUALS = {
     <text x="280" y="18" text-anchor="middle" class="v50" font-size="12" font-weight="800">Mini-Project — The Process in One Lesson</text>
     <!-- Cycle of 4 stages arranged in a square -->
     <!-- Top-left: Design -->
-    <rect x="60" y="36" width="162" height="60" rx="9" fill="rgba(99,102,241,.14)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
+    <rect x="60" y="36" width="162" height="60" rx="9" fill="rgba(155,24,68,.14)" stroke="rgba(155,24,68,.5)" stroke-width="1.5"/>
     <text x="141" y="60" text-anchor="middle" class="v50" font-size="22">🎯</text>
     <text x="141" y="78" text-anchor="middle" class="v50" font-size="11" font-weight="700">1. Design</text>
     <text x="141" y="90" text-anchor="middle" class="v50" font-size="8" opacity=".65">Problem · User · Scope</text>
     <!-- Top-right: Prompt & Build -->
-    <rect x="338" y="36" width="162" height="60" rx="9" fill="rgba(6,182,212,.13)"  stroke="rgba(6,182,212,.5)"  stroke-width="1.5"/>
+    <rect x="338" y="36" width="162" height="60" rx="9" fill="rgba(0,159,227,.13)"  stroke="rgba(0,159,227,.5)"  stroke-width="1.5"/>
     <text x="419" y="60" text-anchor="middle" class="v50" font-size="22">✍️</text>
     <text x="419" y="78" text-anchor="middle" class="v50" font-size="11" font-weight="700">2. Prompt &amp; Build</text>
     <text x="419" y="90" text-anchor="middle" class="v50" font-size="8" opacity=".65">PTFC · Iterate · Create</text>

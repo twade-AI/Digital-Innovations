@@ -6,10 +6,13 @@
   <title>Digital Innovations AEP — Academic Extension Programme</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/lesson.css">
+  <link rel="stylesheet" href="css/brand.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="apple-touch-icon" href="assets/brand/logo/haileybury-magenta.png">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#6366f1">
+  <meta name="theme-color" content="#9b1844">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <!-- Supabase SDK (loaded async; auth features degrade gracefully offline) -->
@@ -23,20 +26,8 @@
   <!-- Navigation -->
   <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
-      <a href="#" class="nav-brand" onclick="showSection('home')" aria-label="Digital Innovations — home">
-        <svg class="brand-logo" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle cx="18" cy="18" r="17" stroke="url(#lg)" stroke-width="2"/>
-          <path d="M12 14l4 8 4-6 3 4" stroke="url(#lg2)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="25" cy="11" r="2.5" fill="#6366f1"/>
-          <defs>
-            <linearGradient id="lg" x1="1" y1="1" x2="35" y2="35" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#6366f1"/><stop offset="1" stop-color="#06b6d4"/>
-            </linearGradient>
-            <linearGradient id="lg2" x1="12" y1="14" x2="25" y2="22" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#6366f1"/><stop offset="1" stop-color="#06b6d4"/>
-            </linearGradient>
-          </defs>
-        </svg>
+      <a href="#" class="nav-brand" onclick="showSection('home')" aria-label="Haileybury — Digital Innovations — home">
+        <img class="brand-logo-img" src="assets/brand/logo/haileybury-white.png" alt="Haileybury" loading="eager" decoding="async">
         <span class="brand-text">Digital <span class="brand-accent">Innovations</span></span>
       </a>
       <div class="nav-links">
