@@ -1,0 +1,46 @@
+/* Digital Innovations — Haileybury brand layer
+   Palette + Calluna Sans font override only. Loaded after style.css/lesson.css.
+   No layout changes — revert by removing the <link> tag. */
+
+@font-face{
+  font-family:'Calluna Sans';
+  src:url('../assets/brand/fonts/CallunaSans-Regular.otf') format('opentype');
+  font-weight:400;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Calluna Sans';
+  src:url('../assets/brand/fonts/CallunaSans-Italic.otf') format('opentype');
+  font-weight:400;font-style:italic;font-display:swap;
+}
+@font-face{
+  font-family:'Calluna Sans';
+  src:url('../assets/brand/fonts/CallunaSans-Light.otf') format('opentype');
+  font-weight:300;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Calluna Sans';
+  src:url('../assets/brand/fonts/CallunaSans-LightItalic.otf') format('opentype');
+  font-weight:300;font-style:italic;font-display:swap;
+}
+@font-face{
+  font-family:'Calluna Sans';
+  src:url('../assets/brand/fonts/CallunaSans-Bold.otf') format('opentype');
+  font-weight:700;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Calluna Sans';
+  src:url('../assets/brand/fonts/CallunaSans-BoldItalic.otf') format('opentype');
+  font-weight:700;font-style:italic;font-display:swap;
+}
+
+:root{
+  /* Haileybury primary: magenta (Pantone 221C #9b1844) */
+  --primary:#9b1844;
+  --primary-dark:#7c1235;
+  --primary-light:#c64b74;
+  /* Haileybury secondary accent: cyan */
+  --accent:#009fe3;
+  --accent-dark:#007bb0;
+  /* Calluna Sans for body + headings */
+  --font:'Calluna Sans','Inter',system-ui,sans-serif;
+}

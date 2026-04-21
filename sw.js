@@ -1,5 +1,5 @@
-/* Digital Innovations — Service Worker (offline-first) v9 — force cache refresh post-rollback */
-const CACHE = 'di-v20';
+/* Digital Innovations — Service Worker (offline-first) v10 — Haileybury brand layer */
+const CACHE = 'di-v21';
 const ASSETS = [
   './',
   './index.html',
@@ -7,6 +7,13 @@ const ASSETS = [
   './gcse.html',
   './css/style.css',
   './css/lesson.css',
+  './css/brand.css',
+  './assets/brand/fonts/CallunaSans-Regular.otf',
+  './assets/brand/fonts/CallunaSans-Italic.otf',
+  './assets/brand/fonts/CallunaSans-Light.otf',
+  './assets/brand/fonts/CallunaSans-LightItalic.otf',
+  './assets/brand/fonts/CallunaSans-Bold.otf',
+  './assets/brand/fonts/CallunaSans-BoldItalic.otf',
   './js/app.js',
   './js/auth.js',
   './js/data.js',
