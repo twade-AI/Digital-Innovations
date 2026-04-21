@@ -458,3 +458,302 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font);letter-spacing:-.015em}
 /* Keep legacy .pathway-header/.pathway-cards hidden on home (they've been replaced) */
 #section-home > .pathway-header,
 #section-home > .pathway-cards{display:none}
+
+/* ═══════════════════════════════════════════════════════
+   EDITORIAL LAYER — site-wide Haileybury typography,
+   section heads, cards, buttons, nav, footer.
+   Additive: targets existing class names so it upgrades
+   the visual system without breaking functionality.
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Display typography ─────────────────────────
+   Headings use Playfair Display; body stays Calluna Sans. */
+.section-header h2,
+#section-units h2, #section-map h2, #section-resources h2,
+#section-progress h2, #section-glossary h2, #section-timeline h2,
+#section-exemplars h2, #section-news h2,
+.hero h1,
+.unit-meta h3,
+.home-section-title,
+.profile-name,
+.auth-title,
+.viva-title,
+.modal-content h2,
+.gs-hero h1, .fl-hero h1,
+.admin-brand-title,
+.admin-page-title{
+  font-family:'Playfair Display',Georgia,serif;
+  letter-spacing:-.01em;
+  font-weight:700;
+}
+.section-header h2,
+#section-units h2, #section-map h2, #section-resources h2,
+#section-progress h2, #section-glossary h2, #section-timeline h2,
+#section-exemplars h2, #section-news h2{
+  font-size:clamp(1.8rem,3.2vw,2.4rem);
+  line-height:1.1;
+  margin:0;
+}
+.hero h1{ font-size:clamp(2.2rem,5vw,3.4rem); line-height:1.05 }
+.unit-meta h3{ font-size:1.15rem; letter-spacing:-.005em }
+.lesson-title{ font-weight:600 }
+
+/* ── Section headers: eyebrow + rule + display title ── */
+.section-header{
+  position:relative;
+  margin-bottom:36px;
+  padding-top:28px;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--border);
+  display:grid;
+  grid-template-columns:1fr auto;
+  grid-template-rows:auto auto auto;
+  align-items:end;
+  gap:4px 20px;
+}
+.section-header::before{
+  content:'Haileybury · Digital Innovations';
+  grid-column:1 / -1;
+  grid-row:1;
+  display:block;
+  font-family:'Calluna Sans','Inter',sans-serif;
+  font-size:11px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--hby-magenta-light);
+  margin-bottom:10px;
+  position:relative;
+  padding-left:56px;
+}
+.section-header::after{
+  content:'';
+  position:absolute;
+  top:36px;
+  left:0;
+  width:40px;
+  height:2px;
+  background:linear-gradient(90deg,var(--hby-magenta),var(--hby-cyan));
+  border-radius:2px;
+}
+.section-header h2{ grid-column:1; grid-row:2 }
+.section-header-action{ grid-column:2; grid-row:2; align-self:end }
+.section-header p{
+  grid-column:1 / -1;
+  grid-row:3;
+  margin:4px 0 0;
+  color:var(--text-muted);
+  font-size:1rem;
+  max-width:68ch;
+}
+@media (max-width:640px){
+  .section-header{ grid-template-columns:1fr }
+  .section-header-action{ grid-column:1; grid-row:3; justify-self:start; margin-top:8px }
+  .section-header p{ grid-row:4 }
+}
+
+/* ── Navbar: editorial eyebrow + pill nav-links ─── */
+.navbar{ border-bottom-color:rgba(155,24,68,.18) }
+.nav-brand{ gap:12px }
+.nav-brand .brand-logo-img{ height:36px; width:auto }
+.nav-brand{ line-height:1 }
+.nav-brand .brand-text{
+  display:inline-block;
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:1.05rem;
+  font-weight:700;
+  letter-spacing:-.005em;
+  line-height:1.1;
+}
+.nav-brand .brand-text::before{
+  content:'Haileybury';
+  display:block;
+  font-family:'Calluna Sans','Inter',sans-serif;
+  font-size:9px;
+  letter-spacing:.24em;
+  font-weight:700;
+  color:var(--hby-magenta-light);
+  text-transform:uppercase;
+  margin-bottom:2px;
+}
+.nav-link{
+  border-radius:999px;
+  padding:8px 14px;
+  transition:color .18s, background .18s;
+}
+.nav-link:hover{ background:rgba(155,24,68,.1); color:var(--text) }
+.nav-link.active{
+  background:var(--hby-magenta);
+  color:#fff;
+  box-shadow:0 4px 14px rgba(155,24,68,.35);
+}
+.nav-link.active:hover{ background:var(--hby-magenta-dark); color:#fff }
+.nav-explore-btn{ border-radius:999px !important }
+
+/* ── Buttons: pill shapes with editorial polish ── */
+.btn{
+  border-radius:999px;
+  font-family:'Calluna Sans','Inter',sans-serif;
+  font-weight:700;
+  letter-spacing:.01em;
+  transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--hby-magenta),var(--hby-magenta-dark));
+  box-shadow:0 6px 20px rgba(155,24,68,.32);
+}
+.btn-primary:hover{
+  background:linear-gradient(135deg,var(--hby-magenta-light),var(--hby-magenta));
+  box-shadow:0 10px 28px rgba(155,24,68,.45);
+  transform:translateY(-2px);
+}
+.btn-secondary{ border-radius:999px }
+.btn-secondary:hover{ border-color:var(--hby-magenta) }
+.btn-sm{ border-radius:999px; padding:6px 14px }
+.filter-btn{ border-radius:999px }
+
+/* ── Cards: editorial radius + accent hairline ── */
+.unit-block,
+.resource-card,
+.news-card,
+.exemplar-card,
+.profile-card{
+  border-radius:18px;
+  border:1px solid var(--border);
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.unit-block{ border-left-width:4px; border-left-color:var(--unit-colour,var(--hby-magenta)) }
+.unit-block:hover,
+.resource-card:hover,
+.news-card:hover,
+.exemplar-card:hover{
+  border-color:var(--hby-magenta-light);
+  box-shadow:0 18px 40px rgba(155,24,68,.12);
+  transform:translateY(-3px);
+}
+.unit-header{ padding:22px 26px }
+.unit-icon{ filter:saturate(1.1) }
+
+.lesson-item{ transition:background .15s, padding-left .18s, border-left-color .18s }
+.lesson-item::before{
+  content:''; position:absolute; left:0; top:0; bottom:0;
+  width:3px; background:transparent; transition:background .18s;
+}
+.lesson-list{ position:relative }
+.lesson-item{ position:relative }
+.lesson-item:hover::before{ background:var(--hby-magenta) }
+
+/* ── Profile card: editorial hero panel ── */
+.profile-card{
+  background:linear-gradient(135deg,var(--bg-card) 0%,var(--bg-card) 55%,rgba(155,24,68,.12) 100%);
+  border-color:rgba(155,24,68,.28);
+  border-radius:22px;
+  padding:32px 36px;
+}
+.profile-name{ font-size:1.5rem; letter-spacing:-.01em }
+
+/* ── Hero decorations ── */
+.hero h1{
+  background:linear-gradient(135deg,var(--text) 0%,var(--hby-magenta-light) 70%,var(--hby-cyan) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+/* ── Footer: Haileybury branded ─────────────────── */
+.hby-foot{
+  background:linear-gradient(180deg,var(--bg) 0%,#07081a 100%);
+  border-top:1px solid rgba(155,24,68,.22);
+  margin-top:80px;
+  color:var(--text-muted);
+  font-family:'Calluna Sans','Inter',sans-serif;
+}
+[data-theme="light"] .hby-foot{
+  background:linear-gradient(180deg,#fafaf7 0%,#f2f0eb 100%);
+  border-top-color:rgba(155,24,68,.18);
+}
+.hby-foot-inner{
+  max-width:1280px; margin:0 auto; padding:56px 32px 28px;
+  display:grid; grid-template-columns:1.8fr 1fr 1fr 1fr; gap:44px;
+}
+.hby-foot-brand{ display:flex; flex-direction:column; gap:14px; max-width:360px }
+.hby-foot-brand img{ height:40px; width:auto }
+.hby-foot-brand-eyebrow{
+  font-size:10px; letter-spacing:.22em; text-transform:uppercase;
+  font-weight:700; color:var(--hby-magenta-light);
+}
+.hby-foot-brand-title{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:1.35rem; font-weight:700; color:var(--text);
+  letter-spacing:-.01em; line-height:1.25;
+}
+.hby-foot-brand-title em{ font-style:italic; color:var(--hby-magenta-light) }
+.hby-foot-brand p{ font-size:.9rem; line-height:1.6; color:var(--text-muted); margin:4px 0 0 }
+.hby-foot-col{ display:flex; flex-direction:column; gap:10px }
+.hby-foot-col h4{
+  font-family:'Calluna Sans',sans-serif;
+  font-size:10px; letter-spacing:.22em; text-transform:uppercase;
+  font-weight:700; color:var(--text-dim); margin:0 0 6px;
+}
+.hby-foot-col a{
+  font-size:.88rem; color:var(--text-muted); text-decoration:none;
+  transition:color .15s;
+}
+.hby-foot-col a:hover{ color:var(--hby-magenta-light) }
+.hby-foot-rule{
+  max-width:1280px; margin:0 auto;
+  height:1px; background:linear-gradient(90deg,transparent,rgba(155,24,68,.3),transparent);
+}
+.hby-foot-bottom{
+  max-width:1280px; margin:0 auto; padding:22px 32px 28px;
+  display:flex; justify-content:space-between; align-items:center;
+  flex-wrap:wrap; gap:12px;
+  font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--text-dim);
+}
+.hby-foot-bottom-right{ display:flex; gap:22px }
+.hby-foot-bottom a{ color:var(--text-dim); text-decoration:none }
+.hby-foot-bottom a:hover{ color:var(--hby-magenta-light) }
+@media (max-width:900px){
+  .hby-foot-inner{ grid-template-columns:1fr 1fr; gap:32px; padding:40px 24px 24px }
+  .hby-foot-brand{ grid-column:1 / -1 }
+}
+@media (max-width:520px){
+  .hby-foot-inner{ grid-template-columns:1fr }
+  .hby-foot-bottom{ flex-direction:column; align-items:flex-start; padding:20px 24px }
+}
+
+/* ── gcse.html + fluency.html typography bridge ── */
+.gs-header-title,
+.fl-header-title{
+  font-family:'Playfair Display',Georgia,serif;
+  font-weight:700;
+  letter-spacing:-.005em;
+}
+.gs-hero h1, .fl-hero h1{
+  font-family:'Playfair Display',Georgia,serif;
+  letter-spacing:-.01em;
+}
+.gs-lesson, .fl-lesson{ border-radius:14px }
+.gs-brand, .fl-brand{
+  font-family:'Calluna Sans',sans-serif;
+  letter-spacing:.22em !important;
+}
+
+/* Admin page typography */
+.admin-page-title{ font-size:1.6rem; line-height:1.2 }
+.admin-brand-title{ letter-spacing:-.005em }
+
+/* ── Global heading font lift ── */
+h1, h2, h3{ font-family:'Playfair Display','Calluna Sans',Georgia,serif; letter-spacing:-.005em }
+h4, h5, h6{ font-family:'Calluna Sans','Inter',sans-serif; letter-spacing:0 }
+/* Keep small UI headings on Calluna (compact sans fits better) */
+.news-card-headline,
+.lesson-title,
+.rc-type,
+.lo-label,
+.stat-label,
+.pstat-label,
+.filter-btn,
+.btn,
+.nav-link,
+.gs-lesson-title, .fl-lesson-title,
+.settings-menu-label{ font-family:'Calluna Sans','Inter',sans-serif }
