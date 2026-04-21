@@ -1,6 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="96" fill="#9b1844"/>
-  <circle cx="256" cy="256" r="180" stroke="#ffffff" stroke-width="8" fill="none" opacity=".75"/>
-  <path d="M176 220 L220 308 L264 248 L308 284" stroke="#ffffff" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-  <circle cx="340" cy="172" r="22" fill="#ffffff"/>
+  <rect width="512" height="512" rx="96" fill="#0f172a"/>
+  <circle cx="256" cy="256" r="180" stroke="url(#a)" stroke-width="8" fill="none"/>
+  <path d="M176 220 L220 308 L264 248 L308 284" stroke="url(#b)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <circle cx="340" cy="172" r="22" fill="#6366f1"/>
+  <defs>
+    <linearGradient id="a" x1="76" y1="76" x2="436" y2="436" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6366f1"/><stop offset="1" stop-color="#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="b" x1="176" y1="220" x2="308" y2="284" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6366f1"/><stop offset="1" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
 </svg>

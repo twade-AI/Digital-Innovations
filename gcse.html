@@ -6,12 +6,9 @@
   <title>Digital Innovations — Year 10/11</title>
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="assets/brand/logo/haileybury-magenta.png">
-  <meta name="theme-color" content="#9b1844">
   <script>try{var _t=localStorage.getItem('di_theme');if(_t)document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/lesson.css">
-  <link rel="stylesheet" href="css/brand.css">
   <style>
     .gs-shell{max-width:820px;margin:0 auto;padding:0 16px 80px}
     .gs-header{display:flex;align-items:center;gap:12px;padding:18px 0 0;border-bottom:1px solid var(--border);margin-bottom:24px}
@@ -95,7 +92,7 @@
     .sdq-num{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;border-radius:50%;background:#10b981;color:#fff;font-size:.75rem;font-weight:700;flex-shrink:0}
     .sdq-text{font-size:.9rem;color:var(--text-muted,var(--text));line-height:1.5;flex:1}
     .hook-stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin:18px 0}
-    .hook-stat-mini{background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(0,159,227,.08));border:1px solid rgba(16,185,129,.25);border-radius:8px;padding:14px 10px;text-align:center}
+    .hook-stat-mini{background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(6,182,212,.08));border:1px solid rgba(16,185,129,.25);border-radius:8px;padding:14px 10px;text-align:center}
     .hook-stat-mini .sv{font-size:1.6rem;font-weight:900;color:#10b981;display:block;line-height:1}
     .hook-stat-mini .sl{font-size:.67rem;color:var(--text-muted,#64748b);margin-top:5px;display:block;line-height:1.35}
     [data-theme="light"] .hook-stat-mini .sv{color:#059669}
@@ -139,8 +136,8 @@
     .widget-btn:hover{border-color:#10b981;color:#10b981}
     .widget-btn-primary{background:#10b981;color:#fff;border-color:#10b981}
     .widget-btn-primary:hover{background:#059669;color:#fff;border-color:#059669}
-    .ptfc-p span{background:#009fe3}
-    .ptfc-t span{background:#9b1844}
+    .ptfc-p span{background:#06b6d4}
+    .ptfc-t span{background:#6366f1}
     .ptfc-f span{background:#22c55e}
     .ptfc-c span{background:#f59e0b}
     /* ── Hallucination picker ── */
@@ -190,10 +187,10 @@
     .cl-score.cl-final{display:block}
     /* ── Exit ticket ── */
     .exit-ticket{margin-top:14px;padding:18px;border-radius:12px;background:linear-gradient(135deg,rgba(139,92,246,.06),rgba(16,185,129,.04));border:1.5px dashed rgba(139,92,246,.35)}
-    .exit-ticket-label{display:block;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#2a2b7c;margin-bottom:6px;font-size:.7rem}
+    .exit-ticket-label{display:block;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#8b5cf6;margin-bottom:6px;font-size:.7rem}
     .exit-ticket-prompt{font-size:.95rem;color:var(--text);line-height:1.55;margin-bottom:10px;font-weight:600}
     .exit-ticket-input{width:100%;min-height:90px;padding:12px 14px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--font);font-size:.9rem;line-height:1.55;resize:vertical}
-    .exit-ticket-input:focus{outline:none;border-color:#2a2b7c}
+    .exit-ticket-input:focus{outline:none;border-color:#8b5cf6}
     .exit-ticket-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center}
     .exit-ticket-status{font-size:.8rem;color:var(--text-dim);font-style:italic}
     .exit-ticket-status.et-saved{color:#10b981;font-style:normal;font-weight:600}
@@ -242,7 +239,6 @@
   <div class="gs-shell">
     <div class="gs-header">
       <button class="gs-back" onclick="window.location.href='index.html'">← Back</button>
-      <img class="gs-header-logo" src="assets/brand/logo/haileybury-white.png" alt="Haileybury" style="height:26px;width:auto;margin-right:4px">
       <span class="gs-brand">Digital Innovations</span>
       <span class="gs-header-title">Year 10 &amp; 11 🌱</span>
     </div>
@@ -608,8 +604,8 @@
     var out=document.getElementById('gsPtfcOut'); if(!out)return;
     if(!p.trim()&&!t.trim()&&!f.trim()&&!c.trim()){ out.innerHTML='<span style="color:var(--text-dim);font-style:italic">Fill in the fields above to see your assembled prompt…</span>'; return; }
     var parts=[];
-    if(p.trim())parts.push('<strong style="color:#009fe3">[Persona]</strong> '+gsEscape(p.trim()).replace(/\n/g,'<br>'));
-    if(t.trim())parts.push('<strong style="color:#9b1844">[Task]</strong> '+gsEscape(t.trim()).replace(/\n/g,'<br>'));
+    if(p.trim())parts.push('<strong style="color:#06b6d4">[Persona]</strong> '+gsEscape(p.trim()).replace(/\n/g,'<br>'));
+    if(t.trim())parts.push('<strong style="color:#6366f1">[Task]</strong> '+gsEscape(t.trim()).replace(/\n/g,'<br>'));
     if(f.trim())parts.push('<strong style="color:#22c55e">[Format]</strong> '+gsEscape(f.trim()).replace(/\n/g,'<br>'));
     if(c.trim())parts.push('<strong style="color:#f59e0b">[Context]</strong> '+gsEscape(c.trim()).replace(/\n/g,'<br>'));
     out.innerHTML=parts.join('<br><br>');
@@ -829,42 +825,5 @@
   initOffline();
   if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function(){});
 </script>
-
-<!-- ── Haileybury footer ──────────────────────── -->
-<footer class="hby-foot" role="contentinfo">
-  <div class="hby-foot-inner">
-    <div class="hby-foot-brand">
-      <img src="assets/brand/logo/haileybury-white.png" alt="Haileybury" loading="lazy" decoding="async">
-      <div class="hby-foot-brand-eyebrow">Haileybury &middot; GCSE Foundation</div>
-      <div class="hby-foot-brand-title">Digital <em>Innovations</em> — Year 10/11</div>
-      <p>A focused GCSE pathway introducing artificial intelligence, algorithms, and the ethics of digital systems.</p>
-    </div>
-    <div class="hby-foot-col">
-      <h4>Learn</h4>
-      <a href="index.html">AEP home</a>
-      <a href="gcse.html">GCSE track</a>
-      <a href="fluency.html">AI fluency</a>
-    </div>
-    <div class="hby-foot-col">
-      <h4>Explore</h4>
-      <a href="index.html#section-resources" onclick="window.location='index.html';">Resources</a>
-      <a href="index.html#section-glossary" onclick="window.location='index.html';">Glossary</a>
-      <a href="index.html#section-news" onclick="window.location='index.html';">AI news</a>
-    </div>
-    <div class="hby-foot-col">
-      <h4>Support</h4>
-      <a href="admin.html">Teacher admin</a>
-      <a href="index.html">Main course</a>
-    </div>
-  </div>
-  <div class="hby-foot-rule"></div>
-  <div class="hby-foot-bottom">
-    <span>&copy; Haileybury &middot; Digital Innovations GCSE</span>
-    <div class="hby-foot-bottom-right">
-      <a href="#top">Back to top</a>
-      <span>Built for Year 10/11</span>
-    </div>
-  </div>
-</footer>
 </body>
 </html>

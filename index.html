@@ -6,13 +6,10 @@
   <title>Digital Innovations AEP — Academic Extension Programme</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/lesson.css">
-  <link rel="stylesheet" href="css/brand.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="icon.svg">
-  <link rel="apple-touch-icon" href="assets/brand/logo/haileybury-magenta.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#9b1844">
+  <meta name="theme-color" content="#6366f1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <!-- Supabase SDK (loaded async; auth features degrade gracefully offline) -->
@@ -26,8 +23,20 @@
   <!-- Navigation -->
   <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
-      <a href="#" class="nav-brand" onclick="showSection('home')" aria-label="Haileybury — Digital Innovations — home">
-        <img class="brand-logo-img" src="assets/brand/logo/haileybury-white.png" alt="Haileybury" loading="eager" decoding="async">
+      <a href="#" class="nav-brand" onclick="showSection('home')" aria-label="Digital Innovations — home">
+        <svg class="brand-logo" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="18" cy="18" r="17" stroke="url(#lg)" stroke-width="2"/>
+          <path d="M12 14l4 8 4-6 3 4" stroke="url(#lg2)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="25" cy="11" r="2.5" fill="#6366f1"/>
+          <defs>
+            <linearGradient id="lg" x1="1" y1="1" x2="35" y2="35" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#6366f1"/><stop offset="1" stop-color="#06b6d4"/>
+            </linearGradient>
+            <linearGradient id="lg2" x1="12" y1="14" x2="25" y2="22" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#6366f1"/><stop offset="1" stop-color="#06b6d4"/>
+            </linearGradient>
+          </defs>
+        </svg>
         <span class="brand-text">Digital <span class="brand-accent">Innovations</span></span>
       </a>
       <div class="nav-links">
@@ -97,14 +106,9 @@
 
     <!-- Pathway chooser -->
     <div class="pathway-header">
-      <div class="pathway-hero-mark">
-        <img src="assets/brand/logo/haileybury-white.png" alt="Haileybury" class="pathway-hero-logo" loading="eager" decoding="async">
-        <span class="pathway-hero-rule" aria-hidden="true"></span>
-        <span class="pathway-hero-eyebrow">Haileybury · Academic Extension Programme</span>
-      </div>
-      <h1 class="pathway-title">Choose your <span class="pathway-title-em">learning pathway</span></h1>
+      <div class="pathway-badge">Digital Innovations</div>
+      <h1 class="pathway-title">Choose your learning pathway</h1>
       <p class="pathway-sub">Three routes — same goal: understanding AI clearly and using it responsibly.</p>
-      <div class="pathway-ribbon" aria-hidden="true"></div>
     </div>
 
     <div class="pathway-cards">
@@ -124,132 +128,68 @@
         <div class="pc-actions">
           <button class="btn pc-cta pc-cta--gcse">Start Digital Innovations →</button>
         </div>
-        <div class="greet-stat">
-          <div class="display greet-stat-n greet-stat-accent" id="greetStatPct">0%</div>
-          <div class="greet-stat-l">AEP complete</div>
-        </div>
-        <div class="greet-stat">
-          <div class="display greet-stat-n" id="greetStatStreak">0</div>
-          <div class="greet-stat-l">Day streak</div>
+        <div class="pc-topic-pills">
+          <span class="pc-pill">How AI works</span>
+          <span class="pc-pill">Revision skills</span>
+          <span class="pc-pill">Deepfakes</span>
+          <span class="pc-pill">Bias &amp; ethics</span>
+          <span class="pc-pill">Privacy</span>
+          <span class="pc-pill">Your future</span>
         </div>
       </div>
-    </section>
 
-    <!-- Course chooser — three big editorial cards -->
-    <section class="courses-hero" aria-label="Choose your learning pathway">
-      <!-- CARD 1 — AEP (flagship, featured) -->
-      <article class="ccard ccard--1 ccard--enrolled" onclick="showSection('units')">
-        <div class="ccard-photo ccard-photo--mag">
-          <div class="ccard-wash ccard-wash--mag"></div>
+      <!-- AEP Full Course -->
+      <div class="pathway-card pathway-card--full" onclick="showSection('units')">
+        <div class="pc-icon">📚</div>
+        <div class="pc-badge pc-badge--full">Classroom Course · AEP</div>
+        <h2 class="pc-title">Digital Innovations<br>AEP</h2>
+        <p class="pc-desc">The complete KS5 programme — 55 lessons across 6 units covering AI foundations, prompt engineering, ethics, policy and a supervised capstone project.</p>
+        <ul class="pc-features">
+          <li>55 lessons · 6 units</li>
+          <li>Capstone build project</li>
+          <li>Policy drafting & debate</li>
+          <li>Viva practice & assessments</li>
+          <li>Progress tracking &amp; badges</li>
+        </ul>
+        <div class="pc-actions">
+          <button class="btn btn-primary pc-cta" id="continueBtn" onclick="event.stopPropagation();continueLesson()">Enter Full Course →</button>
+          <div id="heroTimeEst" style="font-size:.78rem;color:var(--text-dim);margin-top:6px"></div>
         </div>
-        <div class="ccard-inner">
-          <div class="ccard-top">
-            <div class="ccard-badge ccard-badge--enrolled">● Flagship · AEP</div>
-            <div class="ccard-index display-it">01</div>
-          </div>
-          <div class="ccard-mid">
-            <div class="ccard-meta">KS5 · Classroom · 55 lessons · ~40h</div>
-            <h2 class="ccard-title display">
-              Digital Innovations<br>
-              <span class="display-it ccard-title-em">AEP.</span>
-            </h2>
-            <p class="ccard-desc">
-              The year-long programme. Prompt engineering, interpretability, ethics, policy drafting and a supervised capstone — defended at viva.
-            </p>
-          </div>
-          <div class="ccard-progress">
-            <div class="ccard-progress-row">
-              <span>Your progress</span>
-              <span><span id="progressPercent">0%</span> · <span id="greetStatLessonsMirror">0</span> of 55</span>
-            </div>
-            <div class="ccard-progress-track pc-progress-track">
-              <div class="ccard-progress-fill pc-progress-fill" id="pcProgressFill" style="width:0%"></div>
-            </div>
-          </div>
-          <div class="ccard-foot">
-            <div class="ccard-upnext">
-              <div class="ccard-upnext-l">Next lesson</div>
-              <div class="ccard-upnext-t" id="heroTimeEst">Start at Lesson 1 — What Counts as AI?</div>
-            </div>
-            <button class="btn btn-primary ccard-cta" id="continueBtn" onclick="event.stopPropagation();continueLesson()">
-              Resume
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M8 5l11 7-11 7V5Z"/></svg>
-            </button>
-          </div>
-          <div id="homeStreakRow" class="pc-streak-row" style="display:none"></div>
-          <div id="homeBadgesRow" class="pc-badges-row" style="display:none"></div>
-          <button class="btn btn-secondary pwa-install-btn" id="pwaInstallBtn" onclick="event.stopPropagation();installPWA()" style="display:none;margin-top:10px;font-size:.8rem" title="Install for offline use">📲 Install App</button>
+        <div class="pc-progress-row">
+          <div class="pc-progress-track"><div class="pc-progress-fill" id="pcProgressFill" style="width:0%"></div></div>
+          <span id="progressPercent" class="pc-pct">0%</span>
         </div>
-      </article>
+        <div id="homeStreakRow" class="pc-streak-row" style="display:none"></div>
+        <div id="homeBadgesRow" class="pc-badges-row" style="display:none"></div>
+        <button class="btn btn-secondary pwa-install-btn" id="pwaInstallBtn" onclick="event.stopPropagation();installPWA()" style="display:none;margin-top:10px;font-size:.8rem" title="Install for offline use">📲 Install App</button>
+      </div>
 
-      <!-- CARD 2 — GCSE -->
-      <article class="ccard ccard--2" onclick="window.location.href='gcse.html'">
-        <div class="ccard-photo ccard-photo--2">
-          <div class="ccard-pattern ccard-pattern--royal"></div>
+      <!-- AI Fluency Online -->
+      <div class="pathway-card pathway-card--fluency" onclick="window.location.href='fluency.html'">
+        <div class="pc-icon">⚡</div>
+        <div class="pc-badge pc-badge--fluency">Self-Directed · Works Offline</div>
+        <h2 class="pc-title">AI Fluency Online</h2>
+        <p class="pc-desc">A curated 20-lesson pathway for independent learners. No teacher needed — work at your own pace and earn your AI Fluency certificate.</p>
+        <ul class="pc-features">
+          <li>20 carefully chosen lessons</li>
+          <li>Works fully offline</li>
+          <li>No login required</li>
+          <li>Completion certificate</li>
+          <li>~8 hours total</li>
+        </ul>
+        <div class="pc-actions">
+          <button class="btn pc-cta pc-cta--fluency">Start AI Fluency Track →</button>
         </div>
-        <div class="ccard-inner">
-          <div class="ccard-top">
-            <div class="ccard-badge">Ages 14–15 · Offline</div>
-            <div class="ccard-index display-it">02</div>
-          </div>
-          <div class="ccard-mid">
-            <div class="ccard-meta">GCSE Track · 33 lessons · ~13h</div>
-            <h2 class="ccard-title display">
-              Digital Innovations<br>
-              <span class="display-it ccard-title-em ccard-title-em--gcse">GCSE.</span>
-            </h2>
-            <p class="ccard-desc">
-              An honest grounding in how AI works, what it costs, and how to use it well in your revision and your life. Runs fully offline.
-            </p>
-          </div>
-          <ul class="ccard-list">
-            <li>AI for study &amp; revision unit</li>
-            <li>Works fully offline</li>
-            <li>Completion certificate</li>
-          </ul>
-          <div class="ccard-foot">
-            <button class="btn ccard-cta ccard-cta--ghost">
-              Browse the track
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
-            </button>
-          </div>
+        <div class="pc-topic-pills">
+          <span class="pc-pill">Prompting</span>
+          <span class="pc-pill">Hallucinations</span>
+          <span class="pc-pill">Deepfakes</span>
+          <span class="pc-pill">Bias</span>
+          <span class="pc-pill">Critical thinking</span>
+          <span class="pc-pill">AI &amp; democracy</span>
         </div>
-      </article>
-
-      <!-- CARD 3 — AI Fluency Online -->
-      <article class="ccard ccard--3" onclick="window.location.href='fluency.html'">
-        <div class="ccard-photo ccard-photo--3">
-          <div class="ccard-pattern ccard-pattern--orange"></div>
-        </div>
-        <div class="ccard-inner">
-          <div class="ccard-top">
-            <div class="ccard-badge">Self-directed</div>
-            <div class="ccard-index display-it">03</div>
-          </div>
-          <div class="ccard-mid">
-            <div class="ccard-meta">No login · 20 lessons · ~8h</div>
-            <h2 class="ccard-title display">
-              AI Fluency<br>
-              <span class="display-it ccard-title-em ccard-title-em--fluency">Online.</span>
-            </h2>
-            <p class="ccard-desc">
-              A curated twenty-lesson track for independent learners. No teacher required — work at your own pace and earn a fluency certificate.
-            </p>
-          </div>
-          <ul class="ccard-list">
-            <li>20 carefully-chosen lessons</li>
-            <li>Runs in-browser, offline</li>
-            <li>Fluency certificate</li>
-          </ul>
-          <div class="ccard-foot">
-            <button class="btn ccard-cta ccard-cta--ghost">
-              Start the track
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
-            </button>
-          </div>
-        </div>
-      </article>
-    </section>
+      </div>
+    </div>
 
     <!-- AI News Ticker (inside home section so it doesn't show during lessons) -->
     <div id="newsTicker" class="news-ticker" aria-label="AI news headlines" role="marquee">
@@ -777,47 +717,6 @@
   <button class="float-continue" id="floatContinue" onclick="continueLesson()" aria-label="Continue learning" style="display:none">
     <span id="floatContinueLabel">▶ Continue Learning</span>
   </button>
-
-  <!-- ── Haileybury footer ──────────────────────── -->
-  <footer class="hby-foot" role="contentinfo">
-    <div class="hby-foot-inner">
-      <div class="hby-foot-brand">
-        <img src="assets/brand/logo/haileybury-white.png" alt="Haileybury" loading="lazy" decoding="async">
-        <div class="hby-foot-brand-eyebrow">Haileybury · Academic Extension Programme</div>
-        <div class="hby-foot-brand-title">Digital <em>Innovations</em></div>
-        <p>A 55-lesson course exploring artificial intelligence, creativity, ethics, and the future of learning — built for the AEP sixth form.</p>
-      </div>
-      <div class="hby-foot-col">
-        <h4>Learn</h4>
-        <a href="#" onclick="showSection('home');return false">Home</a>
-        <a href="#" onclick="showSection('units');return false">Course units</a>
-        <a href="#" onclick="showSection('map');return false">Course map</a>
-        <a href="#" onclick="showSection('progress');return false">My progress</a>
-      </div>
-      <div class="hby-foot-col">
-        <h4>Explore</h4>
-        <a href="#" onclick="showSection('exemplars');return false">Prompt gallery</a>
-        <a href="#" onclick="showSection('timeline');return false">AI history</a>
-        <a href="#" onclick="showSection('news');return false">AI news</a>
-        <a href="#" onclick="showSection('glossary');return false">Glossary</a>
-      </div>
-      <div class="hby-foot-col">
-        <h4>Pathways</h4>
-        <a href="gcse.html">GCSE foundation</a>
-        <a href="fluency.html">AI fluency</a>
-        <a href="admin.html">Teacher admin</a>
-        <a href="#" onclick="showSection('resources');return false">Resources</a>
-      </div>
-    </div>
-    <div class="hby-foot-rule"></div>
-    <div class="hby-foot-bottom">
-      <span>&copy; Haileybury &middot; Digital Innovations AEP</span>
-      <div class="hby-foot-bottom-right">
-        <a href="#" onclick="showSection('home');return false">Back to top</a>
-        <span>Built for AEP sixth form</span>
-      </div>
-    </div>
-  </footer>
 
   <script>
     if ('serviceWorker' in navigator) {
