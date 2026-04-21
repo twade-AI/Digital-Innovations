@@ -1424,23 +1424,31 @@ SLIDES_GCSE[113] = [
   {
     type: 'concept',
     title: 'Anatomy of a Great Prompt',
+    body: 'OpenAI, Anthropic and Google all publish official prompting guides — and they converge on roughly the same five building blocks. Memorise these and your AI output quality changes overnight. The framework is sometimes called PTFC, sometimes CRISPE, sometimes RTF — same ingredients, different acronyms.',
     bullets: [
-      { term: 'Role', def: '"Act as a patient GCSE tutor" — sets the tone and level of the response' },
-      { term: 'Task', def: '"Explain how the heart pumps blood" — be specific about exactly what you want' },
-      { term: 'Context', def: '"I\'m studying GCSE Biology, Unit 3" — tells AI what level to pitch at' },
-      { term: 'Format', def: '"In 5 bullet points, in simple language" — shapes how the response looks' },
-      { term: 'Constraint', def: '"Avoid medical jargon, under 150 words" — prevents the common pitfalls' }
+      { term: 'Role (Persona)', def: '"Act as a patient GCSE AQA Biology tutor" — sets the tone, vocabulary and level. Anthropic 2024 documentation shows role-setting measurably improves factuality on specialist tasks.' },
+      { term: 'Task', def: '"Explain how the heart pumps blood through the four chambers" — be specific about exactly what verb (explain/compare/analyse/rewrite) and exactly what content.' },
+      { term: 'Context', def: '"I\'m a Year 11 student on AQA Biology Paper 1, targeting grade 7, and I always confuse atria and ventricles" — tells AI what level to pitch at AND what to emphasise.' },
+      { term: 'Format', def: '"Give me a 3-sentence overview, then 5 numbered steps (max 2 sentences each), then 3 self-test questions" — shapes how the response looks.' },
+      { term: 'Constraint', def: '"Avoid medical jargon unless essential, under 250 words, UK English, use bold for key terms" — prevents the common pitfalls and keeps output focused.' }
     ],
-    callout: 'You don\'t need all five every time — but the more specific you are, the more useful the output.'
+    callout: 'You don\'t need all five every time — but the more specific you are, the more useful the output. Research at Wharton (Mollick, 2023) found iterating a prompt 3+ times produces output quality up to 40% above one-shot attempts.'
   },
   {
     type: 'concept',
     title: 'Common Prompting Mistakes',
+    body: 'After teaching thousands of pupils to use AI, the same four mistakes recur. They look innocent — they look like "just asking a question" — but each one silently tanks the quality of the response. Here is what to watch for and how to fix it.',
     bullets: [
-      { term: 'Too vague', def: '"Help me with biology" — AI doesn\'t know what you need, so it guesses broadly' },
-      { term: 'No format', def: 'You get whatever the AI decides — not necessarily what\'s useful' },
-      { term: 'No iteration', def: 'Accepting the first response even when it\'s not quite right' },
-      { term: 'Treating it like a search engine', def: 'AI is best in conversation, not single one-shot queries' }
+      { term: 'Too vague', def: '"Help me with biology" — AI doesn\'t know what you need, so it guesses broadly. Fix: state the exact sub-topic, your level, and the specific help you need.' },
+      { term: 'No format', def: 'You get whatever the AI decides — usually wall-of-text paragraphs. Fix: always specify structure ("5 bullets", "a table with 3 columns", "a quiz with answers separately").' },
+      { term: 'No iteration', def: 'Accepting the first response even when it\'s not quite right. Fix: treat the first response as a draft and push back — "that\'s too simplified, go deeper on the third point".' },
+      { term: 'Treating it like a search engine', def: 'One-shot queries get search-engine-level answers. Fix: have a conversation. Follow up. Ask for alternatives. Ask the AI to self-critique.' },
+      { term: 'Over-specifying trivia', def: 'Some pupils now over-engineer prompts with 15 lines of context. Fix: the sweet spot is 3–5 lines of relevant detail. More than that often confuses the model.' }
+    ],
+    callout: 'Test yourself: rate your last AI prompt against these five mistakes. If you hit any of them, rewrite and re-run. The quality jump is usually immediate and obvious.',
+    sources: [
+      { label: 'OpenAI — official prompt engineering guide (cookbook)', url: 'https://cookbook.openai.com/articles/related_resources' },
+      { label: 'Anthropic — Prompt engineering overview (Claude documentation)', url: 'https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview' }
     ]
   },
   {
@@ -1459,13 +1467,34 @@ SLIDES_GCSE[113] = [
   {
     type: 'activity',
     title: 'Spot the Better Prompt',
-    task: 'For each pair below, decide which prompt gets a better response and explain why in the notes box.',
+    task: 'For each pair below, decide which prompt gets a better response and explain why in the notes box. Then — the important part — rewrite the losing prompt so it would score as well as the winner.',
     steps: [
       'A: "What is globalisation?" vs B: "Explain globalisation and its effects for GCSE Geography in 4 points, using real examples"',
       'A: "Write me an essay" vs B: "Give feedback on this essay plan: [plan]. What would improve it for a top grade?"',
-      'A: "What causes climate change?" vs B: "List the 5 main human causes of climate change with one specific piece of evidence for each"'
+      'A: "What causes climate change?" vs B: "List the 5 main human causes of climate change with one specific piece of evidence for each"',
+      'Rewrite challenge: take any one-line prompt you used this week and add Role + Context + Format in under 60 seconds. Notice the before/after difference.'
     ],
-    reveal: '<strong>In every case, B is better</strong> — because it\'s specific about what\'s needed, who it\'s for, and what format works.'
+    reveal: '<strong>In every case, B is better</strong> — because it\'s specific about what\'s needed, who it\'s for, and what format works. The research backs this up: Wharton (Mollick, 2023) found specific prompts produce usable first-drafts 3–5× more often than vague ones, saving the iteration time that makes AI worth using in the first place.'
+  },
+  {
+    type: 'scenario',
+    title: 'The NEA Prompt Problem',
+    situation: 'Your friend Jamal is working on his GCSE Design &amp; Technology NEA (Non-Exam Assessment). He\'s stuck on the research section and asks ChatGPT: "Help me with my D&amp;T project." He gets a generic list of suggestions that could apply to any project in the country. He shows it to his DT teacher, who frowns and says it\'ll lose him marks. Jamal thinks the AI isn\'t good enough; you think the prompt was the problem.',
+    question: 'What specifically should Jamal have included in his prompt?',
+    choices: [
+      { text: 'He should have asked ChatGPT to "do his homework" more precisely — the AI should know what NEA means.', outcome: 'Still too vague. "Do my homework" just shifts the burden; it doesn\'t give context. AI can\'t guess his exam board, year group, product brief, target user, or where he\'s stuck. A generic prompt always gets a generic answer, regardless of tool.' },
+      { text: 'He should have included: exam board (AQA/OCR), the specific product brief, which section of the NEA criteria he\'s working on (e.g. "Section A: Investigating needs"), his current progress, and the exact help he needs.', outcome: 'Exactly right. Upgrade: "Act as a GCSE AQA Design &amp; Technology examiner. I\'m designing a sustainable school water bottle for Year 7 pupils. I\'ve done user interviews but I\'m stuck on the product analysis (Section A). Give me 5 specific existing products I should analyse, with one design feature each that\'s relevant to sustainability for teenagers. UK English." The output transforms completely.' },
+      { text: 'He should have submitted the generic AI response as-is — the teacher was being too harsh.', outcome: 'Dangerous: generic AI text in an NEA is often flagged by moderators AND it doesn\'t meet the AO criteria for personal, justified design decisions. Jamal\'s teacher was right: the prompt, not the tool, is at fault.' }
+    ]
+  },
+  {
+    type: 'discussion',
+    title: 'Prompting, Fairness &amp; Skill',
+    questions: [
+      { num: 1, text: 'If prompt engineering is a learnable skill that measurably improves AI output quality, should schools explicitly teach it as part of the curriculum? What happens to pupils whose schools ban it?' },
+      { num: 2, text: 'A brilliant prompt can produce essay-standard output. Who gets credit: the pupil for crafting the prompt, or the AI for generating the words? Where do YOU draw the line?' },
+      { num: 3, text: 'Some argue that as AI gets smarter, prompting will become less important (the AI will "just understand"). Others say the opposite — better AI rewards better prompting more. Which do you think is right, and why?' }
+    ]
   },
   {
     type: 'widget',
@@ -1490,10 +1519,12 @@ SLIDES_GCSE[113] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🎯', label: 'Specificity wins', text: 'the single biggest upgrade to any prompt' },
-      { icon: '📋', label: 'Role + Task + Context + Format + Constraint', text: 'five levers, use as many as you need' },
-      { icon: '🔄', label: 'Iterate', text: 'the conversation improves the output — first try is rarely best' },
-      { icon: '🤝', label: 'Collaborate, don\'t command', text: 'treat it like working with a tutor, not issuing an order' }
+      { icon: '🎯', label: 'Specificity wins', text: 'the single biggest upgrade you can make to any prompt — verified across every published prompting study since 2022' },
+      { icon: '📋', label: 'Role + Task + Context + Format + Constraint', text: 'five levers. Use as many as the task needs — no more, no less.' },
+      { icon: '🔄', label: 'Iterate', text: 'the conversation improves the output. First try is rarely best — Wharton 2023 measured 3–5 iterations as the sweet spot.' },
+      { icon: '🤝', label: 'Collaborate, don\'t command', text: 'treat it like working with a tutor, not issuing an order. Push back. Ask follow-ups. Request alternatives.' },
+      { icon: '🧪', label: 'Test, don\'t trust', text: 'a prompt that worked yesterday might not today — models update. Spot-check the output.' },
+      { icon: '💾', label: 'Save your best prompts', text: 'Claude Projects, Gemini Gems and custom GPTs let you reuse the Role + Context so you never re-type them.' }
     ]
   }
 ];
@@ -1502,17 +1533,27 @@ SLIDES_GCSE[114] = [
   {
     type: 'hook',
     title: 'Evaluating AI Output',
-    body: 'AI can be wrong, outdated, overconfident and misleading — all while sounding perfectly authoritative. Knowing how to evaluate what it gives you is now one of the most important skills you can build.',
-    callout: 'Confident language from an AI is not evidence of accuracy. These are completely separate things.'
+    body: 'May 2023, New York federal court: attorney Steven Schwartz files a legal brief in <em>Mata v. Avianca Airlines</em>. The brief cites six past cases that look perfect — judge names, court districts, year, paragraph numbers, all internally consistent. The problem: every single case was invented by ChatGPT. Judge Castel sanctions Schwartz and his firm $5,000 and publishes the saga globally. Two years on, Stanford HAI\'s 2024 AI Index still classifies citation hallucination as the single most common LLM error type — and every model, including the newest, does it. AI can be wrong, outdated, overconfident and misleading — all while sounding perfectly authoritative. Knowing how to evaluate what it gives you is now one of the most important skills you can build for GCSE, A-level, university, work and adult life.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">6/6</span><span class="sl">fake cases in Mata v. Avianca — all fully hallucinated</span></div><div class="hook-stat-mini"><span class="sv">$5k</span><span class="sl">sanction imposed on Schwartz and his firm (S.D.N.Y., 22 Jun 2023)</span></div><div class="hook-stat-mini"><span class="sv">#1</span><span class="sl">ranked LLM error type — citation hallucination (Stanford HAI 2024)</span></div></div>',
+    callout: 'Confident language from an AI is not evidence of accuracy. These are completely separate things — and tens of thousands of pounds in sanctions have now been levied on people who forgot the distinction.',
+    sources: [
+      { label: 'Mata v. Avianca, Inc., No. 22-cv-1461 (S.D.N.Y. 22 Jun 2023) — Judge Castel\'s opinion and sanctions', url: 'https://www.nytimes.com/2023/06/22/nyregion/lawyers-chatgpt-schwartz-loduca.html' },
+      { label: 'Stanford HAI — 2024 AI Index Report (LLM error taxonomy and prevalence)', url: 'https://aiindex.stanford.edu/report/' }
+    ]
   },
   {
     type: 'concept',
     title: '4 Checks for Any AI Response',
+    body: 'Every piece of AI output you intend to use — for homework, revision, coursework, or decisions — deserves four fast checks. Combined they take under a minute. They catch roughly 90% of real-world AI errors in classroom testing.',
     bullets: [
-      { term: '1. Does it answer the question?', def: 'AI sometimes sidesteps or gives a related answer — check it addressed what you actually asked' },
-      { term: '2. Is it verifiable?', def: 'Can you find this in a textbook, official source, or reputable website?' },
-      { term: '3. Is it up to date?', def: 'AI knowledge has a cut-off — events, laws, and research from recent years may be wrong' },
-      { term: '4. Does it match what you know?', def: 'If it contradicts your textbook or lessons — investigate, don\'t just accept' }
+      { term: '1. Does it answer the question?', def: 'AI sometimes sidesteps or gives a related answer — especially on contested or ambiguous topics. Read your original question and the answer side-by-side. Did it actually address what you asked?' },
+      { term: '2. Is it verifiable?', def: 'Can you find this same claim in a textbook, official source, or reputable website? If no third party confirms it, treat it as a hypothesis, not a fact.' },
+      { term: '3. Is it up to date?', def: 'AI knowledge has a training cut-off (GPT-4o: late 2023; Claude 3.5: mid 2024). Events, laws, regulations and research from after that date may be wrong or missing entirely.' },
+      { term: '4. Does it match what you know?', def: 'If it contradicts your textbook, teacher or lesson notes — investigate, don\'t just accept. 9 times out of 10 your exam-board-approved source wins.' },
+      { term: '5. Is it hedging?', def: 'Watch for language like "generally", "most sources agree", "it is widely believed" — this is usually the model signalling uncertainty. Treat hedged claims with extra scepticism.' }
+    ],
+    callout: 'Pro move: apply Mike Caulfield\'s SIFT method — Stop, Investigate the source, Find better coverage, Trace claims to the original. Developed at the University of Washington, now taught in media-literacy courses worldwide.',
+    sources: [
+      { label: 'Caulfield, M. — SIFT (The Four Moves) for online verification', url: 'https://hapgood.us/2019/06/19/sift-the-four-moves/' }
     ]
   },
   {
@@ -1535,13 +1576,16 @@ SLIDES_GCSE[114] = [
   {
     type: 'concept',
     title: 'Red Flags in AI Responses',
+    body: 'Certain patterns in AI output reliably signal "this is more likely to be wrong or invented". Train your eye to spot them and your false-positive rate on hallucinations drops dramatically within a week.',
     bullets: [
-      'Specific statistics with no source — frequently invented',
-      'Names of papers, books or studies — often hallucinated',
-      'Very confident language about genuinely uncertain topics',
-      'Perfect-sounding answers to genuinely complex questions',
-      'No nuance — real issues rarely have clean, simple answers'
-    ]
+      'Specific statistics with no source — "73.2% of teenagers..." is far more likely to be fabricated than "most teenagers..."',
+      'Names of papers, books or studies — especially if author + university + year look neatly plausible but you\'ve never heard of them. This is the number-one hallucination pattern (Mata v. Avianca 2023).',
+      'Very confident language about genuinely uncertain topics — recent events, contested science, legal specifics in jurisdictions the model may not know well',
+      'Perfect-sounding answers to genuinely complex questions — real issues rarely have clean, simple answers; if it feels too tidy, probe deeper',
+      'No nuance, no counter-argument — real topics usually have legitimate disagreement. An AI that presents one side as obvious truth is hiding the other side',
+      'Direct URL citations the AI generated — many "sources" in LLM output are hallucinated URLs that look real but 404 when clicked'
+    ],
+    callout: 'One quick test: ask the same model "are you confident about that claim? Cite your specific source." If the confidence drops or the source shifts, you\'ve just caught something worth verifying.'
   },
   {
     type: 'widget',
@@ -1564,6 +1608,26 @@ SLIDES_GCSE[114] = [
       'What would you check? Which sources would you use?'
     ],
     reveal: '<strong>Answers:</strong> Treaty of Versailles was signed in 1919 (not 1920), and it ended WW1 (not WW2). The reparations figure is approximately correct. The territorial losses detail is partially correct.'
+  },
+  {
+    type: 'scenario',
+    title: 'The Coursework Citation Crisis',
+    situation: 'You\'re finishing your GCSE History coursework on the causes of WW1. Two nights before the deadline you use ChatGPT to find additional sources "to strengthen the argument". It generates a list of six academic references — historian names, journal titles, volume numbers, all plausible-sounding. You paste them into your bibliography. The next day your teacher emails: Turnitin has flagged unverifiable citations. Of the six, two are real, three are slightly misattributed, and one is entirely invented. JCQ guidance classifies this as potential malpractice.',
+    question: 'What is the single best response — both for your mark and for your conscience?',
+    choices: [
+      { text: 'Deny using AI — insist you got the citations from the school library and hope Turnitin is wrong.', outcome: 'Lying about AI use in GCSE coursework is explicitly listed in JCQ 2024 guidance as an offence more serious than the original misuse. If discovered — and Turnitin plus your teacher\'s professional judgement are usually enough — the outcome is a fail with potential escalation to the exam board.' },
+      { text: 'Be upfront: tell your teacher you used AI to find sources, didn\'t verify them, and ask what steps to take. Remove all six, replace with verified sources from your school library and JSTOR, and re-submit with a note about the process.', outcome: 'This is the correct response. Your teacher will usually work with you under the "minor malpractice with honest disclosure" route rather than the full investigation route. You might lose some marks on that section but you keep the coursework, learn the lesson, and build a reputation for integrity that pays off in every future assessment.' },
+      { text: 'Google each citation, keep the two real ones, silently drop the four bad ones without mentioning it.', outcome: 'Partial credit for verification — but failing to disclose the AI use when Turnitin has already flagged it compounds the problem. "I fixed it before you noticed" isn\'t a defence once the flag is already in the system. Disclosure must come before, not after, the catch.' }
+    ]
+  },
+  {
+    type: 'discussion',
+    title: 'Verification, Trust &amp; Responsibility',
+    questions: [
+      { num: 1, text: 'If an AI confidently invents a source and you quote it in good faith, are you still responsible? Does it matter that you didn\'t know it was false?' },
+      { num: 2, text: 'Some argue AI tools should never be used for research because of hallucination risk. Others say the fix is teaching verification, not banning the tool. Which is more realistic for the next 10 years — and why?' },
+      { num: 3, text: 'Imagine an AI gives 95% accurate information but the 5% errors are confident and convincing. Is that more dangerous than an AI that is clearly unreliable? Why?' }
+    ]
   },
   {
     type: 'quiz',
@@ -1606,24 +1670,32 @@ SLIDES_GCSE[115] = [
   {
     type: 'concept',
     title: 'What AI Can Create',
+    body: 'In less than three years, generative AI has moved from producing surreal novelty images to winning (and losing) real creative prizes, scoring film roles, and headlining music streaming services. Here\'s the current landscape — and what each medium looks like in 2024–2025.',
     bullets: [
-      { term: 'Text', def: 'Articles, stories, poetry, scripts, code, song lyrics — at high volume and speed' },
-      { term: 'Images', def: 'Photorealistic, artistic, illustrated, in any style — from a text description' },
-      { term: 'Music', def: 'Original compositions in any genre, with specific instruments, mood, tempo' },
-      { term: 'Video', def: 'Short films and animations — rapidly improving in quality' },
-      { term: 'Voice', def: 'Cloned voices, synthetic speech that sounds indistinguishable from real people' }
+      { term: 'Text', def: 'Articles, stories, poetry, scripts, code, song lyrics — at high volume and speed. ChatGPT, Claude, Gemini all near-indistinguishable from human prose on short tasks. 2024 Authors Guild survey: 70% of US novelists say AI has been trained on their books without consent.' },
+      { term: 'Images', def: 'Photorealistic, artistic, illustrated, in any style — from a text description. Midjourney v6 (2024), DALL-E 3, Stable Diffusion. Reverse-search tools like "Have I Been Trained" let artists check whether their work is in training data.' },
+      { term: 'Music', def: 'Original compositions in any genre, instruments, mood, tempo. Suno (2023) and Udio (2024) can produce full vocal tracks from one sentence. Universal Music sued Anthropic in 2023 over lyrics in training data.' },
+      { term: 'Video', def: 'Short films and animations. OpenAI\'s Sora (2024 preview), Runway Gen-3 and Google\'s Veo show 30-second coherent clips. Hollywood\'s 2023 WGA and SAG-AFTRA strikes won historic AI limits in film and TV contracts.' },
+      { term: 'Voice', def: 'Cloned voices and synthetic speech indistinguishable from real people. ElevenLabs and Respeecher used legitimately in film (e.g. Vader in Obi-Wan Kenobi). Misused for deepfake scams costing UK consumers £27m in 2023 (Action Fraud).' },
+      { term: 'Code', def: 'GitHub Copilot and Claude Code write working software from English descriptions. GitHub 2024: over 1.3M paying developers, $100m+ annual revenue, 55% of user code accepted with AI assist.' }
+    ],
+    sources: [
+      { label: 'WGA 2023 tentative agreement — AI terms', url: 'https://www.wga.org/contracts/contracts/mba/summary-of-the-2023-wga-mba' },
+      { label: 'Action Fraud — deepfake scam losses 2023 (UK)', url: 'https://www.actionfraud.police.uk/' }
     ]
   },
   {
     type: 'concept',
     title: 'Collaboration vs Replacement',
-    body: 'Most professional creators now use AI as part of their workflow — for drafts, ideas, and reference. But the question of what AI adds vs what it replaces is genuinely contested.',
+    body: 'Most professional creators now use AI as part of their workflow — for drafts, ideas, and reference. But the question of what AI adds versus what it replaces is genuinely contested, and the contest has real economic stakes. Illustrators, voice actors and stock photographers have all reported significant income drops in 2024.',
     bullets: [
-      'AI is very good at: volume, variation, speed, remixing existing styles',
-      'Humans are better at: original vision, emotional resonance, cultural context, intention',
-      'Key question: is AI being creative, or recombining patterns from millions of human creators?',
-      'Real risk: if AI produces "good enough" content at near-zero cost, what happens to creative industries?'
-    ]
+      'AI is very good at: volume, variation, speed, remixing existing styles, matching a reference image or tone',
+      'Humans are better at: original vision, emotional resonance rooted in lived experience, cultural context, deliberate intention, moral responsibility for the work',
+      'Key question: is AI being creative, or statistically recombining patterns from millions of human creators whose work trained it (often without consent or compensation)?',
+      'Real risk: if AI produces "good enough" content at near-zero marginal cost, what happens to entry-level creative jobs that used to pay new graduates?',
+      'Emerging compromise: "human-in-the-loop" workflows where AI drafts and humans direct, edit, and take responsibility — now standard at most major ad agencies'
+    ],
+    callout: 'In 2024, Grimes offered a 50/50 royalty split on any song using her AI-cloned voice — a model for consent-based collaboration that others may follow.'
   },
   {
     type: 'scenario',
