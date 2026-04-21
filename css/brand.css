@@ -128,3 +128,333 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font);letter-spacing:-.015em}
   color:var(--text-dim);font-size:.82rem;
 }
 .brand-footer-mark img{height:22px;width:auto;opacity:.7}
+
+/* ── Hero brand moment (home page) ─────────────────────── */
+.pathway-header{
+  position:relative;isolation:isolate;
+  padding-top:60px !important;padding-bottom:44px !important;
+}
+/* Magenta → cyan wash tucked behind the hero */
+.pathway-header::before{
+  content:"";position:absolute;inset:-40px -40px 0;z-index:-2;
+  background:
+    radial-gradient(ellipse 640px 320px at 20% 30%,rgba(155,24,68,.28),transparent 60%),
+    radial-gradient(ellipse 560px 280px at 85% 20%,rgba(0,159,227,.22),transparent 60%),
+    radial-gradient(ellipse 440px 240px at 50% 95%,rgba(230,0,126,.14),transparent 60%);
+  filter:blur(4px);pointer-events:none;
+}
+/* Soft Hearts & Wings-style watermark glow */
+.pathway-header::after{
+  content:"";position:absolute;top:-30px;left:50%;transform:translateX(-50%);
+  width:560px;height:280px;z-index:-1;pointer-events:none;
+  background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.06),transparent 60%);
+}
+[data-theme="light"] .pathway-header::before{
+  background:
+    radial-gradient(ellipse 640px 320px at 20% 30%,rgba(155,24,68,.12),transparent 60%),
+    radial-gradient(ellipse 560px 280px at 85% 20%,rgba(0,159,227,.10),transparent 60%),
+    radial-gradient(ellipse 440px 240px at 50% 95%,rgba(230,0,126,.06),transparent 60%);
+}
+
+/* Hero brand lockup — logo + rule + programme name */
+.hero-brand-mark{
+  display:inline-flex;align-items:center;gap:14px;
+  padding:10px 18px 10px 14px;margin-bottom:22px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:999px;
+  backdrop-filter:blur(8px);
+  box-shadow:0 8px 24px rgba(155,24,68,.14);
+}
+[data-theme="light"] .hero-brand-mark{
+  background:rgba(255,255,255,.7);
+  border-color:rgba(155,24,68,.15);
+  box-shadow:0 8px 24px rgba(155,24,68,.08);
+}
+.hero-brand-mark .hero-logo{
+  height:38px;width:auto;display:block;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.25));
+}
+[data-theme="light"] .hero-brand-mark .hero-logo{filter:none}
+.hero-brand-rule{
+  width:1px;height:22px;background:rgba(255,255,255,.2);display:block;
+}
+[data-theme="light"] .hero-brand-rule{background:rgba(0,0,0,.12)}
+.hero-brand-sub{
+  font-family:var(--font);font-weight:600;
+  font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--hby-magenta-light);
+}
+[data-theme="light"] .hero-brand-sub{color:var(--hby-magenta)}
+
+/* Stronger pathway title gradient — distinctive Haileybury signature */
+.pathway-title{
+  background:linear-gradient(120deg,var(--text) 20%,var(--hby-magenta-light) 60%,var(--hby-cyan) 95%) !important;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+/* Brand ribbon — animated magenta → cyan → pink underline flourish */
+.hero-brand-ribbon{
+  margin:22px auto 0;height:4px;width:220px;max-width:60%;border-radius:999px;
+  background:linear-gradient(90deg,var(--hby-magenta),var(--hby-cyan),var(--hby-pink),var(--hby-magenta));
+  background-size:300% 100%;
+  animation:heroRibbon 9s ease-in-out infinite;
+  box-shadow:0 0 18px rgba(155,24,68,.35);
+  opacity:.9;
+}
+@keyframes heroRibbon{
+  0%,100%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-brand-ribbon{animation:none}
+}
+
+/* Pathway-badge upgrade — tighter, more confident */
+.pathway-badge{
+  background:linear-gradient(90deg,rgba(155,24,68,.18),rgba(0,159,227,.12)) !important;
+  color:var(--hby-magenta-light) !important;
+  border:1px solid rgba(155,24,68,.35) !important;
+  box-shadow:0 2px 10px rgba(155,24,68,.12);
+}
+[data-theme="light"] .pathway-badge{
+  color:var(--hby-magenta) !important;
+}
+
+/* Pathway-card accent — each card gets a brand-coloured left bar */
+.pathway-card--gcse{border-top:3px solid var(--hby-green)}
+.pathway-card--full{border-top:3px solid var(--hby-magenta)}
+.pathway-card--fluency{border-top:3px solid var(--hby-orange)}
+
+/* Hero logo — responsive shrink on narrow screens */
+@media(max-width:600px){
+  .hero-brand-mark{gap:10px;padding:8px 14px 8px 10px;margin-bottom:16px}
+  .hero-brand-mark .hero-logo{height:30px}
+  .hero-brand-sub{font-size:.7rem;letter-spacing:.12em}
+}
+
+/* ── Editorial typography classes (from design handoff) ──── */
+.display{
+  font-family:'Playfair Display','Chronicle Display',Georgia,serif;
+  font-weight:800;letter-spacing:-.02em;line-height:1;
+}
+.display-it{
+  font-family:'Playfair Display','Chronicle Display',Georgia,serif;
+  font-style:italic;font-weight:500;letter-spacing:-.015em;line-height:.95;
+}
+
+/* ── Greeting strip ──────────────────────────────────────── */
+.greet-strip{
+  max-width:1280px;margin:0 auto;
+  padding:48px 20px 32px;
+  display:grid;grid-template-columns:1.2fr auto;gap:40px;align-items:end;
+}
+.greet-eyebrow{
+  display:inline-flex;align-items:center;gap:14px;
+  font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--text-dim);margin-bottom:18px;
+}
+.greet-eyebrow-logo{height:28px;width:auto;filter:drop-shadow(0 1px 2px rgba(0,0,0,.25))}
+[data-theme="light"] .greet-eyebrow-logo{filter:none}
+.greet-eyebrow-rule{width:32px;height:2px;background:var(--hby-magenta);display:inline-block}
+.greet-strip-title{
+  font-size:clamp(40px,5.5vw,72px);
+  line-height:.98;margin:0;color:var(--text);
+}
+.greet-strip-title .display-it{color:var(--hby-magenta-light);font-style:italic}
+[data-theme="light"] .greet-strip-title .display-it{color:var(--hby-magenta)}
+.greet-strip-lede{
+  margin-top:18px;font-size:16px;color:var(--text-muted);
+  max-width:540px;line-height:1.6;
+}
+.greet-strip-stats{
+  display:flex;gap:28px;
+  padding:22px 28px;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:0 8px 28px rgba(0,0,0,.15);
+}
+[data-theme="light"] .greet-strip-stats{box-shadow:0 8px 28px rgba(155,24,68,.06)}
+.greet-stat{display:flex;flex-direction:column;gap:6px;min-width:82px}
+.greet-stat-n{
+  font-size:42px;line-height:1;letter-spacing:-.02em;
+  color:var(--text);
+}
+.greet-stat-accent{
+  background:linear-gradient(120deg,var(--hby-magenta-light),var(--hby-cyan));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.greet-stat-denom{opacity:.45;font-size:.55em;font-weight:500}
+.greet-stat-l{
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);
+}
+
+/* ── Courses hero — three big editorial cards ────────────── */
+.courses-hero{
+  max-width:1280px;margin:0 auto;
+  padding:8px 20px 40px;
+  display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:20px;
+  min-height:620px;
+}
+.courses-hero .ccard{
+  position:relative;overflow:hidden;isolation:isolate;cursor:pointer;
+  border-radius:28px;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  display:flex;flex-direction:column;
+  min-height:620px;
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.courses-hero .ccard:hover{transform:translateY(-6px);box-shadow:0 28px 64px rgba(0,0,0,.35)}
+[data-theme="light"] .courses-hero .ccard:hover{box-shadow:0 28px 64px rgba(155,24,68,.18)}
+
+/* Photo / pattern backdrops */
+.ccard-photo{position:absolute;inset:0;z-index:0}
+.ccard-photo--mag{
+  background:
+    radial-gradient(circle at 25% 20%,rgba(196,29,86,.45),transparent 55%),
+    radial-gradient(circle at 80% 80%,rgba(42,43,124,.45),transparent 55%),
+    linear-gradient(155deg,#6e0d2e 0%,#9b1844 55%,#3b3da8 100%);
+}
+.ccard-wash{position:absolute;inset:0}
+.ccard-wash--mag{
+  background:
+    linear-gradient(180deg,transparent 35%,rgba(0,0,0,.42) 100%),
+    repeating-linear-gradient(45deg,rgba(255,255,255,.03) 0 2px,transparent 2px 22px);
+}
+.ccard-pattern{position:absolute;inset:0}
+.ccard-pattern--royal{
+  background:
+    radial-gradient(circle at 20% 10%,rgba(59,61,168,.85),transparent 50%),
+    radial-gradient(circle at 80% 90%,rgba(155,24,68,.45),transparent 55%),
+    linear-gradient(160deg,#1a1b5c,#2a2b7c 60%,#0f0f2e);
+}
+.ccard-pattern--orange{
+  background:
+    radial-gradient(circle at 70% 20%,rgba(255,128,36,.75),transparent 55%),
+    radial-gradient(circle at 20% 85%,rgba(155,24,68,.35),transparent 50%),
+    linear-gradient(170deg,#c85203,#ec6608 55%,#4a1400);
+}
+.ccard-pattern::after{
+  content:"";position:absolute;inset:0;
+  background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.03) 0 2px,transparent 2px 22px);
+}
+
+/* Inner stack */
+.courses-hero .ccard-inner{
+  position:relative;z-index:2;
+  padding:32px 32px;
+  display:flex;flex-direction:column;height:100%;color:#fff;gap:14px;
+}
+.ccard-top{display:flex;justify-content:space-between;align-items:flex-start}
+.ccard-badge{
+  font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;
+  padding:6px 12px;border-radius:999px;
+  background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.3);
+  color:#fff;backdrop-filter:blur(8px);
+}
+.ccard-badge--enrolled{background:#fff;color:var(--hby-magenta-dark);border-color:#fff}
+.ccard-index{
+  font-family:'Playfair Display',Georgia,serif;font-weight:300;font-style:italic;
+  font-size:76px;line-height:.85;letter-spacing:-.03em;
+  color:rgba(255,255,255,.35);
+}
+.ccard--1 .ccard-index{font-size:118px}
+.ccard-mid{flex:1;display:flex;flex-direction:column;gap:12px;justify-content:flex-end}
+.ccard-meta{
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.82);
+}
+.ccard-title{
+  font-size:clamp(30px,2.8vw,50px);line-height:1;letter-spacing:-.02em;color:#fff;margin:0;
+}
+.ccard--1 .ccard-title{font-size:clamp(42px,5vw,78px)}
+.ccard-title-em{color:#ffd3e0}
+.ccard-title-em--gcse{color:#ffcfae}
+.ccard-title-em--fluency{color:#fff4d6}
+.ccard-desc{
+  font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:400;
+  font-size:17px;line-height:1.4;color:rgba(255,255,255,.94);max-width:440px;
+}
+.ccard--1 .ccard-desc{font-size:19px;max-width:520px}
+.ccard-list{
+  list-style:none;display:flex;flex-direction:column;gap:8px;margin:0;padding:16px 0 0;
+  border-top:1px solid rgba(255,255,255,.24);
+}
+.ccard-list li{font-size:13px;color:rgba(255,255,255,.92);padding-left:18px;position:relative}
+.ccard-list li::before{
+  content:"◆";position:absolute;left:0;top:0;
+  color:rgba(255,255,255,.65);font-size:8px;line-height:20px;
+}
+
+/* AEP progress on card 1 */
+.ccard-progress{padding:14px 0;border-top:1px solid rgba(255,255,255,.26)}
+.ccard-progress-row{
+  display:flex;justify-content:space-between;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.88);
+  margin-bottom:10px;
+}
+.courses-hero .ccard-progress-track{
+  height:6px;border-radius:999px;background:rgba(255,255,255,.22);overflow:hidden;
+}
+.courses-hero .ccard-progress-fill{
+  height:100%;background:#fff;border-radius:999px;transition:width .6s ease;
+}
+
+.ccard-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:4px}
+.ccard-upnext{flex:1;min-width:0}
+.ccard-upnext-l{
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.72);
+}
+.ccard-upnext-t{
+  font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:15px;
+  color:#fff;margin-top:2px;line-height:1.3;
+}
+.courses-hero .ccard-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 22px;border-radius:999px;
+  font-weight:700;font-size:14px;letter-spacing:.01em;
+  background:#fff;color:var(--hby-magenta-dark);
+  border:1px solid #fff;
+  box-shadow:0 14px 36px rgba(0,0,0,.3);
+  white-space:nowrap;cursor:pointer;transition:transform .2s ease;
+}
+.courses-hero .ccard-cta:hover{transform:translateY(-2px);background:#fff;color:var(--hby-magenta)}
+.courses-hero .ccard-cta--ghost{
+  width:100%;justify-content:space-between;
+  background:rgba(255,255,255,.14);color:#fff;
+  border:1px solid rgba(255,255,255,.4);
+  backdrop-filter:blur(8px);
+  box-shadow:none;
+}
+.courses-hero .ccard-cta--ghost:hover{background:#fff;color:var(--hby-magenta-dark);border-color:#fff}
+
+/* Hide the old streak/badges rows' default styles on the new card */
+.courses-hero #homeStreakRow{color:rgba(255,255,255,.92);padding-top:10px;margin-top:8px;border-top:1px solid rgba(255,255,255,.2)}
+.courses-hero #homeBadgesRow{color:rgba(255,255,255,.92)}
+.courses-hero .pwa-install-btn{
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);color:#fff;
+}
+.courses-hero .pwa-install-btn:hover{background:#fff;color:var(--hby-magenta-dark)}
+
+/* Responsive */
+@media (max-width:1100px){
+  .greet-strip{grid-template-columns:1fr;gap:24px}
+  .greet-strip-stats{flex-wrap:wrap}
+  .courses-hero{grid-template-columns:1fr;min-height:0}
+  .courses-hero .ccard{min-height:440px}
+  .ccard--1 .ccard-index{font-size:90px}
+}
+@media (max-width:600px){
+  .greet-strip{padding:32px 16px 24px}
+  .courses-hero{padding:4px 16px 32px;gap:14px}
+  .courses-hero .ccard-inner{padding:24px}
+  .greet-strip-stats{gap:20px;padding:18px 20px}
+  .greet-stat-n{font-size:32px}
+}
+
+/* Keep legacy .pathway-header/.pathway-cards hidden on home (they've been replaced) */
+#section-home > .pathway-header,
+#section-home > .pathway-cards{display:none}
