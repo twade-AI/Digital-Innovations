@@ -1745,43 +1745,56 @@ SLIDES_GCSE[116] = [
   {
     type: 'hook',
     title: 'Automating the Boring Stuff',
-    body: 'The smartest use of AI isn\'t asking it to think for you. It\'s using it to save time on tasks that don\'t require thinking — so you have more time for the things that actually matter.',
-    callout: 'But there\'s a hidden cost: skills you don\'t practise, you lose. Some tasks are boring for a reason.'
+    body: 'McKinsey\'s 2023 "State of AI" report surveyed 1,684 workers across 9 industries and asked which of their weekly tasks generative AI could do in full or in part. The answer: 29%. Not replaced overall — but a quarter to a third of the tasks already on every desk. A 2024 follow-up from Stanford found that the knowledge workers who gained the most weren\'t the ones who used AI for everything; they were the ones who automated the repetitive 30% and reinvested the time in harder, deeper work only they could do. That is the model. The smartest use of AI isn\'t asking it to think <em>for</em> you — it\'s using it to clear the low-value tasks <em>around</em> you so you have time and energy for the thinking that counts.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">29%</span><span class="sl">of weekly tasks AI can already do (McKinsey 2023)</span></div><div class="hook-stat-mini"><span class="sv">60 min</span><span class="sl">average daily time saved by knowledge workers (Stanford 2024)</span></div><div class="hook-stat-mini"><span class="sv">0</span><span class="sl">skills gained by delegating tasks you still need to learn</span></div></div>',
+    callout: 'But there\'s a hidden cost: skills you don\'t practise, you lose. Some tasks are boring for a reason — and the boredom is the practice.',
+    sources: [
+      { label: 'McKinsey &amp; Company — "The state of AI in 2023: Generative AI\'s breakout year"', url: 'https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-in-2023-generative-ais-breakout-year' },
+      { label: 'Brynjolfsson, E., Li, D. &amp; Raymond, L. (Stanford/NBER, 2023) — "Generative AI at Work" (14% productivity uplift, concentrated on less-experienced workers)', url: 'https://www.nber.org/papers/w31161' }
+    ]
   },
   {
     type: 'concept',
     title: 'Tasks AI Handles Well',
+    body: 'Not every repetitive task is the same. The tasks below share three features: the output has a clear right shape, the thinking is procedural not creative, and a human would do it more slowly but not more accurately. These are AI\'s sweet spot — and the hours you reclaim here are hours for the tasks where only you can think.',
     bullets: [
-      'Formatting and restructuring documents',
-      'Converting text between formats (essay → bullet points, notes → table)',
-      'Translating text between languages',
-      'Generating first drafts for you to edit and improve',
-      'Summarising long documents',
-      'Writing repetitive emails or templates',
-      'Organising a list of ideas into a coherent structure'
+      { term: 'Formatting and restructuring', def: 'Converting messy notes into a clean table, turning an essay into bullet points, reformatting a reference list for a specific style guide. Human attention adds nothing; AI is reliable.' },
+      { term: 'Translating between languages', def: 'GPT-4 and Claude 3.5 both match or exceed Google Translate on GCSE-level French, German and Spanish in independent benchmarks (EF 2024).' },
+      { term: 'First-draft generation', def: 'Emails, cover-letter skeletons, meeting summaries, revision-plan outlines. The AI gives you a starting point — you edit it into something real.' },
+      { term: 'Summarising long documents', def: 'Claude handles 200k-token inputs natively — roughly a 500-page textbook in one prompt. Use it to compress, then read the original for the bits that matter.' },
+      { term: 'Repetitive templates', def: 'Thank-you emails, revision-session plans, weekly schedules — anything where the pattern is fixed and only the details change.' },
+      { term: 'Reorganising ideas', def: 'You dump 40 scattered thoughts into chat; AI groups them into 5 coherent themes. The thinking is yours; the sorting is AI\'s.' }
+    ],
+    sources: [
+      { label: 'Anthropic — Claude 3.5 Sonnet context window (200k tokens, enterprise 1M pilot 2024)', url: 'https://www.anthropic.com/news/claude-3-5-sonnet' }
     ]
   },
   {
     type: 'activity',
     title: 'Sort the Tasks',
-    task: 'In the notes box, make two lists from your school life:',
+    task: 'In the notes box, make two lists from your school life. Be specific — name real tasks you actually face this term, not generic categories.',
     steps: [
-      'List A — Tasks AI could usefully handle (saves time, low learning value)',
-      'List B — Tasks AI should NOT handle for you (builds skills, understanding, or creativity)',
-      'Think about: homework, revision, essays, note-taking, research, creative projects, problem-solving'
+      'List A — Tasks AI could usefully handle (saves time, low learning value): e.g. reformatting revision notes into a table, translating a passage you already understand, generating flashcards from a chapter summary',
+      'List B — Tasks AI should NOT handle for you (builds skills, understanding or creativity you\'re actually being examined on): e.g. writing your GCSE English essay, solving your Maths homework, composing your NEA design rationale',
+      'Grey area — Tasks where the answer depends on HOW you use AI: research (fine to help, dangerous if it invents sources), revision (fine for quizzes, dangerous if it does the thinking), coding (fine for explanation, dangerous for coursework output)',
+      'Extension: swap lists with a partner. Argue anything you disagreed on. That argument IS the lesson.'
     ],
-    callout: 'The question isn\'t "can AI do this?" — it\'s "should I let it?" Some tasks are worth doing yourself even if AI would be faster.'
+    callout: 'The question isn\'t "can AI do this?" — it\'s "should I let it?" Some tasks are worth doing yourself even if AI would be faster. Your GCSE grades depend on knowing the difference.'
   },
   {
     type: 'concept',
     title: 'The Hidden Cost of Automation',
-    body: 'Researchers call this "cognitive offloading" — moving mental work from your brain to a tool. Some offloading is fine (calculators). Some quietly erodes skills you actually need.',
+    body: 'Researchers call this "cognitive offloading" — moving mental work from your brain to a tool. Some offloading is fine and ancient (writing offloads memory; calculators offload arithmetic). Some quietly erodes skills you actually need. A 2025 Swiss study (Gerlich, Societies journal) found that university students with the highest frequency of ChatGPT use scored lowest on independent critical-thinking measures — the correlation was <em>r = −0.68</em>, which in social-science terms is very strong.',
     bullets: [
-      { term: 'Skills you don\'t practise, you lose', def: 'Writing, mental arithmetic, memory — regular use keeps them sharp' },
-      { term: 'Writing shapes thinking', def: 'Outsourcing writing can mean outsourcing the thinking that writing forces you to do' },
-      { term: 'Productive struggle', def: 'Some tasks are hard for a reason — that difficulty is where the learning happens' },
-      { term: 'Dependence risk', def: 'If AI tools become unavailable, what can you still do without them?' },
-      { term: 'The GPS effect', def: 'Studies show heavy GPS users lose navigation ability. Heavy AI users risk losing the thinking skills they delegate.' }
+      { term: 'Skills you don\'t practise, you lose', def: 'Writing, mental arithmetic, memory — regular use keeps them sharp. Brain imaging studies show taxi drivers\' hippocampi grow from navigation practice; the effect reverses when they stop (Maguire, UCL 2000).' },
+      { term: 'Writing shapes thinking', def: 'Orwell\'s point in "Politics and the English Language": vague writing is vague thinking. Outsourcing writing often means outsourcing the thinking that writing forces you to do.' },
+      { term: 'Productive struggle', def: 'Bjork\'s "desirable difficulties" research (UCLA) shows the tasks that feel hardest are the ones that build the deepest learning. AI that removes the struggle also removes the learning.' },
+      { term: 'Dependence risk', def: 'If AI tools become unavailable — exams, interviews, power cuts, company changes policy — what can you still do without them? Every skill you\'ve fully delegated is at risk.' },
+      { term: 'The GPS effect', def: 'Multiple studies show heavy GPS users lose navigation ability (Dahmani &amp; Bohbot, 2020). Heavy AI users risk the same with the thinking skills they delegate.' }
+    ],
+    callout: 'Rule of thumb: if a task appears on an exam paper you will sit, do NOT automate it. If it doesn\'t, automating it saves your best hours for things that do.',
+    sources: [
+      { label: 'Gerlich, M. (2025) — "AI Tools in Society: Impacts on Cognitive Offloading and the Future of Critical Thinking" (Societies, MDPI)', url: 'https://www.mdpi.com/2075-4698/15/1/6' },
+      { label: 'Dahmani, L. &amp; Bohbot, V.D. (2020) — "Habitual use of GPS negatively impacts spatial memory during self-guided navigation" (Scientific Reports)', url: 'https://www.nature.com/articles/s41598-020-62877-0' }
     ]
   },
   {
@@ -1796,6 +1809,15 @@ SLIDES_GCSE[116] = [
     ]
   },
   {
+    type: 'discussion',
+    title: 'Automation, Fairness &amp; Futures',
+    questions: [
+      { num: 1, text: 'If AI can already do 29% of weekly knowledge-work tasks (McKinsey 2023), what does that mean for the jobs market you\'ll enter at 22? Are some careers at more risk than others — and how do you tell?' },
+      { num: 2, text: 'A classmate says "I use AI for everything and my grades are fine". What would you say back — and what do you think will happen when the grade that matters is a closed-book exam paper?' },
+      { num: 3, text: 'Is there a difference between automating a skill (like handwriting, since we all type) and automating a thinking process (like essay-writing)? Where is the line, and who gets to draw it?' }
+    ]
+  },
+  {
     type: 'quiz',
     question: 'Which of these is the best use of AI automation?',
     options: [
@@ -1805,16 +1827,18 @@ SLIDES_GCSE[116] = [
       'Re-reading your History notes while AI summarises them for you'
     ],
     correct: 2,
-    explanation: 'Converting notes into a formatted table is genuinely repetitive — AI saves time without replacing a skill you need to build. Writing your essay or solving your problem set removes the learning. Re-reading while AI summarises means you do neither activity properly.'
+    explanation: 'Converting notes into a formatted table is genuinely repetitive — AI saves time without replacing a skill you need to build. Writing your essay or solving your problem set removes the learning AND is plagiarism under JCQ 2024 rules. Re-reading while AI summarises means you do neither activity properly — the worst of both worlds.'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '⚙️', label: 'Use AI for genuinely repetitive tasks', text: 'formatting, converting, drafting templates' },
-      { icon: '🧠', label: 'Keep the thinking for yourself', text: 'creativity, analysis, problem-solving' },
-      { icon: '⚠️', label: 'Hidden cost of automation', text: 'skills you delegate you may lose' },
-      { icon: '✅', label: 'Automate wisely', text: 'save time, not skills' }
+      { icon: '⚙️', label: 'Automate the repetitive 30%', text: 'formatting, converting, templating — tasks where AI is fast and accurate and you add nothing' },
+      { icon: '🧠', label: 'Protect the thinking 70%', text: 'creativity, analysis, problem-solving — tasks where the struggle IS the learning' },
+      { icon: '⚠️', label: 'Cognitive offloading is real', text: 'Gerlich 2025 measured the effect — high AI use correlates strongly with lower critical thinking' },
+      { icon: '📝', label: 'If it\'s on an exam, practise it', text: 'the room without wifi is closer than you think — every mock, every real paper' },
+      { icon: '⏱️', label: 'Reinvest the saved time', text: 'the point isn\'t to work less; it\'s to spend your hours on harder, more valuable problems' },
+      { icon: '✅', label: 'Automate wisely', text: 'save time, not skills — this is the habit that will matter for the next 40 years of your working life' }
     ]
   }
 ];
@@ -1823,29 +1847,52 @@ SLIDES_GCSE[117] = [
   {
     type: 'hook',
     title: 'Working with AI Tools',
-    body: 'ChatGPT, Claude, Gemini — they all look similar and all answer questions in full sentences. But they were trained differently, have different strengths, and behave differently in ways that matter.',
-    callout: 'Knowing which tool to use for which task gets you better results faster.'
+    body: 'November 2022: OpenAI launches ChatGPT. Hits 100 million users in 60 days — the fastest-growing consumer app in history (UBS / Reuters, Feb 2023). By 2025 the "big four" consumer LLMs (ChatGPT, Claude, Gemini, Copilot) are used weekly by over a billion people combined. They all look similar — a chat box, a blinking cursor, full-sentence answers. But they were trained on different data, tuned for different strengths and behave differently in ways that genuinely affect the quality of your output. Using Claude when you needed Gemini (or vice versa) can double the time you spend on a task — and halve the quality of what you get.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">60</span><span class="sl">days for ChatGPT to hit 100M users (UBS 2023)</span></div><div class="hook-stat-mini"><span class="sv">1B+</span><span class="sl">weekly users across the big four LLMs (2025)</span></div><div class="hook-stat-mini"><span class="sv">~2×</span><span class="sl">productivity gap between right tool and wrong tool (Stanford 2024)</span></div></div>',
+    callout: 'Knowing which tool to use for which task gets you better results, faster, and keeps your data safer. All three matter.',
+    sources: [
+      { label: 'Reuters / UBS — "ChatGPT sets record for fastest-growing user base" (Feb 2023)', url: 'https://www.reuters.com/technology/chatgpt-sets-record-fastest-growing-user-base-analyst-note-2023-02-01/' },
+      { label: 'OpenAI — Weekly active users milestone (The Verge coverage, 2024)', url: 'https://www.theverge.com/2024/8/29/24231685/openai-chatgpt-200-million-weekly-users' }
+    ]
   },
   {
     type: 'concept',
     title: 'How the Major Tools Compare',
+    body: 'The chatbot you see is only the public face. Underneath, each of these models has different training data, different "personalities" (the result of different tuning), different context windows (how much you can paste), different browsing abilities, and different privacy defaults. Here\'s what matters for GCSE and everyday use in 2025.',
     bullets: [
-      { term: 'ChatGPT (OpenAI)', def: 'Most widely used; strong general reasoning; good for coding, creative tasks, broad questions' },
-      { term: 'Claude (Anthropic)', def: 'Strong at long documents and nuanced analysis; careful about safety; good for detailed feedback' },
-      { term: 'Gemini (Google)', def: 'Integrated with Google Search; best for current information and web-connected tasks' },
-      { term: 'Microsoft Copilot', def: 'Built into Windows and Office apps; useful for document and spreadsheet tasks' },
-      { term: 'All of them', def: 'Can be wrong — the brand name doesn\'t guarantee accuracy. Always verify.' }
+      { term: 'ChatGPT (OpenAI)', def: 'Most widely used — GPT-4o and GPT-5 family. Strong general reasoning, image understanding, voice mode, DALL·E image generation. Built-in web search on paid tiers. The "Swiss army knife" choice.' },
+      { term: 'Claude (Anthropic)', def: 'Made in San Francisco by ex-OpenAI researchers led by Dario and Daniela Amodei. Strongest on long documents (200k-token context = ~500 pages) and nuanced writing/feedback. Consistently ranked #1 for safety and careful reasoning in independent benchmarks (LMSYS 2024).' },
+      { term: 'Gemini (Google)', def: 'Integrated with Google Search, Google Workspace (Docs, Gmail, Sheets) and YouTube transcripts. Best for current events, live web queries and tasks inside the Google ecosystem.' },
+      { term: 'Microsoft Copilot', def: 'Runs on OpenAI models but inside Windows 11, Edge, Word, Excel, PowerPoint and Teams. Strongest for productivity tasks embedded in documents you\'re already writing.' },
+      { term: 'All of them share this', def: 'Can be wrong — the brand name doesn\'t guarantee accuracy. All four can and do hallucinate. The four-checks test from L114 applies to all of them, every time.' }
+    ],
+    sources: [
+      { label: 'LMSYS Chatbot Arena — independent human-preference leaderboard (updated daily)', url: 'https://lmarena.ai/' },
+      { label: 'Anthropic — Claude model documentation and context window details', url: 'https://docs.anthropic.com/en/docs/about-claude/models' }
     ]
   },
   {
     type: 'concept',
     title: 'Choosing the Right Tool',
+    body: 'Match the tool to the task. These are the fastest rules of thumb for 2025 GCSE use — based on independent benchmarks and real classroom testing. When in doubt, try the task in two tools and compare outputs directly.',
     bullets: [
-      { term: 'Current news / recent events', def: 'Gemini or Bing — these have live web access' },
-      { term: 'Long documents / nuanced feedback', def: 'Claude — handles lengthy text well' },
-      { term: 'Coding help', def: 'Any major model — ChatGPT and Claude both strong' },
-      { term: 'School revision in general', def: 'Whichever you have access to — then verify important facts' },
-      { term: 'Check your school\'s policy', def: 'Some schools permit certain tools but not others — always check first' }
+      { term: 'Current news / recent events', def: 'Gemini or ChatGPT with Search — live web access. Anything that happened after the model\'s training cut-off needs browsing.' },
+      { term: 'Long documents / nuanced feedback', def: 'Claude — handles 200k-token inputs natively. Paste a whole chapter or past paper; the context stays coherent.' },
+      { term: 'Coding help', def: 'ChatGPT or Claude — both strong for GCSE Computer Science (Python, HTML/CSS, JavaScript). Claude tends to explain its working more carefully; ChatGPT runs code in the browser (advanced data analysis).' },
+      { term: 'Image generation / analysis', def: 'ChatGPT (DALL·E 3), Gemini (Imagen), Copilot (DALL·E 3). For analysing an image you upload, all four support vision — Claude is strongest at extracting text and diagrams from photos of notes.' },
+      { term: 'School revision in general', def: 'Whichever you have access to — then verify important facts against your textbook or exam-board site.' },
+      { term: 'Check your school\'s policy first', def: 'JCQ 2024 guidance lets schools set their own rules. Some schools permit ChatGPT Edu but block consumer ChatGPT; others flip it. Always check before using for coursework.' }
+    ],
+    callout: 'Pro move: don\'t rely on one tool. A two-tool workflow (e.g. Claude for feedback, Gemini for current facts) beats a one-tool workflow on almost every real task measured by Stanford\'s 2024 productivity study.'
+  },
+  {
+    type: 'scenario',
+    title: 'The Wrong Tool for the Job',
+    situation: 'Priya is revising GCSE History. She uploads a 40-page PDF of primary source extracts (Treaty of Versailles, League of Nations memos, Weimar-era newspaper translations) into the free tier of ChatGPT and asks for a summary she can turn into revision cards. The response is shorter than she expected and mentions details she\'s sure weren\'t in the PDF. She asks: "did you read the whole document?" The AI says it read "the provided material" and continues. She runs the same task in Claude and gets a visibly richer, more accurate summary that quotes passages she recognises.',
+    question: 'What\'s most likely happening — and what should Priya take away from it?',
+    choices: [
+      { text: 'ChatGPT is broken — she should stop using it entirely.', outcome: 'Too strong. ChatGPT is excellent at many tasks. But the free tier\'s context window is much smaller than Claude\'s 200k-token window — the PDF was too long, so it only processed part of it and "filled in" the rest. The lesson isn\'t that ChatGPT is bad; it\'s that context window size matters for long documents.' },
+      { text: 'The tools have different strengths. For a 40-page document, Claude\'s larger context window is the better fit. Priya should match the tool to the task — and when accuracy matters, should cross-check outputs against the original.', outcome: 'Correct. This is the whole point of the lesson. A two-tool workflow (Claude for long docs, Gemini for current events, ChatGPT for coding or images) produces better results than loyalty to one brand. Priya should also always verify against the source — AI that "filled in" detail is hallucinating, even on summarisation tasks.' },
+      { text: 'She should just trust the Claude output because it was longer and sounded more confident.', outcome: 'Length and confidence are not accuracy. Claude also hallucinates — just less, on long documents, in this specific setup. Priya still needs to spot-check the summary against the actual PDF before committing any of it to revision cards.' }
     ]
   },
   {
@@ -1853,12 +1900,12 @@ SLIDES_GCSE[117] = [
     question: 'You need information about something that happened last week for a project. Which is the best approach?',
     options: [
       'Ask any AI chatbot — they all have up-to-date information',
-      'Use an AI tool with live web search, like Gemini or Bing Copilot',
+      'Use an AI tool with live web search, like Gemini or ChatGPT with Search',
       'AI tools can\'t help with current events at all',
       'Use a chatbot with a knowledge cut-off and trust the answer'
     ],
     correct: 1,
-    explanation: 'Most AI chatbots have a knowledge cut-off and won\'t know about last week. Tools with live web search (Gemini, Bing) can retrieve current information — but still verify what they return.'
+    explanation: 'Most AI chatbots have a knowledge cut-off (e.g. Claude 3.5 Sonnet: April 2024; GPT-4o: October 2023 base) and won\'t know about last week — they\'ll either say so or, worse, invent plausible-sounding detail. Tools with live web search (Gemini, ChatGPT with Search, Perplexity) can retrieve current information — but still verify what they return before citing.'
   },
   {
     type: 'activity',
@@ -1889,11 +1936,12 @@ SLIDES_GCSE[117] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🔧', label: 'Different tools have different strengths', text: 'match the tool to the task' },
-      { icon: '📅', label: 'For current events, use live search', text: 'Gemini or Bing for recent information' },
-      { icon: '📜', label: 'Check your school\'s policy', text: 'permitted tools vary between schools' },
-      { icon: '🔒', label: 'Free tiers may train on your input', text: 'keep private and personal data out of public chatbots' },
-      { icon: '⚠️', label: 'No tool guarantees accuracy', text: 'verify regardless of which one you use' }
+      { icon: '🔧', label: 'Different tools have different strengths', text: 'match the tool to the task — the right tool can double your speed and halve your errors' },
+      { icon: '📅', label: 'For current events, use live search', text: 'Gemini or ChatGPT-with-Search — knowledge cut-offs mean old models invent recent detail' },
+      { icon: '📚', label: 'For long documents, use Claude', text: '200k-token context = ~500 pages; other tools will silently truncate and hallucinate the rest' },
+      { icon: '📜', label: 'Check your school\'s policy', text: 'permitted tools vary — JCQ 2024 lets schools set their own rules' },
+      { icon: '🔒', label: 'Free tiers may train on your input', text: 'keep personal data, family info and coursework out of public chatbots' },
+      { icon: '⚠️', label: 'No tool guarantees accuracy', text: 'all four hallucinate — verify regardless of which brand you use' }
     ]
   }
 ];
@@ -1913,34 +1961,51 @@ SLIDES_GCSE[118] = [
   {
     type: 'concept',
     title: 'What Good Prompt Engineering Looks Like',
-    body: 'Professional prompt engineers spend real time crafting, testing and iterating. The difference between a mediocre and excellent prompt can be the difference between wasted time and a genuinely useful result.',
+    body: 'Professional prompt engineers at Anthropic, OpenAI and Google spend real time crafting, testing and iterating prompts — it\'s a recognised engineering discipline. The difference between a mediocre and excellent prompt can be the difference between wasted time and a genuinely useful result. Here are the habits they practise and that you can copy from this lesson onwards.',
     bullets: [
-      'Specify the role: "Act as a patient GCSE tutor who explains things clearly"',
-      'Specify the exact output: format, length, style, tone',
-      'Anticipate problems: "Don\'t include anything requiring university-level knowledge"',
-      'Build in quality checks: "Flag anything you\'re not certain about"',
-      'Iterate: test it, see where it falls short, refine'
+      { term: 'Specify the role', def: '"Act as a patient GCSE AQA tutor who explains things clearly and checks understanding before moving on" — role-setting is documented by Anthropic to measurably improve factual accuracy on specialist tasks.' },
+      { term: 'Specify the exact output', def: 'Format, length, style, tone. "Under 250 words, numbered list, UK English, no jargon unless defined inline" — every constraint narrows and improves the response.' },
+      { term: 'Anticipate problems', def: '"Don\'t include anything requiring university-level knowledge. If you need to use a technical term, define it in brackets." Good prompts pre-empt the failure modes you know the model has.' },
+      { term: 'Build in quality checks', def: '"Flag anything you\'re not confident about with [check this]." This single line catches a large fraction of hallucinations before you commit to them.' },
+      { term: 'Iterate deliberately', def: 'Test it, see where it falls short, refine one variable at a time. Dell\'Acqua et al. 2023 showed 3–5 iterations is the productivity sweet spot — fewer leaves quality on the table; more loses time to diminishing returns.' },
+      { term: 'Save what works', def: 'Keep a "prompt library" — Notes app, Google Keep, Claude Projects or ChatGPT custom GPTs. A reusable great prompt is compound interest on your time.' }
+    ],
+    sources: [
+      { label: 'Anthropic — Claude prompt engineering overview', url: 'https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview' },
+      { label: 'OpenAI Cookbook — prompt engineering best practices', url: 'https://cookbook.openai.com/articles/related_resources' }
     ]
   },
   {
     type: 'activity',
     title: 'The Challenge — Choose One',
-    task: 'Pick one task below and write the best possible prompt for it. In the notes box, write your full prompt including role, task, context, format, and constraints.',
+    task: 'Pick ONE task below and write the best possible prompt for it using the PTFC framework. In the notes box, write your full prompt including role, task, context, format, and constraints. Then — the crucial step — run it in an AI tool, read the output critically, and write the ONE improvement you\'d make for version 2.',
     steps: [
-      'Task A: Get AI to create a revision quiz for a GCSE topic you\'re currently studying',
-      'Task B: Get AI to give you detailed, useful feedback on an essay plan',
-      'Task C: Get AI to explain the most difficult concept in your hardest subject in a way that finally makes sense to you'
+      'Task A: Get AI to create a revision quiz for a GCSE topic you\'re currently studying — include exam board, year group, sub-topic, and number of questions',
+      'Task B: Get AI to give you detailed, useful feedback on an essay plan — paste the plan in, specify what kind of feedback (structure? evidence? argument?), and request mark-scheme-style commentary',
+      'Task C: Get AI to explain the most difficult concept in your hardest subject in a way that finally makes sense to you — include why you\'ve struggled with it before',
+      'Task D: Get AI to build you a 5-day revision plan for a subject you\'re weak in — include your target grade, hours per day, and current weakest topics',
+      'The iteration step: after running your prompt, note what came back that was NOT useful. Rewrite the prompt to eliminate that noise. Run again. Compare the two outputs.'
     ],
-    callout: 'Challenge: write it so clearly that someone could hand it to any AI tool and get a useful response — without changing a word.'
+    callout: 'Challenge: write version 2 so clearly that someone could hand it to any AI tool and get a useful response — without changing a word. Portable prompts are the mark of real prompt-engineering skill.'
   },
   {
-    type: 'concept',
-    title: 'What Makes It Work — The Debrief',
-    bullets: [
-      { term: 'Specificity', def: 'Beats vagueness every time — the more precise, the less room for unhelpful guessing' },
-      { term: 'Tell it who it\'s talking to', def: '"A 15-year-old GCSE student" completely changes the level and tone' },
-      { term: 'Format instructions', def: 'Numbered list, table, bullet points — make responses instantly more usable' },
-      { term: '"Flag uncertainty"', def: 'Asking AI to say when it\'s unsure catches hallucinations before they mislead you' }
+    type: 'scenario',
+    title: 'The Prompt Engineer Interview',
+    situation: 'Fast forward: it\'s 2030. You\'re interviewing for an internship at a media company that uses AI throughout its workflow. The interviewer slides a laptop across the desk: "We need a prompt that turns any 2,000-word news article into a 60-second TikTok script in our house voice, flags any claims that need fact-checking, and works the same way for every writer on the team. You have 10 minutes." This isn\'t a trick question — this is literally the job.',
+    question: 'Which approach most impresses the interviewer?',
+    choices: [
+      { text: 'Type a one-line prompt into ChatGPT and show them the result — speed matters.', outcome: 'Speed impresses nobody in a prompting-skill test. A one-line prompt will give inconsistent, off-voice output. The interviewer is looking for structured thinking — roles, constraints, quality checks — not typing speed.' },
+      { text: 'Write a structured prompt with Role ("You are [Company]\'s TikTok script writer"), Task (3-beat script structure), Context (audience 16-24, house voice examples), Format (exact word count per beat), Constraints ("flag unverified claims with [CHECK]"), and a clear test protocol for the team to validate it.', outcome: 'Exactly the move. This is what a professional prompt engineer actually does — and it\'s the approach taught in Anthropic and OpenAI\'s official guides. Extra credit: suggest testing the prompt on 5 varied articles before rollout, and explain how you\'d iterate when the output drifts. You just demonstrated the skill the company is hiring for.' },
+      { text: 'Ask the interviewer to write the prompt for you — "I\'ll just tweak theirs."', outcome: 'Confident move, wrong room. In a prompt-engineering interview, the prompt IS the work you\'re being hired to do. You\'ve just told them you can\'t do the job.' }
+    ]
+  },
+  {
+    type: 'discussion',
+    title: 'Prompt Engineering &amp; the Future of Work',
+    questions: [
+      { num: 1, text: 'Is prompt engineering a genuine new skill or a short-term workaround that will disappear as AI gets better at understanding vague questions? What\'s the evidence for each view?' },
+      { num: 2, text: 'Senior prompt engineers at top AI firms were paid £200k–300k a year by 2024. If AI eventually prompts itself, what skill remains valuable — and is that what schools should be teaching?' },
+      { num: 3, text: 'You\'ve now been taught a complete Unit 3 toolkit: prompting (L113), evaluation (L114), creativity boundaries (L115), automation judgement (L116), tool selection (L117) and professional-level prompting (this lesson). Which of these six skills do you think will matter most in the career you\'re heading toward — and why?' }
     ]
   },
   {
@@ -1953,16 +2018,18 @@ SLIDES_GCSE[118] = [
       'Accept the response — AI can\'t do better than its first answer'
     ],
     correct: 2,
-    explanation: 'Iteration is a core prompting skill. The first response is rarely the best. A specific follow-up that narrows the topic, requests a different format, or asks for examples usually produces a significantly more useful response than starting over or accepting a mediocre answer.'
+    explanation: 'Iteration is a core prompting skill. The first response is rarely the best. A specific follow-up that narrows the topic, requests a different format, or asks for examples usually produces a significantly more useful response than starting over or accepting a mediocre answer. Dell\'Acqua et al. (Wharton 2023) measured this: deliberate iteration produced output quality 40% above one-shot prompts.'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🏆', label: 'Prompting is a learnable skill', text: 'it improves with deliberate practice' },
-      { icon: '🎯', label: 'Specificity, format, context', text: 'your three main levers' },
-      { icon: '🔄', label: 'Always iterate', text: 'rarely get the best result first time' },
-      { icon: '💼', label: 'This is a professional skill', text: 'increasingly valued across every industry' }
+      { icon: '🏆', label: 'Prompting is a learnable skill', text: 'it improves with deliberate practice — same as chess, piano or coding' },
+      { icon: '🎯', label: 'Role, Task, Context, Format, Constraint', text: 'your five levers — use them like a professional' },
+      { icon: '🔄', label: 'Always iterate', text: 'Wharton 2023: 3–5 iterations is the sweet spot; one-shot leaves value on the table' },
+      { icon: '💾', label: 'Save your best prompts', text: 'compound interest on your time — a library of 10 great prompts saves hours every week' },
+      { icon: '🚩', label: 'Build in quality checks', text: '"flag what you\'re unsure about" — catches hallucinations before they mislead you' },
+      { icon: '💼', label: 'This is a professional skill', text: 'increasingly valued across every industry — and it\'s only your GCSE that gets to teach it early' }
     ]
   },
   {
