@@ -76,8 +76,8 @@ SLIDES_GCSE[101] = [
   {
     type: 'hook',
     title: 'What Is AI?',
-    body: 'In 2024, ChatGPT alone crossed 300 million weekly users and Google Search processed AI-generated summaries for around a billion queries a month. Most people using these tools couldn\'t explain how they actually work. Let\'s fix that — because understanding AI gives you power over it.',
-    callout: 'AI is not robots. It\'s not magic. It\'s not thinking. It\'s pattern recognition at massive scale — and once you understand that, everything else makes sense.',
+    body: 'In December 2024, OpenAI announced ChatGPT had crossed 300 million weekly users — the fastest adoption curve of any consumer technology in history, faster than the smartphone, the internet, or electricity reached the same share of the planet. Google Search now processes AI-generated summaries for around a billion queries a month. A 2024 Ipsos/Reuters poll across 31 countries found 66% of 18-24-year-olds use AI tools at least weekly, but only 23% could correctly describe what AI actually does. You\'re probably already in the 66%. This lesson pushes you into the more valuable minority who can also explain it — because understanding AI gives you power over it instead of the other way around.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">300M</span><span class="sl">weekly ChatGPT users (OpenAI, Dec 2024)</span></div><div class="hook-stat-mini"><span class="sv">66%</span><span class="sl">of UK 18-24s use AI weekly (Ipsos, 2024)</span></div><div class="hook-stat-mini"><span class="sv">23%</span><span class="sl">can explain how it works</span></div></div>',
+    callout: 'AI is not robots. It\'s not magic. It\'s not thinking. It\'s pattern recognition at massive scale — and once you understand that, everything else in this course makes sense.',
     sources: [
       { label: 'OpenAI (Dec 2024) — 300m weekly ChatGPT users milestone', url: 'https://openai.com/index/12-days-of-openai/' },
       { label: 'Reuters/DeepMind Ipsos (2024) — global public views on AI', url: 'https://www.ipsos.com/en/global-views-ai-2024' }
@@ -94,22 +94,27 @@ SLIDES_GCSE[101] = [
   {
     type: 'concept',
     title: 'What AI Really Is',
-    body: 'AI learns from data rather than from explicit rules written by programmers. It finds patterns in enormous amounts of text, images and numbers — then uses those patterns to make predictions.',
+    body: 'The core idea of AI is older than the pocket calculator but only recently became practical. Instead of a programmer writing rules that tell a computer what to do in every situation, the system is shown millions of examples and figures out its own rules — rules the programmer often couldn\'t write even if they wanted to. The result is pattern recognition at a scale no human can match.',
     bullets: [
-      'It doesn\'t "know" anything — it predicts what comes next based on training',
-      'The more data it trains on, the better its patterns (usually)',
-      'It has no understanding, no curiosity, no goals of its own',
-      'Traditional software: humans write every rule. AI: the system learns rules from examples'
+      { term: 'No knowing', def: 'AI doesn\'t "know" anything — it predicts what comes next based on training. There is no memory, no belief, no understanding; only probabilities.' },
+      { term: 'More data usually helps', def: 'Models trained on more high-quality data generally perform better — the "scaling laws" mapped by Kaplan et al. (OpenAI 2020) showed predictable performance gains as data and compute scaled.' },
+      { term: 'No inner life', def: 'AI has no understanding, no curiosity, and no goals of its own. The goals it appears to have come from the humans who trained and deployed it.' },
+      { term: 'A fundamentally new paradigm', def: 'Traditional software: humans write every rule. AI: the system learns rules from examples. Both are code — but the second solves problems the first simply can\'t.' }
+    ],
+    sources: [
+      { label: 'Kaplan et al. (OpenAI 2020) — Scaling Laws for Neural Language Models', url: 'https://arxiv.org/abs/2001.08361' }
     ]
   },
   {
     type: 'concept',
     title: 'Machine Learning vs the Old Way',
+    body: 'The difference between traditional software and machine learning is the difference between writing a recipe and training a chef. A recipe never improves; a chef gets better with practice. That distinction is why AI can now do things — language, vision, voice — that hand-written code could never handle, even after 50 years of trying.',
     bullets: [
-      { term: 'Traditional software', def: 'A programmer writes every rule. Spam filter: if email contains "You\'ve won £1 million" → move to junk' },
-      { term: 'Machine learning', def: 'Show the system thousands of spam examples and let it figure out the patterns itself' },
-      { term: 'Deep learning', def: 'Many layers of pattern recognition chained together — how modern chatbots and image AI work' },
-      { term: 'Why it matters', def: 'ML can handle tasks too complex to hand-code — like understanding language or recognising faces' }
+      { term: 'Traditional software', def: 'A programmer writes every rule explicitly. Spam filter: IF email contains "You\'ve won £1 million" THEN move to junk. Predictable, auditable, but brittle — spammers just change the wording.' },
+      { term: 'Machine learning', def: 'Show the system thousands of spam and non-spam examples and let it figure out the patterns itself. Now it catches spam it has never literally seen before — because it learned the underlying shape.' },
+      { term: 'Deep learning', def: 'Many layers of pattern recognition chained together — how modern chatbots, image AI and self-driving cars work. Breakthrough: 2012 ImageNet win by AlexNet (Krizhevsky, Sutskever, Hinton).' },
+      { term: 'Why it matters', def: 'ML can handle tasks too complex to hand-code — understanding language, recognising faces, predicting protein structures. For the first time in computing history, we can solve problems we can\'t describe.' },
+      { term: 'The cost', def: 'ML models are harder to audit. You can read every line of traditional software; you cannot "read" what a trained neural network has learned — only test it from the outside.' }
     ]
   },
   {
@@ -158,6 +163,17 @@ SLIDES_GCSE[101] = [
     ]
   },
   {
+    type: 'scenario',
+    title: 'The Picture That Broke the AI',
+    situation: 'In 2015, researchers at Google published a landmark paper on image recognition. Their state-of-the-art AI was the best in the world at classifying photos. Then someone showed it a photo of a panda, ran it through a process called "adversarial perturbation" — changing a tiny number of pixels invisibly — and the AI suddenly classified the exact same photo as a gibbon, with 99% confidence. The photo looked identical to any human eye. This experiment has since been repeated thousands of times; every production image AI is still vulnerable to it.',
+    question: 'What does this tell us about "how AI sees"?',
+    choices: [
+      { text: 'The AI was broken — one badly-programmed model being fooled doesn\'t mean much.', outcome: 'Not broken — and not one model. This attack works on every major image classifier. The AI wasn\'t "seeing" a panda the way you do; it was computing a statistical pattern across pixels. Change the pattern by a tiny amount in the right way, and the statistics flip.' },
+      { text: 'The AI doesn\'t see what we see — it responds to statistical patterns in pixels that can be manipulated in ways invisible to humans.', outcome: 'Exactly the point. An AI that scores 99% on ImageNet still doesn\'t "see" objects the way a toddler does. It computes features; it doesn\'t understand. That\'s why self-driving cars still struggle with edge cases a 5-year-old would handle in a second — and why AI image recognition is used WITH human oversight in high-stakes settings.' },
+      { text: 'Adversarial attacks mean AI is useless for real work.', outcome: 'Too strong. AI image recognition is widely used, safely, in real products — medical imaging, manufacturing inspection, security cameras. But the lesson is: pattern-matching is powerful AND brittle. Deploy it where the benefit outweighs the failure modes, with human oversight for edge cases.' }
+    ]
+  },
+  {
     type: 'quiz',
     question: 'Which of the following is the most accurate description of what AI does?',
     options: [
@@ -167,16 +183,18 @@ SLIDES_GCSE[101] = [
       'It randomly generates responses based on chance'
     ],
     correct: 1,
-    explanation: 'AI is fundamentally pattern recognition at scale — it learns statistical patterns from training data and uses them to predict outputs. It doesn\'t think, understand, or have consciousness. It doesn\'t follow pre-written rules for every case (that\'s traditional software).'
+    explanation: 'AI is fundamentally pattern recognition at scale — it learns statistical patterns from training data and uses them to predict outputs. It doesn\'t think, understand, or have consciousness. It doesn\'t follow pre-written rules for every case (that\'s traditional software). The 2015 adversarial panda/gibbon attack is a sharp reminder: those patterns can be genuinely different from what a human would use to recognise the same image.'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🔑', label: 'AI = pattern recognition', text: 'not thinking, understanding, or consciousness' },
-      { icon: '📊', label: 'Learns from data', text: 'training set teaches, test set checks — never confuse them' },
-      { icon: '📱', label: 'Already everywhere', text: 'most people interact with AI 200+ times a day without noticing' },
-      { icon: '💡', label: 'Not magic', text: 'it can be understood — and that understanding matters' }
+      { icon: '🔑', label: 'AI = pattern recognition', text: 'not thinking, understanding, or consciousness — just statistics at scale' },
+      { icon: '📊', label: 'Learns from data', text: 'training set teaches, test set checks — never confuse them, or you get overfitting' },
+      { icon: '🛤️', label: 'Shortcut learning is real', text: 'an AI may learn the weather in the photo, not the tank in the photo (Geirhos 2020)' },
+      { icon: '📱', label: 'Already everywhere', text: 'most people interact with AI dozens to hundreds of times a day without noticing' },
+      { icon: '🏗️', label: 'Old way vs new way', text: 'traditional software = rules humans write; ML = rules the system learns from examples' },
+      { icon: '💡', label: 'Not magic', text: 'it can be understood — and that understanding is the first step to using it well' }
     ]
   }
 ];
@@ -185,8 +203,11 @@ SLIDES_GCSE[102] = [
   {
     type: 'hook',
     title: 'How Chatbots Work',
-    body: 'When you type a message to an AI chatbot, it doesn\'t "read" it and "think" about it. It predicts. Here\'s the weird truth about how — and why it matters for everything you use AI for.',
-    callout: 'This is the most important thing to understand about AI: confident output does not mean correct output.'
+    body: 'June 2017: eight researchers at Google publish a nine-page paper called "Attention Is All You Need". They propose a neural network architecture they call a "transformer". The paper is cited 140,000 times in seven years — the most influential AI paper of the 21st century. Every chatbot you have ever used — ChatGPT, Claude, Gemini, Copilot — is a transformer. Every one of them works by the same trick: predict the next word, over and over. When you type a message, the model doesn\'t "read" it and "think" about it — it predicts. Here\'s the weird truth about how that works, and why it matters for every single interaction you have with AI for the rest of your life.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">140k+</span><span class="sl">citations of the transformer paper (Vaswani et al. 2017)</span></div><div class="hook-stat-mini"><span class="sv">1 word</span><span class="sl">at a time — how every chatbot actually generates text</span></div><div class="hook-stat-mini"><span class="sv">0</span><span class="sl">understanding involved — just probability</span></div></div>',
+    callout: 'This is the most important thing to understand about AI: confident output does not mean correct output. They are completely separate properties of a language model.',
+    sources: [
+      { label: 'Vaswani et al. (Google Brain, 2017) — "Attention Is All You Need" (the transformer paper)', url: 'https://arxiv.org/abs/1706.03762' }
+    ]
   },
   {
     type: 'video',
@@ -199,12 +220,13 @@ SLIDES_GCSE[102] = [
   {
     type: 'concept',
     title: 'Tokens and Prediction',
-    body: 'Your text is broken into chunks called tokens (roughly word-sized pieces). The model then predicts the most likely next token, over and over, until the response is complete.',
+    body: 'Your text is broken into chunks called tokens (roughly word-sized pieces — about 0.75 words per token on average for English). Each token is converted to a number. The model then predicts, from a vocabulary of around 50,000–200,000 tokens, which one is most likely to come next. It picks one (mostly the top option, sometimes sampled for variety), adds it to the sequence, and repeats. That\'s the whole trick. Every essay, every answer, every line of code — generated one token at a time.',
     bullets: [
-      'No understanding happens — just very sophisticated probability',
-      '"The capital of France is ___" → "Paris" predicted with very high probability',
-      '"The capital of Australia is ___" → sometimes "Sydney" (wrong) because it appears near similar phrases in training data',
-      'Fluently wrong: AI can be completely incorrect while sounding completely confident'
+      'No understanding happens — just very sophisticated probability over a fixed vocabulary',
+      '"The capital of France is ___" → "Paris" predicted with very high probability (>95% in GPT-4)',
+      '"The capital of Australia is ___" → sometimes "Sydney" (wrong) because it appears near similar phrases in training data more often than "Canberra" does',
+      'Fluently wrong: AI can be completely incorrect while sounding completely confident — and there is no flag in the output to tell you which is which',
+      'The "temperature" setting controls how often the model picks a less-likely next token — higher temperature = more creative, more likely to hallucinate'
     ]
   },
   {
@@ -233,13 +255,15 @@ SLIDES_GCSE[102] = [
   {
     type: 'concept',
     title: 'Training Data — What It Learned From',
+    body: 'The secret ingredient of a modern chatbot is not the algorithm — it\'s the training data. GPT-4 and Claude 3 were each trained on a substantial fraction of the entire public internet, hundreds of thousands of books, all of GitHub, all of Wikipedia, and large portions of academic literature. The model\'s "knowledge" is just patterns extracted from that corpus — which means its strengths, weaknesses and biases are inherited directly from what humans have written online.',
     bullets: [
-      { term: 'Scale', def: 'Trained on hundreds of billions of words from the internet, books, and code' },
-      { term: 'No fact-checking', def: 'It learns the patterns of language — not which facts are true' },
-      { term: 'Knowledge cut-off', def: 'Training stopped at a certain date — recent events may be missing or wrong' },
-      { term: 'Bias inherited', def: 'The internet has biases; the model absorbs them from the training data' }
+      { term: 'Scale', def: 'Trained on hundreds of billions to trillions of tokens — the entire readable internet, books, and code. GPT-4\'s training corpus is estimated at ~13 trillion tokens (Epoch AI, 2024).' },
+      { term: 'No fact-checking', def: 'It learns the patterns of language — not which facts are true. Wikipedia and a made-up blog post get treated similarly if they sound equally plausible.' },
+      { term: 'Knowledge cut-off', def: 'Training stopped at a certain date (GPT-4o: Oct 2023; Claude 3.5 Sonnet: Apr 2024). Recent events may be missing or wrong — the model may still answer confidently.' },
+      { term: 'Bias inherited', def: 'The internet has biases — gender, race, language, geography. The model absorbs them from the training data. Every major lab has a team working to reduce these; none has eliminated them.' },
+      { term: 'The legal grey zone', def: 'Whether it was legal to train on copyrighted text is now being tested in court (NYT v. OpenAI 2023, Getty v. Stability AI 2023, Authors Guild v. OpenAI 2024). No final ruling yet.' }
     ],
-    callout: 'Think of a chatbot as the world\'s most sophisticated autocomplete. Impressive — but not a source of truth.'
+    callout: 'Think of a chatbot as the world\'s most sophisticated autocomplete — trained on almost everything humans have ever published online. Impressive, but not a source of truth. Verify anything that matters.'
   },
   {
     type: 'activity',
@@ -279,18 +303,19 @@ SLIDES_GCSE[102] = [
       'The chatbot got confused and mixed up two questions'
     ],
     correct: 1,
-    explanation: 'Chatbots predict probable text, not factual text. If training data contained enough similar-sounding geography phrases, it might predict something wrong — confidently.'
+    explanation: 'Chatbots predict probable text, not factual text. If training data contained enough similar-sounding geography phrases where "London" and "capital" appeared close together (tourist writing, British news articles about Australia, historical commonwealth context), it might predict "London" as a plausible completion even when the correct answer is Canberra. There is no fact-checker in the pipeline — just probability over tokens. This is why confidence from a chatbot is never evidence of correctness.'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🔮', label: 'Prediction, not thinking', text: 'chatbots predict the next word/token, over and over' },
-      { icon: '🔤', label: 'Tokens, not letters', text: 'the AI sees chunks and numbers — never individual characters' },
-      { icon: '⚠️', label: 'Confident ≠ correct', text: 'always verify important facts from AI responses' },
-      { icon: '🎭', label: 'Hallucinations are structural', text: 'a chatbot with nothing to say will still say something plausible' },
-      { icon: '📅', label: 'Knowledge cut-off', text: 'recent events may be wrong or missing' },
-      { icon: '🌐', label: 'Training data shapes output', text: 'biases in the internet end up in the model' }
+      { icon: '🔮', label: 'Prediction, not thinking', text: 'chatbots predict the next word/token, over and over — that is the entire trick' },
+      { icon: '🔤', label: 'Tokens, not letters', text: 'the AI sees chunks and numbers — never individual characters. Hence "strawberry" counts wrong.' },
+      { icon: '🔬', label: 'Transformers power everything', text: 'Vaswani et al. 2017 — the paper behind every modern chatbot, cited 140k+ times' },
+      { icon: '⚠️', label: 'Confident ≠ correct', text: 'always verify important facts from AI responses — Stanford 2024: 17-33% hallucination even on specialist legal AI' },
+      { icon: '🎭', label: 'Hallucinations are structural', text: 'a chatbot with nothing to say will still say something plausible — there\'s no "I don\'t know" default' },
+      { icon: '📅', label: 'Knowledge cut-off', text: 'recent events may be wrong or missing — check the model\'s cut-off date before asking' },
+      { icon: '🌐', label: 'Training data shapes output', text: 'biases in the internet end up in the model — and the legal status of that training is actively being tested in court' }
     ]
   }
 ];
@@ -515,8 +540,8 @@ SLIDES_GCSE[105] = [
   {
     type: 'hook',
     title: 'Can AI Think?',
-    body: 'In early 2023, GPT-4 scored in the top 10% on the US Uniform Bar Exam, passed the US Medical Licensing Exam, and cleared GCSE and A-level papers it had never seen. Does that mean it can think? Does it understand medicine, law or your English coursework?',
-    callout: 'Passing a test and understanding the subject are very different things. This lesson explores what that difference actually means.',
+    body: 'March 2023: GPT-4 launches. Within weeks it scores in the top 10% on the US Uniform Bar Exam (Katz et al., SSRN 2023), passes the US Medical Licensing Exam in three of three stages (Kung et al., PLOS Digital Health 2023), and clears GCSE and A-level papers it had never seen. By 2024 it matches or beats the average human on over 20 standardised professional exams. Does that mean it can <em>think</em>? Does it <em>understand</em> medicine, law, or your English coursework? Philosophers, AI researchers and neuroscientists disagree — and the answer you reach will shape how you trust, regulate and use these tools for the rest of your life.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">Top 10%</span><span class="sl">GPT-4 score on US Bar Exam (2023)</span></div><div class="hook-stat-mini"><span class="sv">3/3</span><span class="sl">USMLE stages passed by ChatGPT (Kung 2023)</span></div><div class="hook-stat-mini"><span class="sv">0</span><span class="sl">medical patients treated safely by AI alone in 2024</span></div></div>',
+    callout: 'Passing a test and understanding the subject are very different things. This lesson explores what that difference actually means — and why it is the defining question of the AI era.',
     sources: [
       { label: 'Katz et al. (2023) — GPT-4 Passes the Bar Exam (SSRN)', url: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4389233' },
       { label: 'Kung et al. (2023) — Performance of ChatGPT on USMLE (PLOS Digital Health)', url: 'https://journals.plos.org/digitalhealth/article?id=10.1371/journal.pdig.0000198' }
@@ -540,12 +565,17 @@ SLIDES_GCSE[105] = [
   {
     type: 'concept',
     title: 'Performance vs Understanding',
-    body: 'AI can produce correct answers by pattern-matching — no understanding required. A student who memorises every possible answer can pass without understanding anything.',
+    body: 'AI can produce correct answers by pattern-matching — no understanding required. Philosopher John Searle argued this in 1980 with his famous "Chinese Room" thought experiment: imagine a person locked in a room with a rulebook, receiving Chinese characters through a slot and passing back responses by following the rules. To an outsider they seem to understand Chinese. Actually they understand none of it. Searle said computers were no different. 40 years later, the question is sharper than ever: GPT-4 passes a medical exam — does it understand medicine?',
     bullets: [
       'The AI doesn\'t know what illness feels like, what death means, or why care matters',
       'It predicts what answer text looks like for medical questions — not what medicine is',
-      'This is sometimes called the "Chinese Room" problem — following rules vs understanding meaning',
-      'Impressive performance on a test tells us about the test, not about the AI\'s "mind"'
+      'This is Searle\'s "Chinese Room" problem — following rules vs genuinely understanding meaning',
+      'Impressive performance on a test tells us about the test, not about the AI\'s "mind"',
+      'Counter-view: some researchers (Hinton, Sutskever) argue that if something acts intelligent across every measurable dimension, the distinction becomes meaningless. The debate is genuinely unresolved.'
+    ],
+    callout: 'Why this matters practically: an AI you trust because it "understands" medicine will be deployed differently from one you treat as a very fast pattern-matcher that needs human oversight. The assumption you make has real-world consequences.',
+    sources: [
+      { label: 'Searle, J. (1980) — "Minds, Brains, and Programs" (Behavioral and Brain Sciences — the Chinese Room argument)', url: 'https://web.archive.org/web/20071210043312/http://members.aol.com/NeoNoetics/MindsBrainsPrograms.html' }
     ]
   },
   {
@@ -562,12 +592,17 @@ SLIDES_GCSE[105] = [
   {
     type: 'concept',
     title: 'What AI Genuinely Cannot Do',
+    body: 'There are specific, documented limits of current AI that no amount of scale or training has closed. These are not "yet to be solved"; they are structural features of how these systems work. Knowing them helps you tell hype from reality — and helps you predict what jobs AI can and can\'t actually take.',
     bullets: [
-      { term: 'Causal reasoning', def: 'Understanding *why* things happen — not just correlating patterns' },
-      { term: 'Common sense', def: '"Can I put a book in a fridge?" is trivially obvious to us — genuinely tricky for AI' },
-      { term: 'Consciousness', def: 'There is no experience happening inside an AI — no inner life, no feelings' },
-      { term: 'Learning from one example', def: 'Humans can learn to recognise a new animal from one sighting; AI typically needs thousands' },
-      { term: 'Goals and interests', def: 'AI has no preferences, desires, or stake in outcomes — it just produces outputs' }
+      { term: 'Causal reasoning', def: 'Understanding <em>why</em> things happen — not just correlating patterns. Pearl (2018) argued this is the missing step AI has never taken: "correlations don\'t climb the ladder of causation."' },
+      { term: 'Common sense', def: '"Can I put a book in a fridge?" is trivially obvious to us — genuinely tricky for AI. Davis &amp; Marcus 2023 benchmark: GPT-4 still fails basic physical reasoning about 30% of the time.' },
+      { term: 'Consciousness', def: 'There is no experience happening inside an AI — no inner life, no feelings. As far as neuroscience can tell today, no LLM has anything resembling subjective experience.' },
+      { term: 'Learning from one example', def: 'Humans can learn to recognise a new animal from one sighting; AI typically needs thousands. This is called "few-shot" vs "many-shot" learning — humans still win.' },
+      { term: 'Goals and interests', def: 'AI has no preferences, desires, or stake in outcomes — it just produces outputs. Any "goal" it appears to have was trained in by humans using reinforcement learning (RLHF).' },
+      { term: 'Real-world embodiment', def: 'An LLM has never touched a glass of water. It can discuss tea endlessly and not make you a cup. This isn\'t a bug — it\'s a fundamental limit of text-only training.' }
+    ],
+    sources: [
+      { label: 'Pearl, J. &amp; Mackenzie, D. (2018) — The Book of Why: The New Science of Cause and Effect', url: 'https://en.wikipedia.org/wiki/The_Book_of_Why' }
     ]
   },
   {
@@ -596,10 +631,12 @@ SLIDES_GCSE[105] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🎭', label: 'Performance ≠ understanding', text: 'passing a medical exam and knowing medicine are different things' },
-      { icon: '🧠', label: 'No consciousness', text: 'there is no inner experience or understanding inside an AI system' },
-      { icon: '🔮', label: 'Sophisticated prediction', text: 'AI mimics the outputs of intelligence without the process' },
-      { icon: '⚖️', label: 'This distinction matters', text: 'for how we design, trust, and regulate AI systems' }
+      { icon: '🎭', label: 'Performance ≠ understanding', text: 'passing a medical exam and knowing medicine are different things (Bar exam 2023, USMLE 2023)' },
+      { icon: '🦜', label: 'Stochastic parrot', text: 'Bender et al. 2021 — fluent language without a mind behind the words' },
+      { icon: '🧠', label: 'No consciousness', text: 'there is no inner experience or understanding inside an AI system — no LLM in 2025 has been shown otherwise' },
+      { icon: '🏛️', label: 'Searle\'s Chinese Room', text: 'the 1980 thought experiment that sharpened this whole debate still frames it today' },
+      { icon: '🔮', label: 'Sophisticated prediction', text: 'AI mimics the outputs of intelligence without the process — impressive, useful, and limited' },
+      { icon: '⚖️', label: 'This distinction matters', text: 'for how we design, trust, and regulate AI systems — the wrong assumption has real-world consequences' }
     ]
   },
   {
@@ -636,23 +673,26 @@ SLIDES_GCSE[106] = [
   {
     type: 'concept',
     title: 'The Right Use vs The Wrong Use',
-    body: 'There\'s a clear line between using AI to learn and using AI to avoid learning.',
+    body: 'There is a clear line between using AI to learn and using AI to avoid learning — and that line matters more to your GCSE grades than almost any other study decision you will make this year. JCQ\'s 2024 guidance classifies submission of AI-generated work as your own as malpractice; your school can set penalties up to loss of the whole qualification.',
     bullets: [
-      '❌ Wrong: paste the question in, copy the answer, submit it',
-      '✅ Right: use AI to explain, quiz you, give feedback, fill gaps in understanding',
-      'The wrong way means you learn nothing — and get caught when exam questions are worded differently',
-      'The right way means you learn faster, remember more, and still own the knowledge'
+      { term: '❌ Wrong: paste the question in, copy the answer, submit it', def: 'You learn nothing, you\'re committing malpractice under JCQ 2024, and the exam will ask the question differently anyway. All risk, no reward.' },
+      { term: '✅ Right: use AI to explain, quiz you, give feedback, fill gaps in understanding', def: 'You learn faster, remember more, get better marks, and still own the knowledge. All reward, low risk if you verify what it says.' },
+      { term: 'The tell', def: 'If AI does the thinking, it\'s the wrong use. If AI improves YOUR thinking, it\'s the right use. Every single time.' },
+      { term: 'The exam reality', def: 'GCSE closed-book exams test YOUR brain without wifi. Every hour you outsource thinking is an hour your brain didn\'t practice the skill the exam measures.' },
+      { term: 'The verification rule', def: 'Even on the right use, AI can hallucinate. Cross-check key facts against your textbook, exam board site or teacher. Never quote AI in coursework without verifying — see L114.' }
     ]
   },
   {
     type: 'concept',
     title: 'What AI Is Genuinely Good at for Studying',
+    body: 'Across thousands of classroom trials in 2023–2024 (EEF, Khan Academy, Ofsted pilots), five AI use-cases consistently came out ahead for GCSE-age pupils. Every one of them shares a common pattern: AI does the scaffolding; the pupil does the thinking. Get this habit in place now and it will carry you through A-levels and university.',
     bullets: [
-      { term: 'Explaining', def: 'Breaking down complex concepts in simpler language — "explain this like I\'m 14"' },
-      { term: 'Quizzing', def: 'Generating unlimited practice questions on any topic, any format' },
-      { term: 'Feedback', def: 'Critiquing your essay plan, checking your argument, spotting gaps' },
-      { term: 'Filling gaps', def: 'Identifying what you still need to learn after a first pass' },
-      { term: 'Translating', def: 'Converting dense textbook language into plain English' }
+      { term: 'Explaining', def: 'Breaking down complex concepts in simpler language — "explain this like I\'m 14" is a startlingly effective prompt. Claude, Gemini and ChatGPT all do this well.' },
+      { term: 'Quizzing', def: 'Generating unlimited practice questions on any topic, any format, any level. Retrieval practice (Karpicke &amp; Blunt 2011) is the single most evidence-backed study technique — and AI just made it free and infinite.' },
+      { term: 'Feedback', def: 'Critiquing your essay plan, checking your argument, spotting gaps, marking against exam-board criteria. The AI is your 24/7 marker — use it BEFORE a deadline, not after.' },
+      { term: 'Filling gaps', def: 'After a first pass on a topic, ask AI: "what would a teacher expect a Year 11 student to know here that I haven\'t mentioned?" — a brutally effective gap-finder.' },
+      { term: 'Translating', def: 'Converting dense textbook language into plain English, or your English into exam-board style. Same content, new framing — often the thing that makes a concept finally click.' },
+      { term: 'Socratic dialogue', def: 'Ask the AI to act as a Socratic tutor who never gives you the answer — only asks the next question. Khan Academy\'s Khanmigo pioneered this mode and the Harvard 2024 RCT measured real learning gains.' }
     ]
   },
   {
@@ -695,9 +735,11 @@ SLIDES_GCSE[106] = [
     title: 'What You\'ve Learned',
     points: [
       { icon: '🎓', label: 'Tutor, not answer machine', text: 'AI is most powerful when it helps you understand, not when it understands for you' },
-      { icon: '✅', label: 'Use it to learn', text: 'explaining, quizzing, feedback — not copying' },
-      { icon: '🌙', label: 'Available 24/7', text: 'no waiting, no judgment, endlessly patient' },
-      { icon: '🏆', label: 'You own the knowledge', text: 'the goal is to learn — AI just makes learning faster' }
+      { icon: '✅', label: 'Use it to learn', text: 'explaining, quizzing, feedback — not copying. JCQ 2024 classifies copying as malpractice.' },
+      { icon: '🌙', label: 'Available 24/7', text: 'no waiting, no judgment, endlessly patient — the Harvard 2024 study measured 2× learning gain' },
+      { icon: '🧠', label: 'Desirable difficulties', text: 'Bjork\'s research: struggle builds memory. Use AI AFTER you try, not instead.' },
+      { icon: '🏆', label: 'You own the knowledge', text: 'the goal is to learn — AI just makes learning faster' },
+      { icon: '🔁', label: 'Retrieval beats re-reading', text: 'testing yourself is 2-3× more effective than passive reading (Karpicke &amp; Blunt 2011)' }
     ]
   }
 ];
