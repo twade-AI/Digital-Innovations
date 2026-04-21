@@ -1,11 +1,11 @@
 {
   "name": "Digital Innovations",
   "short_name": "DigInnov",
-  "description": "KS5 AI & Digital Ethics Course — 44 lessons across 6 units",
+  "description": "KS5 AI & Digital Ethics Course — 57 lessons across 6 units",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0f172a",
-  "theme_color": "#6366f1",
+  "theme_color": "#9b1844",
   "orientation": "any",
   "icons": [
     {
