@@ -1,5 +1,5 @@
 /* Digital Innovations — Service Worker (offline-first) v9 — Haileybury brand + editorial layer */
-const CACHE = 'di-v17';
+const CACHE = 'di-v18';
 const ASSETS = [
   './',
   './index.html',
