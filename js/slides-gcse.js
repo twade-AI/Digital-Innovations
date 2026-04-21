@@ -223,7 +223,7 @@ SLIDES_GCSE[102] = [
     body: 'Your text is broken into chunks called tokens (roughly word-sized pieces — about 0.75 words per token on average for English). Each token is converted to a number. The model then predicts, from a vocabulary of around 50,000–200,000 tokens, which one is most likely to come next. It picks one (mostly the top option, sometimes sampled for variety), adds it to the sequence, and repeats. That\'s the whole trick. Every essay, every answer, every line of code — generated one token at a time.',
     bullets: [
       'No understanding happens — just very sophisticated probability over a fixed vocabulary',
-      '"The capital of France is ___" → "Paris" predicted with very high probability (>95% in GPT-4)',
+      '"The capital of France is ___" → "Paris" predicted with very high probability (>95% in current frontier models like GPT-5 and Claude 4.6)',
       '"The capital of Australia is ___" → sometimes "Sydney" (wrong) because it appears near similar phrases in training data more often than "Canberra" does',
       'Fluently wrong: AI can be completely incorrect while sounding completely confident — and there is no flag in the output to tell you which is which',
       'The "temperature" setting controls how often the model picks a less-likely next token — higher temperature = more creative, more likely to hallucinate'
@@ -255,11 +255,11 @@ SLIDES_GCSE[102] = [
   {
     type: 'concept',
     title: 'Training Data — What It Learned From',
-    body: 'The secret ingredient of a modern chatbot is not the algorithm — it\'s the training data. GPT-4 and Claude 3 were each trained on a substantial fraction of the entire public internet, hundreds of thousands of books, all of GitHub, all of Wikipedia, and large portions of academic literature. The model\'s "knowledge" is just patterns extracted from that corpus — which means its strengths, weaknesses and biases are inherited directly from what humans have written online.',
+    body: 'The secret ingredient of a modern chatbot is not the algorithm — it\'s the training data. Frontier models like GPT-5 and Claude 4.6 have each been trained on a substantial fraction of the entire public internet, hundreds of thousands of books, all of GitHub, all of Wikipedia, and large portions of academic literature. The model\'s "knowledge" is just patterns extracted from that corpus — which means its strengths, weaknesses and biases are inherited directly from what humans have written online.',
     bullets: [
       { term: 'Scale', def: 'Trained on hundreds of billions to trillions of tokens — the entire readable internet, books, and code. GPT-4\'s training corpus is estimated at ~13 trillion tokens (Epoch AI, 2024).' },
       { term: 'No fact-checking', def: 'It learns the patterns of language — not which facts are true. Wikipedia and a made-up blog post get treated similarly if they sound equally plausible.' },
-      { term: 'Knowledge cut-off', def: 'Training stopped at a certain date (GPT-4o: Oct 2023; Claude 3.5 Sonnet: Apr 2024). Recent events may be missing or wrong — the model may still answer confidently.' },
+      { term: 'Knowledge cut-off', def: 'Training stopped at a certain date (recent models sit roughly in 2024–2025). Anything after that date may be missing or wrong — and the model may still answer confidently.' },
       { term: 'Bias inherited', def: 'The internet has biases — gender, race, language, geography. The model absorbs them from the training data. Every major lab has a team working to reduce these; none has eliminated them.' },
       { term: 'The legal grey zone', def: 'Whether it was legal to train on copyrighted text is now being tested in court (NYT v. OpenAI 2023, Getty v. Stability AI 2023, Authors Guild v. OpenAI 2024). No final ruling yet.' }
     ],
@@ -324,7 +324,7 @@ SLIDES_GCSE[103] = [
   {
     type: 'hook',
     title: 'Types of AI',
-    body: 'December 2017: DeepMind\'s AlphaZero teaches itself chess from scratch. Within 4 hours of self-play it is stronger than any human who has ever lived and beats Stockfish — the world\'s best traditional chess engine — in a 100-game match (DeepMind / Science 2018). It is also completely useless at making a cup of tea, writing an essay, or recognising your face. Narrow AI can be superhuman at one task and infant-level at everything else, simultaneously. That gap between "superhuman in a narrow domain" and "useless outside it" is the single most important thing you need to understand about AI in 2025.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">4 hrs</span><span class="sl">AlphaZero self-play to reach superhuman chess (DeepMind, 2017)</span></div><div class="hook-stat-mini"><span class="sv">200M+</span><span class="sl">proteins mapped by AlphaFold (DeepMind, 2022)</span></div><div class="hook-stat-mini"><span class="sv">0</span><span class="sl">AIs that can currently tie a shoelace unsupervised</span></div></div>',
+    body: 'December 2017: DeepMind\'s AlphaZero teaches itself chess from scratch. Within 4 hours of self-play it is stronger than any human who has ever lived and beats Stockfish — the world\'s best traditional chess engine — in a 100-game match (DeepMind / Science 2018). It is also completely useless at making a cup of tea, writing an essay, or recognising your face. Narrow AI can be superhuman at one task and infant-level at everything else, simultaneously. That gap between "superhuman in a narrow domain" and "useless outside it" is the single most important thing you need to understand about AI today.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">4 hrs</span><span class="sl">AlphaZero self-play to reach superhuman chess (DeepMind, 2017)</span></div><div class="hook-stat-mini"><span class="sv">200M+</span><span class="sl">proteins mapped by AlphaFold (DeepMind, 2022)</span></div><div class="hook-stat-mini"><span class="sv">0</span><span class="sl">AIs that can currently tie a shoelace unsupervised</span></div></div>',
     callout: 'Most AI is a narrow specialist — extraordinary at one thing, nothing outside it. The chatbot that writes your essay and the engine that beats grandmasters are built on completely different foundations.',
     sources: [
       { label: 'Silver, D. et al. (DeepMind, Science 2018) — "A general reinforcement learning algorithm that masters chess, shogi, and Go through self-play"', url: 'https://www.science.org/doi/10.1126/science.aar6404' }
@@ -333,11 +333,11 @@ SLIDES_GCSE[103] = [
   {
     type: 'concept',
     title: 'Narrow AI vs General AI',
-    body: 'The single most important distinction in the field. Every AI system in existence in 2025 — every chatbot, every image generator, every self-driving car, every medical diagnostic — is narrow AI. No system yet can genuinely transfer learning across domains the way a five-year-old can. Understanding the gap helps you separate real capability from hype.',
+    body: 'The single most important distinction in the field. Every AI system in existence today — every chatbot, every image generator, every self-driving car, every medical diagnostic — is narrow AI. No system yet can genuinely transfer learning across domains the way a five-year-old can. Understanding the gap helps you separate real capability from hype.',
     bullets: [
       { term: 'Narrow AI (ANI)', def: 'Designed for one specific task. The chess AI knows nothing about language, cooking, or emotions — and never will. Every commercial AI product you\'ve ever used is narrow AI.' },
       { term: 'General AI (AGI)', def: 'Could do anything a human can — reason, learn new skills, adapt across domains. Does not exist yet. Opinions on timeline range from 5 years (Sam Altman, 2024) to never (Yann LeCun, Meta, 2024).' },
-      { term: 'Where we are', def: 'All current AI is narrow. Some (LLMs like GPT-4, Claude) is extraordinarily capable within the domain of "text processing and pattern completion" — broad enough to feel general at first glance. It isn\'t.' },
+      { term: 'Where we are', def: 'All current AI is narrow. Some (LLMs like GPT-5, Claude 4.6 and Gemini 3.1 Pro) is extraordinarily capable within the domain of "text processing and pattern completion" — broad enough to feel general at first glance. It isn\'t.' },
       { term: 'The gap', def: 'Even the most impressive AI chatbot can\'t tie its shoes, read a room, or learn from a single conversation the way a child can. Moravec\'s Paradox (1988) still holds: easy-for-humans is hard-for-AI and vice versa.' },
       { term: 'Why this matters to you', def: 'When someone says "AI will replace X job" — ask: is X narrow enough for current AI to master? Radiologist reading scans (narrow) is very different from nurse caring for patient (general).' }
     ],
@@ -415,7 +415,7 @@ SLIDES_GCSE[103] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🎯', label: 'All current AI is narrow', text: 'excellent in one domain, useless outside it — no exceptions in 2025' },
+      { icon: '🎯', label: 'All current AI is narrow', text: 'excellent in one domain, useless outside it — still no exceptions' },
       { icon: '🔮', label: 'AGI is hypothetical', text: 'no general-purpose AI exists — timelines range from 5 years (Altman) to never (LeCun)' },
       { icon: '📂', label: 'Six main types', text: 'generative, classifiers, recommenders, vision, speech, reinforcement learning — stack them together in real products' },
       { icon: '🏆', label: 'Narrow ≠ lesser', text: 'AlphaFold won the 2024 Nobel Prize in Chemistry for narrow AI — depth beats breadth where it counts' },
@@ -633,7 +633,7 @@ SLIDES_GCSE[105] = [
     points: [
       { icon: '🎭', label: 'Performance ≠ understanding', text: 'passing a medical exam and knowing medicine are different things (Bar exam 2023, USMLE 2023)' },
       { icon: '🦜', label: 'Stochastic parrot', text: 'Bender et al. 2021 — fluent language without a mind behind the words' },
-      { icon: '🧠', label: 'No consciousness', text: 'there is no inner experience or understanding inside an AI system — no LLM in 2025 has been shown otherwise' },
+      { icon: '🧠', label: 'No consciousness', text: 'there is no inner experience or understanding inside an AI system — no frontier LLM has been shown otherwise to date' },
       { icon: '🏛️', label: 'Searle\'s Chinese Room', text: 'the 1980 thought experiment that sharpened this whole debate still frames it today' },
       { icon: '🔮', label: 'Sophisticated prediction', text: 'AI mimics the outputs of intelligence without the process — impressive, useful, and limited' },
       { icon: '⚖️', label: 'This distinction matters', text: 'for how we design, trust, and regulate AI systems — the wrong assumption has real-world consequences' }
@@ -1114,7 +1114,7 @@ SLIDES_GCSE[110] = [
   {
     type: 'hook',
     title: 'Exam Technique with AI',
-    body: 'In 2024, Ofqual confirmed that across GCSEs, two candidates with identical subject knowledge can finish up to two whole grades apart purely on the strength of their exam technique — structure, timing, command-word discipline and assessment objective coverage. AQA\'s own 2023 chief examiner reports for GCSE English Literature and History repeatedly flag the same problem: candidates who "knew the content" but lost marks because they never addressed AO2 analysis, ignored the command word, or ran out of time on the final question. Large language models like ChatGPT-4o and Claude 3.5 Sonnet can now be prompted to behave as subject-specific examiners and produce structured feedback on an essay plan in under 30 seconds — something a private A-grade tutor would charge £40–£60 an hour for. UK platforms like BBC Bitesize, Century Tech and Sparx Maths have all integrated AI feedback into revision tools used by millions of pupils since 2023.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">2 grades</span><span class="sl">gap from technique alone at the same knowledge level (Ofqual, 2024)</span></div><div class="hook-stat-mini"><span class="sv">£40–60</span><span class="sl">typical hourly rate for 1-to-1 exam technique coaching</span></div><div class="hook-stat-mini"><span class="sv">30 sec</span><span class="sl">for a well-prompted AI to critique an essay plan like an examiner</span></div></div>',
+    body: 'In 2024, Ofqual confirmed that across GCSEs, two candidates with identical subject knowledge can finish up to two whole grades apart purely on the strength of their exam technique — structure, timing, command-word discipline and assessment objective coverage. AQA\'s own 2023 chief examiner reports for GCSE English Literature and History repeatedly flag the same problem: candidates who "knew the content" but lost marks because they never addressed AO2 analysis, ignored the command word, or ran out of time on the final question. Large language models like ChatGPT (GPT-5) and Claude (4.6 Sonnet) can now be prompted to behave as subject-specific examiners and produce structured feedback on an essay plan in under 30 seconds — something a private A-grade tutor would charge £40–£60 an hour for. UK platforms like BBC Bitesize, Century Tech and Sparx Maths have all integrated AI feedback into revision tools used by millions of pupils since 2023.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">2 grades</span><span class="sl">gap from technique alone at the same knowledge level (Ofqual, 2024)</span></div><div class="hook-stat-mini"><span class="sv">£40–60</span><span class="sl">typical hourly rate for 1-to-1 exam technique coaching</span></div><div class="hook-stat-mini"><span class="sv">30 sec</span><span class="sl">for a well-prompted AI to critique an essay plan like an examiner</span></div></div>',
     callout: 'Most marks are lost on structure, timing and missed command words — not on total lack of knowledge. This is exactly where AI, used well, can lift a grade.',
     sources: [
       { label: 'AQA — GCSE chief examiner reports (Subject results &amp; reports)', url: 'https://www.aqa.org.uk/exams-administration/results-days' },
@@ -1391,7 +1391,7 @@ SLIDES_GCSE[112] = [
     body: 'AI is not one tool. The best routines use 2–3 complementary tools, each for what it\'s best at. Here is a recommended stack — all either free for pupils or have generous free tiers in 2024–2025.',
     bullets: [
       { term: 'ChatGPT / Claude / Gemini', def: 'Best for: prompted explanations, essay feedback, scenario walk-throughs. Free tiers all work. ChatGPT and Claude both passed UK bar-exam-equivalent questions in 2024.' },
-      { term: 'Google NotebookLM', def: 'Best for: uploading your textbook chapter or teacher\'s notes and generating a study guide, audio "podcast" summary and spec-aligned quiz. Free as of 2024.' },
+      { term: 'Google NotebookLM', def: 'Best for: uploading your textbook chapter or teacher\'s notes and generating a study guide, audio "podcast" summary and spec-aligned quiz. Free at the time of writing.' },
       { term: 'Quizlet AI / Anki', def: 'Best for: spaced-repetition flashcards you type yourself (the typing is part of the learning). Anki is free and the most evidence-based flashcard app ever built — used by medical students worldwide.' },
       { term: 'Khan Academy Khanmigo', def: 'Best for: Maths / Sciences problem walk-throughs. Scaffolds rather than gives answers. Based on a 2024 Harvard RCT showing genuine learning gains when used this way.' },
       { term: 'BBC Bitesize + AI', def: 'Best combo: revise from Bitesize for the official UK-curriculum content, then use an AI chatbot to quiz yourself on what you just read. Human-verified content + AI drill.' }
@@ -1632,7 +1632,7 @@ SLIDES_GCSE[114] = [
     bullets: [
       { term: '1. Does it answer the question?', def: 'AI sometimes sidesteps or gives a related answer — especially on contested or ambiguous topics. Read your original question and the answer side-by-side. Did it actually address what you asked?' },
       { term: '2. Is it verifiable?', def: 'Can you find this same claim in a textbook, official source, or reputable website? If no third party confirms it, treat it as a hypothesis, not a fact.' },
-      { term: '3. Is it up to date?', def: 'AI knowledge has a training cut-off (GPT-4o: late 2023; Claude 3.5: mid 2024). Events, laws, regulations and research from after that date may be wrong or missing entirely.' },
+      { term: '3. Is it up to date?', def: 'AI knowledge has a training cut-off (current frontier models sit in 2024–2025 — and even the newest model doesn\'t know about yesterday without live search). Events, laws, regulations and research from after that date may be wrong or missing entirely.' },
       { term: '4. Does it match what you know?', def: 'If it contradicts your textbook, teacher or lesson notes — investigate, don\'t just accept. 9 times out of 10 your exam-board-approved source wins.' },
       { term: '5. Is it hedging?', def: 'Watch for language like "generally", "most sources agree", "it is widely believed" — this is usually the model signalling uncertainty. Treat hedged claims with extra scepticism.' }
     ],
@@ -1843,14 +1843,14 @@ SLIDES_GCSE[116] = [
     body: 'Not every repetitive task is the same. The tasks below share three features: the output has a clear right shape, the thinking is procedural not creative, and a human would do it more slowly but not more accurately. These are AI\'s sweet spot — and the hours you reclaim here are hours for the tasks where only you can think.',
     bullets: [
       { term: 'Formatting and restructuring', def: 'Converting messy notes into a clean table, turning an essay into bullet points, reformatting a reference list for a specific style guide. Human attention adds nothing; AI is reliable.' },
-      { term: 'Translating between languages', def: 'GPT-4 and Claude 3.5 both match or exceed Google Translate on GCSE-level French, German and Spanish in independent benchmarks (EF 2024).' },
+      { term: 'Translating between languages', def: 'Modern frontier models (GPT-5, Claude 4.6, Gemini 3.1 Pro) match or exceed Google Translate on GCSE-level French, German and Spanish in independent benchmarks.' },
       { term: 'First-draft generation', def: 'Emails, cover-letter skeletons, meeting summaries, revision-plan outlines. The AI gives you a starting point — you edit it into something real.' },
       { term: 'Summarising long documents', def: 'Claude handles 200k-token inputs natively — roughly a 500-page textbook in one prompt. Use it to compress, then read the original for the bits that matter.' },
       { term: 'Repetitive templates', def: 'Thank-you emails, revision-session plans, weekly schedules — anything where the pattern is fixed and only the details change.' },
       { term: 'Reorganising ideas', def: 'You dump 40 scattered thoughts into chat; AI groups them into 5 coherent themes. The thinking is yours; the sorting is AI\'s.' }
     ],
     sources: [
-      { label: 'Anthropic — Claude 3.5 Sonnet context window (200k tokens, enterprise 1M pilot 2024)', url: 'https://www.anthropic.com/news/claude-3-5-sonnet' }
+      { label: 'Anthropic — Claude model documentation (200k-token context window)', url: 'https://docs.anthropic.com/en/docs/about-claude/models' }
     ]
   },
   {
@@ -1942,11 +1942,11 @@ SLIDES_GCSE[117] = [
   {
     type: 'concept',
     title: 'How the Major Tools Compare',
-    body: 'The chatbot you see is only the public face. Underneath, each of these models has different training data, different "personalities" (the result of different tuning), different context windows (how much you can paste), different browsing abilities, and different privacy defaults. Here\'s what matters for GCSE and everyday use in 2025.',
+    body: 'The chatbot you see is only the public face. Underneath, each of these models has different training data, different "personalities" (the result of different tuning), different context windows (how much you can paste), different browsing abilities, and different privacy defaults. Here\'s what matters for GCSE and everyday use right now.',
     bullets: [
-      { term: 'ChatGPT (OpenAI)', def: 'Most widely used — GPT-4o and GPT-5 family. Strong general reasoning, image understanding, voice mode, DALL·E image generation. Built-in web search on paid tiers. The "Swiss army knife" choice.' },
-      { term: 'Claude (Anthropic)', def: 'Made in San Francisco by ex-OpenAI researchers led by Dario and Daniela Amodei. Strongest on long documents (200k-token context = ~500 pages) and nuanced writing/feedback. Consistently ranked #1 for safety and careful reasoning in independent benchmarks (LMSYS 2024).' },
-      { term: 'Gemini (Google)', def: 'Integrated with Google Search, Google Workspace (Docs, Gmail, Sheets) and YouTube transcripts. Best for current events, live web queries and tasks inside the Google ecosystem.' },
+      { term: 'ChatGPT (OpenAI)', def: 'Most widely used — currently on the GPT-5 family (GPT-5.4 is the flagship in 2026). Strong general reasoning, image understanding, voice mode, image generation. Built-in web search on paid tiers. The "Swiss army knife" choice.' },
+      { term: 'Claude (Anthropic)', def: 'Made in San Francisco by ex-OpenAI researchers led by Dario and Daniela Amodei. Current flagship is Claude 4.6 (Sonnet and Opus). Strongest on long documents (200k-token context ≈ 500 pages) and nuanced writing/feedback. Consistently ranked near the top for safety and careful reasoning in independent benchmarks.' },
+      { term: 'Gemini (Google)', def: 'Current flagship Gemini 3.1 Pro. Integrated with Google Search, Google Workspace (Docs, Gmail, Sheets) and YouTube transcripts. Best for current events, live web queries and tasks inside the Google ecosystem — and the version Haileybury pupils can reach via their school Google account.' },
       { term: 'Microsoft Copilot', def: 'Runs on OpenAI models but inside Windows 11, Edge, Word, Excel, PowerPoint and Teams. Strongest for productivity tasks embedded in documents you\'re already writing.' },
       { term: 'All of them share this', def: 'Can be wrong — the brand name doesn\'t guarantee accuracy. All four can and do hallucinate. The four-checks test from L114 applies to all of them, every time.' }
     ],
@@ -1990,7 +1990,7 @@ SLIDES_GCSE[117] = [
       'Use a chatbot with a knowledge cut-off and trust the answer'
     ],
     correct: 1,
-    explanation: 'Most AI chatbots have a knowledge cut-off (e.g. Claude 3.5 Sonnet: April 2024; GPT-4o: October 2023 base) and won\'t know about last week — they\'ll either say so or, worse, invent plausible-sounding detail. Tools with live web search (Gemini, ChatGPT with Search, Perplexity) can retrieve current information — but still verify what they return before citing.'
+    explanation: 'Most AI chatbots have a knowledge cut-off (current frontier models sit roughly in 2024–2025) and won\'t know about last week — they\'ll either say so or, worse, invent plausible-sounding detail. Tools with live web search (Gemini, ChatGPT with Search, Perplexity) can retrieve current information — but still verify what they return before citing.'
   },
   {
     type: 'activity',
@@ -2289,7 +2289,7 @@ SLIDES_GCSE[120] = [
       { term: 'Over-structuring', def: 'Headers, bullet points, numbered lists for everything — even in a piece that was meant to be flowing prose. A clear sign of default ChatGPT output.' },
       { term: 'No personal voice', def: 'No specific memories, no concrete classroom or personal examples, no idiosyncrasies. Real student writing has texture; AI text is smooth and generic.' },
       { term: 'Comprehensively superficial', def: 'Covers every angle at surface level — the "Wikipedia article someone skim-read" feel. Depth in one area + gaps in others is a more human pattern.' },
-      { term: 'Em-dashes everywhere', def: 'GPT-4 and Claude both overuse em-dashes — often several per paragraph. A genuine human writer typically uses one or two per whole essay.' }
+      { term: 'Em-dashes everywhere', def: 'GPT-5 and Claude both overuse em-dashes — often several per paragraph. A genuine human writer typically uses one or two per whole essay.' }
     ]
   },
   {
@@ -2673,7 +2673,7 @@ SLIDES_GCSE[124] = [
     bullets: [
       { term: 'Access to AI requires multiple layers', def: 'reliable electricity, reliable internet, a modern device, often a paid subscription, and enough literacy (both language and digital) to use the tool safely' },
       { term: '2.6 billion offline', def: 'ITU 2023 data — most are in Sub-Saharan Africa and South Asia; women are disproportionately excluded' },
-      { term: 'English dominance', def: 'GPT-4, Gemini and Claude perform best in English; quality drops measurably in lower-resource languages. Most UK African-language speakers effectively get worse AI.' },
+      { term: 'English dominance', def: 'GPT-5, Gemini and Claude perform best in English; quality drops measurably in lower-resource languages. Most UK African-language speakers effectively get worse AI.' },
       { term: 'Training-data tilt', def: 'Public-web data over-represents wealthy, Western, English-speaking perspectives — so models inherit that tilt as their default view of the world' },
       { term: 'Compound effect', def: 'The groups already under-served by tech are the groups AI works worst for — a two-layer disadvantage, not just one' }
     ]
@@ -3506,7 +3506,7 @@ SLIDES_GCSE[132] = [
       { term: 'Use AI critically, not uncritically', def: 'Iterate, question, double-check — Dell\'Acqua et al. (Wharton/BCG 2023) showed that "iterators" got the big productivity gains while "zero-iteration" users got <em>worse</em> outputs than not using AI at all.' },
       { term: 'Understand the ethical and social implications', def: 'Bias, privacy, intellectual property, labour, environmental cost, misinformation — employers hiring responsibly increasingly want people who can think about these, not just build.' },
       { term: 'Spot and challenge hallucinations and overconfidence', def: 'If you accept AI output at face value in a job that matters, you will eventually embarrass yourself or harm someone. The skill is verification, not avoidance.' },
-      { term: 'Adapt quickly as tools change', def: 'ChatGPT → GPT-4 → GPT-4o → Claude 3 → Claude 4 → agents → multimodal video generation all in under 3 years. The specific tool you master today will be obsolete; the learning-to-learn habit won\'t.' }
+      { term: 'Adapt quickly as tools change', def: 'ChatGPT → GPT-4 → GPT-4o → Claude 3 → Claude 4 → GPT-5 → agents → multimodal video generation in around four years. The specific tool you master today will be obsolete; the learning-to-learn habit won\'t.' }
     ]
   },
   {
