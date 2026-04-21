@@ -283,7 +283,7 @@ function renderUnits() {
   container.innerHTML = UNITS.map((unit, idx) => {
     const isOpen = openUnits.has(idx);
     return `
-    <div class="unit-block" id="unit-${idx}" style="--unit-colour:${UNIT_COLOURS[idx] || '#6366f1'}">
+    <div class="unit-block" id="unit-${idx}" style="--unit-colour:${UNIT_COLOURS[idx] || '#9b1844'}">
       <div class="unit-header" onclick="toggleUnit(${idx})">
         <span class="unit-icon">${unit.icon}</span>
         <div class="unit-meta">
@@ -1502,7 +1502,7 @@ function exportFullProgressPDF() {
     var uPct   = Math.round(uDone / uTotal * 100);
     return '<div class="unit-row">' +
       '<div class="unit-label"><span>' + u.icon + ' Unit ' + (u.id+1) + ': ' + u.title + '</span>' +
-      '<span style="color:#6366f1;font-weight:700">' + uDone + '/' + uTotal + ' &nbsp;(' + uPct + '%)</span></div>' +
+      '<span style="color:#9b1844;font-weight:700">' + uDone + '/' + uTotal + ' &nbsp;(' + uPct + '%)</span></div>' +
       '<div class="unit-bar"><div class="unit-fill" style="width:' + uPct + '%"></div></div>' +
     '</div>';
   }).join('');
@@ -1551,12 +1551,12 @@ function exportFullProgressPDF() {
     /* Print action bar */
     '.pbar{background:#1e293b;color:#fff;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}',
     '.pbar-title{font-size:.9rem;opacity:.85}',
-    '.pbtn{background:#6366f1;color:#fff;border:none;padding:9px 20px;border-radius:8px;font-size:.88rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px}',
-    '.pbtn:hover{background:#4f46e5}',
+    '.pbtn{background:#9b1844;color:#fff;border:none;padding:9px 20px;border-radius:8px;font-size:.88rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px}',
+    '.pbtn:hover{background:#7c1235}',
     /* Page */
     '.page{max-width:920px;margin:24px auto;padding:0 16px 80px}',
     /* Header */
-    '.rh{background:linear-gradient(135deg,#4f46e5 0%,#06b6d4 100%);color:#fff;border-radius:16px;padding:32px 40px;margin-bottom:24px}',
+    '.rh{background:linear-gradient(135deg,#7c1235 0%,#009fe3 100%);color:#fff;border-radius:16px;padding:32px 40px;margin-bottom:24px}',
     '.rh-brand{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.75;margin-bottom:6px}',
     '.rh-title{font-size:1.7rem;font-weight:800;margin-bottom:4px}',
     '.rh-sub{font-size:.88rem;opacity:.8}',
@@ -1564,7 +1564,7 @@ function exportFullProgressPDF() {
     /* Stats */
     '.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:20px}',
     '.sc{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:16px 10px;text-align:center}',
-    '.sn{display:block;font-size:1.6rem;font-weight:900;color:#6366f1;line-height:1;margin-bottom:4px}',
+    '.sn{display:block;font-size:1.6rem;font-weight:900;color:#9b1844;line-height:1;margin-bottom:4px}',
     '.sl{font-size:.7rem;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:.05em}',
     /* Cards */
     '.card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:22px 24px;margin-bottom:18px}',
@@ -1573,7 +1573,7 @@ function exportFullProgressPDF() {
     '.unit-row{margin-bottom:10px}',
     '.unit-label{display:flex;justify-content:space-between;font-size:.82rem;font-weight:600;margin-bottom:4px}',
     '.unit-bar{height:7px;background:#f1f5f9;border-radius:4px;overflow:hidden}',
-    '.unit-fill{height:100%;background:linear-gradient(90deg,#6366f1,#06b6d4);border-radius:4px}',
+    '.unit-fill{height:100%;background:linear-gradient(90deg,#9b1844,#009fe3);border-radius:4px}',
     /* Badges */
     '.badge-grid{display:flex;flex-wrap:wrap;gap:8px}',
     '.badge-pill{background:#f0f4ff;border:1px solid #c7d2fe;border-radius:20px;padding:7px 14px;font-size:.85rem;display:flex;align-items:center;gap:6px}',
@@ -1583,7 +1583,7 @@ function exportFullProgressPDF() {
     'th{background:#f8fafc;padding:9px 10px;text-align:left;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#64748b;border-bottom:2px solid #e2e8f0}',
     'td{padding:7px 10px;border-bottom:1px solid #f1f5f9;vertical-align:top;font-size:.82rem}',
     'tr:last-child td{border-bottom:none}',
-    '.unit-hdr td{background:#f0f4ff;font-weight:700;font-size:.82rem;color:#4f46e5;padding:8px 10px}',
+    '.unit-hdr td{background:#f0f4ff;font-weight:700;font-size:.82rem;color:#7c1235;padding:8px 10px}',
     '.lesson-num{color:#94a3b8;font-weight:700;white-space:nowrap;width:42px}',
     '.lesson-title{font-weight:600;color:#1e293b;max-width:220px}',
     '.s-done{color:#16a34a;font-weight:600}.s-pend{color:#94a3b8}',
@@ -1709,10 +1709,10 @@ function printUnitCertificate(badge) {
   var dateStr = earned[badge.id] ? earned[badge.id] : new Date().toISOString().slice(0,10);
   var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Certificate — ' + badge.name + '</title>' +
     '<style>body{font-family:Georgia,serif;text-align:center;padding:60px;background:#fff;color:#0f172a}' +
-    '.border{border:6px double #6366f1;padding:40px;display:inline-block;max-width:600px;width:100%}' +
-    '.icon{font-size:4rem;margin-bottom:12px}h1{font-size:1.5rem;color:#6366f1;margin-bottom:4px}' +
-    '.subtitle{font-size:.9rem;color:#64748b;margin-bottom:24px}.name-line{font-size:2rem;font-weight:700;border-bottom:2px solid #6366f1;display:inline-block;padding:0 32px;margin-bottom:20px}' +
-    '.badge-name{font-size:1.4rem;font-weight:700;color:#4f46e5;margin:8px 0}.desc{font-size:.9rem;color:#475569;margin-bottom:24px}' +
+    '.border{border:6px double #9b1844;padding:40px;display:inline-block;max-width:600px;width:100%}' +
+    '.icon{font-size:4rem;margin-bottom:12px}h1{font-size:1.5rem;color:#9b1844;margin-bottom:4px}' +
+    '.subtitle{font-size:.9rem;color:#64748b;margin-bottom:24px}.name-line{font-size:2rem;font-weight:700;border-bottom:2px solid #9b1844;display:inline-block;padding:0 32px;margin-bottom:20px}' +
+    '.badge-name{font-size:1.4rem;font-weight:700;color:#7c1235;margin:8px 0}.desc{font-size:.9rem;color:#475569;margin-bottom:24px}' +
     '.date{font-size:.8rem;color:#94a3b8}.footer{font-size:.75rem;color:#94a3b8;margin-top:32px}' +
     '@media print{button{display:none}}</style></head><body>' +
     '<div class="border"><div class="icon">' + badge.icon + '</div>' +
@@ -1722,7 +1722,7 @@ function printUnitCertificate(badge) {
     '<p class="desc">' + badge.desc + '</p>' +
     '<p class="date">Awarded: ' + dateStr + '</p>' +
     '<div class="footer">Digital Innovations &bull; KS5 Curriculum</div></div>' +
-    '<br><button onclick="window.print()" style="margin-top:16px;padding:10px 24px;background:#6366f1;color:#fff;border:none;border-radius:8px;font-size:1rem;cursor:pointer">Print Certificate</button>' +
+    '<br><button onclick="window.print()" style="margin-top:16px;padding:10px 24px;background:#9b1844;color:#fff;border:none;border-radius:8px;font-size:1rem;cursor:pointer">Print Certificate</button>' +
     '</body></html>';
   var win = window.open('', '_blank');
   if (!win) return;
@@ -1850,7 +1850,7 @@ function pmPopulate() {
     unitsEl.innerHTML = UNITS.map(function(u, i) {
       var unitDone = u.lessons.filter(function(l){return completedLessons.has(l.id);}).length;
       var pct = Math.round(unitDone/u.lessons.length*100);
-      var colour = UNIT_COLOURS[i] || '#6366f1';
+      var colour = UNIT_COLOURS[i] || '#9b1844';
       return '<div class="pm-unit-row">' +
         '<div class="pm-unit-dot" style="background:'+colour+'"></div>' +
         '<div class="pm-unit-label">'+u.icon+' '+u.title+'</div>' +
@@ -2371,20 +2371,20 @@ function printRevisionCard(lessonId) {
   var notes = loadLessonNotes(lessonId);
   var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Revision Card — L' + lessonId + '</title>' +
     '<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:system-ui,sans-serif;font-size:13px;color:#0f172a}' +
-    '.card{width:148mm;min-height:105mm;border:2px solid #6366f1;border-radius:8px;padding:14px;page-break-inside:avoid}' +
-    '.card-header{background:#6366f1;color:#fff;padding:8px 12px;margin:-14px -14px 10px;border-radius:6px 6px 0 0}' +
+    '.card{width:148mm;min-height:105mm;border:2px solid #9b1844;border-radius:8px;padding:14px;page-break-inside:avoid}' +
+    '.card-header{background:#9b1844;color:#fff;padding:8px 12px;margin:-14px -14px 10px;border-radius:6px 6px 0 0}' +
     '.card-title{font-size:1rem;font-weight:800}.card-sub{font-size:.75rem;opacity:.8}' +
     'ul{padding-left:16px;margin:6px 0}li{margin:3px 0;line-height:1.4}' +
-    '.quiz-box{background:#f0f4ff;border-left:3px solid #6366f1;padding:8px;margin-top:10px;border-radius:4px}' +
+    '.quiz-box{background:#f0f4ff;border-left:3px solid #9b1844;padding:8px;margin-top:10px;border-radius:4px}' +
     '.notes-box{background:#fefce8;border-left:3px solid #f59e0b;padding:8px;margin-top:10px;border-radius:4px}' +
-    'h3{font-size:.8rem;font-weight:700;color:#6366f1;text-transform:uppercase;letter-spacing:.04em;margin:8px 0 4px}' +
-    '@media print{body{padding:10mm}.card{border:2px solid #6366f1}}</style></head><body>' +
+    'h3{font-size:.8rem;font-weight:700;color:#9b1844;text-transform:uppercase;letter-spacing:.04em;margin:8px 0 4px}' +
+    '@media print{body{padding:10mm}.card{border:2px solid #9b1844}}</style></head><body>' +
     '<div class="card"><div class="card-header"><div class="card-title">L' + lessonId + ': ' + lesson.title + '</div>' +
     '<div class="card-sub">Unit ' + (unit.id+1) + ': ' + unit.title + ' &bull; ' + (lesson.difficulty || '') + '</div></div>' +
     (summaryPoints ? '<h3>Key Takeaways</h3><ul>' + summaryPoints + '</ul>' : '') +
     (quizSlide ? '<div class="quiz-box"><h3>Quick Check</h3><strong>Q:</strong> ' + quizSlide.question + '<br><strong>A:</strong> ' + quizSlide.options[quizSlide.correct] + '</div>' : '') +
     (notes ? '<div class="notes-box"><h3>My Notes</h3>' + notes.replace(/\n/g,'<br>') + '</div>' : '') +
-    '</div><br><button onclick="window.print()" style="padding:8px 20px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.9rem">Print Card</button>' +
+    '</div><br><button onclick="window.print()" style="padding:8px 20px;background:#9b1844;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.9rem">Print Card</button>' +
     '</body></html>';
   var win = window.open('', '_blank');
   if (!win) return;
@@ -2822,8 +2822,8 @@ function assemblePTFC() {
   }
   var esc = function(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'); };
   var parts = [];
-  if (p) parts.push('<strong style="color:#06b6d4">[Persona]</strong> ' + esc(p));
-  if (t) parts.push('<strong style="color:#6366f1">[Task]</strong> ' + esc(t));
+  if (p) parts.push('<strong style="color:#009fe3">[Persona]</strong> ' + esc(p));
+  if (t) parts.push('<strong style="color:#9b1844">[Task]</strong> ' + esc(t));
   if (f) parts.push('<strong style="color:#22c55e">[Format]</strong> ' + esc(f));
   if (c) parts.push('<strong style="color:#f59e0b">[Context]</strong> ' + esc(c));
   out.innerHTML = parts.join('<br><br>');
@@ -2947,9 +2947,9 @@ function renderStreakHeatmap() {
 function renderNewsTicker() {
   var track = document.getElementById('tickerTrack');
   if (!track || typeof AI_NEWS === 'undefined') return;
-  var tagColors = { policy:'#6366f1', research:'#06b6d4', tools:'#22c55e', industry:'#f59e0b', ethics:'#ef4444', health:'#ec4899' };
+  var tagColors = { policy:'#9b1844', research:'#009fe3', tools:'#22c55e', industry:'#f59e0b', ethics:'#ef4444', health:'#ec4899' };
   var items = AI_NEWS.map(function(n) {
-    var col = tagColors[n.tag] || '#6366f1';
+    var col = tagColors[n.tag] || '#9b1844';
     var inner = '<span class="ticker-tag" style="background:' + col + '22;color:' + col + '">' + n.tag + '</span>' +
       n.headline +
       ' <span class="ticker-source">— ' + n.source + ', ' + n.date + '</span>';
@@ -2964,8 +2964,8 @@ function renderNewsTicker() {
 var _newsTagFilter = 'all';
 
 function buildNewsCard(n) {
-  var tagColors = { policy:'#6366f1', research:'#06b6d4', tools:'#22c55e', industry:'#f59e0b', ethics:'#ef4444', health:'#ec4899' };
-  var col = tagColors[n.tag] || '#6366f1';
+  var tagColors = { policy:'#9b1844', research:'#009fe3', tools:'#22c55e', industry:'#f59e0b', ethics:'#ef4444', health:'#ec4899' };
+  var col = tagColors[n.tag] || '#9b1844';
   var card = '<div class="news-card">' +
     '<div class="news-card-top">' +
       '<span class="news-card-tag" style="background:' + col + '22;color:' + col + '">' + n.tag + '</span>' +
@@ -3230,12 +3230,12 @@ function printCapstone() {
 
   w.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Capstone Portfolio</title>' +
     '<style>body{font-family:Georgia,serif;max-width:800px;margin:40px auto;color:#111;line-height:1.6}' +
-    'h1{color:#6366f1;border-bottom:2px solid #6366f1;padding-bottom:8px;margin-bottom:4px}' +
+    'h1{color:#9b1844;border-bottom:2px solid #9b1844;padding-bottom:8px;margin-bottom:4px}' +
     'h2{color:#333;margin-top:24px;font-size:.9rem;text-transform:uppercase;letter-spacing:.05em;color:#64748b}' +
-    '.ptfc{background:#f8f9fa;border-left:4px solid #6366f1;padding:10px 16px;margin:6px 0;border-radius:0 4px 4px 0}' +
-    '.lbl{font-weight:700;color:#6366f1;margin-right:8px}p{margin:4px 0}' +
+    '.ptfc{background:#f8f9fa;border-left:4px solid #9b1844;padding:10px 16px;margin:6px 0;border-radius:0 4px 4px 0}' +
+    '.lbl{font-weight:700;color:#9b1844;margin-right:8px}p{margin:4px 0}' +
     '.phase-block{margin-top:24px}' +
-    '.phase-block h2{color:#6366f1;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;padding-bottom:4px}' +
+    '.phase-block h2{color:#9b1844;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;padding-bottom:4px}' +
     '.lesson-notes{margin:12px 0 0 16px}' +
     '.lesson-notes h3{font-size:.9rem;color:#334155;margin:8px 0 4px}' +
     '.lesson-notes p{font-size:.85rem;color:#475569;margin:0 0 8px;white-space:pre-wrap}' +
@@ -3254,7 +3254,7 @@ function printCapstone() {
     '<h1>📓 Sprint Diary & Build Notes</h1>' +
     notesHtml +
     '<p style="margin-top:40px;color:#999;font-size:.78rem">Digital Innovations AEP — Printed ' + new Date().toLocaleDateString('en-GB') + '</p>' +
-    '<br><button onclick="window.print()" style="padding:10px 24px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer">Print</button>' +
+    '<br><button onclick="window.print()" style="padding:10px 24px;background:#9b1844;color:#fff;border:none;border-radius:6px;cursor:pointer">Print</button>' +
     '</body></html>');
   w.document.close(); w.print();
 }
@@ -3442,7 +3442,7 @@ function launchConfetti() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   var particles = [];
-  var colours = ['#6366f1','#06b6d4','#22c55e','#f59e0b','#ef4444','#a855f7','#ec4899'];
+  var colours = ['#9b1844','#009fe3','#22c55e','#f59e0b','#ef4444','#a855f7','#ec4899'];
   for (var i = 0; i < 120; i++) {
     particles.push({
       x: Math.random() * canvas.width,

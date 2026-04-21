@@ -4,7 +4,7 @@
 
 var GCSE_UNITS = [
   {
-    id: 'g1', title: 'Unit 1: Understanding AI', color: '#6366f1',
+    id: 'g1', title: 'Unit 1: Understanding AI', color: '#9b1844',
     lessons: [
       { id: 101, title: 'What Is AI?',             icon: '🤖', time: '~20 min', desc: 'Separating fact from fiction about how AI actually works.' },
       { id: 102, title: 'How Chatbots Work',        icon: '💬', time: '~20 min', desc: 'Tokens, prediction, and why AI sometimes confidently makes things up.' },
@@ -58,7 +58,7 @@ var GCSE_UNITS = [
     ]
   },
   {
-    id: 'g6', title: 'Unit 6: AI, Wellbeing & Your Future', color: '#06b6d4',
+    id: 'g6', title: 'Unit 6: AI, Wellbeing & Your Future', color: '#009fe3',
     lessons: [
       { id: 130, title: 'Algorithms & Your Mental Health', icon: '💚', time: '~20 min', desc: 'How recommendation systems affect mood, self-image and what you believe.' },
       { id: 131, title: 'AI Relationships',                icon: '💬', time: '~25 min', desc: 'Chatbots as friends and companions — what\'s the risk?' },

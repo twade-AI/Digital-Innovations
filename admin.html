@@ -11,7 +11,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --primary: #6366f1; --primary-light: #818cf8; --accent: #06b6d4;
+      --primary: #9b1844; --primary-light: #c64b74; --accent: #009fe3;
       --bg: #0f172a; --bg-card: #1e293b; --bg-hover: #334155;
       --text: #f1f5f9; --text-muted: #94a3b8; --text-dim: #64748b;
       --border: #334155; --success: #22c55e; --warning: #f59e0b; --danger: #ef4444;
@@ -42,7 +42,7 @@
     .admin-user-badge { font-size: .78rem; color: var(--text-dim); }
     .btn { padding: 8px 16px; border-radius: var(--radius-sm); font-size: .85rem; font-weight: 600; border: none; transition: all .18s; }
     .btn-primary { background: var(--primary); color: #fff; }
-    .btn-primary:hover { background: #4f46e5; }
+    .btn-primary:hover { background: #7c1235; }
     .btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--text-muted); }
     .btn-ghost:hover { border-color: var(--primary); color: var(--text); }
     .btn-sm { padding: 5px 12px; font-size: .78rem; }
@@ -109,7 +109,7 @@
     .student-email { font-size: .78rem; color: var(--text-dim); margin-top: 2px; }
     .progress-cell { min-width: 130px; }
     .mini-bar { height: 6px; background: var(--border); border-radius: 999px; overflow: hidden; margin-top: 4px; }
-    .mini-bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #6366f1, #06b6d4); }
+    .mini-bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #9b1844, #009fe3); }
     .pct-text { font-size: .78rem; color: var(--text-dim); }
     .level-chip {
       display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: .7rem; font-weight: 700;
@@ -171,7 +171,7 @@
     .cd-unit-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; font-weight: 600; font-size: .88rem; }
     .cd-unit-pct { font-size: 1.1rem; font-weight: 800; color: var(--primary-light); }
     .cd-bar-track { height: 8px; border-radius: 4px; background: var(--border); overflow: hidden; }
-    .cd-bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #6366f1, #06b6d4); transition: width .6s ease; }
+    .cd-bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #9b1844, #009fe3); transition: width .6s ease; }
     .cd-unit-sub { font-size: .72rem; color: var(--text-muted); margin-top: 6px; }
     .cd-dist-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
     .cd-dist-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; }
@@ -796,7 +796,7 @@ function renderTable(students) {
 
 function buildUnitBars(completedIds) {
   var unitNames  = ['Foundations of AI', 'Prompt Engineering', 'AI & Society', 'Policy & Governance', 'Capstone Project', 'Presentations'];
-  var unitColors = ['#6366f1', '#8b5cf6', '#06b6d4', '#f59e0b', '#22c55e', '#ec4899'];
+  var unitColors = ['#9b1844', '#8b5cf6', '#009fe3', '#f59e0b', '#22c55e', '#ec4899'];
   var startId    = 1;
   return unitNames.map(function(name, i) {
     var size     = UNIT_SIZES[i];
@@ -973,7 +973,7 @@ function renderClassDashboard() {
   var brackets = [
     { label: 'Not started', range: [0,0],   color: '#ef4444' },
     { label: '1–25%',       range: [1,25],  color: '#f59e0b' },
-    { label: '26–75%',      range: [26,75], color: '#6366f1' },
+    { label: '26–75%',      range: [26,75], color: '#9b1844' },
     { label: '76–100%',     range: [76,100],color: '#22c55e' }
   ];
   var distHtml = '<div class="cd-section"><div class="cd-section-title">Progress Distribution</div><div class="cd-dist-grid">' +
@@ -1230,9 +1230,9 @@ async function loadNewsArticles() {
       el.innerHTML = '<div class="empty-state" style="padding:24px">No articles yet — add one above.</div>';
       return;
     }
-    var tagColors = { policy:'#6366f1', research:'#06b6d4', tools:'#22c55e', industry:'#f59e0b', ethics:'#ef4444', health:'#ec4899' };
+    var tagColors = { policy:'#9b1844', research:'#009fe3', tools:'#22c55e', industry:'#f59e0b', ethics:'#ef4444', health:'#ec4899' };
     el.innerHTML = articles.map(function(a) {
-      var col = tagColors[a.tag] || '#6366f1';
+      var col = tagColors[a.tag] || '#9b1844';
       return '<div class="news-article-item">' +
         '<span class="nai-tag" style="background:' + col + '22;color:' + col + '">' + esc(a.tag) + '</span>' +
         '<div class="nai-body">' +

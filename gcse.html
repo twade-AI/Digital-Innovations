@@ -137,8 +137,8 @@
     .widget-btn:hover{border-color:#10b981;color:#10b981}
     .widget-btn-primary{background:#10b981;color:#fff;border-color:#10b981}
     .widget-btn-primary:hover{background:#059669;color:#fff;border-color:#059669}
-    .ptfc-p span{background:#06b6d4}
-    .ptfc-t span{background:#6366f1}
+    .ptfc-p span{background:#009fe3}
+    .ptfc-t span{background:#9b1844}
     .ptfc-f span{background:#22c55e}
     .ptfc-c span{background:#f59e0b}
     /* ── Hallucination picker ── */
@@ -605,8 +605,8 @@
     var out=document.getElementById('gsPtfcOut'); if(!out)return;
     if(!p.trim()&&!t.trim()&&!f.trim()&&!c.trim()){ out.innerHTML='<span style="color:var(--text-dim);font-style:italic">Fill in the fields above to see your assembled prompt…</span>'; return; }
     var parts=[];
-    if(p.trim())parts.push('<strong style="color:#06b6d4">[Persona]</strong> '+gsEscape(p.trim()).replace(/\n/g,'<br>'));
-    if(t.trim())parts.push('<strong style="color:#6366f1">[Task]</strong> '+gsEscape(t.trim()).replace(/\n/g,'<br>'));
+    if(p.trim())parts.push('<strong style="color:#009fe3">[Persona]</strong> '+gsEscape(p.trim()).replace(/\n/g,'<br>'));
+    if(t.trim())parts.push('<strong style="color:#9b1844">[Task]</strong> '+gsEscape(t.trim()).replace(/\n/g,'<br>'));
     if(f.trim())parts.push('<strong style="color:#22c55e">[Format]</strong> '+gsEscape(f.trim()).replace(/\n/g,'<br>'));
     if(c.trim())parts.push('<strong style="color:#f59e0b">[Context]</strong> '+gsEscape(c.trim()).replace(/\n/g,'<br>'));
     out.innerHTML=parts.join('<br><br>');

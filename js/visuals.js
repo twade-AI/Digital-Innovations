@@ -14,7 +14,7 @@ var SLIDE_VISUALS = {
     </defs>
     <!-- Centre: AI -->
     <rect x="228" y="85" width="104" height="50" rx="10" fill="rgba(99,102,241,.18)" stroke="rgba(99,102,241,.6)" stroke-width="1.5"/>
-    <text x="280" y="108" text-anchor="middle" class="vis-text" font-weight="700" font-size="13" fill="#818cf8">AI Systems</text>
+    <text x="280" y="108" text-anchor="middle" class="vis-text" font-weight="700" font-size="13" fill="#c64b74">AI Systems</text>
     <text x="280" y="124" text-anchor="middle" class="vis-text" font-size="10" opacity=".7">in your daily life</text>
     <!-- Nodes -->
     <rect x="20"  y="10"  width="110" height="36" rx="7" fill="rgba(6,182,212,.12)" stroke="rgba(6,182,212,.4)" stroke-width="1.2"/>
@@ -46,7 +46,7 @@ var SLIDE_VISUALS = {
     <defs><style>.vt{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
     <!-- Prompt -->
     <rect x="10" y="18" width="520" height="40" rx="8" fill="rgba(99,102,241,.1)" stroke="rgba(99,102,241,.35)" stroke-width="1.2"/>
-    <text x="24" y="44" class="vt" font-size="13" font-family="monospace, monospace" fill="#818cf8">"The cat sat on the </text>
+    <text x="24" y="44" class="vt" font-size="13" font-family="monospace, monospace" fill="#c64b74">"The cat sat on the </text>
     <text x="302" y="44" class="vt" font-size="13" font-family="monospace, monospace" fill="#f59e0b" font-weight="700">___"</text>
     <text x="340" y="44" class="vt" font-size="11" opacity=".5">← predict next token</text>
     <!-- Bars -->
@@ -58,7 +58,7 @@ var SLIDE_VISUALS = {
     <!-- floor -->
     <text x="10"  y="136" class="vt" font-size="12" font-weight="600">floor</text>
     <rect x="60"  y="124" width="120" height="18" rx="4" fill="rgba(99,102,241,.2)" stroke="rgba(99,102,241,.4)" stroke-width="1"/>
-    <text x="188" y="137" class="vt" font-size="11" fill="#818cf8" font-weight="700">21%</text>
+    <text x="188" y="137" class="vt" font-size="11" fill="#c64b74" font-weight="700">21%</text>
     <!-- chair -->
     <text x="10"  y="162" class="vt" font-size="12" font-weight="600">chair</text>
     <rect x="60"  y="150" width="70"  height="18" rx="4" fill="rgba(245,158,11,.18)" stroke="rgba(245,158,11,.4)" stroke-width="1"/>
@@ -104,7 +104,7 @@ var SLIDE_VISUALS = {
     <line x1="260" y1="96" x2="340" y2="90" class="va"/>
     <!-- Model box -->
     <rect x="342" y="60" width="110" height="60" rx="8" fill="rgba(6,182,212,.12)" stroke="rgba(6,182,212,.45)" stroke-width="1.2"/>
-    <text x="397" y="85" text-anchor="middle" class="vp" font-size="11" font-weight="700" fill="#06b6d4">Model</text>
+    <text x="397" y="85" text-anchor="middle" class="vp" font-size="11" font-weight="700" fill="#009fe3">Model</text>
     <text x="397" y="100" text-anchor="middle" class="vp" font-size="10" opacity=".6">learns weights</text>
     <!-- Arrow to result -->
     <line x1="452" y1="90" x2="490" y2="90" class="va"/>
@@ -201,13 +201,13 @@ var SLIDE_VISUALS = {
     <defs><style>.vf{font-family:system-ui,sans-serif;fill:currentColor}</style></defs>
     <!-- P -->
     <rect x="10"  y="24" width="122" height="92" rx="10" fill="rgba(99,102,241,.13)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
-    <text x="71"  y="50" text-anchor="middle" class="vf" font-size="26" font-weight="800" fill="#818cf8">P</text>
+    <text x="71"  y="50" text-anchor="middle" class="vf" font-size="26" font-weight="800" fill="#c64b74">P</text>
     <text x="71"  y="70" text-anchor="middle" class="vf" font-size="12" font-weight="700">Persona</text>
     <text x="71"  y="86" text-anchor="middle" class="vf" font-size="9.5" opacity=".65">"Act as an expert</text>
     <text x="71"  y="99" text-anchor="middle" class="vf" font-size="9.5" opacity=".65">in…"</text>
     <!-- T -->
     <rect x="146" y="24" width="122" height="92" rx="10" fill="rgba(6,182,212,.13)" stroke="rgba(6,182,212,.5)" stroke-width="1.5"/>
-    <text x="207" y="50" text-anchor="middle" class="vf" font-size="26" font-weight="800" fill="#06b6d4">T</text>
+    <text x="207" y="50" text-anchor="middle" class="vf" font-size="26" font-weight="800" fill="#009fe3">T</text>
     <text x="207" y="70" text-anchor="middle" class="vf" font-size="12" font-weight="700">Task</text>
     <text x="207" y="86" text-anchor="middle" class="vf" font-size="9.5" opacity=".65">"Write / summarise /</text>
     <text x="207" y="99" text-anchor="middle" class="vf" font-size="9.5" opacity=".65">analyse…"</text>
@@ -242,7 +242,7 @@ var SLIDE_VISUALS = {
     <line x1="110" y1="90" x2="148" y2="90" stroke="currentColor" stroke-opacity=".35" stroke-width="1.5" marker-end="url(#arrd)"/>
     <!-- Generator -->
     <rect x="150" y="42" width="110" height="96" rx="9" fill="rgba(99,102,241,.14)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
-    <text x="205" y="68" text-anchor="middle" class="vd" font-size="11" font-weight="700" fill="#818cf8">Generator</text>
+    <text x="205" y="68" text-anchor="middle" class="vd" font-size="11" font-weight="700" fill="#c64b74">Generator</text>
     <text x="205" y="84" text-anchor="middle" class="vd" font-size="10" opacity=".6">creates fake</text>
     <text x="205" y="97" text-anchor="middle" class="vd" font-size="10" opacity=".6">face/voice/</text>
     <text x="205" y="110" text-anchor="middle" class="vd" font-size="10" opacity=".6">video frames</text>
@@ -398,7 +398,7 @@ var SLIDE_VISUALS = {
     <text x="287" y="73" text-anchor="middle" class="vcp" font-size="8" opacity=".5">trains</text>
     <!-- AI Model -->
     <rect x="307" y="55" width="110" height="56" rx="8" fill="rgba(6,182,212,.12)" stroke="rgba(6,182,212,.45)" stroke-width="1.5"/>
-    <text x="362" y="78" text-anchor="middle" class="vcp" font-size="11" font-weight="700" fill="#06b6d4">AI Model</text>
+    <text x="362" y="78" text-anchor="middle" class="vcp" font-size="11" font-weight="700" fill="#009fe3">AI Model</text>
     <text x="362" y="93" text-anchor="middle" class="vcp" font-size="9" opacity=".7">Midjourney / DALL-E</text>
     <text x="362" y="107" text-anchor="middle" class="vcp" font-size="9" opacity=".55">Stable Diffusion</text>
     <!-- Arrow -->
@@ -1250,8 +1250,8 @@ var SLIDE_VISUALS = {
     <defs>
       <style>.v21{font-family:system-ui,sans-serif;fill:currentColor}</style>
       <linearGradient id="spg" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#06b6d4" stop-opacity=".6"/>
-        <stop offset="100%" stop-color="#6366f1" stop-opacity=".8"/>
+        <stop offset="0%" stop-color="#009fe3" stop-opacity=".6"/>
+        <stop offset="100%" stop-color="#9b1844" stop-opacity=".8"/>
       </linearGradient>
       <marker id="arr21" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
         <polygon points="0 0,8 3,0 6" fill="url(#spg)"/>
@@ -1279,7 +1279,7 @@ var SLIDE_VISUALS = {
 
     <circle cx="460" cy="77" r="20" fill="rgba(99,102,241,.22)" stroke="rgba(99,102,241,.65)" stroke-width="2"/>
     <text x="460" y="73" text-anchor="middle" class="v21" font-size="18">🛠</text>
-    <text x="460" y="108" text-anchor="middle" class="v21" font-size="9" font-weight="800" fill="#818cf8">Co-Creator</text>
+    <text x="460" y="108" text-anchor="middle" class="v21" font-size="9" font-weight="800" fill="#c64b74">Co-Creator</text>
     <text x="460" y="120" text-anchor="middle" class="v21" font-size="8" opacity=".6">Builds with AI</text>
 
     <text x="280" y="158" text-anchor="middle" class="v21" font-size="9" opacity=".5" font-style="italic">The capstone moves you from the left end to the right end of this spectrum</text>
@@ -1692,7 +1692,7 @@ var SLIDE_VISUALS = {
     <text x="99"  y="106" text-anchor="middle" class="v39" font-size="8.5" opacity=".7">"How does Y work?"</text>
     <text x="99"  y="124" text-anchor="middle" class="v39" font-size="8" opacity=".55" font-style="italic">Can you explain your</text>
     <text x="99"  y="136" text-anchor="middle" class="v39" font-size="8" opacity=".55" font-style="italic">own design choices?</text>
-    <text x="99"  y="158" text-anchor="middle" class="v39" font-size="9" fill="#06b6d4" font-weight="700">→ Know your project</text>
+    <text x="99"  y="158" text-anchor="middle" class="v39" font-size="9" fill="#009fe3" font-weight="700">→ Know your project</text>
 
     <rect x="199" y="30" width="162" height="140" rx="9" fill="rgba(99,102,241,.1)"  stroke="rgba(99,102,241,.45)" stroke-width="1.5"/>
     <text x="280" y="56" text-anchor="middle" class="v39" font-size="24">🔧</text>
@@ -1701,7 +1701,7 @@ var SLIDE_VISUALS = {
     <text x="280" y="106" text-anchor="middle" class="v39" font-size="8.5" opacity=".7">"How would you improve it?"</text>
     <text x="280" y="124" text-anchor="middle" class="v39" font-size="8" opacity=".55" font-style="italic">Can you think on your</text>
     <text x="280" y="136" text-anchor="middle" class="v39" font-size="8" opacity=".55" font-style="italic">feet under pressure?</text>
-    <text x="280" y="158" text-anchor="middle" class="v39" font-size="9" fill="#818cf8" font-weight="700">→ Think aloud</text>
+    <text x="280" y="158" text-anchor="middle" class="v39" font-size="9" fill="#c64b74" font-weight="700">→ Think aloud</text>
 
     <rect x="380" y="30" width="162" height="140" rx="9" fill="rgba(245,158,11,.1)"  stroke="rgba(245,158,11,.45)" stroke-width="1.5"/>
     <text x="461" y="56" text-anchor="middle" class="v39" font-size="24">🪞</text>
@@ -1850,7 +1850,7 @@ var SLIDE_VISUALS = {
 
     <rect x="380" y="30" width="162" height="145" rx="9" fill="rgba(99,102,241,.1)"  stroke="rgba(99,102,241,.45)" stroke-width="1.5"/>
     <text x="461" y="58" text-anchor="middle" class="v43" font-size="28">🔁</text>
-    <text x="461" y="80" text-anchor="middle" class="v43" font-size="13" font-weight="800" fill="#818cf8">CONTINUE</text>
+    <text x="461" y="80" text-anchor="middle" class="v43" font-size="13" font-weight="800" fill="#c64b74">CONTINUE</text>
     <text x="461" y="98" text-anchor="middle" class="v43" font-size="8.5" opacity=".7">Which skills from this</text>
     <text x="461" y="110" text-anchor="middle" class="v43" font-size="8.5" opacity=".7">course are most worth</text>
     <text x="461" y="122" text-anchor="middle" class="v43" font-size="8.5" opacity=".7">keeping? What will you</text>
@@ -1908,13 +1908,13 @@ var SLIDE_VISUALS = {
     <!-- Six steps in two rows -->
     <!-- Row 1 -->
     <rect x="10"  y="30" width="82" height="62" rx="7" fill="rgba(99,102,241,.16)" stroke="rgba(99,102,241,.55)" stroke-width="1.5"/>
-    <text x="51"  y="52" text-anchor="middle" class="v46" font-size="15" font-weight="900" fill="#818cf8">V</text>
+    <text x="51"  y="52" text-anchor="middle" class="v46" font-size="15" font-weight="900" fill="#c64b74">V</text>
     <text x="51"  y="66" text-anchor="middle" class="v46" font-size="9"  font-weight="700">Vet the claim</text>
     <text x="51"  y="78" text-anchor="middle" class="v46" font-size="7.5" opacity=".6">Exact wording?</text>
     <line x1="92" y1="61" x2="107" y2="61" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a46)"/>
 
     <rect x="109" y="30" width="82" height="62" rx="7" fill="rgba(6,182,212,.13)"   stroke="rgba(6,182,212,.5)"   stroke-width="1.5"/>
-    <text x="150" y="52" text-anchor="middle" class="v46" font-size="15" font-weight="900" fill="#06b6d4">E</text>
+    <text x="150" y="52" text-anchor="middle" class="v46" font-size="15" font-weight="900" fill="#009fe3">E</text>
     <text x="150" y="66" text-anchor="middle" class="v46" font-size="9"  font-weight="700">Evidence check</text>
     <text x="150" y="78" text-anchor="middle" class="v46" font-size="7.5" opacity=".6">Primary source?</text>
     <line x1="191" y1="61" x2="206" y2="61" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#a46)"/>
@@ -1954,7 +1954,7 @@ var SLIDE_VISUALS = {
     <text x="280" y="18" text-anchor="middle" class="v47" font-size="13" font-weight="800">SIFT — Your Media Literacy Toolkit</text>
     <!-- Four large cards -->
     <rect x="10"  y="30" width="126" height="140" rx="9" fill="rgba(99,102,241,.12)"  stroke="rgba(99,102,241,.5)" stroke-width="2"/>
-    <text x="73"  y="62" text-anchor="middle" class="v47" font-size="28" font-weight="900" fill="#818cf8">S</text>
+    <text x="73"  y="62" text-anchor="middle" class="v47" font-size="28" font-weight="900" fill="#c64b74">S</text>
     <text x="73"  y="82" text-anchor="middle" class="v47" font-size="11" font-weight="800">Stop</text>
     <text x="73"  y="98" text-anchor="middle" class="v47" font-size="8.5" opacity=".7">Pause before</text>
     <text x="73"  y="110" text-anchor="middle" class="v47" font-size="8.5" opacity=".7">you share or react</text>
@@ -1963,7 +1963,7 @@ var SLIDE_VISUALS = {
     <text x="73"  y="158" text-anchor="middle" class="v47" font-size="8" opacity=".5" font-style="italic">Slow down</text>
 
     <rect x="144" y="30" width="126" height="140" rx="9" fill="rgba(6,182,212,.11)"   stroke="rgba(6,182,212,.5)"  stroke-width="2"/>
-    <text x="207" y="62" text-anchor="middle" class="v47" font-size="28" font-weight="900" fill="#06b6d4">I</text>
+    <text x="207" y="62" text-anchor="middle" class="v47" font-size="28" font-weight="900" fill="#009fe3">I</text>
     <text x="207" y="82" text-anchor="middle" class="v47" font-size="11" font-weight="800">Investigate</text>
     <text x="207" y="98" text-anchor="middle" class="v47" font-size="8.5" opacity=".7">Check the source,</text>
     <text x="207" y="110" text-anchor="middle" class="v47" font-size="8.5" opacity=".7">not just the content</text>
