@@ -2669,23 +2669,30 @@ SLIDES_GCSE[124] = [
   {
     type: 'concept',
     title: 'The Digital Divide — Who\'s Included',
+    body: 'The digital divide is the gap between people who have effective access to modern digital technology and those who don\'t. AI has made the divide sharper: having internet is no longer enough — you now also need the right hardware, subscriptions, bandwidth, language support and AI literacy. The ITU (the UN telecoms body) estimates 2.6 billion people remain offline in 2023, concentrated in Sub-Saharan Africa and South Asia. Across the 7,000+ living human languages, fewer than 100 are well supported by frontier AI models today.',
     bullets: [
-      'Access to AI requires: reliable internet, electricity, a device, and often payment',
-      'Around 2.6 billion people still have no internet access at all',
-      'Most advanced AI tools are primarily in English — non-English speakers have far less access',
-      'AI training data over-represents wealthy, Western, English-speaking perspectives',
-      'This means AI often works worse for people it under-represents in training'
+      { term: 'Access to AI requires multiple layers', def: 'reliable electricity, reliable internet, a modern device, often a paid subscription, and enough literacy (both language and digital) to use the tool safely' },
+      { term: '2.6 billion offline', def: 'ITU 2023 data — most are in Sub-Saharan Africa and South Asia; women are disproportionately excluded' },
+      { term: 'English dominance', def: 'GPT-4, Gemini and Claude perform best in English; quality drops measurably in lower-resource languages. Most UK African-language speakers effectively get worse AI.' },
+      { term: 'Training-data tilt', def: 'Public-web data over-represents wealthy, Western, English-speaking perspectives — so models inherit that tilt as their default view of the world' },
+      { term: 'Compound effect', def: 'The groups already under-served by tech are the groups AI works worst for — a two-layer disadvantage, not just one' }
     ]
   },
   {
     type: 'concept',
     title: 'Who\'s Being Left Out — and What It Means',
+    body: 'Bias in AI doesn\'t always look like someone typing a bad intention into a computer. Most of the real-world harm comes from well-intentioned systems trained on data that didn\'t include enough of the population they\'re later used on. The results are measurable and published.',
     bullets: [
-      { term: 'Healthcare AI', def: 'Trained mostly on Western patient data — performs worse on other populations' },
-      { term: 'Speech recognition', def: 'Works better for standard accents — many regional UK accents are regularly misrecognised' },
-      { term: 'Facial recognition', def: 'Significantly higher error rates for darker-skinned faces — documented in multiple studies' },
-      { term: 'Rural communities', def: 'May not benefit from AI health tools, educational support, or economic opportunities' },
-      { term: 'Global inequality', def: 'The AI productivity boom may widen the gap between rich and developing nations' }
+      { term: 'Healthcare AI', def: 'Skin-cancer classifiers trained on lighter-skinned datasets perform substantially worse on Black patients (Adamson &amp; Smith, JAMA Dermatology 2018). This has already caused real missed diagnoses.' },
+      { term: 'Speech recognition', def: 'Koenecke et al. (PNAS 2020) found five major ASR systems had nearly 2× the word-error rate for Black American speakers vs white speakers. Many UK regional accents (Glaswegian, Brummie, Geordie) are also regularly misrecognised.' },
+      { term: 'Facial recognition', def: 'Buolamwini &amp; Gebru (MIT Gender Shades, 2018) found commercial systems had up to 34% error for darker-skinned women — vs under 1% for lighter-skinned men.' },
+      { term: 'Rural communities', def: 'Low-bandwidth areas cannot run cloud-heavy AI. UK rural broadband gap means AI tools for education and health reach urban pupils first.' },
+      { term: 'Global inequality', def: 'The IMF (2024) estimated 40% of global jobs are exposed to AI — but the productivity benefits look concentrated in countries that already lead. The gap between rich and developing nations may widen, not close.' }
+    ],
+    sources: [
+      { label: 'Buolamwini &amp; Gebru — "Gender Shades" (MIT FAT*/FAccT 2018)', url: 'http://gendershades.org/' },
+      { label: 'Koenecke et al. — "Racial disparities in automated speech recognition" (PNAS, 2020)', url: 'https://www.pnas.org/doi/10.1073/pnas.1915768117' },
+      { label: 'IMF — "Gen-AI: Artificial Intelligence and the Future of Work" (Jan 2024)', url: 'https://www.imf.org/en/Publications/Staff-Discussion-Notes/Issues/2024/01/14/Gen-AI-Artificial-Intelligence-and-the-Future-of-Work-542379' }
     ]
   },
   {
@@ -2746,10 +2753,12 @@ SLIDES_GCSE[124] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🌍', label: 'AI development is geographically concentrated', text: 'a few wealthy nations dominate' },
-      { icon: '📡', label: 'Access is unequal', text: '2.6 billion people have no internet at all' },
-      { icon: '⚠️', label: 'AI works worse for under-represented groups', text: 'training data bias has real consequences' },
-      { icon: '⚖️', label: 'Benefits don\'t distribute automatically', text: 'access and equity require deliberate effort' }
+      { icon: '🌍', label: 'AI development is geographically concentrated', text: 'US, China and UK capture ~90% of investment' },
+      { icon: '📡', label: 'Access is unequal', text: '2.6 billion people still have no internet at all (ITU 2023)' },
+      { icon: '⚠️', label: 'AI works worse for under-represented groups', text: 'Gender Shades 2018, PNAS 2020, JAMA 2018 all showed measurable gaps' },
+      { icon: '🗣️', label: 'Fewer than 100 of 7,000+ languages are well-served', text: 'most of the world gets dramatically worse AI than English speakers' },
+      { icon: '🔌', label: 'Hidden human and environmental costs', text: 'Kenyan moderators on $2/hr, 34% rise in Microsoft water use, 50+ GWh training runs' },
+      { icon: '⚖️', label: 'Benefits don\'t distribute automatically', text: 'access and equity require deliberate policy, funding and design choices' }
     ]
   }
 ];
@@ -2886,24 +2895,29 @@ SLIDES_GCSE[126] = [
   {
     type: 'concept',
     title: 'Tasks vs Jobs — An Important Distinction',
-    body: 'AI automates specific tasks within jobs — not usually entire jobs at once.',
+    body: 'This is the single most important idea in the whole conversation about AI and work. Headlines ask "will AI replace X jobs?" — but researchers who actually measure this (MIT, OECD, Goldman Sachs, Anthropic\'s 2024 Economic Index) keep finding the same thing: AI automates tasks within jobs, not usually whole jobs in one go. Most jobs are bundles of 10–30 distinct tasks. AI is very good at some of them and useless at others. The shape of the job changes — sometimes dramatically — but it rarely vanishes.',
     bullets: [
-      'A doctor\'s job involves diagnosis (AI can help) AND communication, empathy, judgment, ethics',
-      'A lawyer\'s job involves document review (AI can speed up) AND advocacy, relationships, strategy',
-      'Jobs combining routine and human elements are changing, not disappearing',
-      'New jobs are also appearing: AI trainers, prompt engineers, AI auditors, ethicists',
-      'The question is less "will my job exist?" and more "what will my job involve?"'
+      { term: 'Doctors', def: 'Diagnostic image review can be AI-assisted; communication, empathy, physical examination, judgment under uncertainty and ethical decision-making cannot. NHS England already uses AI to help read chest X-rays — but the radiologist still signs off.' },
+      { term: 'Lawyers', def: 'Document review and first-draft contracts are being automated by tools like Harvey and CoCounsel. Advocacy, relationship management, courtroom strategy and client trust are not.' },
+      { term: 'Teachers', def: 'Marking, lesson-planning drafts and differentiation can be AI-assisted; the pastoral relationship, classroom management and knowing when a student is struggling cannot.' },
+      { term: 'New jobs are appearing', def: 'WEF 2025 lists AI specialists, prompt engineers, AI ethics officers, model-evaluation roles and "AI red-teamers" among the fastest-growing roles.' },
+      { term: 'The right question', def: 'Not "will my job exist?" — but "what will my job involve in 5 years, and which parts of it should I practise now that AI can\'t easily do?"' }
     ]
   },
   {
     type: 'concept',
     title: 'Skills That Matter More in an AI World',
+    body: 'The World Economic Forum Future of Jobs Report 2025 surveyed 1,000+ major employers across 55 economies. It found the skills rising fastest in importance are almost all things AI is currently bad at — and the skills falling fastest are the ones AI can already do. The list below is the overlap across multiple studies: WEF, McKinsey, LinkedIn, OECD.',
     bullets: [
-      { term: 'Critical judgment', def: 'AI makes suggestions — humans need to evaluate, challenge and decide' },
-      { term: 'Creativity and originality', def: 'AI recombines existing patterns; humans originate new ideas' },
-      { term: 'Interpersonal skills', def: 'Care, empathy, trust-building, leadership — AI cannot replicate these' },
-      { term: 'AI literacy', def: 'Understanding what AI can and can\'t do is increasingly valuable in every field' },
-      { term: 'Adaptability', def: 'The ability to keep learning as tools and industries change' }
+      { term: 'Critical judgment', def: 'AI makes confident suggestions — sometimes wrong ones. Humans need to evaluate, challenge and decide when to override. WEF 2025: "analytical thinking" is the #1 core skill for 2025–2030.' },
+      { term: 'Creativity and originality', def: 'AI recombines existing patterns from its training data; humans originate ideas that were not in the data. The most valuable creative work is increasingly the part AI could not have produced.' },
+      { term: 'Interpersonal skills', def: 'Care, empathy, trust-building, leadership, difficult conversations — AI cannot replicate these, and employers increasingly rank them above technical skills for graduate hires.' },
+      { term: 'AI literacy', def: 'Understanding what AI can and cannot do — and the ability to use it well — is itself a named core skill in WEF 2025. It\'s the skill you are building right now.' },
+      { term: 'Adaptability', def: 'Tools change, industries reshape, and the specific AI you learn today will be obsolete in 3 years. The ability to keep learning is the meta-skill that outlasts them all.' }
+    ],
+    sources: [
+      { label: 'World Economic Forum — Future of Jobs Report 2025', url: 'https://www.weforum.org/publications/the-future-of-jobs-report-2025/' },
+      { label: 'Anthropic Economic Index — AI\'s impact on tasks and occupations (2024)', url: 'https://www.anthropic.com/news/the-anthropic-economic-index' }
     ]
   },
   {
@@ -2947,10 +2961,12 @@ SLIDES_GCSE[126] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🔧', label: 'AI automates tasks, not whole jobs', text: 'but jobs will change significantly' },
-      { icon: '🧠', label: 'Human skills become more valuable', text: 'judgment, creativity, care, adaptability' },
-      { icon: '📚', label: 'AI literacy is itself a skill', text: 'what you\'re building right now is increasingly sought-after' },
-      { icon: '✅', label: 'Adapt, don\'t panic', text: 'but do plan — proactively and specifically' }
+      { icon: '🔧', label: 'AI automates tasks, not whole jobs', text: 'Goldman Sachs estimates 300M jobs exposed — but most will reshape, not disappear' },
+      { icon: '🧠', label: 'Human skills become more valuable', text: 'judgment, creativity, care, adaptability — the things AI is bad at' },
+      { icon: '🤝', label: 'The "centaur" pattern', text: 'humans + AI beat pure AI and pure humans. Collaboration is the durable skill.' },
+      { icon: '↩️', label: 'Klarna reversed its AI-only experiment', text: 'customer satisfaction dropped so hard they rehired humans in 2024' },
+      { icon: '📚', label: 'AI literacy is itself a skill', text: 'WEF 2025 lists it as a core 2025-2030 skill — and you\'re building it now' },
+      { icon: '✅', label: 'Adapt, don\'t panic', text: 'but do plan — proactively, specifically, and with a clear sense of which tasks you\'ll protect' }
     ]
   }
 ];
@@ -2958,29 +2974,35 @@ SLIDES_GCSE[126] = [
 SLIDES_GCSE[127] = [
   {
     type: 'hook',
-    title: 'AI & Privacy',
-    body: 'Your phone knows your location, your sleep patterns, who you talk to, what you search for, how long you stare at certain images, and what makes you anxious. Most of that data flows to companies building AI systems. Is that fine with you?',
-    callout: 'The business model of most free apps: your data is the product. If you\'re not paying, you are what\'s being sold.'
+    title: 'AI &amp; Privacy',
+    body: 'Your phone knows your location every 5 minutes, your sleep patterns, your menstrual cycle (if you use a tracker), who you talk to, what you search for, how long you stare at certain images, and which posts make you anxious enough to keep scrolling. The average iPhone or Android device runs 40+ apps that transmit data to third parties — and Norton\'s 2023 investigation found a typical app shares data with 9 different companies in the background within a minute of opening it. Most of that data now flows into AI training pipelines. You never signed a document saying "yes, train on me" — but the terms &amp; conditions you tapped "accept" on almost certainly did.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">40+</span><span class="sl">apps transmitting data on a typical phone</span></div><div class="hook-stat-mini"><span class="sv">9</span><span class="sl">third parties a typical app shares with on opening (Norton 2023)</span></div><div class="hook-stat-mini"><span class="sv">£7.5m</span><span class="sl">UK ICO fine on Clearview for scraping 30bn photos</span></div></div>',
+    callout: 'The business model of most free apps: your data is the product. If you\'re not paying, you are what\'s being sold.',
+    sources: [
+      { label: 'Norton — What Information Do Apps Collect? (research, 2023)', url: 'https://us.norton.com/blog/privacy/what-information-do-apps-collect' },
+      { label: 'UK Information Commissioner\'s Office — Guide to the UK GDPR', url: 'https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/' }
+    ]
   },
   {
     type: 'concept',
     title: 'What Data AI Systems Collect and Why',
+    body: 'Modern AI is hungry for data — and most of it comes from you, often without any specific moment where you were asked. Under UK GDPR this should only happen with a lawful basis (usually consent, contract or "legitimate interest"), but the ICO has repeatedly found companies stretching those definitions. Here are the four main categories.',
     bullets: [
-      { term: 'Location data', def: 'Your physical movements reveal your workplace, home, health visits, religion, relationships' },
-      { term: 'Behavioural data', def: 'Scrolling speed, pausing time, click patterns — builds a detailed psychological profile' },
-      { term: 'Biometric data', def: 'Face, voice, fingerprint — uniquely sensitive because you can\'t change it if leaked' },
-      { term: 'Why they collect it', def: 'To improve products, target advertising, train AI models, and sell to third parties' }
+      { term: 'Location data', def: 'Your physical movements reveal your workplace, home address, health-clinic visits, religion (places of worship), relationships and routines. Precise GPS data is classed as personal data under UK GDPR even if your name isn\'t attached.' },
+      { term: 'Behavioural data', def: 'Scrolling speed, pause duration, click patterns, how long you hover on each image, which posts make you stop — collectively builds a detailed psychological profile, arguably more intimate than anything you\'d consciously write about yourself.' },
+      { term: 'Biometric data', def: 'Face, voice, fingerprint, iris — classed as "special category" data under UK GDPR because you can\'t change it if it leaks. Requires explicit opt-in consent, which is often buried in defaults.' },
+      { term: 'Why they collect it', def: 'To improve products, target advertising, train AI models, and — for many "free" apps — sell to third-party data brokers who aggregate it with data from hundreds of other apps.' }
     ]
   },
   {
     type: 'concept',
     title: 'Privacy Risks You Should Know',
+    body: 'Data, on its own, sounds abstract. The risks become concrete when you look at how it\'s been misused — and how often the people affected never find out. These five risks appear repeatedly in ICO enforcement actions, academic studies and investigative journalism.',
     bullets: [
-      { term: 'Profiling', def: 'Building a detailed picture of you — your politics, health, finances — without your awareness' },
-      { term: 'Manipulation', def: 'Using your profile to show targeted ads, political content, or emotionally manipulative material' },
-      { term: 'Data breaches', def: 'Your data sold or leaked — especially serious if it includes health or biometric data' },
-      { term: 'Function creep', def: 'Data collected for one purpose quietly used for another' },
-      { term: 'Surveillance', def: 'Location and behavioural data used to monitor your movements and activities' }
+      { term: 'Profiling', def: 'Building a detailed picture of you — your politics, health, finances, sexual orientation — often inferred from signals you didn\'t realise were revealing. Cambridge Analytica (Facebook, 2018) showed 270,000 people\'s consent could be used to profile 87 million.' },
+      { term: 'Manipulation', def: 'Using your profile to show targeted ads, political content, or emotionally manipulative material. Research at Cambridge (2015) showed psychologically targeted ads convert up to 40% better than non-targeted.' },
+      { term: 'Data breaches', def: 'Your data sold or leaked — especially serious if it includes health, biometric or children\'s data. 23andMe\'s 2023 breach exposed ~7 million users\' genetic data.' },
+      { term: 'Function creep', def: 'Data collected for one purpose quietly used for another. Loyalty card data originally "for offers" has been sold to insurers, landlords and police in multiple documented cases.' },
+      { term: 'Surveillance', def: 'Location and behavioural data used to monitor movements and activities — including by governments, employers (increasingly via "workplace productivity" software) and stalkers.' }
     ]
   },
   {
@@ -3038,10 +3060,12 @@ SLIDES_GCSE[127] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '💰', label: 'Your data has real value', text: 'that\'s why apps collect it — they sell it or use it to train AI' },
-      { icon: '🔒', label: 'Biometric data is uniquely sensitive', text: 'you can\'t change your face if it\'s leaked' },
-      { icon: '⚖️', label: 'You have rights under UK GDPR', text: 'to see, correct and delete your data' },
-      { icon: '🛡️', label: 'Check permissions regularly', text: 'revoke what apps don\'t genuinely need' }
+      { icon: '💰', label: 'Your data has real value', text: 'that\'s why free apps collect it — they sell it or use it to train AI' },
+      { icon: '🔒', label: 'Biometric data is uniquely sensitive', text: 'special-category data under UK GDPR — you can\'t change your face if it leaks' },
+      { icon: '📍', label: '"Anonymous" is often reversible', text: 'Strava 2018 proved aggregate patterns can unmask classified military bases' },
+      { icon: '⚖️', label: 'You have rights under UK GDPR', text: 'subject access (see), rectification (correct), erasure (delete) and object to profiling' },
+      { icon: '👁️', label: 'Scraping AI like Clearview is not just American', text: 'the UK ICO, France, Italy, Greece and Australia all ruled it unlawful' },
+      { icon: '🛡️', label: 'Check permissions regularly', text: 'audit location, mic, camera and contacts — revoke anything not genuinely needed' }
     ]
   }
 ];
@@ -3168,12 +3192,15 @@ SLIDES_GCSE[129] = [
   {
     type: 'concept',
     title: 'Ethical Frameworks for Thinking About AI',
+    body: 'There is no single ethical test that answers every AI question. Philosophers have produced several frameworks — and each gives different answers on the same case. Real AI ethics work (at Google DeepMind, Anthropic, the UK AI Safety Institute, Ofcom\'s Online Safety team) uses all four together, because a policy that passes one test often fails another.',
     bullets: [
-      { term: 'Consequentialism', def: 'Judge by outcomes — does AI produce better results on average, even if it fails some individuals?' },
-      { term: 'Rights-based', def: 'Some things shouldn\'t be done even with good outcomes — mass surveillance, for example' },
-      { term: 'Fairness', def: 'Are the errors distributed equitably, or does AI fail certain groups more than others?' },
-      { term: 'Human dignity', def: 'Some high-stakes, irreversible decisions may always warrant a human in the loop' }
-    ]
+      { term: 'Consequentialism', def: 'Judge by outcomes. Does the system produce better results on average, even if it fails some individuals? A medical-screening AI that saves 1,000 lives but misses 10 passes this test — but is that enough?' },
+      { term: 'Rights-based (deontology)', def: 'Some things shouldn\'t be done even with good outcomes. Mass surveillance, covert emotion-detection, social-scoring — the EU AI Act bans these under Article 5 on rights-based reasoning, regardless of whether they "work".' },
+      { term: 'Fairness / distributive justice', def: 'Are the errors distributed equitably, or does the system fail certain groups disproportionately? COMPAS passed overall accuracy but failed this test by race. Fairness is not one metric — pick the wrong metric and you can hide real harm.' },
+      { term: 'Human dignity &amp; autonomy', def: 'Some high-stakes, irreversible decisions (prison, deportation, child-protection removal, end-of-life medical) may warrant a meaningful human in the loop by default — because the value isn\'t only the outcome but the right to be heard by a person.' },
+      { term: 'Virtue ethics', def: 'Not "what rule applies?" but "what kind of person — or company — do we want to be?" Asks engineers to think about character, integrity and professional duty, not just compliance.' }
+    ],
+    callout: 'Good AI ethics uses all five lenses. A decision that passes one but fails another is not yet a good decision — it\'s an unfinished one.'
   },
   {
     type: 'scenario',
