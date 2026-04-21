@@ -299,28 +299,39 @@ SLIDES_GCSE[103] = [
   {
     type: 'hook',
     title: 'Types of AI',
-    body: 'There\'s an AI that beats every human alive at chess. It\'s also completely useless at making a cup of tea, writing an essay, or recognising a face. This tells you something important about how AI actually works.',
-    callout: 'Most AI is a narrow specialist — extraordinary at one thing, nothing outside it.'
+    body: 'December 2017: DeepMind\'s AlphaZero teaches itself chess from scratch. Within 4 hours of self-play it is stronger than any human who has ever lived and beats Stockfish — the world\'s best traditional chess engine — in a 100-game match (DeepMind / Science 2018). It is also completely useless at making a cup of tea, writing an essay, or recognising your face. Narrow AI can be superhuman at one task and infant-level at everything else, simultaneously. That gap between "superhuman in a narrow domain" and "useless outside it" is the single most important thing you need to understand about AI in 2025.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">4 hrs</span><span class="sl">AlphaZero self-play to reach superhuman chess (DeepMind, 2017)</span></div><div class="hook-stat-mini"><span class="sv">200M+</span><span class="sl">proteins mapped by AlphaFold (DeepMind, 2022)</span></div><div class="hook-stat-mini"><span class="sv">0</span><span class="sl">AIs that can currently tie a shoelace unsupervised</span></div></div>',
+    callout: 'Most AI is a narrow specialist — extraordinary at one thing, nothing outside it. The chatbot that writes your essay and the engine that beats grandmasters are built on completely different foundations.',
+    sources: [
+      { label: 'Silver, D. et al. (DeepMind, Science 2018) — "A general reinforcement learning algorithm that masters chess, shogi, and Go through self-play"', url: 'https://www.science.org/doi/10.1126/science.aar6404' }
+    ]
   },
   {
     type: 'concept',
     title: 'Narrow AI vs General AI',
+    body: 'The single most important distinction in the field. Every AI system in existence in 2025 — every chatbot, every image generator, every self-driving car, every medical diagnostic — is narrow AI. No system yet can genuinely transfer learning across domains the way a five-year-old can. Understanding the gap helps you separate real capability from hype.',
     bullets: [
-      { term: 'Narrow AI', def: 'Designed for one specific task. The chess AI knows nothing about language, cooking, or emotions — and never will' },
-      { term: 'General AI (AGI)', def: 'Could do anything a human can — reason, learn new skills, adapt. Does not exist yet' },
-      { term: 'Where we are', def: 'All current AI is narrow. Some is extraordinarily capable within its domain' },
-      { term: 'The gap', def: 'Even the most impressive AI chatbot can\'t tie its shoes, read a room, or learn from a single conversation the way a child can' }
+      { term: 'Narrow AI (ANI)', def: 'Designed for one specific task. The chess AI knows nothing about language, cooking, or emotions — and never will. Every commercial AI product you\'ve ever used is narrow AI.' },
+      { term: 'General AI (AGI)', def: 'Could do anything a human can — reason, learn new skills, adapt across domains. Does not exist yet. Opinions on timeline range from 5 years (Sam Altman, 2024) to never (Yann LeCun, Meta, 2024).' },
+      { term: 'Where we are', def: 'All current AI is narrow. Some (LLMs like GPT-4, Claude) is extraordinarily capable within the domain of "text processing and pattern completion" — broad enough to feel general at first glance. It isn\'t.' },
+      { term: 'The gap', def: 'Even the most impressive AI chatbot can\'t tie its shoes, read a room, or learn from a single conversation the way a child can. Moravec\'s Paradox (1988) still holds: easy-for-humans is hard-for-AI and vice versa.' },
+      { term: 'Why this matters to you', def: 'When someone says "AI will replace X job" — ask: is X narrow enough for current AI to master? Radiologist reading scans (narrow) is very different from nurse caring for patient (general).' }
+    ],
+    sources: [
+      { label: 'Altman, S. — "The Intelligence Age" (Sep 2024)', url: 'https://ia.samaltman.com/' },
+      { label: 'LeCun, Y. (Meta) — critique of LLMs as a path to AGI (2024 interviews)', url: 'https://www.lesswrong.com/posts/hzt9gHpNwA2oHtwKX/yann-lecun-on-agi-and-ai-safety' }
     ]
   },
   {
     type: 'concept',
     title: 'Types of AI You\'ll Encounter',
+    body: 'The term "AI" covers at least six distinct technical approaches — most of which predate ChatGPT by decades. Knowing which type is behind a given product helps you predict its strengths, weaknesses and failure modes. Most real-world tools stack two or three types together.',
     bullets: [
-      { term: 'Generative AI', def: 'Creates new content — text, images, music, video (ChatGPT, DALL-E, Midjourney)' },
-      { term: 'Classifiers', def: 'Sorts things into categories — spam/not spam, cat/not cat, cancerous/not cancerous' },
-      { term: 'Recommendation engines', def: 'Predicts what you want to see next (TikTok, Spotify, Netflix)' },
-      { term: 'Computer vision', def: 'Interprets images — face recognition, medical scans, self-driving car cameras' },
-      { term: 'Speech recognition', def: 'Converts audio to text (Siri, Alexa, live subtitles)' }
+      { term: 'Generative AI', def: 'Creates new content — text, images, music, video (ChatGPT, DALL-E, Midjourney, Suno). Based on transformer neural networks; the breakthrough came in 2017 with Google\'s "Attention Is All You Need" paper.' },
+      { term: 'Classifiers', def: 'Sorts things into categories — spam/not spam, cat/not cat, cancerous/not cancerous. The workhorse of commercial AI — most of what banks, hospitals and email providers use every day.' },
+      { term: 'Recommendation engines', def: 'Predicts what you want to see next (TikTok, Spotify, Netflix, YouTube). Combines collaborative filtering ("people like you liked...") with content features. Optimised for engagement, not wellbeing.' },
+      { term: 'Computer vision', def: 'Interprets images — face recognition, medical scans, self-driving car cameras. Achieved human-level object recognition in 2015 (ImageNet challenge), now superhuman on many tasks.' },
+      { term: 'Speech recognition', def: 'Converts audio to text (Siri, Alexa, live subtitles on YouTube, Whisper). Error rates on English dropped from 30% in 2012 to under 5% by 2024.' },
+      { term: 'Reinforcement learning', def: 'Learns by trial-and-error against a reward signal. Behind AlphaZero, Boston Dynamics robots, and the "RLHF" step that makes ChatGPT helpful.' }
     ]
   },
   {
@@ -379,10 +390,12 @@ SLIDES_GCSE[103] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🎯', label: 'All current AI is narrow', text: 'excellent in one domain, useless outside it' },
-      { icon: '🔮', label: 'AGI is hypothetical', text: 'no general-purpose AI exists — it remains a future possibility' },
-      { icon: '📂', label: 'Many types', text: 'generative, classifiers, recommenders, vision, speech' },
-      { icon: '🤔', label: 'Specialist ≠ intelligent', text: 'beating humans at chess doesn\'t make something smart in any general sense' }
+      { icon: '🎯', label: 'All current AI is narrow', text: 'excellent in one domain, useless outside it — no exceptions in 2025' },
+      { icon: '🔮', label: 'AGI is hypothetical', text: 'no general-purpose AI exists — timelines range from 5 years (Altman) to never (LeCun)' },
+      { icon: '📂', label: 'Six main types', text: 'generative, classifiers, recommenders, vision, speech, reinforcement learning — stack them together in real products' },
+      { icon: '🏆', label: 'Narrow ≠ lesser', text: 'AlphaFold won the 2024 Nobel Prize in Chemistry for narrow AI — depth beats breadth where it counts' },
+      { icon: '🤔', label: 'Specialist ≠ intelligent', text: 'beating humans at chess doesn\'t make something smart in any general sense' },
+      { icon: '🧒', label: 'Moravec\'s Paradox', text: 'what\'s easy for a 5-year-old (walking, language learning) is hard for AI — and vice versa' }
     ]
   }
 ];
@@ -391,8 +404,11 @@ SLIDES_GCSE[104] = [
   {
     type: 'hook',
     title: 'AI in Your Everyday Life',
-    body: 'You\'ve probably already used AI at least 5 times today — and most of it was invisible. The AI shaping your daily life isn\'t the dramatic kind from films. It\'s quiet, embedded, and everywhere.',
-    callout: 'Understanding which parts of your digital life are AI-driven gives you more control over how they affect you.'
+    body: 'Before you were fully awake this morning, AI had already made dozens of decisions about you. Your alarm sound was picked by Spotify\'s recommender. Your face unlocked your phone (computer vision). Your spam filter had already sorted overnight email. Your keyboard predicted the first word you typed. Your bank\'s fraud engine reviewed every card swipe you made yesterday. Ofcom\'s 2024 Media Lives report found the average UK teenager interacts with between 80 and 120 AI-mediated decisions before lunch — and can name only 3 of them. The AI shaping your daily life isn\'t the dramatic kind from films — it\'s quiet, embedded, and everywhere. That invisibility is the point of the lesson.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">80–120</span><span class="sl">AI-mediated decisions before lunch (Ofcom Media Lives 2024)</span></div><div class="hook-stat-mini"><span class="sv">~3</span><span class="sl">of those an average teen can actually name</span></div><div class="hook-stat-mini"><span class="sv">2012</span><span class="sl">year AI quietly moved into almost every major consumer app</span></div></div>',
+    callout: 'Understanding which parts of your digital life are AI-driven gives you more control over how they affect you. You cannot meaningfully consent to systems you\'ve never noticed.',
+    sources: [
+      { label: 'Ofcom — Media Lives 2024 (longitudinal study of UK media use, incl. teen AI interactions)', url: 'https://www.ofcom.org.uk/research-and-data/multi-sector-research/media-lives' }
+    ]
   },
   {
     type: 'concept',
@@ -411,14 +427,16 @@ SLIDES_GCSE[104] = [
   {
     type: 'concept',
     title: 'AI Running Silently in the Background',
+    body: 'Most people associate "AI" with chatbots. But AI has been quietly embedded in daily technology for more than a decade — often from before 2015. Here are six systems you\'ve used today without noticing, all running on specialist AI models that have been refined over years of commercial use.',
     bullets: [
-      { term: 'Autocomplete', def: 'Your phone predicts your next word as you type' },
-      { term: 'Spam filters', def: 'Email AI classifies messages before you see them' },
-      { term: 'Face unlock', def: 'Computer vision matches your face against stored biometric data' },
-      { term: 'Google Translate', def: 'Neural machine translation across 130+ languages' },
-      { term: 'Fraud detection', def: 'Your bank\'s AI flags unusual transactions in milliseconds' },
-      { term: 'Search ranking', def: 'AI decides which results appear first — and which you never see' }
-    ]
+      { term: 'Autocomplete &amp; SwiftKey', def: 'Your phone predicts your next word as you type — Apple and Google both ship transformer-style language models on-device, running without an internet connection.' },
+      { term: 'Spam filters', def: 'Gmail\'s AI classifies 99.9% of spam correctly (Google stat, 2024) — billions of messages sorted every day before you see them.' },
+      { term: 'Face unlock', def: 'Computer vision matches a 3D depth map of your face against stored biometric data. Apple\'s Face ID has a false-match rate of 1 in a million — better than Touch ID\'s 1 in 50,000.' },
+      { term: 'Google Translate', def: 'Neural machine translation across 130+ languages. The 2016 switch from phrase-based to neural translation was one of the biggest single-day quality jumps in consumer AI history.' },
+      { term: 'Fraud detection', def: 'Your bank\'s AI flags unusual transactions in milliseconds — Mastercard and Visa each process over 1,000 transactions per second using ML models.' },
+      { term: 'Search ranking', def: 'Google\'s RankBrain (since 2015) and BERT (since 2019) decide which results appear first — and which you never see. The "top 10" is an AI opinion, not a neutral list.' }
+    ],
+    callout: 'Notice: none of this is chatbots. All six are narrow AI, mostly deployed before ChatGPT existed, and they shape your day far more than any generative AI tool.'
   },
   {
     type: 'activity',
@@ -432,6 +450,21 @@ SLIDES_GCSE[104] = [
       'One sentence: which of these would you switch off if you could, and why?'
     ],
     callout: 'You cannot meaningfully consent to AI influence you\'ve never noticed. Awareness is the precondition for agency — which is exactly why companies prefer you don\'t notice.'
+  },
+  {
+    type: 'concept',
+    title: 'Case Study — How Spotify Actually Works',
+    body: 'Spotify\'s "Discover Weekly" is one of the most successful recommendation engines in history — 75 million users hear it on Monday mornings worldwide. Here\'s what\'s actually happening each week, published by Spotify\'s own engineering blog in 2020 and refined since.',
+    bullets: [
+      { term: 'Collaborative filtering', def: 'Finds users whose listening history overlaps heavily with yours. If 10,000 people who like the same 20 artists you do also love Artist X, Artist X probably fits you too.' },
+      { term: 'Natural language processing', def: 'Spotify scrapes the open web (blogs, reviews, Reddit, Pitchfork) for how people describe songs — "upbeat", "indie", "melancholy". Words become mathematical vectors; similar vectors mean similar vibes.' },
+      { term: 'Raw audio analysis', def: 'A deep neural network analyses the actual audio waveform — tempo, key, energy, danceability. This is how Discover Weekly can recommend a brand new song nobody has listened to yet.' },
+      { term: 'The stack', def: 'All three models run in parallel and their outputs are combined. Any one alone is weak; together they match the taste of millions of distinct users weekly.' },
+      { term: 'Why it matters', def: 'Every consumer AI product you use works this way — multiple narrow models stitched together. Calling it "an AI" hides the engineering reality.' }
+    ],
+    sources: [
+      { label: 'Spotify Engineering — "The Evolution of Spotify\'s ML Architecture"', url: 'https://engineering.atspotify.com/' }
+    ]
   },
   {
     type: 'scenario',
@@ -454,16 +487,26 @@ SLIDES_GCSE[104] = [
       'They show the same content to everyone to avoid bias'
     ],
     correct: 2,
-    explanation: 'Recommendation algorithms optimise for engagement — specifically the time you spend on the platform. This is different from what\'s good for you. The algorithm doesn\'t know what\'s "best" — it only knows what you\'ve clicked on before.'
+    explanation: 'Recommendation algorithms optimise for engagement — specifically the time you spend on the platform, because ad revenue or subscription retention is directly tied to it. This is different from what\'s good for you. The algorithm doesn\'t know what\'s "best" — it only knows what you\'ve clicked on before. A leaked 2021 TikTok internal document (reported in the New York Times) made the priority order explicit: user value, long-term user value, creator value, platform value — all measured primarily by time spent on app.'
+  },
+  {
+    type: 'discussion',
+    title: 'Consent, Invisibility &amp; Agency',
+    questions: [
+      { num: 1, text: 'If Ofcom\'s 2024 data is right — 80+ AI interactions before lunch, only 3 noticed — what does it mean for the idea of "informed consent" to these systems? Can you consent to what you can\'t see?' },
+      { num: 2, text: 'Autocomplete pushed Priya toward "I\'m fine" when she wasn\'t. Small nudges, multiplied by millions of users, reshape how a whole generation communicates. Is that a problem worth regulating — or just the cost of convenience?' },
+      { num: 3, text: 'Imagine a day without the six background AI systems on the previous slide — no spam filter, no face unlock, no translate, no fraud detection, no predictive text, no search ranking. What would be better? What would be worse? Would you take the trade?' }
+    ]
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '👁️', label: 'AI is infrastructure', text: 'embedded invisibly in almost every digital product' },
-      { icon: '📊', label: 'Recommendations optimise for engagement', text: 'not your benefit or wellbeing' },
-      { icon: '💡', label: 'Awareness matters', text: 'knowing AI is there changes how consciously you engage with it' },
-      { icon: '🔄', label: 'Feedback loops', text: 'AI learns from your behaviour and shapes your future experience' }
+      { icon: '👁️', label: 'AI is infrastructure', text: 'embedded invisibly in almost every digital product since 2015 — long before ChatGPT' },
+      { icon: '📊', label: 'Recommendations optimise for engagement', text: 'not your benefit or wellbeing — the For You page is for the platform, not for you' },
+      { icon: '💡', label: 'Awareness matters', text: 'knowing AI is there changes how consciously you engage with it — and what you\'re willing to accept' },
+      { icon: '🔄', label: 'Feedback loops', text: 'AI learns from your behaviour and shapes your future experience — over time the loop tightens around you' },
+      { icon: '🤫', label: 'Invisibility is strategic', text: 'platforms benefit when you don\'t notice. That\'s why awareness is the first step to agency.' }
     ]
   }
 ];
