@@ -95,26 +95,34 @@
   <!-- Hero / Home Section -->
   <section id="section-home" class="section active" role="main">
 
-    <!-- Greeting strip (editorial lockup) -->
-    <section class="greet-strip">
-      <div class="greet-strip-copy">
-        <div class="greet-eyebrow">
-          <img src="assets/brand/logo/haileybury-white.png" alt="" class="greet-eyebrow-logo" aria-hidden="true">
-          <span class="greet-eyebrow-rule" aria-hidden="true"></span>
-          <span>Haileybury · Academic Extension Programme</span>
-        </div>
-        <h1 class="display greet-strip-title">
-          Three ways to <span class="display-it">learn</span>.<br>
-          Pick yours.
-        </h1>
-        <p class="greet-strip-lede">
-          Three routes, same destination — understanding AI clearly and using it responsibly. Browse any of them; pick up your AEP progress where you left off.
-        </p>
+    <!-- Pathway chooser -->
+    <div class="pathway-header">
+      <div class="pathway-hero-mark">
+        <img src="assets/brand/logo/haileybury-white.png" alt="Haileybury" class="pathway-hero-logo" loading="eager" decoding="async">
+        <span class="pathway-hero-rule" aria-hidden="true"></span>
+        <span class="pathway-hero-eyebrow">Haileybury · Academic Extension Programme</span>
       </div>
-      <div class="greet-strip-stats" aria-label="Your progress at a glance">
-        <div class="greet-stat">
-          <div class="display greet-stat-n" id="greetStatLessons">0<span class="greet-stat-denom">/55</span></div>
-          <div class="greet-stat-l">Lessons done</div>
+      <h1 class="pathway-title">Choose your <span class="pathway-title-em">learning pathway</span></h1>
+      <p class="pathway-sub">Three routes — same goal: understanding AI clearly and using it responsibly.</p>
+      <div class="pathway-ribbon" aria-hidden="true"></div>
+    </div>
+
+    <div class="pathway-cards">
+      <!-- Year 10/11 Course -->
+      <div class="pathway-card pathway-card--gcse" onclick="window.location.href='gcse.html'">
+        <div class="pc-icon">🌱</div>
+        <div class="pc-badge pc-badge--gcse">Ages 14–15 · Works Offline</div>
+        <h2 class="pc-title">Digital Innovations</h2>
+        <p class="pc-desc">33 lessons across 6 units. Covers AI foundations, ethics, and an unmissable unit on using AI for revision and exam technique.</p>
+        <ul class="pc-features">
+          <li>33 lessons · 6 units</li>
+          <li>AI for Study &amp; Revision unit</li>
+          <li>Works fully offline</li>
+          <li>Completion certificate</li>
+          <li>~13 hours total</li>
+        </ul>
+        <div class="pc-actions">
+          <button class="btn pc-cta pc-cta--gcse">Start Digital Innovations →</button>
         </div>
         <div class="greet-stat">
           <div class="display greet-stat-n greet-stat-accent" id="greetStatPct">0%</div>
