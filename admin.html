@@ -4,27 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard — Digital Innovations</title>
-  <link rel="icon" href="icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="assets/brand/logo/haileybury-magenta.png">
-  <meta name="theme-color" content="#9b1844">
-  <link rel="stylesheet" href="css/brand.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <script src="js/supabase-config.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --primary: #9b1844; --primary-light: #c04572; --accent: #009fe3;
-      --bg: #0d0e24; --bg-card: #1a1c3a; --bg-hover: #334155;
+      --primary: #6366f1; --primary-light: #818cf8; --accent: #06b6d4;
+      --bg: #0f172a; --bg-card: #1e293b; --bg-hover: #334155;
       --text: #f1f5f9; --text-muted: #94a3b8; --text-dim: #64748b;
       --border: #334155; --success: #22c55e; --warning: #f59e0b; --danger: #ef4444;
       --radius: 12px; --radius-sm: 8px;
     }
     [data-theme="light"] {
       --bg: #f8fafc; --bg-card: #ffffff; --bg-hover: #f1f5f9;
-      --text: #0d0e24; --text-muted: #475569; --text-dim: #94a3b8; --border: #e2e8f0;
+      --text: #0f172a; --text-muted: #475569; --text-dim: #94a3b8; --border: #e2e8f0;
     }
     html { font-size: 16px; }
-    body { font-family: 'Calluna Sans', 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; min-height: 100vh; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; min-height: 100vh; }
     a { color: var(--primary-light); text-decoration: none; }
     button { cursor: pointer; font-family: inherit; }
 
@@ -44,7 +42,7 @@
     .admin-user-badge { font-size: .78rem; color: var(--text-dim); }
     .btn { padding: 8px 16px; border-radius: var(--radius-sm); font-size: .85rem; font-weight: 600; border: none; transition: all .18s; }
     .btn-primary { background: var(--primary); color: #fff; }
-    .btn-primary:hover { background: #7a1236; }
+    .btn-primary:hover { background: #4f46e5; }
     .btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--text-muted); }
     .btn-ghost:hover { border-color: var(--primary); color: var(--text); }
     .btn-sm { padding: 5px 12px; font-size: .78rem; }
@@ -111,11 +109,11 @@
     .student-email { font-size: .78rem; color: var(--text-dim); margin-top: 2px; }
     .progress-cell { min-width: 130px; }
     .mini-bar { height: 6px; background: var(--border); border-radius: 999px; overflow: hidden; margin-top: 4px; }
-    .mini-bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #9b1844, #009fe3); }
+    .mini-bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #6366f1, #06b6d4); }
     .pct-text { font-size: .78rem; color: var(--text-dim); }
     .level-chip {
       display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: .7rem; font-weight: 700;
-      background: rgba(155,24,68,.12); color: var(--primary-light); border: 1px solid rgba(155,24,68,.25);
+      background: rgba(99,102,241,.12); color: var(--primary-light); border: 1px solid rgba(99,102,241,.25);
     }
     .streak-badge { font-size: .82rem; }
     .quiz-pct { font-weight: 600; }
@@ -127,7 +125,7 @@
     .detail-row { display: none; }
     .detail-row.open { display: table-row; }
     .detail-panel {
-      padding: 16px 20px; background: rgba(155,24,68,.04);
+      padding: 16px 20px; background: rgba(99,102,241,.04);
       border-bottom: 1px solid var(--border);
     }
     .detail-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; margin-bottom: 12px; }
@@ -173,7 +171,7 @@
     .cd-unit-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; font-weight: 600; font-size: .88rem; }
     .cd-unit-pct { font-size: 1.1rem; font-weight: 800; color: var(--primary-light); }
     .cd-bar-track { height: 8px; border-radius: 4px; background: var(--border); overflow: hidden; }
-    .cd-bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #9b1844, #009fe3); transition: width .6s ease; }
+    .cd-bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #6366f1, #06b6d4); transition: width .6s ease; }
     .cd-unit-sub { font-size: .72rem; color: var(--text-muted); margin-top: 6px; }
     .cd-dist-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
     .cd-dist-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; }
@@ -210,13 +208,13 @@
       border-radius: var(--radius-sm); margin-bottom: 8px;
     }
     .news-article-item:hover { border-color: var(--primary); }
-    .nai-tag { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: .67rem; font-weight: 700; flex-shrink: 0; background: rgba(155,24,68,.15); color: var(--primary-light); }
+    .nai-tag { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: .67rem; font-weight: 700; flex-shrink: 0; background: rgba(99,102,241,.15); color: var(--primary-light); }
     /* ── Reflections ── */
     .ref-setup-box { background: rgba(245,158,11,.1); border: 1px solid var(--warning); border-radius: 8px; padding: 16px; margin-bottom: 20px; font-size: .82rem; }
     .ref-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 12px; }
     .ref-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
     .ref-student { font-weight: 700; font-size: .88rem; }
-    .ref-lesson { font-size: .78rem; color: var(--primary-light); background: rgba(155,24,68,.12); padding: 2px 8px; border-radius: 4px; }
+    .ref-lesson { font-size: .78rem; color: var(--primary-light); background: rgba(99,102,241,.12); padding: 2px 8px; border-radius: 4px; }
     .ref-date { font-size: .72rem; color: var(--text-muted); margin-left: auto; }
     .ref-text { font-size: .85rem; line-height: 1.6; color: var(--text); white-space: pre-wrap; border-left: 3px solid var(--border); padding-left: 12px; }
     .nai-body { flex: 1; min-width: 0; }
@@ -234,7 +232,7 @@
   <!-- Header -->
   <div class="admin-header">
     <div class="admin-brand">
-      <img src="assets/brand/logo/haileybury-white.png" alt="Haileybury" style="height:34px;width:auto">
+      <span class="admin-brand-icon">⚡</span>
       <div>
         <div class="admin-brand-text">Digital Innovations</div>
         <div class="admin-brand-sub">Teacher Admin Dashboard</div>
@@ -798,7 +796,7 @@ function renderTable(students) {
 
 function buildUnitBars(completedIds) {
   var unitNames  = ['Foundations of AI', 'Prompt Engineering', 'AI & Society', 'Policy & Governance', 'Capstone Project', 'Presentations'];
-  var unitColors = ['#9b1844', '#2a2b7c', '#009fe3', '#f59e0b', '#22c55e', '#e6007e'];
+  var unitColors = ['#6366f1', '#8b5cf6', '#06b6d4', '#f59e0b', '#22c55e', '#ec4899'];
   var startId    = 1;
   return unitNames.map(function(name, i) {
     var size     = UNIT_SIZES[i];
@@ -975,7 +973,7 @@ function renderClassDashboard() {
   var brackets = [
     { label: 'Not started', range: [0,0],   color: '#ef4444' },
     { label: '1–25%',       range: [1,25],  color: '#f59e0b' },
-    { label: '26–75%',      range: [26,75], color: '#9b1844' },
+    { label: '26–75%',      range: [26,75], color: '#6366f1' },
     { label: '76–100%',     range: [76,100],color: '#22c55e' }
   ];
   var distHtml = '<div class="cd-section"><div class="cd-section-title">Progress Distribution</div><div class="cd-dist-grid">' +
@@ -1232,9 +1230,9 @@ async function loadNewsArticles() {
       el.innerHTML = '<div class="empty-state" style="padding:24px">No articles yet — add one above.</div>';
       return;
     }
-    var tagColors = { policy:'#9b1844', research:'#009fe3', tools:'#22c55e', industry:'#f59e0b', ethics:'#ef4444', health:'#e6007e' };
+    var tagColors = { policy:'#6366f1', research:'#06b6d4', tools:'#22c55e', industry:'#f59e0b', ethics:'#ef4444', health:'#ec4899' };
     el.innerHTML = articles.map(function(a) {
-      var col = tagColors[a.tag] || '#9b1844';
+      var col = tagColors[a.tag] || '#6366f1';
       return '<div class="news-article-item">' +
         '<span class="nai-tag" style="background:' + col + '22;color:' + col + '">' + esc(a.tag) + '</span>' +
         '<div class="nai-body">' +

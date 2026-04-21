@@ -1,5 +1,5 @@
-/* Digital Innovations — Service Worker (offline-first) v9 — Haileybury brand + editorial layer */
-const CACHE = 'di-v18';
+/* Digital Innovations — Service Worker (offline-first) v9 — force cache refresh post-rollback */
+const CACHE = 'di-v20';
 const ASSETS = [
   './',
   './index.html',
@@ -7,7 +7,6 @@ const ASSETS = [
   './gcse.html',
   './css/style.css',
   './css/lesson.css',
-  './css/brand.css',
   './js/app.js',
   './js/auth.js',
   './js/data.js',
@@ -21,11 +20,6 @@ const ASSETS = [
   './js/slides-gcse.js',
   './icon.svg',
   './manifest.json',
-  './assets/brand/logo/haileybury-white.png',
-  './assets/brand/logo/haileybury-magenta.png',
-  './assets/brand/fonts/CallunaSans-Regular.otf',
-  './assets/brand/fonts/CallunaSans-Bold.otf',
-  './assets/brand/fonts/CallunaSans-Italic.otf',
 ];
 
 self.addEventListener('install', function(e) {
