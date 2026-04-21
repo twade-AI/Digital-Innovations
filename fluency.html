@@ -7,10 +7,13 @@
   <meta name="description" content="A self-directed 20-lesson pathway to AI fluency. No login needed. Works offline.">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/brand/logo/haileybury-magenta.png">
+  <meta name="theme-color" content="#9b1844">
   <!-- Apply saved theme BEFORE CSS loads — eliminates flash of unstyled content -->
   <script>try{var _t=localStorage.getItem('di_theme');if(_t)document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/lesson.css">
+  <link rel="stylesheet" href="css/brand.css">
   <style>
     /* ── Fluency-specific overrides ── */
     .fl-shell { max-width: 820px; margin: 0 auto; padding: 0 16px 80px; }
@@ -99,7 +102,7 @@
       background: var(--bg-card);
       border-radius: 18px;
       border: 1px solid var(--border);
-      box-shadow: 0 32px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(99,102,241,.1);
+      box-shadow: 0 32px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(155,24,68,.1);
       width: 100%;
       max-width: 860px;
       max-height: 90vh;
@@ -114,7 +117,7 @@
       padding: 14px 24px 10px;
       border-bottom: 1px solid var(--border);
       flex-shrink: 0;
-      background: linear-gradient(180deg, rgba(99,102,241,.04) 0%, transparent 100%);
+      background: linear-gradient(180deg, rgba(155,24,68,.04) 0%, transparent 100%);
     }
     .lv-progress { padding: 10px 24px 0; flex-shrink: 0; }
     .modal-body {
@@ -134,10 +137,10 @@
     }
     /* Light-mode: use slightly off-white for the slide body so elements with
        transparent backgrounds still have visible contrast */
-    [data-theme="light"] .modal-inner { border-color: rgba(99,102,241,.15); }
+    [data-theme="light"] .modal-inner { border-color: rgba(155,24,68,.15); }
     [data-theme="light"] .modal-body  { background: #f8fafc; }
     [data-theme="light"] .modal-footer { background: #f8fafc; }
-    [data-theme="light"] .modal-header { background: linear-gradient(180deg, rgba(99,102,241,.05) 0%, transparent 100%); }
+    [data-theme="light"] .modal-header { background: linear-gradient(180deg, rgba(155,24,68,.05) 0%, transparent 100%); }
 
     /* ── Slide content — classes used by flRenderSlideHTML that are missing
        from lesson.css's regular (non-print) rules ── */
@@ -153,8 +156,8 @@
 
     /* Callout box (border-left accent) */
     .slide-callout {
-      background: rgba(6,182,212,.08);
-      border-left: 3px solid var(--accent, #06b6d4);
+      background: rgba(0,159,227,.08);
+      border-left: 3px solid var(--accent, #009fe3);
       border-radius: 0 8px 8px 0;
       padding: 14px 18px;
       margin-top: 16px;
@@ -163,8 +166,8 @@
       line-height: 1.6;
     }
     [data-theme="light"] .slide-callout {
-      background: rgba(6,182,212,.07);
-      border-left-color: #0891b2;
+      background: rgba(0,159,227,.07);
+      border-left-color: #007cb3;
       color: #1e3a4a;
     }
 
@@ -187,13 +190,13 @@
     }
     .slide-bullets li::before {
       content: '▸';
-      color: var(--primary-light, #818cf8);
+      color: var(--primary-light, #c04572);
       font-size: .85rem;
       flex-shrink: 0;
       margin-top: 2px;
     }
     [data-theme="light"] .slide-bullets li { color: #334155; }
-    [data-theme="light"] .slide-bullets li::before { color: #4f46e5; }
+    [data-theme="light"] .slide-bullets li::before { color: #7a1236; }
 
     /* Numbered steps (activity slides) */
     .slide-steps {
@@ -217,7 +220,7 @@
     .slide-steps li::before {
       content: counter(step);
       min-width: 24px; height: 24px;
-      background: var(--primary, #6366f1);
+      background: var(--primary, #9b1844);
       color: #fff;
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
@@ -227,9 +230,9 @@
 
     /* Discussion slide */
     .slide-disc-qs { display:flex; flex-direction:column; gap:10px; margin-top:12px; }
-    .slide-disc-q { display:flex; align-items:flex-start; gap:12px; background:rgba(99,102,241,.06); border:1px solid var(--border); border-radius:8px; padding:12px 14px; }
-    [data-theme="light"] .slide-disc-q { background:rgba(99,102,241,.05); border-color:rgba(99,102,241,.15); }
-    .sdq-num { display:inline-flex; align-items:center; justify-content:center; min-width:28px; height:28px; border-radius:50%; background:var(--primary,#6366f1); color:#fff; font-size:.75rem; font-weight:700; flex-shrink:0; }
+    .slide-disc-q { display:flex; align-items:flex-start; gap:12px; background:rgba(155,24,68,.06); border:1px solid var(--border); border-radius:8px; padding:12px 14px; }
+    [data-theme="light"] .slide-disc-q { background:rgba(155,24,68,.05); border-color:rgba(155,24,68,.15); }
+    .sdq-num { display:inline-flex; align-items:center; justify-content:center; min-width:28px; height:28px; border-radius:50%; background:var(--primary,#9b1844); color:#fff; font-size:.75rem; font-weight:700; flex-shrink:0; }
     .sdq-text { font-size:.9rem; color:var(--text-muted,var(--text)); line-height:1.5; flex:1; }
     [data-theme="light"] .sdq-text { color: #334155; }
 
@@ -272,6 +275,7 @@
     <!-- Header -->
     <div class="fl-header">
       <button class="fl-back" onclick="window.location.href='index.html'">← Back</button>
+      <img class="fl-header-logo" src="assets/brand/logo/haileybury-white.png" alt="Haileybury" style="height:26px;width:auto;margin-right:4px">
       <span class="fl-header-brand">Digital Innovations</span>
       <span class="fl-header-title">AI Fluency Track ⚡</span>
     </div>
