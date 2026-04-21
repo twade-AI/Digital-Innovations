@@ -1295,6 +1295,17 @@ function updateHomeStats() {
   if (el) el.textContent = pct + '%';
   const fill = document.getElementById('pcProgressFill');
   if (fill) fill.style.width = pct + '%';
+
+  // Greeting-strip stats (new home design)
+  var greetLessons = document.getElementById('greetStatLessons');
+  if (greetLessons) greetLessons.innerHTML = done + '<span class="greet-stat-denom">/' + total + '</span>';
+  var greetLessonsMirror = document.getElementById('greetStatLessonsMirror');
+  if (greetLessonsMirror) greetLessonsMirror.textContent = done;
+  var greetPct = document.getElementById('greetStatPct');
+  if (greetPct) greetPct.textContent = pct + '%';
+  var greetStreak = document.getElementById('greetStatStreak');
+  if (greetStreak) greetStreak.textContent = (typeof getStreak === 'function' ? getStreak() : 0);
+
   updateContinueButton();
   updateTimeEstimate();
   renderRecentlyViewed();
