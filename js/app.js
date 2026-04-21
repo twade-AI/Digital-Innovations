@@ -317,7 +317,7 @@ function lessonRow(lesson, unit) {
   const hidden = tagHidden || diffHidden;
   return `
     <div class="lesson-item${hidden ? ' tag-hidden' : ''}" data-id="${lesson.id}" data-tags="${lesson.tags.join(' ')}">
-      <div class="lesson-check ${done ? 'done' : ''}" onclick="event.stopPropagation();toggleLesson(${lesson.id})" title="Mark complete">✓</div>
+      <button type="button" class="lesson-check ${done ? 'done' : ''}" aria-pressed="${done}" aria-label="${done ? 'Completed — click to mark incomplete' : 'Mark as complete'}" onclick="event.stopPropagation();toggleLesson(${lesson.id})">✓</button>
       <div class="lesson-info" onclick="openLesson(${lesson.id})">
         <div class="lesson-num">Lesson ${lessonNum(lesson.id)} <span class="lesson-time">~${mins} min</span>${diffBadge(lesson.difficulty)}${quizScores[lesson.id] ? '<span class="lesson-quiz-score ' + (quizScores[lesson.id].correct ? 'lqs-pass' : 'lqs-fail') + '" title="Quiz: ' + (quizScores[lesson.id].correct ? 'Passed' : 'Attempted') + '">' + (quizScores[lesson.id].correct ? '✓ Quiz' : '✗ Quiz') + '</span>' : ''}</div>
         <div class="lesson-title">${lesson.title}</div>
@@ -1354,12 +1354,31 @@ function getUniqueTags() {
   return Object.keys(tags).sort().map(function(t) { return { tag: t, count: tags[t] }; });
 }
 
+var tagFiltersExpanded = false;
+
+function toggleTagFilters() {
+  tagFiltersExpanded = !tagFiltersExpanded;
+  renderTagFilters();
+}
+
 function renderTagFilters() {
   var tags = getUniqueTags();
-  var html = '<button class="tag-btn' + (!currentTagFilter ? ' active' : '') + '" onclick="filterByTag(null)">All Lessons</button>';
-  html += tags.map(function(t) {
-    return '<button class="tag-btn' + (currentTagFilter === t.tag ? ' active' : '') + '" data-tag="' + t.tag + '" onclick="filterByTag(\'' + t.tag + '\')">' + t.tag + ' <span class="tag-count">' + t.count + '</span></button>';
+  var active = currentTagFilter;
+  var summaryLabel = active
+    ? ('Filtered by: <strong>' + active + '</strong>')
+    : ('Filter by tag <span class="tag-filters-count">' + tags.length + ' tags</span>');
+  var list = '<button class="tag-btn' + (!active ? ' active' : '') + '" onclick="filterByTag(null)">All Lessons</button>';
+  list += tags.map(function(t) {
+    return '<button class="tag-btn' + (active === t.tag ? ' active' : '') + '" data-tag="' + t.tag + '" onclick="filterByTag(\'' + t.tag + '\')">' + t.tag + ' <span class="tag-count">' + t.count + '</span></button>';
   }).join('');
+  var html = '' +
+    '<button type="button" class="tag-filters-toggle' + (active ? ' has-active' : '') + '" aria-expanded="' + tagFiltersExpanded + '" aria-controls="tagFiltersList" onclick="toggleTagFilters()">' +
+      '<span class="tag-filters-icon" aria-hidden="true">🏷</span>' +
+      '<span class="tag-filters-summary">' + summaryLabel + '</span>' +
+      '<span class="tag-filters-chev" aria-hidden="true">' + (tagFiltersExpanded ? '▴' : '▾') + '</span>' +
+    '</button>' +
+    (active ? '<button type="button" class="tag-btn tag-btn-clear" onclick="filterByTag(null)">✕ Clear</button>' : '') +
+    '<div id="tagFiltersList" class="tag-filters-list"' + (tagFiltersExpanded ? '' : ' hidden') + '>' + list + '</div>';
   document.getElementById('tagFilters').innerHTML = html;
 }
 
@@ -1367,6 +1386,7 @@ function filterByTag(tag) {
   currentTagFilter = tag;
   // When filtering, expand all units so results are visible
   if (tag) UNITS.forEach(function(_, i) { openUnits.add(i); });
+  tagFiltersExpanded = false;
   renderTagFilters();
   renderUnits();
 }

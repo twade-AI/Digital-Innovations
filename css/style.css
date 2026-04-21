@@ -236,8 +236,12 @@ img{max-width:100%}
   width:20px;height:20px;border-radius:50%;border:2px solid var(--border);
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
   font-size:.7rem;transition:all .2s;color:transparent;margin-top:2px;
+  padding:0;background:transparent;cursor:pointer;font-family:inherit;
 }
+.lesson-check:hover{border-color:var(--success);color:rgba(34,197,94,.4)}
+.lesson-check:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
 .lesson-check.done{background:var(--success);border-color:var(--success);color:#fff}
+.lesson-check.done:hover{color:#fff;border-color:var(--success)}
 .lesson-info{flex:1}
 .lesson-num{font-size:.72rem;font-weight:600;color:var(--text-dim);margin-bottom:1px;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
 .lesson-title{font-size:.92rem;font-weight:600;color:var(--text)}

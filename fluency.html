@@ -61,6 +61,21 @@
     /* Section labels */
     .fl-section-label { font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); margin:20px 0 8px 4px; }
 
+    /* Transparency panel — explains scope vs full course */
+    .fl-scope { border:1px solid var(--border); border-radius:12px; background:var(--bg-card); margin:0 0 28px; overflow:hidden; }
+    .fl-scope summary { list-style:none; cursor:pointer; padding:14px 18px; display:flex; align-items:center; gap:10px; font-size:.85rem; font-weight:600; color:var(--text); }
+    .fl-scope summary::-webkit-details-marker { display:none; }
+    .fl-scope summary::after { content:"▾"; margin-left:auto; opacity:.6; font-size:.8rem; transition:transform .2s; }
+    .fl-scope[open] summary::after { transform:rotate(180deg); }
+    .fl-scope-icon { font-size:1rem; }
+    .fl-scope-body { padding:0 18px 18px; font-size:.85rem; line-height:1.6; color:var(--text-dim); }
+    .fl-scope-body p { margin:0 0 10px; }
+    .fl-scope-body ul { margin:0 0 10px; padding-left:20px; }
+    .fl-scope-body li { margin-bottom:4px; }
+    .fl-scope-body strong { color:var(--text); }
+    .fl-scope-cta { display:inline-block; margin-top:4px; font-weight:700; color:var(--primary); text-decoration:none; font-size:.82rem; }
+    .fl-scope-cta:hover { text-decoration:underline; }
+
     /* Completion screen */
     .fl-complete { display:none; text-align:center; padding:40px 20px; background:var(--bg-card); border:1.5px solid rgba(245,158,11,.4); border-radius:var(--radius); margin-bottom:24px; }
     .fl-complete.visible { display:block; }
@@ -334,15 +349,38 @@
 
     <!-- Hero (hidden once track started) -->
     <div class="fl-hero" id="flHero">
-      <div class="fl-hero-badge">Self-Directed · Works Offline</div>
+      <div class="fl-hero-badge">Self-Directed · Offline-capable</div>
       <h1>AI Fluency Track</h1>
-      <p class="fl-hero-sub">20 lessons. No teacher required. Work at your own pace and build genuine AI literacy — from understanding how LLMs work to protecting yourself from deepfakes.</p>
+      <p class="fl-hero-sub">20 curated lessons. No teacher required. Work at your own pace and build genuine AI literacy — from understanding how LLMs work to protecting yourself from deepfakes.</p>
       <div class="fl-hero-stats">
         <div class="fl-stat"><span class="fl-stat-num">20</span><span class="fl-stat-label">Lessons</span></div>
         <div class="fl-stat"><span class="fl-stat-num">~8h</span><span class="fl-stat-label">Total time</span></div>
         <div class="fl-stat"><span class="fl-stat-num">0</span><span class="fl-stat-label">Prerequisites</span></div>
       </div>
     </div>
+
+    <!-- Scope disclosure: what Fluency includes vs the full course -->
+    <details class="fl-scope" id="flScope">
+      <summary><span class="fl-scope-icon" aria-hidden="true">ℹ️</span> What's in Fluency — and what's not</summary>
+      <div class="fl-scope-body">
+        <p><strong>Fluency</strong> is a 20-lesson subset curated from the 55-lesson full course. Same slides, same explanations — just a focused route for learners who want AI literacy without a formal syllabus.</p>
+        <p><strong>Included:</strong></p>
+        <ul>
+          <li>How LLMs actually work · prompting · hallucinations · bias</li>
+          <li>Spotting deepfakes, misinformation and AI-generated content</li>
+          <li>Practical use: writing, research, and when <em>not</em> to use AI</li>
+          <li>A printable certificate when you finish all 20 lessons</li>
+        </ul>
+        <p><strong>Not included (available in the full course):</strong></p>
+        <ul>
+          <li>GCSE Computer Science exam prep and mark-scheme practice</li>
+          <li>Unit assessments, teacher-facing resources, gradebook</li>
+          <li>Deeper technical lessons (transformers internals, RL, training pipelines)</li>
+        </ul>
+        <p><strong>Works offline:</strong> after your first visit, lessons, slides and images are cached to your device. You can open this page with no connection and keep learning. Your progress is saved locally (clearing browser data resets it).</p>
+        <a class="fl-scope-cta" href="index.html">Browse the full 55-lesson course →</a>
+      </div>
+    </details>
 
     <!-- Lesson track -->
     <div class="fl-track" id="flTrack"></div>
@@ -503,10 +541,12 @@
     });
     container.innerHTML = html;
 
-    // Hide hero once started
+    // Hide hero + scope panel once started
     if (flDone.size > 0) {
       var hero = document.getElementById('flHero');
       if (hero) hero.style.display = 'none';
+      var scope = document.getElementById('flScope');
+      if (scope) scope.style.display = 'none';
     }
   }
 
