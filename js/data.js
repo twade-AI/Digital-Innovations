@@ -745,7 +745,7 @@ const RESOURCE_CONTENT = {
 <p>Cut these cards out (or use the table below). Each group receives one region's card and becomes the expert on that approach. Then regroup so every new group has one expert from each region.</p>
 <div class="resource-template-section">
 <table style="width:100%;border-collapse:collapse;font-size:.82rem">
-  <thead><tr style="background:rgba(99,102,241,.15)">
+  <thead><tr style="background:rgba(155,24,68,.15)">
     <th style="padding:8px;border:1px solid var(--border);text-align:left">Region</th>
     <th style="padding:8px;border:1px solid var(--border);text-align:left">Approach</th>
     <th style="padding:8px;border:1px solid var(--border);text-align:left">Key Law / Policy</th>

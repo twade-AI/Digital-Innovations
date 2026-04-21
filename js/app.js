@@ -1017,7 +1017,7 @@ function openResource(id) {
       '<strong style="font-size:.85rem;color:var(--text-dim)">Used in:</strong> ' +
       linkedLessons.map(function(l) {
         return '<span onclick="closeModal();setTimeout(function(){openLesson(' + l.id + ')},200)" ' +
-          'style="cursor:pointer;font-size:.8rem;background:rgba(99,102,241,.15);color:var(--primary-light);padding:4px 12px;border-radius:999px;margin:2px;display:inline-block">' +
+          'style="cursor:pointer;font-size:.8rem;background:rgba(155,24,68,.15);color:var(--primary-light);padding:4px 12px;border-radius:999px;margin:2px;display:inline-block">' +
           'L' + l.num + ': ' + l.title + '</span>';
       }).join(' ') +
     '</div>';
