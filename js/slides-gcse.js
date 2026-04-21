@@ -2152,23 +2152,33 @@ SLIDES_GCSE[119] = [
   {
     type: 'concept',
     title: 'What Deepfakes Are and How They Work',
+    body: 'The term "deepfake" was coined in 2017 on Reddit, combining "deep learning" (the AI method) with "fake". The first deepfakes needed hours of footage and a powerful GPU. By 2024, you need roughly 3 seconds of audio for a believable voice clone and a single clear photo for a face swap — and the tools are free.',
     bullets: [
-      'AI trained on footage of a real person can replace their face or voice in any video or audio',
-      'Modern tools need only a few seconds of audio to convincingly clone a voice',
-      'The technology is available to anyone — no technical skills required',
-      'Not just video: AI can generate realistic fake images and audio clips from scratch',
-      'The quality is improving rapidly — many fakes are now indistinguishable without technical analysis'
+      { term: 'How a face deepfake is made', def: 'A generative adversarial network (GAN) or diffusion model is trained on pairs of images: real face here, target face there. Once trained, it can swap one onto the other frame-by-frame in video.' },
+      { term: 'Voice cloning', def: 'ElevenLabs, OpenAI\'s Voice Engine and open-source tools can clone a voice from 3–30 seconds of clean audio. The clone can then read any new script in that voice.' },
+      { term: 'Text-to-video', def: 'OpenAI\'s Sora (2024) can generate up to a minute of photorealistic video from a text prompt — no source footage needed at all.' },
+      { term: 'Skills barrier', def: 'The technology is now available to anyone with a browser. Many leading consumer deepfake tools require zero coding knowledge.' },
+      { term: 'The quality curve', def: 'In 2018, deepfakes were obviously fake to casual viewers. By 2024, professionally-made fakes fool most humans in controlled studies (MIT Media Lab 2023: 27% correct detection rate).' }
+    ],
+    sources: [
+      { label: 'MIT Media Lab — Detect Fakes study (Groh et al. 2022, Proceedings of the National Academy of Sciences)', url: 'https://www.pnas.org/doi/10.1073/pnas.2110013119' }
     ]
   },
   {
     type: 'concept',
     title: 'The Harm They Cause',
+    body: 'Deepfakes cause harm across at least six distinct categories. The two with the largest documented volumes — non-consensual intimate imagery and fraud — dwarf the more visible political cases. Understanding the full spectrum helps you see why governments worldwide have rushed to legislate.',
     bullets: [
-      { term: 'Reputation damage', def: 'Fake videos of real people saying things they never said' },
-      { term: 'Non-consensual intimate images', def: 'The most prevalent misuse — illegal in the UK under the Online Safety Act' },
-      { term: 'Political manipulation', def: 'Fake speeches and statements from politicians' },
-      { term: 'Legal evidence', def: 'Courts and police must now verify whether footage is genuine' },
-      { term: 'Personal harassment', def: 'Used to target individuals, including students' }
+      { term: 'Reputation damage', def: 'Fake videos of real people saying things they never said — actors, journalists, teachers, classmates. Even after the fake is debunked, the image lingers.' },
+      { term: 'Non-consensual intimate images', def: 'The most prevalent misuse: a 2023 Home Security Heroes study estimated 98% of deepfake videos online were non-consensual pornography, overwhelmingly targeting women. Now illegal in the UK under the Online Safety Act 2023.' },
+      { term: 'Political manipulation', def: 'Fake speeches and statements from politicians — Slovakia 2023, US primaries 2024. 38 countries saw election-related deepfakes in 2024 (Microsoft Threat Analysis Center).' },
+      { term: 'Fraud', def: 'Hong Kong £20M video-call scam (Feb 2024). CEO voice-clone scams have transferred millions. Deloitte forecasts deepfake fraud losses could reach $40bn by 2027.' },
+      { term: 'Legal evidence', def: 'Courts and police must now verify whether footage is genuine — in 2023 Elon Musk\'s lawyers argued real footage of him might be a deepfake (the "liar\'s dividend" in a US court).' },
+      { term: 'Personal harassment', def: 'Increasingly used against school-age students — the UK saw its first reported case of a GCSE pupil being targeted with deepfake imagery in 2023.' }
+    ],
+    sources: [
+      { label: 'Home Security Heroes — 2023 State of Deepfakes Report', url: 'https://www.homesecurityheroes.com/state-of-deepfakes/' },
+      { label: 'UK — Online Safety Act 2023, Schedule 13 (sharing non-consensual intimate deepfakes)', url: 'https://www.legislation.gov.uk/ukpga/2023/50/contents' }
     ]
   },
   {
@@ -2220,13 +2230,24 @@ SLIDES_GCSE[119] = [
     explanation: 'Audio deepfakes can be created from seconds of real audio and are very hard to detect by ear. Free detectors achieve only 65–85% accuracy. Sharing with a caveat still amplifies the content. Lateral reading — checking whether credible outlets have covered the story — is the most reliable step.'
   },
   {
+    type: 'discussion',
+    title: 'Trust, Truth and Democracy',
+    questions: [
+      { num: 1, text: 'The "liar\'s dividend" means real evidence can now be dismissed as "probably fake". Is that a worse threat than the fakes themselves? Who benefits from the doubt — and who suffers?' },
+      { num: 2, text: '38 countries saw election deepfakes in 2024. If free elections depend on voters being able to tell what\'s real, what would YOU want the UK to do before the next General Election? Who should enforce it?' },
+      { num: 3, text: 'The Online Safety Act makes sharing non-consensual intimate deepfakes illegal with up to 2 years imprisonment. Should the same apply to political deepfakes? What about "satire"? Where would you draw the line — and how would you write the law?' }
+    ]
+  },
+  {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '⚠️', label: 'Deepfakes are increasingly easy to make', text: 'free tools, no technical skills, from a single photo or seconds of audio' },
-      { icon: '⚖️', label: 'Non-consensual deepfakes are illegal in the UK', text: 'Online Safety Act — up to 2 years imprisonment' },
-      { icon: '🔍', label: 'Source verification beats visual spotting', text: 'check who posted it and what credible outlets say' },
-      { icon: '⏸️', label: 'The liar\'s dividend', text: 'deepfakes make ALL evidence less trusted — that\'s the real long-term harm' }
+      { icon: '⚠️', label: 'Deepfakes are increasingly easy to make', text: 'free tools, no technical skills, from a single photo or 3 seconds of audio' },
+      { icon: '⚖️', label: 'Non-consensual deepfakes are illegal in the UK', text: 'Online Safety Act 2023 — up to 2 years imprisonment' },
+      { icon: '🔍', label: 'Source verification beats visual spotting', text: 'MIT 2023: humans detect deepfakes only 27% of the time — check the SOURCE, not the pixels' },
+      { icon: '💸', label: 'Fraud scale is huge', text: 'Deloitte forecasts deepfake fraud losses hitting $40bn by 2027 — this is a major economic threat' },
+      { icon: '🗳️', label: 'Democratic threat is real', text: '38 countries targeted with election deepfakes in 2024 — legislation lags far behind the technology' },
+      { icon: '⏸️', label: 'The liar\'s dividend', text: 'deepfakes make ALL evidence less trusted — that\'s the real long-term harm to democracy and justice' }
     ]
   }
 ];
@@ -2235,29 +2256,40 @@ SLIDES_GCSE[120] = [
   {
     type: 'hook',
     title: 'Spotting AI-Generated Content',
-    body: 'A study found that nearly 40% of articles on some websites are now partially or fully AI-generated. Most readers can\'t tell the difference. But there are patterns — and once you know them, you\'ll see them everywhere.',
-    callout: 'The real skill isn\'t running things through a detector. It\'s developing critical reading that works whether a tool exists or not.'
+    body: 'NewsGuard\'s tracker of "AI-generated news sites" went from zero to 1,121 sites in 18 months (May 2023 – Dec 2024). Sports Illustrated was caught publishing articles under fake AI-generated "journalists" with AI-generated faces (Futurism, Nov 2023). A 2024 Columbia Journalism Review investigation found that on some lower-tier news websites over 40% of articles were now partly or fully AI-generated — and most readers couldn\'t tell. Image AI has moved even faster: a 2024 University of Waterloo study found humans correctly identified AI-generated photorealistic faces only 61% of the time, barely better than chance. The skill you need isn\'t running things through a detector (they\'re unreliable). It\'s developing critical reading and source-checking that works whether a tool exists or not.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">1,121</span><span class="sl">AI-generated news sites tracked by NewsGuard (Dec 2024)</span></div><div class="hook-stat-mini"><span class="sv">40%</span><span class="sl">of articles on some sites now AI-generated (Columbia Journalism Review 2024)</span></div><div class="hook-stat-mini"><span class="sv">61%</span><span class="sl">human accuracy on detecting AI faces (Waterloo, 2024)</span></div></div>',
+    callout: 'The real skill isn\'t running things through a detector. It\'s developing critical reading that works whether a tool exists or not.',
+    sources: [
+      { label: 'NewsGuard — Tracking AI-enabled misinformation (site tracker)', url: 'https://www.newsguardtech.com/special-reports/ai-tracking-center/' },
+      { label: 'Futurism (Nov 2023) — Sports Illustrated published articles by fake AI authors', url: 'https://futurism.com/sports-illustrated-ai-generated-writers' }
+    ]
   },
   {
     type: 'concept',
     title: 'Why Spotting AI Text Is Hard',
+    body: 'You might think running suspect content through an "AI detector" solves the problem. It doesn\'t — and relying on one can do more harm than good. Here\'s the state of play in 2024-2025.',
     bullets: [
-      'AI text detectors exist but are unreliable — high false-positive rates (flag real human writing as AI)',
-      'Skilled prompt engineers can make AI output that passes most detection tools',
-      'The "correct" question isn\'t always whether it\'s AI — it\'s whether the content is accurate',
-      'AI images have improved dramatically — obvious artefacts are much rarer than before'
+      { term: 'AI detectors are unreliable', def: 'A 2023 Stanford study found detectors flagged non-native English speakers\' genuine writing as AI 61% of the time — a disastrous false-positive rate that gets innocent students wrongly accused.' },
+      { term: 'Prompt engineering defeats them', def: 'Asking the AI to "write like a slightly distracted Year 11 student, include one small grammar slip" produces output that passes GPTZero, Turnitin and Originality.ai regularly.' },
+      { term: 'Models update, detectors lag', def: 'Every major model release breaks existing detectors. The arms race favours the generators — they\'re better funded and move faster.' },
+      { term: 'The right question isn\'t "is this AI?"', def: 'It\'s "is this accurate and credible?" — content can be human-written and wrong, or AI-written and right. Origin is a weaker signal than verifiability.' },
+      { term: 'AI images have improved dramatically', def: 'The visible tells from 2022 (7 fingers, distorted eyes) are mostly gone by 2024. For photoreal faces, humans now detect AI images barely above chance — 61% accuracy in the Waterloo 2024 study.' }
+    ],
+    sources: [
+      { label: 'Liang et al. (Stanford 2023) — "GPT detectors are biased against non-native English writers" (Patterns)', url: 'https://www.cell.com/patterns/fulltext/S2666-3899(23)00130-7' }
     ]
   },
   {
     type: 'concept',
     title: 'Signs of AI-Generated Text',
+    body: 'Over thousands of real classroom submissions, experienced teachers and moderators have converged on a reliable set of "tells" for AI text — not foolproof, but much better than the detectors. These are the patterns to train your eye on.',
     bullets: [
-      'Overly formal and balanced — rarely takes a firm position on anything',
-      'Generic examples that sound plausible but are vague and unspecific',
-      'Filler phrases: "It is important to note...", "In conclusion, it is clear that..."',
-      'Very structured — headers, bullet points, numbered lists for everything',
-      'No personal voice, no specific memories or experiences',
-      'Comprehensively superficial — covers everything at surface level, nothing in real depth'
+      { term: 'Overly formal and balanced', def: 'AI rarely takes a firm position on anything — it hedges. Human writers usually have a view, even on subtle issues.' },
+      { term: 'Generic examples', def: '"Many studies have shown..." / "Experts agree that..." — with no specific study, expert or year named. Real writers tend to name their sources.' },
+      { term: 'Filler phrases', def: '"It is important to note...", "In conclusion, it is clear that...", "In today\'s fast-paced world..." — these are LLM tics, not human phrasing.' },
+      { term: 'Over-structuring', def: 'Headers, bullet points, numbered lists for everything — even in a piece that was meant to be flowing prose. A clear sign of default ChatGPT output.' },
+      { term: 'No personal voice', def: 'No specific memories, no concrete classroom or personal examples, no idiosyncrasies. Real student writing has texture; AI text is smooth and generic.' },
+      { term: 'Comprehensively superficial', def: 'Covers every angle at surface level — the "Wikipedia article someone skim-read" feel. Depth in one area + gaps in others is a more human pattern.' },
+      { term: 'Em-dashes everywhere', def: 'GPT-4 and Claude both overuse em-dashes — often several per paragraph. A genuine human writer typically uses one or two per whole essay.' }
     ]
   },
   {
@@ -2336,22 +2368,29 @@ SLIDES_GCSE[121] = [
   {
     type: 'concept',
     title: 'Why Misinformation Spreads',
+    body: 'The MIT Science 2018 study (Vosoughi, Roy &amp; Aral) wasn\'t just about social media — it was about human brains. False news out-travels true news because of what humans find psychologically shareable, amplified by algorithms that reward exactly those impulses. Here are the four main drivers.',
     bullets: [
-      { term: 'Emotional content gets shared', def: 'Outrage, fear, surprise, and joy make us share before we check' },
-      { term: 'Confirmation bias', def: 'We share things that confirm what we already believe — without questioning them' },
-      { term: '"Being first" feels good', def: 'Sharing breaking news feels important — even if the story hasn\'t been verified' },
-      { term: 'Algorithms amplify it', def: 'Engaging (emotional) content gets promoted — regardless of accuracy' }
+      { term: 'Emotional content gets shared', def: 'Outrage, fear, surprise and joy activate sharing behaviour BEFORE the analytical part of your brain engages. MIT 2018: novelty and emotional arousal were the strongest predictors of re-tweeting.' },
+      { term: 'Confirmation bias', def: 'We share things that confirm what we already believe — without questioning them. Nickerson (1998) called this "arguably the most pervasive and problematic aspect of human reasoning".' },
+      { term: '"Being first" feels good', def: 'Sharing breaking news feels important and signals status — even if the story hasn\'t been verified. Platforms reward speed over accuracy.' },
+      { term: 'Algorithms amplify it', def: 'Engagement-maximising algorithms promote emotional content regardless of truth. Facebook\'s internal research (leaked 2021) showed anger got 5× the reach of a "like".' },
+      { term: 'Group identity', def: 'We share content that signals which "side" we\'re on — tribalism is a stronger driver of sharing than truth-seeking across every major platform studied.' }
     ]
   },
   {
     type: 'concept',
     title: 'How AI Makes This Worse',
+    body: 'Before 2022, producing convincing misinformation required time, skills and money — a professional-grade fake article took hours and paid writers. Generative AI has collapsed all three. A 2024 NewsGuard investigation documented entire networks of AI-generated fake news sites running on autopilot, churning out hundreds of articles per day with almost no human involvement.',
     bullets: [
-      { term: 'Speed and scale', def: 'AI can generate thousands of convincing fake articles in minutes' },
-      { term: 'Personalisation', def: 'AI can tailor false stories to individual belief systems and communities' },
-      { term: 'Synthetic media', def: 'Fake images and video make false stories far more believable' },
-      { term: 'Lower cost', def: 'Creating convincing fake content used to require resources and skills — now it doesn\'t' },
-      { term: 'AI chatbots', def: 'Can inadvertently repeat false claims when asked about contested topics' }
+      { term: 'Speed and scale', def: 'AI can generate thousands of convincing fake articles in minutes. NewsGuard tracked 1,121 AI-generated news sites by end of 2024 — up from zero 18 months earlier.' },
+      { term: 'Personalisation', def: 'AI can tailor false stories to individual belief systems, dialects and communities. The same lie, rewritten for a dozen demographics, costs pennies.' },
+      { term: 'Synthetic media', def: 'Fake images, voice clones and video make false stories vastly more believable — the Biden robocall (Jan 2024) and Slovakia audio (Oct 2023) showed the effect on real elections.' },
+      { term: 'Lower cost', def: 'A convincing fake article that cost £50 to commission in 2020 now costs less than 1p in API fees. The economics of disinformation have inverted overnight.' },
+      { term: 'AI chatbots repeat claims', def: 'When asked about contested topics, LLMs can confidently repeat misinformation from their training data as fact — especially on recent events.' },
+      { term: 'AI-powered amplification', def: 'Bot networks coordinated by AI now run thousands of "accounts" that comment, reshare and like in patterns designed to game recommendation algorithms.' }
+    ],
+    sources: [
+      { label: 'Vosoughi, Roy &amp; Aral (MIT, Science 2018) — "The spread of true and false news online"', url: 'https://www.science.org/doi/10.1126/science.aap9559' }
     ]
   },
   {
@@ -2401,16 +2440,18 @@ SLIDES_GCSE[121] = [
       'People deliberately share content they know is false'
     ],
     correct: 2,
-    explanation: 'MIT research found false news spreads 6× faster because it is typically more novel and emotionally stimulating — triggering outrage, fear, or surprise. These emotions drive sharing before checking. Algorithms then amplify emotional content because it generates more engagement.'
+    explanation: 'MIT 2018 (Vosoughi, Roy &amp; Aral, Science) found false news spreads roughly 6× faster than truth — not because of bots, but because humans share novel, emotionally stimulating stories (outrage, fear, surprise, disgust) before analytical thinking kicks in. Algorithms then amplify that content because it generates more engagement per post, so the behaviour compounds at platform scale.'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '📢', label: 'False content spreads faster than corrections', text: 'always' },
-      { icon: '🤖', label: 'AI lowers the cost of fake content', text: 'speed, scale, personalisation' },
-      { icon: '💡', label: 'Emotional content is a red flag', text: 'designed to make you share before you think' },
-      { icon: '⏸️', label: 'Pause before sharing', text: 'one check can stop a false story reaching hundreds more people' }
+      { icon: '📢', label: 'False content spreads 6× faster than truth', text: 'MIT 2018 — and corrections almost never catch up' },
+      { icon: '🤖', label: 'AI lowers the cost of fake content', text: '£50 in 2020 → under 1p in 2024. The economics have inverted.' },
+      { icon: '🧠', label: 'Illusory truth effect', text: 'repetition feels like evidence — even when you know it isn\'t' },
+      { icon: '💡', label: 'Emotional content is a red flag', text: 'novelty and arousal drive sharing — designed to bypass your analytical brain' },
+      { icon: '🗳️', label: 'Democratic impact is real', text: '38 countries targeted in 2024; 900+ AI political ads on Facebook in one US week' },
+      { icon: '⏸️', label: 'Pause before sharing', text: 'one check can stop a false story reaching hundreds more people. You are part of the system.' }
     ]
   }
 ];
@@ -2419,29 +2460,35 @@ SLIDES_GCSE[122] = [
   {
     type: 'hook',
     title: 'Fact-Checking in the AI Age',
-    body: 'You can verify almost any claim in under 2 minutes using free tools. Most people just don\'t bother. That\'s exactly where misinformation gets its power — from the gap between "looks true" and "is true".',
-    callout: 'Fact-checking isn\'t a talent. It\'s a habit. And habits are built through practice.'
+    body: 'Mike Caulfield, a US digital literacy researcher at the University of Washington, spent a decade studying how professional fact-checkers — Snopes, PolitiFact, BBC Reality Check — verify claims. He found they don\'t do what students do. Students read the source page top-to-bottom looking for "credibility markers". Professionals immediately open new tabs and search for <em>what other people say about the source</em> — a habit Caulfield calls "lateral reading". Research published in 2018 (Wineburg &amp; McGrew, Stanford) found professional fact-checkers evaluated a dubious source 3× faster and 2× more accurately than PhD historians, precisely because of this single habit. You can verify almost any claim in under 2 minutes using free tools. Most people just don\'t bother — and that gap between "looks true" and "is true" is exactly where misinformation gets its power.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">2 min</span><span class="sl">time to verify most claims using free UK tools</span></div><div class="hook-stat-mini"><span class="sv">3×</span><span class="sl">faster verification by fact-checkers vs students (Wineburg 2018)</span></div><div class="hook-stat-mini"><span class="sv">SIFT</span><span class="sl">4 steps: Stop, Investigate, Find, Trace</span></div></div>',
+    callout: 'Fact-checking isn\'t a talent. It\'s a habit. And habits are built through practice — starting with the four SIFT steps below.',
+    sources: [
+      { label: 'Wineburg, S. &amp; McGrew, S. (2018) — "Lateral Reading: Reading Less and Learning More When Evaluating Digital Information" (Stanford)', url: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3048994' },
+      { label: 'Caulfield, M. — SIFT (The Four Moves) method', url: 'https://hapgood.us/2019/06/19/sift-the-four-moves/' }
+    ]
   },
   {
     type: 'concept',
     title: 'The SIFT Method',
+    body: 'Mike Caulfield designed SIFT after watching media-literacy courses fail. Traditional "CRAAP"-style checklists ask students to evaluate ten criteria on one page; Caulfield found almost no real reader does that. SIFT is four moves you can actually perform in under two minutes — and they are ordered deliberately: you stop before you invest any effort in a bad source.',
     bullets: [
-      { term: 'S — Stop', def: 'Pause before sharing or believing. Notice your emotional reaction — that\'s a sign to slow down, not speed up.' },
-      { term: 'I — Investigate the source', def: 'Who made this? What\'s their agenda? Are they a known credible outlet?' },
-      { term: 'F — Find better coverage', def: 'Search for what other sources report about this claim — don\'t just evaluate on the original page' },
-      { term: 'T — Trace claims', def: 'Find the original source of statistics, quotes, images — a claim cited 100 times may trace back to one shaky origin' }
+      { term: 'S — Stop', def: 'Pause before sharing or believing. Notice your emotional reaction — outrage, delight, vindication. That reaction is a flag to slow down, not a signal that the claim is true.' },
+      { term: 'I — Investigate the source', def: 'Who made this? What\'s their agenda, funding model, track record? Are they a known credible outlet, an advocacy group, an anonymous account? Thirty seconds on Wikipedia or Media Bias/Fact Check is usually enough.' },
+      { term: 'F — Find better coverage', def: 'Search for what other independent sources report about the same claim — don\'t evaluate it on the original page alone. If nobody credible is covering it, that itself is evidence.' },
+      { term: 'T — Trace claims, quotes, images', def: 'Find the original source. A claim cited 100 times online may trace back to one shaky origin, a misquoted study, or a photo from a completely different event years earlier.' }
     ],
     callout: 'SIFT doesn\'t require expertise — it requires a habit. Practise it until it\'s automatic.'
   },
   {
     type: 'concept',
     title: 'Lateral Reading — The Expert Technique',
-    body: 'Fact-checkers don\'t evaluate a source on its own page. They immediately open new tabs to see what others say about it.',
+    body: 'Professional fact-checkers don\'t evaluate a source on its own page. They immediately open new tabs to see what independent sources say about the source itself. Stanford\'s 2018 study (Wineburg &amp; McGrew) found this one habit made fact-checkers roughly 3× faster and 2× more accurate than PhD historians evaluating the same material.',
     bullets: [
-      'Open a new tab and search: [source name] + "credibility" or "bias"',
-      'UK fact-checkers: Full Fact, BBC Reality Check, Reuters Fact Check',
-      'Reverse image search: find the original context of a suspicious image (Google Images, TinEye)',
-      'For AI-generated claims: find the primary source — don\'t accept AI citations without checking'
+      'Open a new tab and search: [source name] + "credibility" or "bias" or "ownership"',
+      'UK fact-checkers worth bookmarking: Full Fact, BBC Reality Check, Reuters Fact Check, AFP Fact Check, Channel 4 FactCheck',
+      'Reverse image search: Google Images, TinEye, or Bing Visual Search will find the original context of a suspicious photo — often an unrelated event years earlier',
+      'For AI-generated claims: always find the primary source before quoting. Chatbots confidently invent citations that look real (author, journal, year, page) but don\'t exist — a problem named "hallucination" documented in ACM FAccT 2023.',
+      'If the claim is about a video: run it through InVID (browser extension from EU-funded WeVerify project) to check for re-uploads and edits'
     ]
   },
   {
@@ -2474,6 +2521,15 @@ SLIDES_GCSE[122] = [
     verdict: '"Scientists have proven" is a red-flag phrase — real science publishes evidence with uncertainty, not proof. The claim also contradicts a substantial peer-reviewed body of work linking late-evening screen use, blue light exposure and sleep-onset latency. A 30-second lateral-reading check (Full Fact / BBC Reality Check / Reuters Fact Check) will show no such consensus exists. <strong>Verdict:</strong> misleading.'
   },
   {
+    type: 'discussion',
+    title: 'Think &amp; Discuss',
+    questions: [
+      { num: 1, text: 'When was the last time you fact-checked something before sharing it? If never — what stopped you? Be honest about the real reason: time pressure, emotional reaction, "it looked right", assumed trust in the source?' },
+      { num: 2, text: 'Is it reasonable to expect ordinary users to run SIFT on every post, or should platforms (TikTok, Instagram, X, WhatsApp) carry more of the responsibility for labelling unverified claims?' },
+      { num: 3, text: 'AI chatbots often invent citations that look real — author name, journal, year, page numbers — but don\'t exist. What\'s the single habit you would adopt to catch this before quoting it in an essay or exam answer?' }
+    ]
+  },
+  {
     type: 'quiz',
     question: 'In the SIFT method, what does "F — Find better coverage" mean?',
     options: [
@@ -2483,16 +2539,18 @@ SLIDES_GCSE[122] = [
       'Find the original author\'s social media profile'
     ],
     correct: 2,
-    explanation: 'Lateral reading — what fact-checkers actually do — means immediately leaving the source page and searching for what other credible outlets report about the same claim. A claim cited thousands of times may trace back to one unreliable origin. Never judge a source solely from its own page.'
+    explanation: 'Lateral reading — what professional fact-checkers actually do (Wineburg &amp; McGrew, Stanford 2018) — means immediately leaving the source page and searching for what other credible outlets report about the same claim. A claim cited thousands of times may trace back to one unreliable origin. Never judge a source solely from its own page: that\'s what the manipulators designed the page to survive.'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🔍', label: 'SIFT: Stop, Investigate, Find, Trace', text: 'a 2-minute habit that works on any claim' },
-      { icon: '↔️', label: 'Lateral reading', text: 'look at what others say about a source, not just the source itself' },
-      { icon: '🇬🇧', label: 'UK fact-checkers', text: 'Full Fact, BBC Reality Check, Reuters Fact Check' },
-      { icon: '✅', label: 'Verification is a habit', text: 'not a talent — practice builds it automatically' }
+      { icon: '🔍', label: 'SIFT: Stop, Investigate, Find, Trace', text: 'a 2-minute habit that works on any claim — even in exam revision' },
+      { icon: '↔️', label: 'Lateral reading', text: 'fact-checkers are 3× faster and 2× more accurate than PhD historians because of this one habit (Stanford 2018)' },
+      { icon: '🛡️', label: 'Pre-bunking beats debunking', text: 'Jigsaw 2022: learning the tactic in advance cuts susceptibility ~20%' },
+      { icon: '🇬🇧', label: 'UK fact-checkers', text: 'Full Fact, BBC Reality Check, Reuters Fact Check, AFP Fact Check' },
+      { icon: '🤖', label: 'Always verify AI citations', text: 'LLMs invent plausible-looking sources — trace them before you quote' },
+      { icon: '✅', label: 'Verification is a habit', text: 'not a talent. Practice builds it automatically — within weeks it becomes reflex.' }
     ]
   }
 ];
@@ -2500,34 +2558,37 @@ SLIDES_GCSE[122] = [
 SLIDES_GCSE[123] = [
   {
     type: 'hook',
-    title: 'Filter Bubbles & Algorithms',
-    body: 'Activist Eli Pariser coined "filter bubble" in 2011 after noticing his Facebook feed had quietly dropped his conservative friends without asking him. Today, Reuters Institute\'s 2024 Digital News Report found that only 22% of UK 18–24s pay for any news — the rest get it from algorithmic feeds that personalise what they see. Two people can search the exact same thing on Google and see completely different results. Your algorithm has built you a personalised version of the internet — and you might not know how narrow it\'s become.',
+    title: 'Filter Bubbles &amp; Algorithms',
+    body: 'Activist Eli Pariser coined "filter bubble" in 2011 after noticing his Facebook feed had quietly dropped his conservative friends without asking him. By 2024, the issue had mutated: Reuters Institute\'s Digital News Report found that only 22% of UK 18–24s pay for any news — the rest get it from algorithmic feeds that personalise what they see. Ofcom\'s 2024 News Consumption Survey found TikTok is now the #1 news source for UK 16-24s, overtaking BBC News. Two people can search the exact same thing on Google and see completely different results; Facebook internal research leaked in 2021 showed a test account created as a "conservative mother" was fed extremist content within 2 days. Your algorithm has built you a personalised version of the internet — and you might not know how narrow it\'s become.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">22%</span><span class="sl">of UK 18-24s pay for news (Reuters, 2024)</span></div><div class="hook-stat-mini"><span class="sv">#1</span><span class="sl">TikTok is now top news source for UK 16-24s (Ofcom, 2024)</span></div><div class="hook-stat-mini"><span class="sv">2 days</span><span class="sl">Facebook internal test: new account fed extremism (2021 leak)</span></div></div>',
     callout: 'A filter bubble isn\'t something that happens to other people. It\'s happening to all of us — including you.',
     sources: [
       { label: 'Pariser, E. (2011) — The Filter Bubble: TED Talk (also book, Penguin 2011)', url: 'https://www.ted.com/talks/eli_pariser_beware_online_filter_bubbles' },
-      { label: 'Reuters Institute Digital News Report (2024) — UK chapter', url: 'https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2024/uk' }
+      { label: 'Reuters Institute Digital News Report (2024) — UK chapter', url: 'https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2024/uk' },
+      { label: 'Ofcom — News Consumption in the UK 2024 (TikTok overtakes BBC for 16-24s)', url: 'https://www.ofcom.org.uk/tv-radio-and-on-demand/information-for-industry/research/news-consumption' }
     ]
   },
   {
     type: 'concept',
     title: 'How Recommendation Algorithms Work',
+    body: 'Modern recommendation engines are arguably the most sophisticated consumer AI systems ever built. TikTok\'s "For You" algorithm processes signals from every single interaction you have — even ones you didn\'t realise were interactions — and retrains in near-real-time. Understanding how it actually works is the first step to controlling your feed rather than being controlled by it.',
     bullets: [
-      'Every click, watch, like, hover, and pause is tracked and fed back into the model',
-      'The algorithm predicts: "Given this user\'s behaviour, what content will keep them engaged longest?"',
-      'It optimises for engagement — not for accuracy, balance, or your wellbeing',
-      'Creates a feedback loop: you see more of what you\'ve already engaged with',
-      'Your "For You" page isn\'t for you — it\'s for the platform\'s engagement metrics'
+      { term: 'Every signal is tracked', def: 'Every click, watch, like, hover, pause, scroll speed, re-watch and skip is tracked and fed back into the model. On TikTok your watch time alone is the single most powerful signal.' },
+      { term: 'The core prediction', def: '"Given this user\'s behaviour, what content will keep them engaged longest?" — the algorithm\'s whole job is answering that one question a trillion times a day.' },
+      { term: 'Optimises for engagement', def: 'Not for accuracy, balance, truth or your wellbeing. Whether that content is cheerful, enraging, depressing or harmful is irrelevant to the optimisation target.' },
+      { term: 'The feedback loop', def: 'You see more of what you\'ve already engaged with; you engage more; the loop tightens. Across weeks and months this builds a very narrow version of the web just for you.' },
+      { term: 'Your feed is not for you', def: 'Your "For You" page exists to maximise the platform\'s revenue — ad impressions, subscription retention, time-on-app. A leaked 2021 TikTok document made the priority explicit: platform value is the top metric.' }
     ]
   },
   {
     type: 'concept',
     title: 'What Filter Bubbles Hide',
+    body: 'The harm of a filter bubble isn\'t what it shows you — it\'s what it quietly stops showing. Pariser\'s original 2011 concern was political, but a decade of research has found filter bubbles shape beliefs about health, climate, careers, gender, nationhood — any topic where the algorithm can identify "your side".',
     bullets: [
-      'You stop seeing content that challenges your existing views',
-      'You stop seeing news that your algorithm thinks you\'ll ignore',
-      'Your sense of what\'s "normal" gets shaped by a narrow sample',
-      'You may think your view is shared by everyone — because your feed agrees with you',
-      'Political filter bubbles affect how people understand entirely different communities'
+      { term: 'Challenging content disappears', def: 'You stop seeing content that challenges your existing views — the algorithm learned you don\'t engage with it, so it stopped showing it.' },
+      { term: 'Quiet news goes missing', def: 'You stop seeing news your algorithm thinks you\'ll ignore — often the slower, more important stories like parliamentary procedure, council decisions, long-term research.' },
+      { term: '"Normal" gets skewed', def: 'Your sense of what\'s typical gets shaped by a narrow, self-reinforcing sample. If your feed agrees with you, it feels like "most people do".' },
+      { term: 'The majority illusion', def: 'You may think your view is shared by everyone — because your feed agrees with you. Across political, cultural and identity issues this creates parallel social realities.' },
+      { term: 'Cross-community understanding breaks down', def: 'When two groups see completely different feeds about the same events, productive disagreement becomes impossible — because the basic facts each side holds are different.' }
     ]
   },
   {
@@ -2560,16 +2621,18 @@ SLIDES_GCSE[123] = [
       'Rotating content fairly between all creators equally'
     ],
     correct: 1,
-    explanation: 'Recommendation algorithms optimise for engagement — specifically time spent on the platform — because that drives advertising revenue. Accuracy, balance, and your wellbeing are not part of the objective. This is why emotionally stimulating content (outrage, envy, fear) gets promoted over calm, balanced content.'
+    explanation: 'Recommendation algorithms optimise for engagement — specifically time spent on the platform — because that drives advertising revenue and subscription retention. Accuracy, balance and your wellbeing are not part of the objective function. This is why emotionally stimulating content (outrage, envy, fear, resentment) gets promoted over calm, balanced content: Facebook\'s own leaked 2021 internal research showed "angry" reactions reached roughly 5× the audience of a simple "like".'
   },
   {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🔄', label: 'Algorithms optimise for engagement', text: 'not your knowledge or wellbeing' },
-      { icon: '🫧', label: 'Filter bubbles narrow your world view', text: 'gradually and invisibly' },
-      { icon: '🌍', label: 'Actively seek out what the algorithm hides', text: 'follow diverse sources deliberately' },
-      { icon: '💡', label: 'Awareness changes behaviour', text: 'knowing the algorithm exists gives you more control over it' }
+      { icon: '🔄', label: 'Algorithms optimise for engagement', text: 'not your knowledge, balance or wellbeing — that is by design, not a glitch' },
+      { icon: '🫧', label: 'Filter bubbles narrow your world view', text: 'gradually and invisibly, shaping what you think "most people" believe' },
+      { icon: '📱', label: 'TikTok is now #1 news source for UK 16-24s', text: 'Ofcom 2024 — overtaking BBC for the first time' },
+      { icon: '🌍', label: 'Actively seek out what the algorithm hides', text: 'follow diverse sources deliberately; mute and unfollow to push back' },
+      { icon: '💡', label: 'Awareness changes behaviour', text: 'knowing the algorithm exists gives you more control over it' },
+      { icon: '🗳️', label: 'Two people can see two different realities', text: 'a functioning democracy needs shared facts — the algorithm does not' }
     ]
   },
   {
