@@ -30,6 +30,23 @@
     .gs-stat-num{display:block;font-size:1.5rem;font-weight:800;color:var(--track-primary)}
     .gs-stat-label{font-size:.75rem;color:var(--text-dim)}
     .gs-track{display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
+    /* ── Spaced-review panel (interleaving) ─── */
+    .gs-review-panel{background:var(--bg-card);border:1.5px dashed rgba(var(--track-primary-rgb),.4);border-radius:var(--radius);padding:18px 20px;margin-bottom:24px}
+    .gs-review-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+    .gs-review-title{font-weight:800;font-size:.95rem;color:var(--text);display:flex;align-items:center;gap:8px}
+    .gs-review-sub{font-size:.78rem;color:var(--text-dim);margin-top:2px}
+    .gs-review-dismiss{background:none;border:none;color:var(--text-dim);font-size:.78rem;cursor:pointer;padding:4px 8px;border-radius:6px}
+    .gs-review-dismiss:hover{color:var(--text);background:var(--bg-card-hover)}
+    .gs-review-q{font-size:.88rem;font-weight:600;color:var(--text);line-height:1.5;margin:10px 0}
+    .gs-review-meta{font-size:.72rem;color:var(--text-dim);margin-bottom:8px}
+    .gs-review-options{display:flex;flex-direction:column;gap:6px}
+    .gs-review-option{text-align:left;padding:10px 14px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-size:.84rem;cursor:pointer;transition:border-color .15s;font-family:inherit;line-height:1.4}
+    .gs-review-option:hover:not(:disabled){border-color:var(--track-primary)}
+    .gs-review-option.rv-correct{border-color:var(--track-primary);background:rgba(var(--track-primary-rgb),.08)}
+    .gs-review-option.rv-wrong{border-color:#ef4444;background:rgba(239,68,68,.06)}
+    .gs-review-fb{margin-top:10px;padding:10px 14px;border-radius:8px;background:rgba(var(--track-primary-rgb),.06);border-left:3px solid var(--track-primary);font-size:.83rem;line-height:1.55;color:var(--text)}
+    .gs-review-fb.wrong{background:rgba(239,68,68,.06);border-left-color:#ef4444}
+    .gs-review-progress{font-size:.72rem;color:var(--text-dim);margin-top:10px;text-align:right}
     .gs-unit-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--track-primary);margin:20px 0 8px 4px;padding-bottom:4px;border-bottom:1px solid rgba(var(--track-primary-rgb),.2)}
     .gs-lesson{display:flex;align-items:center;gap:14px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:var(--radius);padding:14px 16px;cursor:pointer;transition:all .15s;position:relative}
     .gs-lesson:hover{border-color:var(--track-primary);transform:translateX(3px)}
@@ -299,6 +316,8 @@
       </div>
     </div>
 
+    <div id="gsReviewPanel" class="gs-review-panel" style="display:none"></div>
+
     <div class="gs-track" id="gsTrack"></div>
   </div>
 
@@ -370,12 +389,22 @@
   function gsSaveProgress() {
     localStorage.setItem(GS_KEY, JSON.stringify([...gsDone]));
   }
+  /* Per-lesson completion dates — used by the spaced-review panel.
+     Keyed id → ISO date string. Set on first completion only. */
+  var GS_DATES_KEY = 'di_gcse_completed_at';
+  function gsLoadDates() { try { return JSON.parse(localStorage.getItem(GS_DATES_KEY)) || {}; } catch(e) { return {}; } }
+  function gsSaveDates(d) { try { localStorage.setItem(GS_DATES_KEY, JSON.stringify(d)); } catch(e){} }
   function gsMarkDone(id) {
     var wasDone = gsDone.has(id);
     gsDone.add(id);
     gsSaveProgress();
+    if (!wasDone) {
+      var dates = gsLoadDates();
+      if (!dates[id]) { dates[id] = new Date().toISOString().slice(0,10); gsSaveDates(dates); }
+    }
     gsRenderTrack();
     gsUpdateProgress();
+    gsRenderReviewPanel();
     if (!wasDone) gsAwardOnce('lesson:'+id, 20, 'Lesson completed');
     var total = GCSE_UNITS.reduce(function(s,u){return s+u.lessons.length;},0);
     if (gsDone.size === total) gsShowComplete();
@@ -388,6 +417,119 @@
       }
     }
     return null;
+  }
+
+  /* ── Spaced-review panel ────────────────────────────────
+     Pulls 3 quiz-type slides from lessons the pupil finished
+     at least 3 days ago, presents them sequentially, and
+     rewards 5 XP per correct answer. Resets once per UTC day
+     so a pupil only sees the panel once per day. */
+  var GS_REVIEW_DAY_KEY = 'di_gcse_review_shown_at';
+  var gsReviewQueue = [];
+  var gsReviewIdx = 0;
+  var gsReviewScore = 0;
+
+  function gsTodayStr() { return new Date().toISOString().slice(0,10); }
+
+  function gsFindQuizSlide(lessonId) {
+    var slides = (typeof SLIDES_GCSE !== 'undefined' && SLIDES_GCSE[lessonId]) || [];
+    var quizzes = [];
+    for (var i = 0; i < slides.length; i++) {
+      if (slides[i] && slides[i].type === 'quiz' && Array.isArray(slides[i].options)) quizzes.push(slides[i]);
+    }
+    if (!quizzes.length) return null;
+    return quizzes[Math.floor(Math.random() * quizzes.length)];
+  }
+
+  function gsBuildReviewQueue() {
+    var dates = gsLoadDates();
+    var eligible = [];
+    var now = Date.now();
+    Object.keys(dates).forEach(function(id) {
+      var ageDays = (now - new Date(dates[id]).getTime()) / 86400000;
+      if (ageDays >= 3 && gsDone.has(parseInt(id, 10))) {
+        var q = gsFindQuizSlide(parseInt(id, 10));
+        if (q) eligible.push({ lessonId: parseInt(id, 10), slide: q });
+      }
+    });
+    // Shuffle and take the first 3
+    for (var i = eligible.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = eligible[i]; eligible[i] = eligible[j]; eligible[j] = tmp;
+    }
+    return eligible.slice(0, 3);
+  }
+
+  function gsRenderReviewPanel() {
+    var panel = document.getElementById('gsReviewPanel');
+    if (!panel) return;
+    // Only show once per day
+    var shownAt = null; try { shownAt = localStorage.getItem(GS_REVIEW_DAY_KEY); } catch(e){}
+    if (shownAt === gsTodayStr()) { panel.style.display = 'none'; return; }
+    gsReviewQueue = gsBuildReviewQueue();
+    if (gsReviewQueue.length < 3) { panel.style.display = 'none'; return; }
+    gsReviewIdx = 0;
+    gsReviewScore = 0;
+    panel.style.display = 'block';
+    gsPaintReview();
+  }
+
+  function gsPaintReview() {
+    var panel = document.getElementById('gsReviewPanel');
+    if (!panel) return;
+    if (gsReviewIdx >= gsReviewQueue.length) {
+      // Finished — mark today's review done
+      try { localStorage.setItem(GS_REVIEW_DAY_KEY, gsTodayStr()); } catch(e){}
+      var pct = Math.round((gsReviewScore / gsReviewQueue.length) * 100);
+      panel.innerHTML =
+        '<div class="gs-review-head">' +
+          '<div><div class="gs-review-title">🧠 Review complete</div>' +
+            '<div class="gs-review-sub">You scored ' + gsReviewScore + ' / ' + gsReviewQueue.length + ' (' + pct + '%). Come back tomorrow for a new set.</div>' +
+          '</div>' +
+          '<button class="gs-review-dismiss" onclick="gsHideReview()">Close</button>' +
+        '</div>';
+      return;
+    }
+    var item = gsReviewQueue[gsReviewIdx];
+    var slide = item.slide;
+    var found = gsGetLesson(item.lessonId);
+    var meta = (found && found.lesson) ? found.lesson.title : 'Earlier lesson';
+    var opts = (slide.options || []).map(function(opt, i) {
+      return '<button class="gs-review-option" data-i="' + i + '" onclick="gsReviewAnswer(' + i + ',' + slide.correct + ')">' + gsEscape(opt) + '</button>';
+    }).join('');
+    panel.innerHTML =
+      '<div class="gs-review-head">' +
+        '<div><div class="gs-review-title">🧠 Quick review · ' + (gsReviewIdx + 1) + ' of ' + gsReviewQueue.length + '</div>' +
+          '<div class="gs-review-sub">Interleaved questions from lessons you finished earlier. Retrieval practice — proven to stick.</div>' +
+        '</div>' +
+        '<button class="gs-review-dismiss" onclick="gsHideReview()">Skip today</button>' +
+      '</div>' +
+      '<div class="gs-review-meta">From: ' + gsEscape(meta) + '</div>' +
+      '<div class="gs-review-q">' + gsEscape(slide.question || '') + '</div>' +
+      '<div class="gs-review-options" id="gsReviewOpts">' + opts + '</div>';
+  }
+
+  function gsReviewAnswer(chosen, correct) {
+    var opts = document.querySelectorAll('#gsReviewOpts .gs-review-option');
+    opts.forEach(function(b, i) {
+      b.disabled = true;
+      if (i === correct) b.classList.add('rv-correct');
+      else if (i === chosen) b.classList.add('rv-wrong');
+    });
+    var slide = gsReviewQueue[gsReviewIdx].slide;
+    var wasCorrect = chosen === correct;
+    if (wasCorrect) { gsReviewScore += 1; gsAwardOnce('rev:' + gsTodayStr() + ':' + gsReviewIdx, 5, 'Review answered correctly'); }
+    var fb = document.createElement('div');
+    fb.className = 'gs-review-fb' + (wasCorrect ? '' : ' wrong');
+    fb.innerHTML = (wasCorrect ? '✅ Correct. ' : '❌ Not quite. ') + (slide.explanation || '');
+    document.getElementById('gsReviewOpts').after(fb);
+    setTimeout(function() { gsReviewIdx += 1; gsPaintReview(); }, 1400);
+  }
+
+  function gsHideReview() {
+    try { localStorage.setItem(GS_REVIEW_DAY_KEY, gsTodayStr()); } catch(e){}
+    var panel = document.getElementById('gsReviewPanel');
+    if (panel) panel.style.display = 'none';
   }
 
   function gsRenderTrack() {
@@ -872,6 +1014,7 @@
   gsLoadProgress();
   gsRenderTrack();
   gsUpdateProgress();
+  gsRenderReviewPanel();
   var gsTotal=GCSE_UNITS.reduce(function(s,u){return s+u.lessons.length;},0);
   if(gsDone.size===gsTotal)gsShowComplete();
   initOffline();
