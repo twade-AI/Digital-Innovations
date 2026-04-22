@@ -193,12 +193,18 @@ async function syncToSupabase(attempt) {
   if (!isSupabaseReady() || !_currentUser) return;
   attempt = attempt || 0;
   var now = new Date().toISOString();
+  var leaderboardOpt = false;
+  try { leaderboardOpt = localStorage.getItem('di_leaderboard_opt_in') === '1'; } catch(e) {}
+  var weekStart = null;
+  try { weekStart = JSON.parse(localStorage.getItem('di_xp_week_start') || 'null'); } catch(e) {}
   var payload = {
     completed:   [...completedLessons],
     bookmarks:   [...bookmarkedLessons],
     quiz_scores: quizScores,
     xp:          loadXP(),
     streak:      JSON.parse(localStorage.getItem(STREAK_KEY) || '{}'),
+    leaderboard_opt_in: leaderboardOpt,
+    xp_week_start: weekStart,
     synced_at:   now
   };
   try {

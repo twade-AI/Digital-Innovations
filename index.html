@@ -273,6 +273,18 @@
   <!-- Progress Section -->
   <section id="section-progress" class="section">
 
+    <!-- ── Weekly class leaderboard (opt-in) ── -->
+    <div class="leaderboard-panel" id="leaderboardPanel">
+      <div class="leaderboard-head">
+        <div>
+          <div class="leaderboard-title">🏆 This week's leaderboard</div>
+          <div class="leaderboard-sub">XP earned since Monday · opted-in classmates only</div>
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="refreshLeaderboard()">Refresh</button>
+      </div>
+      <div id="leaderboardList" class="leaderboard-list"></div>
+    </div>
+
     <!-- ── Game Profile Card ── -->
     <div class="profile-card">
       <div class="profile-avatar-wrap">
@@ -481,9 +493,24 @@
       <div class="pm-section-title" id="pmRatingsTitle" style="display:none">Lesson ratings</div>
       <div class="pm-ratings" id="pmRatings"></div>
 
+      <!-- Leaderboard opt-in -->
+      <div class="pm-section-title">Class leaderboard</div>
+      <div class="pm-leaderboard-opt" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;margin-bottom:12px">
+        <div style="font-size:.85rem;line-height:1.45">
+          <strong style="color:var(--text)">Show me on the weekly leaderboard</strong>
+          <div style="color:var(--text-dim);font-size:.78rem;margin-top:2px">Opt-in only — ranks classmates by XP earned this week. Use a nickname if you prefer.</div>
+        </div>
+        <label class="pm-switch" style="position:relative;width:44px;height:24px;flex-shrink:0">
+          <input type="checkbox" id="pmLeaderboardOpt" onchange="pmToggleLeaderboard(this.checked)" style="opacity:0;width:0;height:0">
+          <span class="pm-switch-track" style="position:absolute;inset:0;background:var(--border);border-radius:999px;cursor:pointer;transition:background .2s"></span>
+          <span class="pm-switch-dot" style="position:absolute;top:3px;left:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform .2s"></span>
+        </label>
+      </div>
+
       <!-- Actions -->
       <div class="pm-actions">
         <button class="btn btn-secondary" onclick="exportReflections()">⬇ Download my notes</button>
+        <button class="btn btn-secondary" id="pmFamilyBtn" onclick="pmGenerateFamilyLink()" title="Generates a read-only weekly summary link you can send to a parent or governor. No scores are included.">👨‍👩‍👧 Share weekly summary with a parent</button>
         <button class="btn btn-secondary" style="color:var(--danger);border-color:var(--danger)" onclick="closeProfileModal();authSignOut()">Sign out</button>
       </div>
     </div>
@@ -696,6 +723,7 @@
   <script src="js/slides-advanced.js"></script>
   <script src="js/quiz-bank.js"></script>
   <script src="js/visuals.js"></script>
+  <script src="js/slide-utils.js"></script>
   <script src="js/app.js"></script>
   <script src="js/tts.js" defer></script>
   <script src="js/auth.js"></script>

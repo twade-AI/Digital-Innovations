@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio — Digital Innovations</title>
+  <meta name="theme-color" content="#9b1844">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <script>try{var _t=localStorage.getItem('di_theme');if(_t)document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/brand.css">
+  <style>
+    .pf-shell{max-width:820px;margin:0 auto;padding:32px 20px 80px}
+    .pf-back{color:var(--text-dim);font-size:.85rem;text-decoration:none;display:inline-flex;align-items:center;gap:4px;margin-bottom:16px}
+    .pf-back:hover{color:var(--text)}
+    .pf-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding-bottom:18px;margin-bottom:24px;border-bottom:1px solid var(--border)}
+    .pf-title h1{font-size:1.6rem;font-weight:800;margin:0 0 4px}
+    .pf-title .pf-sub{color:var(--text-dim);font-size:.9rem;line-height:1.45}
+    .pf-title .pf-name{color:var(--track-primary);font-weight:700}
+    .pf-tools{display:flex;gap:8px;flex-wrap:wrap}
+    .pf-crest{height:28px;opacity:.95}
+    .pf-empty{padding:40px 20px;text-align:center;color:var(--text-dim);background:var(--bg-card);border:1px dashed var(--border);border-radius:var(--radius)}
+    .pf-section{margin-bottom:36px}
+    .pf-section-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+    .pf-section-head h2{font-size:1.05rem;font-weight:800;margin:0}
+    .pf-section-meta{font-size:.78rem;color:var(--text-dim);margin-left:auto}
+    .pf-lesson{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:10px;page-break-inside:avoid;break-inside:avoid}
+    .pf-lesson-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+    .pf-lesson-title .pf-l-name{font-weight:700;color:var(--text);font-size:.95rem}
+    .pf-lesson-title .pf-l-meta{font-size:.74rem;color:var(--text-dim)}
+    .pf-note{font-size:.88rem;line-height:1.55;color:var(--text);white-space:pre-wrap;margin-top:8px}
+    .pf-exit{font-style:italic;font-size:.9rem;line-height:1.55;color:var(--text);border-left:3px solid var(--track-primary);padding:8px 12px;margin-top:8px;background:rgba(var(--track-primary-rgb),.04);border-radius:0 6px 6px 0}
+    .pf-label{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--track-primary);background:rgba(var(--track-primary-rgb),.1);padding:2px 8px;border-radius:999px;margin-bottom:6px}
+    .pf-score-pill{display:inline-block;background:rgba(var(--track-primary-rgb),.12);color:var(--track-primary);border:1px solid rgba(var(--track-primary-rgb),.3);border-radius:999px;padding:2px 10px;font-size:.72rem;font-weight:700}
+
+    /* Print styles — produce a clean PDF through the browser's print-to-PDF */
+    @media print {
+      body{background:#fff !important;color:#0f172a !important}
+      .pf-back,.pf-tools,footer,.pf-empty-actions{display:none !important}
+      .pf-shell{padding:0 0 40px;max-width:none}
+      .pf-lesson{border:1px solid #cbd5e1 !important;background:#fff !important;box-shadow:none !important}
+      .pf-title h1{color:#0f172a}
+      .pf-name{color:#9b1844 !important}
+      .pf-crest{opacity:1}
+      .pf-note,.pf-exit,.pf-l-name{color:#0f172a !important}
+      .pf-exit{background:rgba(155,24,68,.05) !important;border-left-color:#9b1844 !important}
+    }
+  </style>
+</head>
+<body>
+  <div class="pf-shell">
+    <a class="pf-back" href="index.html">← Back to Digital Innovations</a>
+    <div class="pf-head">
+      <div class="pf-title">
+        <h1>My Portfolio</h1>
+        <div class="pf-sub">Notes, exit-ticket reflections and scores for <span class="pf-name" id="pfName">—</span></div>
+      </div>
+      <div class="pf-tools">
+        <button class="btn btn-primary btn-sm" onclick="window.print()">🖨 Save as PDF</button>
+        <img class="hby-mark pf-crest" src="assets/brand/logo/haileybury-magenta.png" alt="Haileybury" width="32" height="23">
+      </div>
+    </div>
+
+    <div id="pfContent"></div>
+  </div>
+
+  <script src="js/slides-gcse.js"></script>
+  <script>
+  (function () {
+    function q(name) {
+      var m = new RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+      return m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : '';
+    }
+    function esc(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    var track = (q('t') || 'removes').toLowerCase();
+    document.body.setAttribute('data-track', track);
+
+    // Identify the pupil's name from the most-recently-set cert-name entries.
+    var name = localStorage.getItem('gs_cert_name')
+            || localStorage.getItem('fl_cert_name')
+            || localStorage.getItem('di_display_name')
+            || '';
+    document.getElementById('pfName').textContent = name || 'this pupil';
+
+    // Gather lessons & notes for the chosen track.
+    var items = [];
+    if (track === 'removes' && window.GCSE_UNITS) {
+      var doneIds = {};
+      try { (JSON.parse(localStorage.getItem('di_gcse_v1')) || []).forEach(function (id) { doneIds[id] = true; }); } catch (e) {}
+      var dates = {};
+      try { dates = JSON.parse(localStorage.getItem('di_gcse_completed_at')) || {}; } catch (e) {}
+
+      GCSE_UNITS.forEach(function (unit) {
+        unit.lessons.forEach(function (lesson) {
+          var noteText = collectNotes(lesson.id);
+          var exitText = localStorage.getItem('di_gcse_exit_' + lesson.id) || '';
+          if (!noteText && !exitText && !doneIds[lesson.id]) return;
+          items.push({
+            unit: unit.title,
+            unitColour: unit.color,
+            lessonId: lesson.id,
+            title: lesson.title,
+            done: !!doneIds[lesson.id],
+            completedAt: dates[lesson.id] || '',
+            notes: noteText,
+            exit: exitText
+          });
+        });
+      });
+    } else if (track === 'fluency') {
+      // Fluency stores notes as di_note_<id>_<idx> and lacks a unit grouping;
+      // scan all di_note_* keys and present them ungrouped with lesson index.
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        if (!k || k.indexOf('di_note_') !== 0) continue;
+        var parts = k.replace('di_note_', '').split('_');
+        if (parts.length < 2) continue;
+        var val = (localStorage.getItem(k) || '').trim();
+        if (!val) continue;
+        items.push({
+          unit: 'AI Fluency Track',
+          unitColour: '#f59e0b',
+          lessonId: parts[0],
+          title: 'Lesson ' + parts[0] + ' · slide ' + (parseInt(parts[1], 10) + 1),
+          done: false,
+          notes: val,
+          exit: ''
+        });
+      }
+    }
+
+    var content = document.getElementById('pfContent');
+    if (!items.length) {
+      content.innerHTML = '<div class="pf-empty"><h2 style="margin:0 0 10px;font-weight:700;color:var(--text)">No portfolio entries yet.</h2><p style="margin:0;font-size:.9rem">Complete a few lessons — or jot something in the Notes box inside any slide — and it\'ll appear here.</p><div class="pf-empty-actions" style="margin-top:14px"><a class="btn btn-primary btn-sm" href="' + (track === 'fluency' ? 'fluency.html' : 'removes.html') + '">Go to lessons</a></div></div>';
+      return;
+    }
+
+    // Group by unit
+    var byUnit = {};
+    items.forEach(function (it) {
+      if (!byUnit[it.unit]) byUnit[it.unit] = { colour: it.unitColour, entries: [] };
+      byUnit[it.unit].entries.push(it);
+    });
+
+    var html = '';
+    Object.keys(byUnit).forEach(function (u) {
+      var data = byUnit[u];
+      html += '<div class="pf-section">' +
+                '<div class="pf-section-head"><h2>' + esc(u) + '</h2>' +
+                  '<span class="pf-section-meta">' + data.entries.length + ' entries</span>' +
+                '</div>';
+      data.entries.forEach(function (e) {
+        html += '<div class="pf-lesson">' +
+                  (e.done ? '<div class="pf-label">Completed' + (e.completedAt ? ' · ' + e.completedAt : '') + '</div>' : '') +
+                  '<div class="pf-lesson-title">' +
+                    '<div class="pf-l-name">' + esc(e.title) + '</div>' +
+                    (e.lessonId ? '<div class="pf-l-meta">Lesson #' + esc(String(e.lessonId)) + '</div>' : '') +
+                  '</div>';
+        if (e.notes) html += '<div class="pf-note">' + esc(e.notes) + '</div>';
+        if (e.exit)  html += '<div class="pf-exit"><strong>Exit ticket.</strong> ' + esc(e.exit) + '</div>';
+        html += '</div>';
+      });
+      html += '</div>';
+    });
+    content.innerHTML = html;
+
+    // Collect all di_note_<id>_<idx> entries for a given lesson id, joined
+    // into one readable string grouped by slide index.
+    function collectNotes(lessonId) {
+      var parts = [];
+      var prefix = 'di_note_' + lessonId + '_';
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        if (!k || k.indexOf(prefix) !== 0) continue;
+        var idx = parseInt(k.slice(prefix.length), 10);
+        if (isNaN(idx)) continue;
+        var v = (localStorage.getItem(k) || '').trim();
+        if (v) parts.push({ idx: idx, text: v });
+      }
+      parts.sort(function (a, b) { return a.idx - b.idx; });
+      return parts.map(function (p) { return 'Slide ' + (p.idx + 1) + ': ' + p.text; }).join('\n\n');
+    }
+  })();
+  </script>
+</body>
+</html>

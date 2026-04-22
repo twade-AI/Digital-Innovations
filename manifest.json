@@ -1,7 +1,7 @@
 {
-  "name": "Digital Innovations",
+  "name": "Digital Innovations — Haileybury",
   "short_name": "DigInnov",
-  "description": "KS5 AI & Digital Ethics Course — 57 lessons across 6 units",
+  "description": "Haileybury's AI literacy course — Removes and KS5 AEP tracks with offline support.",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0f172a",

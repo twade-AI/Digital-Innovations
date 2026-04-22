@@ -258,7 +258,7 @@ function showSection(name) {
   });
   document.querySelector('.nav-links')?.classList.remove('open');
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  if (name === 'progress') renderProgress();
+  if (name === 'progress') { renderProgress(); renderLeaderboard(); }
   if (name === 'map') renderCourseMap();
   if (name === 'home') { renderRecentlyViewed(); updateTimeEstimate(); renderSpacedReviewQueue(); }
   if (name === 'exemplars') renderExemplars();
@@ -1868,6 +1868,7 @@ function openProfileModal() {
   var modal = document.getElementById('profileModal');
   if (!modal) return;
   pmPopulate();
+  pmInitLeaderboardToggle();
   modal.classList.add('open');
 }
 function closeProfileModal() {
@@ -2007,6 +2008,154 @@ function pmSaveName(val) {
     localStorage.setItem('di_display_name', val.trim());
     var nameEl = document.getElementById('userDisplayName');
     if (nameEl) nameEl.textContent = val.trim();
+  }
+}
+
+/* ── Class leaderboard — opt-in, weekly XP ───────────
+   Opt-in is stored locally at di_leaderboard_opt_in and
+   mirrored into progress.data.leaderboard_opt_in on sync,
+   so the reader (anyone else viewing the leaderboard) can
+   filter to consenting pupils. */
+function pmInitLeaderboardToggle() {
+  var cb = document.getElementById('pmLeaderboardOpt');
+  if (!cb) return;
+  cb.checked = localStorage.getItem('di_leaderboard_opt_in') === '1';
+}
+function pmToggleLeaderboard(on) {
+  try { localStorage.setItem('di_leaderboard_opt_in', on ? '1' : '0'); } catch(e) {}
+  // Mirror the flag into progress.data via a sync.
+  if (typeof scheduleSync === 'function') scheduleSync();
+}
+
+/* Weekly XP baseline — stored as {monday: 'YYYY-MM-DD', xpAtStart: N}.
+   Resets whenever the current Monday differs from stored monday. */
+function getWeeklyXPBaseline() {
+  var now = new Date();
+  var day = (now.getUTCDay() + 6) % 7; // 0 = Monday
+  var monday = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - day));
+  var mondayStr = monday.toISOString().slice(0, 10);
+  var stored = safeParse('di_xp_week_start', null);
+  var currentXP = (loadXP && loadXP().total) || 0;
+  if (!stored || stored.monday !== mondayStr) {
+    stored = { monday: mondayStr, xpAtStart: currentXP };
+    try { localStorage.setItem('di_xp_week_start', JSON.stringify(stored)); } catch(e) {}
+  }
+  return stored;
+}
+function weeklyXPGain() {
+  var base = getWeeklyXPBaseline();
+  var currentXP = (loadXP && loadXP().total) || 0;
+  return Math.max(0, currentXP - (base.xpAtStart || 0));
+}
+
+function renderLeaderboard() {
+  var list = document.getElementById('leaderboardList');
+  if (!list) return;
+  var panel = document.getElementById('leaderboardPanel');
+  list.innerHTML = '<div class="lb-empty">Loading leaderboard…</div>';
+  if (typeof _sb === 'undefined' || !_sb || typeof _currentUser === 'undefined' || !_currentUser) {
+    list.innerHTML = '<div class="lb-empty">Sign in to see the class leaderboard. It\'s opt-in on both sides — you only appear if you turn it on in your profile, and you only see classmates who\'ve turned it on too.</div>';
+    return;
+  }
+  _sb.from('profiles').select('user_id, display_name').then(function(profRes) {
+    _sb.from('progress').select('user_id, data').then(function(progRes) {
+      if (progRes.error || profRes.error) {
+        list.innerHTML = '<div class="lb-empty">Couldn\'t load leaderboard. ' + ((progRes.error || profRes.error).message || '') + '</div>';
+        return;
+      }
+      var names = {};
+      (profRes.data || []).forEach(function(p) { names[p.user_id] = p.display_name || '(no name)'; });
+      var baseline = getWeeklyXPBaseline();
+      var rows = (progRes.data || [])
+        .filter(function(r) { return r.data && r.data.leaderboard_opt_in === true && r.data.xp && typeof r.data.xp.total === 'number'; })
+        .map(function(r) {
+          var ws = r.data.xp_week_start || {};
+          var weekXP = Math.max(0, (r.data.xp.total || 0) - (ws.monday === baseline.monday ? (ws.xpAtStart || 0) : (r.data.xp.total || 0)));
+          return { userId: r.user_id, name: names[r.user_id] || '(no name)', weekXP: weekXP, totalXP: r.data.xp.total };
+        })
+        .filter(function(r) { return r.weekXP >= 0; })
+        .sort(function(a, b) { return b.weekXP - a.weekXP; })
+        .slice(0, 10);
+      if (!rows.length) {
+        list.innerHTML = '<div class="lb-empty">No one is on the leaderboard yet this week. Be first — opt in from your profile.</div>';
+        return;
+      }
+      list.innerHTML = rows.map(function(r, i) {
+        var rank = i + 1;
+        var rankClass = 'lb-rank' + (rank <= 3 ? ' lb-rank-' + rank : '');
+        var medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : rank;
+        var mine = r.userId === (_currentUser && _currentUser.id) ? ' lb-me' : '';
+        return '<div class="lb-row' + mine + '">' +
+          '<span class="' + rankClass + '">' + medal + '</span>' +
+          '<span class="lb-name">' + String(r.name).replace(/[<>&"']/g, '') + '</span>' +
+          '<span class="lb-xp">+' + r.weekXP + ' XP</span>' +
+        '</div>';
+      }).join('');
+    });
+  });
+}
+function refreshLeaderboard() { renderLeaderboard(); }
+
+/* ── Parent/governor summary — generates a shareable read-only
+   snapshot URL. No scores, no answers, no notes — just which
+   lessons they worked on this week, streak, and overall %. */
+function pmGenerateFamilyLink() {
+  var now = new Date();
+  // Determine last Monday 00:00 UTC
+  var day = (now.getUTCDay() + 6) % 7;
+  var mondayStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - day)).toISOString().slice(0, 10);
+
+  // Gather lesson titles completed >= Monday
+  var dates = safeParse(COMPLETION_DATES_KEY, {});
+  var recentIds = Object.keys(dates).filter(function(id) {
+    return dates[id] && dates[id] >= mondayStart;
+  });
+  // Also include Removes completions from di_gcse_completed_at
+  var removesDates = safeParse('di_gcse_completed_at', {});
+  Object.keys(removesDates).forEach(function(id) {
+    if (removesDates[id] && removesDates[id] >= mondayStart) recentIds.push(id);
+  });
+
+  // Map ids → titles (try AEP UNITS first, then Removes GCSE_UNITS if loaded)
+  var idToTitle = {};
+  try { UNITS.forEach(function(u) { u.lessons.forEach(function(l) { idToTitle[l.id] = l.title; }); }); } catch(e) {}
+  try { if (typeof GCSE_UNITS !== 'undefined') GCSE_UNITS.forEach(function(u) { u.lessons.forEach(function(l) { idToTitle[l.id] = l.title; }); }); } catch(e) {}
+  var thisWeekTitles = recentIds.map(function(id) { return idToTitle[id] || ('Lesson ' + id); });
+
+  var total = 0;
+  try { UNITS.forEach(function(u) { total += u.lessons.length; }); } catch(e) { total = 57; }
+  var pct = total ? Math.round(completedLessons.size / total * 100) : 0;
+
+  var name = localStorage.getItem('di_display_name') || localStorage.getItem('gs_cert_name') || 'Pupil';
+
+  var snap = {
+    name: name,
+    trackLabel: 'Digital Innovations AEP',
+    thisWeekTitles: thisWeekTitles,
+    streak: getStreak(),
+    pct: pct,
+    generatedAt: new Date().toISOString()
+  };
+
+  // Base64url encode
+  var json = JSON.stringify(snap);
+  var b64 = btoa(unescape(encodeURIComponent(json))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  var url = window.location.href.replace(/[?#].*$/, '').replace(/index\.html?$/, '') + 'family.html?s=' + b64;
+
+  // Copy to clipboard with a small status swap on the button
+  var btn = document.getElementById('pmFamilyBtn');
+  var done = function(msg) {
+    if (!btn) return;
+    var old = btn.textContent;
+    btn.textContent = msg;
+    setTimeout(function() { btn.textContent = old; }, 2200);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(function() { done('✓ Link copied — send it to your parent/governor'); }).catch(function() { done('Copy failed — try again'); });
+  } else {
+    var ta = document.createElement('textarea'); ta.value = url; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); done('✓ Link copied'); } catch(e) { done('Copy failed'); }
+    document.body.removeChild(ta);
   }
 }
 

@@ -1612,6 +1612,13 @@ SLIDES_GCSE[113] = [
       { icon: '🧪', label: 'Test, don\'t trust', text: 'a prompt that worked yesterday might not today — models update. Spot-check the output.' },
       { icon: '💾', label: 'Save your best prompts', text: 'Claude Projects, Gemini Gems and custom GPTs let you reuse the Role + Context so you never re-type them.' }
     ]
+  },
+  {
+    type: 'widget',
+    widget: 'prompt-clinic',
+    title: 'Prompt Clinic — grade your own prompt',
+    intro: 'Paste any prompt (yours or an example). The clinic grades it against the four PTFC levers — Persona, Task, Format, Context — returns three specific fixes for the weakest areas, and sketches a stronger version. Try the "Load weak prompt" button first to see a before-and-after.',
+    callout: 'This runs entirely on-device — your prompt never leaves the browser. It\'s a heuristic trainer, not an AI rewriter — the goal is to build the reflex of checking all four levers before you hit enter.'
   }
 ];
 
@@ -2344,13 +2351,21 @@ SLIDES_GCSE[120] = [
     explanation: 'AI detection tools have accuracy rates of 39–76% — not reliable enough to use as evidence. AI doesn\'t reliably make spelling mistakes. The most useful question is always: is this accurate, and what is the source? Origin matters less than accuracy and credibility.'
   },
   {
+    type: 'widget',
+    widget: 'misuse-detector',
+    title: 'AI-prose signal checker',
+    intro: 'Paste any paragraph below. The checker scores it against the three specific signals this lesson has taught you: em-dash density, sentence-length uniformity, and AI-favoured vocabulary. It is a <strong>heuristic</strong>, not a verdict — every signal here can appear in good human writing. Use it to train your ear, not to accuse a classmate. Try the "Load AI-like sample" button first to see what a high-signal passage looks like, then paste something you wrote yourself.',
+    callout: 'The best detectors of AI prose are you and your teacher, knowing your own voice. This tool puts rough numbers on the signals that literacy already tells you to notice.'
+  },
+  {
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
       { icon: '📝', label: 'AI text is structured but lacks personal voice', text: 'vague, balanced, filler-heavy' },
       { icon: '🔍', label: 'Detection tools are unreliable', text: 'develop your own critical reading instead' },
       { icon: '❓', label: 'Accuracy matters more than origin', text: 'the real question is: is it correct?' },
-      { icon: '👁️', label: 'Strong source evaluation', text: 'matters more than AI-spotting alone' }
+      { icon: '👁️', label: 'Strong source evaluation', text: 'matters more than AI-spotting alone' },
+      { icon: '🧪', label: 'Signal-checkers help, not decide', text: 'useful for training your ear — never as accusation evidence' }
     ]
   }
 ];

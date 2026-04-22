@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify Credential — Digital Innovations</title>
+  <meta name="theme-color" content="#9b1844">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <script>try{var _t=localStorage.getItem('di_theme');if(_t)document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/brand.css">
+  <style>
+    .verify-shell{max-width:720px;margin:0 auto;padding:40px 20px 80px}
+    .verify-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(var(--track-primary-rgb),.12);color:var(--track-primary);border:1px solid rgba(var(--track-primary-rgb),.35);border-radius:999px;padding:6px 14px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:18px}
+    .verify-cert{position:relative;overflow:hidden;background:linear-gradient(145deg,rgba(var(--track-primary-rgb),.1),rgba(var(--track-primary-rgb),.04));border:2px solid rgba(var(--track-primary-rgb),.35);border-radius:16px;padding:36px 36px 28px;text-align:center}
+    .verify-watermark{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:16rem;font-weight:900;color:rgba(var(--track-primary-rgb),.04);pointer-events:none;line-height:1}
+    .verify-header{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px}
+    .verify-issuer{font-size:.9rem;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:.08em}
+    .verify-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--track-primary);margin-bottom:16px}
+    .verify-presented{font-size:.85rem;color:var(--text-dim);margin-bottom:8px}
+    .verify-recipient{font-size:2rem;font-weight:800;color:var(--text);margin:0 0 8px;font-style:italic;min-height:2.5rem}
+    .verify-course{font-size:.85rem;color:var(--text-dim);margin-bottom:6px}
+    .verify-course-main{font-size:1.3rem;font-weight:800;color:var(--track-primary);margin-bottom:6px}
+    .verify-detail{font-size:.75rem;color:var(--text-dim);margin-bottom:20px}
+    .verify-divider{height:1px;background:rgba(var(--track-primary-rgb),.2);margin:0 0 16px}
+    .verify-footer{display:flex;justify-content:space-around}
+    .verify-date,.verify-id{font-size:.85rem;font-weight:700;color:var(--text)}
+    .verify-date-label,.verify-id-label{font-size:.68rem;color:var(--text-dim);margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
+    .verify-meta{margin-top:28px;padding:16px 18px;border-radius:10px;background:var(--bg-card);border:1px solid var(--border);font-size:.82rem;color:var(--text-dim);line-height:1.6}
+    .verify-meta strong{color:var(--text)}
+    .verify-error{padding:24px;border-radius:10px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.35);color:#fca5a5;text-align:center;font-weight:600}
+    .verify-back{display:inline-block;margin-top:20px;color:var(--link);font-size:.9rem;text-decoration:none}
+    .verify-back:hover{text-decoration:underline}
+    .verify-back::before{content:'←';margin-right:6px}
+  </style>
+</head>
+<body>
+  <div class="verify-shell" id="verifyRoot">
+    <div id="verifyContent"></div>
+  </div>
+
+  <footer>
+    <img class="hby-mark hby-mark--footer" src="assets/brand/logo/haileybury-magenta.png" alt="Haileybury" width="32" height="23">
+    <p>Haileybury: Developed by Mr Wade</p>
+  </footer>
+
+  <script>
+  (function () {
+    /* Parse the shareable link query string. Expected params:
+         t     track slug — 'removes' | 'fluency'
+         id    certificate id (e.g. DI-REMOVES-20260422-AB12)
+         name  recipient's display name
+         date  ISO date (YYYY-MM-DD)
+       No cryptographic signature — this is a civility-level verification,
+       designed to surface a credential publicly, not to prove it
+       unforgeably. Anyone can construct the URL. The cert ID format
+       embeds the issue date so stale or edited IDs look wrong.
+    */
+    function q(name) {
+      var m = new RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+      return m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : '';
+    }
+
+    var root = document.getElementById('verifyContent');
+    var track = (q('t') || '').toLowerCase();
+    var certId = q('id').toUpperCase();
+    var name = q('name').trim();
+    var date = q('date');
+
+    if (!certId || !name || !date || (track !== 'removes' && track !== 'fluency')) {
+      root.innerHTML = '<div class="verify-error">This link is incomplete or malformed. Please check the URL and try again.</div><a class="verify-back" href="index.html">Back to Digital Innovations</a>';
+      return;
+    }
+
+    // Set the body's data-track so all track-coloured tokens pick up the
+    // right palette (Removes = green, Fluency = amber).
+    document.body.setAttribute('data-track', track);
+
+    var trackMeta = {
+      removes: { label: 'Removes Course (Year 9)', count: '34 lessons · 6 units', description: 'AI literacy, ethics & real-world skills' },
+      fluency: { label: 'AI Fluency Track', count: '20 lessons', description: 'Self-directed AI fluency pathway' }
+    }[track];
+
+    // Build a formatted date
+    var d = new Date(date);
+    var prettyDate = isNaN(d.getTime()) ? date : d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+    // Sanity-check the cert-id against the claimed date
+    var expectedFragment = date.replace(/-/g, '');
+    var idMatchesDate = certId.indexOf(expectedFragment) !== -1;
+
+    root.innerHTML =
+      '<div class="verify-badge"><span>✓</span> Verified credential</div>' +
+      '<div class="verify-cert">' +
+        '<div class="verify-watermark">DI</div>' +
+        '<div class="verify-header">' +
+          '<img class="hby-mark hby-mark--header" src="assets/brand/logo/haileybury-magenta.png" alt="Haileybury" width="22" height="16">' +
+          '<span class="verify-issuer">Haileybury · Digital Innovations</span>' +
+        '</div>' +
+        '<div class="verify-label">Certificate of Completion</div>' +
+        '<div class="verify-presented">Presented to</div>' +
+        '<div class="verify-recipient">' + esc(name) + '</div>' +
+        '<div class="verify-course">has completed the</div>' +
+        '<div class="verify-course-main">' + esc(trackMeta.label) + '</div>' +
+        '<div class="verify-detail">' + esc(trackMeta.count) + ' · ' + esc(trackMeta.description) + '</div>' +
+        '<div class="verify-divider"></div>' +
+        '<div class="verify-footer">' +
+          '<div><div class="verify-date">' + esc(prettyDate) + '</div><div class="verify-date-label">Date completed</div></div>' +
+          '<div><div class="verify-id">' + esc(certId) + '</div><div class="verify-id-label">Certificate ID</div></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="verify-meta">' +
+        '<strong>About this credential.</strong> This page displays a credential issued by the Digital Innovations programme at Haileybury. The certificate ID encodes the completion date; this page checks the two match (' + (idMatchesDate ? 'they do' : '<span style="color:#ef4444">they do not</span>') + '). This is a civility-level verification designed to make credentials shareable — it is not a cryptographic proof. For formal verification, contact the programme lead.' +
+      '</div>' +
+      '<a class="verify-back" href="index.html">Back to Digital Innovations</a>';
+
+    function esc(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+  })();
+  </script>
+</body>
+</html>

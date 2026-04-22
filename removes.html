@@ -245,7 +245,7 @@
       *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
       body{background:#fff !important}
       .gs-shell{max-width:100%;padding:0}
-      .gs-header,.gs-back,.gs-progress-wrap,.gs-track,.gs-hero,.gs-unit-label,.gs-complete-icon,.gs-complete h2,.gs-complete>p,.gs-cert-name-row,.gs-print-btn,#gsModal,.offline-banner{display:none !important}
+      .gs-header,.gs-back,.gs-progress-wrap,.gs-track,.gs-review-panel,.gs-hero,.gs-unit-label,.gs-complete-icon,.gs-complete h2,.gs-complete>p,.gs-cert-name-row,.gs-print-btn,#gsShareBtn,#gsModal,.offline-banner{display:none !important}
       .gs-complete{display:block !important;border:none;padding:0;background:#fff}
       .gs-cert-card{max-width:100%;margin:0;border:3px solid var(--track-primary-dark) !important;background:linear-gradient(145deg,rgba(var(--track-primary-rgb),.08),rgba(255,255,255,1)) !important;padding:60px}
     }
@@ -260,6 +260,7 @@
       <img class="hby-mark hby-mark--header" src="assets/brand/logo/haileybury-magenta.png" alt="Haileybury" width="22" height="16">
       <span class="gs-brand">Digital Innovations</span>
       <span class="gs-header-title">Removes 🌱</span>
+      <a class="btn btn-ghost btn-sm" href="portfolio.html?t=removes" style="margin-left:10px" title="Your notes, exit tickets and progress — save as PDF">📄 Portfolio</a>
     </div>
 
     <div class="gs-progress-wrap">
@@ -303,6 +304,7 @@
         </div>
       </div>
       <button class="gs-print-btn" onclick="window.print()">🖨 Print Certificate</button>
+      <button class="gs-print-btn" id="gsShareBtn" onclick="gsShareCredential()" style="margin-left:8px;background:var(--bg-card);color:var(--track-primary);border:1.5px solid var(--track-primary)">🔗 Copy share link</button>
     </div>
 
     <div class="gs-hero" id="gsHero">
@@ -345,6 +347,7 @@
     </div>
   </div>
 
+  <script src="js/slide-utils.js"></script>
   <script src="js/slides-gcse.js"></script>
   <script src="js/tts.js" defer></script>
   <script>
@@ -587,7 +590,7 @@
     if (dateEl) dateEl.textContent = new Date(completedDate).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
     var certId = localStorage.getItem('gs_cert_id');
     if (!certId) {
-      certId = 'DI-Y10-' + completedDate.replace(/-/g,'') + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
+      certId = 'DI-REMOVES-' + completedDate.replace(/-/g,'') + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
       localStorage.setItem('gs_cert_id', certId);
     }
     var idEl = document.getElementById('gsCertId');
@@ -597,6 +600,34 @@
     if (inp && savedName) inp.value = savedName;
     gsUpdateCertName(savedName);
     localStorage.setItem('gs_completed_date', completedDate);
+  }
+
+  /* Builds the public verification URL for this pupil's cert.
+     Stateless — the URL contains everything verify.html needs. */
+  function gsBuildShareURL() {
+    var name = (localStorage.getItem('gs_cert_name') || '').trim();
+    var date = localStorage.getItem('gs_completed_date') || new Date().toISOString().slice(0,10);
+    var id   = localStorage.getItem('gs_cert_id') || '';
+    if (!name || !id) return '';
+    var base = window.location.href.replace(/removes\.html.*$/, '');
+    return base + 'verify.html?t=removes&id=' + encodeURIComponent(id) +
+           '&name=' + encodeURIComponent(name) + '&date=' + encodeURIComponent(date);
+  }
+
+  function gsShareCredential() {
+    var url = gsBuildShareURL();
+    if (!url) { alert('Add your name first, then you can share the credential.'); return; }
+    var btn = document.getElementById('gsShareBtn');
+    var done = function(msg) {
+      if (btn) { var old = btn.textContent; btn.textContent = msg; setTimeout(function(){ btn.textContent = old; }, 1800); }
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function(){ done('✓ Link copied'); }).catch(function(){ done('Copy failed'); });
+    } else {
+      var ta = document.createElement('textarea'); ta.value = url; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done('✓ Link copied'); } catch(e) { done('Copy failed'); }
+      document.body.removeChild(ta);
+    }
   }
 
   function gsUpdateCertName(val) {
@@ -706,33 +737,16 @@
   function gsPrevSlide() { if(gsSlideIdx>0){gsSlideIdx--;gsRenderSlide();} }
   function gsJumpSlide(i) { gsSlideIdx=i; gsRenderSlide(); }
 
+  /* These four used to be per-engine copies — now delegate to the
+     shared helpers in js/slide-utils.js so Removes, Fluency (and
+     eventually AEP) stop drifting on the same logic. */
   function gsRevealHTML(slide) {
-    if (!slide || !slide.reveal) return '';
     var rid = 'gsRev_' + gsCurrentId + '_' + gsSlideIdx;
-    var label = slide.revealLabel || '💡 Click to reveal answer';
-    return '<button class="slide-reveal-btn" id="'+rid+'_btn" onclick="gsToggleReveal(\''+rid+'\')">'+label+'</button>' +
-           '<div class="slide-reveal" id="'+rid+'" style="display:none">'+slide.reveal+'</div>';
+    return window.diSlide.revealHTML(slide, rid, 'gsToggleReveal');
   }
-
-  function gsSourcesHTML(slide) {
-    if (!slide || !slide.sources || !slide.sources.length) return '';
-    return '<div class="slide-sources"><span class="slide-sources-label">Sources</span><ul>' +
-      slide.sources.map(function(s){
-        if (typeof s === 'string') return '<li>'+s+'</li>';
-        if (s && s.url) return '<li><a href="'+s.url+'" target="_blank" rel="noopener">'+s.label+'</a></li>';
-        return '<li>'+(s.label||'')+'</li>';
-      }).join('') + '</ul></div>';
-  }
-
-  function gsToggleReveal(id) {
-    var el = document.getElementById(id);
-    var btn = document.getElementById(id+'_btn');
-    if (!el) return;
-    if (el.style.display === 'none') { el.style.display='block'; if(btn)btn.classList.add('revealed'); }
-    else { el.style.display='none'; if(btn)btn.classList.remove('revealed'); }
-  }
-
-  function gsEscape(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function gsSourcesHTML(slide) { return window.diSlide.sourcesHTML(slide); }
+  function gsToggleReveal(id)   { return window.diSlide.toggleReveal(id); }
+  function gsEscape(s)          { return window.diSlide.escape(s); }
 
   function gsWidgetHTML(slide){
     var w = slide.widget;
@@ -784,7 +798,182 @@
         '<div id="gsClScore" class="cl-score"></div>'+
       '</div>';
     }
+    if (w==='prompt-clinic') {
+      return '<div class="widget">'+
+        (slide.intro?'<p class="cl-intro">'+gsEscape(slide.intro)+'</p>':'')+
+        '<textarea class="widget-input" id="gsPcIn" rows="6" placeholder="Paste a prompt here — the clinic checks it against PTFC (Persona / Task / Format / Context) and gives three specific critiques."></textarea>'+
+        '<div class="widget-actions"><button class="widget-btn widget-btn-primary" onclick="gsPcRun()">Get critique</button><button class="widget-btn" onclick="gsPcLoadWeak()">Load weak prompt</button><button class="widget-btn" onclick="gsPcClear()">Clear</button></div>'+
+        '<div id="gsPcOut" class="widget-output" style="display:none;margin-top:14px"></div>'+
+      '</div>';
+    }
+    if (w==='misuse-detector') {
+      return '<div class="widget">'+
+        (slide.intro?'<p class="cl-intro">'+gsEscape(slide.intro)+'</p>':'')+
+        '<textarea class="widget-input" id="gsMisuseIn" rows="8" placeholder="Paste a paragraph of text here…" style="width:100%;min-height:160px;resize:vertical"></textarea>'+
+        '<div class="widget-actions"><button class="widget-btn widget-btn-primary" onclick="gsMisuseAnalyze()">Analyse</button><button class="widget-btn" onclick="gsMisuseSample()">Load AI-like sample</button><button class="widget-btn" onclick="gsMisuseClear()">Clear</button></div>'+
+        '<div id="gsMisuseOut" class="widget-output" style="display:none;margin-top:14px"></div>'+
+      '</div>';
+    }
     return '';
+  }
+
+  /* ── Misuse-detector analyser ─────────────────────────
+     Heuristic only — mirrors the signals the course itself
+     teaches pupils to look for. Explicitly not a fraud tool;
+     the output frames the signals as probabilities, not verdicts. */
+  var GS_AI_WORDS = ['delve','delving','intricate','tapestry','navigate','navigating','landscape','revolutionize','revolutionise','facet','multifaceted','nuanced','crucial','pivotal','underscore','underscores','testament','symphony','realm','in summary','in conclusion','it is important to note','leverage','furthermore','moreover'];
+  function gsMisuseAnalyze() {
+    var text = (document.getElementById('gsMisuseIn') || {}).value || '';
+    var out = document.getElementById('gsMisuseOut');
+    if (!out) return;
+    if (!text.trim() || text.length < 80) {
+      out.style.display = 'block';
+      out.innerHTML = '<strong>Too short to analyse.</strong> Paste at least 80 characters — ideally a full paragraph or two.';
+      return;
+    }
+    var emDashes = (text.match(/—/g) || []).length;
+    var sentences = text.split(/[.!?]+\s+/).filter(function(s){return s.trim().length > 8;});
+    var wordCounts = sentences.map(function(s){ return s.trim().split(/\s+/).length; });
+    var mean = wordCounts.reduce(function(a,b){return a+b;},0) / (wordCounts.length || 1);
+    var variance = wordCounts.reduce(function(a,b){return a+(b-mean)*(b-mean);},0) / (wordCounts.length || 1);
+    var stdev = Math.sqrt(variance);
+    var cv = mean > 0 ? (stdev / mean) : 0;
+    var lower = text.toLowerCase();
+    var overusedHits = GS_AI_WORDS.filter(function(w){ return lower.indexOf(w) !== -1; });
+    var score = 0;
+    var flags = [];
+    if (emDashes >= 3) { score += 2; flags.push('<strong>Em-dashes:</strong> ' + emDashes + ' in this passage. AI writers lean on — heavily; a human usually uses one or two per page.'); }
+    else if (emDashes === 0 && text.length > 400) { flags.push('<strong>Em-dashes:</strong> none — that\'s fine, but human writing often has at least one in a long passage.'); }
+    if (sentences.length >= 4 && cv < 0.35) { score += 2; flags.push('<strong>Sentence length:</strong> very uniform (coefficient of variation ≈ ' + cv.toFixed(2) + '). AI often produces sentences of roughly the same length; human writing varies more.'); }
+    else if (sentences.length >= 4) { flags.push('<strong>Sentence length:</strong> varied (CV ≈ ' + cv.toFixed(2) + ') — that\'s a <em>human</em> signal.'); }
+    if (overusedHits.length >= 3) { score += 2; flags.push('<strong>Overused words:</strong> ' + overusedHits.slice(0, 6).map(function(w){return '"'+w+'"';}).join(', ') + (overusedHits.length > 6 ? ' and ' + (overusedHits.length - 6) + ' more' : '') + '. These cluster strongly in AI output.'); }
+    else if (overusedHits.length > 0) { flags.push('<strong>Overused words:</strong> ' + overusedHits.map(function(w){return '"'+w+'"';}).join(', ') + ' — one or two of these is fine in human writing.'); }
+    var verdict, verdictColour;
+    if (score >= 5) { verdict = 'Strong AI signals.'; verdictColour = '#ef4444'; }
+    else if (score >= 3) { verdict = 'Some AI signals.'; verdictColour = '#f59e0b'; }
+    else { verdict = 'Low AI signals.'; verdictColour = 'var(--track-primary)'; }
+    out.style.display = 'block';
+    out.innerHTML =
+      '<div style="font-weight:800;color:' + verdictColour + ';font-size:1.05rem;margin-bottom:8px">' + verdict + ' (signal score ' + score + '/6)</div>' +
+      (flags.length ? '<ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px">' + flags.map(function(f){return '<li style="font-size:.85rem;line-height:1.5">' + f + '</li>';}).join('') + '</ul>' : '<div style="font-size:.85rem;color:var(--text-dim)">No individual flags triggered.</div>') +
+      '<div style="margin-top:12px;padding:10px 12px;background:rgba(var(--track-primary-rgb),.06);border-left:3px solid var(--track-primary);border-radius:0 6px 6px 0;font-size:.8rem;line-height:1.5"><strong>What this is, and isn\'t.</strong> This is a heuristic check on the specific signals this course teaches — not a verdict. Every signal here can appear in perfectly good human writing. Use it to build your <em>ear</em> for AI-written prose, not to accuse a classmate.</div>';
+  }
+  function gsMisuseSample() {
+    var el = document.getElementById('gsMisuseIn');
+    if (el) el.value = 'In today\'s rapidly changing landscape, it is crucial to delve into the intricate tapestry of artificial intelligence — a truly multifaceted and nuanced phenomenon. Furthermore, we must navigate the complex ethical considerations — which, in turn, underscore the pivotal role of responsible deployment. Moreover, this testament to human ingenuity revolutionises our understanding — and serves as a symphony of innovation that reshapes every realm of modern life. In conclusion, we should leverage these tools thoughtfully.';
+    gsMisuseAnalyze();
+  }
+  function gsMisuseClear() {
+    var el = document.getElementById('gsMisuseIn');
+    if (el) el.value = '';
+    var out = document.getElementById('gsMisuseOut');
+    if (out) { out.style.display = 'none'; out.innerHTML = ''; }
+  }
+
+  /* ── Prompt clinic — heuristic PTFC scorer ────────────
+     Grades a pasted prompt 0/1/2 on each of Persona, Task,
+     Format, Context and returns three specific critiques
+     focused on the weakest slots, plus an improved example. */
+  function gsPcScore(prompt) {
+    var text = (prompt || '').trim();
+    var lower = text.toLowerCase();
+    var score = { persona: 0, task: 0, format: 0, context: 0 };
+
+    // Persona — role assignment
+    if (/\b(act as|you are|pretend to be|imagine you are|take the role of|behave as)\b/i.test(text)) score.persona = 1;
+    if (/\b(act as|you are).{1,50}(teacher|tutor|examiner|expert|coach|editor|historian|scientist|developer|researcher|student|journalist|author|engineer|lawyer|doctor|designer|specialist|marker)\b/i.test(text)) score.persona = 2;
+
+    // Task — imperative verb
+    var taskVerbs = /\b(explain|summarise|summarize|list|write|outline|describe|compare|contrast|analyse|analyze|plan|draft|create|generate|design|critique|evaluate|rewrite|translate|solve|calculate|teach|help me|show me|give me)\b/i;
+    if (taskVerbs.test(text)) score.task = 1;
+    // Specific task = imperative + a noun object
+    if (taskVerbs.test(text) && text.length > 30) score.task = 2;
+
+    // Format — explicit output format
+    var formatSignals = /\b(bullet(s)?|numbered list|steps|table|paragraphs?|words?|sentences?|heading(s)?|section(s)?|markdown|json|essay|outline|in no more than|in at most|in \d+ (words?|sentences?|paragraphs?|bullets?)|as a list|in a table|q\/a|mark scheme|mark-scheme|rubric)\b/i;
+    if (formatSignals.test(lower)) score.format = 1;
+    if (/\bin \d+ (words?|sentences?|paragraphs?|bullets?|steps?|headings?)/i.test(lower) || /\btable with \d+/.test(lower)) score.format = 2;
+
+    // Context — subject / level / topic / constraints
+    var contextSignals = /\b(year 7|year 8|year 9|year 10|year 11|year 12|year 13|removes|ks3|ks4|ks5|gcse|a ?level|a-?level|aqa|edexcel|ocr|btec|for (a|an) (\d+-year|year \d|ks)|specification|spec|exam board|my student|my pupil|my class|the topic is|the context is|with an audience of|audience:|audience is|for a|in the context of)\b/i;
+    if (contextSignals.test(lower)) score.context = 1;
+    if (/\b(year \d+\s+(aqa|edexcel|ocr|wjec|btec|qcf|gcse|a-?level|gcse|alevel))|(year \d+.*(aqa|edexcel|ocr|wjec)).{0,60}\b/i.test(lower)) score.context = 2;
+    if (score.context === 1 && /\b(topic|revision|homework|essay|coursework|bdsm|history|biology|chemistry|physics|maths|english|geography|ict|computing|french|spanish|latin|mfl|psychology|business)\b/i.test(lower)) score.context = 2;
+
+    return score;
+  }
+
+  function gsPcRun() {
+    var text = ((document.getElementById('gsPcIn') || {}).value || '').trim();
+    var out = document.getElementById('gsPcOut');
+    if (!out) return;
+    if (!text || text.length < 10) {
+      out.style.display = 'block';
+      out.innerHTML = '<strong>Paste a prompt first.</strong> The clinic grades at least a short sentence — a single word won\'t tell us anything useful.';
+      return;
+    }
+    var s = gsPcScore(text);
+    var total = s.persona + s.task + s.format + s.context;
+    var pct = Math.round(total / 8 * 100);
+
+    var weaknesses = [
+      { key: 'persona', label: 'Persona', score: s.persona, tip: s.persona === 0 ? 'No role is assigned. Try opening with <em>"Act as an experienced AQA GCSE [subject] examiner…"</em> — this alone typically improves output quality because the model shifts into the right vocabulary.' : 'Role is named but vague. Add a specific variant: "Act as a friendly GCSE Biology tutor who explains step by step" rather than "be helpful".' },
+      { key: 'task',    label: 'Task',    score: s.task,    tip: s.task === 0 ? 'There is no clear instruction verb. Start with an imperative: <em>"Summarise…"</em>, <em>"Explain…"</em>, <em>"Write…"</em>. Without this, the model guesses what you want.' : 'Task is present but could be more specific — say <em>what</em> to summarise and <em>how deeply</em>.' },
+      { key: 'format',  label: 'Format',  score: s.format,  tip: s.format === 0 ? 'No output format is specified. Add one: <em>"as a 5-bullet list"</em>, <em>"in 3 numbered steps with one sentence each"</em>, <em>"as a 50-word paragraph"</em>. This alone usually cuts waffle in half.' : 'Format is mentioned. Be a bit more concrete — actual numbers ("in 5 bullets", "in 120 words") beat vague cues ("a list").' },
+      { key: 'context', label: 'Context', score: s.context, tip: s.context === 0 ? 'No context is given. Tell the model who you are and what exam: <em>"I\'m a Year 10 AQA GCSE History student revising the Norman Conquest."</em> This unlocks the right level of vocabulary and depth.' : 'Context is there but sparse. Add the exam board, specification reference or the specific topic — not just "GCSE".' }
+    ];
+    var weakSorted = weaknesses.slice().sort(function(a, b) { return a.score - b.score; });
+    var topThree = weakSorted.slice(0, 3);
+
+    var improved = gsPcImprove(text, s);
+
+    out.style.display = 'block';
+    out.innerHTML =
+      '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px">' +
+        ['persona','task','format','context'].map(function(k) {
+          var v = s[k];
+          var colour = v === 2 ? 'var(--track-primary)' : v === 1 ? '#f59e0b' : '#ef4444';
+          var label = v === 2 ? 'Strong' : v === 1 ? 'Vague' : 'Missing';
+          return '<div style="text-align:center;padding:10px 4px;background:rgba(var(--track-primary-rgb),.04);border-radius:8px;border-top:3px solid ' + colour + '">' +
+            '<div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim)">' + k.charAt(0).toUpperCase() + k.slice(1) + '</div>' +
+            '<div style="font-weight:800;color:' + colour + ';margin-top:4px">' + label + '</div>' +
+          '</div>';
+        }).join('') +
+      '</div>' +
+      '<div style="font-weight:700;margin-bottom:8px">Overall: ' + total + ' / 8 (' + pct + '%)</div>' +
+      '<div style="font-size:.85rem;font-weight:700;color:var(--text);margin:14px 0 6px">Three things to change</div>' +
+      '<ol style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px">' +
+        topThree.map(function(w) { return '<li style="font-size:.87rem;line-height:1.55"><strong>' + w.label + '.</strong> ' + w.tip + '</li>'; }).join('') +
+      '</ol>' +
+      '<div style="font-size:.85rem;font-weight:700;color:var(--text);margin:16px 0 6px">A stronger version might read:</div>' +
+      '<div style="padding:12px 14px;background:rgba(var(--track-primary-rgb),.06);border-left:3px solid var(--track-primary);border-radius:0 6px 6px 0;font-size:.85rem;line-height:1.6;white-space:pre-wrap">' + gsEscape(improved) + '</div>' +
+      '<div style="margin-top:12px;font-size:.75rem;color:var(--text-dim);line-height:1.5">This clinic runs on-device — no prompt leaves your browser. It\'s a heuristic check against the PTFC framework, not a rewrite by an AI.</div>';
+  }
+
+  function gsPcImprove(text, s) {
+    // Build a scaffolded version by filling in missing slots with
+    // placeholders. We don't invent content — we show the skeleton.
+    var lines = [];
+    if (s.persona < 2) lines.push('[Persona] Act as an experienced AQA GCSE [your subject] examiner who explains things step-by-step.');
+    if (s.task < 2)    lines.push('[Task] ' + (s.task === 0 ? 'Explain / Summarise / Write / Plan …' : text.replace(/\n/g, ' ').slice(0, 120)));
+    if (s.format < 2)  lines.push('[Format] Give me a 2-sentence overview, then 4 numbered steps (1 sentence each), then 3 self-test questions with answers.');
+    if (s.context < 2) lines.push('[Context] I\'m a Year 9 Removes pupil revising [topic]. I already understand [what you know]; the specific thing I keep getting wrong is [what confuses you].');
+    // If all were strong, praise:
+    if (!lines.length) return 'Your prompt already covers all four PTFC parts strongly. Well done — this is publication-quality prompting. The only thing left is to try variations and see which produces the best response.';
+    lines.push('[Original prompt]: ' + text);
+    return lines.join('\n');
+  }
+
+  function gsPcLoadWeak() {
+    var el = document.getElementById('gsPcIn');
+    if (el) el.value = 'explain photosynthesis';
+    gsPcRun();
+  }
+  function gsPcClear() {
+    var el = document.getElementById('gsPcIn');
+    if (el) el.value = '';
+    var out = document.getElementById('gsPcOut');
+    if (out) { out.style.display = 'none'; out.innerHTML = ''; }
   }
 
   function gsPtfcAssemble(){
