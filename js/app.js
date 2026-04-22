@@ -4,6 +4,23 @@ const STORAGE_KEY      = 'di_progress';
 const STREAK_KEY       = 'di_streak';
 const COMPLETION_DATES_KEY = 'di_completion_dates';
 
+/* Safe JSON parser for localStorage.
+   If a stored value is corrupt or missing, return the fallback
+   AND quietly remove the bad key so we don't hit the same error
+   every time the app loads. */
+function safeParse(key, fallback) {
+  try {
+    var raw = localStorage.getItem(key);
+    if (raw == null || raw === '') return fallback;
+    var parsed = JSON.parse(raw);
+    return parsed === null || parsed === undefined ? fallback : parsed;
+  } catch(e) {
+    try { localStorage.removeItem(key); } catch(_) {}
+    console.warn('[di] Corrupt localStorage at', key, '— reset to default.');
+    return fallback;
+  }
+}
+
 /* ── Sequential display numbering ──────────────── */
 // Maps lesson.id → 1-based position in course order (for display only)
 var LESSON_NUM_MAP = (function() {
@@ -90,32 +107,28 @@ function getSpacedReviewDue() {
   return due.sort(function(a, b) { return b.daysSince - a.daysSince; });
 }
 function getLastReviewDate(lessonId) {
-  try {
-    var reviews = JSON.parse(localStorage.getItem('di_reviews') || '{}');
-    return reviews[lessonId] || null;
-  } catch { return null; }
+  var reviews = safeParse('di_reviews', {});
+  return reviews[lessonId] || null;
 }
 function recordReview(lessonId) {
-  try {
-    var reviews = JSON.parse(localStorage.getItem('di_reviews') || '{}');
-    reviews[lessonId] = new Date().toISOString();
-    localStorage.setItem('di_reviews', JSON.stringify(reviews));
-  } catch {}
+  var reviews = safeParse('di_reviews', {});
+  reviews[lessonId] = new Date().toISOString();
+  try { localStorage.setItem('di_reviews', JSON.stringify(reviews)); } catch(e) {}
 }
 function updateStreak() {
-  var data = JSON.parse(localStorage.getItem(STREAK_KEY) || '{"last":"","count":0,"days":[]}');
+  var data = safeParse(STREAK_KEY, { last: '', count: 0, days: [] });
   var today = new Date().toISOString().slice(0, 10);
   var yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
   if (!data.days) data.days = [];
   if (!data.days.includes(today)) data.days.push(today);
   if (data.days.length > 90) data.days = data.days.slice(-90);
-  if (data.last === today) { localStorage.setItem(STREAK_KEY, JSON.stringify(data)); return; }
+  if (data.last === today) { try { localStorage.setItem(STREAK_KEY, JSON.stringify(data)); } catch(e){} return; }
   data.count = data.last === yesterday ? data.count + 1 : 1;
   data.last = today;
-  localStorage.setItem(STREAK_KEY, JSON.stringify(data));
+  try { localStorage.setItem(STREAK_KEY, JSON.stringify(data)); } catch(e){}
 }
 function getStreak() {
-  const data = JSON.parse(localStorage.getItem(STREAK_KEY) || '{"last":"","count":0}');
+  const data = safeParse(STREAK_KEY, { last: '', count: 0 });
   const today = new Date().toISOString().slice(0, 10);
   const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
   return (data.last === today || data.last === yesterday) ? data.count : 0;
