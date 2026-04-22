@@ -259,7 +259,7 @@
       .fl-shell { max-width:100%; padding:0; }
       .fl-header, .fl-back, .fl-progress-wrap, .fl-track, .fl-hero,
       .fl-section-label, .fl-complete-icon, .fl-complete h2, .fl-complete > p,
-      .fl-cert-name-row, .fl-print-btn, #lessonModal, .offline-banner { display:none !important; }
+      .fl-cert-name-row, .fl-print-btn, #flShareBtn, #lessonModal, .offline-banner { display:none !important; }
       .fl-complete { display:block !important; border:none; padding:0; background:#fff; }
       .fl-cert-card {
         max-width:100%; margin:0; border:3px solid var(--track-primary-dark) !important;
@@ -346,6 +346,7 @@
         </div>
       </div>
       <button class="fl-print-btn" onclick="window.print()">🖨 Print Certificate</button>
+      <button class="fl-print-btn" id="flShareBtn" onclick="flShareCredential()" style="margin-left:8px;background:var(--bg-card);color:var(--track-primary);border:1.5px solid var(--track-primary)">🔗 Copy share link</button>
     </div>
 
     <!-- Hero (hidden once track started) -->
@@ -592,6 +593,32 @@
     var recipient = document.getElementById('flCertRecipient');
     if (recipient) recipient.textContent = val && val.trim() ? val.trim() : '—';
     if (val && val.trim()) localStorage.setItem('fl_cert_name', val.trim());
+  }
+
+  function flBuildShareURL() {
+    var name = (localStorage.getItem('fl_cert_name') || '').trim();
+    var date = localStorage.getItem('fl_completed_date') || new Date().toISOString().slice(0,10);
+    var id   = localStorage.getItem('fl_cert_id') || '';
+    if (!name || !id) return '';
+    var base = window.location.href.replace(/fluency\.html.*$/, '');
+    return base + 'verify.html?t=fluency&id=' + encodeURIComponent(id) +
+           '&name=' + encodeURIComponent(name) + '&date=' + encodeURIComponent(date);
+  }
+
+  function flShareCredential() {
+    var url = flBuildShareURL();
+    if (!url) { alert('Add your name first, then you can share the credential.'); return; }
+    var btn = document.getElementById('flShareBtn');
+    var done = function(msg) {
+      if (btn) { var old = btn.textContent; btn.textContent = msg; setTimeout(function(){ btn.textContent = old; }, 1800); }
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function(){ done('✓ Link copied'); }).catch(function(){ done('Copy failed'); });
+    } else {
+      var ta = document.createElement('textarea'); ta.value = url; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done('✓ Link copied'); } catch(e) { done('Copy failed'); }
+      document.body.removeChild(ta);
+    }
   }
 
   // ── Lesson modal ─────────────────────────────

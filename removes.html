@@ -245,7 +245,7 @@
       *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
       body{background:#fff !important}
       .gs-shell{max-width:100%;padding:0}
-      .gs-header,.gs-back,.gs-progress-wrap,.gs-track,.gs-hero,.gs-unit-label,.gs-complete-icon,.gs-complete h2,.gs-complete>p,.gs-cert-name-row,.gs-print-btn,#gsModal,.offline-banner{display:none !important}
+      .gs-header,.gs-back,.gs-progress-wrap,.gs-track,.gs-review-panel,.gs-hero,.gs-unit-label,.gs-complete-icon,.gs-complete h2,.gs-complete>p,.gs-cert-name-row,.gs-print-btn,#gsShareBtn,#gsModal,.offline-banner{display:none !important}
       .gs-complete{display:block !important;border:none;padding:0;background:#fff}
       .gs-cert-card{max-width:100%;margin:0;border:3px solid var(--track-primary-dark) !important;background:linear-gradient(145deg,rgba(var(--track-primary-rgb),.08),rgba(255,255,255,1)) !important;padding:60px}
     }
@@ -303,6 +303,7 @@
         </div>
       </div>
       <button class="gs-print-btn" onclick="window.print()">🖨 Print Certificate</button>
+      <button class="gs-print-btn" id="gsShareBtn" onclick="gsShareCredential()" style="margin-left:8px;background:var(--bg-card);color:var(--track-primary);border:1.5px solid var(--track-primary)">🔗 Copy share link</button>
     </div>
 
     <div class="gs-hero" id="gsHero">
@@ -587,7 +588,7 @@
     if (dateEl) dateEl.textContent = new Date(completedDate).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
     var certId = localStorage.getItem('gs_cert_id');
     if (!certId) {
-      certId = 'DI-Y10-' + completedDate.replace(/-/g,'') + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
+      certId = 'DI-REMOVES-' + completedDate.replace(/-/g,'') + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
       localStorage.setItem('gs_cert_id', certId);
     }
     var idEl = document.getElementById('gsCertId');
@@ -597,6 +598,34 @@
     if (inp && savedName) inp.value = savedName;
     gsUpdateCertName(savedName);
     localStorage.setItem('gs_completed_date', completedDate);
+  }
+
+  /* Builds the public verification URL for this pupil's cert.
+     Stateless — the URL contains everything verify.html needs. */
+  function gsBuildShareURL() {
+    var name = (localStorage.getItem('gs_cert_name') || '').trim();
+    var date = localStorage.getItem('gs_completed_date') || new Date().toISOString().slice(0,10);
+    var id   = localStorage.getItem('gs_cert_id') || '';
+    if (!name || !id) return '';
+    var base = window.location.href.replace(/removes\.html.*$/, '');
+    return base + 'verify.html?t=removes&id=' + encodeURIComponent(id) +
+           '&name=' + encodeURIComponent(name) + '&date=' + encodeURIComponent(date);
+  }
+
+  function gsShareCredential() {
+    var url = gsBuildShareURL();
+    if (!url) { alert('Add your name first, then you can share the credential.'); return; }
+    var btn = document.getElementById('gsShareBtn');
+    var done = function(msg) {
+      if (btn) { var old = btn.textContent; btn.textContent = msg; setTimeout(function(){ btn.textContent = old; }, 1800); }
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function(){ done('✓ Link copied'); }).catch(function(){ done('Copy failed'); });
+    } else {
+      var ta = document.createElement('textarea'); ta.value = url; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done('✓ Link copied'); } catch(e) { done('Copy failed'); }
+      document.body.removeChild(ta);
+    }
   }
 
   function gsUpdateCertName(val) {
