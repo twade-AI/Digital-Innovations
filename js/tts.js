@@ -115,15 +115,23 @@
     if (ic) ic.textContent = '⏹';
   }
 
-  // Watch for modals opening and slide changes. We use a simple
-  // MutationObserver on body to catch class toggles on the modals.
+  // Watch only the three lesson-modal elements directly for 'class'
+  // attribute flips (e.g. the 'open' toggle when a lesson starts /
+  // closes). Watching document.body with subtree:true would fire on
+  // every hover, every quiz click, every dot update — enough to tie
+  // up the main thread under load. Scoped observers are cheap.
   function watch() {
-    var mo = new MutationObserver(function () {
+    var handler = function () {
       var modal = findOpenModal();
       if (modal) injectButton(modal);
       else stopSpeak(); // modal closed — stop any audio mid-sentence
+    };
+    MODAL_IDS.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var mo = new MutationObserver(handler);
+      mo.observe(el, { attributes: true, attributeFilter: ['class'] });
     });
-    mo.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class'] });
   }
 
   // Keyboard shortcut: Shift+L toggles within any open modal.
