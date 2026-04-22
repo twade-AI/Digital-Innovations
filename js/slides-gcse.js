@@ -1089,13 +1089,13 @@ SLIDES_GCSE[109] = [
     type: 'quiz',
     question: 'Why is testing yourself with AI-generated questions more effective than re-reading your notes?',
     options: [
-      'AI questions are always identical to real exam questions',
-      'Re-reading uses more time so testing is more efficient',
+      'Because AI questions are always harder than real exam questions, so they prepare you for the worst case',
+      'Because re-reading your notes makes them feel familiar, which isn\'t the same as being able to recall them under pressure',
       'The effort of retrieving information from memory strengthens it — passive reading doesn\'t',
-      'AI quizzes are marked automatically, saving time'
+      'Because AI explanations are more reliable than a textbook, so you learn the correct answer either way'
     ],
     correct: 2,
-    explanation: 'Retrieval practice (the testing effect) works because the effort of struggling to remember something strengthens the memory trace. Re-reading is passive — you recognise information without having to retrieve it, which creates an illusion of fluency. Getting a question wrong and learning the right answer is especially powerful for long-term retention — this is called error-driven learning.'
+    explanation: 'Retrieval practice (the testing effect) works because the effort of struggling to remember something strengthens the memory trace. Re-reading is passive — you recognise information without having to retrieve it, which creates an illusion of fluency. Option B is the seductive wrong answer: the "familiarity vs. recall" distinction is real, but it\'s a side-effect, not the mechanism — the mechanism is the effort of retrieval. Options A and D both sound plausible but mix up properties of the tool (question difficulty, explanation accuracy) with the underlying learning science. Getting a question wrong and learning the right answer is especially powerful for long-term retention — this is called error-driven learning.'
   },
   {
     type: 'summary',
