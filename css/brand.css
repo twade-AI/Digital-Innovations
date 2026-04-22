@@ -92,6 +92,11 @@ body[data-track="fluency"]{
 .hby-mark--footer{height:32px;opacity:.95}
 .hby-mark--header{height:22px;margin-right:6px}
 
+/* ── Text-to-speech listen button ─ */
+.di-tts-btn{gap:6px;font-size:.78rem;padding:6px 12px}
+.di-tts-btn.di-tts-playing{background:rgba(var(--primary-rgb),.12);color:var(--primary);border-color:var(--primary)}
+.di-tts-btn .di-tts-icon{font-size:1rem;line-height:1}
+
 /* ── Home flourishes — all scoped to #section-home, additive only ───── */
 
 /* 1. Aurora behind pathway-header */
