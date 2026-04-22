@@ -67,6 +67,19 @@ body[data-track="fluency"]{
   --track-primary-soft:#fcd34d;
   --track-primary-rgb:245,158,11;
 }
+/* Light-theme track overrides — the dark-theme values above
+   are bright enough to pass AA on #0f172a, but on a near-white
+   background they drop below 4.5:1. Use a deeper shade. */
+[data-theme="light"] body[data-track="removes"]{
+  --track-primary:#047857; /* 5.3:1 on #f8fafc */
+  --track-primary-dark:#065f46;
+  --track-primary-rgb:4,120,87;
+}
+[data-theme="light"] body[data-track="fluency"]{
+  --track-primary:#b45309; /* 4.6:1 on #f8fafc */
+  --track-primary-dark:#92400e;
+  --track-primary-rgb:180,83,9;
+}
 
 /* ── Haileybury crest (nav + footer + track headers) ─
    Small, restrained mark. Magenta PNG renders fine on

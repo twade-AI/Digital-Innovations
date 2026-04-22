@@ -21,6 +21,8 @@
   --font:'Calluna Sans','Inter',system-ui,sans-serif;
   --mono:'JetBrains Mono',monospace;
   --nav-h:64px;
+  /* Link colour — AA-compliant on dark bg (#e86a93 / #0f172a ≈ 5.5:1) */
+  --link:#e86a93;
 }
 
 /* ── High-Contrast Mode ────────────────────────── */
@@ -60,6 +62,8 @@
   --bg:#f8fafc;--bg-card:#ffffff;--bg-card-hover:#f1f5f9;
   --text:#0f172a;--text-muted:#475569;--text-dim:#94a3b8;
   --border:#e2e8f0;--shadow:0 4px 24px rgba(0,0,0,.08);
+  /* On white/near-white bg, the primary magenta gives 6.9:1 — full AAA body text */
+  --link:var(--primary);
 }
 [data-theme="light"] body{
   background-image:radial-gradient(ellipse 900px 500px at 50% -60px,rgba(155,24,68,.06),transparent);
@@ -77,7 +81,8 @@ body{
   /* Subtle aurora glow — the single biggest premium signal */
   background-image:radial-gradient(ellipse 900px 500px at 50% -60px,rgba(155,24,68,.11),transparent);
 }
-a{color:var(--primary-light);text-decoration:none}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
 button{cursor:pointer;font-family:inherit}
 img{max-width:100%}
 
