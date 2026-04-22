@@ -814,7 +814,68 @@
         '<div id="gsClScore" class="cl-score"></div>'+
       '</div>';
     }
+    if (w==='misuse-detector') {
+      return '<div class="widget">'+
+        (slide.intro?'<p class="cl-intro">'+gsEscape(slide.intro)+'</p>':'')+
+        '<textarea class="widget-input" id="gsMisuseIn" rows="8" placeholder="Paste a paragraph of text here…" style="width:100%;min-height:160px;resize:vertical"></textarea>'+
+        '<div class="widget-actions"><button class="widget-btn widget-btn-primary" onclick="gsMisuseAnalyze()">Analyse</button><button class="widget-btn" onclick="gsMisuseSample()">Load AI-like sample</button><button class="widget-btn" onclick="gsMisuseClear()">Clear</button></div>'+
+        '<div id="gsMisuseOut" class="widget-output" style="display:none;margin-top:14px"></div>'+
+      '</div>';
+    }
     return '';
+  }
+
+  /* ── Misuse-detector analyser ─────────────────────────
+     Heuristic only — mirrors the signals the course itself
+     teaches pupils to look for. Explicitly not a fraud tool;
+     the output frames the signals as probabilities, not verdicts. */
+  var GS_AI_WORDS = ['delve','delving','intricate','tapestry','navigate','navigating','landscape','revolutionize','revolutionise','facet','multifaceted','nuanced','crucial','pivotal','underscore','underscores','testament','symphony','realm','in summary','in conclusion','it is important to note','leverage','furthermore','moreover'];
+  function gsMisuseAnalyze() {
+    var text = (document.getElementById('gsMisuseIn') || {}).value || '';
+    var out = document.getElementById('gsMisuseOut');
+    if (!out) return;
+    if (!text.trim() || text.length < 80) {
+      out.style.display = 'block';
+      out.innerHTML = '<strong>Too short to analyse.</strong> Paste at least 80 characters — ideally a full paragraph or two.';
+      return;
+    }
+    var emDashes = (text.match(/—/g) || []).length;
+    var sentences = text.split(/[.!?]+\s+/).filter(function(s){return s.trim().length > 8;});
+    var wordCounts = sentences.map(function(s){ return s.trim().split(/\s+/).length; });
+    var mean = wordCounts.reduce(function(a,b){return a+b;},0) / (wordCounts.length || 1);
+    var variance = wordCounts.reduce(function(a,b){return a+(b-mean)*(b-mean);},0) / (wordCounts.length || 1);
+    var stdev = Math.sqrt(variance);
+    var cv = mean > 0 ? (stdev / mean) : 0;
+    var lower = text.toLowerCase();
+    var overusedHits = GS_AI_WORDS.filter(function(w){ return lower.indexOf(w) !== -1; });
+    var score = 0;
+    var flags = [];
+    if (emDashes >= 3) { score += 2; flags.push('<strong>Em-dashes:</strong> ' + emDashes + ' in this passage. AI writers lean on — heavily; a human usually uses one or two per page.'); }
+    else if (emDashes === 0 && text.length > 400) { flags.push('<strong>Em-dashes:</strong> none — that\'s fine, but human writing often has at least one in a long passage.'); }
+    if (sentences.length >= 4 && cv < 0.35) { score += 2; flags.push('<strong>Sentence length:</strong> very uniform (coefficient of variation ≈ ' + cv.toFixed(2) + '). AI often produces sentences of roughly the same length; human writing varies more.'); }
+    else if (sentences.length >= 4) { flags.push('<strong>Sentence length:</strong> varied (CV ≈ ' + cv.toFixed(2) + ') — that\'s a <em>human</em> signal.'); }
+    if (overusedHits.length >= 3) { score += 2; flags.push('<strong>Overused words:</strong> ' + overusedHits.slice(0, 6).map(function(w){return '"'+w+'"';}).join(', ') + (overusedHits.length > 6 ? ' and ' + (overusedHits.length - 6) + ' more' : '') + '. These cluster strongly in AI output.'); }
+    else if (overusedHits.length > 0) { flags.push('<strong>Overused words:</strong> ' + overusedHits.map(function(w){return '"'+w+'"';}).join(', ') + ' — one or two of these is fine in human writing.'); }
+    var verdict, verdictColour;
+    if (score >= 5) { verdict = 'Strong AI signals.'; verdictColour = '#ef4444'; }
+    else if (score >= 3) { verdict = 'Some AI signals.'; verdictColour = '#f59e0b'; }
+    else { verdict = 'Low AI signals.'; verdictColour = 'var(--track-primary)'; }
+    out.style.display = 'block';
+    out.innerHTML =
+      '<div style="font-weight:800;color:' + verdictColour + ';font-size:1.05rem;margin-bottom:8px">' + verdict + ' (signal score ' + score + '/6)</div>' +
+      (flags.length ? '<ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px">' + flags.map(function(f){return '<li style="font-size:.85rem;line-height:1.5">' + f + '</li>';}).join('') + '</ul>' : '<div style="font-size:.85rem;color:var(--text-dim)">No individual flags triggered.</div>') +
+      '<div style="margin-top:12px;padding:10px 12px;background:rgba(var(--track-primary-rgb),.06);border-left:3px solid var(--track-primary);border-radius:0 6px 6px 0;font-size:.8rem;line-height:1.5"><strong>What this is, and isn\'t.</strong> This is a heuristic check on the specific signals this course teaches — not a verdict. Every signal here can appear in perfectly good human writing. Use it to build your <em>ear</em> for AI-written prose, not to accuse a classmate.</div>';
+  }
+  function gsMisuseSample() {
+    var el = document.getElementById('gsMisuseIn');
+    if (el) el.value = 'In today\'s rapidly changing landscape, it is crucial to delve into the intricate tapestry of artificial intelligence — a truly multifaceted and nuanced phenomenon. Furthermore, we must navigate the complex ethical considerations — which, in turn, underscore the pivotal role of responsible deployment. Moreover, this testament to human ingenuity revolutionises our understanding — and serves as a symphony of innovation that reshapes every realm of modern life. In conclusion, we should leverage these tools thoughtfully.';
+    gsMisuseAnalyze();
+  }
+  function gsMisuseClear() {
+    var el = document.getElementById('gsMisuseIn');
+    if (el) el.value = '';
+    var out = document.getElementById('gsMisuseOut');
+    if (out) { out.style.display = 'none'; out.innerHTML = ''; }
   }
 
   function gsPtfcAssemble(){
