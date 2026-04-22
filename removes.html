@@ -87,7 +87,7 @@
     .gs-cert-date-label{font-size:.68rem;color:var(--text-dim);margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
     .gs-print-btn{background:linear-gradient(135deg,var(--track-primary),var(--track-primary-dark));color:#fff;border:none;border-radius:var(--radius);padding:10px 24px;font-weight:700;cursor:pointer;margin-top:8px;font-size:.9rem}
     .gs-print-btn:hover{background:linear-gradient(135deg,var(--track-primary-dark),var(--track-primary-dark))}
-    .modal-inner{background:var(--bg-card);border-radius:18px;border:1px solid var(--border);box-shadow:0 32px 80px rgba(0,0,0,.55);width:100%;max-width:860px;max-height:90vh;display:flex;flex-direction:column;overflow:hidden}
+    .modal-inner{position:relative;background:var(--bg-card);border-radius:18px;border:1px solid var(--border);box-shadow:0 32px 80px rgba(0,0,0,.55);width:100%;max-width:860px;max-height:90vh;display:flex;flex-direction:column;overflow:hidden}
     .modal-header{display:flex;align-items:center;justify-content:space-between;padding:14px 24px 10px;border-bottom:1px solid var(--border);flex-shrink:0;background:linear-gradient(180deg,rgba(var(--track-primary-rgb),.04) 0%,transparent 100%)}
     .lv-progress{padding:10px 24px 0;flex-shrink:0}
     .modal-body{flex:1;overflow-y:auto;padding:28px 32px;background:var(--bg-card)}
@@ -667,6 +667,17 @@
   }
 
   function gsRenderSlide() {
+    try {
+      gsRenderSlideInner();
+    } catch (err) {
+      console.error('[Removes] gsRenderSlide failed on slide', gsSlideIdx, 'of lesson', gsCurrentId, err);
+      var area = document.getElementById('gsSlideArea');
+      if (area) {
+        area.innerHTML = '<div class="slide-concept" style="padding:20px"><div class="slide-title">Slide failed to render</div><div class="slide-body" style="color:var(--text-dim)">Something went wrong rendering this slide. Open DevTools → Console and share the red error message — it will point at the exact cause.<br><br><code style="font-size:.82rem">' + (err && err.message ? String(err.message).replace(/</g,'&lt;') : 'unknown error') + '</code></div></div>';
+      }
+    }
+  }
+  function gsRenderSlideInner() {
     var slide = gsSlides[gsSlideIdx];
     var total = gsSlides.length;
     var fill = document.getElementById('gsLvFill');
@@ -698,23 +709,30 @@
     var area = document.getElementById('gsSlideArea');
     area.innerHTML = gsRenderSlideHTML(slide);
     area.scrollTop = 0;
-    var noteKey = 'di_note_' + gsCurrentId + '_' + gsSlideIdx;
-    var savedNote = localStorage.getItem(noteKey) || '';
-    var notesWrap = document.createElement('div');
-    notesWrap.className = 'slide-notes';
-    notesWrap.innerHTML = '<div class="slide-notes-header"><span class="slide-notes-label">✏ My Notes</span><span class="slide-notes-saved" id="gsNotesSaved">Saved</span></div><textarea class="slide-notes-ta" id="gsNotesTa" placeholder="Jot your own thoughts, questions, or key points…" maxlength="2000"></textarea>';
-    area.appendChild(notesWrap);
-    var ta = document.getElementById('gsNotesTa');
-    if (ta) {
-      ta.value = savedNote;
-      var timer=null, ind=document.getElementById('gsNotesSaved');
-      ta.addEventListener('input',function(){
-        clearTimeout(timer);
-        timer=setTimeout(function(){
-          localStorage.setItem(noteKey,ta.value);
-          if(ind){ind.classList.add('visible');setTimeout(function(){ind.classList.remove('visible');},1500);}
-        },500);
-      });
+    // Notes textarea — wrap in try so a notes failure doesn't nuke
+    // the whole slide render.
+    try {
+      var noteKey = 'di_note_' + gsCurrentId + '_' + gsSlideIdx;
+      var savedNote = '';
+      try { savedNote = localStorage.getItem(noteKey) || ''; } catch(e) {}
+      var notesWrap = document.createElement('div');
+      notesWrap.className = 'slide-notes';
+      notesWrap.innerHTML = '<div class="slide-notes-header"><span class="slide-notes-label">✏ My Notes</span><span class="slide-notes-saved" id="gsNotesSaved">Saved</span></div><textarea class="slide-notes-ta" id="gsNotesTa" placeholder="Jot your own thoughts, questions, or key points…" maxlength="2000"></textarea>';
+      area.appendChild(notesWrap);
+      var ta = document.getElementById('gsNotesTa');
+      if (ta) {
+        ta.value = savedNote;
+        var timer=null, ind=document.getElementById('gsNotesSaved');
+        ta.addEventListener('input',function(){
+          clearTimeout(timer);
+          timer=setTimeout(function(){
+            try { localStorage.setItem(noteKey, ta.value); } catch(e) {}
+            if(ind){ind.classList.add('visible');setTimeout(function(){ind.classList.remove('visible');},1500);}
+          },500);
+        });
+      }
+    } catch (notesErr) {
+      console.warn('[Removes] notes init failed:', notesErr);
     }
   }
 
