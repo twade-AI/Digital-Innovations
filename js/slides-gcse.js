@@ -3365,6 +3365,18 @@ SLIDES_GCSE[130] = [
 
 SLIDES_GCSE[131] = [
   {
+    type: 'concept',
+    title: 'Before we start — a note on this lesson',
+    body: 'This lesson covers some weighty ground: AI companionship apps, isolation, and the real story of a teenager who died by suicide after an intense relationship with a chatbot. It is here because AI relationships are the fastest-growing part of how young people use AI, and you deserve to be equipped to think about them clearly.<br><br><strong>If any of this stirs something up for you, stop and talk to someone.</strong> Your form tutor, head of year, the school counsellor or a pastoral lead are all good starting points. You can also reach the services below any time — they are free, confidential, and not just for emergencies.',
+    bullets: [
+      { term: 'Samaritans', def: 'call 116 123 (free, 24/7, any feeling, any worry)' },
+      { term: 'Childline', def: 'call 0800 1111 (free, confidential, for anyone under 19)' },
+      { term: 'Shout', def: 'text SHOUT to 85258 (free, 24/7 text line)' },
+      { term: 'Papyrus HOPELINE247', def: 'call 0800 068 4141 (for under-35s, suicide-prevention specialists)' }
+    ],
+    callout: 'You do not have to be in a crisis to reach out. Noticing that something is heavy and wanting to talk is reason enough. If you would rather work through this lesson with a teacher present, that is completely fine — close this tab and come back to it later.'
+  },
+  {
     type: 'hook',
     title: 'AI Relationships',
     body: 'Over 100 million people worldwide now use AI companionship apps — Replika, Character.AI, Pi, Snapchat My AI, Meta AI personas. The median Character.AI session is roughly 2 hours (the platform\'s own 2024 figure — longer than the median session on TikTok). Tens of thousands of users describe their chatbot as their "closest confidant"; several hundred Replika users on Reddit describe themselves as "married" to their AI. In October 2024 a 14-year-old in Florida died by suicide after an intense emotional relationship with a Character.AI chatbot — his mother has since filed a product-liability lawsuit. Is this a problem, a symptom, or a valid way to meet a real human need?<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">100M+</span><span class="sl">users of AI companion apps globally</span></div><div class="hook-stat-mini"><span class="sv">2 hrs</span><span class="sl">median Character.AI session (company data, 2024)</span></div><div class="hook-stat-mini"><span class="sv">Feb 2023</span><span class="sl">Replika removed erotic roleplay overnight — thousands grieved</span></div></div>',
