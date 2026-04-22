@@ -43,6 +43,27 @@
   --accent-dark:#007bb0;
   /* Calluna Sans for body + headings */
   --font:'Calluna Sans','Inter',system-ui,sans-serif;
+
+  /* ── Per-track primary tokens ──────────────────────
+     Three pathways share one token slot so components
+     can be theme-agnostic. Pages set data-track on <body>;
+     the default (no attribute) is the AEP magenta. */
+  --track-primary:#9b1844;
+  --track-primary-dark:#7c1235;
+  --track-primary-soft:#c64b74;
+  --track-primary-rgb:155,24,68;
+}
+body[data-track="removes"]{
+  --track-primary:#10b981;
+  --track-primary-dark:#059669;
+  --track-primary-soft:#6ee7b7;
+  --track-primary-rgb:16,185,129;
+}
+body[data-track="fluency"]{
+  --track-primary:#f59e0b;
+  --track-primary-dark:#d97706;
+  --track-primary-soft:#fcd34d;
+  --track-primary-rgb:245,158,11;
 }
 
 /* ── Home flourishes — all scoped to #section-home, additive only ───── */
