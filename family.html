@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Family summary — Digital Innovations</title>
+  <meta name="theme-color" content="#9b1844">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <script>try{var _t=localStorage.getItem('di_theme');if(_t)document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/brand.css">
+  <style>
+    .fm-shell{max-width:720px;margin:0 auto;padding:40px 20px 80px}
+    .fm-intro{color:var(--text-dim);font-size:.92rem;line-height:1.6;margin-bottom:20px}
+    .fm-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;margin-bottom:14px}
+    .fm-hdr{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+    .fm-title{font-size:1.4rem;font-weight:800;margin:0 0 4px}
+    .fm-title-meta{font-size:.85rem;color:var(--text-dim)}
+    .fm-stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:18px}
+    .fm-stat{background:rgba(var(--primary-rgb),.06);border:1px solid rgba(var(--primary-rgb),.2);border-radius:10px;padding:14px 16px;text-align:center}
+    .fm-stat-num{font-size:1.8rem;font-weight:900;color:var(--primary);display:block;line-height:1}
+    .fm-stat-label{font-size:.75rem;color:var(--text-dim);margin-top:4px;display:block;line-height:1.3}
+    .fm-lessons-title{font-size:.88rem;font-weight:700;color:var(--text);margin:20px 0 8px}
+    .fm-lesson-row{padding:10px 14px;background:rgba(var(--primary-rgb),.04);border-left:3px solid var(--primary);border-radius:0 6px 6px 0;margin-bottom:6px;font-size:.88rem;line-height:1.45}
+    .fm-footnote{font-size:.78rem;color:var(--text-dim);line-height:1.55;margin-top:18px;padding:12px 14px;background:var(--bg-card);border:1px dashed var(--border);border-radius:8px}
+    .fm-error{padding:24px;border-radius:10px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.35);color:#fca5a5;text-align:center;font-weight:600}
+    .fm-back{display:inline-block;margin-top:20px;color:var(--link);font-size:.9rem;text-decoration:none}
+    .fm-back:hover{text-decoration:underline}
+    .fm-back::before{content:'←';margin-right:6px}
+  </style>
+</head>
+<body>
+  <div class="fm-shell">
+    <div class="fm-intro">
+      <strong style="color:var(--text)">About this page.</strong> This is a read-only weekly summary a pupil has chosen to share with you.
+      You will not see scores, specific answers or notes — only what they've been working on. The snapshot was taken at the moment the
+      link was created; future progress won't appear here until they generate a new link.
+    </div>
+    <div id="fmContent"></div>
+  </div>
+
+  <footer>
+    <img class="hby-mark hby-mark--footer" src="assets/brand/logo/haileybury-magenta.png" alt="Haileybury" width="32" height="23">
+    <p>Haileybury: Developed by Mr Wade</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/slides-gcse.js"></script>
+  <script>
+  (function () {
+    var content = document.getElementById('fmContent');
+    function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+    function q(n){ var m=new RegExp('[?&]'+n+'=([^&]*)').exec(window.location.search); return m?decodeURIComponent(m[1]):''; }
+
+    var raw = q('s');
+    if (!raw) {
+      content.innerHTML = '<div class="fm-error">This link is missing the summary data. Ask the pupil to re-generate the link.</div><a class="fm-back" href="index.html">Back to Digital Innovations</a>';
+      return;
+    }
+    var snap;
+    try {
+      // Base64url → JSON
+      var b64 = raw.replace(/-/g, '+').replace(/_/g, '/');
+      while (b64.length % 4) b64 += '=';
+      snap = JSON.parse(decodeURIComponent(escape(atob(b64))));
+    } catch (e) {
+      content.innerHTML = '<div class="fm-error">This link is malformed or has been edited. Ask the pupil to re-generate the link.</div><a class="fm-back" href="index.html">Back to Digital Innovations</a>';
+      return;
+    }
+
+    // Minimal sanity checks
+    if (!snap || !snap.name || !Array.isArray(snap.thisWeekTitles)) {
+      content.innerHTML = '<div class="fm-error">This link doesn\'t contain a valid summary.</div>';
+      return;
+    }
+
+    var weekLessons = snap.thisWeekTitles.length;
+    var minutesApprox = weekLessons * 20;
+    var generatedAt = snap.generatedAt ? new Date(snap.generatedAt) : null;
+    var prettyGenerated = generatedAt ? generatedAt.toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' }) : '—';
+
+    var lessonsListHtml = weekLessons
+      ? snap.thisWeekTitles.map(function(t){ return '<div class="fm-lesson-row">' + esc(t) + '</div>'; }).join('')
+      : '<div class="fm-lesson-row" style="color:var(--text-dim);border-left-color:var(--border)">No lessons completed this week.</div>';
+
+    content.innerHTML =
+      '<div class="fm-card">' +
+        '<div class="fm-hdr">' +
+          '<div>' +
+            '<div class="fm-title">' + esc(snap.name) + '\'s week</div>' +
+            '<div class="fm-title-meta">' + esc(snap.trackLabel || 'Digital Innovations') + ' · snapshot taken ' + esc(prettyGenerated) + '</div>' +
+          '</div>' +
+          '<img class="hby-mark" src="assets/brand/logo/haileybury-magenta.png" alt="Haileybury" width="26" height="18">' +
+        '</div>' +
+
+        '<div class="fm-stat-row">' +
+          '<div class="fm-stat"><span class="fm-stat-num">' + weekLessons + '</span><span class="fm-stat-label">lessons completed<br>this week</span></div>' +
+          '<div class="fm-stat"><span class="fm-stat-num">~' + minutesApprox + '</span><span class="fm-stat-label">minutes spent<br>(approx)</span></div>' +
+          '<div class="fm-stat"><span class="fm-stat-num">' + (snap.streak || 0) + '🔥</span><span class="fm-stat-label">day streak</span></div>' +
+          '<div class="fm-stat"><span class="fm-stat-num">' + (snap.pct || 0) + '%</span><span class="fm-stat-label">course overall</span></div>' +
+        '</div>' +
+
+        '<div class="fm-lessons-title">What they worked on this week</div>' +
+        lessonsListHtml +
+
+        '<div class="fm-footnote"><strong>A note on the numbers.</strong> Minutes are an approximation (≈ 20 min per lesson, the course design target) — the site doesn\'t track session time. Scores and answers are deliberately not shown: the goal is to let you see engagement, not to grade performance.</div>' +
+      '</div>' +
+      '<a class="fm-back" href="index.html">Back to Digital Innovations</a>';
+  })();
+  </script>
+</body>
+</html>

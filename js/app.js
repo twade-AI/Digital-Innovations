@@ -2096,6 +2096,69 @@ function renderLeaderboard() {
 }
 function refreshLeaderboard() { renderLeaderboard(); }
 
+/* ── Parent/governor summary — generates a shareable read-only
+   snapshot URL. No scores, no answers, no notes — just which
+   lessons they worked on this week, streak, and overall %. */
+function pmGenerateFamilyLink() {
+  var now = new Date();
+  // Determine last Monday 00:00 UTC
+  var day = (now.getUTCDay() + 6) % 7;
+  var mondayStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - day)).toISOString().slice(0, 10);
+
+  // Gather lesson titles completed >= Monday
+  var dates = safeParse(COMPLETION_DATES_KEY, {});
+  var recentIds = Object.keys(dates).filter(function(id) {
+    return dates[id] && dates[id] >= mondayStart;
+  });
+  // Also include Removes completions from di_gcse_completed_at
+  var removesDates = safeParse('di_gcse_completed_at', {});
+  Object.keys(removesDates).forEach(function(id) {
+    if (removesDates[id] && removesDates[id] >= mondayStart) recentIds.push(id);
+  });
+
+  // Map ids → titles (try AEP UNITS first, then Removes GCSE_UNITS if loaded)
+  var idToTitle = {};
+  try { UNITS.forEach(function(u) { u.lessons.forEach(function(l) { idToTitle[l.id] = l.title; }); }); } catch(e) {}
+  try { if (typeof GCSE_UNITS !== 'undefined') GCSE_UNITS.forEach(function(u) { u.lessons.forEach(function(l) { idToTitle[l.id] = l.title; }); }); } catch(e) {}
+  var thisWeekTitles = recentIds.map(function(id) { return idToTitle[id] || ('Lesson ' + id); });
+
+  var total = 0;
+  try { UNITS.forEach(function(u) { total += u.lessons.length; }); } catch(e) { total = 57; }
+  var pct = total ? Math.round(completedLessons.size / total * 100) : 0;
+
+  var name = localStorage.getItem('di_display_name') || localStorage.getItem('gs_cert_name') || 'Pupil';
+
+  var snap = {
+    name: name,
+    trackLabel: 'Digital Innovations AEP',
+    thisWeekTitles: thisWeekTitles,
+    streak: getStreak(),
+    pct: pct,
+    generatedAt: new Date().toISOString()
+  };
+
+  // Base64url encode
+  var json = JSON.stringify(snap);
+  var b64 = btoa(unescape(encodeURIComponent(json))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  var url = window.location.href.replace(/[?#].*$/, '').replace(/index\.html?$/, '') + 'family.html?s=' + b64;
+
+  // Copy to clipboard with a small status swap on the button
+  var btn = document.getElementById('pmFamilyBtn');
+  var done = function(msg) {
+    if (!btn) return;
+    var old = btn.textContent;
+    btn.textContent = msg;
+    setTimeout(function() { btn.textContent = old; }, 2200);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(function() { done('✓ Link copied — send it to your parent/governor'); }).catch(function() { done('Copy failed — try again'); });
+  } else {
+    var ta = document.createElement('textarea'); ta.value = url; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); done('✓ Link copied'); } catch(e) { done('Copy failed'); }
+    document.body.removeChild(ta);
+  }
+}
+
 /* ── Notes Panel ───────────────────────────────── */
 var notesPanelOpen = false;
 function loadLessonNotes(lessonId) {
