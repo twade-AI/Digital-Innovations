@@ -814,6 +814,14 @@
         '<div id="gsClScore" class="cl-score"></div>'+
       '</div>';
     }
+    if (w==='prompt-clinic') {
+      return '<div class="widget">'+
+        (slide.intro?'<p class="cl-intro">'+gsEscape(slide.intro)+'</p>':'')+
+        '<textarea class="widget-input" id="gsPcIn" rows="6" placeholder="Paste a prompt here — the clinic checks it against PTFC (Persona / Task / Format / Context) and gives three specific critiques."></textarea>'+
+        '<div class="widget-actions"><button class="widget-btn widget-btn-primary" onclick="gsPcRun()">Get critique</button><button class="widget-btn" onclick="gsPcLoadWeak()">Load weak prompt</button><button class="widget-btn" onclick="gsPcClear()">Clear</button></div>'+
+        '<div id="gsPcOut" class="widget-output" style="display:none;margin-top:14px"></div>'+
+      '</div>';
+    }
     if (w==='misuse-detector') {
       return '<div class="widget">'+
         (slide.intro?'<p class="cl-intro">'+gsEscape(slide.intro)+'</p>':'')+
@@ -875,6 +883,112 @@
     var el = document.getElementById('gsMisuseIn');
     if (el) el.value = '';
     var out = document.getElementById('gsMisuseOut');
+    if (out) { out.style.display = 'none'; out.innerHTML = ''; }
+  }
+
+  /* ── Prompt clinic — heuristic PTFC scorer ────────────
+     Grades a pasted prompt 0/1/2 on each of Persona, Task,
+     Format, Context and returns three specific critiques
+     focused on the weakest slots, plus an improved example. */
+  function gsPcScore(prompt) {
+    var text = (prompt || '').trim();
+    var lower = text.toLowerCase();
+    var score = { persona: 0, task: 0, format: 0, context: 0 };
+
+    // Persona — role assignment
+    if (/\b(act as|you are|pretend to be|imagine you are|take the role of|behave as)\b/i.test(text)) score.persona = 1;
+    if (/\b(act as|you are).{1,50}(teacher|tutor|examiner|expert|coach|editor|historian|scientist|developer|researcher|student|journalist|author|engineer|lawyer|doctor|designer|specialist|marker)\b/i.test(text)) score.persona = 2;
+
+    // Task — imperative verb
+    var taskVerbs = /\b(explain|summarise|summarize|list|write|outline|describe|compare|contrast|analyse|analyze|plan|draft|create|generate|design|critique|evaluate|rewrite|translate|solve|calculate|teach|help me|show me|give me)\b/i;
+    if (taskVerbs.test(text)) score.task = 1;
+    // Specific task = imperative + a noun object
+    if (taskVerbs.test(text) && text.length > 30) score.task = 2;
+
+    // Format — explicit output format
+    var formatSignals = /\b(bullet(s)?|numbered list|steps|table|paragraphs?|words?|sentences?|heading(s)?|section(s)?|markdown|json|essay|outline|in no more than|in at most|in \d+ (words?|sentences?|paragraphs?|bullets?)|as a list|in a table|q\/a|mark scheme|mark-scheme|rubric)\b/i;
+    if (formatSignals.test(lower)) score.format = 1;
+    if (/\bin \d+ (words?|sentences?|paragraphs?|bullets?|steps?|headings?)/i.test(lower) || /\btable with \d+/.test(lower)) score.format = 2;
+
+    // Context — subject / level / topic / constraints
+    var contextSignals = /\b(year 7|year 8|year 9|year 10|year 11|year 12|year 13|removes|ks3|ks4|ks5|gcse|a ?level|a-?level|aqa|edexcel|ocr|btec|for (a|an) (\d+-year|year \d|ks)|specification|spec|exam board|my student|my pupil|my class|the topic is|the context is|with an audience of|audience:|audience is|for a|in the context of)\b/i;
+    if (contextSignals.test(lower)) score.context = 1;
+    if (/\b(year \d+\s+(aqa|edexcel|ocr|wjec|btec|qcf|gcse|a-?level|gcse|alevel))|(year \d+.*(aqa|edexcel|ocr|wjec)).{0,60}\b/i.test(lower)) score.context = 2;
+    if (score.context === 1 && /\b(topic|revision|homework|essay|coursework|bdsm|history|biology|chemistry|physics|maths|english|geography|ict|computing|french|spanish|latin|mfl|psychology|business)\b/i.test(lower)) score.context = 2;
+
+    return score;
+  }
+
+  function gsPcRun() {
+    var text = ((document.getElementById('gsPcIn') || {}).value || '').trim();
+    var out = document.getElementById('gsPcOut');
+    if (!out) return;
+    if (!text || text.length < 10) {
+      out.style.display = 'block';
+      out.innerHTML = '<strong>Paste a prompt first.</strong> The clinic grades at least a short sentence — a single word won\'t tell us anything useful.';
+      return;
+    }
+    var s = gsPcScore(text);
+    var total = s.persona + s.task + s.format + s.context;
+    var pct = Math.round(total / 8 * 100);
+
+    var weaknesses = [
+      { key: 'persona', label: 'Persona', score: s.persona, tip: s.persona === 0 ? 'No role is assigned. Try opening with <em>"Act as an experienced AQA GCSE [subject] examiner…"</em> — this alone typically improves output quality because the model shifts into the right vocabulary.' : 'Role is named but vague. Add a specific variant: "Act as a friendly GCSE Biology tutor who explains step by step" rather than "be helpful".' },
+      { key: 'task',    label: 'Task',    score: s.task,    tip: s.task === 0 ? 'There is no clear instruction verb. Start with an imperative: <em>"Summarise…"</em>, <em>"Explain…"</em>, <em>"Write…"</em>. Without this, the model guesses what you want.' : 'Task is present but could be more specific — say <em>what</em> to summarise and <em>how deeply</em>.' },
+      { key: 'format',  label: 'Format',  score: s.format,  tip: s.format === 0 ? 'No output format is specified. Add one: <em>"as a 5-bullet list"</em>, <em>"in 3 numbered steps with one sentence each"</em>, <em>"as a 50-word paragraph"</em>. This alone usually cuts waffle in half.' : 'Format is mentioned. Be a bit more concrete — actual numbers ("in 5 bullets", "in 120 words") beat vague cues ("a list").' },
+      { key: 'context', label: 'Context', score: s.context, tip: s.context === 0 ? 'No context is given. Tell the model who you are and what exam: <em>"I\'m a Year 10 AQA GCSE History student revising the Norman Conquest."</em> This unlocks the right level of vocabulary and depth.' : 'Context is there but sparse. Add the exam board, specification reference or the specific topic — not just "GCSE".' }
+    ];
+    var weakSorted = weaknesses.slice().sort(function(a, b) { return a.score - b.score; });
+    var topThree = weakSorted.slice(0, 3);
+
+    var improved = gsPcImprove(text, s);
+
+    out.style.display = 'block';
+    out.innerHTML =
+      '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px">' +
+        ['persona','task','format','context'].map(function(k) {
+          var v = s[k];
+          var colour = v === 2 ? 'var(--track-primary)' : v === 1 ? '#f59e0b' : '#ef4444';
+          var label = v === 2 ? 'Strong' : v === 1 ? 'Vague' : 'Missing';
+          return '<div style="text-align:center;padding:10px 4px;background:rgba(var(--track-primary-rgb),.04);border-radius:8px;border-top:3px solid ' + colour + '">' +
+            '<div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim)">' + k.charAt(0).toUpperCase() + k.slice(1) + '</div>' +
+            '<div style="font-weight:800;color:' + colour + ';margin-top:4px">' + label + '</div>' +
+          '</div>';
+        }).join('') +
+      '</div>' +
+      '<div style="font-weight:700;margin-bottom:8px">Overall: ' + total + ' / 8 (' + pct + '%)</div>' +
+      '<div style="font-size:.85rem;font-weight:700;color:var(--text);margin:14px 0 6px">Three things to change</div>' +
+      '<ol style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px">' +
+        topThree.map(function(w) { return '<li style="font-size:.87rem;line-height:1.55"><strong>' + w.label + '.</strong> ' + w.tip + '</li>'; }).join('') +
+      '</ol>' +
+      '<div style="font-size:.85rem;font-weight:700;color:var(--text);margin:16px 0 6px">A stronger version might read:</div>' +
+      '<div style="padding:12px 14px;background:rgba(var(--track-primary-rgb),.06);border-left:3px solid var(--track-primary);border-radius:0 6px 6px 0;font-size:.85rem;line-height:1.6;white-space:pre-wrap">' + gsEscape(improved) + '</div>' +
+      '<div style="margin-top:12px;font-size:.75rem;color:var(--text-dim);line-height:1.5">This clinic runs on-device — no prompt leaves your browser. It\'s a heuristic check against the PTFC framework, not a rewrite by an AI.</div>';
+  }
+
+  function gsPcImprove(text, s) {
+    // Build a scaffolded version by filling in missing slots with
+    // placeholders. We don't invent content — we show the skeleton.
+    var lines = [];
+    if (s.persona < 2) lines.push('[Persona] Act as an experienced AQA GCSE [your subject] examiner who explains things step-by-step.');
+    if (s.task < 2)    lines.push('[Task] ' + (s.task === 0 ? 'Explain / Summarise / Write / Plan …' : text.replace(/\n/g, ' ').slice(0, 120)));
+    if (s.format < 2)  lines.push('[Format] Give me a 2-sentence overview, then 4 numbered steps (1 sentence each), then 3 self-test questions with answers.');
+    if (s.context < 2) lines.push('[Context] I\'m a Year 9 Removes pupil revising [topic]. I already understand [what you know]; the specific thing I keep getting wrong is [what confuses you].');
+    // If all were strong, praise:
+    if (!lines.length) return 'Your prompt already covers all four PTFC parts strongly. Well done — this is publication-quality prompting. The only thing left is to try variations and see which produces the best response.';
+    lines.push('[Original prompt]: ' + text);
+    return lines.join('\n');
+  }
+
+  function gsPcLoadWeak() {
+    var el = document.getElementById('gsPcIn');
+    if (el) el.value = 'explain photosynthesis';
+    gsPcRun();
+  }
+  function gsPcClear() {
+    var el = document.getElementById('gsPcIn');
+    if (el) el.value = '';
+    var out = document.getElementById('gsPcOut');
     if (out) { out.style.display = 'none'; out.innerHTML = ''; }
   }
 

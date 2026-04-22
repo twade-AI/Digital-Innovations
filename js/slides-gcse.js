@@ -1612,6 +1612,13 @@ SLIDES_GCSE[113] = [
       { icon: '🧪', label: 'Test, don\'t trust', text: 'a prompt that worked yesterday might not today — models update. Spot-check the output.' },
       { icon: '💾', label: 'Save your best prompts', text: 'Claude Projects, Gemini Gems and custom GPTs let you reuse the Role + Context so you never re-type them.' }
     ]
+  },
+  {
+    type: 'widget',
+    widget: 'prompt-clinic',
+    title: 'Prompt Clinic — grade your own prompt',
+    intro: 'Paste any prompt (yours or an example). The clinic grades it against the four PTFC levers — Persona, Task, Format, Context — returns three specific fixes for the weakest areas, and sketches a stronger version. Try the "Load weak prompt" button first to see a before-and-after.',
+    callout: 'This runs entirely on-device — your prompt never leaves the browser. It\'s a heuristic trainer, not an AI rewriter — the goal is to build the reflex of checking all four levers before you hit enter.'
   }
 ];
 
