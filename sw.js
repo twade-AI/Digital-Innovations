@@ -14,6 +14,7 @@ const SHELL_ASSETS = [
   './fluency.html',
   './removes.html',
   './verify.html',
+  './portfolio.html',
   './css/style.css',
   './css/lesson.css',
   './css/brand.css',
