@@ -725,10 +725,21 @@
       var answered = document.querySelector('#gsSlideArea .quiz-option[disabled]');
       if (!answered) return;
     }
+    // Final-slide path wraps the mark-complete flow in a try/catch so
+    // any runtime error in gsMarkDone (track re-render, XP toast,
+    // spaced-review rebuild…) surfaces in console + a toast rather
+    // than silently leaving the modal open with no way forward.
     if (gsSlideIdx === gsSlides.length-1) {
-      if (gsDone.has(gsCurrentId)) { gsCloseLesson(); return; }
-      gsMarkDone(gsCurrentId);
-      gsCloseLesson();
+      try {
+        if (gsDone.has(gsCurrentId)) { gsCloseLesson(); return; }
+        gsMarkDone(gsCurrentId);
+        gsCloseLesson();
+      } catch (err) {
+        console.error('[Removes] Failed to mark lesson complete:', err);
+        gsShowXPToast('⚠ Could not save completion — please reload and try again.');
+        // Still close the modal so the user isn't stuck.
+        try { gsCloseLesson(); } catch (e) {}
+      }
       return;
     }
     gsSlideIdx++;
@@ -792,23 +803,26 @@
         '</div>';
       }).join('');
       var total = (slide.items||[]).length;
+      // slide.intro is author-authored HTML — don't escape it, and
+      // skip the inner copy anyway since the outer widget wrapper
+      // already renders it in .slide-body above the items.
       return '<div class="widget" data-total="'+total+'" data-got="0">'+
-        (slide.intro?'<p class="cl-intro">'+gsEscape(slide.intro)+'</p>':'')+
         itemsHtml+
         '<div id="gsClScore" class="cl-score"></div>'+
       '</div>';
     }
     if (w==='prompt-clinic') {
+      // intro is already shown by the outer widget wrapper (as HTML);
+      // don't re-render / double-escape it here.
       return '<div class="widget">'+
-        (slide.intro?'<p class="cl-intro">'+gsEscape(slide.intro)+'</p>':'')+
         '<textarea class="widget-input" id="gsPcIn" rows="6" placeholder="Paste a prompt here — the clinic checks it against PTFC (Persona / Task / Format / Context) and gives three specific critiques."></textarea>'+
         '<div class="widget-actions"><button class="widget-btn widget-btn-primary" onclick="gsPcRun()">Get critique</button><button class="widget-btn" onclick="gsPcLoadWeak()">Load weak prompt</button><button class="widget-btn" onclick="gsPcClear()">Clear</button></div>'+
         '<div id="gsPcOut" class="widget-output" style="display:none;margin-top:14px"></div>'+
       '</div>';
     }
     if (w==='misuse-detector') {
+      // intro is already shown by the outer widget wrapper (as HTML).
       return '<div class="widget">'+
-        (slide.intro?'<p class="cl-intro">'+gsEscape(slide.intro)+'</p>':'')+
         '<textarea class="widget-input" id="gsMisuseIn" rows="8" placeholder="Paste a paragraph of text here…" style="width:100%;min-height:160px;resize:vertical"></textarea>'+
         '<div class="widget-actions"><button class="widget-btn widget-btn-primary" onclick="gsMisuseAnalyze()">Analyse</button><button class="widget-btn" onclick="gsMisuseSample()">Load AI-like sample</button><button class="widget-btn" onclick="gsMisuseClear()">Clear</button></div>'+
         '<div id="gsMisuseOut" class="widget-output" style="display:none;margin-top:14px"></div>'+
