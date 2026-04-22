@@ -930,6 +930,16 @@
 .quiz-answered .quiz-option.quiz-wrong .quiz-option-letter {
   background: #ef4444; color: #fff;
 }
+/* Colour-blind-friendly: show an icon as well as colour so deuteranopic
+   or protanopic users can still tell correct from wrong at a glance. */
+.quiz-answered .quiz-option.quiz-correct .quiz-option-letter::after,
+.quiz-answered .quiz-option.correct .quiz-option-letter::after {
+  content: ' ✓'; font-weight: 900;
+}
+.quiz-answered .quiz-option.quiz-wrong .quiz-option-letter::after,
+.quiz-answered .quiz-option.incorrect .quiz-option-letter::after {
+  content: ' ✗'; font-weight: 900;
+}
 .quiz-explanation {
   padding: 16px; border-radius: 10px;
   background: rgba(34,197,94,.06); border-left: 4px solid #22c55e;

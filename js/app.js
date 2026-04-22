@@ -3522,6 +3522,8 @@ function revealScenarioOutcome(el) {
 
 /* ── Confetti Celebration ─────────────────────── */
 function launchConfetti() {
+  // Respect prefers-reduced-motion — skip the particle shower entirely.
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var canvas = document.getElementById('confettiCanvas');
   if (!canvas) return;
   var ctx = canvas.getContext('2d');

@@ -10,6 +10,20 @@
 /* ── Reset & Base ───────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
+/* ── Reduced motion ──────────────────────────────
+   Anyone with 'prefers-reduced-motion: reduce' gets a flat site:
+   no orbit animation, no slide-pan gradients, no confetti (handled
+   in JS), no transitions that cause movement. The site is fully
+   functional without animation. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto !important; }
+}
+
 :root{
   --primary:#9b1844;--primary-dark:#7c1235;--primary-light:#c64b74;
   --accent:#009fe3;--accent-dark:#007bb0;
@@ -1732,7 +1746,8 @@ a.ticker-item-link:hover{color:var(--text);text-decoration:none;}
   background:linear-gradient(135deg,var(--text) 40%,var(--primary-light));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
-.pathway-sub{ color:var(--text-dim);font-size:.97rem;margin:0;max-width:480px;display:block;margin:0 auto }
+.pathway-sub{ color:var(--text-dim);font-size:.97rem;margin:0 auto;display:block;max-width:none;white-space:nowrap }
+@media(max-width:768px){ .pathway-sub{white-space:normal;max-width:480px} }
 .pathway-cards{ display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:28px;margin-top:8px }
 @media(max-width:1024px){ .pathway-cards{ grid-template-columns:1fr 1fr } }
 @media(max-width:640px){ .pathway-cards{ grid-template-columns:1fr } }
