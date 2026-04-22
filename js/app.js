@@ -258,7 +258,7 @@ function showSection(name) {
   });
   document.querySelector('.nav-links')?.classList.remove('open');
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  if (name === 'progress') renderProgress();
+  if (name === 'progress') { renderProgress(); renderLeaderboard(); }
   if (name === 'map') renderCourseMap();
   if (name === 'home') { renderRecentlyViewed(); updateTimeEstimate(); renderSpacedReviewQueue(); }
   if (name === 'exemplars') renderExemplars();
@@ -1868,6 +1868,7 @@ function openProfileModal() {
   var modal = document.getElementById('profileModal');
   if (!modal) return;
   pmPopulate();
+  pmInitLeaderboardToggle();
   modal.classList.add('open');
 }
 function closeProfileModal() {
@@ -2009,6 +2010,91 @@ function pmSaveName(val) {
     if (nameEl) nameEl.textContent = val.trim();
   }
 }
+
+/* ── Class leaderboard — opt-in, weekly XP ───────────
+   Opt-in is stored locally at di_leaderboard_opt_in and
+   mirrored into progress.data.leaderboard_opt_in on sync,
+   so the reader (anyone else viewing the leaderboard) can
+   filter to consenting pupils. */
+function pmInitLeaderboardToggle() {
+  var cb = document.getElementById('pmLeaderboardOpt');
+  if (!cb) return;
+  cb.checked = localStorage.getItem('di_leaderboard_opt_in') === '1';
+}
+function pmToggleLeaderboard(on) {
+  try { localStorage.setItem('di_leaderboard_opt_in', on ? '1' : '0'); } catch(e) {}
+  // Mirror the flag into progress.data via a sync.
+  if (typeof scheduleSync === 'function') scheduleSync();
+}
+
+/* Weekly XP baseline — stored as {monday: 'YYYY-MM-DD', xpAtStart: N}.
+   Resets whenever the current Monday differs from stored monday. */
+function getWeeklyXPBaseline() {
+  var now = new Date();
+  var day = (now.getUTCDay() + 6) % 7; // 0 = Monday
+  var monday = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - day));
+  var mondayStr = monday.toISOString().slice(0, 10);
+  var stored = safeParse('di_xp_week_start', null);
+  var currentXP = (loadXP && loadXP().total) || 0;
+  if (!stored || stored.monday !== mondayStr) {
+    stored = { monday: mondayStr, xpAtStart: currentXP };
+    try { localStorage.setItem('di_xp_week_start', JSON.stringify(stored)); } catch(e) {}
+  }
+  return stored;
+}
+function weeklyXPGain() {
+  var base = getWeeklyXPBaseline();
+  var currentXP = (loadXP && loadXP().total) || 0;
+  return Math.max(0, currentXP - (base.xpAtStart || 0));
+}
+
+function renderLeaderboard() {
+  var list = document.getElementById('leaderboardList');
+  if (!list) return;
+  var panel = document.getElementById('leaderboardPanel');
+  list.innerHTML = '<div class="lb-empty">Loading leaderboard…</div>';
+  if (typeof _sb === 'undefined' || !_sb || typeof _currentUser === 'undefined' || !_currentUser) {
+    list.innerHTML = '<div class="lb-empty">Sign in to see the class leaderboard. It\'s opt-in on both sides — you only appear if you turn it on in your profile, and you only see classmates who\'ve turned it on too.</div>';
+    return;
+  }
+  _sb.from('profiles').select('user_id, display_name').then(function(profRes) {
+    _sb.from('progress').select('user_id, data').then(function(progRes) {
+      if (progRes.error || profRes.error) {
+        list.innerHTML = '<div class="lb-empty">Couldn\'t load leaderboard. ' + ((progRes.error || profRes.error).message || '') + '</div>';
+        return;
+      }
+      var names = {};
+      (profRes.data || []).forEach(function(p) { names[p.user_id] = p.display_name || '(no name)'; });
+      var baseline = getWeeklyXPBaseline();
+      var rows = (progRes.data || [])
+        .filter(function(r) { return r.data && r.data.leaderboard_opt_in === true && r.data.xp && typeof r.data.xp.total === 'number'; })
+        .map(function(r) {
+          var ws = r.data.xp_week_start || {};
+          var weekXP = Math.max(0, (r.data.xp.total || 0) - (ws.monday === baseline.monday ? (ws.xpAtStart || 0) : (r.data.xp.total || 0)));
+          return { userId: r.user_id, name: names[r.user_id] || '(no name)', weekXP: weekXP, totalXP: r.data.xp.total };
+        })
+        .filter(function(r) { return r.weekXP >= 0; })
+        .sort(function(a, b) { return b.weekXP - a.weekXP; })
+        .slice(0, 10);
+      if (!rows.length) {
+        list.innerHTML = '<div class="lb-empty">No one is on the leaderboard yet this week. Be first — opt in from your profile.</div>';
+        return;
+      }
+      list.innerHTML = rows.map(function(r, i) {
+        var rank = i + 1;
+        var rankClass = 'lb-rank' + (rank <= 3 ? ' lb-rank-' + rank : '');
+        var medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : rank;
+        var mine = r.userId === (_currentUser && _currentUser.id) ? ' lb-me' : '';
+        return '<div class="lb-row' + mine + '">' +
+          '<span class="' + rankClass + '">' + medal + '</span>' +
+          '<span class="lb-name">' + String(r.name).replace(/[<>&"']/g, '') + '</span>' +
+          '<span class="lb-xp">+' + r.weekXP + ' XP</span>' +
+        '</div>';
+      }).join('');
+    });
+  });
+}
+function refreshLeaderboard() { renderLeaderboard(); }
 
 /* ── Notes Panel ───────────────────────────────── */
 var notesPanelOpen = false;
