@@ -1,10 +1,10 @@
 /* Digital Innovations — Service Worker (offline-first) v10 — Haileybury brand layer */
-const CACHE = 'di-v24';
+const CACHE = 'di-v25';
 const ASSETS = [
   './',
   './index.html',
   './fluency.html',
-  './gcse.html',
+  './removes.html',
   './css/style.css',
   './css/lesson.css',
   './css/brand.css',
