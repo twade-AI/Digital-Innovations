@@ -511,6 +511,15 @@
     if (next) {
       if (isLast) { next.textContent = isDone ? 'Close ✕' : '✓ Mark Complete'; next.className = isDone ? 'btn btn-secondary' : 'btn btn-primary'; }
       else { next.textContent = 'Next →'; next.className = 'btn btn-primary'; }
+      // Quiz slides gate progression: pupils must choose an answer
+      // before Next unlocks. gsAnswerQuiz() flips this off.
+      if (slide && slide.type === 'quiz') {
+        next.disabled = true;
+        next.title = 'Choose an answer to continue';
+      } else {
+        next.disabled = false;
+        next.removeAttribute('title');
+      }
     }
     var area = document.getElementById('gsSlideArea');
     area.innerHTML = gsRenderSlideHTML(slide);
@@ -536,6 +545,12 @@
   }
 
   function gsNextSlide() {
+    // Block forward progression on an unanswered quiz.
+    var cur = gsSlides[gsSlideIdx];
+    if (cur && cur.type === 'quiz') {
+      var answered = document.querySelector('#gsSlideArea .quiz-option[disabled]');
+      if (!answered) return;
+    }
     if (gsSlideIdx === gsSlides.length-1) {
       if (gsDone.has(gsCurrentId)) { gsCloseLesson(); return; }
       gsMarkDone(gsCurrentId);
@@ -824,6 +839,9 @@
     var fb=document.getElementById('gsQuizFb');
     if(fb){var s=gsSlides[gsSlideIdx];fb.style.display='block';fb.innerHTML=(chosen===correct?'✅ Correct! ':'❌ Not quite. ')+(s.explanation||'');}
     if (chosen === correct) gsAwardOnce('quiz:'+gsCurrentId+':'+gsSlideIdx, 10, 'Quiz answered correctly');
+    // Unlock the Next button — the pupil has engaged with the question.
+    var next = document.getElementById('gsNextBtn');
+    if (next) { next.disabled = false; next.removeAttribute('title'); }
   }
 
   function gsRevealOutcome(btn, idx) {

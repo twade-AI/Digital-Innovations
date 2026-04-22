@@ -942,6 +942,16 @@ function renderSlide(index) {
     nextBtn.innerHTML = 'Next &#8594;';
     nextBtn.onclick = function() { navigateSlide(1); };
   }
+  // Quiz slides gate progression: a pupil must choose an answer
+  // before Next unlocks. checkQuiz() flips this off when clicked.
+  var currentSlide = currentSlides[index];
+  if (currentSlide && currentSlide.type === 'quiz') {
+    nextBtn.disabled = true;
+    nextBtn.title = 'Choose an answer to continue';
+  } else {
+    nextBtn.disabled = false;
+    nextBtn.removeAttribute('title');
+  }
 }
 
 function jumpToSlide(idx) {
@@ -951,6 +961,14 @@ function jumpToSlide(idx) {
 }
 
 function navigateSlide(dir) {
+  // Block forward progression on an unanswered quiz slide
+  // (arrow keys, swipe — anything that bypasses the Next button).
+  if (dir > 0) {
+    var cur = currentSlides[currentSlideIndex];
+    var answered = !document.getElementById('quizOptions') ||
+                   document.getElementById('quizOptions').classList.contains('quiz-answered');
+    if (cur && cur.type === 'quiz' && !answered) return;
+  }
   const newIndex = currentSlideIndex + dir;
   if (newIndex < 0 || newIndex >= currentSlides.length) return;
   currentSlideIndex = newIndex;
@@ -1745,6 +1763,9 @@ function checkQuiz(btn, correctIdx, slideIdx) {
   if (isCorrect) addXP(10, 'Quiz answered correctly');
   // Adaptive nudge on wrong answer
   if (!isCorrect) showAdaptiveNudge(currentLessonId);
+  // Unlock the Next button — pupil has engaged with the question.
+  var nextBtn = document.getElementById('lvNext');
+  if (nextBtn) { nextBtn.disabled = false; nextBtn.removeAttribute('title'); }
 }
 
 /* ── Glossary Tooltip Injection ───────────────── */

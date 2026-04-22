@@ -676,6 +676,14 @@
         next.textContent = 'Next →';
         next.className = 'btn btn-primary';
       }
+      // Quiz slides gate progression until the user chooses an answer.
+      if (slide && slide.type === 'quiz') {
+        next.disabled = true;
+        next.title = 'Choose an answer to continue';
+      } else {
+        next.disabled = false;
+        next.removeAttribute('title');
+      }
     }
 
     // Render slide HTML (reuse existing slide types)
@@ -846,6 +854,9 @@
       fb.style.display = 'block';
       fb.innerHTML = (chosen === correct ? '✅ Correct! ' : '❌ Not quite. ') + (slide.explanation || '');
     }
+    // Unlock Next — pupil has engaged with the question.
+    var next = document.getElementById('nextBtn');
+    if (next) { next.disabled = false; next.removeAttribute('title'); }
   }
 
   function flSetSlideDirection(dir) {
@@ -857,6 +868,12 @@
   }
 
   function flNextSlide() {
+    // Block forward progression on an unanswered quiz.
+    var cur = flCurrentSlides[flCurrentSlideIdx];
+    if (cur && cur.type === 'quiz') {
+      var answered = document.querySelector('#slideArea .quiz-option[disabled]');
+      if (!answered) return;
+    }
     var isLast = flCurrentSlideIdx === flCurrentSlides.length - 1;
     if (isLast) {
       var isDone = flDone.has(flCurrentLessonId);
