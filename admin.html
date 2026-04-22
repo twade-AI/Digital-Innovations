@@ -1053,7 +1053,68 @@ function renderClassDashboard() {
   }
   riskHtml += '</div>';
 
-  el.innerHTML = distHtml + unitHtml + lessonHtml + riskHtml;
+  // ── 5. Quiz difficulty — where pupils are getting stuck ──
+  // Build per-lesson attempt/correct stats from every pupil's quiz_scores.
+  var quizAgg = {};
+  s.forEach(function(st) {
+    if (!st.quizScores) return;
+    Object.keys(st.quizScores).forEach(function(lid) {
+      var r = st.quizScores[lid];
+      if (!r || typeof r.correct !== 'boolean') return;
+      var row = quizAgg[lid] || { id: lid, attempts: 0, correct: 0 };
+      row.attempts += 1;
+      if (r.correct) row.correct += 1;
+      quizAgg[lid] = row;
+    });
+  });
+  var quizRows = Object.values(quizAgg)
+    .filter(function(r) { return r.attempts >= 2; })  // skip one-off attempts — not a pattern
+    .map(function(r) { r.pct = Math.round(r.correct / r.attempts * 100); return r; })
+    .sort(function(a, b) { return a.pct - b.pct; });  // hardest first
+
+  var quizHtml = '<div class="cd-section"><div class="cd-section-title">Quiz Difficulty (' + quizRows.length + ' lessons with ≥ 2 attempts)</div>';
+  if (!quizRows.length) {
+    quizHtml += '<div class="empty-state" style="padding:16px">Not enough quiz attempts yet to identify class-wide patterns.</div>';
+  } else {
+    quizHtml += '<table class="cd-lesson-table" style="width:100%"><thead><tr><th>Lesson</th><th>Class correct rate</th><th>Attempts</th></tr></thead><tbody>' +
+      quizRows.slice(0, 10).map(function(r) {
+        var bar = '<span class="cd-lesson-bar"><span class="cd-lesson-fill" style="width:' + r.pct + '%;background:' + (r.pct < 50 ? '#ef4444' : r.pct < 75 ? '#f59e0b' : '#22c55e') + '"></span></span>';
+        return '<tr><td><strong>L' + r.id + '</strong> ' + esc(LESSON_TITLES[r.id] || ('Lesson ' + r.id)) + '</td>' +
+               '<td>' + bar + r.pct + '%</td>' +
+               '<td style="text-align:right;font-variant-numeric:tabular-nums">' + r.correct + ' / ' + r.attempts + '</td></tr>';
+      }).join('') + '</tbody></table>' +
+      '<div style="font-size:.72rem;color:var(--text-dim);margin-top:8px">Lessons where the class is scoring below 75% are worth a second look — they\'re usually a distractor problem, not a knowledge problem.</div>';
+  }
+  quizHtml += '</div>';
+
+  // ── 6. Recent activity ──
+  var recent = [];
+  s.forEach(function(st) {
+    if (st.lastActive) recent.push({ name: st.name, when: st.lastActive, pct: st.pct, xp: st.xp });
+  });
+  recent.sort(function(a, b) { return b.when.localeCompare(a.when); });
+  var activityHtml = '<div class="cd-section"><div class="cd-section-title">Recent Activity</div>';
+  if (!recent.length) {
+    activityHtml += '<div class="empty-state" style="padding:16px">No activity yet.</div>';
+  } else {
+    activityHtml += '<div class="cd-risk-list">' + recent.slice(0, 15).map(function(r) {
+      var ago = (function() {
+        var diffH = Math.round((Date.now() - new Date(r.when).getTime()) / 3600000);
+        if (diffH < 1) return 'just now';
+        if (diffH < 24) return diffH + 'h ago';
+        var diffD = Math.round(diffH / 24);
+        return diffD + 'd ago';
+      })();
+      return '<div class="cd-risk-row">' +
+        '<span class="cd-risk-name">' + esc(r.name) + '</span>' +
+        '<span style="font-size:.78rem;color:var(--text-muted)">' + r.pct + '% · ' + r.xp + ' XP</span>' +
+        '<span style="font-size:.74rem;color:var(--text-dim);min-width:70px;text-align:right">' + ago + '</span>' +
+      '</div>';
+    }).join('') + '</div>';
+  }
+  activityHtml += '</div>';
+
+  el.innerHTML = distHtml + unitHtml + lessonHtml + quizHtml + activityHtml + riskHtml;
 }
 
 /* ── Reflections ──────────────────────────────── */
