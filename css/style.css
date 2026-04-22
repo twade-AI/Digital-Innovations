@@ -9,7 +9,7 @@
   --border:#334155;--success:#22c55e;--warning:#f59e0b;--danger:#ef4444;
   --radius:12px;--radius-sm:8px;--radius-xs:4px;
   --shadow:0 4px 24px rgba(0,0,0,.35);
-  --font:'Inter',system-ui,sans-serif;
+  --font:'Calluna Sans','Inter',system-ui,sans-serif;
   --mono:'JetBrains Mono',monospace;
   --nav-h:64px;
 }
