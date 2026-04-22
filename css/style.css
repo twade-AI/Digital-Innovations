@@ -173,24 +173,81 @@ img{max-width:100%}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes counter-spin{to{transform:translate(-50%,-50%) rotate(calc(var(--angle) - 360deg)) translateX(130px) rotate(calc(-1 * var(--angle) + 360deg))}}
 
-/* ── Buttons ───────────────────────────────────── */
+/* ── Buttons (3 canonical styles + size modifier) ─────
+   primary   — solid brand gradient, white text. Main CTAs.
+   secondary — card bg, border, foreground text. Supporting.
+   ghost     — no bg, text-coloured. Menus, filters, chips.
+   .btn-sm   — compact size modifier.
+   Track-specific CTAs on pathway cards (.pc-cta--*) are
+   intentionally coloured per track; they aren't a fourth style. */
 .btn{
   padding:12px 28px;border-radius:var(--radius-sm);font-size:.95rem;font-weight:600;
-  border:none;transition:all .2s;letter-spacing:.01em;
+  border:1px solid transparent;transition:all .2s;letter-spacing:.01em;
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  font-family:inherit;cursor:pointer;
 }
 .btn-primary{
-  background:linear-gradient(135deg,#9b1844,#7c1235);
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
   color:#fff;
-  box-shadow:0 2px 12px rgba(155,24,68,.35);
+  box-shadow:0 2px 12px rgba(var(--primary-rgb,155,24,68),.35);
 }
 .btn-primary:hover{
-  background:linear-gradient(135deg,#c64b74,#9b1844);
-  box-shadow:0 4px 20px rgba(155,24,68,.5);
+  background:linear-gradient(135deg,var(--primary-light),var(--primary));
+  box-shadow:0 4px 20px rgba(var(--primary-rgb,155,24,68),.5);
   transform:translateY(-1px);
 }
-.btn-secondary{background:var(--bg-card);color:var(--text);border:1px solid var(--border)}
-.btn-secondary:hover{background:var(--bg-card-hover);border-color:var(--primary);transform:translateY(-1px)}
+.btn-secondary,
+.widget-btn{background:var(--bg-card);color:var(--text);border:1px solid var(--border)}
+.btn-secondary:hover,
+.widget-btn:hover{background:var(--bg-card-hover);border-color:var(--primary);transform:translateY(-1px)}
+.btn-ghost,
+.filter-btn,
+.nav-explore-btn,
+.settings-menu-item{
+  background:transparent;color:var(--text-muted);border:1px solid transparent;
+}
+.btn-ghost:hover,
+.filter-btn:hover,
+.filter-btn.active,
+.nav-explore-btn:hover,
+.settings-menu-item:hover{
+  background:rgba(var(--primary-rgb,155,24,68),.1);color:var(--text);border-color:transparent;
+}
 .btn-sm{padding:6px 14px;font-size:.8rem;border-radius:var(--radius-xs)}
+.btn:active,.btn-primary:active,.btn-secondary:active,.btn-ghost:active{transform:translateY(0)}
+
+/* ── Progress bars (one canonical visual) ─────────
+   All progress-bar classes share the same track + fill
+   rendering: 6px tall, pill radius, track-primary gradient.
+   Each context can vary the fill colour via a custom
+   property (--unit-colour, --track-primary) but the
+   geometry is identical everywhere. */
+.progress-track,
+.lv-progress-track,
+.unit-progress-track,
+.pc-progress-track,
+.pbu-bar-track,
+.xp-bar-track,
+.pm-unit-bar-track,
+.viva-progress-track,
+.gs-progress-track,
+.fl-progress-track{
+  height:6px;background:var(--border);border-radius:999px;overflow:hidden;
+}
+.progress-fill,
+.lv-progress-fill,
+.unit-progress-fill,
+.pc-progress-fill,
+.pbu-bar-fill,
+.xp-bar-fill,
+.pm-unit-bar-fill,
+.viva-progress-fill,
+.gs-progress-fill,
+.fl-progress-fill,
+.cm-unit-bar-fill{
+  height:100%;border-radius:999px;transition:width .4s ease;
+  background:linear-gradient(90deg,var(--track-primary,var(--primary)),var(--track-primary-dark,var(--accent)));
+}
 
 /* ── Overview Cards ────────────────────────────── */
 .overview-grid{
@@ -228,7 +285,7 @@ img{max-width:100%}
 .unit-progress{
   width:80px;height:6px;border-radius:3px;background:var(--border);overflow:hidden;
 }
-.unit-progress-fill{height:100%;border-radius:3px;background:var(--primary);transition:width .4s}
+/* .unit-progress-fill inherits shared progress-fill geometry */
 .unit-toggle{background:none;border:none;color:var(--text-muted);font-size:1.2rem;transition:transform .3s;padding:4px}
 .unit-toggle.open{transform:rotate(180deg)}
 
@@ -372,7 +429,7 @@ img{max-width:100%}
 }
 .pbu-label{flex:1;font-weight:600;font-size:.9rem}
 .pbu-bar{flex:2;height:8px;border-radius:4px;background:var(--border);overflow:hidden}
-.pbu-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--primary),var(--accent));transition:width .5s}
+/* .pbu-bar-fill inherits shared progress-fill geometry */
 .pbu-pct{width:48px;text-align:right;font-size:.85rem;font-weight:600;color:var(--text-muted)}
 
 .progress-actions{margin-top:24px;text-align:center}
@@ -551,7 +608,7 @@ footer{
 .cm-unit-title{font-size:1rem;font-weight:700;flex:1}
 .cm-unit-progress{font-size:.8rem;color:var(--text-muted)}
 .cm-unit-bar{height:3px;background:var(--border)}
-.cm-unit-bar-fill{height:100%;background:var(--primary);transition:width .4s}
+/* .cm-unit-bar-fill inherits shared progress-fill geometry */
 .cm-lessons-grid{
   display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:1px;
   background:var(--border);
@@ -1162,10 +1219,8 @@ a.ticker-item-link:hover{color:var(--text);text-decoration:none;}
   background:linear-gradient(90deg,rgba(155,24,68,.15),rgba(0,159,227,.15));
   color:var(--primary-light);border:1px solid rgba(155,24,68,.25);
 }
-.xp-bar-track{
-  width:120px;height:6px;background:var(--border);border-radius:999px;overflow:hidden;
-}
-.xp-bar-fill{height:100%;background:linear-gradient(90deg,#9b1844,#009fe3);border-radius:999px;transition:width .5s ease}
+.xp-bar-track{ width:120px; /* height/radius from shared progress-track */ }
+/* .xp-bar-fill inherits shared progress-fill geometry */
 .xp-label{font-size:.72rem;color:var(--text-dim)}
 
 /* XP Toast */

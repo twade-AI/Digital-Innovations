@@ -38,9 +38,11 @@
   --primary:#9b1844;
   --primary-dark:#7c1235;
   --primary-light:#c64b74;
+  --primary-rgb:155,24,68;
   /* Haileybury secondary accent: cyan */
   --accent:#009fe3;
   --accent-dark:#007bb0;
+  --accent-rgb:0,159,227;
   /* Calluna Sans for body + headings */
   --font:'Calluna Sans','Inter',system-ui,sans-serif;
 
