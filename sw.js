@@ -1,5 +1,5 @@
 /* Digital Innovations — Service Worker (offline-first) v10 — Haileybury brand layer */
-const CACHE = 'di-v25';
+const CACHE = 'di-v26';
 const ASSETS = [
   './',
   './index.html',
@@ -27,6 +27,7 @@ const ASSETS = [
   './js/slides-gcse.js',
   './icon.svg',
   './manifest.json',
+  './assets/brand/logo/haileybury-magenta.png',
 ];
 
 self.addEventListener('install', function(e) {
