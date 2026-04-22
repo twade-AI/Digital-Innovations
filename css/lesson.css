@@ -38,18 +38,10 @@
   font-size: .72rem;
   color: var(--text-dim);
 }
-.lv-progress-track {
-  height: 3px;
-  background: var(--border);
-  border-radius: 2px;
-  overflow: hidden;
-}
-.lv-progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--unit-colour, var(--primary)), var(--accent));
-  border-radius: 2px;
-  transition: width .35s ease;
-}
+/* .lv-progress-track / .lv-progress-fill inherit the canonical
+   progress-bar geometry from style.css. A `--unit-colour` custom
+   property on an ancestor can still override the fill start colour. */
+.lv-progress-fill { background: linear-gradient(90deg, var(--unit-colour, var(--track-primary, var(--primary))), var(--track-primary-dark, var(--accent))); }
 
 /* ── Slide Transitions ─────────────────────────── */
 .lv-slide-area {

@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard — Digital Innovations</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/brand.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <script src="js/supabase-config.js"></script>
   <style>
@@ -22,8 +21,8 @@
       --text: #0f172a; --text-muted: #475569; --text-dim: #94a3b8; --border: #e2e8f0;
     }
     html { font-size: 16px; }
-    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; min-height: 100vh; }
-    a { color: var(--primary-light); text-decoration: none; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.5; min-height: 100vh; }
+    a { color: var(--link, var(--primary-light)); text-decoration: none; }
     button { cursor: pointer; font-family: inherit; }
 
     /* ── Layout ── */
@@ -232,7 +231,7 @@
   <!-- Header -->
   <div class="admin-header">
     <div class="admin-brand">
-      <span class="admin-brand-icon">⚡</span>
+      <img class="hby-mark" src="assets/brand/logo/haileybury-magenta.png" alt="Haileybury" width="26" height="18">
       <div>
         <div class="admin-brand-text">Digital Innovations</div>
         <div class="admin-brand-sub">Teacher Admin Dashboard</div>

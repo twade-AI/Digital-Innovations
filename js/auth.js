@@ -143,9 +143,15 @@ async function loadProgressFromSupabase() {
       remote.bookmarks.forEach(function(id) { bookmarkedLessons.add(parseInt(id)); });
       localStorage.setItem('di_bookmarks', JSON.stringify([...bookmarkedLessons]));
     }
-    // Merge quiz scores (remote wins for same key if more recent)
+    // Merge quiz scores — take the max per lesson so a newly-earned
+    // high score on this device isn't clobbered by an older lower
+    // score from remote. Scores are 0–100 so max is the right rule.
     if (remote.quiz_scores && typeof remote.quiz_scores === 'object') {
-      Object.assign(quizScores, remote.quiz_scores);
+      Object.keys(remote.quiz_scores).forEach(function(lessonId) {
+        var remoteScore = Number(remote.quiz_scores[lessonId]) || 0;
+        var localScore  = Number(quizScores[lessonId]) || 0;
+        quizScores[lessonId] = Math.max(remoteScore, localScore);
+      });
       localStorage.setItem('di_quiz_scores', JSON.stringify(quizScores));
     }
     // XP — keep higher of local vs remote
@@ -183,26 +189,38 @@ function scheduleSync() {
   _syncTimer = setTimeout(syncToSupabase, 3000);
 }
 
-async function syncToSupabase() {
+async function syncToSupabase(attempt) {
   if (!isSupabaseReady() || !_currentUser) return;
+  attempt = attempt || 0;
+  var now = new Date().toISOString();
   var payload = {
     completed:   [...completedLessons],
     bookmarks:   [...bookmarkedLessons],
     quiz_scores: quizScores,
     xp:          loadXP(),
     streak:      JSON.parse(localStorage.getItem(STREAK_KEY) || '{}'),
-    synced_at:   new Date().toISOString()
+    synced_at:   now
   };
   try {
-    await _sb.from('progress').upsert({
+    var res = await _sb.from('progress').upsert({
       user_id:    _currentUser.id,
       data:       payload,
-      updated_at: new Date().toISOString()
+      updated_at: now
     }, { onConflict: 'user_id' });
+    if (res && res.error) throw res.error;
+    // Mark a watermark so a future read can tell whether remote has
+    // drifted ahead (e.g. another device synced) or we're up to date.
+    try { localStorage.setItem('di_last_sync_at', now); } catch(e) {}
     showSyncIndicator('☁️ Saved');
   } catch(e) {
-    console.warn('[auth] Sync failed:', e);
-    showSyncIndicator('⚠️ Sync failed');
+    console.warn('[auth] Sync failed (attempt ' + attempt + '):', e);
+    // Transient-looking failure — retry with exponential backoff
+    // up to three times before surfacing the warning.
+    if (attempt < 3) {
+      setTimeout(function() { syncToSupabase(attempt + 1); }, Math.pow(2, attempt) * 2000);
+    } else {
+      showSyncIndicator('⚠️ Sync failed');
+    }
   }
 }
 
@@ -285,8 +303,22 @@ function updateAuthUI() {
       }
     }
     if (syncEl)    syncEl.style.display = 'inline';
-    if (adminLink && ADMIN_EMAILS.includes(_currentUser.email)) {
-      adminLink.style.display = 'inline-block';
+    // Admin-link visibility: query the profiles table so admin access
+    // is controlled in the database, not by a hardcoded email list.
+    // The email fallback is kept ONLY as an offline/first-load hint —
+    // admin.html does its own server-side check via RLS before
+    // rendering anything, so a flash of the link is harmless.
+    if (adminLink) {
+      adminLink.style.display = ADMIN_EMAILS.includes(_currentUser.email) ? 'inline-block' : 'none';
+      if (_sb && _currentUser && _currentUser.id) {
+        _sb.from('profiles').select('is_admin').eq('user_id', _currentUser.id).maybeSingle()
+          .then(function(res) {
+            if (!adminLink) return;
+            var isAdmin = !!(res && res.data && res.data.is_admin);
+            adminLink.style.display = isAdmin ? 'inline-block' : 'none';
+          })
+          .catch(function() { /* leave current state */ });
+      }
     }
   } else {
     loginBtn.style.display  = 'inline-flex';

@@ -4,6 +4,23 @@ const STORAGE_KEY      = 'di_progress';
 const STREAK_KEY       = 'di_streak';
 const COMPLETION_DATES_KEY = 'di_completion_dates';
 
+/* Safe JSON parser for localStorage.
+   If a stored value is corrupt or missing, return the fallback
+   AND quietly remove the bad key so we don't hit the same error
+   every time the app loads. */
+function safeParse(key, fallback) {
+  try {
+    var raw = localStorage.getItem(key);
+    if (raw == null || raw === '') return fallback;
+    var parsed = JSON.parse(raw);
+    return parsed === null || parsed === undefined ? fallback : parsed;
+  } catch(e) {
+    try { localStorage.removeItem(key); } catch(_) {}
+    console.warn('[di] Corrupt localStorage at', key, '— reset to default.');
+    return fallback;
+  }
+}
+
 /* ── Sequential display numbering ──────────────── */
 // Maps lesson.id → 1-based position in course order (for display only)
 var LESSON_NUM_MAP = (function() {
@@ -90,32 +107,28 @@ function getSpacedReviewDue() {
   return due.sort(function(a, b) { return b.daysSince - a.daysSince; });
 }
 function getLastReviewDate(lessonId) {
-  try {
-    var reviews = JSON.parse(localStorage.getItem('di_reviews') || '{}');
-    return reviews[lessonId] || null;
-  } catch { return null; }
+  var reviews = safeParse('di_reviews', {});
+  return reviews[lessonId] || null;
 }
 function recordReview(lessonId) {
-  try {
-    var reviews = JSON.parse(localStorage.getItem('di_reviews') || '{}');
-    reviews[lessonId] = new Date().toISOString();
-    localStorage.setItem('di_reviews', JSON.stringify(reviews));
-  } catch {}
+  var reviews = safeParse('di_reviews', {});
+  reviews[lessonId] = new Date().toISOString();
+  try { localStorage.setItem('di_reviews', JSON.stringify(reviews)); } catch(e) {}
 }
 function updateStreak() {
-  var data = JSON.parse(localStorage.getItem(STREAK_KEY) || '{"last":"","count":0,"days":[]}');
+  var data = safeParse(STREAK_KEY, { last: '', count: 0, days: [] });
   var today = new Date().toISOString().slice(0, 10);
   var yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
   if (!data.days) data.days = [];
   if (!data.days.includes(today)) data.days.push(today);
   if (data.days.length > 90) data.days = data.days.slice(-90);
-  if (data.last === today) { localStorage.setItem(STREAK_KEY, JSON.stringify(data)); return; }
+  if (data.last === today) { try { localStorage.setItem(STREAK_KEY, JSON.stringify(data)); } catch(e){} return; }
   data.count = data.last === yesterday ? data.count + 1 : 1;
   data.last = today;
-  localStorage.setItem(STREAK_KEY, JSON.stringify(data));
+  try { localStorage.setItem(STREAK_KEY, JSON.stringify(data)); } catch(e){}
 }
 function getStreak() {
-  const data = JSON.parse(localStorage.getItem(STREAK_KEY) || '{"last":"","count":0}');
+  const data = safeParse(STREAK_KEY, { last: '', count: 0 });
   const today = new Date().toISOString().slice(0, 10);
   const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
   return (data.last === today || data.last === yesterday) ? data.count : 0;
@@ -929,6 +942,16 @@ function renderSlide(index) {
     nextBtn.innerHTML = 'Next &#8594;';
     nextBtn.onclick = function() { navigateSlide(1); };
   }
+  // Quiz slides gate progression: a pupil must choose an answer
+  // before Next unlocks. checkQuiz() flips this off when clicked.
+  var currentSlide = currentSlides[index];
+  if (currentSlide && currentSlide.type === 'quiz') {
+    nextBtn.disabled = true;
+    nextBtn.title = 'Choose an answer to continue';
+  } else {
+    nextBtn.disabled = false;
+    nextBtn.removeAttribute('title');
+  }
 }
 
 function jumpToSlide(idx) {
@@ -938,6 +961,14 @@ function jumpToSlide(idx) {
 }
 
 function navigateSlide(dir) {
+  // Block forward progression on an unanswered quiz slide
+  // (arrow keys, swipe — anything that bypasses the Next button).
+  if (dir > 0) {
+    var cur = currentSlides[currentSlideIndex];
+    var answered = !document.getElementById('quizOptions') ||
+                   document.getElementById('quizOptions').classList.contains('quiz-answered');
+    if (cur && cur.type === 'quiz' && !answered) return;
+  }
   const newIndex = currentSlideIndex + dir;
   if (newIndex < 0 || newIndex >= currentSlides.length) return;
   currentSlideIndex = newIndex;
@@ -1332,17 +1363,49 @@ function updateHomeStats() {
 }
 
 function resetProgress() {
-  if (!confirm('Reset all progress? This cannot be undone.')) return;
+  if (!confirm('Reset all progress? This clears lessons, quiz scores, XP, streak, badges, review queue and per-lesson notes. This cannot be undone.')) return;
+
+  // In-memory state
   completedLessons.clear();
   bookmarkedLessons.clear();
   quizScores = {};
-  localStorage.removeItem(STORAGE_KEY);
-  localStorage.removeItem(STREAK_KEY);
-  localStorage.removeItem('di_bookmarks');
-  localStorage.removeItem('di_quiz_scores');
+  if (typeof lessonRatings === 'object' && lessonRatings !== null) {
+    for (var k in lessonRatings) delete lessonRatings[k];
+  }
+
+  // Course-progress localStorage keys (all of them).
+  // Kept: di_theme, di_contrast, di_font, di_avatar, di_display_name,
+  // di_onboarded, di_flb_dismissed — user preferences, not progress.
+  var progressKeys = [
+    STORAGE_KEY, STREAK_KEY, COMPLETION_DATES_KEY, XP_KEY,
+    'di_bookmarks', 'di_quiz_scores', 'di_ratings', 'di_reviews',
+    'di_milestones', 'di_badges', 'di_confused', 'di_capstone', 'di_recent',
+    // Removes/Fluency track progress
+    'di_gcse_v1', 'di_gcse_xp_awarded_v1', 'di_gcse_cert_id', 'di_gcse_cert_name', 'di_gcse_completed_date',
+    'fl_progress_v1', 'fl_cert_id', 'fl_cert_name', 'fl_completed_date'
+  ];
+  progressKeys.forEach(function(k) { try { localStorage.removeItem(k); } catch(e) {} });
+
+  // Per-lesson notes + exit tickets use prefixed keys — sweep by prefix.
+  try {
+    var toDrop = [];
+    for (var i = 0; i < localStorage.length; i++) {
+      var key = localStorage.key(i);
+      if (!key) continue;
+      if (key.indexOf('di_notes_') === 0 || key.indexOf('di_note_') === 0 || key.indexOf('di_gcse_exit_') === 0) toDrop.push(key);
+    }
+    toDrop.forEach(function(k) { localStorage.removeItem(k); });
+  } catch(e) {}
+
+  // Redraw everything that depends on progress
   renderUnits();
   renderProgress();
   updateHomeStats();
+  if (typeof updateXPStrip === 'function') updateXPStrip();
+  if (typeof renderXPSection === 'function') renderXPSection();
+  if (typeof renderStreakHeatmap === 'function') renderStreakHeatmap();
+  if (typeof renderSpacedReviewQueue === 'function') renderSpacedReviewQueue();
+  if (typeof scheduleSync === 'function') scheduleSync();
 }
 
 /* ── Tag Filtering ────────────────────────────── */
@@ -1700,6 +1763,9 @@ function checkQuiz(btn, correctIdx, slideIdx) {
   if (isCorrect) addXP(10, 'Quiz answered correctly');
   // Adaptive nudge on wrong answer
   if (!isCorrect) showAdaptiveNudge(currentLessonId);
+  // Unlock the Next button — pupil has engaged with the question.
+  var nextBtn = document.getElementById('lvNext');
+  if (nextBtn) { nextBtn.disabled = false; nextBtn.removeAttribute('title'); }
 }
 
 /* ── Glossary Tooltip Injection ───────────────── */

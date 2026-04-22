@@ -38,12 +38,64 @@
   --primary:#9b1844;
   --primary-dark:#7c1235;
   --primary-light:#c64b74;
+  --primary-rgb:155,24,68;
   /* Haileybury secondary accent: cyan */
   --accent:#009fe3;
   --accent-dark:#007bb0;
+  --accent-rgb:0,159,227;
   /* Calluna Sans for body + headings */
   --font:'Calluna Sans','Inter',system-ui,sans-serif;
+
+  /* ── Per-track primary tokens ──────────────────────
+     Three pathways share one token slot so components
+     can be theme-agnostic. Pages set data-track on <body>;
+     the default (no attribute) is the AEP magenta. */
+  --track-primary:#9b1844;
+  --track-primary-dark:#7c1235;
+  --track-primary-soft:#c64b74;
+  --track-primary-rgb:155,24,68;
 }
+body[data-track="removes"]{
+  --track-primary:#10b981;
+  --track-primary-dark:#059669;
+  --track-primary-soft:#6ee7b7;
+  --track-primary-rgb:16,185,129;
+}
+body[data-track="fluency"]{
+  --track-primary:#f59e0b;
+  --track-primary-dark:#d97706;
+  --track-primary-soft:#fcd34d;
+  --track-primary-rgb:245,158,11;
+}
+/* Light-theme track overrides — the dark-theme values above
+   are bright enough to pass AA on #0f172a, but on a near-white
+   background they drop below 4.5:1. Use a deeper shade. */
+[data-theme="light"] body[data-track="removes"]{
+  --track-primary:#047857; /* 5.3:1 on #f8fafc */
+  --track-primary-dark:#065f46;
+  --track-primary-rgb:4,120,87;
+}
+[data-theme="light"] body[data-track="fluency"]{
+  --track-primary:#b45309; /* 4.6:1 on #f8fafc */
+  --track-primary-dark:#92400e;
+  --track-primary-rgb:180,83,9;
+}
+
+/* ── Haileybury crest (nav + footer + track headers) ─
+   Small, restrained mark. Magenta PNG renders fine on
+   both dark and light themes. */
+.hby-mark{
+  display:inline-block;height:26px;width:auto;
+  object-fit:contain;vertical-align:middle;
+  filter:drop-shadow(0 1px 2px rgba(0,0,0,.2));
+}
+.hby-mark--footer{height:32px;opacity:.95}
+.hby-mark--header{height:22px;margin-right:6px}
+
+/* ── Text-to-speech listen button ─ */
+.di-tts-btn{gap:6px;font-size:.78rem;padding:6px 12px}
+.di-tts-btn.di-tts-playing{background:rgba(var(--primary-rgb),.12);color:var(--primary);border-color:var(--primary)}
+.di-tts-btn .di-tts-icon{font-size:1rem;line-height:1}
 
 /* ── Home flourishes — all scoped to #section-home, additive only ───── */
 

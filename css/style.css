@@ -1,3 +1,12 @@
+/* ── Breakpoints (canonical — three values only) ─────
+   Media queries can't read CSS custom properties, so
+   these are the fixed values used across every stylesheet:
+     sm  ≤ 640px  — phone
+     md  ≤ 768px  — tablet (mobile nav tabs appear)
+     lg  ≤ 1024px — small desktop / iPad landscape
+   If a new responsive rule needs a different cutoff,
+   reconsider the component rather than adding a fourth. */
+
 /* ── Reset & Base ───────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
@@ -9,9 +18,11 @@
   --border:#334155;--success:#22c55e;--warning:#f59e0b;--danger:#ef4444;
   --radius:12px;--radius-sm:8px;--radius-xs:4px;
   --shadow:0 4px 24px rgba(0,0,0,.35);
-  --font:'Inter',system-ui,sans-serif;
+  --font:'Calluna Sans','Inter',system-ui,sans-serif;
   --mono:'JetBrains Mono',monospace;
   --nav-h:64px;
+  /* Link colour — AA-compliant on dark bg (#e86a93 / #0f172a ≈ 5.5:1) */
+  --link:#e86a93;
 }
 
 /* ── High-Contrast Mode ────────────────────────── */
@@ -51,6 +62,8 @@
   --bg:#f8fafc;--bg-card:#ffffff;--bg-card-hover:#f1f5f9;
   --text:#0f172a;--text-muted:#475569;--text-dim:#94a3b8;
   --border:#e2e8f0;--shadow:0 4px 24px rgba(0,0,0,.08);
+  /* On white/near-white bg, the primary magenta gives 6.9:1 — full AAA body text */
+  --link:var(--primary);
 }
 [data-theme="light"] body{
   background-image:radial-gradient(ellipse 900px 500px at 50% -60px,rgba(155,24,68,.06),transparent);
@@ -68,7 +81,8 @@ body{
   /* Subtle aurora glow — the single biggest premium signal */
   background-image:radial-gradient(ellipse 900px 500px at 50% -60px,rgba(155,24,68,.11),transparent);
 }
-a{color:var(--primary-light);text-decoration:none}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
 button{cursor:pointer;font-family:inherit}
 img{max-width:100%}
 
@@ -164,24 +178,81 @@ img{max-width:100%}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes counter-spin{to{transform:translate(-50%,-50%) rotate(calc(var(--angle) - 360deg)) translateX(130px) rotate(calc(-1 * var(--angle) + 360deg))}}
 
-/* ── Buttons ───────────────────────────────────── */
+/* ── Buttons (3 canonical styles + size modifier) ─────
+   primary   — solid brand gradient, white text. Main CTAs.
+   secondary — card bg, border, foreground text. Supporting.
+   ghost     — no bg, text-coloured. Menus, filters, chips.
+   .btn-sm   — compact size modifier.
+   Track-specific CTAs on pathway cards (.pc-cta--*) are
+   intentionally coloured per track; they aren't a fourth style. */
 .btn{
   padding:12px 28px;border-radius:var(--radius-sm);font-size:.95rem;font-weight:600;
-  border:none;transition:all .2s;letter-spacing:.01em;
+  border:1px solid transparent;transition:all .2s;letter-spacing:.01em;
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  font-family:inherit;cursor:pointer;
 }
 .btn-primary{
-  background:linear-gradient(135deg,#9b1844,#7c1235);
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
   color:#fff;
-  box-shadow:0 2px 12px rgba(155,24,68,.35);
+  box-shadow:0 2px 12px rgba(var(--primary-rgb,155,24,68),.35);
 }
 .btn-primary:hover{
-  background:linear-gradient(135deg,#c64b74,#9b1844);
-  box-shadow:0 4px 20px rgba(155,24,68,.5);
+  background:linear-gradient(135deg,var(--primary-light),var(--primary));
+  box-shadow:0 4px 20px rgba(var(--primary-rgb,155,24,68),.5);
   transform:translateY(-1px);
 }
-.btn-secondary{background:var(--bg-card);color:var(--text);border:1px solid var(--border)}
-.btn-secondary:hover{background:var(--bg-card-hover);border-color:var(--primary);transform:translateY(-1px)}
+.btn-secondary,
+.widget-btn{background:var(--bg-card);color:var(--text);border:1px solid var(--border)}
+.btn-secondary:hover,
+.widget-btn:hover{background:var(--bg-card-hover);border-color:var(--primary);transform:translateY(-1px)}
+.btn-ghost,
+.filter-btn,
+.nav-explore-btn,
+.settings-menu-item{
+  background:transparent;color:var(--text-muted);border:1px solid transparent;
+}
+.btn-ghost:hover,
+.filter-btn:hover,
+.filter-btn.active,
+.nav-explore-btn:hover,
+.settings-menu-item:hover{
+  background:rgba(var(--primary-rgb,155,24,68),.1);color:var(--text);border-color:transparent;
+}
 .btn-sm{padding:6px 14px;font-size:.8rem;border-radius:var(--radius-xs)}
+.btn:active,.btn-primary:active,.btn-secondary:active,.btn-ghost:active{transform:translateY(0)}
+
+/* ── Progress bars (one canonical visual) ─────────
+   All progress-bar classes share the same track + fill
+   rendering: 6px tall, pill radius, track-primary gradient.
+   Each context can vary the fill colour via a custom
+   property (--unit-colour, --track-primary) but the
+   geometry is identical everywhere. */
+.progress-track,
+.lv-progress-track,
+.unit-progress-track,
+.pc-progress-track,
+.pbu-bar-track,
+.xp-bar-track,
+.pm-unit-bar-track,
+.viva-progress-track,
+.gs-progress-track,
+.fl-progress-track{
+  height:6px;background:var(--border);border-radius:999px;overflow:hidden;
+}
+.progress-fill,
+.lv-progress-fill,
+.unit-progress-fill,
+.pc-progress-fill,
+.pbu-bar-fill,
+.xp-bar-fill,
+.pm-unit-bar-fill,
+.viva-progress-fill,
+.gs-progress-fill,
+.fl-progress-fill,
+.cm-unit-bar-fill{
+  height:100%;border-radius:999px;transition:width .4s ease;
+  background:linear-gradient(90deg,var(--track-primary,var(--primary)),var(--track-primary-dark,var(--accent)));
+}
 
 /* ── Overview Cards ────────────────────────────── */
 .overview-grid{
@@ -219,7 +290,7 @@ img{max-width:100%}
 .unit-progress{
   width:80px;height:6px;border-radius:3px;background:var(--border);overflow:hidden;
 }
-.unit-progress-fill{height:100%;border-radius:3px;background:var(--primary);transition:width .4s}
+/* .unit-progress-fill inherits shared progress-fill geometry */
 .unit-toggle{background:none;border:none;color:var(--text-muted);font-size:1.2rem;transition:transform .3s;padding:4px}
 .unit-toggle.open{transform:rotate(180deg)}
 
@@ -363,7 +434,7 @@ img{max-width:100%}
 }
 .pbu-label{flex:1;font-weight:600;font-size:.9rem}
 .pbu-bar{flex:2;height:8px;border-radius:4px;background:var(--border);overflow:hidden}
-.pbu-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--primary),var(--accent));transition:width .5s}
+/* .pbu-bar-fill inherits shared progress-fill geometry */
 .pbu-pct{width:48px;text-align:right;font-size:.85rem;font-weight:600;color:var(--text-muted)}
 
 .progress-actions{margin-top:24px;text-align:center}
@@ -404,6 +475,7 @@ img{max-width:100%}
 footer{
   text-align:center;padding:24px;color:var(--text-dim);font-size:.8rem;
   border-top:1px solid var(--border);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
 }
 
 /* ── Responsive ────────────────────────────────── */
@@ -479,7 +551,7 @@ footer{
   outline:2px solid var(--primary);outline-offset:2px;border-radius:var(--radius-xs);
 }
 
-@media(max-width:480px){
+@media(max-width:640px){
   .overview-grid{grid-template-columns:repeat(2,1fr)}
   .hero-stats{flex-wrap:wrap;gap:16px}
 }
@@ -542,7 +614,7 @@ footer{
 .cm-unit-title{font-size:1rem;font-weight:700;flex:1}
 .cm-unit-progress{font-size:.8rem;color:var(--text-muted)}
 .cm-unit-bar{height:3px;background:var(--border)}
-.cm-unit-bar-fill{height:100%;background:var(--primary);transition:width .4s}
+/* .cm-unit-bar-fill inherits shared progress-fill geometry */
 .cm-lessons-grid{
   display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:1px;
   background:var(--border);
@@ -590,7 +662,7 @@ footer{
   .qs-grid{grid-template-columns:1fr}
   .bm-grid{grid-template-columns:1fr}
 }
-@media(max-width:480px){
+@media(max-width:640px){
   .cm-lessons-grid{grid-template-columns:1fr}
   .diff-badge{display:none}
   .hook-stats-row{grid-template-columns:repeat(2,1fr)!important}
@@ -1111,7 +1183,7 @@ a.ticker-item-link:hover{color:var(--text);text-decoration:none;}
 .news-card-link:hover{text-decoration:underline}
 /* Teaser on home: max 4 columns */
 .news-grid-teaser{ grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); }
-@media(max-width:600px){ .news-grid-teaser{ grid-template-columns:1fr; } }
+@media(max-width:640px){ .news-grid-teaser{ grid-template-columns:1fr; } }
 /* News freshness/staleness banner */
 .news-freshness-bar{
   display:flex;flex-wrap:wrap;align-items:center;gap:12px;
@@ -1153,10 +1225,8 @@ a.ticker-item-link:hover{color:var(--text);text-decoration:none;}
   background:linear-gradient(90deg,rgba(155,24,68,.15),rgba(0,159,227,.15));
   color:var(--primary-light);border:1px solid rgba(155,24,68,.25);
 }
-.xp-bar-track{
-  width:120px;height:6px;background:var(--border);border-radius:999px;overflow:hidden;
-}
-.xp-bar-fill{height:100%;background:linear-gradient(90deg,#9b1844,#009fe3);border-radius:999px;transition:width .5s ease}
+.xp-bar-track{ width:120px; /* height/radius from shared progress-track */ }
+/* .xp-bar-fill inherits shared progress-fill geometry */
 .xp-label{font-size:.72rem;color:var(--text-dim)}
 
 /* XP Toast */
@@ -1482,7 +1552,7 @@ a.ticker-item-link:hover{color:var(--text);text-decoration:none;}
 .dot-policy   { background:#ef4444 }
 .dot-industry { background:#a855f7 }
 
-@media(max-width:600px){
+@media(max-width:640px){
   .timeline-spine{left:16px}
   .tl-year{display:none}
   .tl-dot-col{width:16px}
@@ -1664,8 +1734,8 @@ a.ticker-item-link:hover{color:var(--text);text-decoration:none;}
 }
 .pathway-sub{ color:var(--text-dim);font-size:.97rem;margin:0;max-width:480px;display:block;margin:0 auto }
 .pathway-cards{ display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:28px;margin-top:8px }
-@media(max-width:900px){ .pathway-cards{ grid-template-columns:1fr 1fr } }
-@media(max-width:600px){ .pathway-cards{ grid-template-columns:1fr } }
+@media(max-width:1024px){ .pathway-cards{ grid-template-columns:1fr 1fr } }
+@media(max-width:640px){ .pathway-cards{ grid-template-columns:1fr } }
 
 /* Cards */
 .pathway-card{
