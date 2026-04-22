@@ -347,6 +347,7 @@
     </div>
   </div>
 
+  <script src="js/slide-utils.js"></script>
   <script src="js/slides-gcse.js"></script>
   <script src="js/tts.js" defer></script>
   <script>
@@ -736,33 +737,16 @@
   function gsPrevSlide() { if(gsSlideIdx>0){gsSlideIdx--;gsRenderSlide();} }
   function gsJumpSlide(i) { gsSlideIdx=i; gsRenderSlide(); }
 
+  /* These four used to be per-engine copies — now delegate to the
+     shared helpers in js/slide-utils.js so Removes, Fluency (and
+     eventually AEP) stop drifting on the same logic. */
   function gsRevealHTML(slide) {
-    if (!slide || !slide.reveal) return '';
     var rid = 'gsRev_' + gsCurrentId + '_' + gsSlideIdx;
-    var label = slide.revealLabel || '💡 Click to reveal answer';
-    return '<button class="slide-reveal-btn" id="'+rid+'_btn" onclick="gsToggleReveal(\''+rid+'\')">'+label+'</button>' +
-           '<div class="slide-reveal" id="'+rid+'" style="display:none">'+slide.reveal+'</div>';
+    return window.diSlide.revealHTML(slide, rid, 'gsToggleReveal');
   }
-
-  function gsSourcesHTML(slide) {
-    if (!slide || !slide.sources || !slide.sources.length) return '';
-    return '<div class="slide-sources"><span class="slide-sources-label">Sources</span><ul>' +
-      slide.sources.map(function(s){
-        if (typeof s === 'string') return '<li>'+s+'</li>';
-        if (s && s.url) return '<li><a href="'+s.url+'" target="_blank" rel="noopener">'+s.label+'</a></li>';
-        return '<li>'+(s.label||'')+'</li>';
-      }).join('') + '</ul></div>';
-  }
-
-  function gsToggleReveal(id) {
-    var el = document.getElementById(id);
-    var btn = document.getElementById(id+'_btn');
-    if (!el) return;
-    if (el.style.display === 'none') { el.style.display='block'; if(btn)btn.classList.add('revealed'); }
-    else { el.style.display='none'; if(btn)btn.classList.remove('revealed'); }
-  }
-
-  function gsEscape(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function gsSourcesHTML(slide) { return window.diSlide.sourcesHTML(slide); }
+  function gsToggleReveal(id)   { return window.diSlide.toggleReveal(id); }
+  function gsEscape(s)          { return window.diSlide.escape(s); }
 
   function gsWidgetHTML(slide){
     var w = slide.widget;
