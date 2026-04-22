@@ -285,8 +285,22 @@ function updateAuthUI() {
       }
     }
     if (syncEl)    syncEl.style.display = 'inline';
-    if (adminLink && ADMIN_EMAILS.includes(_currentUser.email)) {
-      adminLink.style.display = 'inline-block';
+    // Admin-link visibility: query the profiles table so admin access
+    // is controlled in the database, not by a hardcoded email list.
+    // The email fallback is kept ONLY as an offline/first-load hint —
+    // admin.html does its own server-side check via RLS before
+    // rendering anything, so a flash of the link is harmless.
+    if (adminLink) {
+      adminLink.style.display = ADMIN_EMAILS.includes(_currentUser.email) ? 'inline-block' : 'none';
+      if (_sb && _currentUser && _currentUser.id) {
+        _sb.from('profiles').select('is_admin').eq('user_id', _currentUser.id).maybeSingle()
+          .then(function(res) {
+            if (!adminLink) return;
+            var isAdmin = !!(res && res.data && res.data.is_admin);
+            adminLink.style.display = isAdmin ? 'inline-block' : 'none';
+          })
+          .catch(function() { /* leave current state */ });
+      }
     }
   } else {
     loginBtn.style.display  = 'inline-flex';
