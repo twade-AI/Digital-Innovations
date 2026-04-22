@@ -135,7 +135,7 @@ SLIDES_GCSE[101] = [
   {
     type: 'activity',
     title: 'Spot the AI',
-    task: 'Which of these uses AI? Tick the ones you think do in the notes box, then check the answers below.',
+    task: 'Which of these uses AI? In the notes box below, write the numbers of the ones you think use AI — then tap "Click to reveal answer" to check.',
     steps: [
       'TikTok deciding which video shows next',
       'A basic calculator adding two numbers',
@@ -152,9 +152,9 @@ SLIDES_GCSE[101] = [
     task: 'In the notes box, map every AI interaction you\'ve had in the last 24 hours. Be exhaustive — go hour by hour if you have to.',
     steps: [
       'List every app, device or service you\'ve used since yesterday',
-      'For each one, tick if it uses AI (recommendation, prediction, recognition, generation)',
+      'Next to each, note whether it uses AI (recommendation, prediction, recognition, generation)',
       'Group them: Communication / Entertainment / Education / Health / Finance / Other',
-      'Circle your top 3 — the AI systems that most shape what you see, hear or do',
+      'Mark your top 3 with a star — the AI systems that most shape what you see, hear or do',
       'Write one sentence: what would today have looked like without those three?'
     ],
     callout: 'Counts vary by how broadly you define "AI interaction" — from a few dozen deliberate uses to several hundred when you include recommendation, autocomplete and spam filtering. What matters isn\'t the exact number; it\'s that AI decisions are shaping your day well beyond the chatbots you chose to open.',
@@ -469,8 +469,8 @@ SLIDES_GCSE[104] = [
     task: 'In the notes box, map every AI interaction you can think of from the last day. Then add a consent column — which of these did you actively agree to?',
     steps: [
       'List every AI interaction: waking, unlocking, messaging, music, video, search, purchases',
-      'For each, tick one: Active consent (you chose it) / Passive consent (you clicked through a T&Cs screen you didn\'t read) / No idea it was happening',
-      'Circle the three systems with the most influence over what you see, hear or believe',
+      'Next to each, label one of: Active consent (you chose it) / Passive consent (you clicked through a T&Cs screen you didn\'t read) / No idea it was happening',
+      'Mark with a star the three systems with the most influence over what you see, hear or believe',
       'For those three: what would today have looked like without them?',
       'One sentence: which of these would you switch off if you could, and why?'
     ],
@@ -959,7 +959,7 @@ SLIDES_GCSE[108] = [
     task: 'Pick one topic you\'re actively revising right now. Use the notes box to plan a full active-summarising run.',
     steps: [
       'Write 3–5 key points you would expect a good summary of this topic to cover — from memory, before you look anything up',
-      'Search your exam board spec for this topic and list the required keywords. Tick which ones you already wrote down',
+      'Search your exam board spec for this topic and list the required keywords. Note which ones you already wrote down',
       'Draft the prompt you would use to ask AI for the summary — include the exam board and paper: e.g. "Summarise [topic] for AQA GCSE Biology Paper 1, using the required terminology: [keyword list]"',
       'Draft a follow-up prompt to check for gaps: "What exam-important terms from the spec did you NOT use, and why?"',
       'Draft a prompt to turn the summary into a 5-question quiz with a separate mark scheme',
@@ -1302,13 +1302,13 @@ SLIDES_GCSE[111] = [
     task: 'In the notes box, audit the most recent time you used AI for schoolwork. Be honest — this is diagnostic, not graded.',
     steps: [
       'Write down the exact prompt(s) you used and what AI returned. Paste or summarise if long.',
-      'Colour-code: which parts of your final submitted work were YOUR original thinking (green), which were AI ideas you re-worded (amber), which were pasted more or less verbatim (red)?',
-      'For any factual claim (name, date, statistic, quote, source) the AI produced — did you verify it against the exam board spec, textbook or a reputable site? Tick or cross each.',
+      'Label each passage of your final submitted work as GREEN (your original thinking), AMBER (AI ideas you re-worded) or RED (pasted more or less verbatim).',
+      'For any factual claim (name, date, statistic, quote, source) the AI produced — did you verify it against the exam board spec, textbook or a reputable site? Write ✓ or ✗ next to each.',
       'Ask the over-reliance question: if the task came up tomorrow under exam conditions with NO AI, could you produce a comparable answer? Score yourself 1–5.',
       'Name the trap you were closest to: plagiarism / hallucination / over-reliance — and write one sentence on why.',
       'Extension: write the single behaviour change you will make next time, in one sentence. Pin it above your desk.'
     ],
-    callout: 'Red blocks in your colour-code are the plagiarism risk. Unverified facts are the hallucination risk. A low score on step 4 is the over-reliance risk. One audit typically catches all three.'
+    callout: 'RED passages are the plagiarism risk. Unverified facts are the hallucination risk. A low score on step 4 is the over-reliance risk. One audit typically catches all three.'
   },
   {
     type: 'discussion',

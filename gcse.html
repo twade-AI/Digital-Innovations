@@ -329,10 +329,39 @@
   <script>
   /* ── Digital Innovations Year 10/11 — track engine ── */
   var GS_KEY = 'di_gcse_v1';
+  var GS_XP_AWARDED_KEY = 'di_gcse_xp_awarded_v1';
   var gsDone = new Set();
   var gsCurrentId = null;
   var gsSlideIdx = 0;
   var gsSlides = [];
+
+  /* ── Shared XP system (mirrors js/app.js so lessons here count too) ── */
+  var GS_XP_KEY = 'di_xp';
+  function gsLoadXP(){ try { return JSON.parse(localStorage.getItem(GS_XP_KEY)) || { total: 0 }; } catch(e){ return { total: 0 }; } }
+  function gsSaveXP(d){ try { localStorage.setItem(GS_XP_KEY, JSON.stringify(d)); } catch(e){} }
+  function gsAddXP(amount, reason){
+    var d = gsLoadXP();
+    d.total = (d.total || 0) + amount;
+    gsSaveXP(d);
+    gsShowXPToast('+' + amount + ' XP — ' + reason);
+  }
+  function gsShowXPToast(msg){
+    var el = document.createElement('div');
+    el.className = 'xp-toast';
+    el.textContent = msg;
+    document.body.appendChild(el);
+    requestAnimationFrame(function(){ el.classList.add('show'); });
+    setTimeout(function(){ el.classList.remove('show'); setTimeout(function(){ el.remove(); }, 400); }, 2200);
+  }
+  function gsLoadAwarded(){ try { return new Set(JSON.parse(localStorage.getItem(GS_XP_AWARDED_KEY)) || []); } catch(e){ return new Set(); } }
+  function gsSaveAwarded(s){ try { localStorage.setItem(GS_XP_AWARDED_KEY, JSON.stringify([].concat.apply([], [Array.from(s)]))); } catch(e){} }
+  var gsAwarded = gsLoadAwarded();
+  function gsAwardOnce(key, amount, reason){
+    if (gsAwarded.has(key)) return;
+    gsAwarded.add(key);
+    gsSaveAwarded(gsAwarded);
+    gsAddXP(amount, reason);
+  }
 
   function gsLoadProgress() {
     try { gsDone = new Set(JSON.parse(localStorage.getItem(GS_KEY)) || []); } catch(e) { gsDone = new Set(); }
@@ -341,10 +370,12 @@
     localStorage.setItem(GS_KEY, JSON.stringify([...gsDone]));
   }
   function gsMarkDone(id) {
+    var wasDone = gsDone.has(id);
     gsDone.add(id);
     gsSaveProgress();
     gsRenderTrack();
     gsUpdateProgress();
+    if (!wasDone) gsAwardOnce('lesson:'+id, 20, 'Lesson completed');
     var total = GCSE_UNITS.reduce(function(s,u){return s+u.lessons.length;},0);
     if (gsDone.size === total) gsShowComplete();
   }
@@ -665,7 +696,7 @@
     var widget=btn.closest('.widget'); if(!widget)return;
     var total=parseInt(widget.dataset.total,10)||0;
     var got=parseInt(widget.dataset.got,10)||0;
-    if(ci===correct)got+=1;
+    if(ci===correct){ got+=1; gsAwardOnce('cl:'+gsCurrentId+':'+gsSlideIdx+':'+qi, 5, 'Classified correctly'); }
     widget.dataset.got=got;
     var answered=widget.querySelectorAll('.cl-item[data-answered="1"]').length;
     if(answered===total){
@@ -698,7 +729,7 @@
     var test=btn.closest('.unit-test'); if(!test)return;
     var total=parseInt(test.dataset.total,10)||0;
     var got=parseInt(test.dataset.got,10)||0;
-    if(oi===correct)got+=1;
+    if(oi===correct){ got+=1; gsAwardOnce('ut:'+gsCurrentId+':'+gsSlideIdx+':'+qi, 10, 'Unit test answered correctly'); }
     test.dataset.got=got;
     var answered=test.querySelectorAll('.ut-q[data-answered="1"]').length;
     if(answered===total){
@@ -791,6 +822,7 @@
     });
     var fb=document.getElementById('gsQuizFb');
     if(fb){var s=gsSlides[gsSlideIdx];fb.style.display='block';fb.innerHTML=(chosen===correct?'✅ Correct! ':'❌ Not quite. ')+(s.explanation||'');}
+    if (chosen === correct) gsAwardOnce('quiz:'+gsCurrentId+':'+gsSlideIdx, 10, 'Quiz answered correctly');
   }
 
   function gsRevealOutcome(btn, idx) {
