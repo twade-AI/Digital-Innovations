@@ -540,6 +540,7 @@ function openLesson(id) {
       '<div class="lv-meta">' +
         '<span class="lv-unit-label">Unit ' + (unit.id + 1) + ': ' + unit.title + '</span>' +
         '<span class="lv-slide-count">Slide <span id="lvSlideNum">1</span> of ' + slides.length + '</span>' +
+        '<button class="lv-fs-btn" id="lvFsBtn" onclick="toggleLessonFullscreen()" aria-pressed="false" title="Fullscreen (for projecting in class)">&#9974;</button>' +
         '<button class="lv-print-btn" onclick="window.print()" title="Print lesson">&#128424;</button>' +
       '</div>' +
       '<div class="lv-progress-track">' +
@@ -983,6 +984,9 @@ function navigateSlide(dir) {
 
 function closeModal() {
   const modal = document.getElementById('lessonModal');
+  if (window.diSlide && window.diSlide.fullscreen.isActive()) {
+    window.diSlide.fullscreen.exit();
+  }
   modal.classList.remove('open');
   modal.classList.remove('modal--lesson');
   currentSlides = [];
@@ -994,6 +998,22 @@ function closeModal() {
   if (panel) panel.style.display = 'none';
   var btn = document.getElementById('notesToggle');
   if (btn) btn.classList.remove('active');
+}
+
+function toggleLessonFullscreen() {
+  if (!window.diSlide) return;
+  var modal = document.getElementById('lessonModal');
+  if (modal) window.diSlide.fullscreen.toggle(modal);
+}
+
+if (window.diSlide && window.diSlide.fullscreen) {
+  window.diSlide.fullscreen.onChange(function () {
+    var btn = document.getElementById('lvFsBtn');
+    if (!btn) return;
+    var active = window.diSlide.fullscreen.isActive();
+    btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    btn.title = active ? 'Exit fullscreen' : 'Fullscreen (for projecting in class)';
+  });
 }
 
 /* ── Resources Rendering ───────────────────────── */
@@ -3881,6 +3901,9 @@ document.addEventListener('keydown', e => {
   var inInput = (tag === 'input' || tag === 'textarea' || e.target.isContentEditable);
 
   if (e.key === 'Escape') {
+    // If we're in fullscreen, the browser handles ESC to exit fullscreen —
+    // don't also tear down every modal underneath it.
+    if (window.diSlide && window.diSlide.fullscreen.isActive()) return;
     closeModal();
     closeQuickQuiz();
     closeAssessment();

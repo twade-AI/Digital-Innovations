@@ -399,7 +399,10 @@
           <div class="lv-unit-label" id="lvUnitLabel"></div>
           <div class="lv-lesson-title" id="lvLessonTitle"></div>
         </div>
-        <button class="modal-close" onclick="flCloseLesson()" aria-label="Close lesson">✕</button>
+        <div class="lv-header-actions">
+          <button class="lv-fs-btn" id="flFsBtn" onclick="flToggleFullscreen()" aria-pressed="false" title="Fullscreen (for projecting in class)">&#9974;</button>
+          <button class="modal-close" onclick="flCloseLesson()" aria-label="Close lesson">✕</button>
+        </div>
       </div>
       <div class="lv-progress">
         <div class="lv-progress-track"><div class="lv-progress-fill" id="lvProgressFill" style="width:0%"></div></div>
@@ -664,9 +667,28 @@
   }
 
   function flCloseLesson() {
+    if (window.diSlide && window.diSlide.fullscreen.isActive()) {
+      window.diSlide.fullscreen.exit();
+    }
     document.getElementById('lessonModal').classList.remove('open');
     document.body.style.overflow = '';
     flCurrentLessonId = null;
+  }
+
+  function flToggleFullscreen() {
+    if (!window.diSlide) return;
+    var modal = document.getElementById('lessonModal');
+    if (modal) window.diSlide.fullscreen.toggle(modal);
+  }
+
+  if (window.diSlide && window.diSlide.fullscreen) {
+    window.diSlide.fullscreen.onChange(function () {
+      var btn = document.getElementById('flFsBtn');
+      if (!btn) return;
+      var active = window.diSlide.fullscreen.isActive();
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      btn.title = active ? 'Exit fullscreen' : 'Fullscreen (for projecting in class)';
+    });
   }
 
   function flRenderSlide() {
@@ -941,7 +963,10 @@
     if (!document.getElementById('lessonModal').classList.contains('open')) return;
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') flNextSlide();
     if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   flPrevSlide();
-    if (e.key === 'Escape') flCloseLesson();
+    if (e.key === 'Escape') {
+      if (window.diSlide && window.diSlide.fullscreen.isActive()) return;
+      flCloseLesson();
+    }
   });
 
   // ── Theme ────────────────────────────────────

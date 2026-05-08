@@ -81,11 +81,45 @@
     }
   }
 
+  /* Fullscreen helper for the lesson viewer.
+     Wraps the standard Fullscreen API plus the older webkit-prefixed
+     variant so we keep working on Safari. Targets a single element
+     (the modal shell) — the browser handles ESC to exit, and we wire
+     up `change` so callers can keep button state in sync. */
+  function fsElement() {
+    return document.fullscreenElement || document.webkitFullscreenElement || null;
+  }
+  function fsRequest(el) {
+    if (!el) return;
+    var fn = el.requestFullscreen || el.webkitRequestFullscreen;
+    if (fn) {
+      try { fn.call(el); } catch (_) { /* user-gesture required, etc. */ }
+    }
+  }
+  function fsExit() {
+    var fn = document.exitFullscreen || document.webkitExitFullscreen;
+    if (fn) { try { fn.call(document); } catch (_) {} }
+  }
+  function fsToggle(el) {
+    if (fsElement()) { fsExit(); } else { fsRequest(el); }
+  }
+  function fsIsActive() { return !!fsElement(); }
+  function fsOnChange(cb) {
+    document.addEventListener('fullscreenchange', cb);
+    document.addEventListener('webkitfullscreenchange', cb);
+  }
+
   window.diSlide = {
     escape: escape,
     youtubeEmbed: youtubeEmbed,
     revealHTML: revealHTML,
     sourcesHTML: sourcesHTML,
-    toggleReveal: toggleReveal
+    toggleReveal: toggleReveal,
+    fullscreen: {
+      toggle: fsToggle,
+      exit: fsExit,
+      isActive: fsIsActive,
+      onChange: fsOnChange
+    }
   };
 })();

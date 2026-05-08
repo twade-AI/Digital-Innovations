@@ -223,6 +223,22 @@
     .nai-link:hover { text-decoration: underline; }
     .nai-del { background: none; border: none; color: var(--danger); cursor: pointer; font-size: 1rem; padding: 2px 6px; border-radius: 4px; flex-shrink: 0; }
     .nai-del:hover { background: rgba(239,68,68,.1); }
+    /* RSS suggestion cards — share visuals with .news-article-item but flag duplicates */
+    .rss-feed-group { margin-bottom: 14px; }
+    .rss-feed-group-title { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--text-dim); margin-bottom: 6px; display: flex; gap: 8px; align-items: center; }
+    .rss-feed-group-count { font-weight: 400; color: var(--text-muted); }
+    .rss-suggestion { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 6px; }
+    .rss-suggestion:hover { border-color: var(--primary); }
+    .rss-suggestion.rss-added { opacity: .55; }
+    .rss-tag-select { font-size: .7rem; padding: 3px 6px; border-radius: 4px; border: 1px solid var(--border); background: var(--bg); color: var(--text); flex-shrink: 0; font-family: inherit; }
+    .rss-headline { flex: 1; font-size: .85rem; font-weight: 500; color: var(--text); min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+    .rss-headline a { color: inherit; text-decoration: none; }
+    .rss-headline a:hover { color: var(--primary-light); }
+    .rss-meta { font-size: .72rem; color: var(--text-dim); flex-shrink: 0; white-space: nowrap; }
+    .rss-add-btn { background: var(--primary); color: #fff; border: none; padding: 5px 11px; border-radius: 4px; font-size: .75rem; font-weight: 600; cursor: pointer; flex-shrink: 0; }
+    .rss-add-btn:hover { filter: brightness(1.1); }
+    .rss-added-badge { font-size: .72rem; color: var(--success); padding: 5px 8px; flex-shrink: 0; }
+    .rss-feed-error { font-size: .78rem; color: var(--danger); padding: 6px 10px; background: rgba(239,68,68,.06); border-radius: 4px; margin-bottom: 6px; }
   </style>
 </head>
 <body>
@@ -470,6 +486,32 @@ CREATE POLICY "Admins can manage news" ON public.site_news FOR ALL USING (
 );</pre>
         <button class="btn btn-ghost btn-sm" onclick="copySetupSql()">📋 Copy SQL</button>
         <span id="sqlCopied" style="font-size:.78rem;color:var(--success);display:none;margin-left:8px">✓ Copied!</span>
+      </div>
+
+      <!-- RSS suggestions: pull recent items from a curated feed list and one-click add -->
+      <div class="news-form-card" style="margin-bottom:18px">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px">
+          <div>
+            <h3 style="font-size:.95rem;font-weight:700;margin-bottom:2px">📡 Suggested headlines</h3>
+            <p style="font-size:.75rem;color:var(--text-dim);margin:0">Recent items from the AI feeds below. One-click adds them to the live news list.</p>
+          </div>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-ghost btn-sm" onclick="toggleRssFeedEditor()">⚙ Edit feeds</button>
+            <button class="btn btn-primary btn-sm" onclick="refreshRssSuggestions()">↻ Refresh</button>
+          </div>
+        </div>
+        <div id="rssFeedEditor" style="display:none;margin-bottom:12px">
+          <label style="display:block;font-size:.75rem;font-weight:600;color:var(--text-dim);margin-bottom:5px">RSS feed URLs (one per line)</label>
+          <textarea id="rssFeedList" rows="6" style="width:100%;padding:8px 11px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:.78rem;font-family:ui-monospace,Menlo,monospace"></textarea>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button class="btn btn-primary btn-sm" onclick="saveRssFeedList()">Save &amp; refresh</button>
+            <button class="btn btn-ghost btn-sm" onclick="resetRssFeedList()">Reset to defaults</button>
+            <span id="rssEditorMsg" style="font-size:.78rem;color:var(--text-dim);align-self:center"></span>
+          </div>
+        </div>
+        <div id="rssSuggestions">
+          <div class="empty-state" style="padding:20px;font-size:.85rem">Click <strong>↻ Refresh</strong> to pull the latest headlines.</div>
+        </div>
       </div>
 
       <!-- Add article form -->
@@ -926,7 +968,7 @@ function switchDashTab(tab) {
   document.querySelectorAll('.dash-tab').forEach(function(b) {
     b.classList.toggle('active', b.getAttribute('onclick').includes("'" + tab + "'"));
   });
-  if (tab === 'news')        loadNewsArticles();
+  if (tab === 'news')        { loadNewsArticles(); maybeAutoRefreshRss(); }
   if (tab === 'class')       renderClassDashboard();
   if (tab === 'reflections') loadReflections();
   if (tab === 'ratings')     loadRatingsData();
@@ -1285,6 +1327,10 @@ async function loadNewsArticles() {
     }
     document.getElementById('newsSetupBox').style.display = 'none';
     var articles = res.data || [];
+    // Cache the URL set so the RSS-suggest panel can flag already-added items
+    _rssExistingUrls = new Set(articles.map(function(a) { return (a.url || '').trim(); }).filter(Boolean));
+    // If suggestions are already on screen, refresh their dedup state without re-fetching
+    if (_rssSuggestions.length) renderRssSuggestions();
     if (countEl) countEl.textContent = '(' + articles.length + ' articles)';
     if (!articles.length) {
       el.innerHTML = '<div class="empty-state" style="padding:24px">No articles yet — add one above.</div>';
@@ -1353,6 +1399,241 @@ function copySetupSql() {
     el.style.display = 'inline';
     setTimeout(function() { el.style.display = 'none'; }, 2500);
   });
+}
+
+/* ── RSS Suggestions ──────────────────────────────────────
+   Pulls recent items from a curated list of AI-news RSS feeds
+   so a teacher can one-click add them to site_news. We fetch
+   through rss2json.com (no API key required for low volume) to
+   sidestep CORS — admin.html is the only place this runs and it
+   sits behind the admin gate, so the third-party request scope
+   is small. Feed list is editable in the UI and persisted in
+   localStorage; resets to the defaults below on demand. */
+
+var RSS_PROXY = 'https://api.rss2json.com/v1/api.json?rss_url=';
+var RSS_FEEDS_KEY = 'di_admin_rss_feeds_v1';
+var RSS_DEFAULT_FEEDS = [
+  'https://openai.com/blog/rss.xml',
+  'https://blog.google/technology/ai/rss/',
+  'https://www.theverge.com/ai-artificial-intelligence/rss/index.xml',
+  'https://feeds.bbci.co.uk/news/technology/rss.xml',
+  'https://www.technologyreview.com/topic/artificial-intelligence/feed/'
+];
+var RSS_PER_FEED_LIMIT = 6;        // Most-recent N items per feed
+var RSS_AGE_DAYS_LIMIT = 30;       // Drop items older than this
+var _rssSuggestions = [];          // [{ headline, source, date, isoDate, url, tag, feed }]
+var _rssExistingUrls = new Set();  // Populated by loadNewsArticles()
+var _rssAutoFetched = false;       // Auto-fetch suggestions once per session
+
+function maybeAutoRefreshRss() {
+  if (_rssAutoFetched) return;
+  _rssAutoFetched = true;
+  refreshRssSuggestions();
+}
+
+function getRssFeeds() {
+  try {
+    var raw = localStorage.getItem(RSS_FEEDS_KEY);
+    if (raw) {
+      var arr = JSON.parse(raw);
+      if (Array.isArray(arr) && arr.length) return arr;
+    }
+  } catch (e) { /* fall through to defaults */ }
+  return RSS_DEFAULT_FEEDS.slice();
+}
+function setRssFeeds(arr) {
+  try { localStorage.setItem(RSS_FEEDS_KEY, JSON.stringify(arr)); } catch (e) {}
+}
+
+function toggleRssFeedEditor() {
+  var ed = document.getElementById('rssFeedEditor');
+  if (ed.style.display === 'none') {
+    document.getElementById('rssFeedList').value = getRssFeeds().join('\n');
+    ed.style.display = 'block';
+  } else {
+    ed.style.display = 'none';
+  }
+}
+function saveRssFeedList() {
+  var raw = document.getElementById('rssFeedList').value || '';
+  var feeds = raw.split('\n').map(function(s) { return s.trim(); })
+    .filter(function(s) { return s && /^https?:\/\//i.test(s); });
+  if (!feeds.length) {
+    document.getElementById('rssEditorMsg').textContent = '⚠ Need at least one valid http(s) URL.';
+    return;
+  }
+  setRssFeeds(feeds);
+  document.getElementById('rssEditorMsg').textContent = '✓ Saved (' + feeds.length + ' feeds)';
+  setTimeout(function() { document.getElementById('rssEditorMsg').textContent = ''; }, 2500);
+  refreshRssSuggestions();
+}
+function resetRssFeedList() {
+  setRssFeeds(RSS_DEFAULT_FEEDS.slice());
+  document.getElementById('rssFeedList').value = RSS_DEFAULT_FEEDS.join('\n');
+  document.getElementById('rssEditorMsg').textContent = '✓ Reset to defaults';
+  setTimeout(function() { document.getElementById('rssEditorMsg').textContent = ''; }, 2500);
+  refreshRssSuggestions();
+}
+
+/* Quick keyword heuristic so each suggestion lands in a sensible
+   category by default — the teacher can still override per-card
+   before clicking Add. */
+function _rssGuessTag(text) {
+  var s = (text || '').toLowerCase();
+  if (/policy|regulation|legislat|govern|white house|\beu ai act\b|\buk ai\b|act\b|safeguard|ban\b/.test(s)) return 'policy';
+  if (/health|medic|clinic|hospital|diagnos|patient|nhs|drug|pharma/.test(s)) return 'health';
+  if (/bias|harm|deepfake|misinform|disinform|risk|safety|alignment|ethic|copyright|surveillan/.test(s)) return 'ethics';
+  if (/research|paper|study|benchmark|breakthrough|olympi|nature|nobel|alphafold|frontier|reasoning/.test(s)) return 'research';
+  if (/launch|release|introduce|unveil|update|gpt|claude|gemini|model|chatbot|agent|version|api/.test(s)) return 'tools';
+  return 'industry';
+}
+function _rssFmtDate(iso) {
+  if (!iso) return '';
+  var d = new Date(iso);
+  if (isNaN(d.getTime())) return '';
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return months[d.getMonth()] + ' ' + d.getFullYear();
+}
+function _rssDaysOld(iso) {
+  if (!iso) return Infinity;
+  var d = new Date(iso);
+  if (isNaN(d.getTime())) return Infinity;
+  return (Date.now() - d.getTime()) / 86400000;
+}
+
+async function _fetchOneFeed(feedUrl) {
+  try {
+    var res = await fetch(RSS_PROXY + encodeURIComponent(feedUrl));
+    var data = await res.json();
+    if (data.status !== 'ok' || !Array.isArray(data.items)) {
+      return { feedUrl: feedUrl, error: data.message || 'Feed fetch failed', items: [] };
+    }
+    var sourceName = (data.feed && data.feed.title) ? data.feed.title : feedUrl;
+    var items = data.items
+      .filter(function(it) { return _rssDaysOld(it.pubDate) <= RSS_AGE_DAYS_LIMIT; })
+      .slice(0, RSS_PER_FEED_LIMIT)
+      .map(function(it) {
+        return {
+          headline: (it.title || '').trim(),
+          source:   sourceName,
+          date:     _rssFmtDate(it.pubDate),
+          isoDate:  it.pubDate,
+          url:      (it.link || '').trim(),
+          tag:      _rssGuessTag(it.title + ' ' + (it.description || '')),
+          feed:     feedUrl
+        };
+      })
+      .filter(function(it) { return it.headline && it.url; });
+    return { feedUrl: feedUrl, error: null, items: items, sourceName: sourceName };
+  } catch (e) {
+    return { feedUrl: feedUrl, error: e.message || 'Network error', items: [] };
+  }
+}
+
+async function refreshRssSuggestions() {
+  var el = document.getElementById('rssSuggestions');
+  if (!el) return;
+  el.innerHTML = '<div class="empty-state" style="padding:20px"><span class="loading-spinner"></span> Pulling feeds…</div>';
+  var feeds = getRssFeeds();
+  var results = await Promise.all(feeds.map(_fetchOneFeed));
+  // Flatten + globally sort by recency so the UI groups by feed but the
+  // freshness signal still shines through the per-group ordering.
+  _rssSuggestions = [];
+  var grouped = results.map(function(r) {
+    r.items.sort(function(a, b) { return new Date(b.isoDate) - new Date(a.isoDate); });
+    var startIdx = _rssSuggestions.length;
+    r.items.forEach(function(it) { _rssSuggestions.push(it); });
+    return { sourceName: r.sourceName || r.feedUrl, error: r.error, startIdx: startIdx, count: r.items.length };
+  });
+  renderRssSuggestions(grouped);
+}
+
+function renderRssSuggestions(grouped) {
+  var el = document.getElementById('rssSuggestions');
+  if (!el) return;
+  // If called without a grouping (e.g. dedup refresh after Add), rebuild it from _rssSuggestions
+  if (!grouped) {
+    var bySource = {};
+    _rssSuggestions.forEach(function(s, i) {
+      if (!bySource[s.feed]) bySource[s.feed] = { sourceName: s.source, error: null, indices: [] };
+      bySource[s.feed].indices.push(i);
+    });
+    grouped = Object.keys(bySource).map(function(k) {
+      return { sourceName: bySource[k].sourceName, error: null, startIdx: bySource[k].indices[0], count: bySource[k].indices.length };
+    });
+  }
+  if (!_rssSuggestions.length && !grouped.some(function(g) { return g.error; })) {
+    el.innerHTML = '<div class="empty-state" style="padding:20px;font-size:.85rem">No recent items found in the last ' + RSS_AGE_DAYS_LIMIT + ' days.</div>';
+    return;
+  }
+  var tagOptions = ['tools','policy','research','industry','ethics','health'];
+  var html = '';
+  grouped.forEach(function(g) {
+    if (g.error) {
+      html += '<div class="rss-feed-error">⚠ ' + esc(g.sourceName) + ' — ' + esc(g.error) + '</div>';
+      return;
+    }
+    if (!g.count) return;
+    html += '<div class="rss-feed-group">';
+    html += '<div class="rss-feed-group-title">' + esc(g.sourceName) +
+            ' <span class="rss-feed-group-count">(' + g.count + ' items)</span></div>';
+    for (var i = g.startIdx; i < g.startIdx + g.count; i++) {
+      var s = _rssSuggestions[i];
+      var alreadyAdded = _rssExistingUrls.has(s.url);
+      var safeUrl = /^https?:\/\//i.test(s.url) ? s.url : '#';
+      html += '<div class="rss-suggestion' + (alreadyAdded ? ' rss-added' : '') + '" id="rssSug_' + i + '">';
+      if (!alreadyAdded) {
+        html += '<select class="rss-tag-select" id="rssSugTag_' + i + '">';
+        tagOptions.forEach(function(t) {
+          html += '<option value="' + t + '"' + (t === s.tag ? ' selected' : '') + '>' + t + '</option>';
+        });
+        html += '</select>';
+      } else {
+        html += '<span class="nai-tag">' + esc(s.tag) + '</span>';
+      }
+      html += '<div class="rss-headline" title="' + esc(s.headline) + '">' +
+                '<a href="' + esc(safeUrl) + '" target="_blank" rel="noopener">' + esc(s.headline) + '</a>' +
+              '</div>';
+      html += '<span class="rss-meta">' + esc(s.date || '—') + '</span>';
+      if (alreadyAdded) {
+        html += '<span class="rss-added-badge">✓ Added</span>';
+      } else {
+        html += '<button class="rss-add-btn" onclick="addRssSuggestion(' + i + ')">＋ Add</button>';
+      }
+      html += '</div>';
+    }
+    html += '</div>';
+  });
+  el.innerHTML = html || '<div class="empty-state" style="padding:20px;font-size:.85rem">No recent items.</div>';
+}
+
+async function addRssSuggestion(idx) {
+  var s = _rssSuggestions[idx];
+  if (!s) return;
+  var tagEl = document.getElementById('rssSugTag_' + idx);
+  var tag = tagEl ? tagEl.value : s.tag;
+  var btn = document.querySelector('#rssSug_' + idx + ' .rss-add-btn');
+  if (btn) { btn.disabled = true; btn.textContent = 'Adding…'; }
+  try {
+    var res = await _sb.from('site_news').insert({
+      headline: s.headline,
+      source:   s.source,
+      date:     s.date || _rssFmtDate(new Date().toISOString()),
+      tag:      tag,
+      url:      s.url || null
+    });
+    if (res.error) {
+      if (btn) { btn.disabled = false; btn.textContent = '＋ Add'; }
+      alert('Could not add: ' + res.error.message);
+      return;
+    }
+    _rssExistingUrls.add(s.url);
+    renderRssSuggestions();           // flip this card to "Added"
+    loadNewsArticles();               // refresh the live list below
+  } catch (e) {
+    if (btn) { btn.disabled = false; btn.textContent = '＋ Add'; }
+    alert('Error: ' + e.message);
+  }
 }
 </script>
 </body>

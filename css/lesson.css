@@ -1159,3 +1159,149 @@
 .rating-btn.rated-down { background: rgba(239,68,68,.12);  border-color: rgba(239,68,68,.5);  color: #ef4444; }
 .rating-thanks { font-size: .8rem; color: var(--success); display: none; }
 .rating-thanks.visible { display: inline; }
+
+/* ── Fullscreen toggle button (appears in lv-meta / modal-header) ── */
+.lv-fs-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  color: var(--text-dim);
+  font-size: .9rem;
+  line-height: 1;
+  padding: 4px 10px;
+  margin-right: 6px;
+  cursor: pointer;
+  transition: all .2s;
+}
+.lv-fs-btn:hover { border-color: var(--primary); color: var(--primary-light); }
+.lv-fs-btn[aria-pressed="true"] { border-color: var(--primary); color: var(--primary-light); background: rgba(155,24,68,.08); }
+
+/* fluency.html / removes.html keep the close button + fullscreen button
+   together at the right of the modal-header. */
+.lv-header-actions { display: flex; align-items: center; gap: 8px; }
+
+/* ── Fullscreen Mode (projector view) ───────────────
+   When the lesson modal is the active fullscreen element, expand
+   it to fill the viewport and scale slide typography up so the
+   back row of a classroom can read it. The browser handles ESC. */
+#lessonModal:fullscreen,
+#lessonModal:-webkit-full-screen,
+#gsModal:fullscreen,
+#gsModal:-webkit-full-screen {
+  background: var(--bg);
+  padding: 0;
+  display: flex;
+}
+#lessonModal:fullscreen .modal-content,
+#lessonModal:-webkit-full-screen .modal-content,
+#lessonModal:fullscreen .modal-inner,
+#lessonModal:-webkit-full-screen .modal-inner,
+#gsModal:fullscreen .modal-inner,
+#gsModal:-webkit-full-screen .modal-inner {
+  max-width: 100vw;
+  max-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+}
+/* The actual slide canvas — give it generous side gutters but cap
+   reading width so lines don't span the whole projector. */
+#lessonModal:fullscreen .lv-slide-area,
+#lessonModal:-webkit-full-screen .lv-slide-area,
+#lessonModal:fullscreen .slide-area,
+#lessonModal:-webkit-full-screen .slide-area,
+#gsModal:fullscreen .slide-area,
+#gsModal:-webkit-full-screen .slide-area {
+  padding: 5vh 8vw;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+/* Typography scale-up. Specific selectors so we override the rem
+   base sizes set elsewhere in this file. */
+#lessonModal:fullscreen .slide-title,
+#lessonModal:-webkit-full-screen .slide-title,
+#gsModal:fullscreen .slide-title,
+#gsModal:-webkit-full-screen .slide-title {
+  font-size: clamp(2rem, 4.2vw, 3.4rem);
+  margin-bottom: 28px;
+  line-height: 1.15;
+}
+#lessonModal:fullscreen .slide-badge,
+#lessonModal:-webkit-full-screen .slide-badge,
+#gsModal:fullscreen .slide-badge,
+#gsModal:-webkit-full-screen .slide-badge {
+  font-size: clamp(.85rem, 1.1vw, 1rem);
+  padding: 6px 18px;
+  margin-bottom: 18px;
+}
+#lessonModal:fullscreen .hook-body,
+#lessonModal:-webkit-full-screen .hook-body,
+#lessonModal:fullscreen .slide-body,
+#lessonModal:-webkit-full-screen .slide-body,
+#lessonModal:fullscreen .slide-concept .concept-body,
+#lessonModal:-webkit-full-screen .slide-concept .concept-body,
+#gsModal:fullscreen .slide-body,
+#gsModal:-webkit-full-screen .slide-body,
+#gsModal:fullscreen .slide-concept .concept-body,
+#gsModal:-webkit-full-screen .slide-concept .concept-body {
+  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+  line-height: 1.6;
+}
+#lessonModal:fullscreen .concept-bullets li,
+#lessonModal:-webkit-full-screen .concept-bullets li,
+#lessonModal:fullscreen .slide-bullets li,
+#lessonModal:-webkit-full-screen .slide-bullets li,
+#gsModal:fullscreen .concept-bullets li,
+#gsModal:-webkit-full-screen .concept-bullets li,
+#gsModal:fullscreen .slide-bullets li,
+#gsModal:-webkit-full-screen .slide-bullets li {
+  font-size: clamp(1.1rem, 1.6vw, 1.45rem);
+  line-height: 1.55;
+}
+#lessonModal:fullscreen .concept-callout,
+#lessonModal:-webkit-full-screen .concept-callout,
+#lessonModal:fullscreen .slide-callout,
+#lessonModal:-webkit-full-screen .slide-callout,
+#gsModal:fullscreen .concept-callout,
+#gsModal:-webkit-full-screen .concept-callout,
+#gsModal:fullscreen .slide-callout,
+#gsModal:-webkit-full-screen .slide-callout {
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+  padding: 20px 26px;
+  line-height: 1.55;
+}
+/* Bigger nav footer buttons + slide count */
+#lessonModal:fullscreen .lv-footer,
+#lessonModal:-webkit-full-screen .lv-footer,
+#lessonModal:fullscreen .modal-footer,
+#lessonModal:-webkit-full-screen .modal-footer,
+#gsModal:fullscreen .modal-footer,
+#gsModal:-webkit-full-screen .modal-footer {
+  padding: 20px 36px;
+}
+#lessonModal:fullscreen .lv-footer .btn,
+#lessonModal:-webkit-full-screen .lv-footer .btn,
+#lessonModal:fullscreen .modal-footer .btn,
+#lessonModal:-webkit-full-screen .modal-footer .btn,
+#gsModal:fullscreen .modal-footer .btn,
+#gsModal:-webkit-full-screen .modal-footer .btn {
+  font-size: 1.05rem;
+  padding: 10px 22px;
+}
+#lessonModal:fullscreen .lv-slide-count,
+#lessonModal:-webkit-full-screen .lv-slide-count,
+#gsModal:fullscreen .lv-slide-count,
+#gsModal:-webkit-full-screen .lv-slide-count {
+  font-size: .95rem;
+}
+/* Header chrome we don't need on a projector. */
+#lessonModal:fullscreen .lv-print-btn,
+#lessonModal:-webkit-full-screen .lv-print-btn,
+#lessonModal:fullscreen .lv-notes-toggle,
+#lessonModal:-webkit-full-screen .lv-notes-toggle {
+  display: none;
+}
