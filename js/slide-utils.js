@@ -109,12 +109,44 @@
     document.addEventListener('webkitfullscreenchange', cb);
   }
 
+  /* Render an optional per-slide hero image. Slide objects may set
+     slide.image = { url, alt, credit, license, sourceUrl, focus }
+     — all fields except `url` are optional. We sanitise everything
+     before letting it near innerHTML, so a typo in the slide data
+     can't accidentally inject markup. Returns '' when no image. */
+  function imageHTML(image) {
+    if (!image || !image.url) return '';
+    var raw = String(image.url || '');
+    if (!/^https?:\/\//i.test(raw)) return '';
+    var url     = escape(raw);
+    var alt     = escape(image.alt || '');
+    var credit  = image.credit ? escape(image.credit) : '';
+    var license = image.license ? escape(image.license) : '';
+    var source  = image.sourceUrl && /^https?:\/\//i.test(image.sourceUrl) ? escape(image.sourceUrl) : '';
+    var focus   = escape(image.focus || 'center');
+    var attrLine = '';
+    if (credit || license) {
+      var parts = [];
+      if (credit) parts.push(credit);
+      if (license) parts.push(license);
+      var inner = parts.join(' · ');
+      attrLine = source
+        ? '<a href="' + source + '" target="_blank" rel="noopener">' + inner + '</a>'
+        : inner;
+    }
+    return '<figure class="slide-image">' +
+      '<img src="' + url + '" alt="' + alt + '" loading="lazy" style="object-position:' + focus + '">' +
+      (attrLine ? '<figcaption class="slide-image-credit">' + attrLine + '</figcaption>' : '') +
+    '</figure>';
+  }
+
   window.diSlide = {
     escape: escape,
     youtubeEmbed: youtubeEmbed,
     revealHTML: revealHTML,
     sourcesHTML: sourcesHTML,
     toggleReveal: toggleReveal,
+    imageHTML: imageHTML,
     fullscreen: {
       toggle: fsToggle,
       exit: fsExit,

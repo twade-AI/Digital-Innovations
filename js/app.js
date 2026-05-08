@@ -588,6 +588,7 @@ function renderSlide(index) {
       '<span class="slide-badge badge-hook">Opening</span>' +
       '<div class="slide-title">' + slide.title + (diffHtml ? '<span style="margin-left:8px">' + diffHtml + '</span>' : '') + '</div>' +
       prereqHtml +
+      window.diSlide.imageHTML(slide.image) +
       '<div class="hook-body">' + slide.body + '</div>' +
       '<div class="interactive-wrapper" style="margin-top:24px">' +
         '<div class="interactive-label">&#127991;&#65039; Tags</div>' +
@@ -613,6 +614,7 @@ function renderSlide(index) {
     html = '<div class="slide-concept">' +
       '<span class="slide-badge badge-concept">' + indexLabel + '</span>' +
       '<div class="slide-title">' + slide.title + '</div>' +
+      window.diSlide.imageHTML(slide.image) +
       '<div class="concept-body">' + slide.body + '</div>' +
       bulletsHtml +
       calloutHtml +
@@ -700,6 +702,7 @@ function renderSlide(index) {
     html = '<div class="slide-scenario">' +
       '<span class="slide-badge badge-scenario">Scenario</span>' +
       '<div class="slide-title">' + slide.title + '</div>' +
+      window.diSlide.imageHTML(slide.image) +
       '<div class="scenario-situation">' + slide.situation + '</div>' +
       '<div class="scenario-question">' + slide.question + '</div>' +
       '<div class="scenario-choices" id="scenarioChoices"' +
@@ -808,6 +811,7 @@ function renderSlide(index) {
     html = '<div class="slide-summary">' +
       '<span class="slide-badge badge-summary">Summary</span>' +
       '<div class="slide-title">' + slide.title + '</div>' +
+      window.diSlide.imageHTML(slide.image) +
       '<div class="summary-intro">Here\'s what you should take away from this lesson:</div>' +
       '<div class="summary-points">' + pointsHtml + '</div>' +
       resourceHtml +

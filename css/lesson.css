@@ -1160,6 +1160,48 @@
 .rating-thanks { font-size: .8rem; color: var(--success); display: none; }
 .rating-thanks.visible { display: inline; }
 
+/* ── Per-slide hero image ───────────────────────
+   Set by `slide.image` in the slide data (see js/slide-utils.js
+   `imageHTML`). Hidden completely if the slide has no image, so
+   text-only slides keep their existing layout untouched. */
+.slide-image {
+  margin: 0 0 18px;
+  border-radius: var(--radius-sm, 8px);
+  overflow: hidden;
+  background: var(--bg-card-hover, rgba(255,255,255,.04));
+  border: 1px solid var(--border);
+}
+.slide-image img {
+  display: block;
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  background: #0b0d12;
+}
+.slide-image-credit {
+  font-size: .72rem;
+  color: var(--text-dim);
+  padding: 6px 12px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-card);
+}
+.slide-image-credit a { color: var(--text-dim); text-decoration: none; }
+.slide-image-credit a:hover { color: var(--primary-light); text-decoration: underline; }
+/* Bigger images when projecting fullscreen — match the typography scale-up. */
+#lessonModal:fullscreen .slide-image img,
+#lessonModal:-webkit-full-screen .slide-image img,
+#gsModal:fullscreen .slide-image img,
+#gsModal:-webkit-full-screen .slide-image img {
+  max-height: 52vh;
+}
+#lessonModal:fullscreen .slide-image-credit,
+#lessonModal:-webkit-full-screen .slide-image-credit,
+#gsModal:fullscreen .slide-image-credit,
+#gsModal:-webkit-full-screen .slide-image-credit {
+  font-size: .9rem;
+  padding: 8px 16px;
+}
+
 /* ── Fullscreen toggle button (appears in lv-meta / modal-header) ── */
 .lv-fs-btn {
   background: none;

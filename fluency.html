@@ -792,10 +792,12 @@
     if (!slide) return '';
     var type = slide.type || 'concept';
 
+    var imgHtml = window.diSlide.imageHTML(slide.image);
     if (type === 'hook') {
       return '<div class="slide-hook">' +
         '<span class="slide-badge badge-hook">Hook</span>' +
         '<div class="slide-title">' + (slide.title || '') + '</div>' +
+        imgHtml +
         '<div class="slide-body">' + (slide.body || '') + '</div>' +
         (slide.callout ? '<div class="slide-callout">' + slide.callout + '</div>' : '') +
       '</div>';
@@ -811,6 +813,7 @@
       return '<div class="slide-concept">' +
         '<span class="slide-badge badge-concept">Concept</span>' +
         '<div class="slide-title">' + (slide.title || '') + '</div>' +
+        imgHtml +
         (slide.body ? '<div class="slide-body">' + slide.body + '</div>' : '') +
         bulletsHtml +
         (slide.callout ? '<div class="slide-callout">' + slide.callout + '</div>' : '') +
@@ -820,6 +823,7 @@
       return '<div class="slide-scenario">' +
         '<span class="slide-badge badge-scenario">Scenario</span>' +
         '<div class="slide-title">' + (slide.title || 'Scenario') + '</div>' +
+        imgHtml +
         '<div class="slide-body">' + (slide.situation || '') + '</div>' +
         (slide.question ? '<div class="slide-callout"><strong>Consider:</strong> ' + slide.question + '</div>' : '') +
         (slide.choices ? '<ul class="slide-bullets">' + slide.choices.map(function(c){ return '<li>' + (typeof c === 'string' ? c : c.text) + '</li>'; }).join('') + '</ul>' : '') +
@@ -885,6 +889,7 @@
       return '<div class="slide-summary">' +
         '<span class="slide-badge badge-summary">Summary</span>' +
         '<div class="slide-title">' + (slide.title || 'Key Takeaways') + '</div>' +
+        imgHtml +
         '<div class="summary-points">' + pointsHtml + '</div>' +
       '</div>';
     }

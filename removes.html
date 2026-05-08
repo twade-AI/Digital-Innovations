@@ -1162,6 +1162,7 @@
     var type = slide.type || 'concept';
     var reveal = gsRevealHTML(slide);
     var sources = gsSourcesHTML(slide);
+    var imgHtml = window.diSlide.imageHTML(slide.image);
     if (type==='video') {
       var vid=(slide.videoId||'').replace(/[^A-Za-z0-9_-]/g,'');
       var src='https://www.youtube-nocookie.com/embed/'+vid+'?rel=0&modestbranding=1';
@@ -1185,11 +1186,11 @@
       var total=(slide.questions||[]).length;
       return '<div class="slide-quiz"><span class="slide-badge badge-quiz">Unit Check</span><div class="slide-title">'+(slide.title||'Unit Recap')+'</div>'+(slide.body?'<div class="slide-body">'+slide.body+'</div>':'')+'<div class="unit-test" data-total="'+total+'" data-got="0">'+qs+'<div class="ut-score" id="gsUtScore"></div></div>'+sources+'</div>';
     }
-    if (type==='hook') return '<div class="slide-hook"><span class="slide-badge badge-hook">Hook</span><div class="slide-title">'+(slide.title||'')+'</div><div class="slide-body">'+(slide.body||'')+'</div>'+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
+    if (type==='hook') return '<div class="slide-hook"><span class="slide-badge badge-hook">Hook</span><div class="slide-title">'+(slide.title||'')+'</div>'+imgHtml+'<div class="slide-body">'+(slide.body||'')+'</div>'+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
     if (type==='concept') {
       var bHtml='';
       if(slide.bullets&&slide.bullets.length){bHtml='<ul class="slide-bullets">'+slide.bullets.map(function(b){if(typeof b==='string')return '<li>'+b+'</li>';return '<li><strong>'+(b.term||b.label||'')+'</strong>'+(b.def||b.text?' — '+(b.def||b.text):'')+'</li>';}).join('')+'</ul>';}
-      return '<div class="slide-concept"><span class="slide-badge badge-concept">Concept</span><div class="slide-title">'+(slide.title||'')+'</div>'+(slide.body?'<div class="slide-body">'+slide.body+'</div>':'')+bHtml+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
+      return '<div class="slide-concept"><span class="slide-badge badge-concept">Concept</span><div class="slide-title">'+(slide.title||'')+'</div>'+imgHtml+(slide.body?'<div class="slide-body">'+slide.body+'</div>':'')+bHtml+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
     }
     if (type==='scenario') {
       var choicesHtml='';
@@ -1197,7 +1198,7 @@
         var letters=['A','B','C','D'];
         choicesHtml='<div class="scenario-choices" id="gsScChoices">'+(slide.question?'<div class="slide-callout" style="margin-bottom:10px"><strong>Choose:</strong> '+slide.question+'</div>':'')+slide.choices.map(function(c,i){return '<button class="scenario-choice" onclick="gsRevealOutcome(this,'+i+')" data-outcome="'+encodeURIComponent(c.outcome||'')+'"><span class="scenario-choice-letter">'+letters[i]+'</span>'+c.text+'</button>';}).join('')+'<div id="gsScOutcome" style="display:none" class="scenario-outcome"></div></div>';
       }
-      return '<div class="slide-scenario"><span class="slide-badge badge-scenario">Scenario</span><div class="slide-title">'+(slide.title||'Scenario')+'</div><div class="slide-body">'+(slide.situation||'')+'</div>'+choicesHtml+((!slide.choices||!slide.choices.length)&&slide.question?'<div class="slide-callout"><strong>Consider:</strong> '+slide.question+'</div>':'')+reveal+sources+'</div>';
+      return '<div class="slide-scenario"><span class="slide-badge badge-scenario">Scenario</span><div class="slide-title">'+(slide.title||'Scenario')+'</div>'+imgHtml+'<div class="slide-body">'+(slide.situation||'')+'</div>'+choicesHtml+((!slide.choices||!slide.choices.length)&&slide.question?'<div class="slide-callout"><strong>Consider:</strong> '+slide.question+'</div>':'')+reveal+sources+'</div>';
     }
     if (type==='activity') return '<div class="slide-activity"><span class="slide-badge badge-activity">Activity</span><div class="slide-title">'+(slide.title||'')+'</div>'+(slide.task?'<div class="slide-body">'+slide.task+'</div>':'')+(slide.steps?'<ol class="slide-steps">'+slide.steps.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ol>':'')+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
     if (type==='discussion') {
@@ -1210,7 +1211,7 @@
     }
     if (type==='summary') {
       var pts=(slide.points||[]).map(function(p){return '<div class="summary-point"><span class="sp-icon">'+(p.icon||'•')+'</span><div><strong>'+(p.label||'')+'</strong>'+(p.text?' — '+p.text:'')+'</div></div>';}).join('');
-      return '<div class="slide-summary"><span class="slide-badge badge-summary">Summary</span><div class="slide-title">'+(slide.title||'Key Takeaways')+'</div><div class="summary-points">'+pts+'</div>'+sources+'</div>';
+      return '<div class="slide-summary"><span class="slide-badge badge-summary">Summary</span><div class="slide-title">'+(slide.title||'Key Takeaways')+'</div>'+imgHtml+'<div class="summary-points">'+pts+'</div>'+sources+'</div>';
     }
     return '<div class="slide-concept"><div class="slide-title">'+(slide.title||'')+'</div><div class="slide-body">'+(slide.body||'')+'</div>'+reveal+sources+'</div>';
   }
