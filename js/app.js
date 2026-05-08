@@ -540,7 +540,10 @@ function openLesson(id) {
       '<div class="lv-meta">' +
         '<span class="lv-unit-label">Unit ' + (unit.id + 1) + ': ' + unit.title + '</span>' +
         '<span class="lv-slide-count">Slide <span id="lvSlideNum">1</span> of ' + slides.length + '</span>' +
-        '<button class="lv-fs-btn" id="lvFsBtn" onclick="toggleLessonFullscreen()" aria-pressed="false" title="Fullscreen (for projecting in class)">&#9974;</button>' +
+        '<button class="lv-fs-btn" id="lvFsBtn" onclick="toggleLessonFullscreen()" aria-pressed="false" title="Fullscreen (for projecting in class)">' +
+          '<svg class="lv-fs-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6"/></svg>' +
+          '<span class="lv-fs-label">Fullscreen</span>' +
+        '</button>' +
         '<button class="lv-print-btn" onclick="window.print()" title="Print lesson">&#128424;</button>' +
       '</div>' +
       '<div class="lv-progress-track">' +
@@ -1017,6 +1020,8 @@ if (window.diSlide && window.diSlide.fullscreen) {
     var active = window.diSlide.fullscreen.isActive();
     btn.setAttribute('aria-pressed', active ? 'true' : 'false');
     btn.title = active ? 'Exit fullscreen' : 'Fullscreen (for projecting in class)';
+    var lbl = btn.querySelector('.lv-fs-label');
+    if (lbl) lbl.textContent = active ? 'Exit fullscreen' : 'Fullscreen';
   });
 }
 

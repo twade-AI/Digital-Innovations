@@ -400,7 +400,10 @@
           <div class="lv-lesson-title" id="lvLessonTitle"></div>
         </div>
         <div class="lv-header-actions">
-          <button class="lv-fs-btn" id="flFsBtn" onclick="flToggleFullscreen()" aria-pressed="false" title="Fullscreen (for projecting in class)">&#9974;</button>
+          <button class="lv-fs-btn" id="flFsBtn" onclick="flToggleFullscreen()" aria-pressed="false" title="Fullscreen (for projecting in class)">
+            <svg class="lv-fs-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6"/></svg>
+            <span class="lv-fs-label">Fullscreen</span>
+          </button>
           <button class="modal-close" onclick="flCloseLesson()" aria-label="Close lesson">✕</button>
         </div>
       </div>
@@ -688,6 +691,8 @@
       var active = window.diSlide.fullscreen.isActive();
       btn.setAttribute('aria-pressed', active ? 'true' : 'false');
       btn.title = active ? 'Exit fullscreen' : 'Fullscreen (for projecting in class)';
+      var lbl = btn.querySelector('.lv-fs-label');
+      if (lbl) lbl.textContent = active ? 'Exit fullscreen' : 'Fullscreen';
     });
   }
 

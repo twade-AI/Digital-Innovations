@@ -1204,19 +1204,31 @@
 
 /* ── Fullscreen toggle button (appears in lv-meta / modal-header) ── */
 .lv-fs-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   background: none;
   border: 1px solid var(--border);
   border-radius: var(--radius-xs);
   color: var(--text-dim);
-  font-size: .9rem;
+  font-family: inherit;
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .01em;
   line-height: 1;
-  padding: 4px 10px;
+  padding: 6px 12px;
   margin-right: 6px;
   cursor: pointer;
   transition: all .2s;
 }
+.lv-fs-btn .lv-fs-icon { flex-shrink: 0; display: block; }
+.lv-fs-btn .lv-fs-label { white-space: nowrap; }
 .lv-fs-btn:hover { border-color: var(--primary); color: var(--primary-light); }
 .lv-fs-btn[aria-pressed="true"] { border-color: var(--primary); color: var(--primary-light); background: rgba(155,24,68,.08); }
+@media (max-width: 640px) {
+  .lv-fs-btn .lv-fs-label { display: none; }
+  .lv-fs-btn { padding: 6px 8px; }
+}
 
 /* fluency.html / removes.html keep the close button + fullscreen button
    together at the right of the modal-header. */
