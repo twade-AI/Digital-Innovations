@@ -330,7 +330,10 @@
           <div class="lv-unit-label" id="gsUnitLabel"></div>
           <div class="lv-lesson-title" id="gsLessonTitle"></div>
         </div>
-        <button class="modal-close" onclick="gsCloseLesson()" aria-label="Close">✕</button>
+        <div class="lv-header-actions">
+          <button class="lv-fs-btn" id="gsFsBtn" onclick="gsToggleFullscreen()" aria-pressed="false" title="Fullscreen (for projecting in class)">&#9974;</button>
+          <button class="modal-close" onclick="gsCloseLesson()" aria-label="Close">✕</button>
+        </div>
       </div>
       <div class="lv-progress">
         <div class="lv-progress-track"><div class="lv-progress-fill" id="gsLvFill" style="width:0%"></div></div>
@@ -661,9 +664,28 @@
   }
 
   function gsCloseLesson() {
+    if (window.diSlide && window.diSlide.fullscreen.isActive()) {
+      window.diSlide.fullscreen.exit();
+    }
     document.getElementById('gsModal').classList.remove('open');
     document.body.style.overflow = '';
     gsCurrentId = null;
+  }
+
+  function gsToggleFullscreen() {
+    if (!window.diSlide) return;
+    var modal = document.getElementById('gsModal');
+    if (modal) window.diSlide.fullscreen.toggle(modal);
+  }
+
+  if (window.diSlide && window.diSlide.fullscreen) {
+    window.diSlide.fullscreen.onChange(function () {
+      var btn = document.getElementById('gsFsBtn');
+      if (!btn) return;
+      var active = window.diSlide.fullscreen.isActive();
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      btn.title = active ? 'Exit fullscreen' : 'Fullscreen (for projecting in class)';
+    });
   }
 
   function gsRenderSlide() {
@@ -1222,7 +1244,10 @@
     if(!document.getElementById('gsModal').classList.contains('open'))return;
     if(e.key==='ArrowRight'||e.key==='ArrowDown')gsNextSlide();
     if(e.key==='ArrowLeft'||e.key==='ArrowUp')gsPrevSlide();
-    if(e.key==='Escape')gsCloseLesson();
+    if(e.key==='Escape'){
+      if(window.diSlide&&window.diSlide.fullscreen.isActive())return;
+      gsCloseLesson();
+    }
   });
 
   (function(){var s=localStorage.getItem('di_theme');if(s)document.documentElement.setAttribute('data-theme',s);})();
