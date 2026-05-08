@@ -1,48 +1,66 @@
 # Lesson 14 — Surveillance and Facial Recognition: image briefs
 
-A per-slide image brief for **Lesson 14**. Each entry tells you exactly
-what to look for, where to look, and what to paste back into the slide
-data once you've picked an image. The slide engine already supports the
-`slide.image` field — see "How to wire an image into a slide" at the
-bottom — so this brief is the only manual step.
+A per-slide image brief for **Lesson 14**. Each entry tells you what was
+chosen, where it came from, and what you'll need to verify before this
+goes anywhere a parent might see it.
 
-The recommended source is **Wikimedia Commons** because (a) every image
-is license-tagged (CC-0, CC-BY, CC-BY-SA, public domain) so attribution
-is unambiguous, and (b) there are no API keys or auth, so a teacher (or
+The chosen source is **Wikimedia Commons** because (a) every image is
+license-tagged (CC-0, CC-BY, CC-BY-SA, public domain) so attribution is
+unambiguous, and (b) there are no API keys or auth, so a teacher (or
 admin) can add or swap images without provisioning credentials.
+
+## Status — what's already wired in (Lesson 14)
+
+The slide data (`js/slides-u3u4.js`, key `14:`) now sets `image:` on the
+three content-heavy slides below. Each `image` uses Wikimedia's
+`Special:FilePath/<File>` redirect for the URL, which auto-resolves to
+the current revision of the file — so even when files are reuploaded,
+the slide keeps working without a code change.
+
+> ⚠ **Verify before going live.** This branch was developed in a
+> sandbox without egress to Wikimedia, so the file pages were
+> identified via web search but the per-file licence and author lines
+> were not fetched. Before merging:
+>
+> 1. Click the link in each "View on Wikimedia Commons" row below.
+> 2. Confirm the image actually fits the slide and is on a free
+>    licence (CC-0 / CC-BY / CC-BY-SA / public domain).
+> 3. Replace the placeholder `credit:` value (currently
+>    `'Wikimedia Commons — File:<name>'`) with the file's named author
+>    plus licence, e.g. `'Photo: Carl Berkeley, CC BY-SA 2.0'`, and add
+>    a `license:` field.
+> 4. If a file no longer fits, swap the URL to a different
+>    `Special:FilePath/<File:Name>` from the same Commons category.
 
 ## Slide 1 — Hook: "Surveillance and Facial Recognition"
 
 | field        | value |
 |--------------|-------|
-| **Search**   | `CCTV camera city street`, `surveillance camera London`, `facial recognition camera` |
-| **Wikimedia categories** | `Category:Closed-circuit_television_cameras`, `Category:Surveillance_cameras_in_London` |
-| **Concept** | A street-level CCTV camera, ideally one that visually conveys "watched in public" — bonus if it's UK / London context to match the Robert Williams + ICO + North Ayrshire stories in the body. |
-| **Mood** | Slightly cold, urban, observational. Avoid stock-photo crowds smiling at cameras. |
-| **Alt text** | `A CCTV surveillance camera mounted on a pole above a city street.` |
-| **Avoid** | Any identifiable face being scanned (privacy + the lesson's whole point), or a film-still still containing a celebrity. |
+| **File**     | `File:CCTV CC London Pimlico.JPG` |
+| **View on Wikimedia Commons** | https://commons.wikimedia.org/wiki/File:CCTV_CC_London_Pimlico.JPG |
+| **Why this image** | A real UK CCTV tower (Pimlico, London) — anchors the body's UK / London / ICO references and the broader "watched in public" theme. |
+| **Alt text in slide** | `A CCTV camera tower mounted on the street near Pimlico tube station, London — part of the city's congestion charging surveillance infrastructure.` |
+| **Verify** | Click through, confirm CC licence and capture the named author for `credit:` |
 
 ## Slide 2 — Concept: "How Facial Recognition Works"
 
 | field        | value |
 |--------------|-------|
-| **Search**   | `face mesh landmark detection`, `facial landmarks computer vision`, `face recognition diagram`, `facial geometry biometrics` |
-| **Wikimedia categories** | `Category:Face_recognition`, `Category:Facial_recognition_systems` |
-| **Concept** | A diagram showing facial landmark detection (the dot-mesh on a face) or a faceprint visualisation. Helps pupils picture the technical pipeline described in the bullets — detection → alignment → feature extraction → matching. |
-| **Mood** | Technical, instructive, schematic. A good diagram > a stylised stock illustration. |
-| **Alt text** | `Diagram showing facial landmarks detected on a human face — points marking eyes, nose, mouth and jaw used to build a faceprint.` |
-| **Avoid** | An image of a real identifiable individual having their face scanned — use a diagram, a public-domain demonstration, or an image from an academic paper that's CC-licensed. |
+| **File**     | `File:Face detection.jpg` |
+| **View on Wikimedia Commons** | https://commons.wikimedia.org/wiki/File:Face_detection.jpg |
+| **Why this image** | A face-detection demo with bounding boxes — visualises the *Detection* step in the bullets (the first stage of the pipeline). If you'd prefer a landmark-mesh diagram instead, swap to a file from `Category:Facial_recognition_system`. |
+| **Alt text in slide** | `A face-detection algorithm identifying faces in a photograph by drawing bounding boxes around each detected face.` |
+| **Verify** | Confirm CC licence; confirm the photo doesn't contain identifiable people you'd be uncomfortable showing pupils — if it does, swap to a synthetic / illustrated example from `Category:Face_recognition`. |
 
 ## Slide 3 — Concept: "The Surveillance Debate"
 
 | field        | value |
 |--------------|-------|
-| **Search**   | `Kings Cross London`, `mass surveillance protest`, `liberty civil liberties`, `Big Brother Watch`, `live facial recognition van` |
-| **Wikimedia categories** | `Category:Mass_surveillance`, `Category:Surveillance_in_the_United_Kingdom`, `Category:Privacy_protests` |
-| **Concept** | Either (a) a public space with visible surveillance infrastructure (Kings Cross facade, a UK police live-FR van) to ground the Clearview / Met / South Wales examples, or (b) a protest / civil-liberty image to anchor the "for vs against" framing. |
-| **Mood** | Documentary, real-world, tension-creating. |
-| **Alt text** | (depending on choice) `A police facial-recognition van deployed at a UK street event, with a CCTV camera mounted on its roof.` *or* `Protesters holding "stop facial recognition" signs at a London demonstration.` |
-| **Avoid** | Anything from a propaganda or far-right source; anything depicting the Xinjiang context unless from a verified news/CC source — the topic is sensitive and easy to misrepresent. |
+| **File**     | `File:CCTV Surveillance Notice.svg` |
+| **View on Wikimedia Commons** | https://commons.wikimedia.org/wiki/File:CCTV_Surveillance_Notice.svg |
+| **Why this image** | A public CCTV warning sign — visually anchors the "function creep" / "boundary between observed and unobserved" thread. Less repetitive than reusing the slide-1 photo. |
+| **Alt text in slide** | `A standard "CCTV in operation" public surveillance notice — the visible signage that marks the boundary between observed and unobserved space.` |
+| **Verify** | Confirm CC licence (most warning-sign SVGs on Commons are CC BY-SA 3.0 or 4.0). Capture the licence string for `license:`. |
 
 ## Slides 4–5 (activity, discussion) — no image
 
