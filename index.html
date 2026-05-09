@@ -195,9 +195,10 @@
     </div>
 
     <!-- AI News Ticker (inside home section so it doesn't show during lessons) -->
-    <div id="newsTicker" class="news-ticker" aria-label="AI news headlines" role="marquee">
+    <div id="newsTicker" class="news-ticker" role="region" aria-label="AI news headlines">
       <span class="news-ticker-label">📰 AI in the News</span>
       <div class="news-ticker-track" id="tickerTrack"></div>
+      <button type="button" id="newsTickerPause" class="news-ticker-pause" aria-pressed="false" aria-label="Pause news ticker" title="Pause news ticker" onclick="toggleNewsTicker(this)">⏸</button>
     </div>
 
     <!-- Returning-user strip -->
@@ -727,6 +728,7 @@
   <script src="js/app.js"></script>
   <script src="js/tts.js" defer></script>
   <script src="js/auth.js"></script>
+  <script src="js/a11y.js" defer></script>
   <!-- Floating Continue Button (appears when hero CTA scrolls out of view) -->
   <!-- Mobile bottom tab bar -->
   <nav class="mobile-tabs" id="mobileTabs" aria-label="Mobile navigation">
