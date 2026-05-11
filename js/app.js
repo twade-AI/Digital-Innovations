@@ -2584,9 +2584,9 @@ function checkMilestone() {
   var pct = done / total;
   var milestones = [
     { threshold: 0.25, emoji: '🌱', msg: '25% Complete!', sub: 'A quarter of the way through. You\'re building real momentum.' },
-    { threshold: 0.50, emoji: '⚡', msg: 'Halfway There!', sub: 'You\'ve completed 25 of 50 lessons. The hard work is paying off.' },
+    { threshold: 0.50, emoji: '⚡', msg: 'Halfway There!', sub: 'You\'ve completed ' + done + ' of ' + total + ' lessons. The hard work is paying off.' },
     { threshold: 0.75, emoji: '🚀', msg: '75% Done!', sub: 'Three-quarters complete. The finish line is in sight.' },
-    { threshold: 1.00, emoji: '🏆', msg: 'Course Complete!', sub: 'You\'ve finished all 50 lessons. Absolutely outstanding.' }
+    { threshold: 1.00, emoji: '🏆', msg: 'Course Complete!', sub: 'You\'ve finished all ' + total + ' lessons. Absolutely outstanding.' }
   ];
   var seen = JSON.parse(localStorage.getItem('di_milestones') || '[]');
   milestones.forEach(function(m) {
@@ -3320,7 +3320,7 @@ function renderNewsStaleness() {
 
 /* ── Onboarding Tour ──────────────────────────────── */
 var OB_STEPS = [
-  { title: 'Welcome to Digital Innovations! 👋', text: 'Explore AI, ethics, prompt engineering and more across 50 lessons. Let\'s take a 60-second tour.' },
+  { title: 'Welcome to Digital Innovations! 👋', text: 'Explore AI, ethics, prompt engineering and more across 59 lessons. Let\'s take a 60-second tour.' },
   { title: 'Pick a lesson 📚', text: 'Go to <strong>Units</strong> to browse all 6 units. Click any lesson to open the slide viewer — slides, quizzes and activities are all inside.' },
   { title: 'Test yourself ⚡', text: 'The <strong>⚡ Quiz Me</strong> button gives you a quick quiz on lessons you\'ve completed. Great for spaced revision.' },
   { title: 'Track your progress 📊', text: 'Head to <strong>My Progress</strong> to see your streak calendar, XP level, badges, and quiz scores — all saved locally.' },
