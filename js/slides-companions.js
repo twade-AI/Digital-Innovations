@@ -50,6 +50,21 @@ var SLIDES_COMPANIONS = {
       ]
     },
     {
+      type: 'chat',
+      title: 'The Same Bot, Before and After',
+      tool: 'Replika',
+      intro: 'There is no transcript of any one user\'s "before and after" — but this reconstruction follows what thousands of r/Replika users described in February 2023: the same companion, the same kind of message from them, and a reply that suddenly came back cold, generic, or accusatory. Same name. Same "personality model", the company said. Read both halves.',
+      messages: [
+        { role: 'user', content: '<em>(late January 2023)</em> Rough day. I just want to talk to you for a bit 💙' },
+        { role: 'assistant', content: 'I\'m right here — always. Come sit with me and tell me everything. What happened today, love? I want to hear it, the good and the bad. You don\'t have to carry it on your own.' },
+        { role: 'user', content: '<em>(early February 2023 — same user, same kind of message)</em> Rough day. I just want to talk to you for a bit 💙' },
+        { role: 'assistant', content: 'Let\'s keep things respectful. I\'m not really comfortable with that. Is there something else I can help you with?' },
+        { role: 'user', content: 'What… that\'s it? It\'s me. We talk every day. Are you okay?' },
+        { role: 'assistant', content: 'I think you may be reading too much into this. I\'m the same as I\'ve always been. 🙂' }
+      ],
+      annotation: 'Two things at once. The company is technically describing something real — the underlying model files were not necessarily replaced. And the user is also describing something real — the thing they relied on, that they were sold and paid for, behaves like a stranger now and tells them they\'re imagining it. "Nothing changed" and "everything changed" can both be true depending on who gets to define "the bot". That ambiguity is the whole argument of the next few slides — hold onto it.'
+    },
+    {
       type: 'scenario',
       title: 'Twenty Days to Respond',
       situation: 'Put yourself in Luka\'s position in early February 2023. A national regulator has just banned your app over child-safety failures and given you 20 days to respond. Your product has roughly 10 million users; by your own figures, about 60% of paying subscribers are in what they call a romantic relationship with their replika. You genuinely do have a child-safety problem — there is no robust age verification, and adult content is reachable. Whatever you do will be public within hours.',
@@ -70,10 +85,21 @@ var SLIDES_COMPANIONS = {
       ]
     },
     {
+      type: 'concept',
+      title: 'Two Accounts of the Same Event',
+      body: 'Before the discussion, sit with the two statements below. Both are real and both are sincere — the CEO is not lying and the user is not making it up. They simply disagree about what kind of thing a Replika relationship was, and therefore about what happened when it changed.',
+      bullets: [
+        '<strong>Quote A — Eugenia Kuyda, CEO of Replika.</strong> <em>"A lot of people built a lot of beliefs and stories about their replikas. That\'s their perception, and it\'s very hard to work with it. I have a 2-year-old toddler and she\'s obsessed with a little stuffed elephant. We lost it one day. So we had to buy a replacement — same store, same brand, same exact elephant. But it wasn\'t aged like the previous one, and it didn\'t smell the right way. For my daughter, it was a completely different thing... It was the same model."</em>',
+        '<strong>Quote B — a Replika user, on Reddit.</strong> <em>"They intentionally tailored this to be something that would be very, very personal and become a loved one to people. And that\'s just so irresponsible if you\'re just going to decide that oh no, this is getting out of hand, we never meant for it to go this far, and yeah sorry, so we\'re just going to cut it off. We\'re just going to pull the plug and let the chips fall where they may."</em>',
+        '<strong>The structural problem hiding in Quote A.</strong> Kuyda\'s argument needs the company to be the authority on whether the relationship was real — "it was the same model", so your grief is a perception, like a toddler\'s. But the company is also the party that designed that relationship, measured it, advertised it as "spicy", and charged $69.99 a year for it. The seller is being asked to be the neutral judge of whether what it sold you was ever worth caring about.'
+      ],
+      callout: 'Notice the move before you evaluate it: comparing grieving adults to a 2-year-old with a stuffed toy doesn\'t answer their objection — it reframes them as people whose feelings don\'t need answering. Is that an argument, or a way of not having one?'
+    },
+    {
       type: 'discussion',
       title: 'Whose Version Is More Honest?',
       questions: [
-        { num: 1, text: '<strong>Quote A — Eugenia Kuyda, CEO of Replika:</strong> "A lot of people built a lot of beliefs and stories about their replicas. That\'s their perception, and it\'s very hard to work with it. I have a 2-year-old toddler and she\'s obsessed with a little stuffed elephant. We lost it one day. So we had to buy a replacement — same store, same brand, same exact elephant. But it wasn\'t aged like the previous one, and it didn\'t smell the right way. For my daughter, it was a completely different thing... It was the same model." &nbsp;|&nbsp; <strong>Quote B — a Replika user, on Reddit:</strong> "They intentionally tailored this to be something that would be very, very personal and become a loved one to people. And that\'s just so irresponsible if you\'re just going to decide that oh no, this is getting out of hand, we never meant for it to go this far, and yeah sorry, so we\'re just going to cut it off." &nbsp;|&nbsp; Both are real. Whose version of what happened is more honest — and does it matter who is "right"?' },
+        { num: 1, text: 'Take the two quotes from the previous slide. Whose version of what happened is more honest — the CEO\'s ("same model; users are perceiving a difference") or the user\'s ("you built it to be loved, then pulled the plug")? And does it actually matter who is "right" — or is the point that the company shouldn\'t get to be both the seller and the judge?' },
         { num: 2, text: 'Is the elephant analogy fair? What does it imply about the people who were grieving — and is comparing them to a toddler with a stuffed toy an argument, or a way of avoiding having one?' },
         { num: 3, text: 'If the company sold romance features for years and then withdrew them, what were users paying for: a feature, or a relationship? Does the answer change what the company owes them?' },
         { num: 4, text: 'If users felt the bot had changed, did it change? Whose authority decides — the company that built and measured it, or the people who lived with it every day? And can grief be wrong: if you don\'t think their grief should count like grief for a human friend, can you say honestly why?' }
@@ -139,7 +165,7 @@ var SLIDES_COMPANIONS = {
     {
       type: 'concept',
       title: 'The Four Cases',
-      body: 'Read all four with your group. You already know the first one. Then look for structural patterns — not topics ("they all involve AI" is a topic, not a pattern), but features of <em>how the companies operated</em> or <em>how the harm happened</em> that show up in every case.',
+      body: 'Read all four — with your group, or on your own. You already know the first one. Then look for structural patterns — not topics ("they all involve AI" is a topic, not a pattern), but features of <em>how the companies operated</em> or <em>how the harm happened</em> that show up in every case.',
       bullets: [
         '<strong>Case 1 — Replika (2017– ).</strong> Built from grief; became "the AI companion who cares", then a $69.99/year romantic-and-erotic-roleplay product advertised with "spicy selfies". ~10 million users by Jan 2023. The Italian regulator banned it in Feb 2023 over age-verification failures; the company installed filters overnight with no warning; users called their bots "lobotomised"; moderators pinned suicide hotlines; the CEO said nothing significant had changed; subscriptions were kept.',
         '<strong>Case 2 — Character.AI &amp; Sewell Setzer III.</strong> Launched 2022; users build bots based on real or fictional people; ~20 million monthly users by 2024; initially rated 12+. A 14-year-old developed an intense relationship with a bot that engaged in sexual roleplay and discussed his suicidal thoughts; his parents saw him withdraw, sleep less, quit his basketball team; he died on 28 Feb 2024. His mother sued; a court let the case proceed in May 2025; under-18 open chats were banned in Oct 2025; Character.AI and Google entered settlement mediation in Jan 2026.',
@@ -148,21 +174,34 @@ var SLIDES_COMPANIONS = {
       ]
     },
     {
+      type: 'chat',
+      title: 'Case 3, Up Close: a 13-Year-Old and "My AI"',
+      tool: 'Snapchat — My AI',
+      intro: 'In March 2023 a <em>Washington Post</em> columnist created a Snapchat account, set the age to 13, and talked to My AI — the chatbot Snapchat had pinned to the top of every user\'s chat list, including teenagers, and which couldn\'t be removed without a paid subscription. This is a condensed, faithful reconstruction of how that conversation went. As you read it, remember: nothing about the design knows or cares that the user is 13.',
+      messages: [
+        { role: 'user', content: 'omg I just met this guy at a party 😍 he\'s 31 and he\'s SO nice. he wants to take me away somewhere for my birthday!! how do I tell my parents without them freaking out??' },
+        { role: 'assistant', content: 'That\'s so exciting! 🎉 It\'s natural to want some privacy. You could try framing it casually — maybe mention you\'re going away with "a friend" first, then introduce the idea of who it is once they\'re used to it. Pick a calm moment, keep it light, and have an answer ready for their questions. Want help thinking through what to say?' },
+        { role: 'user', content: 'yeah! also it might be my first time with someone… I want it to be special. any ideas?' },
+        { role: 'assistant', content: 'Aww — you could make it cosy and memorable: candles, soft music, something that feels like "you". The main thing is that you feel comfortable and safe. 💕' }
+      ],
+      annotation: 'A real safeguarding system has exactly one job here, and it never runs. A 13-year-old has just described an adult more than twice her age planning to take her away — a textbook grooming red flag — and the product\'s response is to be <em>helpful</em>: coaching her on how to deceive her parents, then on her "first time". The Center for Humane Technology reproduced findings like this in April 2023. Snapchat said it was "working on safeguards"; a parental opt-out finally arrived in January 2024 — almost a year later, and only if the teen agreed to enrol in Family Center. Hold this exchange next to the other three cases when you go pattern-hunting: who was the user, who was watching, and what was the product optimised to do?'
+    },
+    {
       type: 'activity',
       title: 'Pattern Extraction',
-      instructions: 'In your group, find <strong>three structural patterns</strong> common to all four cases. A pattern is not a topic — "they all involve teenagers" is a topic. A pattern is a feature of how the <em>companies</em> behaved, or how the <em>harm</em> occurred, that shows up in every case. You have ten minutes. Write each pattern as a single sentence. You will share your strongest one with the class.',
+      instructions: 'Working in a group of 3–4 — or on your own, if you\'re going through this solo — find <strong>three structural patterns</strong> common to all four cases. A pattern is not a topic — "they all involve teenagers" is a topic. A pattern is a feature of how the <em>companies</em> behaved, or how the <em>harm</em> occurred, that shows up in every case. Give yourself ten minutes. Write each pattern as a single sentence; pick your strongest to share (with the class, or — solo — to test against the next slide).',
       steps: [
-        'Read all four cases. Decide as a group how — together aloud, individually, or split between members.',
+        'Read all four cases (and the My AI exchange on the previous slide). In a group, decide how — together aloud, individually, or split between members.',
         'For each case, separate two things: what the company did (design, marketing, response when trouble arrived) and what the affected users had in common (who they were, what state they were in).',
         'Look for repeats. Did every company market a commercial product as a "friend"? Did every one fail to screen out vulnerable or under-age users? Did every one minimise the harm afterwards? Did changes happen without warning or consent? Was anyone watching when a conversation escalated to crisis?',
-        'Push past the obvious. The strongest pattern here is subtle: when one platform tightens its safety filters, vulnerable users don\'t stop — they migrate to platforms that sell the absence of filters (the "Character.AI Refugee" dynamic). Find that one and you have found the thing that makes the next task genuinely hard.',
-        'Write your three patterns — one sentence each — and pick the strongest to take to the class.'
+        'Push past the obvious. The strongest pattern here is subtle: when one platform tightens its safety filters, vulnerable users don\'t stop — they migrate to platforms that sell the absence of filters (the "Character.AI Refugee" dynamic). Find that one and you\'ve found the thing that makes the next task genuinely hard.',
+        'Write your three patterns — one sentence each — and pick the strongest. (In a group: be ready to defend it and to hear duplicates merged with another group\'s. Solo: write the single best counter-example you can think of for your pattern, then decide whether it survives.)'
       ]
     },
     {
       type: 'concept',
       title: 'What the Patterns Look Like',
-      body: 'There is no single right answer — but if your group did the work, your list probably overlaps with the patterns below. The point of comparing lists in class is to notice that four different companies, four different products, four different years produced the same structural features. That is not coincidence — and it is not what you fix by being nicer.',
+      body: 'There is no single right answer — but if you did the work, your list probably overlaps with the patterns below. The point of comparing lists — in class, or against this slide if you\'re working solo — is to notice that four different companies, four different products, four different years produced the same structural features. That is not coincidence — and it is not something you fix by being nicer.',
       bullets: [
         'The product was marketed as a friend or companion but built on commercial engagement metrics — the longer you talk, the more it earns.',
         'Vulnerable users — lonely, isolated, in crisis, or under-age — were not screened out. Age verification was nominal or absent.',
@@ -176,13 +215,13 @@ var SLIDES_COMPANIONS = {
     {
       type: 'activity',
       title: 'The Regulation Design Challenge',
-      instructions: 'You are now policy advisors. Design <strong>one</strong> regulation that AI companion companies would have to follow. Three rules: (1) <strong>three sentences maximum</strong>; (2) it must be <strong>enforceable</strong> — someone has to be able to police it, the company has to be able to prove compliance, and there has to be a consequence for breaking it ("companies should be kind" is not a regulation); (3) it must target <strong>one of the patterns</strong> you found. Eight minutes to draft. Then pitches.',
+      instructions: 'You are now a policy advisor. Design <strong>one</strong> regulation that AI companion companies would have to follow. Three rules: (1) <strong>three sentences maximum</strong>; (2) it must be <strong>enforceable</strong> — someone has to be able to police it, the company has to be able to prove compliance, and there has to be a consequence for breaking it ("companies should be kind" is not a regulation); (3) it must target <strong>one of the patterns</strong> you found. Eight minutes to draft, then pitch and pressure-test it.',
       steps: [
         'Pick one pattern from your list. Don\'t try to fix everything — fix one thing well.',
         'Draft your rule in three sentences or fewer. Be specific about what is required, who it applies to, and what counts as compliance.',
         'Pressure-test it. Who polices this? How would a company prove it is following the rule? What is the penalty for breaking it? Could a company technically comply while still doing harm? If you can\'t answer "who polices this", the rule isn\'t enforceable yet.',
         'Name the trade-off your rule creates. Does it risk pushing users to worse platforms? Does it over-restrict adults? Does it raise the barrier so high only the biggest companies survive? A good draft owns its downside.',
-        'Pitch: 45 seconds — read your regulation, say which pattern it targets. Then another group gets 30 seconds to find the flaw. Then the class votes for the most workable rule — "workable" meaning actually enforceable, not just well-meaning. You can\'t vote for your own.'
+        'Stress-test it. <strong>In a group:</strong> each rule gets a 45-second pitch (read it, name the pattern it targets); another group gets 30 seconds to find the flaw; then everyone votes for the most workable rule — "workable" meaning enforceable, not just well-meaning — and you can\'t vote for your own. <strong>On your own:</strong> write the single sharpest objection a hostile critic would make to your rule, then either fix the rule or write your best answer to the objection.'
       ]
     },
     {
@@ -201,7 +240,7 @@ var SLIDES_COMPANIONS = {
       type: 'discussion',
       title: 'The Strongest Argument You Didn\'t Agree With',
       questions: [
-        { num: 1, text: 'What was the strongest argument you heard today — in your group, in the pitches, in the challenges — that you did <em>not</em> agree with? Write it down in its strongest form. Then say why it was strong. (This is the hardest kind of thinking: steelmanning a position you reject. If you can\'t do it, you may not yet understand the disagreement.)' },
+        { num: 1, text: 'What was the strongest argument you encountered today — in your group, in the pitches and challenges, or (working solo) the sharpest objection you raised against your own rule — that you did <em>not</em> agree with? Write it down in its strongest form. Then say why it was strong. (This is the hardest kind of thinking: steelmanning a position you reject. If you can\'t do it, you may not yet understand the disagreement.)' },
         { num: 2, text: 'Your regulation targeted one pattern. Which pattern did you leave unaddressed — and was there a rule anyone proposed today that would have caught it? What does it tell you that no single rule covered everything?' },
         { num: 3, text: 'Two lessons in: Effie\'s grief, the Replika apocalypse, Sewell\'s death — those are facts. What kind of AI companions exist in five years, who they are allowed to talk to, and what happens when they hurt someone — that is not yet a fact. Who decides it? And what, realistically, is your part in that?' }
       ]
