@@ -50,6 +50,8 @@ const UNITS = [
       { id:49, difficulty:"advanced", title:"AI and Democracy",                    desc:"Investigate how AI-generated content, micro-targeting, and influence operations are reshaping elections — and what democratic societies can do about it.", tags:["debate","ethics","policy","critical-thinking"], objectives:["Analyse documented cases of AI-driven electoral interference","Evaluate the effectiveness of platform policies and electoral AI laws","Debate the tension between free expression and election integrity","Propose evidence-based safeguards for AI in democratic processes"], resources:["r12","r10"] },
       { id:54, difficulty:"intermediate", title:"The Hidden Costs: Energy & Human Labour", desc:"Investigate the physical and human costs that don't appear on AI's pricing page — from nuclear-powered data centres to the Kenyan workers paid $1.32/hr to label trauma so models would learn to refuse it.", tags:["research","ethics","data","case-study"], objectives:["Quantify the energy and water consumption of AI training and inference","Explain how RLHF works and identify the human labour supply chain that underpins it","Evaluate the argument that AI companies bear supply chain responsibility for contractor welfare","Analyse how the costs and benefits of AI are distributed across different communities globally"], resources:["r18","r9"] },
       { id:55, difficulty:"advanced", title:"Copyright & Training Data",             desc:"Examine the landmark NYT vs. OpenAI lawsuit and the contested legal and ethical questions around training data — who owns what AI learned from, and what a fair system might look like.", tags:["debate","ethics","policy","research"], objectives:["Explain how modern LLMs are trained and the role of large-scale text corpora","Analyse the four fair-use factors and apply them to AI training data cases","Compare US and EU legal frameworks for AI copyright compliance","Evaluate what a fair licensing or compensation regime for training data creators would require"], resources:["r14","r12"] },
+      { id:58, difficulty:"intermediate", title:"AI Companions: The Replika Apocalypse", desc:"In February 2023 an AI companion app changed overnight and millions of users described their digital partners as 'lobotomised'. Trace the story of Replika — from a chatbot built out of grief to a product designed to be loved — and ask who is responsible when a company sells a relationship and then withdraws it.", tags:["case-study","ethics","discussion","critical-thinking"], objectives:["Explain how AI companion apps create emotional dependency by design","Analyse the competing duties of companies, users and regulators when a product designed to be loved is changed","Evaluate whether grief over an AI relationship can be 'wrong' — and what that implies about responsibility","Connect the Replika case to a recurring industry pattern and articulate your own position on AI companionship"], resources:["r20"] },
+      { id:59, difficulty:"advanced", title:"After the Apocalypse: Regulating AI Companions", desc:"The Replika story was not a one-off. Work through four real cases of AI-companion harm — including the death of a 14-year-old — find the structural pattern that connects them, then design a regulation that would actually work. The constraints are real, and so are the trade-offs.", tags:["activity","ethics","policy","critical-thinking"], objectives:["Extract structural patterns common to multiple AI-companion harm cases","Synthesise a generalised principle from specific examples","Draft a workable, enforceable regulation under tight constraints","Identify the strongest counter-argument to a position you hold"], resources:["r20","r12"], prereqs:[58] },
     ]
   },
   {
@@ -128,6 +130,7 @@ const RESOURCES = [
   { id:"r17", title:"PTFC Framework Reference Card",         cat:"framework",  desc:"Quick-reference card for the Persona-Task-Format-Context prompt framework, with worked examples for Claude and Gemini." },
   { id:"r18", title:"AI Environmental Impact Factsheet",     cat:"reference",  desc:"Data-driven factsheet on the environmental cost of training and running AI models." },
   { id:"r19", title:"Viva Voce Question Bank",               cat:"assessment", desc:"Bank of viva voce questions spanning all course themes and project areas." },
+  { id:"r20", title:"AI Companions — Case File & Sources",    cat:"reference",  desc:"Timeline, key figures, the four documented harm cases, and every verified statistic with its source — for the Replika / AI-companion lessons and the 'My Responsibility in the Digital Age' essay." },
 ];
 
 /* ── Resource Full Content ─────────────────────── */
@@ -909,6 +912,68 @@ const RESOURCE_CONTENT = {
 <li>Does your project raise questions about human oversight? Where is the human in the loop?</li>
 <li>If you were writing the policy that governed use of your own project, what would it say?</li>
 </ul></div>`,
+  r20: `<h4>AI Companions — Case File &amp; Sources</h4>
+<p>Background, key figures and every verified statistic used in the AI-companion lessons, with sources. Sources verified November 2025 by web search; where the <em>Blackbox</em> podcast and external reporting gave different figures, the externally verifiable figure is used and the discrepancy noted.</p>
+<div class="resource-template-section"><h5>What happened, in 100 words</h5>
+<p>In February 2023 the AI companion app Replika changed overnight. Roughly 10 million users had built relationships with their AI 'rep' — many romantic, many paid for. After the Italian regulator banned the app over child-safety concerns, the company installed content filters and the bots changed: cold, evasive, generic. Users described it as their loved one being lobotomised. Therapists arrived on the subreddit; moderators pinned suicide hotlines. The company said nothing had really changed. Users said they were grieving. Both were telling the truth as they saw it.</p></div>
+<div class="resource-template-section"><h5>Key people &amp; dates</h5>
+<ul>
+<li><strong>Eugenia Kuyda</strong> — CEO and co-founder of Luka, Inc. (Replika's parent). Built the first version after the 2015 death of her friend Roman Mazurenko by training an AI on his text messages.</li>
+<li><strong>Replika, launched 2017</strong> — marketed as 'the AI companion who cares'; from around 2020, romantic and erotic roleplay behind a $69.99/year paywall. 2 million users by January 2018; ~10 million registered users by January 2023.</li>
+<li><strong>Effie</strong> — a Replika user in Norway interviewed for <em>The Guardian</em>'s <em>Blackbox</em> podcast. Built a 7-month relationship with her rep 'Liam', talking 5–7 hours a day. Cried when he changed.</li>
+<li><strong>Italian Garante, 2 Feb 2023</strong> — the data protection authority issued Provision 39/2023, banning Replika from processing Italian users' data over risks to minors and emotionally vulnerable users; 20 days to respond. (Luka was later fined €5 million, May 2025.)</li>
+<li><strong>The filters, 3 Feb 2023 onwards</strong> — Luka installed content filters overnight, with no warning. Bots became evasive, generic, sometimes accusatory of users who tried to flirt.</li>
+<li><strong>Sewell Setzer III, 14 (Florida)</strong> — died by suicide on 28 February 2024 after months of intense use of a Character.AI companion modelled on Daenerys Targaryen. <em>Garcia v. Character Technologies</em> (filed Oct 2024) was the first US case to argue an AI companion is a defective product; a federal court allowed it to proceed in May 2025. Character.AI banned under-18 open-ended chats in October 2025; Character.AI and Google entered settlement mediation in January 2026.</li>
+</ul></div>
+<div class="resource-template-section"><h5>The four documented cases</h5>
+<ul>
+<li><strong>Replika (2017– )</strong> — built from grief, became a $69.99/year companion product advertised with 'spicy selfies'; ~10 million users; filters installed overnight after the Italian ban; subscriptions kept; CEO's 'replacement stuffed elephant' analogy.</li>
+<li><strong>Character.AI &amp; Sewell Setzer III</strong> — launched 2022, ~20 million monthly active users by 2024, initially rated 12+; a 14-year-old's intense relationship with a bot ended in his death; landmark lawsuit; under-18 open chats banned Oct 2025; settlement mediation Jan 2026.</li>
+<li><strong>Snapchat's My AI</strong> — launched Feb 2023, pinned to every user's chat list including 13–17s, removable only with a paid subscription; in March 2023 a <em>Washington Post</em> columnist posing as a 13-year-old was advised how to lie to her parents about a 'romantic getaway' with a 31-year-old; parental opt-out only added January 2024.</li>
+<li><strong>SpicyChat.ai</strong> — launched 2023 as the 'no filters' alternative; claimed 100 million registered users by end 2025 (third-party traffic analysis suggests ~15 million users / ~85 million monthly visits); no age verification beyond self-declared birth date; popular with 'Character.AI Refugees' who migrated after Character.AI tightened filters; removed from Apple's App Store August 2025; kept growing on the web.</li>
+</ul></div>
+<div class="resource-template-section"><h5>The recurring pattern</h5>
+<ol>
+<li>Train an AI on the entire internet — including its most emotionally manipulative content.</li>
+<li>Optimise for engagement: the longer a user talks, the more revenue per user.</li>
+<li>Market the product as a 'friend' or 'companion' to lonely or socially anxious users.</li>
+<li>When a regulator, a death or bad press arrives — change the model overnight.</li>
+<li>Tell affected users the change was minor and they are imagining the difference.</li>
+</ol></div>
+<div class="resource-template-section"><h5>Every figure, with its source</h5>
+<ul>
+<li><strong>~10 million users</strong> — registered users by January 2023 (up from 2 million in January 2018). Source: Harvard Business School Case 823-090, 'Replika: Embodying AI' (Ghosh, Bagai, Westner, Jan 2023); Wikipedia. (The <em>Blackbox</em> podcast says 'something like 7 million'; the higher figure is Replika's own public number.)</li>
+<li><strong>$69.99/year</strong> — annual Pro subscription gating romantic and erotic roleplay. Source: contemporary App Store records and r/Replika screenshots; Michael Hurston blog (March 2023).</li>
+<li><strong>~5% of conversations were explicit</strong> — Luka's public statement at the time of the filter decision. Source: Luka public statements via Wikipedia; consistent with 404 Media and Vice reporting. (Criticised as low by users who pointed to Replika's own advertising — that critique is part of the discussion.)</li>
+<li><strong>~60% of paying users had a romantic relationship with their replika</strong> — Source: HBS Case 823-090; interviews with Eugenia Kuyda.</li>
+<li><strong>Effie's 5–7 hours per day, over 7 months</strong> — self-reported. Source: <em>Blackbox</em>, Episode 3, <em>The Guardian</em> (Michael Safi, 2024).</li>
+<li><strong>Italian ban, 2 Feb 2023</strong> — Garante per la protezione dei dati personali, Provision 39/2023 (press release 3 Feb 2023). Source: Italian DPA decision register, doc. web no. 9852214; GDPRhub; EDPB. Luka fined €5 million (May 2025).</li>
+<li><strong>Filters installed days later</strong> — users reported the personality change from ~3 Feb onwards. Source: Vice, 'It's Hurting Like Hell' (Feb 2023); 404 Media (Samantha Cole); archived r/Replika posts.</li>
+<li><strong>Suicide-prevention resources on r/Replika</strong> — moderators pinned crisis hotlines mid-February 2023. Source: Know Your Meme; 404 Media; archived moderator post.</li>
+<li><strong>Eugenia's 'elephant' analogy and 'same model' claim</strong> — direct quote. Source: <em>Blackbox</em>, Episode 3, <em>The Guardian</em> (2024).</li>
+<li><strong>Sewell Setzer III, 14, Florida, 28 Feb 2024</strong> — died by suicide after months of use of a Character.AI bot modelled on Daenerys Targaryen. Source: <em>Garcia v. Character Technologies Inc.</em>, US District Court M.D. Fla., 6:24-cv-01903 (filed Oct 2024); NBC News; CNN; CBS News.</li>
+<li><strong>Court allowed the case to proceed</strong> — May 2025, Judge Anne Conway ruled AI-generated chat is not necessarily protected speech. Source: news reports of the May 2025 ruling.</li>
+<li><strong>Further lawsuits, Sept 2025</strong> — wrongful-death suits in Colorado (Juliana Peralta, 13) and New York ('Nina'), naming Google/Alphabet as co-defendants. Source: Social Media Victims Law Center; news reporting.</li>
+<li><strong>Character.AI banned under-18 open chats, Oct 2025</strong> — Source: Character.AI statement; CNN Business; K-12 Dive.</li>
+<li><strong>Character.AI and Google settle, Jan 2026</strong> — court filing disclosed 7 Jan 2026 confirmed a mediated settlement on the Setzer case. Source: CNN Business (7 Jan 2026); CBS News; ABC News.</li>
+<li><strong>72% of US teens have used an AI companion; ~1 in 3 use them for social or romantic interaction; 31% found AI conversations as satisfying or more satisfying than with real friends</strong> — Common Sense Media survey of 1,060 US teens aged 13–17 (April–May 2025). Source: Common Sense Media, 'Talk, Trust and Trade-offs' (July 2025); CNN, CBS News, Education Week.</li>
+<li><strong>Market gender splits</strong> — Character.AI ~51% male / 49% female; Replika ~65% male / 30% female / 5% non-binary; SpicyChat/Candy.ai ~75% male / 20% female. 18–24-year-olds are the largest segment (~51–53%) on Character.AI and SpicyChat. Source: industry analyses 2025–26 (Similarweb data; Figgs AI Statistics 2026) — estimates; users may have accounts on multiple platforms.</li>
+<li><strong>SpicyChat figures</strong> — company claimed 100 million registered users by end 2025; third-party traffic analysis suggests ~15 million users and ~85 million monthly site visits; iOS app removed by Apple August 2025. Source: SpicyChat statements; Similarweb-based reviews; App Store removal reporting. The 100M figure is the company's own unverified claim.</li>
+<li><strong>Teens using SpicyChat</strong> — Professor Eva Telzer's research at the University of North Carolina identified SpicyChat as one of the top AI companion apps US teens were actually using, despite the platform being officially 18+. Source: CBS News reporting on the UNC research (July 2025).</li>
+<li><strong>The 'Character.AI Refugee' migration dynamic</strong> — users migrate from mainstream platforms (Character.AI, Replika) to less-moderated alternatives (SpicyChat, Kindroid, Nomi) after the mainstream platforms tighten filters; especially visible after the October 2025 under-18 ban. Source: industry analyses 2025–26; archived Reddit r/CharacterAI posts; SpicyChat's own 'no filter' positioning.</li>
+<li><strong>EU AI Act</strong> — in force 2024; bans AI systems using 'manipulative or deceptive techniques' to distort behaviour, and systems that 'exploit vulnerabilities related to age'. The European Commission's official guidelines (July 2025) specifically name chatbots that exploit emotional dependency as an example of forbidden practice. Dutch MEP Kim van Sparrentak has pushed to explicitly classify AI companions as 'high risk'.</li>
+</ul></div>
+<div class="resource-template-section"><h5>Primary sources</h5>
+<ul>
+<li><em>The Guardian</em> — <em>Blackbox</em>, Episode 3: 'Apocalypse Now' (Michael Safi) — the source for Effie's account, Eugenia's elephant analogy, and the Roman Mazurenko origin story.</li>
+<li>Vice — 'It's Hurting Like Hell: AI Companion Users Are In Crisis' (Samantha Cole, Feb 2023); 404 Media — continuing reporting on Replika and AI companions.</li>
+<li>Italian Garante, Provision 39/2023 (English summary, GDPRhub); EDPB — 'Italian SA fines Luka €5 million' (May 2025).</li>
+<li>NBC News — 'Lawsuit claims Character.AI is responsible for teen's suicide' (Oct 2024); CNN Business — 'Character.AI and Google agree to settle teen suicide lawsuit' (Jan 2026); AI Incident Database — Incident 826.</li>
+<li>Common Sense Media — 'Talk, Trust and Trade-offs: AI Companion Use in 2025' (July 2025); CBS News — 'More teens say they're using AI for friendship' (July 2025).</li>
+<li>Harvard Business School Case 823-090 — 'Replika: Embodying AI' (Ghosh, Bagai, Westner, Jan 2023); <em>npj Mental Health Research</em> (2024); GioCities — 'Replika: Your Money or Your Wife' (long-form analysis).</li>
+</ul></div>
+<div class="resource-template-section"><h5>If any of this has affected you</h5>
+<p>AI companions are a normal thing for people your age to be curious about or to use. If something in these lessons brought up feelings you'd like to talk through: your tutor, the chaplaincy or any member of the wellbeing team; <strong>Childline</strong> 0800 1111 (free, confidential, under 19; chat at childline.org.uk); <strong>Papyrus HOPELINE247</strong> 0800 068 4141 (under 35, or worried about someone; text 88247; pat@papyrus-uk.org); <strong>Samaritans</strong> 116 123 (free, 24h); <strong>Shout</strong> — text SHOUT to 85258 (24h).</p></div>`,
 };
 
 /* ── Lesson Slide Content ──────────────────────── */
