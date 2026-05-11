@@ -486,7 +486,8 @@ function getLessonSlides(id, lesson, unit) {
                                (typeof SLIDES_U3U4 !== 'undefined' ? SLIDES_U3U4 : {}),
                                (typeof SLIDES_U5U6 !== 'undefined' ? SLIDES_U5U6 : {}),
                                (typeof SLIDES_CRITICAL !== 'undefined' ? SLIDES_CRITICAL : {}),
-                               (typeof SLIDES_ADVANCED !== 'undefined' ? SLIDES_ADVANCED : {}));
+                               (typeof SLIDES_ADVANCED !== 'undefined' ? SLIDES_ADVANCED : {}),
+                               (typeof SLIDES_COMPANIONS !== 'undefined' ? SLIDES_COMPANIONS : {}));
   if (all[id]) return all[id];
   return generateSlides(lesson, unit);
 }
@@ -2143,7 +2144,7 @@ function pmGenerateFamilyLink() {
   var thisWeekTitles = recentIds.map(function(id) { return idToTitle[id] || ('Lesson ' + id); });
 
   var total = 0;
-  try { UNITS.forEach(function(u) { total += u.lessons.length; }); } catch(e) { total = 57; }
+  try { UNITS.forEach(function(u) { total += u.lessons.length; }); } catch(e) { total = 59; }
   var pct = total ? Math.round(completedLessons.size / total * 100) : 0;
 
   var name = localStorage.getItem('di_display_name') || localStorage.getItem('gs_cert_name') || 'Pupil';
