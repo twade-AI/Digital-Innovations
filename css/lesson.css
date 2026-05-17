@@ -1029,8 +1029,10 @@
   border: 2px solid var(--border); background: var(--bg-card);
   cursor: pointer; transition: all .2s; text-align: left;
   font-size: .92rem; color: var(--text-muted); line-height: 1.45;
+  width: 100%; font-family: inherit;
 }
-.scenario-choice:hover { border-color: var(--warning); color: var(--text); }
+.scenario-choice:hover:not(:disabled) { border-color: var(--warning); color: var(--text); }
+.scenario-choice:focus-visible { outline: 2px solid var(--warning); outline-offset: 2px; }
 .scenario-choice-letter {
   min-width: 30px; height: 30px; border-radius: 50%;
   background: rgba(245,158,11,.12); color: var(--warning);

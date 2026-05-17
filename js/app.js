@@ -245,16 +245,30 @@ function showSection(name) {
   document.getElementById('section-' + name)?.classList.add('active');
   var exploreSections = ['exemplars','timeline','news','glossary'];
   document.querySelectorAll('.nav-link').forEach(l => {
-    l.classList.toggle('active', l.dataset.section === name);
+    var on = l.dataset.section === name;
+    l.classList.toggle('active', on);
+    if (on) l.setAttribute('aria-current', 'page');
+    else l.removeAttribute('aria-current');
   });
   var exploreBtn = document.getElementById('navExploreBtn');
-  if (exploreBtn) exploreBtn.classList.toggle('active', exploreSections.includes(name));
+  if (exploreBtn) {
+    var inExplore = exploreSections.includes(name);
+    exploreBtn.classList.toggle('active', inExplore);
+    if (inExplore) exploreBtn.setAttribute('aria-current', 'page');
+    else exploreBtn.removeAttribute('aria-current');
+  }
   // Highlight active item inside the explore menu
   document.querySelectorAll('.nav-explore-item').forEach(function(a) {
-    a.classList.toggle('active', a.dataset.section === name);
+    var on = a.dataset.section === name;
+    a.classList.toggle('active', on);
+    if (on) a.setAttribute('aria-current', 'page');
+    else a.removeAttribute('aria-current');
   });
   document.querySelectorAll('.mob-tab[data-section]').forEach(t => {
-    t.classList.toggle('active', t.dataset.section === name);
+    var on = t.dataset.section === name;
+    t.classList.toggle('active', on);
+    if (on) t.setAttribute('aria-current', 'page');
+    else t.removeAttribute('aria-current');
   });
   document.querySelector('.nav-links')?.classList.remove('open');
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -693,10 +707,14 @@ function renderSlide(index) {
   else if (slide.type === 'scenario') {
     var choicesHtml = slide.choices.map(function(c, i) {
       var esc = c.outcome.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
-      return '<div class="scenario-choice" data-outcome="' + esc + '" onclick="revealScenarioOutcome(this)">' +
-        '<span class="scenario-choice-letter">' + String.fromCharCode(65 + i) + '</span>' +
+      var letter = String.fromCharCode(65 + i);
+      var labelText = (c.text || '').replace(/<[^>]*>/g, '').replace(/"/g,'&quot;');
+      return '<button type="button" class="scenario-choice" data-outcome="' + esc + '"' +
+        ' aria-label="Option ' + letter + ': ' + labelText + '"' +
+        ' onclick="revealScenarioOutcome(this)">' +
+        '<span class="scenario-choice-letter" aria-hidden="true">' + letter + '</span>' +
         '<span class="scenario-choice-text">' + c.text + '</span>' +
-      '</div>';
+      '</button>';
     }).join('');
     html = '<div class="slide-scenario">' +
       '<span class="slide-badge badge-scenario">Scenario</span>' +
@@ -715,8 +733,12 @@ function renderSlide(index) {
 
   else if (slide.type === 'quiz') {
     var optionsHtml = slide.options.map(function(opt, i) {
-      return '<button class="quiz-option" data-idx="' + i + '" onclick="checkQuiz(this,' + slide.correct + ',' + index + ')">' +
-        '<span class="quiz-option-letter">' + String.fromCharCode(65 + i) + '</span>' +
+      var letter = String.fromCharCode(65 + i);
+      var labelText = String(opt).replace(/<[^>]*>/g, '').replace(/"/g,'&quot;');
+      return '<button type="button" class="quiz-option" data-idx="' + i +
+        '" aria-label="Option ' + letter + ': ' + labelText + '"' +
+        ' onclick="checkQuiz(this,' + slide.correct + ',' + index + ')">' +
+        '<span class="quiz-option-letter" aria-hidden="true">' + letter + '</span>' +
         '<span class="quiz-option-text">' + opt + '</span>' +
       '</button>';
     }).join('');
@@ -2502,8 +2524,12 @@ function renderAssessmentQuestion() {
     if (assessmentTimeLeft <= 0) { clearInterval(assessmentTimer); autoFailAssessment(slide.correct, q); }
   }, 1000);
   var optHtml = slide.options.map(function(opt, i) {
-    return '<button class="quiz-option" data-idx="' + i + '" onclick="answerAssessment(this,' + slide.correct + ',' + i + ')">' +
-      '<span class="quiz-option-letter">' + String.fromCharCode(65+i) + '</span>' +
+    var letter = String.fromCharCode(65+i);
+    var labelText = String(opt).replace(/<[^>]*>/g, '').replace(/"/g,'&quot;');
+    return '<button type="button" class="quiz-option" data-idx="' + i +
+      '" aria-label="Option ' + letter + ': ' + labelText + '"' +
+      ' onclick="answerAssessment(this,' + slide.correct + ',' + i + ')">' +
+      '<span class="quiz-option-letter" aria-hidden="true">' + letter + '</span>' +
       '<span class="quiz-option-text">' + opt + '</span>' +
     '</button>';
   }).join('');
@@ -2802,8 +2828,12 @@ function renderQuickQuizSlide() {
   var q = quickQuizQuestions[quickQuizIndex];
   var slide = q.slide;
   var optHtml = slide.options.map(function(opt, i) {
-    return '<button class="quiz-option" data-idx="' + i + '" onclick="answerQuickQuiz(this,' + slide.correct + ',' + i + ')">' +
-      '<span class="quiz-option-letter">' + String.fromCharCode(65 + i) + '</span>' +
+    var letter = String.fromCharCode(65 + i);
+    var labelText = String(opt).replace(/<[^>]*>/g, '').replace(/"/g,'&quot;');
+    return '<button type="button" class="quiz-option" data-idx="' + i +
+      '" aria-label="Option ' + letter + ': ' + labelText + '"' +
+      ' onclick="answerQuickQuiz(this,' + slide.correct + ',' + i + ')">' +
+      '<span class="quiz-option-letter" aria-hidden="true">' + letter + '</span>' +
       '<span class="quiz-option-text">' + opt + '</span>' +
     '</button>';
   }).join('');
@@ -3200,6 +3230,27 @@ function renderStreakHeatmap() {
 }
 
 /* ── News Ticker ─────────────────────────────────── */
+function toggleNewsTicker(btn) {
+  var ticker = document.getElementById('newsTicker');
+  if (!ticker) return;
+  var paused = ticker.classList.toggle('is-paused');
+  try { localStorage.setItem('di_news_ticker_paused', paused ? '1' : '0'); } catch (_) {}
+  btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+  btn.setAttribute('aria-label', paused ? 'Play news ticker' : 'Pause news ticker');
+  btn.setAttribute('title', paused ? 'Play news ticker' : 'Pause news ticker');
+  btn.textContent = paused ? '▶' : '⏸';
+}
+
+(function restoreNewsTickerPref() {
+  try {
+    if (localStorage.getItem('di_news_ticker_paused') !== '1') return;
+    document.addEventListener('DOMContentLoaded', function () {
+      var btn = document.getElementById('newsTickerPause');
+      if (btn) toggleNewsTicker(btn);
+    });
+  } catch (_) {}
+})();
+
 function renderNewsTicker() {
   var track = document.getElementById('tickerTrack');
   if (!track || typeof AI_NEWS === 'undefined') return;

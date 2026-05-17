@@ -20,8 +20,14 @@
     .fl-header { display:flex; align-items:center; gap:12px; padding: 18px 0 0; border-bottom:1px solid var(--border); margin-bottom:24px; }
     .fl-back { background:none; border:none; color:var(--text-dim); font-size:.85rem; cursor:pointer; padding:6px 0; display:flex;align-items:center;gap:4px; }
     .fl-back:hover { color:var(--text); }
-    .fl-header-brand { font-size:.8rem; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:.06em; }
-    .fl-header-title { font-weight:800; font-size:1.05rem; color:var(--text); margin-left:auto; }
+    .fl-header-brand { font-size:.8rem; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:.06em; margin-left:auto; }
+    .fl-header-title { font-weight:800; font-size:1.05rem; color:var(--text); }
+    .fl-breadcrumb ol { list-style:none; display:flex; align-items:center; gap:6px; margin:0; padding:0; font-size:.85rem; }
+    .fl-breadcrumb li { display:flex; align-items:center; gap:6px; }
+    .fl-breadcrumb li+li::before { content:"/"; color:var(--text-dim); opacity:.6; }
+    .fl-breadcrumb a { color:var(--text-dim); text-decoration:none; padding:6px 4px; border-radius:4px; }
+    .fl-breadcrumb a:hover { color:var(--text); background:rgba(255,255,255,.04); }
+    .fl-breadcrumb [aria-current="page"] { color:var(--text); font-weight:700; }
 
     /* Progress bar */
     .fl-progress-wrap { margin-bottom:28px; }
@@ -288,10 +294,14 @@
 
     <!-- Header -->
     <div class="fl-header">
-      <button class="fl-back" onclick="window.location.href='index.html'">← Back</button>
+      <nav class="fl-breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li aria-current="page">AI Fluency Track ⚡</li>
+        </ol>
+      </nav>
       <img class="hby-mark hby-mark--header" src="assets/brand/logo/haileybury-magenta.png" alt="Haileybury" width="22" height="16">
       <span class="fl-header-brand">Digital Innovations</span>
-      <span class="fl-header-title">AI Fluency Track ⚡</span>
       <a class="btn btn-ghost btn-sm" href="portfolio.html?t=fluency" style="margin-left:10px" title="Your notes, exit tickets and progress — save as PDF">📄 Portfolio</a>
     </div>
 
@@ -869,7 +879,11 @@
     }
     if (type === 'quiz') {
       var opts = (slide.options || []).map(function(opt, i) {
-        return '<button class="quiz-option" data-idx="' + i + '" onclick="flAnswerQuiz(this,' + slide.correct + ',' + i + ')">' + opt + '</button>';
+        var letter = String.fromCharCode(65 + i);
+        var labelText = String(opt).replace(/<[^>]*>/g, '').replace(/"/g,'&quot;');
+        return '<button type="button" class="quiz-option" data-idx="' + i +
+          '" aria-label="Option ' + letter + ': ' + labelText + '"' +
+          ' onclick="flAnswerQuiz(this,' + slide.correct + ',' + i + ')">' + opt + '</button>';
       }).join('');
       return '<div class="slide-quiz">' +
         '<span class="slide-badge badge-quiz">Quiz</span>' +
@@ -987,5 +1001,6 @@
   }
   </script>
   <script src="js/tts.js" defer></script>
+  <script src="js/a11y.js" defer></script>
 </body>
 </html>
