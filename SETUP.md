@@ -43,6 +43,59 @@ const ADMIN_EMAILS = ['yourname@haileybury.com'];
 
 ---
 
+## 3b. Enable Google sign-in (SSO)
+
+This lets staff and students click **Continue with Google** instead of
+creating a password. The site already has the button — these steps wire it
+up to your Google Workspace.
+
+### A. Create Google OAuth credentials
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/) and
+   sign in with a Workspace **admin** account.
+2. Create (or pick) a project, then open **APIs & Services → OAuth consent
+   screen**. Choose **Internal** — this alone restricts sign-in to
+   @haileybury.com accounts — fill in the app name and support email, save.
+3. Open **APIs & Services → Credentials → Create credentials → OAuth client
+   ID → Web application**.
+4. Under **Authorized redirect URIs** add your Supabase callback:
+   ```
+   https://oijjoczegdqddoyphqzs.supabase.co/auth/v1/callback
+   ```
+5. Click **Create** and copy the **Client ID** and **Client secret**.
+
+### B. Turn on Google in Supabase
+1. In Supabase, go to **Authentication → Providers → Google** and toggle it on.
+2. Paste the **Client ID** and **Client secret** from step A, then save.
+3. Go to **Authentication → URL Configuration**, set **Site URL** to your live
+   site URL, and add it (plus `http://localhost:3000` for local testing) to
+   **Redirect URLs**.
+
+### C. (Recommended) Hard-lock to @haileybury.com
+The button already passes Google's `hd=haileybury.com` hint and the app signs
+out any non-school account on return. To make a non-Haileybury account
+**impossible to create at all**, also run this once in the **SQL Editor**:
+
+```sql
+create or replace function public.enforce_email_domain()
+returns trigger language plpgsql as $$
+begin
+  if lower(new.email) not like '%@haileybury.com' then
+    raise exception 'Only @haileybury.com accounts are allowed.';
+  end if;
+  return new;
+end;
+$$;
+
+drop trigger if exists enforce_email_domain on auth.users;
+create trigger enforce_email_domain
+  before insert on auth.users
+  for each row execute function public.enforce_email_domain();
+```
+
+Reload the site and **Continue with Google** will work.
+
+---
+
 ## 4. Run the database schema
 
 1. Go to **SQL Editor** in your Supabase dashboard.
