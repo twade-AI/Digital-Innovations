@@ -20,7 +20,12 @@ function initSupabase() {
     // React to login / logout events
     _sb.auth.onAuthStateChange(function(event, session) {
       var prev = _currentUser;
-      _currentUser = session ? session.user : null;
+      var user = session ? session.user : null;
+      // Google sign-in only reveals the email after the redirect round-trip,
+      // so re-check the school domain here and bounce anything that isn't
+      // @haileybury.com (e.g. a personal Google account).
+      if (user && !emailDomainOk(user.email)) { rejectWrongDomain(); return; }
+      _currentUser = user;
       updateAuthUI();
       if (_currentUser && !prev) {
         // just signed in — pull remote progress
@@ -31,7 +36,9 @@ function initSupabase() {
     // Restore existing session on page load
     _sb.auth.getSession().then(function(res) {
       var session = res.data && res.data.session;
-      _currentUser = session ? session.user : null;
+      var user = session ? session.user : null;
+      if (user && !emailDomainOk(user.email)) { rejectWrongDomain(); return; }
+      _currentUser = user;
       updateAuthUI();
       if (_currentUser) loadProgressFromSupabase();
     });
@@ -90,6 +97,47 @@ async function authSignIn(email, password) {
     return { error: { message: 'Only @' + ALLOWED_DOMAIN + ' school accounts are accepted.' } };
   }
   return await _sb.auth.signInWithPassword({ email: email, password: password });
+}
+
+/* ── Sign In with Google (OAuth) ─────────────────────────────────────
+   Redirects to Google, then back to this page. The school-domain check
+   happens on return inside onAuthStateChange (a personal Google account
+   gets signed straight back out). For a hard, server-side gate see the
+   "Hard-lock to @haileybury.com" hook in SETUP.md.
+   Requires the Google provider to be enabled in the Supabase dashboard. */
+async function authSignInWithGoogle() {
+  if (!isSupabaseReady()) return { error: { message: 'Supabase is not configured yet.' } };
+  return await _sb.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: window.location.origin + window.location.pathname, // come back here
+      queryParams: {
+        hd: ALLOWED_DOMAIN,        // only offer @haileybury.com accounts in the picker
+        prompt: 'select_account'   // always show the chooser (shared / family devices)
+      }
+    }
+  });
+}
+
+/* ── School-domain helpers ───────────────────────────────────────── */
+function emailDomainOk(email) {
+  return !!email && email.toLowerCase().endsWith('@' + ALLOWED_DOMAIN);
+}
+
+// A non-school account got through (only reachable via OAuth — the email
+// forms check the domain before calling Supabase). Sign them back out and
+// say why. Deferred with setTimeout because Supabase warns against calling
+// auth methods synchronously inside the onAuthStateChange callback.
+function rejectWrongDomain() {
+  setTimeout(function() {
+    if (!isSupabaseReady()) return;
+    _sb.auth.signOut().then(function() {
+      _currentUser = null;
+      updateAuthUI();
+      openAuthModal('login');
+      setAuthError('Please sign in with your @' + ALLOWED_DOMAIN + ' school Google account.');
+    });
+  }, 0);
 }
 
 /* ── Sign Out ────────────────────────────────────────────────────── */
@@ -275,6 +323,18 @@ async function submitLogin(e) {
   btn.disabled = false; btn.textContent = 'Sign In';
   if (res.error) { setAuthError(res.error.message); }
   else           { closeAuthModal(); }
+}
+
+// Google button handler. On success the browser navigates away to Google,
+// so we only return here if kicking off the redirect failed.
+async function submitGoogle(btn) {
+  clearAuthError();
+  if (btn) btn.disabled = true;
+  var res = await authSignInWithGoogle();
+  if (res && res.error) {
+    if (btn) btn.disabled = false;
+    setAuthError(res.error.message);
+  }
 }
 
 async function submitSignup(e) {
