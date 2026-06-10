@@ -122,22 +122,28 @@
   fsOnChange(fsSyncClass);
 
   /* ── Micro-celebration ─────────────────────────────
-     Small emoji burst from an element (e.g. a correct quiz answer).
-     Skipped entirely under prefers-reduced-motion; spans clean
-     themselves up after the animation. */
-  function celebrate(el) {
+     Emoji burst from an element (e.g. a correct quiz answer).
+     `streak` (optional) escalates it: 3+ in a row doubles the
+     particles and shows a "🔥 N in a row!" chip. Skipped entirely
+     under prefers-reduced-motion; everything cleans itself up. */
+  function reducedMotion() {
+    return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+  function celebrate(el, streak) {
     try {
-      if (!el || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+      if (!el || reducedMotion()) return;
       var r = el.getBoundingClientRect();
       var cx = r.left + Math.min(r.width, 140) / 2;
       var cy = r.top + r.height / 2;
-      var glyphs = ['✨', '🎉', '⭐', '💥', '✦', '🌟'];
-      for (var i = 0; i < 12; i++) {
+      var hot = (streak || 0) >= 3;
+      var glyphs = hot ? ['🔥', '✨', '🎉', '⭐', '💥', '🌟'] : ['✨', '🎉', '⭐', '💥', '✦', '🌟'];
+      var count = hot ? 22 : 12;
+      for (var i = 0; i < count; i++) {
         var s = document.createElement('span');
         s.className = 'di-burst';
         s.textContent = glyphs[i % glyphs.length];
-        var ang = (Math.PI * 2 * i) / 12 + Math.random() * 0.5;
-        var dist = 44 + Math.random() * 52;
+        var ang = (Math.PI * 2 * i) / count + Math.random() * 0.5;
+        var dist = (hot ? 60 : 44) + Math.random() * 52;
         s.style.left = cx + 'px';
         s.style.top = cy + 'px';
         s.style.fontSize = (11 + Math.random() * 10) + 'px';
@@ -146,7 +152,70 @@
         document.body.appendChild(s);
         setTimeout((function (n) { return function () { if (n.parentNode) n.parentNode.removeChild(n); }; })(s), 900);
       }
+      if (hot) {
+        var chip = document.createElement('div');
+        chip.className = 'di-streak-chip';
+        chip.textContent = '🔥 ' + streak + ' in a row!';
+        chip.style.left = cx + 'px';
+        chip.style.top = (r.top - 14) + 'px';
+        document.body.appendChild(chip);
+        setTimeout(function () { if (chip.parentNode) chip.parentNode.removeChild(chip); }, 1500);
+      }
     } catch (_) { /* purely decorative — never break the quiz */ }
+  }
+
+  /* ── Stat count-up ─────────────────────────────────
+     Animates numbers inside hook-stat elements from 0 to their
+     value ("300M" counts 0→300, "$1T+" keeps its prefix/suffix).
+     Non-numeric stats are left alone. */
+  function countUp(container) {
+    try {
+      if (reducedMotion()) return;
+      var els = (container || document).querySelectorAll('.hook-stat-value, .hook-stat-mini .sv');
+      Array.prototype.forEach.call(els, function (el) {
+        var m = el.textContent.trim().match(/^([^0-9]*)([\d,]+(?:\.\d+)?)(.*)$/);
+        if (!m) return;
+        var prefix = m[1], suffix = m[3];
+        var target = parseFloat(m[2].replace(/,/g, ''));
+        if (!isFinite(target) || target <= 0) return;
+        var decimals = (m[2].split('.')[1] || '').length;
+        var useCommas = m[2].indexOf(',') !== -1;
+        var t0 = null, DUR = 900;
+        function fmt(v) {
+          var s = v.toFixed(decimals);
+          if (useCommas) s = s.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+          return prefix + s + suffix;
+        }
+        function step(ts) {
+          if (t0 === null) t0 = ts;
+          var p = Math.min((ts - t0) / DUR, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = fmt(target * eased);
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    } catch (_) {}
+  }
+
+  /* ── End-of-lesson results card ────────────────────
+     Shared markup for the "lesson complete" screen. Engines supply
+     the stats and wire #diResultsPrimary / #diResultsSecondary. */
+  function resultsHTML(o) {
+    o = o || {};
+    var stats = (o.stats || []).map(function (s) {
+      return '<div class="di-rs-stat"><div class="di-rs-num">' + s.num + '</div><div class="di-rs-label">' + s.label + '</div></div>';
+    }).join('');
+    return '<div class="di-results">' +
+      '<div class="di-results-emoji">' + (o.emoji || '🎉') + '</div>' +
+      '<div class="di-results-title">' + (o.title || 'Lesson complete!') + '</div>' +
+      (o.sub ? '<div class="di-results-sub">' + o.sub + '</div>' : '') +
+      (stats ? '<div class="di-results-stats">' + stats + '</div>' : '') +
+      '<div class="di-results-actions">' +
+        (o.primaryLabel ? '<button class="btn btn-primary di-results-primary" id="diResultsPrimary">' + o.primaryLabel + '</button>' : '') +
+        (o.secondaryLabel ? '<button class="btn btn-secondary" id="diResultsSecondary">' + o.secondaryLabel + '</button>' : '') +
+      '</div>' +
+    '</div>';
   }
 
   window.diSlide = {
@@ -156,6 +225,8 @@
     sourcesHTML: sourcesHTML,
     toggleReveal: toggleReveal,
     celebrate: celebrate,
+    countUp: countUp,
+    resultsHTML: resultsHTML,
     fullscreen: {
       toggle: fsToggle,
       exit: fsExit,
