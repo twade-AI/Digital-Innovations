@@ -22,24 +22,28 @@
 
 /* ── 1. Global type scale — everything is rem-based, so one bump
        lifts the whole site (the “text is too small” fix, part 1) ── */
-html{font-size:17px}
-@media(max-width:380px){ html{font-size:16px} }
+html{font-size:18px}
+@media(max-width:380px){ html{font-size:16.5px} }
 
 /* Part 2 — floor-raise the smallest reading text. Labels and chips
    stay small on purpose; sentences pupils actually read do not. */
-.pathway-sub{font-size:1.15rem;color:var(--text-muted);white-space:normal;max-width:660px}
-.section-header p{font-size:1.05rem}
-.pc-desc{font-size:.95rem;color:var(--text-muted)}
-.pc-features li{font-size:.9rem}
-.lesson-title{font-size:1rem}
-.lesson-desc{font-size:.85rem;color:var(--text-muted)}
-.news-card-headline{font-size:.95rem;line-height:1.45}
-.srq-lesson-title{font-size:.92rem}
-.rv-card-title{font-size:.9rem}
-.flb-title{font-size:1.1rem}
-.flb-desc{font-size:.9rem}
-.nav-link{font-size:.9rem;font-weight:600}
-.ticker-item{font-size:.84rem}
+.pathway-sub{font-size:1.2rem;color:var(--text-muted);white-space:normal;max-width:660px}
+.section-header p{font-size:1.08rem}
+.pc-desc{font-size:1.02rem;color:var(--text-muted)}
+.pc-features li{font-size:.95rem}
+.lesson-title{font-size:1.06rem}
+.lesson-desc{font-size:.92rem;color:var(--text-muted)}
+.lesson-num{font-size:.76rem}
+.lo-item{font-size:.78rem}
+.unit-meta p{font-size:.9rem;color:var(--text-muted)}
+.news-card-headline{font-size:.98rem;line-height:1.45}
+.srq-lesson-title{font-size:.95rem}
+.rv-card-title{font-size:.92rem}
+.flb-title{font-size:1.12rem}
+.flb-desc{font-size:.92rem}
+.nav-link{font-size:.92rem;font-weight:600}
+.ticker-item{font-size:.86rem}
+.qq-question{font-size:1.12rem}
 /* Lesson viewer — the surfaces pupils stare at for 40 minutes */
 .slide-concept .concept-body{font-size:1.04rem;line-height:1.75}
 .concept-bullets li{font-size:1rem}
@@ -104,17 +108,17 @@ body::after{
 }
 
 /* ── 4. Home hero ───────────────────────────────────── */
-.pathway-header{padding:52px 0 36px}
+.pathway-header{padding:58px 0 40px;position:relative}
 .pathway-badge{
   background:var(--wow-grad-brand);color:#fff;border:none;
-  font-size:.78rem;letter-spacing:.14em;padding:8px 18px;
-  transform:rotate(-2deg);
+  font-size:.85rem;letter-spacing:.14em;padding:9px 20px;
+  transform:rotate(-2.5deg);
   box-shadow:0 6px 20px rgba(155,24,68,.45),0 0 0 3px rgba(255,255,255,.06);
 }
 .pathway-title{
-  font-size:clamp(2.4rem,5.6vw,4rem);
-  font-weight:700;letter-spacing:-.03em;line-height:1.06;
-  margin-bottom:16px;
+  font-size:clamp(2.6rem,6.4vw,4.6rem);
+  font-weight:700;letter-spacing:-.03em;line-height:1.05;
+  margin-bottom:18px;
   background:linear-gradient(110deg,var(--text) 25%,var(--wow-pink-soft) 55%,var(--wow-cyan) 85%);
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
 }
@@ -216,8 +220,8 @@ body::after{
 }
 .pathway-card:hover .pc-icon{transform:rotate(5deg) scale(1.14)}
 
-.pc-title{font-size:1.5rem;letter-spacing:-.02em}
-.pc-badge{font-size:.72rem;padding:4px 12px}
+.pc-title{font-size:1.7rem;letter-spacing:-.02em}
+.pc-badge{font-size:.74rem;padding:5px 13px}
 .pc-features li::before{font-size:.85rem}
 
 /* Sticker ribbons */
@@ -661,4 +665,150 @@ footer::before{
 [data-contrast="high"] .slide-hook{background:#0d0d0d;border:2px solid #fff}
 @media (prefers-reduced-motion:reduce){
   .di-burst{display:none}
+}
+
+/* ════ 14. WOW pass 2 — louder hero, playful chrome, units glow-up ════
+   Same contract as everything above: loaded last, plain selectors win
+   on cascade, and high-contrast / dyslexia / reduced-motion are
+   re-guarded at the bottom of this block. */
+
+/* Floating hero decorations — pure CSS, no markup. Hidden on small
+   screens (they'd crowd the title) and in high-contrast mode. */
+.pathway-header::before,
+.pathway-header::after{
+  position:absolute;font-size:2.6rem;line-height:1;pointer-events:none;
+  opacity:.85;text-shadow:0 6px 24px rgba(0,0,0,.35);
+  animation:wow-float 5.5s ease-in-out infinite;
+}
+.pathway-header::before{content:"✨";left:8%;top:30px;transform:rotate(-12deg)}
+.pathway-header::after{content:"⚡";right:8%;bottom:44px;animation-delay:-2.7s;transform:rotate(10deg)}
+@keyframes wow-float{
+  0%,100%{translate:0 0;rotate:-6deg}
+  50%{translate:0 -14px;rotate:8deg}
+}
+@media(max-width:900px){
+  .pathway-header::before,.pathway-header::after{display:none}
+}
+
+/* Hot selection + candy scrollbar — tiny details pupils notice */
+::selection{background:var(--wow-pink);color:#fff}
+html:not([data-contrast="high"])::-webkit-scrollbar{width:11px;height:11px}
+html:not([data-contrast="high"])::-webkit-scrollbar-track{background:transparent}
+html:not([data-contrast="high"])::-webkit-scrollbar-thumb{
+  background:linear-gradient(175deg,var(--primary),var(--wow-violet) 55%,var(--accent));
+  border-radius:99px;border:2.5px solid var(--bg);
+}
+html:not([data-contrast="high"]){scrollbar-color:var(--wow-violet) transparent;scrollbar-width:thin}
+
+/* Pathway cards — alternating hover tilt so the row feels alive,
+   plus a chunkier CTA */
+#section-home .pathway-card:nth-of-type(odd):hover{
+  transform:translateY(-8px) scale(1.015) rotate(-.6deg);
+}
+#section-home .pathway-card:nth-of-type(even):hover{
+  transform:translateY(-8px) scale(1.015) rotate(.6deg);
+}
+.pc-cta{padding:16px 30px;font-size:1.05rem;border-radius:14px}
+
+/* Units page — coloured icon chips, display-font unit titles, and
+   lesson rows that light up in the unit's colour */
+.unit-block{border-left-width:6px;border-radius:18px}
+.unit-icon{
+  width:54px;height:54px;flex-shrink:0;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.7rem;transform:rotate(-5deg);
+  background:color-mix(in srgb,var(--unit-colour,var(--primary)) 16%,transparent);
+  box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--unit-colour,var(--primary)) 35%,transparent);
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1);
+}
+.unit-header:hover .unit-icon{transform:rotate(4deg) scale(1.1)}
+.unit-meta h3{font-family:var(--font-display);font-size:1.3rem;letter-spacing:-.015em}
+.unit-progress{height:8px;border-radius:99px}
+.lesson-item:hover{
+  background:color-mix(in srgb,var(--unit-colour,var(--primary)) 7%,var(--bg-card));
+  box-shadow:inset 4px 0 0 0 var(--unit-colour,var(--primary));
+}
+.lesson-check{width:24px;height:24px;font-size:.8rem}
+
+/* Big numbers everywhere — gradient ink on the home stats,
+   progress ring and profile stats */
+.stat-num,.pstat-num,.progress-ring-text span{
+  background:linear-gradient(120deg,var(--wow-pink-soft),var(--wow-cyan));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.stat-num{font-size:2.2rem}
+.pstat-num{font-size:1.8rem}
+.progress-ring-text span{font-size:2.3rem}
+[data-theme="light"] .stat-num,
+[data-theme="light"] .pstat-num,
+[data-theme="light"] .progress-ring-text span{
+  background:linear-gradient(120deg,var(--primary),#0e7490);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+
+/* Section headers — one more notch */
+.section-header h2{font-size:clamp(2rem,3.6vw,2.7rem)}
+.home-section-title{font-size:1.45rem}
+.qq-title{font-size:1.5rem}
+
+/* Track pages — thick candy progress bars with a slow barber-pole,
+   chunkier lesson numbers, bigger hero stats */
+.fl-progress-track,.gs-progress-track{height:12px;border-radius:99px}
+.fl-progress-fill,.gs-progress-fill{
+  background:linear-gradient(90deg,var(--track-primary-dark),var(--track-primary) 60%,var(--track-primary-soft,var(--track-primary)));
+  background-blend-mode:normal;
+  position:relative;border-radius:99px;
+  box-shadow:0 0 12px rgba(var(--track-primary-rgb),.5);
+}
+@media (prefers-reduced-motion:no-preference){
+  .fl-progress-fill,.gs-progress-fill{
+    background-image:
+      repeating-linear-gradient(-55deg,rgba(255,255,255,.22) 0 10px,transparent 10px 20px),
+      linear-gradient(90deg,var(--track-primary-dark),var(--track-primary) 60%,var(--track-primary-soft,var(--track-primary)));
+    background-size:56px 100%,100% 100%;
+    animation:wow-stripe 1.6s linear infinite;
+  }
+}
+@keyframes wow-stripe{from{background-position:0 0,0 0}to{background-position:56px 0,0 0}}
+.fl-num,.gs-num{width:42px;height:42px;font-size:.92rem}
+.fl-stat-num,.gs-stat-num{font-size:2.4rem}
+
+/* Completion certificates — a soft living glow behind the card */
+.fl-cert-card,.gs-cert-card{
+  box-shadow:0 0 0 1px rgba(var(--track-primary-rgb),.25),
+             0 18px 55px -12px rgba(var(--track-primary-rgb),.45);
+}
+@media (prefers-reduced-motion:no-preference){
+  .fl-cert-card,.gs-cert-card{animation:wow-cert-glow 3.6s ease-in-out infinite}
+}
+@keyframes wow-cert-glow{
+  0%,100%{box-shadow:0 0 0 1px rgba(var(--track-primary-rgb),.25),0 18px 55px -12px rgba(var(--track-primary-rgb),.4)}
+  50%{box-shadow:0 0 0 1px rgba(var(--track-primary-rgb),.4),0 18px 65px -8px rgba(var(--track-primary-rgb),.6)}
+}
+@media print{
+  .fl-cert-card,.gs-cert-card{animation:none !important}
+}
+
+/* ── Guards for pass 2 ── */
+[data-contrast="high"] .pathway-header::before,
+[data-contrast="high"] .pathway-header::after{display:none}
+[data-contrast="high"] ::selection{background:#ffff00;color:#000}
+[data-contrast="high"] .stat-num,
+[data-contrast="high"] .pstat-num,
+[data-contrast="high"] .progress-ring-text span{
+  background:none;-webkit-text-fill-color:#ffff00;color:#ffff00;
+}
+[data-contrast="high"] .unit-icon{background:#1a1a1a;box-shadow:none;border:2px solid #fff;transform:none}
+[data-contrast="high"] .lesson-item:hover{background:#1a1a1a;box-shadow:inset 4px 0 0 0 #ffff00}
+[data-contrast="high"] .fl-progress-fill,
+[data-contrast="high"] .gs-progress-fill{background:#ffff00;background-image:none;animation:none;box-shadow:none}
+[data-contrast="high"] .fl-cert-card,
+[data-contrast="high"] .gs-cert-card{animation:none;box-shadow:none}
+[data-font="dyslexic"] .unit-meta h3,
+[data-font="dyslexic"] .qq-title{font-family:'Lexend',system-ui,sans-serif}
+@media (prefers-reduced-motion:reduce){
+  .pathway-header::before,.pathway-header::after{animation:none}
+  .unit-icon,.unit-header:hover .unit-icon{transition:none;transform:rotate(-5deg)}
+  #section-home .pathway-card:nth-of-type(odd):hover,
+  #section-home .pathway-card:nth-of-type(even):hover{transform:translateY(-4px)}
 }
