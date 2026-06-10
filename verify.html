@@ -12,6 +12,7 @@
   <style>
     .verify-shell{max-width:720px;margin:0 auto;padding:40px 20px 80px}
     .verify-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(var(--track-primary-rgb),.12);color:var(--track-primary);border:1px solid rgba(var(--track-primary-rgb),.35);border-radius:999px;padding:6px 14px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:18px}
+    .verify-badge--bad{background:rgba(239,68,68,.1);color:#ef4444;border-color:rgba(239,68,68,.4)}
     .verify-cert{position:relative;overflow:hidden;background:linear-gradient(145deg,rgba(var(--track-primary-rgb),.1),rgba(var(--track-primary-rgb),.04));border:2px solid rgba(var(--track-primary-rgb),.35);border-radius:16px;padding:36px 36px 28px;text-align:center}
     .verify-watermark{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:16rem;font-weight:900;color:rgba(var(--track-primary-rgb),.04);pointer-events:none;line-height:1}
     .verify-header{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px}
@@ -55,6 +56,11 @@
        designed to surface a credential publicly, not to prove it
        unforgeably. Anyone can construct the URL. The cert ID format
        embeds the issue date so stale or edited IDs look wrong.
+       AI Digital Passport IDs issued since time tracking additionally embed
+       the recorded active study minutes and a checksum:
+       DI-FL-YYYYMMDD-XXXX-TMMMM-CCCC. The checksum is recomputed here so a
+       casually edited date or study time is flagged. Older DI-FL IDs without
+       the T segment remain valid (no study time shown).
     */
     function q(name) {
       var m = new RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
@@ -78,7 +84,7 @@
 
     var trackMeta = {
       removes: { label: 'Removes Course (Year 9)', count: '34 lessons · 6 units', description: 'AI literacy, ethics & real-world skills' },
-      fluency: { label: 'AI Fluency Track', count: '20 lessons', description: 'Self-directed AI fluency pathway' }
+      fluency: { label: 'AI Digital Passport', count: '20 lessons', description: 'Self-directed AI literacy pathway' }
     }[track];
 
     // Build a formatted date
@@ -89,8 +95,28 @@
     var expectedFragment = date.replace(/-/g, '');
     var idMatchesDate = certId.indexOf(expectedFragment) !== -1;
 
+    // Passport IDs with a T segment encode study minutes + checksum (djb2,
+    // base36 — must match flCertHash in fluency.html)
+    function certHash(s) {
+      var h = 5381;
+      for (var i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0;
+      return ('000' + (h % 1679616).toString(36).toUpperCase()).slice(-4);
+    }
+    function fmtMins(mins) {
+      var h = Math.floor(mins / 60), m = mins % 60;
+      if (h > 0) return h + ' hr' + (h > 1 ? 's' : '') + ' ' + m + ' min' + (m !== 1 ? 's' : '');
+      return m + ' min' + (m !== 1 ? 's' : '');
+    }
+    var studyMins = null, checksumOk = true;
+    var idParts = /^DI-FL-(\d{8})-([A-Z0-9]{4})-T(\d{4})-([A-Z0-9]{4})$/.exec(certId);
+    if (idParts) {
+      studyMins = parseInt(idParts[3], 10);
+      checksumOk = certHash('DI-FL|' + idParts[1] + '|' + idParts[2] + '|' + idParts[3]) === idParts[4];
+    }
+    var allOk = idMatchesDate && checksumOk;
+
     root.innerHTML =
-      '<div class="verify-badge"><span>✓</span> Verified credential</div>' +
+      '<div class="verify-badge' + (allOk ? '' : ' verify-badge--bad') + '"><span>' + (allOk ? '✓' : '⚠') + '</span> ' + (allOk ? 'Verified credential' : 'Details do not match certificate ID') + '</div>' +
       '<div class="verify-cert">' +
         '<div class="verify-watermark">DI</div>' +
         '<div class="verify-header">' +
@@ -106,11 +132,16 @@
         '<div class="verify-divider"></div>' +
         '<div class="verify-footer">' +
           '<div><div class="verify-date">' + esc(prettyDate) + '</div><div class="verify-date-label">Date completed</div></div>' +
+          (studyMins !== null ? '<div><div class="verify-date">' + fmtMins(studyMins) + '</div><div class="verify-date-label">Active study time</div></div>' : '') +
           '<div><div class="verify-id">' + esc(certId) + '</div><div class="verify-id-label">Certificate ID</div></div>' +
         '</div>' +
       '</div>' +
       '<div class="verify-meta">' +
-        '<strong>About this credential.</strong> This page displays a credential issued by the Digital Innovations programme at Haileybury. The certificate ID encodes the completion date; this page checks the two match (' + (idMatchesDate ? 'they do' : '<span style="color:#ef4444">they do not</span>') + '). This is a civility-level verification designed to make credentials shareable — it is not a cryptographic proof. For formal verification, contact the programme lead.' +
+        '<strong>About this credential.</strong> This page displays a credential issued by the Digital Innovations programme at Haileybury. ' +
+        (idParts
+          ? 'The certificate ID encodes the completion date, the recorded active study time, and a checksum; this page recomputes them and checks the details are consistent (' + (allOk ? 'they are' : '<span style="color:#ef4444">they are not</span>') + ').'
+          : 'The certificate ID encodes the completion date; this page checks the two match (' + (idMatchesDate ? 'they do' : '<span style="color:#ef4444">they do not</span>') + ').') +
+        ' This is a civility-level verification designed to make credentials shareable — it is not a cryptographic proof. For formal verification, contact the programme lead.' +
       '</div>' +
       '<a class="verify-back" href="index.html">Back to Digital Innovations</a>';
 

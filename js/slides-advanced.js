@@ -181,74 +181,74 @@ var SLIDES_ADVANCED = {
   53: [
     {
       type: 'hook',
-      title: 'The Lawyers, the Ghost Cases, and the $5,000 Fine',
-      body: 'In May 2023, lawyers at a New York firm filed a court brief in a personal injury case against Avianca Airlines. The brief cited six legal precedents — complete with case names, precise docket numbers, and quoted judicial passages. A judge asked the opposing counsel to review them. None of the six cases existed. The lawyers had used ChatGPT to research supporting precedents. ChatGPT had invented plausible-sounding case names, fabricated docket numbers, and generated convincing excerpts from rulings that had never been written. The lawyers did not verify a single citation. A federal judge sanctioned the firm. Two of the attorneys were fined $5,000 each. The lead lawyer told the court: <em>"I did not comprehend that ChatGPT could fabricate cases."</em><br><br>Retrieval-Augmented Generation (RAG) was developed to solve precisely this problem. Instead of asking a model to recall facts from training — where hallucination is a structural property, not a bug — RAG retrieves the actual documents at query time and injects them into the prompt. The model reasons over real sources. Hallucination on factual queries drops dramatically.<br><br>But RAG introduces its own failure mode. A hospital clinical decision support tool built on RAG answered a doctor\'s query about anticoagulant dosage thresholds by retrieving a clinical guideline from its index — one that had been superseded 18 months earlier when a new safety threshold was published. The document was genuine. The retrieval worked correctly. The answer was wrong. The system returned the outdated figure with the same confidence it would have had for current guidance.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">$5,000</span><span class="sl">fine per lawyer for filing AI-hallucinated legal citations in federal court (Mata v. Avianca, 2023)</span></div><div class="hook-stat-mini"><span class="sv">10–50x</span><span class="sl">reduction in hallucination rate when RAG is applied to domain-specific factual queries</span></div><div class="hook-stat-mini"><span class="sv">$200B+</span><span class="sl">estimated enterprise spending on AI agents by 2028 (Goldman Sachs, 2024)</span></div></div>"Grounded in real documents" and "correct" are not the same thing. Every architecture solves one problem while creating the conditions for a different one. Understanding which problems RAG solves — and which it does not — is the difference between deploying it well and deploying it dangerously.'
+      title: 'The Lawyers, the Ghost Cases, and the Rollout',
+      body: 'In May 2023, a New York lawyer used ChatGPT to draft a legal brief. The AI confidently created six fictitious legal precedents—complete with docket numbers and quoted judicial rulings. The lawyer filed the brief without checking, resulting in a public reprimand and a $5,000 fine. The lawyer admitted: <em>"I did not comprehend that ChatGPT could fabricate cases."</em><br><br>Before we deploy <strong>Gemini</strong> and <strong>NotebookLM</strong> to your devices, you must understand the technology that solves this: <strong>Retrieval-Augmented Generation (RAG)</strong>. Instead of asking a model to recall facts from its training data, RAG retrieves actual documents you provide (like your notes or articles) and injects them into the prompt so the AI can reason over real sources. But as we will discover, \'grounded in your documents\' is not the same as correct. If your sources have errors or gaps, your AI summaries will too.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">$5,000</span><span class="sl">fine for lawyers filing AI-hallucinated citations (Mata v. Avianca, 2023)</span></div><div class="hook-stat-mini"><span class="sv">RAG</span><span class="sl">Retrieval-Augmented Generation — the core technology behind NotebookLM</span></div><div class="hook-stat-mini"><span class="sv">GIGO</span><span class="sl">Garbage In, Garbage Out — the golden rule of source-grounded AI</span></div></div>'
     },
     {
       type: 'concept',
-      title: 'How RAG Works: From Documents to Grounded Answers',
-      body: 'RAG has two distinct phases: indexing (done in advance, once) and retrieval (done at query time, every time). Understanding both is essential for evaluating whether a RAG system is trustworthy.',
+      title: 'How NotebookLM Uses RAG',
+      body: 'NotebookLM is a source-grounded AI. When you interact with it, it uses Retrieval-Augmented Generation (RAG) in three steps:',
       bullets: [
-        '<strong>Indexing phase:</strong> Take your document collection — company policy, legal corpus, research papers, past exam questions, product documentation. Split each document into chunks (typically 200–500 tokens each). Convert each chunk into an <em>embedding</em> — a dense numerical vector that represents its semantic meaning — using a separate embedding model. Store those vectors in a vector database (Pinecone, Weaviate, pgvector, Chroma)',
-        '<strong>Retrieval phase:</strong> At query time, convert the user\'s question into an embedding using the same embedding model. The vector database finds the chunks whose embeddings are most similar (nearest neighbours in vector space). The top-k most similar chunks are injected directly into the prompt alongside the user\'s question',
-        '<strong>Generation phase:</strong> The model reads the injected chunks and generates an answer grounded in that retrieved context. Critically, the model is not recalling training data — it is reasoning over documents you control, with known provenance and freshness',
-        '<strong>Where RAG fails:</strong> The retrieval step matches on semantic similarity, not relevance — these are not the same thing. A chunk about "Apple the company" and a chunk about "apple orchards" may have similar embeddings depending on context. Retrieval failures are silent: the model receives wrong context and generates a confident, wrong answer with no indication that the source was inappropriate. Chunk size matters too: too small and you lose context; too large and you dilute relevance'
+        '<strong>1. The Indexing Phase:</strong> You upload your sources (PDFs, class slides, websites, or Google Docs). NotebookLM splits each document into small chunks (usually 200–500 words) and converts them into semantic vectors (mathematical representations of meaning).',
+        '<strong>2. The Retrieval Phase:</strong> When you ask a question (e.g., "Explain the causes of the English Civil War from my history slides"), NotebookLM searches its database for the chunks that are most semantically similar to your question.',
+        '<strong>3. The Generation Phase:</strong> NotebookLM feeds those retrieved chunks directly into Gemini\'s context window alongside your query. Gemini is instructed to answer using <em>only</em> the provided text, adding citation numbers that link back to the exact passage in your source.',
+        '<strong>Where it fails:</strong> RAG matches on semantic similarity, not logical truth. If your notes contain a mistake or contradict each other, Gemini will confidently repeat the mistake. If information is missing entirely, Gemini may hallucinate a connection to bridge the gap.'
       ],
-      callout: 'RAG does not solve hallucination. It reduces it on factual queries where the retrieved documents contain the answer. The model can still hallucinate about the retrieved documents themselves, misquote them, or fail to retrieve the right document. Trust the sources, verify the claims, always.'
+      callout: 'RAG reduces general hallucinations but does not eliminate errors. If you feed NotebookLM incorrect or incomplete notes, it will confidently generate incorrect or incomplete study guides. Always check the source.'
     },
     {
       type: 'concept',
       title: 'AI Agents: When Models Take Actions',
-      body: 'A RAG system retrieves and responds. An AI agent does something more consequential: it decides what to do, takes an action, observes the result, and decides what to do next. The loop continues — automatically, potentially for hundreds of steps — until a goal is reached or a failure is detected.',
+      body: 'NotebookLM retrieves and synthesises notes. A full AI agent does something more: it decides what actions to take, executes them, observes the results, and repeats the loop. Gemini can act as an agent by executing code or browsing the web.',
       bullets: [
-        '<strong>The ReAct pattern (Reason + Act):</strong> The dominant architecture for AI agents. At each step, the model reasons about what it knows and what it needs ("I need recent data on UK AI regulation"), selects a tool ("web search"), executes it, observes the result, and reasons again. This thought-action-observation loop is the foundation of tools like Claude\'s extended thinking mode, AutoGPT, and most production agent frameworks',
-        '<strong>Common tool types:</strong> Web search (Bing, Brave, Tavily APIs); code execution (Python interpreter, shell commands); file I/O (read, write, delete documents); database queries (SQL, vector DB lookups); external APIs (calendar, email, payment systems, CRM); and other AI models (specialist sub-agents called by an orchestrator)',
-        '<strong>Multi-agent systems:</strong> An orchestrator agent decomposes a complex task — "write a market research report on electric vehicles in the UK" — and dispatches it to specialist worker agents: one searches for statistics, one analyses competitor filings, one drafts the executive summary, one checks citations. Each runs in parallel. The orchestrator synthesises the results. This is how products like Devin (coding agent) and complex research pipelines work',
-        '<strong>Supervision at machine speed:</strong> An agent can execute 50 steps — web searches, code runs, file writes — in the time it takes a human to read one intermediate result. Meaningful human oversight in this context is not "a human checks every action." It is "the system requires confirmation before irreversible actions." The distinction between reversible and irreversible decisions is now an architectural choice, not an afterthought'
+        '<strong>The ReAct pattern (Reason + Act):</strong> The agent thinks about its goal, decides on a tool (like running a python script or searching Google), executes the action, observes the output, and reasons about the next step.',
+        '<strong>Common tools:</strong> Web search, code execution in a sandbox, file management, and database queries.',
+        '<strong>Multi-agent coordination:</strong> An orchestrator agent splits a large task (e.g., "Research electric vehicle trends in the UK") and dispatches worker agents to run search queries and draft reports in parallel.',
+        '<strong>Supervision challenges:</strong> Because agents run loops at machine speed, human oversight is difficult. Safe system design requires \'human-in-the-loop\' confirmations before any irreversible action (like deleting files or sending emails).'
       ],
-      callout: 'An agent that can send emails cannot be trusted without access controls. An agent that can delete files cannot be trusted without confirmation steps. An agent that can call APIs cannot be trusted without rate limits and audit logs. The capability that makes agents powerful is inseparable from the capability that makes them dangerous when things go wrong.'
+      callout: 'The capabilities that make AI agents powerful—like file access and API execution—are exactly what makes them dangerous if they run into prompt injections or make incorrect decisions. Access controls are non-negotiable.'
     },
     {
       type: 'activity',
-      title: 'Design a RAG Pipeline for a Real Problem',
-      instructions: 'This is a genuine engineering design task — junior developers at AI companies do exactly this. You are going to design (on paper) a RAG system for a school use case, then stress-test your own design.',
+      title: 'NotebookLM Stress-Test Challenge',
+      instructions: 'Stress-test a source-grounded AI by deliberately introducing errors and observing how it handles them.',
       steps: [
-        '<strong>Choose your use case:</strong> Pick one from: (a) a system that answers pupil questions using school policy documents, (b) a past-paper question finder that retrieves relevant practice questions by topic, (c) a reading list assistant that recommends specific book chapters based on an essay topic. Define who the users are and what a successful response looks like',
-        '<strong>Define your document collection:</strong> What documents would you index? List them specifically. Are they current? Who is responsible for keeping them updated? What happens if a document is outdated and the system confidently retrieves it?',
-        '<strong>Choose your chunk strategy:</strong> How would you split the documents — by paragraph? Fixed token count? By section heading? What is the risk of each approach for your specific use case?',
-        '<strong>Identify failure modes:</strong> For each of these, describe what a failure would look like in your system: (a) the right document exists but retrieval misses it, (b) the retrieved document is outdated, (c) two retrieved chunks contradict each other, (d) the user asks something genuinely not covered by your document collection',
-        '<strong>Define your oversight model:</strong> Which outputs from your system, if wrong, would cause real harm? For those outputs, what human review step would you build in before the response reaches the user?'
+        'Write down a brief mock article about a fictional historical event. Include a clear contradiction (e.g., on page 1 say the treaty was signed in 1812, and on page 2 say the treaty was signed in 1842).',
+        'Upload this text as a source in a new NotebookLM notebook (or paste it as a text source).',
+        'Ask NotebookLM: "What year was the treaty signed?" Does it flag the contradiction, choose one date, or try to blend them together?',
+        'Click on the citation numbers in the response. Does the cited passage actually support the claim the AI made?',
+        'Ask about a detail not mentioned in your document (e.g., "Who was the prime minister at the signing?"). Does NotebookLM correctly state the sources don\'t mention it, or does it look it up or guess?',
+        'Write a 3-sentence summary of your findings: How reliable are the citations, and what is your protocol for verifying them?'
       ]
     },
     {
       type: 'discussion',
       title: 'Trust, Autonomy, and the Speed Problem',
       questions: [
-        { num: 1, text: 'RAG retrieves chunks based on semantic similarity, but the person who assembled the document collection made choices about what to include, what to exclude, and how to chunk it. In what sense is a RAG system "objective"? What does this mean for users who assume the system is neutral?' },
-        { num: 2, text: 'A multi-agent system can complete a hundred-step research task faster than a human can read a single step. If meaningful human oversight is impossible at agent execution speed, what does "human-in-the-loop" actually mean for agentic AI — and is the phrase becoming dishonest shorthand for "human at the start and end, machine in the middle"?' },
-        { num: 3, text: 'In L52 we covered prompt injection in agents. Combining that knowledge with what you now know about RAG: if an AI research agent is given a task to "summarise the top five news stories about our competitor," and one of those news stories contains an injected instruction, what could happen? What would a safe architecture look like?' }
+        { num: 1, text: 'NotebookLM grounds its answers in the sources you upload, which makes it feel neutral. But who chose which sources to upload in the first place? How does selection bias affect the \'objectivity\' of your notebook?' },
+        { num: 2, text: 'If an AI agent can perform a 50-step research task in under a minute, is \'human-in-the-loop\' oversight realistic, or do we become rubber-stamps who only check the start and the end?' },
+        { num: 3, text: 'What are the security and privacy risks of uploading your class notes, essays, or personal research to a cloud-based AI system? Who owns what you upload?' }
       ]
     },
     {
       type: 'quiz',
-      question: 'What is the primary purpose of Retrieval-Augmented Generation (RAG) — and what does it NOT solve?',
+      question: 'What is the primary benefit and primary limitation of source-grounded tools like NotebookLM?',
       options: [
-        'RAG fine-tunes the model\'s weights using domain-specific documents, permanently updating what the model knows. It solves the knowledge cutoff problem entirely',
-        'RAG retrieves relevant documents at query time and injects them into the prompt, allowing the model to reason over current, controlled information. It reduces but does not eliminate hallucination — the model can still misread or misquote retrieved content',
-        'RAG stores common responses in a cache, returning them for similar queries. It solves hallucination by avoiding generation altogether for known questions',
-        'RAG compresses the model\'s parameters to reduce inference cost, with document retrieval as a side effect. It does not affect output accuracy'
+        'They fine-tune the model\'s weights on your documents so it permanently memorises them. The limitation is that training is very slow.',
+        'They retrieve relevant chunks from your uploads at query time to guide the AI\'s response. The limitation is that they can still hallucinate or repeat errors present in your uploaded sources.',
+        'They search Google for answers to your questions. The limitation is that they cannot read private documents.',
+        'They transcribe your spoken notes in real-time. The limitation is they do not support text documents.'
       ],
       correct: 1,
-      explanation: 'RAG does not change the model\'s weights — that is fine-tuning, a separate and more expensive process. RAG retrieves documents at query time and injects them into the prompt context, allowing the model to reason over fresh, domain-specific information rather than relying solely on what was in the training data. This significantly reduces hallucination on factual queries — but not to zero. The model still generates its response through next-token prediction and can still misinterpret, misquote, or confabulate about the retrieved documents. The retrieval step can also fail silently, returning irrelevant chunks that the model then reasons over incorrectly. Trust improved; trust unconditionally, never.'
+      explanation: 'NotebookLM uses Retrieval-Augmented Generation (RAG) to find relevant chunks in your sources and feed them to the model. This reduces hallucinations on your notes, but it does NOT eliminate them. If your notes are wrong, or if the model misreads the chunks, it will still generate incorrect answers.'
     },
     {
       type: 'summary',
       title: 'Key Takeaways',
       points: [
-        { icon: '▸', label: 'RAG: retrieval, not recall', text: 'RAG replaces the model\'s unreliable training-data memory with real-time document retrieval. Index your documents, retrieve the most semantically similar chunks at query time, inject them into the prompt. The model reasons over what you give it — it does not remember' },
-        { icon: '▸', label: 'Agents take actions in the world', text: 'The ReAct loop — Reason, Act, Observe, repeat — is the foundation of all serious agent architectures. Agents can use web search, code execution, file access, and APIs. Multi-agent systems run specialist workers in parallel, coordinated by an orchestrator' },
-        { icon: '▸', label: 'Power and risk scale together', text: 'Every tool you give an agent is also a tool an injected instruction could weaponise. Every capability that makes agents useful makes them more dangerous when compromised or wrong. Oversight must be architected in from the start, not added as an afterthought' },
-        { icon: '▸', label: 'This is a design skill in demand', text: 'Designing RAG pipelines — choosing document collections, chunk strategy, retrieval approach, failure handling, and oversight model — is a real engineering skill. Every organisation deploying AI is making these choices, often without the vocabulary to make them well. Now you have that vocabulary' }
+        { icon: '▸', label: 'RAG is retrieval, not recall', text: 'NotebookLM does not \'learn\' your documents permanently — it retrieves chunks at query time.' },
+        { icon: '▸', label: 'Grounded does not mean true', text: 'GIGO (Garbage In, Garbage Out) applies. If your uploaded source is wrong or has gaps, NotebookLM will synthesize errors.' },
+        { icon: '▸', label: 'Always click the citations', text: 'NotebookLM\'s citation numbers point directly to the source paragraphs. Use them to verify that the model hasn\'t misquoted or taken text out of context.' }
       ]
     }
   ],
