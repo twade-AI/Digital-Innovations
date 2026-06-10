@@ -5,8 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Digital Innovations — Removes</title>
   <link rel="manifest" href="manifest.json">
+  <meta name="description" content="Digital Innovations — the Removes AI course: 34 self-paced lessons on how AI works, revision skills, deepfakes, bias and ethics for Year 9 pupils.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Removes AI Course — Digital Innovations">
+  <meta property="og:image" content="https://www.digitalinnovations.uk/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
-  <script>try{var _t=localStorage.getItem('di_theme');if(_t)document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
+  <script>try{var _t=localStorage.getItem('di_theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/lesson.css">
   <link rel="stylesheet" href="css/brand.css">
@@ -378,6 +384,8 @@
   function gsShowXPToast(msg){
     var el = document.createElement('div');
     el.className = 'xp-toast';
+    el.setAttribute('role', 'status');
+    el.setAttribute('aria-live', 'polite');
     el.textContent = msg;
     document.body.appendChild(el);
     requestAnimationFrame(function(){ el.classList.add('show'); });

@@ -136,7 +136,9 @@ function getStreak() {
 
 /* ── Theme Toggle ─────────────────────────────── */
 function initTheme() {
-  var saved = localStorage.getItem('di_theme') || 'dark';
+  // First visit honours the OS colour-scheme preference
+  var saved = localStorage.getItem('di_theme') ||
+    (window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
   document.documentElement.setAttribute('data-theme', saved);
   updateThemeIcon(saved);
 }
@@ -3207,6 +3209,8 @@ function getLevel(xp) {
 function showXPToast(msg) {
   var el = document.createElement('div');
   el.className = 'xp-toast';
+  el.setAttribute('role', 'status');
+  el.setAttribute('aria-live', 'polite');
   el.textContent = msg;
   document.body.appendChild(el);
   requestAnimationFrame(function() { el.classList.add('show'); });

@@ -814,3 +814,33 @@ footer::before{
 @media (prefers-reduced-motion:reduce){
   .di-streak-chip{display:none}
 }
+
+/* ════ 15. Review fixes: mobile nav, footer logo ═══════ */
+
+/* The navbar overflowed small phones by ~60px, pushing the ☰ button
+   off-screen entirely. Drop the keyboard-shortcut button on touch
+   widths and tighten the brand row. */
+@media(max-width:768px){
+  .nav-icon-btn{display:none}
+  .nav-inner{padding:0 12px}
+}
+@media(max-width:480px){
+  .nav-brand .hby-mark{display:none}
+  .brand-text{font-size:.98rem}
+  .nav-brand{margin-right:6px;gap:6px}
+  .auth-btn{padding:5px 10px;font-size:.78rem}
+  .settings-wrap{margin-left:2px}
+}
+/* Track-page headers brushed the right edge on 390px screens */
+@media(max-width:480px){
+  .gs-header,.fl-header{gap:8px}
+  .gs-header .btn,.fl-header .btn{padding:6px 10px;font-size:.76rem}
+}
+
+/* Footer Haileybury mark was magenta-on-dark — nearly invisible.
+   Use a white treatment in dark themes only. */
+[data-theme="dark"] footer .hby-mark,
+html:not([data-theme="light"]) footer .hby-mark{
+  filter:brightness(0) invert(.92);
+  opacity:.8;
+}
