@@ -121,12 +121,41 @@
   }
   fsOnChange(fsSyncClass);
 
+  /* ── Micro-celebration ─────────────────────────────
+     Small emoji burst from an element (e.g. a correct quiz answer).
+     Skipped entirely under prefers-reduced-motion; spans clean
+     themselves up after the animation. */
+  function celebrate(el) {
+    try {
+      if (!el || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+      var r = el.getBoundingClientRect();
+      var cx = r.left + Math.min(r.width, 140) / 2;
+      var cy = r.top + r.height / 2;
+      var glyphs = ['✨', '🎉', '⭐', '💥', '✦', '🌟'];
+      for (var i = 0; i < 12; i++) {
+        var s = document.createElement('span');
+        s.className = 'di-burst';
+        s.textContent = glyphs[i % glyphs.length];
+        var ang = (Math.PI * 2 * i) / 12 + Math.random() * 0.5;
+        var dist = 44 + Math.random() * 52;
+        s.style.left = cx + 'px';
+        s.style.top = cy + 'px';
+        s.style.fontSize = (11 + Math.random() * 10) + 'px';
+        s.style.setProperty('--dx', (Math.cos(ang) * dist) + 'px');
+        s.style.setProperty('--dy', (Math.sin(ang) * dist - 34) + 'px');
+        document.body.appendChild(s);
+        setTimeout((function (n) { return function () { if (n.parentNode) n.parentNode.removeChild(n); }; })(s), 900);
+      }
+    } catch (_) { /* purely decorative — never break the quiz */ }
+  }
+
   window.diSlide = {
     escape: escape,
     youtubeEmbed: youtubeEmbed,
     revealHTML: revealHTML,
     sourcesHTML: sourcesHTML,
     toggleReveal: toggleReveal,
+    celebrate: celebrate,
     fullscreen: {
       toggle: fsToggle,
       exit: fsExit,

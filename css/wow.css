@@ -572,3 +572,93 @@ footer::before{
 [data-contrast="high"] .scenario-choice-letter,[data-contrast="high"] .disc-q-num,
 [data-contrast="high"] .act-step-num{background:#1a1a1a;color:#fff;border:1px solid #fff}
 [data-font="dyslexic"] .slide-title{font-family:'Lexend',system-ui,sans-serif}
+
+/* ════ 13. Lesson canvas backdrop, hook title-cards, celebrations ════ */
+
+/* Slide canvas — faint dot grid + a glow tinted by the slide type
+   currently on screen (:has() — degrades to the neutral glow on
+   older browsers). */
+.lv-slide-area,
+#lessonModal .modal-body,
+#gsModal .modal-body{
+  --glow:148,163,184;
+  --glow-a:.12;
+  --dot:148,163,184;
+  background-image:
+    radial-gradient(ellipse 75% 52% at 50% -6%,rgba(var(--glow),var(--glow-a)),transparent 70%),
+    radial-gradient(circle,rgba(var(--dot),.07) 1px,transparent 1.4px);
+  background-size:auto,24px 24px;
+}
+[data-theme="light"] .lv-slide-area,
+[data-theme="light"] #lessonModal .modal-body,
+[data-theme="light"] #gsModal .modal-body{--glow-a:.07;--dot:15,23,42}
+.lv-slide-area:has(.slide-hook),#lessonModal .modal-body:has(.slide-hook),#gsModal .modal-body:has(.slide-hook){--glow:251,113,133}
+.lv-slide-area:has(.slide-concept),#lessonModal .modal-body:has(.slide-concept),#gsModal .modal-body:has(.slide-concept){--glow:236,72,153}
+.lv-slide-area:has(.slide-example),#lessonModal .modal-body:has(.slide-example),#gsModal .modal-body:has(.slide-example){--glow:34,211,238}
+.lv-slide-area:has(.slide-activity),#lessonModal .modal-body:has(.slide-activity),#gsModal .modal-body:has(.slide-activity){--glow:251,191,36}
+.lv-slide-area:has(.slide-discussion),#lessonModal .modal-body:has(.slide-discussion),#gsModal .modal-body:has(.slide-discussion){--glow:74,222,128}
+.lv-slide-area:has(.slide-scenario),#lessonModal .modal-body:has(.slide-scenario),#gsModal .modal-body:has(.slide-scenario){--glow:251,146,60}
+.lv-slide-area:has(.slide-quiz),#lessonModal .modal-body:has(.slide-quiz),#gsModal .modal-body:has(.slide-quiz){--glow:45,212,191}
+.lv-slide-area:has(.slide-video),#lessonModal .modal-body:has(.slide-video),#gsModal .modal-body:has(.slide-video){--glow:248,113,113}
+
+/* Hook slides become title cards — lessons open with a bang */
+.slide-hook{
+  text-align:center;
+  border:1.5px solid rgba(251,113,133,.28);
+  border-top:1.5px solid rgba(251,113,133,.28);
+  border-image:none;
+  border-radius:22px;
+  padding:42px 36px 30px;
+  background:
+    radial-gradient(ellipse 85% 65% at 50% 0%,rgba(251,113,133,.15),transparent 72%),
+    linear-gradient(180deg,rgba(251,146,60,.05),transparent 55%);
+}
+[data-theme="light"] .slide-hook{
+  border-color:rgba(190,18,60,.22);
+  background:
+    radial-gradient(ellipse 85% 65% at 50% 0%,rgba(225,29,72,.07),transparent 72%),
+    linear-gradient(180deg,rgba(234,88,12,.03),transparent 55%);
+}
+.slide-hook .slide-title{
+  font-size:clamp(1.9rem,3.2vw,2.6rem);
+  line-height:1.1;
+  margin:8px auto 18px;
+  max-width:26ch;
+}
+.slide-hook .hook-body,
+.slide-hook .slide-body{margin-left:auto;margin-right:auto;max-width:62ch}
+.slide-hook .prereq-nudge,
+.slide-hook .slide-reveal,
+.slide-hook .slide-sources{text-align:left;margin-left:auto;margin-right:auto;max-width:560px}
+.slide-hook .interactive-wrapper > div{justify-content:center}
+.slide-hook::after{opacity:.13}
+/* keep title-card proportions when projected */
+.modal.is-fullscreen .slide-hook{padding:6vh 5vw 4vh}
+
+/* Quiz celebration — emoji burst (spawned by diSlide.celebrate)
+   plus a pop on the correct answer's letter chip */
+.di-burst{
+  position:fixed;left:0;top:0;z-index:10001;pointer-events:none;
+  animation:di-burst .7s cubic-bezier(.22,.9,.3,1) forwards;
+}
+@keyframes di-burst{
+  from{transform:translate(0,0) scale(.6);opacity:1}
+  to{transform:translate(var(--dx,0),var(--dy,-50px)) scale(1.15);opacity:0}
+}
+@keyframes di-pop{
+  0%{transform:scale(1)}
+  45%{transform:scale(1.35) rotate(8deg)}
+  100%{transform:scale(1)}
+}
+.quiz-answered .quiz-option.quiz-correct .quiz-option-letter,
+.quiz-option.correct .qo-letter,
+.quiz-option.correct .quiz-option-letter{animation:di-pop .5s cubic-bezier(.34,1.56,.64,1)}
+
+/* Guards */
+[data-contrast="high"] .lv-slide-area,
+[data-contrast="high"] #lessonModal .modal-body,
+[data-contrast="high"] #gsModal .modal-body{background-image:none}
+[data-contrast="high"] .slide-hook{background:#0d0d0d;border:2px solid #fff}
+@media (prefers-reduced-motion:reduce){
+  .di-burst{display:none}
+}

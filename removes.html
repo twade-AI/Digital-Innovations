@@ -1227,7 +1227,10 @@
     });
     var fb=document.getElementById('gsQuizFb');
     if(fb){var s=gsSlides[gsSlideIdx];fb.style.display='block';fb.innerHTML=(chosen===correct?'✅ Correct! ':'❌ Not quite. ')+(s.explanation||'');}
-    if (chosen === correct) gsAwardOnce('quiz:'+gsCurrentId+':'+gsSlideIdx, 10, 'Quiz answered correctly');
+    if (chosen === correct) {
+      gsAwardOnce('quiz:'+gsCurrentId+':'+gsSlideIdx, 10, 'Quiz answered correctly');
+      if (window.diSlide && diSlide.celebrate) diSlide.celebrate(btn);
+    }
     // Unlock the Next button — the pupil has engaged with the question.
     var next = document.getElementById('gsNextBtn');
     if (next) { next.disabled = false; next.removeAttribute('title'); }
