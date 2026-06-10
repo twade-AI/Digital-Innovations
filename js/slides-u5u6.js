@@ -228,13 +228,87 @@ var SLIDES_U5U6 = {
   ],
 
   44: [
-    { type: 'hook', title: 'The AI Manifesto', body: 'In 1848, Marx and Engels published the Communist Manifesto — 23 pages that changed the world. In 1999, the Cluetrain Manifesto reshaped how businesses thought about the internet. In 2023, thousands of AI researchers signed an open letter calling for a pause on AI development. In the same year, the "Bletchley Declaration" — signed by 28 nations — committed to international AI safety cooperation. Manifestos are declarations of principles. Today, you write your own.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">23 pg</span><span class="sl">Communist Manifesto — brevity and specificity give principles power</span></div><div class="hook-stat-mini"><span class="sv">28</span><span class="sl">nations signed the Bletchley AI Safety Declaration, 2023</span></div><div class="hook-stat-mini"><span class="sv">5-7</span><span class="sl">principles in your manifesto — specific, reasoned, personal</span></div><div class="hook-stat-mini"><span class="sv">Living</span><span class="sl">your manifesto should evolve as AI and your understanding do</span></div></div>' },
-    { type: 'concept', title: 'What is a Manifesto?', body: 'A manifesto is a public declaration of principles, beliefs, and intentions. It is not a policy document — it is a statement of values that guides future action. The Bletchley Declaration (2023) was not a set of rules — it was a statement of shared principles that shaped how 28 governments and dozens of AI companies thought about safety cooperation.', bullets: ['Personal: It reflects YOUR beliefs, earned through this course — not what you think you should believe', 'Forward-looking: Not what you have done, but how you will act from this point forward', 'Specific: "I will always disclose AI use in academic work" beats "I believe in transparency"', 'Principled: Every statement grounded in a reason — "because trust requires honesty" not compliance with a rule', 'Living: Your manifesto should evolve as AI changes and your thinking deepens — version 1 is not the final version', 'Accountable: Sharing your principles publicly creates genuine accountability — not just to others, but to yourself'], callout: '"I believe AI should be used ethically" is empty. "I will never submit AI-generated writing as my own because trust in my work depends on honesty about its origins" has weight — and can be held to.' },
-    { type: 'concept', title: 'Drawing on Course Learning', body: 'Your manifesto should synthesise everything you have learned across all six units into actionable personal principles. The thread connecting every unit: technology is not neutral — it reflects the values of those who build and govern it. Your manifesto is your statement of which values you will bring.', bullets: ['From Unit 1 (Foundations): What do you believe about AI transparency, bias mitigation, and human oversight?', 'From Unit 2 (Prompt Engineering): How will you use AI tools responsibly and acknowledge their outputs honestly?', 'From Unit 3 (Society): What is your position on deepfakes, surveillance, environmental cost, and global regulation?', 'From Unit 4 (Policy): What policies do you think should govern AI in education and public life?', 'From Unit 5 (Creation): What did building with AI teach you about responsibility and the ethics of deployment?', 'From Unit 6 (Reflection): How will you continue to develop your AI skills and hold yourself to these principles?'], callout: 'Your manifesto is the capstone of the capstone. It is your personal synthesis of 59 lessons into the principles that will guide your relationship with AI for the rest of your life.' },
-    { type: 'activity', title: 'Write Your AI Manifesto', instructions: 'Write your personal AI manifesto using the AI Manifesto Template from Resources.', steps: ['Open the AI Manifesto Template from Resources', 'Reflect for 5 minutes: What are the 5-7 most important principles you hold about AI?', 'Write each principle as a clear, specific statement beginning with "I believe..." or "I will..."', 'For each principle, write 1-2 sentences explaining WHY you hold this belief, citing course experiences', 'Write an opening paragraph: Who are you and why does your relationship with AI matter?', 'Write a closing statement: How will you hold yourself accountable to these principles?', 'Share your manifesto with the class — read it aloud if you are comfortable'] },
-    { type: 'discussion', title: 'Principles for a Lifetime', questions: [{ num: 1, text: 'Which of your manifesto principles do you feel most strongly about? Why?' }, { num: 2, text: 'How might your manifesto change in 5 years as AI continues to evolve?' }, { num: 3, text: 'If everyone in the world adopted your manifesto principles, how would the world be different?' }] },
-    { type: 'quiz', question: 'What strengthens an AI manifesto more than confident declarations?', options: ['Using longer sentences', 'Including lots of statistics', 'Acknowledging tensions and uncertainties you have not fully resolved', 'Listing every AI tool you have used'], correct: 2, explanation: 'A manifesto that admits uncertainty — "I am still wrestling with whether..." — demonstrates genuine intellectual engagement. Readers trust writers who are honest about complexity more than those who claim to have all the answers.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Specific principles', text: 'Not "I believe in transparency" — "I will always disclose AI use because trust depends on honesty about origins"' }, { icon: '▸', label: 'Synthesise six units', text: 'Your manifesto draws on all six units — awareness, skills, society, governance, creation, and reflection' }, { icon: '▸', label: 'This is the beginning', text: 'Your relationship with AI will last a lifetime. 59 lessons have built the knowledge. Now you hold the principles.' }] }
+    {
+      type: 'hook',
+      title: 'The AI Manifesto',
+      body: 'In 1848, the Communist Manifesto reshaped global politics. In 1999, the Cluetrain Manifesto anticipated how the internet would transform business. In 2023, the Bletchley Declaration committed 28 nations to international AI safety. Manifestos are public declarations of principles. They define values that guide actions in times of rapid change.<br><br>As Gemini and NotebookLM are deployed to your school devices, you are no longer just consumers of AI—you are active users shaping how these tools are integrated into education. Today, you write your personal AI Manifesto: your code of conduct for living and learning in an AI-saturated world.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">28</span><span class="sl">nations signed the Bletchley AI Safety Declaration (2023)</span></div><div class="hook-stat-mini"><span class="sv">Manifesto</span><span class="sl">A public declaration of core values and ethical principles</span></div><div class="hook-stat-mini"><span class="sv">Your Code</span><span class="sl">5-7 personal commitments for using Gemini & NotebookLM ethically</span></div></div>'
+    },
+    {
+      type: 'concept',
+      title: 'Building Your AI Code of Conduct',
+      body: 'A strong AI manifesto is not a list of abstract beliefs (e.g., \'I believe AI should be ethical\'). It is a set of specific, actionable commitments that you can explain and defend to your teachers and peers.',
+      bullets: [
+        '<strong>1. Cognitive Independence:</strong> How will you ensure that you do the thinking, and that Gemini/NotebookLM remain study partners rather than crutches?',
+        '<strong>2. Academic Honesty:</strong> How will you disclose your AI use? What is your personal threshold for Amber Tier editing versus Red Tier plagiarism?',
+        '<strong>3. Fact Verification:</strong> What is your protocol for verifying claims made by Gemini or NotebookLM? How will you handle citations?',
+        '<strong>4. Data Privacy & Safety:</strong> What information will you refuse to upload to AI systems? How will you protect your classmates\' intellectual property?',
+        '<strong>5. Continuous Learning:</strong> How will you keep updating your understanding of AI capabilities, biases, and pitfalls?'
+      ],
+      callout: 'A manifesto is a living document. It should represent your current principles, earned through these 20 lessons, but it should evolve as the technology changes and your experience grows.'
+    },
+    {
+      type: 'scenario',
+      title: 'The Peer Pressure',
+      situation: 'Your classmate Leo shows you a method he uses to bypass the school\'s essay check: he has Gemini write the essay, then prompts it to \'rephrase using natural human errors and a Year 12 writing style.\' It passes the detector easily, and he gets an A. He tells you: \'You\'re wasting your time writing this history essay yourself. We have exams in three weeks, use the AI so we can study maths together instead.\'',
+      question: 'What is the right decision?',
+      choices: [
+        {
+          text: 'Follow Leo\'s advice—the AI is just a tool to free up time for subjects that matter more to you.',
+          outcome: 'You submit the AI essay. It passes the detector, but during the history class debate two days later, the teacher calls on you to defend your thesis. Because you didn\'t write the essay or read the background, you cannot formulate an argument. The teacher notices the contradiction. Worse, when exams arrive, you struggle with the essay section, costing you two grades.'
+        },
+        {
+          text: 'Refuse Leo\'s advice, write the history essay yourself, and use Gemini to test your understanding of the maths topics afterward.',
+          outcome: 'The history essay takes you four hours. Your grade is a B+, but you understand the topic deeply. In the maths exam, you score highly because you did the active practice. Your commitment to your principles pays off. You feel genuine pride in your work.'
+        },
+        {
+          text: 'Report Leo\'s bypass technique to the IT and academic lead so they can update the school\'s AI policy and detection systems.',
+          outcome: 'The school updates its policy, introducing oral vivas for essays flagged as suspicious. Leo is caught on his next submission. You\'ve protected the academic integrity of the school, but Leo is angry. This highlights the ethical weight of maintaining standards in a community.'
+        }
+      ]
+    },
+    {
+      type: 'activity',
+      title: 'Draft Your Personal AI Manifesto',
+      instructions: 'Draft your personal AI code of conduct. Write 5-7 clear, specific commitments.',
+      steps: [
+        'Reflect on what you have learned: what are the most important ethical lessons from this course (tokens, bias, hallucination, offloading)?',
+        'Write 5-7 commitments starting with \'I will...\' or \'I believe...\' (e.g., \'I will always click the citation in NotebookLM to verify the source text myself.\')',
+        'For each commitment, write a brief sentence explaining WHY you hold this rule, referencing a specific lesson.',
+        'Write an introductory statement: Who are you, what tools do you use (Gemini, NotebookLM), and why does your integrity matter?',
+        'Share your manifesto draft with your class. Receive feedback on whether your rules are specific enough to enforce.',
+        'Sign and date your manifesto. Keep it on your device as a commitment when Gemini is rolled out.'
+      ]
+    },
+    {
+      type: 'discussion',
+      title: 'Living Your Principles',
+      questions: [
+        { num: 1, text: 'Which of your manifesto principles will be hardest to keep when deadlines are tight and you are under stress? How will you hold yourself accountable?' },
+        { num: 2, text: 'If a company uses AI to automate customer service and fires half its staff, is that different from a student using AI to write an essay? What values are in conflict in each case?' },
+        { num: 3, text: 'Your manifesto is personal, but AI affects society globally. How can we move from individual manifestos to global, democratic rules for AI safety and fairness?' }
+      ]
+    },
+    {
+      type: 'quiz',
+      question: 'What is the primary purpose of writing a personal AI manifesto before your school deploys Gemini and NotebookLM?',
+      options: [
+        'To show your teacher you completed the course.',
+        'To establish a set of personal, actionable commitments that ensure you use AI to enhance your learning rather than bypass it.',
+        'To write a legal contract that protects you from plagiarism charges.',
+        'To list the specific prompts you will use during the school year.'
+      ],
+      correct: 1,
+      explanation: 'A manifesto is a statement of values and actionable commitments. It helps you set personal boundaries before you get access to powerful tools, ensuring you maintain cognitive ownership and academic integrity.'
+    },
+    {
+      type: 'summary',
+      title: 'Key Takeaways',
+      points: [
+        { icon: '▸', label: 'Principles guide action', text: 'A manifesto translates abstract rules into personal commitments. It keeps you accountable when under pressure.' },
+        { icon: '▸', label: 'Maintain cognitive ownership', text: 'Your core commitment: AI is a partner to think with, never a substitute to think for you.' },
+        { icon: '▸', label: 'This is just the beginning', text: 'Gemini and NotebookLM are powerful tools. Your manifesto ensures you deploy them to build genuine intelligence, not just pass tests.' }
+      ]
+    }
   ]
 
 };

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Fluency Track — Digital Innovations</title>
-  <meta name="description" content="A self-directed 20-lesson pathway to AI fluency. No login needed. Works offline.">
+  <title>AI Digital Passport — Digital Innovations</title>
+  <meta name="description" content="A self-directed 20-lesson AI Digital Passport. No login needed. Works offline.">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <!-- Apply saved theme BEFORE CSS loads — eliminates flash of unstyled content -->
@@ -102,13 +102,25 @@
     .fl-cert-title-main { font-size:1.3rem; font-weight:800; color:var(--track-primary); margin-bottom:6px; }
     .fl-cert-detail { font-size:.75rem; color:var(--text-dim); margin-bottom:20px; }
     .fl-cert-divider { height:1px; background:rgba(var(--track-primary-rgb),.2); margin:0 0 16px; }
-    .fl-cert-footer { display:flex; justify-content:space-around; }
-    .fl-cert-date-wrap, .fl-cert-id-wrap { text-align:center; }
-    .fl-cert-date, .fl-cert-id { font-size:.85rem; font-weight:700; color:var(--text); }
+    .fl-cert-footer { display:flex; justify-content:space-around; gap:12px; }
+    .fl-cert-date-wrap, .fl-cert-time-wrap, .fl-cert-id-wrap { text-align:center; }
+    .fl-cert-date, .fl-cert-time, .fl-cert-id { font-size:.85rem; font-weight:700; color:var(--text); }
     .fl-cert-date-label { font-size:.68rem; color:var(--text-dim); margin-top:2px; text-transform:uppercase; letter-spacing:.06em; }
 
     .fl-print-btn { background:linear-gradient(135deg,var(--track-primary),var(--track-primary-dark)); color:#fff; border:none; border-radius:var(--radius); padding:10px 24px; font-weight:700; cursor:pointer; margin-top:8px; font-size:.9rem; }
     .fl-print-btn:hover { background:linear-gradient(135deg,var(--track-primary-dark),#b45309); }
+
+    /* Speed warning — shown when recorded study time is implausibly short */
+    .fl-speed-warning { max-width:560px; margin:0 auto 20px; padding:12px 16px; border-radius:10px; background:rgba(245,158,11,.1); border:1px solid rgba(245,158,11,.4); color:var(--text); font-size:.85rem; line-height:1.6; text-align:left; }
+
+    /* Email certificate section */
+    .fl-email-section { max-width:560px; margin:24px auto 0; padding:20px; border:1px solid var(--border); border-radius:12px; background:var(--bg); text-align:left; }
+    .fl-email-section h3 { margin:0 0 4px; font-size:1rem; font-weight:800; }
+    .fl-email-section > p { margin:0 0 14px; font-size:.82rem; color:var(--text-dim); }
+    .fl-email-fields { display:flex; flex-direction:column; gap:12px; margin-bottom:14px; }
+    .fl-field-group label { display:block; font-size:.78rem; font-weight:600; color:var(--text-dim); margin-bottom:6px; }
+    .fl-field-group input { width:100%; padding:10px 14px; border-radius:8px; border:1.5px solid var(--border); background:var(--bg-card); color:var(--text); font-size:.9rem; font-family:var(--font); outline:none; transition:border-color .15s; box-sizing:border-box; }
+    .fl-field-group input:focus { border-color:var(--track-primary); }
 
     /* ── Lesson modal shell — solid background so slides are readable in any theme ── */
     .modal-inner {
@@ -260,7 +272,8 @@
       .fl-shell { max-width:100%; padding:0; }
       .fl-header, .fl-back, .fl-progress-wrap, .fl-track, .fl-hero,
       .fl-section-label, .fl-complete-icon, .fl-complete h2, .fl-complete > p,
-      .fl-cert-name-row, .fl-print-btn, #flShareBtn, #lessonModal, .offline-banner { display:none !important; }
+      .fl-cert-name-row, .fl-print-btn, #flShareBtn, #lessonModal, .offline-banner,
+      .fl-speed-warning, .fl-email-section { display:none !important; }
       .fl-complete { display:block !important; border:none; padding:0; background:#fff; }
       .fl-cert-card {
         max-width:100%; margin:0; border:3px solid var(--track-primary-dark) !important;
@@ -274,7 +287,7 @@
       .fl-cert-presented, .fl-cert-course, .fl-cert-detail { color:#4b5563 !important; }
       .fl-cert-recipient { color:#111827 !important; font-size:2.4rem; }
       .fl-cert-title-main { color:var(--track-primary-dark) !important; }
-      .fl-cert-date, .fl-cert-id { color:#111827 !important; }
+      .fl-cert-date, .fl-cert-id, .fl-cert-time { color:#111827 !important; }
       .fl-cert-divider { background:var(--track-primary-dark) !important; opacity:.3; }
     }
   </style>
@@ -291,7 +304,7 @@
       <button class="fl-back" onclick="window.location.href='index.html'">← Back</button>
       <img class="hby-mark hby-mark--header" src="assets/brand/logo/haileybury-magenta.png" alt="Haileybury" width="22" height="16">
       <span class="fl-header-brand">Digital Innovations</span>
-      <span class="fl-header-title">AI Fluency Track ⚡</span>
+      <span class="fl-header-title">AI Digital Passport ⚡</span>
       <a class="btn btn-ghost btn-sm" href="portfolio.html?t=fluency" style="margin-left:10px" title="Your notes, exit tickets and progress — save as PDF">📄 Portfolio</a>
     </div>
 
@@ -309,11 +322,14 @@
     <!-- Completion certificate (shown when done) -->
     <div class="fl-complete" id="flComplete">
       <div class="fl-complete-icon">🏆</div>
-      <h2>AI Fluency Achieved!</h2>
+      <h2>AI Digital Passport Achieved!</h2>
       <p>You've completed all 20 lessons. You now have the knowledge to use AI clearly, critically, and responsibly.</p>
       <div class="fl-cert-name-row">
         <label class="fl-cert-name-label" for="flCertNameInput">Your name (for the certificate)</label>
         <input id="flCertNameInput" class="fl-cert-name-input" type="text" placeholder="Enter your full name…" oninput="flUpdateCertName(this.value)" maxlength="60">
+      </div>
+      <div id="flSpeedWarning" class="fl-speed-warning" style="display:none">
+        ⚠️ <strong>Speed warning:</strong> your recorded active study time is <span id="flSpeedWarningTime"></span>. Working through all 20 lessons properly typically takes around 8 hours. Your study time is encoded into the certificate ID, so your teacher will see it — they may ask you to review the lessons again if it looks too short.
       </div>
       <div class="fl-cert-card" id="flCertCard">
         <div class="fl-cert-watermark" aria-hidden="true">AI</div>
@@ -333,13 +349,17 @@
         <div class="fl-cert-presented">This certifies that</div>
         <div class="fl-cert-recipient" id="flCertRecipient">—</div>
         <div class="fl-cert-course">has successfully completed the</div>
-        <div class="fl-cert-title-main">AI Fluency Track</div>
+        <div class="fl-cert-title-main">AI Digital Passport</div>
         <div class="fl-cert-detail">20 lessons · ~8 hours · AI literacy, critical thinking &amp; responsible use</div>
         <div class="fl-cert-divider"></div>
         <div class="fl-cert-footer">
           <div class="fl-cert-date-wrap">
             <div class="fl-cert-date" id="flCertDate"></div>
             <div class="fl-cert-date-label">Date of completion</div>
+          </div>
+          <div class="fl-cert-time-wrap">
+            <div class="fl-cert-time" id="flCertTime">—</div>
+            <div class="fl-cert-date-label">Active study time</div>
           </div>
           <div class="fl-cert-id-wrap">
             <div class="fl-cert-id" id="flCertId"></div>
@@ -349,12 +369,28 @@
       </div>
       <button class="fl-print-btn" onclick="window.print()">🖨 Print Certificate</button>
       <button class="fl-print-btn" id="flShareBtn" onclick="flShareCredential()" style="margin-left:8px;background:var(--bg-card);color:var(--track-primary);border:1.5px solid var(--track-primary)">🔗 Copy share link</button>
+
+      <div class="fl-email-section">
+        <h3>Email your certificate</h3>
+        <p>Opens a pre-filled email in your mail client with your certificate details and verification link — send it to yourself and copy in your teacher.</p>
+        <div class="fl-email-fields">
+          <div class="fl-field-group">
+            <label for="flCertEmailInput">Your email address</label>
+            <input type="email" id="flCertEmailInput" placeholder="pupil@school.sch.uk">
+          </div>
+          <div class="fl-field-group">
+            <label for="flCertTeacherInput">Teacher's email address (optional)</label>
+            <input type="email" id="flCertTeacherInput" placeholder="teacher@school.sch.uk">
+          </div>
+        </div>
+        <button class="fl-print-btn" id="flEmailBtn" onclick="flSendEmailCertificate()" style="margin-top:0">📧 Email Certificate</button>
+      </div>
     </div>
 
     <!-- Hero (hidden once track started) -->
     <div class="fl-hero" id="flHero">
       <div class="fl-hero-badge">Self-Directed · Offline-capable</div>
-      <h1>AI Fluency Track</h1>
+      <h1>AI Digital Passport</h1>
       <p class="fl-hero-sub">20 curated lessons. No teacher required. Work at your own pace and build genuine AI literacy — from understanding how LLMs work to protecting yourself from deepfakes.</p>
       <div class="fl-hero-stats">
         <div class="fl-stat"><span class="fl-stat-num">20</span><span class="fl-stat-label">Lessons</span></div>
@@ -363,11 +399,11 @@
       </div>
     </div>
 
-    <!-- Scope disclosure: what Fluency includes vs the full course -->
+    <!-- Scope disclosure: what the Passport includes vs the full course -->
     <details class="fl-scope" id="flScope">
-      <summary><span class="fl-scope-icon" aria-hidden="true">ℹ️</span> What's in Fluency — and what's not</summary>
+      <summary><span class="fl-scope-icon" aria-hidden="true">ℹ️</span> What's in the AI Digital Passport — and what's not</summary>
       <div class="fl-scope-body">
-        <p><strong>Fluency</strong> is a 20-lesson subset curated from the 59-lesson full course. Same slides, same explanations — just a focused route for learners who want AI literacy without a formal syllabus.</p>
+        <p><strong>The AI Digital Passport</strong> is a 20-lesson subset curated from the 59-lesson full course. Same slides, same explanations — just a focused route for learners who want AI literacy without a formal syllabus.</p>
         <p><strong>Included:</strong></p>
         <ul>
           <li>How LLMs actually work · prompting · hallucinations · bias</li>
@@ -430,9 +466,9 @@
   <script src="js/quiz-bank.js"></script>
   <script src="js/visuals.js"></script>
   <script>
-  /* ── AI Fluency Track — standalone app ── */
+  /* ── AI Digital Passport — standalone app ── */
 
-  // The 15 curated lessons in order
+  // The 20 curated lessons in order
   var FL_TRACK = [
     { id:1,  section:'Understanding AI',       icon:'🤖', time:'~20 min' },
     { id:2,  section:'Understanding AI',       icon:'🦜', time:'~25 min' },
@@ -462,6 +498,63 @@
   var flCurrentSlideIdx = 0;
   var flCurrentSlides = [];
 
+  // ── Active study time tracking ───────────────
+  // Counts seconds only while a lesson is open, the tab is visible, and there
+  // has been input in the last 3 minutes (slow readers shouldn't be penalised,
+  // but a parked tab shouldn't accrue time). Frozen once the track completes.
+  var FL_IDLE_MS = 180000;
+  var flTimeSpent = 0;
+  var flLastActivity = Date.now();
+  var flTimerInterval = null;
+
+  function flLoadTime() {
+    flTimeSpent = parseInt(localStorage.getItem('fl_time_spent'), 10) || 0;
+  }
+  function flSaveTime() {
+    localStorage.setItem('fl_time_spent', flTimeSpent);
+  }
+  function flRecordActivity() {
+    flLastActivity = Date.now();
+  }
+  function flStartTimer() {
+    if (flTimerInterval) return;
+    flLastActivity = Date.now();
+    ['mousemove', 'keydown', 'click', 'scroll', 'touchstart'].forEach(function(evt) {
+      window.addEventListener(evt, flRecordActivity, { passive: true });
+    });
+    // Persist promptly when the tab is hidden or closed
+    document.addEventListener('visibilitychange', function() { if (document.hidden) flSaveTime(); });
+    window.addEventListener('pagehide', flSaveTime);
+    flTimerInterval = setInterval(function() {
+      var modal = document.getElementById('lessonModal');
+      var isModalOpen = modal && modal.classList.contains('open');
+      var isActive = (Date.now() - flLastActivity) < FL_IDLE_MS;
+      var isComplete = flDone.size === FL_TRACK.length;
+      if (isModalOpen && !document.hidden && isActive && !isComplete) {
+        flTimeSpent++;
+        if (flTimeSpent % 10 === 0) flSaveTime();
+      }
+    }, 1000);
+  }
+
+  function flFormatDuration(seconds) {
+    if (!seconds || seconds <= 0) return '0 mins';
+    var h = Math.floor(seconds / 3600);
+    var m = Math.floor((seconds % 3600) / 60);
+    if (h > 0) return h + ' hr' + (h > 1 ? 's' : '') + ' ' + m + ' min' + (m !== 1 ? 's' : '');
+    if (m > 0) return m + ' min' + (m !== 1 ? 's' : '');
+    return seconds + ' sec' + (seconds !== 1 ? 's' : '');
+  }
+
+  // Short checksum used to make the certificate ID tamper-evident. Not
+  // cryptographic — verify.html recomputes it to catch casual edits to the
+  // duration or date in shared links. (djb2, base36, 4 chars)
+  function flCertHash(s) {
+    var h = 5381;
+    for (var i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0;
+    return ('000' + (h % 1679616).toString(36).toUpperCase()).slice(-4);
+  }
+
   // ── Progress persistence ─────────────────────
   function flLoadProgress() {
     try {
@@ -475,6 +568,7 @@
   function flMarkDone(id) {
     flDone.add(id);
     flSaveProgress();
+    flSaveTime();
     flRenderTrack();
     flUpdateProgress();
     if (flDone.size === FL_TRACK.length) flShowComplete();
@@ -577,20 +671,55 @@
     var dateEl = document.getElementById('flCertDate');
     if (dateEl) dateEl.textContent = new Date(completedDate).toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
 
-    // Certificate ID (stable per device: hash of date + user-agent substring)
+    // Freeze the study time at first completion so re-visits don't change it
+    var frozen = localStorage.getItem('fl_frozen_duration');
+
+    // Certificate ID — embeds completion date, active study minutes (TXXXX)
+    // and a checksum, so edited share links are detectable on verify.html.
+    // IDs issued before time tracking existed (no T segment) stay valid.
     var certId = localStorage.getItem('fl_cert_id');
     if (!certId) {
-      certId = 'DI-FL-' + completedDate.replace(/-/g,'') + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
+      if (frozen === null) {
+        frozen = String(flTimeSpent);
+        localStorage.setItem('fl_frozen_duration', frozen);
+      }
+      var ymd = completedDate.replace(/-/g, '');
+      var rand = (Math.random().toString(36).slice(2, 6) + '0000').slice(0, 4).toUpperCase();
+      var mins = ('000' + Math.min(9999, Math.round((parseInt(frozen, 10) || 0) / 60))).slice(-4);
+      certId = 'DI-FL-' + ymd + '-' + rand + '-T' + mins + '-' + flCertHash('DI-FL|' + ymd + '|' + rand + '|' + mins);
       localStorage.setItem('fl_cert_id', certId);
     }
     var idEl = document.getElementById('flCertId');
     if (idEl) idEl.textContent = certId;
 
-    // Restore saved name
+    // Study time on the certificate + speed warning when implausibly short
+    var timeEl = document.getElementById('flCertTime');
+    var warnEl = document.getElementById('flSpeedWarning');
+    if (frozen !== null) {
+      var secs = parseInt(frozen, 10) || 0;
+      if (timeEl) timeEl.textContent = flFormatDuration(secs);
+      if (warnEl) {
+        if (secs < 3600) {
+          warnEl.style.display = 'block';
+          var warnTime = document.getElementById('flSpeedWarningTime');
+          if (warnTime) warnTime.textContent = flFormatDuration(secs);
+        } else {
+          warnEl.style.display = 'none';
+        }
+      }
+    } else if (timeEl) {
+      timeEl.textContent = '—';
+    }
+
+    // Restore saved name and emails
     var savedName = localStorage.getItem('fl_cert_name') || '';
     var nameInput = document.getElementById('flCertNameInput');
     if (nameInput && savedName) nameInput.value = savedName;
     flUpdateCertName(savedName);
+    var pupilEmail = document.getElementById('flCertEmailInput');
+    var teacherEmail = document.getElementById('flCertTeacherInput');
+    if (pupilEmail) pupilEmail.value = localStorage.getItem('fl_pupil_email') || '';
+    if (teacherEmail) teacherEmail.value = localStorage.getItem('fl_teacher_email') || '';
 
     localStorage.setItem('fl_completed_date', completedDate);
   }
@@ -627,6 +756,44 @@
     }
   }
 
+  // Opens the user's mail client with a pre-filled certificate email.
+  // Nothing is sent from this page — the pupil reviews and sends it themselves.
+  function flSendEmailCertificate() {
+    var pupilEmail = (document.getElementById('flCertEmailInput').value || '').trim();
+    var teacherEmail = (document.getElementById('flCertTeacherInput').value || '').trim();
+    var name = (localStorage.getItem('fl_cert_name') || '').trim();
+    var date = localStorage.getItem('fl_completed_date') || new Date().toISOString().slice(0,10);
+    var id = localStorage.getItem('fl_cert_id') || '';
+    var frozen = localStorage.getItem('fl_frozen_duration');
+
+    if (!name) { alert('Add your name in the field above the certificate first.'); return; }
+    if (!pupilEmail || pupilEmail.indexOf('@') === -1) { alert('Please enter a valid email address.'); return; }
+
+    localStorage.setItem('fl_pupil_email', pupilEmail);
+    if (teacherEmail) localStorage.setItem('fl_teacher_email', teacherEmail);
+
+    var body = 'Hi,\n\n' +
+      'I have completed the Digital Innovations AI Digital Passport.\n\n' +
+      'Certificate details:\n' +
+      '- Name: ' + name + '\n' +
+      '- Certificate ID: ' + id + '\n' +
+      '- Date of completion: ' + new Date(date).toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' }) + '\n' +
+      (frozen !== null ? '- Active study time: ' + flFormatDuration(parseInt(frozen, 10) || 0) + '\n' : '') +
+      '- Lessons completed: 20 / 20\n\n' +
+      'The certificate can be checked here (the ID encodes the completion date and study time):\n' +
+      flBuildShareURL() + '\n\n' +
+      'Best regards,\n' + name;
+
+    var mailto = 'mailto:' + encodeURIComponent(pupilEmail) +
+      (teacherEmail ? '?cc=' + encodeURIComponent(teacherEmail) + '&' : '?') +
+      'subject=' + encodeURIComponent('AI Digital Passport certificate — ' + name) +
+      '&body=' + encodeURIComponent(body);
+
+    var btn = document.getElementById('flEmailBtn');
+    if (btn) { var old = btn.textContent; btn.textContent = '✓ Opening your mail client…'; setTimeout(function(){ btn.textContent = old; }, 2500); }
+    window.location.href = mailto;
+  }
+
   // ── Lesson modal ─────────────────────────────
   function flOpenLesson(id) {
     flCurrentLessonId = id;
@@ -644,7 +811,7 @@
 
     var label = document.getElementById('lvUnitLabel');
     var title = document.getElementById('lvLessonTitle');
-    if (label) label.textContent = 'AI Fluency Track';
+    if (label) label.textContent = 'AI Digital Passport';
     if (title) title.textContent = lessonData ? lessonData.title : 'Lesson ' + id;
 
     flRenderSlide();
@@ -977,6 +1144,8 @@
 
   // ── Init ─────────────────────────────────────
   flLoadProgress();
+  flLoadTime();
+  flStartTimer();
   flRenderTrack();
   flUpdateProgress();
   if (flDone.size === FL_TRACK.length) flShowComplete();

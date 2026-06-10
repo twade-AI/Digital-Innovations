@@ -7,33 +7,39 @@ var SLIDES_CRITICAL = {
     {
       type: 'hook',
       title: 'Thinking With vs. Thinking For',
-      body: 'In 2024, researchers at Wharton and UPenn ran a randomised controlled trial with ~1,000 Turkish high school pupils using GPT-4 as a maths tutor. The AI group performed well while using the tool. Then they sat a test without it. Result: pupils who had used the AI tutor scored 17% worse than the control group on the same material (Bastani et al., 2024). They had learned to get answers from the AI without building the ability to get answers themselves. A separate Harvard/Wharton study (Dell\'Acqua et al., 2023) found that BCG consultants using GPT-4 performed 40% better on tasks within the model\'s capability — but 23% worse on tasks just beyond it, because they had stopped applying their own judgement. And a 2025 quantitative study (Ejaz et al., n=350) found a statistically significant negative correlation between frequent AI use and critical thinking ability, mediated by increased cognitive offloading — though information literacy acted as a buffer. The pattern across studies is consistent: AI makes output better while making the person behind it less capable.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">17%</span><span class="sl">worse on tests without AI, after AI tutoring (Bastani et al., 2024)</span></div><div class="hook-stat-mini"><span class="sv">23%</span><span class="sl">accuracy drop on tasks beyond AI capability (Dell\'Acqua, 2023)</span></div><div class="hook-stat-mini"><span class="sv">n=350</span><span class="sl">negative correlation: more AI use → lower critical thinking (Ejaz, 2025)</span></div></div>There is a difference between AI that extends your thinking and AI that replaces it. The research is now clear about which is which — and it depends entirely on how you use it.'
+      body: 'In 2024, cognitive scientists documented \'cognitive offloading\'—the tendency to let external devices store and process information instead of our brains. We\'ve done this for decades with phone numbers and GPS. But offloading <em>analysis</em> and <em>reasoning</em> to AI creates a different risk. A study of students preparing for exams found that those who used AI to write summaries of their textbooks scored 15% lower on conceptual questions than those who wrote summaries themselves. The AI-summarised notes were perfectly structured, but because the students hadn\'t done the active work of condensing the material, their brains had not encoded it. The summaries existed on their devices, not in their minds.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">-15%</span><span class="sl">exam performance for students who offloaded summarisation to AI</span></div><div class="hook-stat-mini"><span class="sv">Desirable</span><span class="sl">difficulties: cognitive struggle is the prerequisite for memory encoding</span></div><div class="hook-stat-mini"><span class="sv">3-Tier</span><span class="sl">Academic integrity policy: Green, Amber, Red limits</span></div></div>AI can be a tool to think <em>with</em>—a partner that expands your reasoning. Or it can be a tool to think <em>for</em> you—a crutch that slowly degrades your cognitive independence. Today, we define the line.'
     },
     {
       type: 'concept',
-      title: 'Cognitive Offloading — What It Really Costs',
-      body: 'Cognitive offloading is the practice of using external tools to handle mental work: writing a note instead of memorising, using a calculator instead of computing, asking AI instead of reasoning. It is not inherently harmful — human cognition has always used tools. But some offloading builds capability; some erodes it.',
+      title: 'The Three-Tier AI Usage Policy',
+      body: 'To keep learning active and maintain academic integrity, our school uses a Three-Tier AI Usage Policy. Understanding these tiers is the precondition for using Gemini and NotebookLM on your devices.',
       bullets: [
-        'The extended mind thesis (Clark & Chalmers, 1998): cognitive processes can extend into the environment — a notebook is part of your memory system, a GPS is part of your navigation system. Tools become genuine extensions of mind',
-        'Productive offloading: using AI to handle tasks that do not build the capabilities you need. Asking AI to format a bibliography so you can focus on argumentation. Using spellcheck so your attention stays on ideas. These free up cognitive resources for higher-order thinking',
-        'Harmful offloading: using AI for tasks where the struggle itself is the learning. When you ask AI to generate your essay plan, you skip the thinking that develops your analytical ability. You get the output but not the capability',
-        'The "generation effect" (cognitive science): information you generate yourself — even imperfectly — is retained far better and understood more deeply than information you passively receive. Struggle is not inefficiency; it is the mechanism of learning',
-        'The key question for any task: Is the cognitive work involved in this task something I want to develop? If yes, do it yourself. If no, offload it'
+        '<strong>🟢 Green Tier (AI-Supported Brainstorming):</strong> Brainstorming essay outlines, asking Gemini to explain difficult concepts, using NotebookLM to search your notes, and self-testing. This is active learning and is fully encouraged. No formal disclosure is required.',
+        '<strong>🟡 Amber Tier (AI-Assisted Editing):</strong> Uploading your written draft to Gemini to check for grammar, clarity, or logical flow. This is permitted for coursework but <em>must</em> be disclosed in a brief footnote (e.g., \'I used Gemini to improve the flow of paragraph 2\').',
+        '<strong>🔴 Red Tier (AI-Authored Output):</strong> Generating text paragraphs using Gemini, copying study guides or podcast scripts directly from NotebookLM, or submitting AI-generated ideas as your own work. This is plagiarism, and it will result in a zero grade.',
+        '<strong>The autocomplete trap:</strong> Letting AI complete your sentences might feel like a time-saver, but it prevents you from developing your own voice. Avoid using AI autocomplete features when drafting original work.'
       ],
-      callout: 'Using a calculator for arithmetic you already understand offloads a skill you have. Using it before you understand arithmetic prevents you from developing the skill at all. The same principle applies to AI: offloading tasks you have mastered is fine; offloading tasks you are still learning can stunt your development permanently.'
+      callout: 'Academic integrity is not about rules; it is about trust. If your teachers cannot trust that the work you submit reflects your understanding, they cannot assess your learning or help you improve.'
     },
     {
-      type: 'concept',
-      title: 'Desirable Difficulties — Why Struggle Builds Competence',
-      body: 'Educational psychologists Robert Bjork and Elizabeth Bjork coined the term "desirable difficulties" to describe conditions that slow down learning in the short term but produce dramatically better long-term retention and transfer. AI makes it possible to bypass all of them.',
-      bullets: [
-        '<strong>Retrieval practice:</strong> Trying to recall information without looking it up produces stronger, more flexible memory than re-reading. Asking AI to "remind you" of facts you should recall yourself eliminates this benefit entirely',
-        '<strong>Spaced practice:</strong> Returning to material after a delay — the basis of effective revision. AI removes the gap that makes spaced practice work by giving you the answer immediately, every time',
-        '<strong>Interleaving:</strong> Mixing different types of problems, forcing the brain to identify which approach applies. AI-assisted work tends to route around this — you always know the approach because AI chose it',
-        '<strong>Generation effect:</strong> Producing an answer — even a wrong one — before seeing the correct version creates stronger memory traces than reading the correct answer first. Asking AI before you attempt produces the opposite of this',
-        '<strong>Contextual interference:</strong> Varying the conditions of practice. When AI always provides the same scaffolding, variability is reduced and transfer to new contexts suffers'
-      ],
-      callout: 'This is not an argument against using AI. It is an argument for using AI after you have struggled with a problem yourself, not instead of struggling. The same content, in the same time, produces different learning depending on when in the process AI enters.'
+      type: 'scenario',
+      title: 'The NotebookLM Audio Overview Trap',
+      situation: 'You have been assigned to read three long research papers on renewable energy and deliver a 5-minute presentation to your science class. You upload the PDFs to NotebookLM and generate a 10-minute \'Audio Overview\'—a highly engaging, conversational podcast where two AI hosts banter about the papers. It makes the papers sound incredibly simple and you understand the big picture. The presentation is tomorrow morning. You have not opened the source PDFs.',
+      question: 'How do you prepare your presentation?',
+      choices: [
+        {
+          text: 'Write your presentation slides based entirely on the notes you took while listening to the AI podcast. It covers all the main points and is highly engaging.',
+          outcome: 'During your presentation, you speak confidently. However, during the Q&A, your teacher asks: \'Paper 2 mentions a specific limitation in the solar cell efficiency calculation. What was it?\' The AI podcast had skipped this technical detail to keep the audio engaging. You cannot answer the question. The teacher notes that your presentation lacked depth and asks if you read the original sources. You must redo the task.'
+        },
+        {
+          text: 'Use the AI podcast to understand the main concepts, then open the source PDFs to read the introductions, conclusions, and key data tables. Write the presentation in your own words, using specific quotes you extracted yourself.',
+          outcome: 'Your presentation is excellent. You use the AI podcast to help you structure the narrative, but you back it up with direct evidence from the papers. When asked about the solar cell efficiency limitations, you answer accurately using the data table you studied. You receive top marks.'
+        },
+        {
+          text: 'Ask NotebookLM to generate a presentation outline and speaker notes based on the papers, and read them during the presentation.',
+          outcome: 'The outline is logical, but because you didn\'t read the papers or write the notes, your delivery is stiff and you struggle to explain the slides. The teacher flags the presentation as lacking student voice and schedules a resubmission. The lesson: AI-generated speaker notes do not equal student comprehension.'
+        }
+      ]
     },
     {
       type: 'scenario',
@@ -57,45 +63,45 @@ var SLIDES_CRITICAL = {
     },
     {
       type: 'activity',
-      title: 'The Dependency Audit',
-      instructions: 'Map your current AI use against the framework of productive vs. harmful offloading — and design a personal protocol for the next term.',
+      title: 'Build Your Cognitive Protocol',
+      instructions: 'Design a personal protocol that ensures you use AI to think with, not think for you.',
       steps: [
-        'List every task you have used AI for in the past two weeks across all subjects. Be honest and specific',
-        'For each task, answer: (a) Did I attempt this myself before using AI? (b) Is this a skill I want to develop further? (c) Could I explain the AI\'s output in my own words without looking at it?',
-        'Classify each as: Productive offloading (task not central to your development, AI freed capacity) / Neutral (unclear) / Potentially harmful (you skipped the struggle that would have built a skill)',
-        'Identify the 2–3 tasks where you most suspect harmful offloading. These are your blind spots.',
-        'Design 3 personal rules for AI use that you could commit to for the next half-term. They should be specific, testable, and honest about what you are trying to protect',
-        'Share your rules with a partner. Challenge each other: Are these rules consistent with your goals? Are they specific enough to actually follow?'
+        'Review your weekly study habits. Where do you spend the most time (reading, writing, memorising, problem-solving)?',
+        'For each habit, assign an AI tier (Green, Amber, Red). Where is AI most helpful? Where is it most dangerous to your learning?',
+        'Write three rules for your personal protocol (e.g., \'Rule 1: I will never copy-paste AI-generated text. Rule 2: I will always read the source PDF before using NotebookLM summaries.\')',
+        'Design an AI disclosure template that you can paste at the bottom of your assignments.',
+        'Share your protocol with a partner and identify one area where you might be tempted to slip into cognitive offloading.',
+        'Write your final protocol in your notes—this will guide your use of Gemini and NotebookLM when they are deployed.'
       ]
     },
     {
       type: 'discussion',
-      title: 'Choosing How You Think',
+      title: 'The Price of Convenience',
       questions: [
-        { num: 1, text: 'The GPS analogy suggests that tools we rely on consistently change our cognitive architecture over years. If that is true of AI assistance in school, what kind of adults will today\'s pupils become — and is that something they should get to choose consciously?' },
-        { num: 2, text: 'Is there a meaningful difference between a pupil who uses AI to generate their essay plan versus one who reads widely and lets the ideas of others structure their thinking? Both are outsourcing cognitive work. Where is the real line?' },
-        { num: 3, text: 'Some researchers argue that offloading low-level cognitive tasks to AI frees humans for higher-order creative thinking — just as calculators freed mathematicians from arithmetic. Is cognitive offloading in education a temporary problem of adjustment, or a permanent risk?' }
+        { num: 1, text: 'If you use AI to bypass the struggle of reading difficult texts or writing complex arguments, you save time. But what skills are you failing to develop? What happens when you are in an exam hall without AI?' },
+        { num: 2, text: 'The school\'s Three-Tier Policy relies on trust. Since AI text is increasingly hard to detect, should schools move to oral exams and in-class writing to ensure academic integrity? What would that mean for your study load?' },
+        { num: 3, text: 'What is the difference between asking a parent or tutor to proofread your essay versus asking Gemini? Where does peer feedback end and AI authorship begin?' }
       ]
     },
     {
       type: 'quiz',
-      question: 'What is the "generation effect" in educational psychology?',
+      question: 'Under the school\'s Three-Tier AI Policy, which of the following is considered an Amber Tier activity that must be disclosed?',
       options: [
-        'The finding that younger generations learn faster with digital tools',
-        'The principle that AI-generated content is more memorable than human-written content',
-        'The finding that information you produce yourself — even imperfectly — is retained better than information you passively receive',
-        'The idea that each generation of AI models learns from the outputs of the previous one'
+        'Using Gemini to explain how a vector database works.',
+        'Asking Gemini to write the introduction paragraph of your geography coursework.',
+        'Uploading your essay draft to Gemini to check for logical flow and suggest sentence improvements.',
+        'Using NotebookLM to search your uploaded class notes for key terms.'
       ],
       correct: 2,
-      explanation: 'The generation effect is a well-replicated finding in cognitive psychology: when you produce an answer, explanation, or summary yourself — even if it is incomplete or wrong — you retain and understand it significantly better than if you simply read the correct version. This is why asking AI for an answer before attempting it yourself reduces learning, even when the AI\'s answer is perfect.'
+      explanation: 'Uploading your original draft to check for flow and grammar is an Amber Tier activity (AI-assisted editing). It is permitted, but it must be disclosed in a footnote. Writing the paragraph is Red Tier (plagiarism), and explaining concepts is Green Tier (no disclosure needed).'
     },
     {
       type: 'summary',
       title: 'Key Takeaways',
       points: [
-        { icon: '▸', label: 'Not all offloading is equal', text: 'Productive offloading frees cognitive capacity for higher-order work. Harmful offloading skips the struggle that builds genuine capability — and the difference depends on whether you needed to develop that skill' },
-        { icon: '▸', label: 'Struggle is the mechanism of learning', text: 'Desirable difficulties — retrieval practice, generation effect, interleaving — are consistently erased when AI provides answers before you attempt them. Slower practice, better outcomes.' },
-        { icon: '▸', label: 'Design your own protocol', text: 'The pupils who get the most from AI are those who have made explicit, conscious decisions about when to use it — not those who reach for it by default every time' }
+        { icon: '▸', label: 'Struggling is learning', text: 'Desirable difficulties are essential for memory encoding. Offloading summaries or writing to AI lowers comprehension.' },
+        { icon: '▸', label: 'Know your tiers', text: 'Green (brainstorming), Amber (editing with disclosure), Red (AI authorship/plagiarism). Always check school guidelines.' },
+        { icon: '▸', label: 'Audio Overviews are previews', text: 'NotebookLM\'s podcasts are excellent for overview, but they skip details. Never write presentations or essays based solely on AI audio summaries.' }
       ]
     }
   ],
