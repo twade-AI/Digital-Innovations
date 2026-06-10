@@ -1780,8 +1780,11 @@ function checkQuiz(btn, correctIdx, slideIdx) {
   if (lm) lm.style.display = 'block';
   // Save quiz score
   if (currentLessonId) saveQuizScore(currentLessonId, isCorrect);
-  // XP reward
-  if (isCorrect) addXP(10, 'Quiz answered correctly');
+  // XP reward + micro-celebration
+  if (isCorrect) {
+    addXP(10, 'Quiz answered correctly');
+    if (window.diSlide && diSlide.celebrate) diSlide.celebrate(btn);
+  }
   // Adaptive nudge on wrong answer
   if (!isCorrect) showAdaptiveNudge(currentLessonId);
   // Unlock the Next button — pupil has engaged with the question.

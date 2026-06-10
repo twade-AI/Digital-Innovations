@@ -1076,6 +1076,7 @@
       fb.style.display = 'block';
       fb.innerHTML = (chosen === correct ? '✅ Correct! ' : '❌ Not quite. ') + (slide.explanation || '');
     }
+    if (chosen === correct && window.diSlide && diSlide.celebrate) diSlide.celebrate(btn);
     // Unlock Next — pupil has engaged with the question.
     var next = document.getElementById('nextBtn');
     if (next) { next.disabled = false; next.removeAttribute('title'); }
