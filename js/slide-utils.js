@@ -235,3 +235,32 @@
     }
   };
 })();
+
+/* ── Modal focus trap ─────────────────────────────────
+   Keeps Tab / Shift+Tab inside whichever overlay is open, instead of
+   letting keyboard focus wander into the page behind the dialog.
+   Applies across all engines via shared overlay class names. */
+(function () {
+  var OPEN_SEL = '.modal.open, .qq-modal.open, .kb-overlay.open, .ob-overlay.open, .shortcuts-overlay.open';
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab') return;
+    var openers = Array.prototype.filter.call(document.querySelectorAll(OPEN_SEL), function (m) {
+      return getComputedStyle(m).display !== 'none'; // .open class can linger on hidden overlays
+    });
+    if (!openers.length) return;
+    var modal = openers[openers.length - 1]; // topmost overlay
+    var nodes = modal.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])');
+    var focusable = Array.prototype.filter.call(nodes, function (el) {
+      return el.offsetParent !== null;
+    });
+    if (!focusable.length) return;
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
+    var inside = modal.contains(document.activeElement);
+    if (e.shiftKey) {
+      if (!inside || document.activeElement === first) { last.focus(); e.preventDefault(); }
+    } else {
+      if (!inside || document.activeElement === last) { first.focus(); e.preventDefault(); }
+    }
+  });
+})();
