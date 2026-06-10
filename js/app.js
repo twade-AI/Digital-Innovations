@@ -581,7 +581,7 @@ function renderSlide(index) {
           var pf = findLesson(pid);
           return pf ? '<span onclick="closeModal();setTimeout(function(){openLesson(' + pid + ')},200)" style="cursor:pointer;color:var(--primary-light)">Lesson ' + lessonNum(pid) + ': ' + pf.lesson.title + '</span>' : '';
         }).filter(Boolean).join(', ');
-        prereqHtml = '<div style="background:rgba(245,158,11,.08);border-left:3px solid var(--warning);padding:10px 14px;border-radius:6px;margin-bottom:16px;font-size:.85rem;color:var(--text-muted)">' +
+        prereqHtml = '<div class="prereq-nudge">' +
           '💡 <strong>Suggested preparation:</strong> You may find this lesson easier after completing ' + prereqLinks + '.</div>';
       }
     }
@@ -641,10 +641,10 @@ function renderSlide(index) {
   else if (slide.type === 'activity') {
     var stepsHtml = '';
     if (slide.steps && slide.steps.length > 0) {
-      stepsHtml = '<ol style="list-style:none;counter-reset:step;display:flex;flex-direction:column;gap:10px;margin-top:16px">' +
+      stepsHtml = '<ol class="act-steps">' +
         slide.steps.map(function(s, idx) {
-          return '<li style="counter-increment:step;display:flex;align-items:flex-start;gap:12px;font-size:.93rem;color:var(--text-muted);line-height:1.5">' +
-            '<span style="min-width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0">' + (idx + 1) + '</span>' +
+          return '<li class="act-step">' +
+            '<span class="act-step-num">' + (idx + 1) + '</span>' +
             s +
           '</li>';
         }).join('') +

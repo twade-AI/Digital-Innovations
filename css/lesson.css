@@ -1116,16 +1116,8 @@
 [data-theme="light"] .lv-unit-label {
   color: var(--unit-colour, #4338ca);
 }
-[data-theme="light"] .badge-hook    { color: #dc2626; background: rgba(220,38,38,.1); }
-[data-theme="light"] .badge-concept { color: #4338ca; background: rgba(67,56,202,.1); }
-[data-theme="light"] .badge-example { color: #0e7490; background: rgba(14,116,144,.1); }
-[data-theme="light"] .badge-scenario,
-[data-theme="light"] .badge-activity { color: #b45309; background: rgba(180,83,9,.1); }
-[data-theme="light"] .badge-discussion { color: #15803d; background: rgba(21,128,61,.1); }
-[data-theme="light"] .badge-quiz    { color: #0369a1; background: rgba(3,105,161,.1); }
-[data-theme="light"] .badge-video   { color: #dc2626; background: rgba(220,38,38,.1); }
-[data-theme="light"] .hook-stat-value,
-[data-theme="light"] .hook-stat-mini .sv { color: #4338ca; }
+/* Slide badges keep their saturated gradient + white text on both
+   themes (see the WOW layer), so no per-theme tint overrides here. */
 
 /* ── Lesson Rating ───────────────────────────────── */
 .lesson-rating {
@@ -1180,24 +1172,38 @@
    together at the right of the modal-header. */
 .lv-header-actions { display: flex; align-items: center; gap: 8px; }
 
+/* ── Activity steps + prereq nudge ──────────────────
+   Classes (not inline styles) so the fullscreen scaling below
+   can reach them. */
+.act-steps { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 16px; padding: 0; }
+.act-step { display: flex; align-items: flex-start; gap: 12px; font-size: .93rem; color: var(--text-muted); line-height: 1.5; }
+.act-step-num {
+  min-width: 28px; height: 28px; border-radius: 50%;
+  background: var(--primary); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .75rem; font-weight: 700; flex-shrink: 0;
+}
+.prereq-nudge {
+  background: rgba(245,158,11,.08); border-left: 3px solid var(--warning);
+  padding: 10px 14px; border-radius: 6px; margin-bottom: 16px;
+  font-size: .85rem; color: var(--text-muted);
+}
+
 /* ── Fullscreen Mode (projector view) ───────────────
-   When the lesson modal is the active fullscreen element, expand
-   it to fill the viewport and scale slide typography up so the
-   back row of a classroom can read it. The browser handles ESC. */
-#lessonModal:fullscreen,
-#lessonModal:-webkit-full-screen,
-#gsModal:fullscreen,
-#gsModal:-webkit-full-screen {
+   slide-utils.js mirrors fullscreen state onto the modal element as an
+   `is-fullscreen` class (covering both the standard and webkit-prefixed
+   APIs), so each rule here is written once instead of duplicated per
+   vendor pseudo-class. Typography scales so the back row of a classroom
+   can read it — and every slide type scales: quizzes, scenarios,
+   discussions, summaries, activities, polls and matching tasks included,
+   not just concept bodies. The browser handles ESC to exit. */
+.modal.is-fullscreen {
   background: var(--bg);
   padding: 0;
   display: flex;
 }
-#lessonModal:fullscreen .modal-content,
-#lessonModal:-webkit-full-screen .modal-content,
-#lessonModal:fullscreen .modal-inner,
-#lessonModal:-webkit-full-screen .modal-inner,
-#gsModal:fullscreen .modal-inner,
-#gsModal:-webkit-full-screen .modal-inner {
+.modal.is-fullscreen .modal-content,
+.modal.is-fullscreen .modal-inner {
   max-width: 100vw;
   max-height: 100vh;
   width: 100vw;
@@ -1206,102 +1212,93 @@
   border: none;
   box-shadow: none;
 }
-/* The actual slide canvas — give it generous side gutters but cap
-   reading width so lines don't span the whole projector. */
-#lessonModal:fullscreen .lv-slide-area,
-#lessonModal:-webkit-full-screen .lv-slide-area,
-#lessonModal:fullscreen .slide-area,
-#lessonModal:-webkit-full-screen .slide-area,
-#gsModal:fullscreen .slide-area,
-#gsModal:-webkit-full-screen .slide-area {
-  padding: 5vh 8vw;
-  max-width: 1400px;
+/* The slide canvas — generous gutters but capped reading width so
+   lines don't span the whole projector. The track pages nest
+   .slide-area inside .modal-body, so zero the outer padding to
+   avoid double gutters. */
+.modal.is-fullscreen .modal-body { padding: 0; }
+.modal.is-fullscreen .lv-slide-area,
+.modal.is-fullscreen .slide-area {
+  padding: 5vh 7vw;
+  max-width: 1500px;
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
 }
-/* Typography scale-up. Specific selectors so we override the rem
-   base sizes set elsewhere in this file. */
-#lessonModal:fullscreen .slide-title,
-#lessonModal:-webkit-full-screen .slide-title,
-#gsModal:fullscreen .slide-title,
-#gsModal:-webkit-full-screen .slide-title {
-  font-size: clamp(2rem, 4.2vw, 3.4rem);
+/* Headline tier */
+.modal.is-fullscreen .slide-title {
+  font-size: clamp(2.1rem, 4.4vw, 3.6rem);
   margin-bottom: 28px;
-  line-height: 1.15;
+  line-height: 1.12;
 }
-#lessonModal:fullscreen .slide-badge,
-#lessonModal:-webkit-full-screen .slide-badge,
-#gsModal:fullscreen .slide-badge,
-#gsModal:-webkit-full-screen .slide-badge {
+.modal.is-fullscreen .slide-badge {
   font-size: clamp(.85rem, 1.1vw, 1rem);
-  padding: 6px 18px;
+  padding: 7px 20px;
   margin-bottom: 18px;
 }
-#lessonModal:fullscreen .hook-body,
-#lessonModal:-webkit-full-screen .hook-body,
-#lessonModal:fullscreen .slide-body,
-#lessonModal:-webkit-full-screen .slide-body,
-#lessonModal:fullscreen .slide-concept .concept-body,
-#lessonModal:-webkit-full-screen .slide-concept .concept-body,
-#gsModal:fullscreen .slide-body,
-#gsModal:-webkit-full-screen .slide-body,
-#gsModal:fullscreen .slide-concept .concept-body,
-#gsModal:-webkit-full-screen .slide-concept .concept-body {
-  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+/* Body tier — the main reading text on every slide type */
+.modal.is-fullscreen :is(.hook-body, .slide-body, .concept-body,
+  .scenario-situation, .disc-intro, .summary-intro, .example-box p,
+  .checklist-intro, .match-intro, .quiz-explanation, .scenario-outcome,
+  .resource-body p, .resource-body li) {
+  font-size: clamp(1.25rem, 1.9vw, 1.65rem);
   line-height: 1.6;
 }
-#lessonModal:fullscreen .concept-bullets li,
-#lessonModal:-webkit-full-screen .concept-bullets li,
-#lessonModal:fullscreen .slide-bullets li,
-#lessonModal:-webkit-full-screen .slide-bullets li,
-#gsModal:fullscreen .concept-bullets li,
-#gsModal:-webkit-full-screen .concept-bullets li,
-#gsModal:fullscreen .slide-bullets li,
-#gsModal:-webkit-full-screen .slide-bullets li {
-  font-size: clamp(1.1rem, 1.6vw, 1.45rem);
+/* Interactive / list tier */
+.modal.is-fullscreen :is(.concept-bullets li, .slide-bullets li,
+  .slide-steps li, .act-step, .quiz-option, .scenario-choice,
+  .disc-q-text, .slide-disc-q, .sp-text, .check-item, .poll-option,
+  .match-term, .match-def, .scenario-question, .quiz-question,
+  .poll-question, .reflection-prompt, .quiz-feedback, .prereq-nudge,
+  .concept-col ul li, .debate-vote-btn) {
+  font-size: clamp(1.15rem, 1.6vw, 1.5rem);
   line-height: 1.55;
 }
-#lessonModal:fullscreen .concept-callout,
-#lessonModal:-webkit-full-screen .concept-callout,
-#lessonModal:fullscreen .slide-callout,
-#lessonModal:-webkit-full-screen .slide-callout,
-#gsModal:fullscreen .concept-callout,
-#gsModal:-webkit-full-screen .concept-callout,
-#gsModal:fullscreen .slide-callout,
-#gsModal:-webkit-full-screen .slide-callout {
+/* Callouts */
+.modal.is-fullscreen :is(.concept-callout, .slide-callout) {
   font-size: clamp(1.1rem, 1.5vw, 1.4rem);
-  padding: 20px 26px;
+  padding: 22px 28px;
   line-height: 1.55;
 }
-/* Bigger nav footer buttons + slide count */
-#lessonModal:fullscreen .lv-footer,
-#lessonModal:-webkit-full-screen .lv-footer,
-#lessonModal:fullscreen .modal-footer,
-#lessonModal:-webkit-full-screen .modal-footer,
-#gsModal:fullscreen .modal-footer,
-#gsModal:-webkit-full-screen .modal-footer {
-  padding: 20px 36px;
+/* Hook stats */
+.modal.is-fullscreen :is(.hook-stat-value, .hook-stat-mini .sv) {
+  font-size: clamp(2.6rem, 4vw, 4rem);
 }
-#lessonModal:fullscreen .lv-footer .btn,
-#lessonModal:-webkit-full-screen .lv-footer .btn,
-#lessonModal:fullscreen .modal-footer .btn,
-#lessonModal:-webkit-full-screen .modal-footer .btn,
-#gsModal:fullscreen .modal-footer .btn,
-#gsModal:-webkit-full-screen .modal-footer .btn {
-  font-size: 1.05rem;
-  padding: 10px 22px;
+.modal.is-fullscreen :is(.hook-stat-label, .hook-stat-mini .sl) {
+  font-size: clamp(.85rem, 1vw, 1rem);
 }
-#lessonModal:fullscreen .lv-slide-count,
-#lessonModal:-webkit-full-screen .lv-slide-count,
-#gsModal:fullscreen .lv-slide-count,
-#gsModal:-webkit-full-screen .lv-slide-count {
-  font-size: .95rem;
+/* Answer-letter and step-number chips grow with their rows */
+.modal.is-fullscreen :is(.qo-letter, .quiz-option-letter, .scenario-choice-letter) {
+  width: 38px; height: 38px; min-width: 38px; font-size: 1.05rem;
 }
-/* Header chrome we don't need on a projector. */
-#lessonModal:fullscreen .lv-print-btn,
-#lessonModal:-webkit-full-screen .lv-print-btn,
-#lessonModal:fullscreen .lv-notes-toggle,
-#lessonModal:-webkit-full-screen .lv-notes-toggle {
-  display: none;
+.modal.is-fullscreen :is(.act-step-num, .disc-q-num) {
+  min-width: 36px; height: 36px; font-size: .95rem;
 }
+/* Inputs pupils may type into while projected */
+.modal.is-fullscreen :is(.reflection-textarea, .builder-field textarea,
+  .builder-field input, .slide-notes-ta) {
+  font-size: 1.1rem;
+}
+.modal.is-fullscreen .interactive-label { font-size: .95rem; }
+/* Video — let it grow, but keep the whole frame on screen */
+.modal.is-fullscreen .video-wrapper,
+.modal.is-fullscreen .slide-video-wrap {
+  max-height: 58vh;
+  max-width: calc(58vh * 16 / 9);
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.modal.is-fullscreen .video-next-btn { font-size: 1.05rem; padding: 14px 24px; }
+.modal.is-fullscreen .video-credit { font-size: .95rem; }
+/* Bigger nav footer + slide chrome */
+.modal.is-fullscreen .lv-footer,
+.modal.is-fullscreen .modal-footer { padding: 18px 36px; }
+.modal.is-fullscreen .lv-footer .btn,
+.modal.is-fullscreen .modal-footer .btn { font-size: 1.1rem; padding: 13px 28px; }
+.modal.is-fullscreen .lv-slide-count { font-size: .95rem; }
+.modal.is-fullscreen .lv-dot { width: 12px; height: 12px; }
+/* Chrome we don't need on a projector — including private notes */
+.modal.is-fullscreen .lv-print-btn,
+.modal.is-fullscreen .lv-notes-toggle,
+.modal.is-fullscreen .notes-panel { display: none !important; }
