@@ -136,7 +136,9 @@ function getStreak() {
 
 /* ── Theme Toggle ─────────────────────────────── */
 function initTheme() {
-  var saved = localStorage.getItem('di_theme') || 'dark';
+  // First visit honours the OS colour-scheme preference
+  var saved = localStorage.getItem('di_theme') ||
+    (window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
   document.documentElement.setAttribute('data-theme', saved);
   updateThemeIcon(saved);
 }
@@ -522,6 +524,7 @@ function openLesson(id) {
   currentSlides = slides;
   currentLessonId = id;
   currentSlideIndex = 0;
+  lvSession = { quizRight: 0, quizTotal: 0, streak: 0 };
 
   // Track in recently viewed
   addToRecentlyViewed(id);
@@ -559,6 +562,10 @@ function openLesson(id) {
   modal.classList.add('open');
   initSlideSwipe('lvSlideArea', function(dir) { navigateSlide(dir); });
 }
+
+/* Per-lesson session stats (quiz score, correct streak) — reset each
+   time a lesson opens, surfaced on the end-of-lesson results screen. */
+var lvSession = { quizRight: 0, quizTotal: 0, streak: 0 };
 
 function renderSlide(index) {
   var slide = currentSlides[index];
@@ -907,6 +914,9 @@ function renderSlide(index) {
   // Inject glossary tooltips
   injectGlossaryTooltips(area);
 
+  // Animate hook stats counting up
+  if (window.diSlide && diSlide.countUp) diSlide.countUp(area);
+
   // Update dot active state
   var dots = document.querySelectorAll('.lv-dot');
   dots.forEach(function(d, i) { d.classList.toggle('active', parseInt(d.dataset.idx) === index); });
@@ -931,15 +941,10 @@ function renderSlide(index) {
   document.getElementById('lvPrev').style.visibility = index === 0 ? 'hidden' : 'visible';
 
   var nextBtn = document.getElementById('lvNext');
+  nextBtn.style.visibility = 'visible';
   if (index === currentSlides.length - 1) {
-    var nextLessonId = getNextLessonId(currentLessonId);
-    if (nextLessonId) {
-      nextBtn.innerHTML = 'Next Lesson &#8594;';
-      nextBtn.onclick = function() { closeModal(); setTimeout(function() { openLesson(nextLessonId); }, 200); };
-    } else {
-      nextBtn.innerHTML = 'Close';
-      nextBtn.onclick = function() { closeModal(); };
-    }
+    nextBtn.innerHTML = 'Finish lesson &#10003;';
+    nextBtn.onclick = function() { showLessonResults(); };
   } else {
     nextBtn.innerHTML = 'Next &#8594;';
     nextBtn.onclick = function() { navigateSlide(1); };
@@ -981,6 +986,61 @@ function navigateSlide(dir) {
     area.classList.add(dir > 0 ? 'slide-area-forward' : 'slide-area-back');
   }
   renderSlide(currentSlideIndex);
+}
+
+/* ── End-of-lesson results screen ───────────────────
+   Shown when the pupil clicks "Finish lesson" on the final slide.
+   Marks the lesson complete (existing confetti/XP/badge flow), then
+   replaces the slide area with a game-style results card. Back
+   returns to the final slide. */
+function showLessonResults() {
+  var area = document.getElementById('lvSlideArea');
+  if (!area || !currentLessonId) return;
+  var id = currentLessonId;
+  var wasComplete = completedLessons.has(id);
+  if (!wasComplete) toggleLesson(id);
+
+  var found = findLesson(id);
+  var stats = [{ num: currentSlides.length, label: 'slides' }];
+  if (lvSession.quizTotal > 0) stats.push({ num: lvSession.quizRight + '/' + lvSession.quizTotal, label: 'quiz correct' });
+  var xp = (wasComplete ? 0 : 20) + lvSession.quizRight * 10;
+  if (xp > 0) stats.push({ num: '+' + xp, label: 'XP earned' });
+  var streakDays = (typeof getStreak === 'function') ? getStreak() : 0;
+  if (streakDays > 0) stats.push({ num: streakDays + '🔥', label: 'day streak' });
+
+  var nextId = getNextLessonId(id);
+  area.innerHTML = diSlide.resultsHTML({
+    emoji: wasComplete ? '✅' : '🎉',
+    title: wasComplete ? 'Lesson revisited!' : 'Lesson complete!',
+    sub: found ? found.lesson.title : '',
+    stats: stats,
+    primaryLabel: nextId ? 'Next lesson &#8594;' : 'Back to course',
+    secondaryLabel: nextId ? 'Back to course' : null
+  });
+  area.scrollTop = 0;
+
+  var primary = document.getElementById('diResultsPrimary');
+  if (primary) primary.onclick = nextId
+    ? function() { closeModal(); setTimeout(function() { openLesson(nextId); }, 200); }
+    : function() { closeModal(); };
+  var secondary = document.getElementById('diResultsSecondary');
+  if (secondary) secondary.onclick = function() { closeModal(); };
+
+  // Footer: hide Next, repoint Back at the final slide
+  var nextBtn = document.getElementById('lvNext');
+  if (nextBtn) nextBtn.style.visibility = 'hidden';
+  var prevBtn = document.getElementById('lvPrev');
+  if (prevBtn) {
+    prevBtn.style.visibility = 'visible';
+    prevBtn.onclick = function() {
+      prevBtn.onclick = function() { navigateSlide(-1); };
+      renderSlide(currentSlideIndex);
+    };
+  }
+  var card = area.querySelector('.di-results');
+  if (card && window.diSlide && diSlide.celebrate) {
+    setTimeout(function() { diSlide.celebrate(card, 0); }, 250);
+  }
 }
 
 function closeModal() {
@@ -1780,10 +1840,15 @@ function checkQuiz(btn, correctIdx, slideIdx) {
   if (lm) lm.style.display = 'block';
   // Save quiz score
   if (currentLessonId) saveQuizScore(currentLessonId, isCorrect);
-  // XP reward + micro-celebration
+  // Session stats + streak-aware celebration
+  lvSession.quizTotal++;
   if (isCorrect) {
+    lvSession.quizRight++;
+    lvSession.streak++;
     addXP(10, 'Quiz answered correctly');
-    if (window.diSlide && diSlide.celebrate) diSlide.celebrate(btn);
+    if (window.diSlide && diSlide.celebrate) diSlide.celebrate(btn, lvSession.streak);
+  } else {
+    lvSession.streak = 0;
   }
   // Adaptive nudge on wrong answer
   if (!isCorrect) showAdaptiveNudge(currentLessonId);
@@ -3144,6 +3209,8 @@ function getLevel(xp) {
 function showXPToast(msg) {
   var el = document.createElement('div');
   el.className = 'xp-toast';
+  el.setAttribute('role', 'status');
+  el.setAttribute('aria-live', 'polite');
   el.textContent = msg;
   document.body.appendChild(el);
   requestAnimationFrame(function() { el.classList.add('show'); });
@@ -3203,6 +3270,18 @@ function renderStreakHeatmap() {
 }
 
 /* ── News Ticker ─────────────────────────────────── */
+/* Merge auto-fetched headlines (js/news-live.js — regenerated weekly
+   by the update-news GitHub Action) into the curated AI_NEWS list.
+   Reverse order so the newest live item ends up first. */
+(function mergeLiveNews() {
+  if (typeof AI_NEWS_LIVE === 'undefined' || typeof AI_NEWS === 'undefined') return;
+  for (var i = AI_NEWS_LIVE.length - 1; i >= 0; i--) {
+    var item = AI_NEWS_LIVE[i];
+    var exists = AI_NEWS.some(function(n) { return n.headline === item.headline; });
+    if (!exists) AI_NEWS.unshift(item);
+  }
+})();
+
 function renderNewsTicker() {
   var track = document.getElementById('tickerTrack');
   if (!track || typeof AI_NEWS === 'undefined') return;
@@ -3308,7 +3387,7 @@ function renderNewsStaleness() {
   var html = '<div class="news-freshness-bar">';
   if (daysSince > 60) {
     html += '<span class="news-stale-warn"><svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-4a1 1 0 00-1 1v2a1 1 0 002 0V10a1 1 0 00-1-1z"/></svg>' +
-             'Feed may be outdated — most recent article: <strong>' + dateLabel + '</strong>. Sign in to load live updates.</span>';
+             'Feed may be outdated — most recent article: <strong>' + dateLabel + '</strong>. The weekly auto-update may need attention (Actions → Update AI News).</span>';
   } else {
     html += '<span class="news-fresh-ok"><svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>' +
              'Feed is current — most recent article: <strong>' + dateLabel + '</strong>.</span>';

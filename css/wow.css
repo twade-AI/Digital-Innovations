@@ -811,4 +811,184 @@ html:not([data-contrast="high"]){scrollbar-color:var(--wow-violet) transparent;s
   .unit-icon,.unit-header:hover .unit-icon{transition:none;transform:rotate(-5deg)}
   #section-home .pathway-card:nth-of-type(odd):hover,
   #section-home .pathway-card:nth-of-type(even):hover{transform:translateY(-4px)}
+/* ════ 14. The road to 10/10: results screen, motion, type layouts ════ */
+
+/* ── End-of-lesson results screen ── */
+.di-results{
+  text-align:center;padding:28px 16px 16px;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+}
+.di-results-emoji{font-size:4rem;line-height:1;animation:di-pop .6s cubic-bezier(.34,1.56,.64,1)}
+.di-results-title{
+  font-family:var(--font-display);font-size:clamp(1.9rem,3.4vw,2.6rem);
+  font-weight:700;letter-spacing:-.02em;
+  background:var(--wow-grad-hot);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+[data-theme="light"] .di-results-title{
+  background:linear-gradient(95deg,var(--primary),#c2410c 55%,#0e7490);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.di-results-sub{font-size:1.02rem;color:var(--text-muted);max-width:50ch}
+.di-results-stats{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin:22px 0 8px;
+}
+.di-rs-stat{
+  min-width:120px;padding:16px 18px;border-radius:16px;
+  border:1.5px solid var(--border);background:var(--bg-card-hover);
+}
+.di-rs-num{
+  font-family:var(--font-display);font-size:1.7rem;font-weight:700;line-height:1.1;
+  background:var(--wow-grad-brand);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.di-rs-label{font-size:.78rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
+.di-results-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+.di-results-primary{font-size:1.05rem;padding:14px 32px}
+@media (prefers-reduced-motion:no-preference){
+  .di-results>*{animation:di-rise .4s ease both}
+  .di-results>:nth-child(2){animation-delay:80ms}
+  .di-results>:nth-child(3){animation-delay:140ms}
+  .di-results>:nth-child(4){animation-delay:220ms}
+  .di-results>:nth-child(5){animation-delay:320ms}
+  .di-rs-stat{animation:di-rise .4s ease both}
+  .di-rs-stat:nth-child(2){animation-delay:90ms}
+  .di-rs-stat:nth-child(3){animation-delay:180ms}
+  .di-rs-stat:nth-child(4){animation-delay:270ms}
+}
+
+/* ── Streak chip (3+ correct in a row) ── */
+.di-streak-chip{
+  position:fixed;z-index:10002;pointer-events:none;
+  transform:translate(-50%,-100%);
+  background:linear-gradient(95deg,#ea580c,#f59e0b);color:#fff;
+  font-weight:800;font-size:.95rem;padding:8px 18px;border-radius:999px;
+  box-shadow:0 6px 22px rgba(234,88,12,.5);white-space:nowrap;
+  animation:di-streak-pop 1.4s cubic-bezier(.22,.9,.3,1) forwards;
+}
+@keyframes di-streak-pop{
+  0%{opacity:0;transform:translate(-50%,-60%) scale(.6)}
+  18%{opacity:1;transform:translate(-50%,-110%) scale(1.08)}
+  30%{transform:translate(-50%,-110%) scale(1)}
+  80%{opacity:1}
+  100%{opacity:0;transform:translate(-50%,-150%) scale(.95)}
+}
+
+/* ── Slide element cascade — content arrives in sequence ── */
+@keyframes di-rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:no-preference){
+  :is(.lv-slide-area,.slide-area)>*>*{animation:di-rise .34s ease both}
+  :is(.lv-slide-area,.slide-area)>*>:nth-child(2){animation-delay:60ms}
+  :is(.lv-slide-area,.slide-area)>*>:nth-child(3){animation-delay:120ms}
+  :is(.lv-slide-area,.slide-area)>*>:nth-child(4){animation-delay:180ms}
+  :is(.lv-slide-area,.slide-area)>*>:nth-child(5){animation-delay:240ms}
+  :is(.lv-slide-area,.slide-area)>*>:nth-child(n+6){animation-delay:300ms}
+}
+
+/* ── Diagrams draw themselves in ──
+   from-only keyframes animate back to each element's natural
+   attribute values (so designed opacities like .55 are preserved). */
+@keyframes di-vis-pop{from{opacity:0;transform:translateY(5px)}}
+@keyframes di-vis-draw{from{stroke-dashoffset:900}}
+@media (prefers-reduced-motion:no-preference){
+  .slide-visual svg :is(rect,circle,ellipse){animation:di-vis-pop .45s ease backwards}
+  .slide-visual svg text{animation:di-vis-pop .45s ease .22s backwards}
+  /* Solid connectors get a draw-on; 900 exceeds the longest line so
+     they still read as solid once settled. */
+  .slide-visual svg :is(line,path):not([stroke-dasharray]){
+    stroke-dasharray:900;
+    animation:di-vis-draw .8s ease .32s backwards;
+  }
+  /* Dashed connectors keep their dash pattern — fade instead */
+  .slide-visual svg :is(line,path)[stroke-dasharray]{animation:di-vis-pop .5s ease .45s backwards}
+}
+
+/* ── Summary slides become a card grid ── */
+.summary-points{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;
+}
+.summary-point{border-radius:16px;flex-direction:column;gap:10px;padding:18px}
+.slide-summary .slide-bullets{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;
+  list-style:none;padding:0;margin:14px 0 0;
+}
+.slide-summary .slide-bullets li{
+  background:var(--bg-card-hover);border:1px solid var(--border);
+  border-radius:16px;padding:16px 18px;margin:0;
+}
+.slide-summary .slide-bullets li::before,
+.slide-summary .slide-bullets li::marker{content:none}
+@media(max-width:640px){
+  .summary-points,.slide-summary .slide-bullets{grid-template-columns:1fr}
+}
+
+/* ── Discussion questions read like a conversation ── */
+.disc-q,.slide-disc-q{
+  border-radius:4px 18px 18px 18px;max-width:92%;
+}
+.disc-q:nth-child(even),.slide-disc-q:nth-child(even){
+  margin-left:8%;border-radius:18px 4px 18px 18px;
+}
+
+/* ── Example slides look like case files ── */
+.slide-example .example-box{
+  position:relative;
+  border:1.5px dashed rgba(34,211,238,.4);
+  border-radius:16px;
+  background:rgba(34,211,238,.06);
+  padding:26px 24px 20px;
+  margin-top:14px;
+}
+[data-theme="light"] .slide-example .example-box{
+  border-color:rgba(14,116,144,.35);background:rgba(14,116,144,.05);
+}
+.slide-example .example-label{
+  position:absolute;top:-12px;left:16px;margin:0;
+  background:linear-gradient(95deg,#0369a1,#0e7490);color:#fff;
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;
+  padding:4px 12px;border-radius:7px;
+  box-shadow:0 3px 10px rgba(3,105,161,.35);
+}
+
+/* ── Guards ── */
+[data-contrast="high"] .di-results-title,
+[data-contrast="high"] .di-rs-num{
+  background:none;-webkit-text-fill-color:#ffff00;color:#ffff00;
+}
+[data-contrast="high"] .di-streak-chip{background:#ffff00;color:#000;box-shadow:none}
+[data-contrast="high"] .slide-example .example-label{background:#ffff00;color:#000}
+[data-font="dyslexic"] .di-results-title,
+[data-font="dyslexic"] .di-rs-num{font-family:'Lexend',system-ui,sans-serif}
+@media (prefers-reduced-motion:reduce){
+  .di-streak-chip{display:none}
+}
+
+/* ════ 15. Review fixes: mobile nav, footer logo ═══════ */
+
+/* The navbar overflowed small phones by ~60px, pushing the ☰ button
+   off-screen entirely. Drop the keyboard-shortcut button on touch
+   widths and tighten the brand row. */
+@media(max-width:768px){
+  .nav-icon-btn{display:none}
+  .nav-inner{padding:0 12px}
+}
+@media(max-width:480px){
+  .nav-brand .hby-mark{display:none}
+  .brand-text{font-size:.98rem}
+  .nav-brand{margin-right:6px;gap:6px}
+  .auth-btn{padding:5px 10px;font-size:.78rem}
+  .settings-wrap{margin-left:2px}
+}
+/* Track-page headers brushed the right edge on 390px screens */
+@media(max-width:480px){
+  .gs-header,.fl-header{gap:8px}
+  .gs-header .btn,.fl-header .btn{padding:6px 10px;font-size:.76rem}
+}
+
+/* Footer Haileybury mark was magenta-on-dark — nearly invisible.
+   Use a white treatment in dark themes only. */
+[data-theme="dark"] footer .hby-mark,
+html:not([data-theme="light"]) footer .hby-mark{
+  filter:brightness(0) invert(.92);
+  opacity:.8;
 }

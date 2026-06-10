@@ -2332,4 +2332,90 @@ var SLIDE_VISUALS = {
     <text x="280" y="190" text-anchor="middle" class="v59" font-size="10" opacity=".6" font-style="italic">"They all involve AI" is a topic. A pattern is how the companies operated — find what repeats.</text>
   </svg>`,
 
+  /* ── L6:2 — The Consent Illusion — what "I agree" really grants ──── */
+  '6:2': `<svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" aria-label="Consent illusion diagram">
+    <defs><style>.v62{font-family:system-ui,sans-serif;fill:currentColor}</style>
+      <marker id="arr62" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="currentColor" opacity=".45"/></marker>
+    </defs>
+    <rect x="10" y="46" width="130" height="62" rx="9" fill="rgba(0,159,227,.1)" stroke="rgba(0,159,227,.4)" stroke-width="1.2"/>
+    <text x="75" y="68" text-anchor="middle" class="v62" font-size="11" font-weight="600">📜 Terms of Service</text>
+    <text x="75" y="85" text-anchor="middle" class="v62" font-size="9.5" opacity=".65">43 pages · ~19,000 words</text>
+    <text x="75" y="99" text-anchor="middle" class="v62" font-size="9.5" opacity=".65">reading time: 76 min</text>
+    <line x1="140" y1="77" x2="196" y2="77" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#arr62)"/>
+    <text x="168" y="68" text-anchor="middle" class="v62" font-size="9" fill="#f59e0b" font-weight="600">8 seconds later</text>
+    <rect x="200" y="55" width="104" height="44" rx="22" fill="rgba(34,197,94,.16)" stroke="rgba(34,197,94,.5)" stroke-width="1.4"/>
+    <text x="252" y="82" text-anchor="middle" class="v62" font-size="13" font-weight="700" fill="#22c55e">✓ I Agree</text>
+    <line x1="304" y1="77" x2="356" y2="77" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#arr62)"/>
+    <text x="330" y="68" text-anchor="middle" class="v62" font-size="9" opacity=".55">you granted:</text>
+    <rect x="360" y="14" width="190" height="36" rx="7" fill="rgba(239,68,68,.1)" stroke="rgba(239,68,68,.4)" stroke-width="1.2"/>
+    <text x="455" y="36" text-anchor="middle" class="v62" font-size="10">📍 Collect contacts, location, habits</text>
+    <rect x="360" y="58" width="190" height="36" rx="7" fill="rgba(239,68,68,.1)" stroke="rgba(239,68,68,.4)" stroke-width="1.2"/>
+    <text x="455" y="80" text-anchor="middle" class="v62" font-size="10">🤖 Train AI models on your words</text>
+    <rect x="360" y="102" width="190" height="36" rx="7" fill="rgba(239,68,68,.1)" stroke="rgba(239,68,68,.4)" stroke-width="1.2"/>
+    <text x="455" y="124" text-anchor="middle" class="v62" font-size="10">🔁 Share with unnamed "partners"</text>
+    <text x="280" y="166" text-anchor="middle" class="v62" font-size="10.5" fill="#ef4444" font-weight="600">"Consent" nobody can realistically read isn't informed consent</text>
+    <text x="280" y="186" text-anchor="middle" class="v62" font-size="10" opacity=".6" font-style="italic">That trade — free tool, paid for with data — is the business model of the data harvest</text>
+  </svg>`,
+
+  /* ── L8:2 — Domain-Specific Oversight — stakes ladder ─────────────── */
+  '8:2': `<svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" aria-label="Oversight by stakes diagram">
+    <defs><style>.v82{font-family:system-ui,sans-serif;fill:currentColor}</style>
+      <marker id="arr82" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="currentColor" opacity=".45"/></marker>
+    </defs>
+    <line x1="30" y1="170" x2="30" y2="22" stroke="currentColor" stroke-opacity=".4" stroke-width="1.5" marker-end="url(#arr82)"/>
+    <text x="22" y="96" class="v82" font-size="9.5" opacity=".6" transform="rotate(-90 22 96)" text-anchor="middle">STAKES</text>
+    <rect x="50" y="132" width="225" height="38" rx="8" fill="rgba(34,197,94,.1)" stroke="rgba(34,197,94,.45)" stroke-width="1.2"/>
+    <text x="162" y="148" text-anchor="middle" class="v82" font-size="10" font-weight="600" fill="#22c55e">LOW — spam filters, music recs</text>
+    <text x="162" y="163" text-anchor="middle" class="v82" font-size="9" opacity=".65">mistakes are cheap and reversible</text>
+    <rect x="50" y="84" width="225" height="38" rx="8" fill="rgba(245,158,11,.1)" stroke="rgba(245,158,11,.45)" stroke-width="1.2"/>
+    <text x="162" y="100" text-anchor="middle" class="v82" font-size="10" font-weight="600" fill="#f59e0b">MEDIUM — loans, CV screening</text>
+    <text x="162" y="115" text-anchor="middle" class="v82" font-size="9" opacity=".65">mistakes change life chances</text>
+    <rect x="50" y="36" width="225" height="38" rx="8" fill="rgba(239,68,68,.1)" stroke="rgba(239,68,68,.45)" stroke-width="1.2"/>
+    <text x="162" y="52" text-anchor="middle" class="v82" font-size="10" font-weight="600" fill="#ef4444">HIGH — diagnosis, sentencing</text>
+    <text x="162" y="67" text-anchor="middle" class="v82" font-size="9" opacity=".65">mistakes can be irreversible</text>
+    <line x1="275" y1="151" x2="330" y2="151" stroke="currentColor" stroke-opacity=".35" stroke-width="1.3" marker-end="url(#arr82)"/>
+    <line x1="275" y1="103" x2="330" y2="103" stroke="currentColor" stroke-opacity=".35" stroke-width="1.3" marker-end="url(#arr82)"/>
+    <line x1="275" y1="55" x2="330" y2="55" stroke="currentColor" stroke-opacity=".35" stroke-width="1.3" marker-end="url(#arr82)"/>
+    <rect x="334" y="134" width="216" height="34" rx="8" fill="rgba(34,197,94,.08)" stroke="rgba(34,197,94,.35)" stroke-width="1.1"/>
+    <text x="442" y="155" text-anchor="middle" class="v82" font-size="10">🤖 OUT of the loop — AI acts alone</text>
+    <rect x="334" y="86" width="216" height="34" rx="8" fill="rgba(245,158,11,.08)" stroke="rgba(245,158,11,.35)" stroke-width="1.1"/>
+    <text x="442" y="107" text-anchor="middle" class="v82" font-size="10">👀 ON the loop — human monitors, can veto</text>
+    <rect x="334" y="38" width="216" height="34" rx="8" fill="rgba(239,68,68,.08)" stroke="rgba(239,68,68,.35)" stroke-width="1.1"/>
+    <text x="442" y="59" text-anchor="middle" class="v82" font-size="10">👤 IN the loop — human makes the call</text>
+    <text x="280" y="192" text-anchor="middle" class="v82" font-size="10" opacity=".6" font-style="italic">Match the oversight to the stakes — full automation where errors are cheap, human judgement where they aren't</text>
+  </svg>`,
+
+  /* ── L9:4 — Iterating for Quality — the prompt refinement loop ────── */
+  '9:4': `<svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" aria-label="Prompt iteration loop diagram">
+    <defs><style>.v94{font-family:system-ui,sans-serif;fill:currentColor}</style>
+      <marker id="arr94" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#c64b74" opacity=".7"/></marker>
+    </defs>
+    <rect x="14" y="30" width="120" height="40" rx="8" fill="rgba(0,159,227,.12)" stroke="rgba(0,159,227,.4)" stroke-width="1.2"/>
+    <text x="74" y="54" text-anchor="middle" class="v94" font-size="11" font-weight="600">✍️ Prompt</text>
+    <rect x="14" y="120" width="120" height="40" rx="8" fill="rgba(245,158,11,.12)" stroke="rgba(245,158,11,.4)" stroke-width="1.2"/>
+    <text x="74" y="139" text-anchor="middle" class="v94" font-size="11" font-weight="600">🔧 Refine it</text>
+    <text x="74" y="153" text-anchor="middle" class="v94" font-size="8.5" opacity=".65">add context, tighten format</text>
+    <rect x="200" y="30" width="120" height="40" rx="8" fill="rgba(155,24,68,.12)" stroke="rgba(155,24,68,.45)" stroke-width="1.2"/>
+    <text x="260" y="54" text-anchor="middle" class="v94" font-size="11" font-weight="600">🤖 Output</text>
+    <rect x="200" y="120" width="120" height="40" rx="8" fill="rgba(34,197,94,.12)" stroke="rgba(34,197,94,.4)" stroke-width="1.2"/>
+    <text x="260" y="139" text-anchor="middle" class="v94" font-size="11" font-weight="600">🧐 Critique</text>
+    <text x="260" y="153" text-anchor="middle" class="v94" font-size="8.5" opacity=".65">what's wrong? what's missing?</text>
+    <path d="M 134 50 L 196 50" fill="none" stroke="rgba(155,24,68,.55)" stroke-width="1.6" marker-end="url(#arr94)"/>
+    <path d="M 260 70 L 260 116" fill="none" stroke="rgba(155,24,68,.55)" stroke-width="1.6" marker-end="url(#arr94)"/>
+    <path d="M 196 140 L 138 140" fill="none" stroke="rgba(155,24,68,.55)" stroke-width="1.6" marker-end="url(#arr94)"/>
+    <path d="M 74 116 L 74 74" fill="none" stroke="rgba(155,24,68,.55)" stroke-width="1.6" marker-end="url(#arr94)"/>
+    <text x="167" y="105" text-anchor="middle" class="v94" font-size="9" opacity=".55" font-style="italic">each lap = one version</text>
+    <text x="370" y="30" class="v94" font-size="10" opacity=".55" font-weight="600">QUALITY PER VERSION</text>
+    <text x="370" y="58" class="v94" font-size="11" font-weight="600">v1</text>
+    <rect x="395" y="46" width="62" height="16" rx="4" fill="rgba(239,68,68,.25)" stroke="rgba(239,68,68,.45)" stroke-width="1"/>
+    <text x="466" y="59" class="v94" font-size="10" fill="#ef4444" font-weight="700">vague</text>
+    <text x="370" y="98" class="v94" font-size="11" font-weight="600">v2</text>
+    <rect x="395" y="86" width="104" height="16" rx="4" fill="rgba(245,158,11,.25)" stroke="rgba(245,158,11,.5)" stroke-width="1"/>
+    <text x="508" y="99" class="v94" font-size="10" fill="#f59e0b" font-weight="700">usable</text>
+    <text x="370" y="138" class="v94" font-size="11" font-weight="600">v3</text>
+    <rect x="395" y="126" width="148" height="16" rx="4" fill="rgba(34,197,94,.25)" stroke="rgba(34,197,94,.5)" stroke-width="1"/>
+    <text x="512" y="158" text-anchor="end" class="v94" font-size="10" fill="#22c55e" font-weight="700">precise ✓</text>
+    <text x="280" y="190" text-anchor="middle" class="v94" font-size="10" opacity=".6" font-style="italic">First answers are rarely best answers — professionals iterate, and log what changed between versions</text>
+  </svg>`,
+
 };

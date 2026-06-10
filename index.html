@@ -4,6 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Digital Innovations AEP — Academic Extension Programme</title>
+  <meta name="description" content="Haileybury's AI literacy platform — 100+ lessons across three courses covering how AI works, prompt engineering, ethics, revision skills and a capstone project, for pupils aged 13–18.">
+  <link rel="canonical" href="https://www.digitalinnovations.uk/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.digitalinnovations.uk/">
+  <meta property="og:title" content="Digital Innovations — Haileybury's AI literacy platform">
+  <meta property="og:description" content="Elevate your learning, don't replace your thinking. 100+ lessons on how AI works, prompting, ethics and revision skills for ages 13–18.">
+  <meta property="og:image" content="https://www.digitalinnovations.uk/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <!-- Apply saved theme (or the OS preference on first visit) BEFORE CSS loads -->
+  <script>try{var _t=localStorage.getItem('di_theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/lesson.css">
   <link rel="stylesheet" href="css/brand.css">
@@ -14,8 +26,8 @@
   <meta name="theme-color" content="#9b1844">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <!-- Supabase SDK (loaded async; auth features degrade gracefully offline) -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <!-- Supabase SDK (deferred; auth features degrade gracefully offline) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js" defer></script>
 </head>
 <body>
   <div id="offlineBanner" class="offline-banner" style="display:none" role="status" aria-live="polite">
@@ -384,7 +396,7 @@
   <section id="section-news" class="section">
     <div class="section-header">
       <h2>📰 AI in the News</h2>
-      <p>Stay up to date with the latest developments in artificial intelligence. Sourced from <a href="https://www.theneuron.ai/newsletter/" target="_blank" rel="noopener" class="text-link">The Neuron daily newsletter ↗</a></p>
+      <p>Stay up to date with the latest developments in artificial intelligence. Refreshed automatically every week from the BBC, The Verge, MIT Technology Review and AI-lab blogs — plus stories picked by your teacher.</p>
     </div>
     <div id="newsStalenessBanner"></div>
     <div id="newsTagFilters" class="news-tag-filters"></div>
@@ -715,20 +727,24 @@
     <p>Haileybury: Developed by Mr Wade</p>
   </footer>
 
-  <script src="js/supabase-config.js"></script>
-  <script src="js/data.js"></script>
-  <script src="js/slides-u1u2.js"></script>
-  <script src="js/slides-u3u4.js"></script>
-  <script src="js/slides-u5u6.js"></script>
-  <script src="js/slides-critical.js"></script>
-  <script src="js/slides-advanced.js"></script>
-  <script src="js/slides-companions.js"></script>
-  <script src="js/quiz-bank.js"></script>
-  <script src="js/visuals.js"></script>
-  <script src="js/slide-utils.js"></script>
-  <script src="js/app.js"></script>
+  <!-- All local scripts are deferred: execution order is preserved
+       (after the deferred Supabase SDK above) while HTML parsing is
+       never blocked — ~1.5MB of lesson data no longer delays paint. -->
+  <script src="js/supabase-config.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/news-live.js" defer></script>
+  <script src="js/slides-u1u2.js" defer></script>
+  <script src="js/slides-u3u4.js" defer></script>
+  <script src="js/slides-u5u6.js" defer></script>
+  <script src="js/slides-critical.js" defer></script>
+  <script src="js/slides-advanced.js" defer></script>
+  <script src="js/slides-companions.js" defer></script>
+  <script src="js/quiz-bank.js" defer></script>
+  <script src="js/visuals.js" defer></script>
+  <script src="js/slide-utils.js" defer></script>
+  <script src="js/app.js" defer></script>
   <script src="js/tts.js" defer></script>
-  <script src="js/auth.js"></script>
+  <script src="js/auth.js" defer></script>
   <!-- Floating Continue Button (appears when hero CTA scrolls out of view) -->
   <!-- Mobile bottom tab bar -->
   <nav class="mobile-tabs" id="mobileTabs" aria-label="Mobile navigation">

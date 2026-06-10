@@ -5,8 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Digital Innovations — Removes</title>
   <link rel="manifest" href="manifest.json">
+  <meta name="description" content="Digital Innovations — the Removes AI course: 34 self-paced lessons on how AI works, revision skills, deepfakes, bias and ethics for Year 9 pupils.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Removes AI Course — Digital Innovations">
+  <meta property="og:image" content="https://www.digitalinnovations.uk/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
-  <script>try{var _t=localStorage.getItem('di_theme');if(_t)document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
+  <script>try{var _t=localStorage.getItem('di_theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/lesson.css">
   <link rel="stylesheet" href="css/brand.css">
@@ -378,6 +384,8 @@
   function gsShowXPToast(msg){
     var el = document.createElement('div');
     el.className = 'xp-toast';
+    el.setAttribute('role', 'status');
+    el.setAttribute('aria-live', 'polite');
     el.textContent = msg;
     document.body.appendChild(el);
     requestAnimationFrame(function(){ el.classList.add('show'); });
@@ -649,6 +657,7 @@
     gsSlides = SLIDES_GCSE[id] || [];
     if (!gsSlides.length) return;
     gsSlideIdx = 0;
+    gsSession = { quizRight: 0, quizTotal: 0, streak: 0 };
     document.getElementById('gsUnitLabel').textContent = found.unit.title;
     document.getElementById('gsLessonTitle').textContent = found.lesson.title;
     gsRenderSlide();
@@ -692,6 +701,8 @@
   }
 
   function gsRenderSlide() {
+    var nb = document.getElementById('gsNextBtn');
+    if (nb) nb.style.visibility = 'visible';
     try {
       gsRenderSlideInner();
     } catch (err) {
@@ -761,6 +772,55 @@
     }
   }
 
+  /* Per-lesson session stats for the results screen */
+  var gsSession = { quizRight: 0, quizTotal: 0, streak: 0 };
+
+  function gsNextLessonId(id) {
+    var flat = [];
+    GCSE_UNITS.forEach(function(u){ u.lessons.forEach(function(l){ flat.push(l.id); }); });
+    var i = flat.indexOf(id);
+    return (i > -1 && i < flat.length - 1) ? flat[i + 1] : null;
+  }
+
+  function gsShowResults(wasDone) {
+    var area = document.getElementById('gsSlideArea');
+    var found = gsGetLesson(gsCurrentId);
+    var total = GCSE_UNITS.reduce(function(s,u){return s+u.lessons.length;},0);
+    var stats = [{ num: gsSlides.length, label: 'slides' }];
+    if (gsSession.quizTotal > 0) stats.push({ num: gsSession.quizRight + '/' + gsSession.quizTotal, label: 'quiz correct' });
+    var xp = (wasDone ? 0 : 20) + gsSession.quizRight * 10;
+    if (xp > 0) stats.push({ num: '+' + xp, label: 'XP earned' });
+    stats.push({ num: gsDone.size + '/' + total, label: 'lessons done' });
+    var nextId = gsNextLessonId(gsCurrentId);
+    area.innerHTML = diSlide.resultsHTML({
+      emoji: wasDone ? '✅' : '🎉',
+      title: wasDone ? 'Lesson revisited!' : 'Lesson complete!',
+      sub: found ? found.lesson.title : '',
+      stats: stats,
+      primaryLabel: nextId ? 'Next lesson &#8594;' : 'Back to course',
+      secondaryLabel: nextId ? 'Back to course' : null
+    });
+    area.scrollTop = 0;
+    var primary = document.getElementById('diResultsPrimary');
+    if (primary) primary.onclick = nextId
+      ? function() { gsCloseLesson(); setTimeout(function() { gsOpenLesson(nextId); }, 150); }
+      : function() { gsCloseLesson(); };
+    var secondary = document.getElementById('diResultsSecondary');
+    if (secondary) secondary.onclick = function() { gsCloseLesson(); };
+    var nextBtn = document.getElementById('gsNextBtn');
+    if (nextBtn) nextBtn.style.visibility = 'hidden';
+    var prevBtn = document.getElementById('gsPrevBtn');
+    if (prevBtn) prevBtn.onclick = function() {
+      prevBtn.onclick = function() { gsPrevSlide(); };
+      if (nextBtn) nextBtn.style.visibility = 'visible';
+      gsRenderSlide();
+    };
+    var card = area.querySelector('.di-results');
+    if (card && window.diSlide && diSlide.celebrate) {
+      setTimeout(function() { diSlide.celebrate(card, 0); }, 250);
+    }
+  }
+
   function gsNextSlide() {
     // Block forward progression on an unanswered quiz.
     var cur = gsSlides[gsSlideIdx];
@@ -774,9 +834,9 @@
     // than silently leaving the modal open with no way forward.
     if (gsSlideIdx === gsSlides.length-1) {
       try {
-        if (gsDone.has(gsCurrentId)) { gsCloseLesson(); return; }
-        gsMarkDone(gsCurrentId);
-        gsCloseLesson();
+        var wasDone = gsDone.has(gsCurrentId);
+        if (!wasDone) gsMarkDone(gsCurrentId);
+        gsShowResults(wasDone);
       } catch (err) {
         console.error('[Removes] Failed to mark lesson complete:', err);
         gsShowXPToast('⚠ Could not save completion — please reload and try again.');
@@ -1227,9 +1287,14 @@
     });
     var fb=document.getElementById('gsQuizFb');
     if(fb){var s=gsSlides[gsSlideIdx];fb.style.display='block';fb.innerHTML=(chosen===correct?'✅ Correct! ':'❌ Not quite. ')+(s.explanation||'');}
+    gsSession.quizTotal++;
     if (chosen === correct) {
+      gsSession.quizRight++;
+      gsSession.streak++;
       gsAwardOnce('quiz:'+gsCurrentId+':'+gsSlideIdx, 10, 'Quiz answered correctly');
-      if (window.diSlide && diSlide.celebrate) diSlide.celebrate(btn);
+      if (window.diSlide && diSlide.celebrate) diSlide.celebrate(btn, gsSession.streak);
+    } else {
+      gsSession.streak = 0;
     }
     // Unlock the Next button — the pupil has engaged with the question.
     var next = document.getElementById('gsNextBtn');

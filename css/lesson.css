@@ -1250,7 +1250,8 @@
   .disc-q-text, .slide-disc-q, .sp-text, .check-item, .poll-option,
   .match-term, .match-def, .scenario-question, .quiz-question,
   .poll-question, .reflection-prompt, .quiz-feedback, .prereq-nudge,
-  .concept-col ul li, .debate-vote-btn) {
+  .concept-col ul li, .debate-vote-btn, .chat-msg-bubble, .ptfc-output,
+  .slide-reveal, .checklist-result) {
   font-size: clamp(1.15rem, 1.6vw, 1.5rem);
   line-height: 1.55;
 }
@@ -1274,12 +1275,21 @@
 .modal.is-fullscreen :is(.act-step-num, .disc-q-num) {
   min-width: 36px; height: 36px; font-size: .95rem;
 }
-/* Inputs pupils may type into while projected */
+/* Inputs pupils type into while projected — reflections, notes,
+   prompt-builder fields — scale with the body text around them */
 .modal.is-fullscreen :is(.reflection-textarea, .builder-field textarea,
-  .builder-field input, .slide-notes-ta) {
-  font-size: 1.1rem;
+  .builder-field input, .slide-notes-ta, .ptfc-input) {
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+  line-height: 1.55;
 }
-.modal.is-fullscreen .interactive-label { font-size: .95rem; }
+/* Activity furniture: labels, reveal buttons, builder chrome */
+.modal.is-fullscreen .interactive-label { font-size: 1.05rem; }
+.modal.is-fullscreen :is(.slide-notes-label, .builder-field label,
+  .builder-output-label, .poll-note, .lesson-rating-label) { font-size: .95rem; }
+.modal.is-fullscreen .builder-output-text { font-size: clamp(1rem, 1.3vw, 1.25rem); }
+.modal.is-fullscreen .slide-reveal-btn { font-size: 1.05rem; padding: 12px 22px; }
+.modal.is-fullscreen .ptfc-label { font-size: .9rem; }
+.modal.is-fullscreen .ptfc-label span { width: 36px; height: 36px; font-size: 1.1rem; }
 /* Video — let it grow, but keep the whole frame on screen */
 .modal.is-fullscreen .video-wrapper,
 .modal.is-fullscreen .slide-video-wrap {

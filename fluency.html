@@ -6,9 +6,14 @@
   <title>AI Digital Passport — Digital Innovations</title>
   <meta name="description" content="A self-directed 20-lesson AI Digital Passport. No login needed. Works offline.">
   <link rel="manifest" href="manifest.json">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI Digital Passport — Digital Innovations">
+  <meta property="og:image" content="https://www.digitalinnovations.uk/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <!-- Apply saved theme BEFORE CSS loads — eliminates flash of unstyled content -->
-  <script>try{var _t=localStorage.getItem('di_theme');if(_t)document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
+  <script>try{var _t=localStorage.getItem('di_theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/lesson.css">
   <link rel="stylesheet" href="css/brand.css">
@@ -803,6 +808,7 @@
     flCurrentSlides = flGetSlides(id);
     if (!flCurrentSlides.length) return;
     flCurrentSlideIdx = 0;
+    flSession = { quizRight: 0, quizTotal: 0, streak: 0 };
 
     var lessonData = null, unitData = null;
     for (var ui = 0; ui < UNITS.length; ui++) {
@@ -887,6 +893,7 @@
     // Nav buttons
     var prev = document.getElementById('prevBtn');
     var next = document.getElementById('nextBtn');
+    if (next) next.style.visibility = 'visible';
     if (prev) prev.disabled = idx === 0;
     var isLast = idx === total - 1;
     var isDone = flDone.has(flCurrentLessonId);
@@ -1076,7 +1083,14 @@
       fb.style.display = 'block';
       fb.innerHTML = (chosen === correct ? '✅ Correct! ' : '❌ Not quite. ') + (slide.explanation || '');
     }
-    if (chosen === correct && window.diSlide && diSlide.celebrate) diSlide.celebrate(btn);
+    flSession.quizTotal++;
+    if (chosen === correct) {
+      flSession.quizRight++;
+      flSession.streak++;
+      if (window.diSlide && diSlide.celebrate) diSlide.celebrate(btn, flSession.streak);
+    } else {
+      flSession.streak = 0;
+    }
     // Unlock Next — pupil has engaged with the question.
     var next = document.getElementById('nextBtn');
     if (next) { next.disabled = false; next.removeAttribute('title'); }
@@ -1090,6 +1104,57 @@
     area.classList.add(dir > 0 ? 'slide-area-forward' : 'slide-area-back');
   }
 
+  /* Per-lesson session stats for the results screen */
+  var flSession = { quizRight: 0, quizTotal: 0, streak: 0 };
+
+  function flNextLessonId(id) {
+    for (var i = 0; i < FL_TRACK.length - 1; i++) {
+      if (FL_TRACK[i].id === id) return FL_TRACK[i + 1].id;
+    }
+    return null;
+  }
+
+  function flShowResults(wasDone) {
+    var area = document.getElementById('slideArea');
+    var stats = [{ num: flCurrentSlides.length, label: 'slides' }];
+    if (flSession.quizTotal > 0) stats.push({ num: flSession.quizRight + '/' + flSession.quizTotal, label: 'quiz correct' });
+    stats.push({ num: flDone.size + '/' + FL_TRACK.length, label: 'passport stamps' });
+    var lessonData = null;
+    for (var ui = 0; ui < UNITS.length && !lessonData; ui++) {
+      for (var li = 0; li < UNITS[ui].lessons.length; li++) {
+        if (UNITS[ui].lessons[li].id === flCurrentLessonId) { lessonData = UNITS[ui].lessons[li]; break; }
+      }
+    }
+    var nextId = flNextLessonId(flCurrentLessonId);
+    area.innerHTML = diSlide.resultsHTML({
+      emoji: wasDone ? '✅' : '🎉',
+      title: wasDone ? 'Lesson revisited!' : 'Passport stamped!',
+      sub: lessonData ? lessonData.title : '',
+      stats: stats,
+      primaryLabel: nextId ? 'Next lesson &#8594;' : 'Back to passport',
+      secondaryLabel: nextId ? 'Back to passport' : null
+    });
+    area.scrollTop = 0;
+    var primary = document.getElementById('diResultsPrimary');
+    if (primary) primary.onclick = nextId
+      ? function() { flCloseLesson(); setTimeout(function() { flOpenLesson(nextId); }, 150); }
+      : function() { flCloseLesson(); };
+    var secondary = document.getElementById('diResultsSecondary');
+    if (secondary) secondary.onclick = function() { flCloseLesson(); };
+    var nextBtn = document.getElementById('nextBtn');
+    if (nextBtn) nextBtn.style.visibility = 'hidden';
+    var prevBtn = document.getElementById('prevBtn');
+    if (prevBtn) prevBtn.onclick = function() {
+      prevBtn.onclick = function() { flPrevSlide(); };
+      if (nextBtn) nextBtn.style.visibility = 'visible';
+      flRenderSlide();
+    };
+    var card = area.querySelector('.di-results');
+    if (card && window.diSlide && diSlide.celebrate) {
+      setTimeout(function() { diSlide.celebrate(card, 0); }, 250);
+    }
+  }
+
   function flNextSlide() {
     // Block forward progression on an unanswered quiz.
     var cur = flCurrentSlides[flCurrentSlideIdx];
@@ -1099,10 +1164,9 @@
     }
     var isLast = flCurrentSlideIdx === flCurrentSlides.length - 1;
     if (isLast) {
-      var isDone = flDone.has(flCurrentLessonId);
-      if (isDone) { flCloseLesson(); return; }
-      flMarkDone(flCurrentLessonId);
-      flCloseLesson();
+      var wasDone = flDone.has(flCurrentLessonId);
+      if (!wasDone) flMarkDone(flCurrentLessonId);
+      flShowResults(wasDone);
       return;
     }
     flCurrentSlideIdx++;

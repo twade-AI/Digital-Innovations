@@ -6,6 +6,9 @@
 const SHELL_CACHE  = 'di-shell-v10';  // HTML + CSS + fonts — slow to change
 const CODE_CACHE   = 'di-code-v8';    // JS — changes with every feature
 const ASSETS_CACHE = 'di-assets-v2';  // Logos, icons, manifest
+const SHELL_CACHE  = 'di-shell-v12';  // HTML + CSS + fonts — slow to change
+const CODE_CACHE   = 'di-code-v13';   // JS — changes with every feature
+const ASSETS_CACHE = 'di-assets-v3';  // Logos, icons, manifest
 const ALL_CACHES   = [SHELL_CACHE, CODE_CACHE, ASSETS_CACHE];
 
 const SHELL_ASSETS = [
@@ -32,6 +35,7 @@ const CODE_ASSETS = [
   './js/app.js',
   './js/auth.js',
   './js/data.js',
+  './js/news-live.js',
   './js/quiz-bank.js',
   './js/visuals.js',
   './js/slides-u1u2.js',
@@ -46,6 +50,9 @@ const CODE_ASSETS = [
 
 const STATIC_ASSETS = [
   './icon.svg',
+  './assets/icons/icon-192.png',
+  './assets/icons/icon-512.png',
+  './assets/icons/apple-touch-icon.png',
   './manifest.json',
   './assets/brand/logo/haileybury-magenta.png',
 ];
