@@ -1,0 +1,406 @@
+/* Digital Innovations — WOW layer
+   Bold, vibrant reskin aimed at 13–18 year-olds. Loaded LAST, after
+   style.css / lesson.css / brand.css and each page's inline styles,
+   so plain class selectors win on cascade order alone.
+   Big type, hot gradients, animated aurora, candy pills, glowing CTAs.
+   Remove this <link> tag to fall back to the quieter look.
+   Accessibility contract: high-contrast, dyslexia-font and
+   reduced-motion modes are explicitly re-guarded at the bottom. */
+
+:root{
+  --font-display:'Space Grotesk','Calluna Sans','Inter',system-ui,sans-serif;
+  /* Hot accent palette — sits alongside the Haileybury magenta/cyan */
+  --wow-pink:#ec4899;
+  --wow-pink-soft:#f472b6;
+  --wow-violet:#8b5cf6;
+  --wow-cyan:#22d3ee;
+  --wow-amber:#fbbf24;
+  --wow-lime:#a3e635;
+  --wow-grad-hot:linear-gradient(95deg,#f472b6,#fbbf24 55%,#22d3ee);
+  --wow-grad-brand:linear-gradient(95deg,var(--primary),var(--wow-pink) 50%,var(--accent));
+}
+
+/* ── 1. Global type scale — everything is rem-based, so one bump
+       lifts the whole site (the “text is too small” fix, part 1) ── */
+html{font-size:17px}
+@media(max-width:380px){ html{font-size:16px} }
+
+/* Part 2 — floor-raise the smallest reading text. Labels and chips
+   stay small on purpose; sentences pupils actually read do not. */
+.pathway-sub{font-size:1.15rem;color:var(--text-muted);white-space:normal;max-width:660px}
+.section-header p{font-size:1.05rem}
+.pc-desc{font-size:.95rem;color:var(--text-muted)}
+.pc-features li{font-size:.9rem}
+.lesson-title{font-size:1rem}
+.lesson-desc{font-size:.85rem;color:var(--text-muted)}
+.news-card-headline{font-size:.95rem;line-height:1.45}
+.srq-lesson-title{font-size:.92rem}
+.rv-card-title{font-size:.9rem}
+.flb-title{font-size:1.1rem}
+.flb-desc{font-size:.9rem}
+.nav-link{font-size:.9rem;font-weight:600}
+.ticker-item{font-size:.84rem}
+/* Lesson viewer — the surfaces pupils stare at for 40 minutes */
+.slide-concept .concept-body{font-size:1.04rem;line-height:1.75}
+.concept-bullets li{font-size:1rem}
+.concept-col ul li{font-size:.9rem}
+.concept-callout{font-size:.98rem}
+.example-box p{font-size:.98rem}
+.quiz-option{font-size:.98rem}
+.quiz-feedback{font-size:.95rem}
+.scenario-situation{font-size:1.02rem}
+.scenario-choice{font-size:.97rem}
+.slide-discussion .disc-intro{font-size:1rem}
+.disc-q-text{font-size:.95rem}
+.slide-summary .summary-intro{font-size:1rem}
+.reflection-prompt{font-size:1rem}
+.glossary-body p{font-size:.93rem}
+.match-term,.match-def{font-size:.92rem}
+.resource-body ul li,.resource-body ol li{font-size:.93rem}
+
+/* ── 2. Aurora + dot-grid backdrop ──────────────────
+   Two layers behind everything: a drifting multi-colour aurora and a
+   faint tech dot grid. Pure gradients — no blur filters, cheap to paint. */
+body{position:relative}
+body::before{
+  content:"";position:fixed;inset:-20%;z-index:-2;pointer-events:none;
+  background:
+    radial-gradient(ellipse 700px 520px at 12% 8%,rgba(155,24,68,.22),transparent 65%),
+    radial-gradient(ellipse 640px 480px at 88% 18%,rgba(0,159,227,.16),transparent 65%),
+    radial-gradient(ellipse 620px 520px at 78% 88%,rgba(139,92,246,.14),transparent 65%),
+    radial-gradient(ellipse 540px 420px at 18% 78%,rgba(236,72,153,.10),transparent 65%);
+  animation:wow-aurora 26s ease-in-out infinite alternate;
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:radial-gradient(circle,rgba(148,163,184,.13) 1px,transparent 1.4px);
+  background-size:26px 26px;
+  -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 30%,transparent 100%);
+  mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 30%,transparent 100%);
+}
+@keyframes wow-aurora{
+  from{transform:translate3d(-2.5%,-2%,0) scale(1)}
+  to{transform:translate3d(2.5%,2%,0) scale(1.08)}
+}
+[data-theme="light"] body::before{
+  background:
+    radial-gradient(ellipse 700px 520px at 12% 8%,rgba(155,24,68,.10),transparent 65%),
+    radial-gradient(ellipse 640px 480px at 88% 18%,rgba(0,159,227,.09),transparent 65%),
+    radial-gradient(ellipse 620px 520px at 78% 88%,rgba(139,92,246,.08),transparent 65%),
+    radial-gradient(ellipse 540px 420px at 18% 78%,rgba(236,72,153,.06),transparent 65%);
+}
+[data-theme="light"] body::after{
+  background-image:radial-gradient(circle,rgba(15,23,42,.08) 1px,transparent 1.4px);
+}
+
+/* ── 3. Display typography ──────────────────────────
+   Space Grotesk for the big moments; Calluna stays for body copy. */
+.pathway-title,.section-header h2,.pc-title,
+.gs-hero h1,.fl-hero h1,.gs-complete h2,.fl-complete h2,
+.home-section-title,.qq-title,.viva-title,#modalBody h2,
+.stat-num,.gs-stat-num,.fl-stat-num,.pstat-num,.ar-num,
+.milestone-pct,.profile-name,.ob-title,.auth-title{
+  font-family:var(--font-display);
+}
+
+/* ── 4. Home hero ───────────────────────────────────── */
+.pathway-header{padding:52px 0 36px}
+.pathway-badge{
+  background:var(--wow-grad-brand);color:#fff;border:none;
+  font-size:.78rem;letter-spacing:.14em;padding:8px 18px;
+  transform:rotate(-2deg);
+  box-shadow:0 6px 20px rgba(155,24,68,.45),0 0 0 3px rgba(255,255,255,.06);
+}
+.pathway-title{
+  font-size:clamp(2.4rem,5.6vw,4rem);
+  font-weight:700;letter-spacing:-.03em;line-height:1.06;
+  margin-bottom:16px;
+  background:linear-gradient(110deg,var(--text) 25%,var(--wow-pink-soft) 55%,var(--wow-cyan) 85%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+/* Hotter shimmer — overrides the brand.css pan gradient at equal specificity */
+@media (prefers-reduced-motion:no-preference){
+  #section-home .pathway-title{
+    background:linear-gradient(110deg,var(--text) 18%,var(--wow-pink-soft) 42%,var(--wow-amber) 52%,var(--wow-cyan) 62%,var(--text) 88%);
+    background-size:240% 100%;
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    animation:di-title-pan 11s ease-in-out infinite;
+  }
+}
+/* Popped phrase inside the h1 — own gradient, independent of the shimmer */
+.pathway-title .ht-pop{
+  background:var(--wow-grad-hot);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+[data-theme="light"] .pathway-title{
+  background:linear-gradient(110deg,var(--text) 30%,var(--primary) 60%,#6d28d9 90%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+[data-theme="light"] .pathway-title .ht-pop{
+  background:linear-gradient(95deg,var(--primary),#c2410c 55%,#0e7490);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+/* Light theme gets its own shimmer with dark stops — the hot dark-theme
+   stops (amber/cyan 300s) fall below 3:1 on a near-white background */
+@media (prefers-reduced-motion:no-preference){
+  [data-theme="light"] #section-home .pathway-title{
+    background:linear-gradient(110deg,var(--text) 20%,var(--primary) 45%,#c2410c 55%,#0e7490 65%,var(--text) 90%);
+    background-size:240% 100%;
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    animation:di-title-pan 11s ease-in-out infinite;
+  }
+}
+
+/* ── 5. Pathway cards — gradient borders, icon chips, candy pills ── */
+.pathway-cards{gap:24px}
+.pathway-card{
+  border:2px solid transparent;border-radius:22px;padding:30px 28px;
+  background:linear-gradient(var(--bg-card),var(--bg-card)) padding-box,
+             linear-gradient(165deg,rgba(148,163,184,.45),rgba(148,163,184,.10) 50%,rgba(148,163,184,.28)) border-box;
+}
+.pathway-card--full{
+  background:linear-gradient(170deg,var(--bg-card) 55%,rgba(155,24,68,.10)) padding-box,
+             linear-gradient(165deg,rgba(236,72,153,.75),rgba(139,92,246,.25) 50%,rgba(0,159,227,.55)) border-box;
+}
+.pathway-card--gcse{
+  background:linear-gradient(170deg,var(--bg-card) 55%,rgba(16,185,129,.09)) padding-box,
+             linear-gradient(165deg,rgba(16,185,129,.7),rgba(16,185,129,.15) 50%,rgba(45,212,191,.5)) border-box;
+}
+.pathway-card--fluency{
+  background:linear-gradient(170deg,var(--bg-card) 55%,rgba(245,158,11,.09)) padding-box,
+             linear-gradient(165deg,rgba(245,158,11,.75),rgba(245,158,11,.15) 50%,rgba(251,146,60,.5)) border-box;
+}
+[data-theme="light"] .pathway-card{
+  background:linear-gradient(#fff,#fff) padding-box,
+             linear-gradient(165deg,rgba(15,23,42,.18),rgba(15,23,42,.06) 50%,rgba(15,23,42,.12)) border-box;
+}
+[data-theme="light"] .pathway-card--full{
+  background:linear-gradient(170deg,#fff 60%,rgba(155,24,68,.05)) padding-box,
+             linear-gradient(165deg,rgba(155,24,68,.6),rgba(139,92,246,.2) 50%,rgba(0,159,227,.45)) border-box;
+}
+[data-theme="light"] .pathway-card--gcse{
+  background:linear-gradient(170deg,#fff 60%,rgba(16,185,129,.05)) padding-box,
+             linear-gradient(165deg,rgba(5,150,105,.55),rgba(5,150,105,.12) 50%,rgba(13,148,136,.4)) border-box;
+}
+[data-theme="light"] .pathway-card--fluency{
+  background:linear-gradient(170deg,#fff 60%,rgba(245,158,11,.06)) padding-box,
+             linear-gradient(165deg,rgba(217,119,6,.6),rgba(217,119,6,.12) 50%,rgba(234,88,12,.4)) border-box;
+}
+#section-home .pathway-card:hover{
+  transform:translateY(-8px) scale(1.012);
+  box-shadow:0 28px 60px -18px rgba(155,24,68,.4),0 10px 28px -12px rgba(0,0,0,.35);
+}
+#section-home .pathway-card--gcse:hover{box-shadow:0 28px 60px -18px rgba(16,185,129,.35),0 10px 28px -12px rgba(0,0,0,.35)}
+#section-home .pathway-card--fluency:hover{box-shadow:0 28px 60px -18px rgba(245,158,11,.32),0 10px 28px -12px rgba(0,0,0,.35)}
+
+/* Icon chips — big tilted squircles that wiggle on hover */
+.pc-icon{
+  width:66px;height:66px;border-radius:20px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.05rem;transform:rotate(-6deg);
+  background:linear-gradient(135deg,#475569,#334155);
+  box-shadow:0 8px 22px rgba(0,0,0,.35);
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+}
+.pathway-card--full .pc-icon{
+  background:linear-gradient(135deg,var(--primary),var(--wow-pink));
+  box-shadow:0 8px 24px rgba(236,72,153,.4);
+}
+.pathway-card--gcse .pc-icon{
+  background:linear-gradient(135deg,#059669,#10b981);
+  box-shadow:0 8px 24px rgba(16,185,129,.38);
+}
+.pathway-card--fluency .pc-icon{
+  background:linear-gradient(135deg,#d97706,#fbbf24);
+  box-shadow:0 8px 24px rgba(245,158,11,.38);
+}
+.pathway-card:hover .pc-icon{transform:rotate(5deg) scale(1.14)}
+
+.pc-title{font-size:1.5rem;letter-spacing:-.02em}
+.pc-badge{font-size:.72rem;padding:4px 12px}
+.pc-features li::before{font-size:.85rem}
+
+/* Sticker ribbons */
+.pc-ribbon{
+  font-size:.68rem;padding:5px 12px;border:none;color:#fff;
+  transform:rotate(2.5deg);letter-spacing:.12em;
+  box-shadow:0 4px 14px rgba(0,0,0,.3);
+}
+.pc-ribbon--gcse{background:linear-gradient(95deg,#059669,#10b981);color:#fff}
+.pc-ribbon--full{background:var(--wow-grad-brand);color:#fff}
+.pc-ribbon--fluency{background:linear-gradient(95deg,#d97706,#f59e0b);color:#fff}
+[data-theme="light"] .pc-ribbon{background:var(--wow-grad-brand)}
+[data-theme="light"] .pc-ribbon--gcse{background:linear-gradient(95deg,#059669,#10b981)}
+[data-theme="light"] .pc-ribbon--fluency{background:linear-gradient(95deg,#d97706,#f59e0b)}
+
+/* Candy topic pills — the palette rotates so each row reads playful */
+.pc-pill{font-size:.78rem;font-weight:700;padding:5px 13px}
+.pc-topic-pills .pc-pill:nth-child(5n+1){background:rgba(236,72,153,.16);color:#f9a8d4}
+.pc-topic-pills .pc-pill:nth-child(5n+2){background:rgba(34,211,238,.14);color:#67e8f9}
+.pc-topic-pills .pc-pill:nth-child(5n+3){background:rgba(139,92,246,.16);color:#c4b5fd}
+.pc-topic-pills .pc-pill:nth-child(5n+4){background:rgba(251,191,36,.15);color:#fcd34d}
+.pc-topic-pills .pc-pill:nth-child(5n+5){background:rgba(163,230,53,.14);color:#bef264}
+[data-theme="light"] .pc-topic-pills .pc-pill:nth-child(5n+1){background:rgba(236,72,153,.12);color:#9d174d}
+[data-theme="light"] .pc-topic-pills .pc-pill:nth-child(5n+2){background:rgba(34,211,238,.14);color:#155e75}
+[data-theme="light"] .pc-topic-pills .pc-pill:nth-child(5n+3){background:rgba(139,92,246,.13);color:#5b21b6}
+[data-theme="light"] .pc-topic-pills .pc-pill:nth-child(5n+4){background:rgba(251,191,36,.18);color:#92400e}
+[data-theme="light"] .pc-topic-pills .pc-pill:nth-child(5n+5){background:rgba(163,230,53,.2);color:#3f6212}
+
+/* ── 6. Buttons — bolder, with a shine sweep on the hot ones ── */
+.btn{font-weight:700;border-radius:12px}
+.btn-primary,.pc-cta--gcse,.pc-cta--fluency,.flb-btn{
+  position:relative;overflow:hidden;font-weight:800;letter-spacing:.01em;
+}
+.btn-primary{
+  background:linear-gradient(120deg,var(--primary),var(--wow-pink) 85%);
+  box-shadow:0 4px 18px rgba(236,72,153,.35);
+}
+.btn-primary:hover{
+  background:linear-gradient(120deg,var(--primary-light),var(--wow-pink) 85%);
+  box-shadow:0 8px 26px rgba(236,72,153,.5);
+  transform:translateY(-2px);
+}
+.btn-primary::after,.pc-cta--gcse::after,.pc-cta--fluency::after{
+  content:"";position:absolute;top:0;left:-90%;width:55%;height:100%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.38),transparent);
+  transform:skewX(-20deg);transition:left .55s ease;pointer-events:none;
+}
+.btn-primary:hover::after,.pc-cta--gcse:hover::after,.pc-cta--fluency:hover::after{left:135%}
+.pc-cta{padding:14px 28px;font-size:1rem}
+
+/* ── 7. Nav + XP strip ─────────────────────────────── */
+.brand-text{font-size:1.12rem}
+.nav-link.active{
+  background:rgba(var(--primary-rgb,155,24,68),.16);
+  color:var(--text);
+  box-shadow:inset 0 -2px 0 var(--wow-pink);
+}
+.xp-level-badge{
+  background:var(--wow-grad-brand);color:#fff;border:none;
+  font-size:.8rem;box-shadow:0 2px 10px rgba(155,24,68,.4);
+}
+
+/* ── 8. Section headers — gradient slash + bigger titles ── */
+.section-header h2{
+  font-size:clamp(1.9rem,3.2vw,2.4rem);letter-spacing:-.02em;
+  position:relative;padding-left:22px;
+}
+.section-header h2::before{
+  content:"";position:absolute;left:0;top:.18em;bottom:.18em;width:8px;
+  border-radius:99px;background:var(--wow-grad-brand);
+  transform:skewY(-12deg);
+  box-shadow:0 0 14px rgba(236,72,153,.5);
+}
+.home-section-title{font-size:1.35rem}
+
+/* ── 9. Misc glow-ups ──────────────────────────────── */
+.news-ticker{border:1.5px solid rgba(236,72,153,.25);background:rgba(155,24,68,.08)}
+.news-ticker-label{background:var(--wow-grad-brand);color:#fff;border:none;box-shadow:none}
+.first-lesson-banner{
+  border:2px solid transparent;border-radius:18px;
+  background:linear-gradient(var(--bg-card),var(--bg-card)) padding-box,var(--wow-grad-brand) border-box;
+}
+[data-theme="light"] .first-lesson-banner{
+  background:linear-gradient(#fff,#fff) padding-box,var(--wow-grad-brand) border-box;
+}
+.flb-icon{font-size:2.4rem;animation:wow-bounce 2.2s ease-in-out infinite}
+@keyframes wow-bounce{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-7px) rotate(-8deg)}}
+.news-card:hover{transform:translateY(-4px);border-color:var(--wow-pink);box-shadow:0 12px 32px -12px rgba(236,72,153,.3)}
+footer{
+  border-top:none;padding:34px 24px;font-size:.9rem;position:relative;
+}
+footer::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--wow-grad-brand);
+}
+.float-continue{
+  background:var(--wow-grad-brand);font-weight:800;
+  box-shadow:0 8px 28px rgba(236,72,153,.45);
+}
+.float-continue:hover{background:var(--wow-grad-brand);filter:brightness(1.15);transform:translateY(-3px)}
+/* Mobile tabs */
+.mob-tab.active{color:var(--wow-pink-soft)}
+[data-theme="light"] .mob-tab.active{color:var(--primary)}
+.mob-tab-label{font-size:.62rem}
+.mob-tab-center .mob-tab-play{
+  background:var(--wow-grad-brand);
+  box-shadow:0 4px 16px rgba(236,72,153,.55);
+}
+/* Badges + profile pop */
+.badge-card.earned{
+  border:2px solid transparent;
+  background:linear-gradient(var(--bg-card),var(--bg-card)) padding-box,var(--wow-grad-brand) border-box;
+  box-shadow:0 0 22px rgba(236,72,153,.28);
+}
+[data-theme="light"] .badge-card.earned{
+  background:linear-gradient(#fff,#fff) padding-box,var(--wow-grad-brand) border-box;
+}
+.profile-level-badge,.pm-level-badge{background:var(--wow-grad-brand)}
+.heatmap-cell.active{background:linear-gradient(135deg,var(--primary),var(--wow-cyan))}
+
+/* ── 10. Removes + Passport track pages (gs-* / fl-*) ── */
+.gs-hero h1,.fl-hero h1{
+  font-size:clamp(2.1rem,5vw,3rem);letter-spacing:-.025em;line-height:1.08;
+  background:linear-gradient(110deg,var(--text) 30%,var(--track-primary) 75%,var(--track-primary-soft));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+/* Light theme: --track-primary-soft stays pastel (no light override in
+   brand.css), so end the gradient on the dark track shade instead */
+[data-theme="light"] .gs-hero h1,
+[data-theme="light"] .fl-hero h1{
+  background:linear-gradient(110deg,var(--text) 30%,var(--track-primary) 70%,var(--track-primary-dark));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.gs-hero-sub,.fl-hero-sub{font-size:1.08rem;color:var(--text-muted);max-width:600px}
+.gs-hero-badge,.fl-hero-badge{
+  background:linear-gradient(95deg,var(--track-primary-dark),var(--track-primary));
+  color:#fff;font-size:.78rem;padding:7px 16px;transform:rotate(-2deg);
+  box-shadow:0 5px 16px rgba(var(--track-primary-rgb),.4);
+}
+.gs-stat-num,.fl-stat-num{font-size:2rem}
+.gs-stat-label,.fl-stat-label{font-size:.8rem}
+.gs-lesson-title,.fl-lesson-title{font-size:.98rem}
+.gs-lesson-meta,.fl-lesson-meta{font-size:.8rem}
+.gs-lesson,.fl-lesson{border-radius:14px}
+.gs-lesson:hover,.fl-lesson:hover:not(.fl-locked){
+  transform:translateX(5px);
+  box-shadow:-4px 0 0 0 var(--track-primary),0 6px 18px rgba(var(--track-primary-rgb),.18);
+}
+.gs-num,.fl-num{font-family:var(--font-display)}
+
+/* ── 11. Accessibility guards — the fun never breaks these ── */
+[data-contrast="high"] body::before,
+[data-contrast="high"] body::after{display:none}
+[data-contrast="high"] .pathway-title,
+[data-contrast="high"] #section-home .pathway-title,
+[data-contrast="high"] .pathway-title .ht-pop,
+[data-contrast="high"] .gs-hero h1,
+[data-contrast="high"] .fl-hero h1{
+  background:none;-webkit-text-fill-color:#ffff00;color:#ffff00;animation:none;
+}
+[data-contrast="high"] .pathway-card,
+[data-contrast="high"] .first-lesson-banner,
+[data-contrast="high"] .badge-card.earned{background:#0d0d0d;border:2px solid #fff}
+[data-contrast="high"] .pathway-badge,
+[data-contrast="high"] .pc-ribbon,
+[data-contrast="high"] .news-ticker-label,
+[data-contrast="high"] .xp-level-badge{background:#ffff00;color:#000;transform:none}
+[data-contrast="high"] .pc-icon{background:#1a1a1a;border:2px solid #fff;transform:none;box-shadow:none}
+[data-contrast="high"] .btn-primary{background:#ffff00;color:#000;box-shadow:none}
+[data-contrast="high"] .section-header h2::before{background:#ffff00;box-shadow:none}
+[data-contrast="high"] .pc-topic-pills .pc-pill{background:#1a1a1a;color:#fff;border:1px solid #fff}
+
+[data-font="dyslexic"] .pathway-title,
+[data-font="dyslexic"] .section-header h2,
+[data-font="dyslexic"] .pc-title,
+[data-font="dyslexic"] .gs-hero h1,
+[data-font="dyslexic"] .fl-hero h1,
+[data-font="dyslexic"] .home-section-title,
+[data-font="dyslexic"] #modalBody h2{font-family:'Lexend',system-ui,sans-serif}
+
+@media (prefers-reduced-motion:reduce){
+  body::before{animation:none}
+  .flb-icon{animation:none}
+  .pc-icon,.pathway-card:hover .pc-icon{transition:none;transform:rotate(-6deg)}
+  .btn-primary::after,.pc-cta--gcse::after,.pc-cta--fluency::after{display:none}
+}
