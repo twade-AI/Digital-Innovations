@@ -3266,6 +3266,18 @@ function renderStreakHeatmap() {
 }
 
 /* ── News Ticker ─────────────────────────────────── */
+/* Merge auto-fetched headlines (js/news-live.js — regenerated weekly
+   by the update-news GitHub Action) into the curated AI_NEWS list.
+   Reverse order so the newest live item ends up first. */
+(function mergeLiveNews() {
+  if (typeof AI_NEWS_LIVE === 'undefined' || typeof AI_NEWS === 'undefined') return;
+  for (var i = AI_NEWS_LIVE.length - 1; i >= 0; i--) {
+    var item = AI_NEWS_LIVE[i];
+    var exists = AI_NEWS.some(function(n) { return n.headline === item.headline; });
+    if (!exists) AI_NEWS.unshift(item);
+  }
+})();
+
 function renderNewsTicker() {
   var track = document.getElementById('tickerTrack');
   if (!track || typeof AI_NEWS === 'undefined') return;
@@ -3371,7 +3383,7 @@ function renderNewsStaleness() {
   var html = '<div class="news-freshness-bar">';
   if (daysSince > 60) {
     html += '<span class="news-stale-warn"><svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-4a1 1 0 00-1 1v2a1 1 0 002 0V10a1 1 0 00-1-1z"/></svg>' +
-             'Feed may be outdated — most recent article: <strong>' + dateLabel + '</strong>. Sign in to load live updates.</span>';
+             'Feed may be outdated — most recent article: <strong>' + dateLabel + '</strong>. The weekly auto-update may need attention (Actions → Update AI News).</span>';
   } else {
     html += '<span class="news-fresh-ok"><svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>' +
              'Feed is current — most recent article: <strong>' + dateLabel + '</strong>.</span>';
