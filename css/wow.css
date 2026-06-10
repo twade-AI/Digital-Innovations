@@ -404,3 +404,171 @@ footer::before{
   .pc-icon,.pathway-card:hover .pc-icon{transition:none;transform:rotate(-6deg)}
   .btn-primary::after,.pc-cta--gcse::after,.pc-cta--fluency::after{display:none}
 }
+
+/* ════ 12. Lesson viewer WOW ═══════════════════════
+   Bigger default canvas, per-slide-type colour theming, gradient
+   badges, emoji watermarks and chunkier interactive elements.
+   Fullscreen scaling itself lives in lesson.css (.is-fullscreen). */
+
+/* Bigger default (windowed) view */
+.modal--lesson .modal-content{max-width:min(1100px,94vw)}
+#lessonModal .modal-inner,
+#gsModal .modal-inner{max-width:min(1100px,94vw)}
+.lv-slide-area{padding:38px 46px}
+#lessonModal .modal-body,
+#gsModal .modal-body{padding:36px 44px}
+@media(max-width:768px){
+  .lv-slide-area{padding:24px 20px}
+  #lessonModal .modal-body,
+  #gsModal .modal-body{padding:22px 18px}
+}
+
+/* Per-type accent palette — wrappers carry two custom props that
+   badges, chips, callouts and watermarks all read. */
+.slide-hook,.slide-concept,.slide-example,.slide-video,.slide-activity,
+.slide-discussion,.slide-scenario,.slide-quiz,.slide-summary{
+  --sa:#ec4899;--sb:#8b5cf6;
+  position:relative;
+  border-top:3px solid;
+  border-image:linear-gradient(90deg,var(--sa),var(--sb) 45%,transparent 92%) 1;
+  padding-top:18px;
+}
+.slide-hook{--sa:#fb7185;--sb:#fb923c}
+.slide-concept{--sa:#ec4899;--sb:#8b5cf6}
+.slide-example{--sa:#22d3ee;--sb:#0ea5e9}
+.slide-activity{--sa:#fbbf24;--sb:#fb923c}
+.slide-discussion{--sa:#4ade80;--sb:#22d3ee}
+.slide-scenario{--sa:#fb923c;--sb:#f59e0b}
+.slide-quiz{--sa:#2dd4bf;--sb:#4ade80}
+.slide-summary{--sa:#94a3b8;--sb:#22d3ee}
+.slide-video{--sa:#f87171;--sb:#ec4899}
+
+/* Emoji watermark — fills the empty corner, never blocks clicks */
+.slide-hook::after,.slide-concept::after,.slide-example::after,
+.slide-video::after,.slide-activity::after,.slide-discussion::after,
+.slide-scenario::after,.slide-quiz::after,.slide-summary::after{
+  position:absolute;top:2px;right:-4px;font-size:5rem;line-height:1;
+  opacity:.09;pointer-events:none;user-select:none;
+}
+.slide-hook::after{content:"🔥"}
+.slide-concept::after{content:"💡"}
+.slide-example::after{content:"🔍"}
+.slide-activity::after{content:"🎯"}
+.slide-discussion::after{content:"💬"}
+.slide-scenario::after{content:"🧭"}
+.slide-quiz::after{content:"❓"}
+.slide-summary::after{content:"📌"}
+.slide-video::after{content:"🎬"}
+@media(max-width:640px){
+  .slide-hook::after,.slide-concept::after,.slide-example::after,
+  .slide-video::after,.slide-activity::after,.slide-discussion::after,
+  .slide-scenario::after,.slide-quiz::after,.slide-summary::after{font-size:3rem}
+}
+
+/* Slide titles — display font, bigger */
+.slide-title{
+  font-family:var(--font-display);
+  font-size:1.7rem;font-weight:700;letter-spacing:-.02em;line-height:1.15;
+}
+
+/* Badges — saturated gradient chips, white text (works on both themes;
+   the old light-theme tint overrides were removed from lesson.css) */
+.slide-badge{
+  color:#fff;font-size:.72rem;padding:5px 14px;letter-spacing:.1em;
+  border:none;box-shadow:0 3px 10px rgba(0,0,0,.22);
+  align-self:flex-start;width:fit-content; /* flex-column slides (quiz/scenario/video) stretch children */
+}
+.badge-hook{background:linear-gradient(95deg,#dc2626,#ea580c);color:#fff}
+.badge-concept{background:linear-gradient(95deg,#9b1844,#be185d);color:#fff}
+.badge-example{background:linear-gradient(95deg,#0369a1,#0e7490);color:#fff}
+.badge-activity{background:linear-gradient(95deg,#b45309,#c2410c);color:#fff}
+.badge-discussion{background:linear-gradient(95deg,#15803d,#0f766e);color:#fff}
+.badge-quiz{background:linear-gradient(95deg,#0f766e,#15803d);color:#fff}
+.badge-scenario{background:linear-gradient(95deg,#c2410c,#b45309);color:#fff}
+.badge-video{background:linear-gradient(95deg,#dc2626,#db2777);color:#fff}
+.badge-summary{background:linear-gradient(95deg,#475569,#334155);color:#fff}
+
+/* Hook stats — huge gradient numbers in the display font */
+.hook-stat-value,.hook-stat-mini .sv{
+  font-family:var(--font-display);
+  background:linear-gradient(95deg,var(--sa,#ec4899),var(--sb,#8b5cf6));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+[data-theme="light"] .hook-stat-value,
+[data-theme="light"] .hook-stat-mini .sv{
+  background:linear-gradient(95deg,#be123c,#c2410c);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+
+/* Quiz options + scenario choices — chunkier, type-coloured hover */
+.quiz-option,.scenario-choice,.disc-q,.slide-disc-q,.poll-option,.check-item{
+  border-radius:14px;
+  transition:transform .15s,border-color .15s,background .15s,box-shadow .15s;
+}
+.quiz-option:hover:not(:disabled),
+.scenario-choice:hover,
+.disc-q:hover,
+.poll-option:hover:not(:disabled){
+  transform:translateX(4px);
+  border-color:var(--sa,var(--primary));
+  box-shadow:-3px 0 0 0 var(--sa,var(--primary));
+}
+.qo-letter,.quiz-option-letter,.scenario-choice-letter{
+  background:linear-gradient(135deg,var(--sa,#ec4899),var(--sb,#8b5cf6));
+  color:#fff;border-radius:10px;
+}
+.disc-q-num,.act-step-num{
+  background:linear-gradient(135deg,var(--sa,var(--primary)),var(--sb,var(--accent)));
+  color:#fff;border-color:transparent;
+}
+
+/* Callouts — rounded, tinted, type-coloured spine */
+.concept-callout,.slide-callout{
+  border-radius:0 14px 14px 0;
+  border-left:4px solid var(--sa,var(--primary));
+  background:rgba(148,163,184,.09);
+}
+[data-theme="light"] .concept-callout,
+[data-theme="light"] .slide-callout{background:rgba(15,23,42,.05)}
+
+/* Summary points — icon chips */
+.summary-point{border-radius:14px}
+.sp-icon{
+  width:44px;height:44px;border-radius:12px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:1.35rem;
+  background:linear-gradient(135deg,rgba(148,163,184,.18),rgba(34,211,238,.14));
+}
+
+/* Track-page reading text (removes/fluency define these inline) */
+.slide-body{font-size:1.04rem;line-height:1.75}
+.slide-bullets li,.slide-steps li{font-size:1rem;line-height:1.6}
+
+/* Header + dots chrome */
+.lv-unit-label,.lv-slide-count{font-size:.78rem}
+.lv-dot{width:11px;height:11px}
+.video-next-btn{
+  background:linear-gradient(120deg,var(--primary),var(--wow-pink) 85%);
+  font-size:.95rem;
+}
+.video-next-btn:hover{background:linear-gradient(120deg,var(--primary-light),var(--wow-pink) 85%)}
+
+/* Accessibility guards for the slide layer */
+[data-contrast="high"] .slide-badge{background:#ffff00;color:#000;box-shadow:none}
+[data-contrast="high"] .slide-hook,[data-contrast="high"] .slide-concept,
+[data-contrast="high"] .slide-example,[data-contrast="high"] .slide-video,
+[data-contrast="high"] .slide-activity,[data-contrast="high"] .slide-discussion,
+[data-contrast="high"] .slide-scenario,[data-contrast="high"] .slide-quiz,
+[data-contrast="high"] .slide-summary{border-image:none;border-top-color:#fff}
+[data-contrast="high"] .slide-hook::after,[data-contrast="high"] .slide-concept::after,
+[data-contrast="high"] .slide-example::after,[data-contrast="high"] .slide-video::after,
+[data-contrast="high"] .slide-activity::after,[data-contrast="high"] .slide-discussion::after,
+[data-contrast="high"] .slide-scenario::after,[data-contrast="high"] .slide-quiz::after,
+[data-contrast="high"] .slide-summary::after{content:none}
+[data-contrast="high"] .hook-stat-value,
+[data-contrast="high"] .hook-stat-mini .sv{
+  background:none;-webkit-text-fill-color:#ffff00;color:#ffff00;
+}
+[data-contrast="high"] .qo-letter,[data-contrast="high"] .quiz-option-letter,
+[data-contrast="high"] .scenario-choice-letter,[data-contrast="high"] .disc-q-num,
+[data-contrast="high"] .act-step-num{background:#1a1a1a;color:#fff;border:1px solid #fff}
+[data-font="dyslexic"] .slide-title{font-family:'Lexend',system-ui,sans-serif}

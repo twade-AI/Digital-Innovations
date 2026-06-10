@@ -109,6 +109,18 @@
     document.addEventListener('webkitfullscreenchange', cb);
   }
 
+  /* Mirror fullscreen state onto the element as an `is-fullscreen`
+     class. CSS targets that single class instead of duplicating every
+     rule for :fullscreen and :-webkit-full-screen selector lists. */
+  var fsLastEl = null;
+  function fsSyncClass() {
+    var el = fsElement();
+    if (fsLastEl && fsLastEl !== el) fsLastEl.classList.remove('is-fullscreen');
+    if (el) el.classList.add('is-fullscreen');
+    fsLastEl = el;
+  }
+  fsOnChange(fsSyncClass);
+
   window.diSlide = {
     escape: escape,
     youtubeEmbed: youtubeEmbed,
