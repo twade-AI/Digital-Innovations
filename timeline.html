@@ -6,30 +6,55 @@
 <title>Digital Innovations — The Learning Journey</title>
 <meta name="description" content="An interactive, sequential timeline of all 59 lessons across the six units of the Digital Innovations AEP.">
 <link rel="icon" href="icon.svg">
+<!-- Honour the site-wide theme choice (same key as the rest of the app) before paint -->
+<script>try{var _t=localStorage.getItem('di_theme')||((window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark');document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
 <style>
   @font-face { font-family:'Calluna Sans'; src:url('assets/brand/fonts/CallunaSans-Regular.otf'); font-weight:400; font-style:normal; font-display:swap; }
   @font-face { font-family:'Calluna Sans'; src:url('assets/brand/fonts/CallunaSans-Bold.otf'); font-weight:700; font-style:normal; font-display:swap; }
   @font-face { font-family:'Calluna Sans'; src:url('assets/brand/fonts/CallunaSans-Light.otf'); font-weight:300; font-style:normal; font-display:swap; }
 
   :root{
-    --bg-0:#0b0d12; --bg-1:#11141c; --bg-2:#161a24;
-    --ink:#eef1f6; --ink-soft:#c4ccd8; --ink-mute:#8b94a4;
-    --line:rgba(255,255,255,.09);
+    /* brand + sizing (theme-independent) */
     --magenta:#9b1844; --cyan:#009fe3;
     --track-h: clamp(540px, 72vh, 780px);
+    /* ── Dark theme (default) ── */
+    --bg-0:#0b0d12; --bg-1:#11141c; --bg-2:#161a24;
+    --veil-rgb:11,13,18;
+    --ink:#eef1f6; --ink-soft:#c4ccd8; --ink-mute:#8b94a4;
+    --line:rgba(255,255,255,.09);
+    --panel:rgba(255,255,255,.05);
+    --panel-hi:rgba(255,255,255,.16);
+    --glow-1:rgba(155,24,68,.18); --glow-2:rgba(0,159,227,.16);
+    --card-bg:rgba(16,19,27,.96);
+    --card-shadow:0 24px 60px -20px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.03);
+    --accent-soft:#f6a8c2;
   }
+  [data-theme="light"]{
+    --bg-0:#f6f8fb; --bg-1:#ffffff; --bg-2:#ffffff;
+    --veil-rgb:248,250,252;
+    --ink:#0f172a; --ink-soft:#475569; --ink-mute:#64748b;
+    --line:rgba(15,23,42,.12);
+    --panel:rgba(15,23,42,.05);
+    --panel-hi:rgba(15,23,42,.22);
+    --glow-1:rgba(155,24,68,.08); --glow-2:rgba(0,159,227,.07);
+    --card-bg:rgba(255,255,255,.96);
+    --card-shadow:0 18px 48px -20px rgba(15,23,42,.35), 0 0 0 1px rgba(15,23,42,.04);
+    --accent-soft:var(--magenta);
+  }
+
   *{ box-sizing:border-box; }
   html,body{ height:100%; }
   body{
     margin:0; font-family:'Calluna Sans','Inter',system-ui,sans-serif;
     color:var(--ink); background:var(--bg-0);
     background-image:
-      radial-gradient(1100px 540px at 14% -8%, rgba(155,24,68,.18), transparent 60%),
-      radial-gradient(1000px 520px at 92% 0%, rgba(0,159,227,.16), transparent 58%),
+      radial-gradient(1100px 540px at 14% -8%, var(--glow-1), transparent 60%),
+      radial-gradient(1000px 520px at 92% 0%, var(--glow-2), transparent 58%),
       linear-gradient(180deg, var(--bg-1), var(--bg-0));
     background-attachment:fixed;
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
+    transition:color .25s, background-color .25s;
   }
   a{ color:inherit; }
 
@@ -38,23 +63,26 @@
     position:sticky; top:0; z-index:60;
     display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap;
     padding:14px clamp(16px,3vw,32px) 12px;
-    background:linear-gradient(180deg, rgba(11,13,18,.92), rgba(11,13,18,.66) 70%, transparent);
+    background:linear-gradient(180deg, rgba(var(--veil-rgb),.92), rgba(var(--veil-rgb),.66) 70%, transparent);
     backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
   }
   .brand{ display:flex; align-items:center; gap:14px; min-width:0; }
   .brand img{ height:34px; width:auto; display:block; }
+  [data-theme="light"] .brand img.logo-light{ display:none; }
+  [data-theme="dark"]  .brand img.logo-dark{ display:none; }
   .brand .sep{ width:1px; height:30px; background:var(--line); }
   .brand h1{ margin:0; font-size:clamp(15px,2.2vw,19px); font-weight:700; letter-spacing:-.2px; line-height:1.05; }
   .brand p{ margin:2px 0 0; font-size:11.5px; color:var(--ink-mute); letter-spacing:.2px; }
-  .brand .accent{ color:#f6a8c2; }
+  .brand .accent{ color:var(--accent-soft); }
 
+  .topbar-right{ display:flex; align-items:center; gap:12px; }
   .legend{ display:flex; align-items:center; gap:7px; flex-wrap:wrap; justify-content:flex-end; }
   .chip{
     --uc:#888; cursor:pointer; border:0; font-family:inherit;
     display:inline-flex; align-items:center; gap:7px;
     padding:6px 11px 6px 8px; border-radius:99px; font-size:12px; font-weight:700; letter-spacing:.1px;
-    color:var(--ink-soft); background:rgba(255,255,255,.04);
+    color:var(--ink-soft); background:var(--panel);
     border:1px solid var(--line); transition:.22s; white-space:nowrap;
   }
   .chip .swatch{ width:11px; height:11px; border-radius:50%; background:var(--uc); box-shadow:0 0 9px -1px var(--uc); }
@@ -63,6 +91,15 @@
   .chip.active{ color:#fff; background:color-mix(in srgb,var(--uc) 26%, transparent); border-color:color-mix(in srgb,var(--uc) 70%, transparent); box-shadow:0 4px 18px -8px var(--uc); }
   .chip .n{ color:var(--ink-mute); font-weight:600; }
   .chip.active .n{ color:rgba(255,255,255,.7); }
+  /* Light mode: filled colour chips would wash out — use tinted bg + dark coloured text */
+  [data-theme="light"] .chip:hover{ color:color-mix(in srgb,var(--uc) 72%, #18181b); background:color-mix(in srgb,var(--uc) 12%, #fff); }
+  [data-theme="light"] .chip.active{ color:color-mix(in srgb,var(--uc) 72%, #18181b); background:color-mix(in srgb,var(--uc) 15%, #fff); border-color:color-mix(in srgb,var(--uc) 40%, transparent); }
+  [data-theme="light"] .chip.active .n{ color:color-mix(in srgb,var(--uc) 50%, #475569); }
+
+  .theme-toggle{ flex:0 0 auto; width:38px; height:38px; border-radius:50%; cursor:pointer;
+    background:var(--panel); border:1px solid var(--line); color:var(--ink); font-size:16px;
+    display:grid; place-items:center; transition:.2s; }
+  .theme-toggle:hover{ border-color:var(--magenta); transform:scale(1.06); }
 
   /* progress rail under the bar */
   .progress{ position:sticky; top:0; z-index:59; height:3px; background:transparent; }
@@ -80,8 +117,12 @@
     box-shadow:0 6px 22px -10px var(--uc); transition:.3s; }
   .nowunit .badge .ic{ font-size:16px; }
   .nowunit .badge .cnt{ font-weight:600; font-size:12px; opacity:.8; }
+  [data-theme="light"] .nowunit .badge{ color:color-mix(in srgb,var(--uc) 72%, #18181b);
+    background:color-mix(in srgb,var(--uc) 13%, #fff); border-color:color-mix(in srgb,var(--uc) 38%, transparent); }
+  [data-theme="light"] .nowunit .badge .cnt{ opacity:.7; }
+
   .hint{ font-size:12px; color:var(--ink-mute); display:flex; align-items:center; gap:8px; }
-  .hint kbd{ font-family:inherit; font-size:11px; background:rgba(255,255,255,.06); border:1px solid var(--line);
+  .hint kbd{ font-family:inherit; font-size:11px; background:var(--panel); border:1px solid var(--line);
     border-bottom-width:2px; border-radius:5px; padding:1px 6px; color:var(--ink-soft); }
 
   /* ── Timeline scroller ────────────────────────────── */
@@ -89,14 +130,13 @@
     position:relative; overflow-x:auto; overflow-y:hidden;
     height:var(--track-h); margin-top:6px;
     cursor:grab; scroll-behavior:smooth; -webkit-overflow-scrolling:touch;
-    -ms-overflow-style:none;
   }
   .scroll.grabbing{ cursor:grabbing; scroll-behavior:auto; }
   .scroll:focus-visible{ outline:2px solid var(--cyan); outline-offset:-3px; }
   .scroll::-webkit-scrollbar{ height:10px; }
-  .scroll::-webkit-scrollbar-track{ background:rgba(255,255,255,.03); }
-  .scroll::-webkit-scrollbar-thumb{ background:rgba(255,255,255,.16); border-radius:99px; border:2px solid transparent; background-clip:padding-box; }
-  .scroll::-webkit-scrollbar-thumb:hover{ background:rgba(255,255,255,.28); background-clip:padding-box; }
+  .scroll::-webkit-scrollbar-track{ background:transparent; }
+  .scroll::-webkit-scrollbar-thumb{ background:var(--panel-hi); border-radius:99px; border:2px solid transparent; background-clip:padding-box; }
+  .scroll::-webkit-scrollbar-thumb:hover{ background:color-mix(in srgb,var(--panel-hi) 75%, var(--ink)); background-clip:padding-box; }
 
   .track{ position:relative; display:flex; align-items:stretch; height:100%;
     padding:0 clamp(40px,8vw,120px); width:max-content; }
@@ -121,7 +161,8 @@
     box-shadow:0 8px 26px -12px var(--uc); pointer-events:none; }
   .uhead .ic{ font-size:16px; }
   .uhead .cnt{ font-weight:600; font-size:11.5px; opacity:.78; }
-  /* uhead lives inside an absolutely-stacked layer so it doesn't take row width */
+  [data-theme="light"] .uhead{ color:color-mix(in srgb,var(--uc) 72%, #18181b);
+    background:color-mix(in srgb,var(--uc) 15%, #fff); border-color:color-mix(in srgb,var(--uc) 40%, transparent); }
   .uhead-wrap{ position:absolute; inset:0; pointer-events:none; }
 
   .spine{ position:absolute; left:0; right:0; top:50%; height:5px; transform:translateY(-50%);
@@ -130,14 +171,16 @@
   .spine::after{ content:""; position:absolute; inset:0; border-radius:99px;
     background:linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
     background-size:240px 100%; background-repeat:no-repeat; mix-blend-mode:screen;
-    animation:shimmer 5.5s linear infinite; opacity:.0; }
+    animation:shimmer 5.5s linear infinite; opacity:0; }
   .group:hover .spine::after{ opacity:.7; }
   @keyframes shimmer{ from{ background-position:-260px 0; } to{ background-position:calc(100% + 260px) 0; } }
 
   /* ── Slot / station ───────────────────────────────── */
-  .slot{ position:relative; flex:0 0 150px; height:100%; }
+  /* width is set explicitly (not just flex-basis): every child of a slot is
+     absolutely positioned, so without it the slot contributes 0 to the group's
+     intrinsic width and the unit groups collapse and overlap. */
+  .slot{ position:relative; flex:0 0 150px; width:150px; height:100%; }
   .slot:hover, .slot:focus-within, .slot.pinned{ z-index:40; }
-  .anchor{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); }
 
   .node{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
     width:36px; height:36px; border-radius:50%; display:grid; place-items:center;
@@ -155,7 +198,7 @@
   .label{ position:absolute; left:50%; transform:translateX(-50%); width:138px; text-align:center;
     font-size:12.5px; line-height:1.24; color:var(--ink-soft); letter-spacing:.05px; transition:color .2s; }
   .label .ln{ display:block; font-size:10px; font-weight:700; letter-spacing:.6px; color:var(--ink-mute); margin-bottom:2px; }
-  .slot:hover .label, .slot:focus-within .label, .slot.pinned .label{ color:#fff; }
+  .slot:hover .label, .slot:focus-within .label, .slot.pinned .label{ color:var(--ink); }
   .slot.up .label{ bottom:calc(50% + 30px); }
   .slot.down .label{ top:calc(50% + 30px); }
 
@@ -167,28 +210,29 @@
 
   /* ── Hover card ───────────────────────────────────── */
   .card{ position:absolute; left:50%; width:268px; transform:translateX(-50%) translateY(8px);
-    background:linear-gradient(180deg, color-mix(in srgb,var(--uc) 12%, rgba(20,24,33,.94)), rgba(16,19,27,.96));
+    background:linear-gradient(180deg, color-mix(in srgb,var(--uc) 12%, var(--card-bg)), var(--card-bg));
     border:1px solid color-mix(in srgb,var(--uc) 40%, var(--line)); border-radius:14px;
-    box-shadow:0 24px 60px -20px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.03), 0 0 28px -10px var(--uc);
+    box-shadow:var(--card-shadow), 0 0 28px -10px var(--uc);
     backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
     padding:14px 15px 13px; opacity:0; visibility:hidden; pointer-events:none;
     transition:opacity .2s, transform .25s cubic-bezier(.2,.8,.2,1); z-index:5;
     max-height:min(300px,40vh); overflow-y:auto; overscroll-behavior:contain; }
   .card::-webkit-scrollbar{ width:7px; }
-  .card::-webkit-scrollbar-thumb{ background:rgba(255,255,255,.18); border-radius:9px; }
+  .card::-webkit-scrollbar-thumb{ background:var(--panel-hi); border-radius:9px; }
   .slot.up .card{ bottom:calc(50% + 76px); }
   .slot.down .card{ top:calc(50% + 76px); }
   .slot:hover .card, .slot:focus-within .card, .slot.pinned .card{ opacity:1; visibility:visible; pointer-events:auto; transform:translateX(-50%) translateY(0); }
   /* little pointer */
   .card::after{ content:""; position:absolute; left:50%; width:12px; height:12px; transform:translateX(-50%) rotate(45deg);
-    background:rgba(16,19,27,.96); border:1px solid color-mix(in srgb,var(--uc) 40%, var(--line)); }
+    background:var(--card-bg); border:1px solid color-mix(in srgb,var(--uc) 40%, var(--line)); }
   .slot.up .card::after{ bottom:-7px; border-top:none; border-left:none; }
   .slot.down .card::after{ top:-7px; border-bottom:none; border-right:none; }
 
   .card .eyebrow{ display:flex; align-items:center; gap:7px; font-size:11px; font-weight:700; letter-spacing:.3px;
     text-transform:uppercase; color:color-mix(in srgb,var(--uc) 55%, #fff); margin-bottom:6px; }
+  [data-theme="light"] .card .eyebrow{ color:color-mix(in srgb,var(--uc) 70%, #0f172a); }
   .card .eyebrow .ic{ font-size:13px; }
-  .card h3{ margin:0 0 7px; font-size:15.5px; line-height:1.18; font-weight:700; color:#fff; }
+  .card h3{ margin:0 0 7px; font-size:15.5px; line-height:1.18; font-weight:700; color:var(--ink); }
   .card .desc{ margin:0 0 10px; font-size:12.4px; line-height:1.5; color:var(--ink-soft); }
   .card .meta{ display:flex; flex-wrap:wrap; gap:5px; margin-bottom:10px; }
   .pill{ font-size:10.5px; font-weight:700; letter-spacing:.3px; text-transform:uppercase;
@@ -196,7 +240,10 @@
   .pill.diff-beginner{ color:#86efac; background:rgba(34,197,94,.14); border-color:rgba(34,197,94,.35); }
   .pill.diff-intermediate{ color:#fcd34d; background:rgba(245,158,11,.14); border-color:rgba(245,158,11,.35); }
   .pill.diff-advanced{ color:#fca5a5; background:rgba(239,68,68,.14); border-color:rgba(239,68,68,.35); }
-  .pill.tag{ color:var(--ink-soft); background:rgba(255,255,255,.05); border-color:var(--line); text-transform:none; letter-spacing:0; font-weight:600; }
+  [data-theme="light"] .pill.diff-beginner{ color:#15803d; background:rgba(34,197,94,.12); border-color:rgba(34,197,94,.4); }
+  [data-theme="light"] .pill.diff-intermediate{ color:#b45309; background:rgba(245,158,11,.16); border-color:rgba(245,158,11,.45); }
+  [data-theme="light"] .pill.diff-advanced{ color:#b91c1c; background:rgba(239,68,68,.12); border-color:rgba(239,68,68,.4); }
+  .pill.tag{ color:var(--ink-soft); background:var(--panel); border-color:var(--line); text-transform:none; letter-spacing:0; font-weight:600; }
   .card .obj{ border-top:1px solid var(--line); padding-top:9px; }
   .card .obj h4{ margin:0 0 6px; font-size:10.5px; font-weight:700; letter-spacing:.5px; text-transform:uppercase; color:var(--ink-mute); }
   .card .obj ul{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:5px; }
@@ -217,13 +264,14 @@
 
   footer{ padding:16px clamp(16px,3vw,32px) 26px; color:var(--ink-mute); font-size:11.5px;
     display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+  footer .hl{ color:var(--accent-soft); }
   footer .dots{ letter-spacing:2px; }
   .nojs{ padding:40px; text-align:center; color:var(--ink-soft); }
 
   @media (max-width:640px){
     .legend{ display:none; }
     .label{ width:120px; font-size:11.5px; }
-    .slot{ flex-basis:128px; }
+    .slot{ flex-basis:128px; width:128px; }
     .card{ width:230px; }
   }
   @media (prefers-reduced-motion: reduce){
@@ -237,14 +285,20 @@
 
 <header class="topbar">
   <div class="brand">
-    <img src="assets/brand/logo/haileybury-white.png" alt="Haileybury" onerror="this.style.display='none'">
+    <a href="index.html" title="Back to Digital Innovations" style="display:flex">
+      <img class="logo-light" src="assets/brand/logo/haileybury-white.png" alt="Haileybury" onerror="this.style.display='none'">
+      <img class="logo-dark" src="assets/brand/logo/haileybury-magenta.png" alt="Haileybury" onerror="this.style.display='none'">
+    </a>
     <div class="sep"></div>
     <div>
       <h1>Digital Innovations <span class="accent">·</span> The Learning Journey</h1>
       <p id="brandSub">59 lessons across 6 units — in sequence</p>
     </div>
   </div>
-  <nav class="legend" id="legend" aria-label="Jump to a unit"></nav>
+  <div class="topbar-right">
+    <nav class="legend" id="legend" aria-label="Jump to a unit"></nav>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light or dark mode" title="Toggle light / dark mode">☀️</button>
+  </div>
 </header>
 <div class="progress"><i id="progressFill"></i></div>
 
@@ -263,7 +317,7 @@
 </div>
 
 <footer>
-  <span><strong style="color:#f6a8c2">Haileybury</strong> · Digital Innovations AEP &nbsp;·&nbsp; Clear · Critical · Responsible</span>
+  <span><strong class="hl">Haileybury</strong> · Digital Innovations AEP &nbsp;·&nbsp; Clear · Critical · Responsible</span>
   <span class="dots">● ● ● ● ● ●</span>
 </footer>
 
@@ -272,6 +326,23 @@
 (function(){
   function start(){
     var track = document.getElementById('track');
+
+    // ── Theme toggle (mirrors the rest of the site: data-theme + di_theme) ──
+    var themeBtn = document.getElementById('themeToggle');
+    function paintThemeIcon(){
+      var t = document.documentElement.getAttribute('data-theme');
+      themeBtn.textContent = (t === 'light' ? '🌙' : '☀️');
+      themeBtn.setAttribute('aria-label', t === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+    }
+    paintThemeIcon();
+    themeBtn.addEventListener('click', function(){
+      var cur = document.documentElement.getAttribute('data-theme');
+      var next = cur === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('di_theme', next); } catch(e){}
+      paintThemeIcon();
+    });
+
     if (typeof UNITS === 'undefined' || !Array.isArray(UNITS)) {
       track.innerHTML = '<div class="nojs">Course data (js/data.js) could not be loaded. Open this page from within the Digital Innovations project so the lesson data is available.</div>';
       return;
@@ -386,7 +457,7 @@
       if (Math.abs(dx) > 6) moved = true;
       scroll.scrollLeft = startL - dx;
     });
-    window.addEventListener('pointerup', function(e){
+    window.addEventListener('pointerup', function(){
       if (!down) return;
       down=false; scroll.classList.remove('grabbing');
       if (!moved && downSlot){           // a tap → toggle pin (touch friendly)
@@ -423,9 +494,14 @@
       fill.style.width = pct.toFixed(2) + '%';
 
       var probe = scroll.scrollLeft + Math.min(scroll.clientWidth * 0.32, 360);
+      // Guard against running before the flex track has been laid out (all
+      // offsetLeft === 0), which would otherwise select the last unit.
+      var ready = groups.length < 2 || groups[groups.length - 1].el.offsetLeft > 0;
       var cur = 0;
-      for (var i=0;i<groups.length;i++){
-        if (probe >= groups[i].el.offsetLeft) cur = i; else break;
+      if (ready) {
+        for (var i=0;i<groups.length;i++){
+          if (probe >= groups[i].el.offsetLeft) cur = i; else break;
+        }
       }
       if (cur !== onScroll._cur){
         onScroll._cur = cur;
@@ -441,7 +517,9 @@
     onScroll._cur = -1;
     scroll.addEventListener('scroll', function(){ if (!ticking){ ticking=true; requestAnimationFrame(onScroll); } });
     window.addEventListener('resize', onScroll);
-    onScroll();
+    // Defer the first run until the flex track has actually been laid out.
+    requestAnimationFrame(function(){ requestAnimationFrame(onScroll); });
+    window.addEventListener('load', onScroll);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
