@@ -135,7 +135,10 @@
   @keyframes shimmer{ from{ background-position:-260px 0; } to{ background-position:calc(100% + 260px) 0; } }
 
   /* ── Slot / station ───────────────────────────────── */
-  .slot{ position:relative; flex:0 0 150px; height:100%; }
+  /* width is set explicitly (not just flex-basis): every child of a slot is
+     absolutely positioned, so without it the slot contributes 0 to the group's
+     intrinsic width and the unit groups collapse and overlap. */
+  .slot{ position:relative; flex:0 0 150px; width:150px; height:100%; }
   .slot:hover, .slot:focus-within, .slot.pinned{ z-index:40; }
   .anchor{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); }
 
@@ -223,7 +226,7 @@
   @media (max-width:640px){
     .legend{ display:none; }
     .label{ width:120px; font-size:11.5px; }
-    .slot{ flex-basis:128px; }
+    .slot{ flex-basis:128px; width:128px; }
     .card{ width:230px; }
   }
   @media (prefers-reduced-motion: reduce){
@@ -423,9 +426,14 @@
       fill.style.width = pct.toFixed(2) + '%';
 
       var probe = scroll.scrollLeft + Math.min(scroll.clientWidth * 0.32, 360);
+      // Guard against running before the flex track has been laid out (all
+      // offsetLeft === 0), which would otherwise select the last unit.
+      var ready = groups.length < 2 || groups[groups.length - 1].el.offsetLeft > 0;
       var cur = 0;
-      for (var i=0;i<groups.length;i++){
-        if (probe >= groups[i].el.offsetLeft) cur = i; else break;
+      if (ready) {
+        for (var i=0;i<groups.length;i++){
+          if (probe >= groups[i].el.offsetLeft) cur = i; else break;
+        }
       }
       if (cur !== onScroll._cur){
         onScroll._cur = cur;
@@ -441,7 +449,9 @@
     onScroll._cur = -1;
     scroll.addEventListener('scroll', function(){ if (!ticking){ ticking=true; requestAnimationFrame(onScroll); } });
     window.addEventListener('resize', onScroll);
-    onScroll();
+    // Defer the first run until the flex track has actually been laid out.
+    requestAnimationFrame(function(){ requestAnimationFrame(onScroll); });
+    window.addEventListener('load', onScroll);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
