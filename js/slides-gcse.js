@@ -3,8 +3,10 @@
    ─────────────────────────────────────────────────────────────── */
 
 /* ── Unit order follows the OECD/EU AILit Framework learning arc:
-   Engage (foundation) → Create & Manage (hands-on) → Shape (culmination)
-   → a personal Wellbeing & Future close. ─────────────────────────────── */
+   Engage foundation (Unit 1) → hands-on Create & Manage (Units 2–3, which
+   the framework runs in parallel with continued Engage) → critical &
+   societal Engage (Units 4–5) → Shape culmination (Unit 6) → a personal
+   Wellbeing & Future close (Unit 7). ──────────────────────────────────── */
 var GCSE_UNITS = [
   {
     id: 'g1', title: 'Unit 1: Understanding AI', color: '#9b1844', ailit: 'Engage with AI',
@@ -18,29 +20,7 @@ var GCSE_UNITS = [
     ]
   },
   {
-    id: 'g4', title: 'Unit 2: AI, Truth & Media', color: '#ef4444', ailit: 'Engage with AI',
-    lessons: [
-      { id: 119, title: 'Deepfakes & Synthetic Media',     icon: '🎭', time: '~25 min', desc: 'What deepfakes are, how they\'re made and why they matter.' },
-      { id: 120, title: 'Spotting AI-Generated Content',   icon: '👁️', time: '~20 min', desc: 'Identifying AI-written text, images and audio in the wild.' },
-      { id: 121, title: 'Misinformation & AI',             icon: '📢', time: '~25 min', desc: 'Why false things spread faster — and how AI is making it worse.' },
-      { id: 122, title: 'Fact-Checking in the AI Age',     icon: '✅', time: '~25 min', desc: 'Your 4-step verification toolkit for any claim.' },
-      { id: 123, title: 'Filter Bubbles & Algorithms',     icon: '🔄', time: '~20 min', desc: 'The hidden curator shaping everything you see online.' }
-    ]
-  },
-  {
-    id: 'g5', title: 'Unit 3: AI, Society & Ethics', color: '#8b5cf6', ailit: 'Engage with AI',
-    lessons: [
-      { id: 124, title: 'Who Benefits from AI?',  icon: '🌍', time: '~20 min', desc: 'Access, wealth and the growing digital divide.' },
-      { id: 125, title: 'Bias In, Bias Out',       icon: '⚖️', time: '~25 min', desc: 'How AI inherits human prejudice — and the real-world consequences.' },
-      { id: 137, title: 'The Environmental Cost of AI', icon: '🌱', time: '~20 min', desc: 'The energy, water and minerals behind every prompt — and the habit of asking for a greener alternative.' },
-      { id: 126, title: 'Jobs & Automation',       icon: '🏭', time: '~20 min', desc: 'What\'s changing, what isn\'t, and what that means for your future.' },
-      { id: 127, title: 'AI & Privacy',            icon: '🔒', time: '~20 min', desc: 'What your apps know about you — and why it matters.' },
-      { id: 128, title: 'Regulation & Control',    icon: '📜', time: '~20 min', desc: 'Who makes the rules for AI — governments, companies, or nobody?' },
-      { id: 129, title: 'AI Ethics in Action',     icon: '🤔', time: '~25 min', desc: 'Real dilemmas with no easy right answer.' }
-    ]
-  },
-  {
-    id: 'g2', title: 'Unit 4: AI for Study & Revision', color: '#10b981', ailit: 'Create & Manage AI',
+    id: 'g2', title: 'Unit 2: AI for Study & Revision', color: '#10b981', ailit: 'Create & Manage AI',
     lessons: [
       { id: 106, title: 'AI as Your Study Partner',       icon: '📚', time: '~20 min', desc: 'The right way — and the wrong way — to use AI for learning.' },
       { id: 107, title: 'Better Questions, Better Answers', icon: '❓', time: '~25 min', desc: 'How the quality of your prompt determines the quality of the response.' },
@@ -52,7 +32,7 @@ var GCSE_UNITS = [
     ]
   },
   {
-    id: 'g3', title: 'Unit 5: Practical AI Skills', color: '#f59e0b', ailit: 'Create & Manage AI',
+    id: 'g3', title: 'Unit 3: Practical AI Skills', color: '#f59e0b', ailit: 'Create & Manage AI',
     lessons: [
       { id: 113, title: 'Prompting 101',                   icon: '🎯', time: '~20 min', desc: 'The anatomy of a great prompt — and how to write one.' },
       { id: 114, title: 'Evaluating AI Output',            icon: '🔍', time: '~25 min', desc: 'How to spot mistakes, gaps and outdated information in AI responses.' },
@@ -62,6 +42,28 @@ var GCSE_UNITS = [
       { id: 117, title: 'Working with AI Tools',           icon: '💻', time: '~20 min', desc: 'Claude, ChatGPT, Gemini — what makes them different and when to use each.' },
       { id: 118, title: 'Prompt Engineering Challenge',    icon: '🏆', time: '~30 min', desc: 'Build a prompt that actually does something useful — from scratch.' },
       { id: 134, title: 'AI Agents — When AI Does the Doing', icon: '🤝', time: '~35 min', desc: 'The biggest shift in AI since ChatGPT: systems that don\'t just answer — they act.' }
+    ]
+  },
+  {
+    id: 'g4', title: 'Unit 4: AI, Truth & Media', color: '#ef4444', ailit: 'Engage with AI',
+    lessons: [
+      { id: 119, title: 'Deepfakes & Synthetic Media',     icon: '🎭', time: '~25 min', desc: 'What deepfakes are, how they\'re made and why they matter.' },
+      { id: 120, title: 'Spotting AI-Generated Content',   icon: '👁️', time: '~20 min', desc: 'Identifying AI-written text, images and audio in the wild.' },
+      { id: 121, title: 'Misinformation & AI',             icon: '📢', time: '~25 min', desc: 'Why false things spread faster — and how AI is making it worse.' },
+      { id: 122, title: 'Fact-Checking in the AI Age',     icon: '✅', time: '~25 min', desc: 'Your 4-step verification toolkit for any claim.' },
+      { id: 123, title: 'Filter Bubbles & Algorithms',     icon: '🔄', time: '~20 min', desc: 'The hidden curator shaping everything you see online.' }
+    ]
+  },
+  {
+    id: 'g5', title: 'Unit 5: AI, Society & Ethics', color: '#8b5cf6', ailit: 'Engage with AI',
+    lessons: [
+      { id: 124, title: 'Who Benefits from AI?',  icon: '🌍', time: '~20 min', desc: 'Access, wealth and the growing digital divide.' },
+      { id: 125, title: 'Bias In, Bias Out',       icon: '⚖️', time: '~25 min', desc: 'How AI inherits human prejudice — and the real-world consequences.' },
+      { id: 137, title: 'The Environmental Cost of AI', icon: '🌱', time: '~20 min', desc: 'The energy, water and minerals behind every prompt — and the habit of asking for a greener alternative.' },
+      { id: 126, title: 'Jobs & Automation',       icon: '🏭', time: '~20 min', desc: 'What\'s changing, what isn\'t, and what that means for your future.' },
+      { id: 127, title: 'AI & Privacy',            icon: '🔒', time: '~20 min', desc: 'What your apps know about you — and why it matters.' },
+      { id: 128, title: 'Regulation & Control',    icon: '📜', time: '~20 min', desc: 'Who makes the rules for AI — governments, companies, or nobody?' },
+      { id: 129, title: 'AI Ethics in Action',     icon: '🤔', time: '~25 min', desc: 'Real dilemmas with no easy right answer.' }
     ]
   },
   {
