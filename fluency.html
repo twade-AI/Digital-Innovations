@@ -1121,6 +1121,30 @@
         (slide.body ? '<div class="slide-body">' + slide.body + '</div>' : '') + utHtml +
       '</div>';
     }
+    if (type === 'widget' && slide.widget === 'classify') {
+      var cats = slide.categories || [];
+      var clItems = (slide.items || []).map(function(it) {
+        var ans = cats[it.correct || 0] || '';
+        return '<div style="margin-top:10px;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;background:var(--bg)">' +
+          '<div style="font-size:.9rem;line-height:1.5;margin-bottom:6px">' + (it.text || '') + '</div>' +
+          '<details class="slide-reveal-details"><summary>Which category? Decide, then reveal</summary>' +
+          '<div class="slide-reveal"><strong>' + ans + '.</strong> ' + (it.why || '') + '</div></details></div>';
+      }).join('');
+      return '<div class="slide-activity">' +
+        '<span class="slide-badge badge-activity">Sort It</span>' +
+        '<div class="slide-title">' + (slide.title || '') + '</div>' +
+        (slide.intro ? '<div class="slide-body">' + slide.intro + '</div>' : '') +
+        '<div class="slide-body" style="font-size:.82em;opacity:.8">Categories: ' + cats.join(' · ') + '</div>' +
+        clItems +
+      '</div>';
+    }
+    if (type === 'widget') {
+      return '<div class="slide-concept">' +
+        '<span class="slide-badge badge-concept">Activity</span>' +
+        '<div class="slide-title">' + (slide.title || '') + '</div>' +
+        (slide.intro ? '<div class="slide-body">' + slide.intro + '</div>' : (slide.body ? '<div class="slide-body">' + slide.body + '</div>' : '')) +
+      '</div>';
+    }
     // Fallback
     return '<div class="slide-concept"><div class="slide-title">' + (slide.title || '') + '</div><div class="slide-body">' + (slide.body || JSON.stringify(slide)) + '</div></div>';
   }
