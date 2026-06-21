@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Digital Passport — Digital Innovations</title>
-  <meta name="description" content="A self-directed 20-lesson AI Digital Passport. No login needed. Works offline.">
+  <meta name="description" content="A self-directed 24-lesson AI Digital Passport, aligned to the OECD/EU AI Literacy Framework (Engage · Create · Manage · Shape). No login needed. Works offline.">
   <link rel="manifest" href="manifest.json">
   <meta property="og:type" content="website">
   <meta property="og:title" content="AI Digital Passport — Digital Innovations">
@@ -40,6 +40,8 @@
     .fl-hero h1 { font-size:clamp(1.6rem,4vw,2.2rem); font-weight:800; margin:0 0 10px; }
     .fl-hero-sub { color:var(--text-dim); font-size:.95rem; line-height:1.6; max-width:540px; margin:0 auto 20px; }
     .fl-hero-stats { display:flex; gap:24px; justify-content:center; flex-wrap:wrap; margin-bottom:24px; }
+    .fl-hero-domains { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:8px; }
+    .fl-hero-domain { font-size:.72rem; font-weight:700; color:var(--track-primary); background:rgba(var(--track-primary-rgb),.1); border:1px solid rgba(var(--track-primary-rgb),.3); border-radius:999px; padding:4px 12px; }
     .fl-stat { text-align:center; }
     .fl-stat-num { display:block; font-size:1.5rem; font-weight:800; color:var(--track-primary); }
     .fl-stat-label { font-size:.75rem; color:var(--text-dim); }
@@ -196,6 +198,19 @@
       color: var(--text-muted, #475569);
       line-height: 1.6;
     }
+    .slide-reveal-details { margin-top: 14px; }
+    .slide-reveal-details > summary { cursor: pointer; font-weight: 700; color: var(--track-primary); font-size: .88rem; padding: 8px 0; }
+    .slide-reveal {
+      margin-top: 10px;
+      background: rgba(0,159,227,.1);
+      border-left: 3px solid var(--track-primary, #009fe3);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      font-size: .9rem;
+      color: var(--text-muted, #475569);
+      line-height: 1.6;
+    }
+    .slide-bullets li > details > summary { cursor: pointer; font-weight: 600; }
     [data-theme="light"] .slide-callout {
       background: rgba(0,159,227,.07);
       border-left-color: #007bb0;
@@ -302,7 +317,7 @@
 </head>
 <body data-track="fluency">
   <div id="offlineBanner" class="offline-banner" style="display:none" role="status" aria-live="polite">
-    You are offline — all 20 lessons are available from cache
+    You are offline — all 24 lessons are available from cache
   </div>
 
   <div class="fl-shell">
@@ -320,7 +335,7 @@
     <div class="fl-progress-wrap">
       <div class="fl-progress-label">
         <span>Your progress</span>
-        <span id="flProgressLabel">0 / 20 lessons</span>
+        <span id="flProgressLabel">0 / 24 lessons</span>
       </div>
       <div class="fl-progress-track">
         <div class="fl-progress-fill" id="flProgressFill" style="width:0%"></div>
@@ -331,13 +346,13 @@
     <div class="fl-complete" id="flComplete">
       <div class="fl-complete-icon">🏆</div>
       <h2>AI Digital Passport Achieved!</h2>
-      <p>You've completed all 20 lessons. You now have the knowledge to use AI clearly, critically, and responsibly.</p>
+      <p>You've completed all 24 lessons. You can now engage with, create with, manage and shape AI — clearly, critically, and responsibly.</p>
       <div class="fl-cert-name-row">
         <label class="fl-cert-name-label" for="flCertNameInput">Your name (for the certificate)</label>
         <input id="flCertNameInput" class="fl-cert-name-input" type="text" placeholder="Enter your full name…" oninput="flUpdateCertName(this.value)" maxlength="60">
       </div>
       <div id="flSpeedWarning" class="fl-speed-warning" style="display:none">
-        ⚠️ <strong>Speed warning:</strong> your recorded active study time is <span id="flSpeedWarningTime"></span>. Working through all 20 lessons properly typically takes around 8 hours. Your study time is encoded into the certificate ID, so your teacher will see it — they may ask you to review the lessons again if it looks too short.
+        ⚠️ <strong>Speed warning:</strong> your recorded active study time is <span id="flSpeedWarningTime"></span>. Working through all 24 lessons properly typically takes around 10 hours. Your study time is encoded into the certificate ID, so your teacher will see it — they may ask you to review the lessons again if it looks too short.
       </div>
       <div class="fl-cert-card" id="flCertCard">
         <div class="fl-cert-watermark" aria-hidden="true">AI</div>
@@ -358,7 +373,7 @@
         <div class="fl-cert-recipient" id="flCertRecipient">—</div>
         <div class="fl-cert-course">has successfully completed the</div>
         <div class="fl-cert-title-main">AI Digital Passport</div>
-        <div class="fl-cert-detail">20 lessons · ~8 hours · AI literacy, critical thinking &amp; responsible use</div>
+        <div class="fl-cert-detail">24 lessons · ~10 hours · Aligned to the OECD/EU AI Literacy Framework (Engage · Create · Manage · Shape)</div>
         <div class="fl-cert-divider"></div>
         <div class="fl-cert-footer">
           <div class="fl-cert-date-wrap">
@@ -399,11 +414,17 @@
     <div class="fl-hero" id="flHero">
       <div class="fl-hero-badge">Self-Directed · Offline-capable</div>
       <h1>AI Digital Passport</h1>
-      <p class="fl-hero-sub">20 curated lessons. No teacher required. Work at your own pace and build genuine AI literacy — from understanding how LLMs work to protecting yourself from deepfakes.</p>
+      <p class="fl-hero-sub">24 curated lessons across all four AILit domains. No teacher required. Work at your own pace and build genuine AI literacy — from how LLMs work, to protecting yourself from deepfakes, to managing and shaping AI.</p>
       <div class="fl-hero-stats">
-        <div class="fl-stat"><span class="fl-stat-num">20</span><span class="fl-stat-label">Lessons</span></div>
-        <div class="fl-stat"><span class="fl-stat-num">~8h</span><span class="fl-stat-label">Total time</span></div>
+        <div class="fl-stat"><span class="fl-stat-num">24</span><span class="fl-stat-label">Lessons</span></div>
+        <div class="fl-stat"><span class="fl-stat-num">~10h</span><span class="fl-stat-label">Total time</span></div>
         <div class="fl-stat"><span class="fl-stat-num">0</span><span class="fl-stat-label">Prerequisites</span></div>
+      </div>
+      <div class="fl-hero-domains" aria-label="AILit Framework domains covered">
+        <span class="fl-hero-domain">Engage</span>
+        <span class="fl-hero-domain">Create</span>
+        <span class="fl-hero-domain">Manage</span>
+        <span class="fl-hero-domain">Shape</span>
       </div>
     </div>
 
@@ -411,13 +432,13 @@
     <details class="fl-scope" id="flScope">
       <summary><span class="fl-scope-icon" aria-hidden="true">ℹ️</span> What's in the AI Digital Passport — and what's not</summary>
       <div class="fl-scope-body">
-        <p><strong>The AI Digital Passport</strong> is a 20-lesson subset curated from the 59-lesson full course. Same slides, same explanations — just a focused route for learners who want AI literacy without a formal syllabus.</p>
+        <p><strong>The AI Digital Passport</strong> is a 24-lesson pathway aligned to the four domains of the OECD/EU AI Literacy Framework — Engage, Create, Manage and Shape AI. Most lessons are curated from the full course; the closing "Managing &amp; Shaping AI" section is shared with the Removes course. A focused route for learners who want recognised AI literacy without a formal syllabus.</p>
         <p><strong>Included:</strong></p>
         <ul>
           <li>How LLMs actually work · prompting · hallucinations · bias</li>
           <li>Spotting deepfakes, misinformation and AI-generated content</li>
           <li>Practical use: writing, research, and when <em>not</em> to use AI</li>
-          <li>A printable certificate when you finish all 20 lessons</li>
+          <li>A printable certificate when you finish all 24 lessons</li>
         </ul>
         <p><strong>Not included (available in the full course):</strong></p>
         <ul>
@@ -471,6 +492,7 @@
   <script src="js/slides-u5u6.js"></script>
   <script src="js/slides-critical.js"></script>
   <script src="js/slides-advanced.js"></script>
+  <script src="js/slides-gcse.js"></script>
   <script src="js/quiz-bank.js"></script>
   <script src="js/visuals.js"></script>
   <script>
@@ -498,6 +520,12 @@
     { id:48, section:'Your AI Future',         icon:'🧠', time:'~25 min' },
     { id:41, section:'Your AI Future',         icon:'🎓', time:'~20 min' },
     { id:44, section:'Your AI Future',         icon:'📜', time:'~25 min' },
+    // Managing & Shaping AI — reused from the Removes deck (SLIDES_GCSE) so the
+    // Passport covers all four AILit domains: Engage · Create · Manage · Shape.
+    { id:136, section:'Managing & Shaping AI', icon:'🧭', time:'~25 min', title:'Should I Even Use AI Here?' },
+    { id:138, section:'Managing & Shaping AI', icon:'🔬', time:'~25 min', title:'Looking Inside the Black Box' },
+    { id:139, section:'Managing & Shaping AI', icon:'🧪', time:'~25 min', title:'Does It Actually Work?' },
+    { id:140, section:'Managing & Shaping AI', icon:'🛠️', time:'~25 min', title:'Redesigning AI for Everyone' },
   ];
 
   var FL_PROGRESS_KEY = 'fl_progress_v1';
@@ -589,8 +617,12 @@
       ...(typeof SLIDES_U3U4 !== 'undefined' ? SLIDES_U3U4 : {}),
       ...(typeof SLIDES_U5U6 !== 'undefined' ? SLIDES_U5U6 : {}),
       ...(typeof SLIDES_CRITICAL !== 'undefined' ? SLIDES_CRITICAL : {}),
-      ...(typeof SLIDES_ADVANCED !== 'undefined' ? SLIDES_ADVANCED : {})
+      ...(typeof SLIDES_ADVANCED !== 'undefined' ? SLIDES_ADVANCED : {}),
+      ...(typeof SLIDES_GCSE !== 'undefined' ? SLIDES_GCSE : {})
     };
+    // Full authored slides take priority — covers Managing & Shaping AI
+    // lessons reused from the Removes deck (SLIDES_GCSE) that are not in UNITS.
+    if (allSlides[id]) return allSlides[id];
     // Find lesson in UNITS
     var lesson = null, unit = null;
     for (var ui = 0; ui < UNITS.length; ui++) {
@@ -600,7 +632,6 @@
       if (lesson) break;
     }
     if (!lesson) return [];
-    if (allSlides[id]) return allSlides[id];
     // Fallback: build minimal slide set from lesson data
     var slides = [];
     slides.push({ type:'hook', title: lesson.title, body: lesson.desc });
@@ -637,7 +668,7 @@
         }
         if (lessonData) break;
       }
-      var title = lessonData ? lessonData.title : 'Lesson ' + item.id;
+      var title = item.title || (lessonData ? lessonData.title : 'Lesson ' + item.id);
 
       html +=
         '<div class="fl-lesson' + (done ? ' fl-done' : '') + (isNext ? ' fl-active' : '') + '" onclick="flOpenLesson(' + item.id + ')" data-fl-id="' + item.id + '">' +
@@ -999,7 +1030,10 @@
         '<div class="slide-title">' + (slide.title || 'Scenario') + '</div>' +
         '<div class="slide-body">' + (slide.situation || '') + '</div>' +
         (slide.question ? '<div class="slide-callout"><strong>Consider:</strong> ' + slide.question + '</div>' : '') +
-        (slide.choices ? '<ul class="slide-bullets">' + slide.choices.map(function(c){ return '<li>' + (typeof c === 'string' ? c : c.text) + '</li>'; }).join('') + '</ul>' : '') +
+        (slide.choices ? '<ul class="slide-bullets">' + slide.choices.map(function(c){
+          if (typeof c === 'string') return '<li>' + c + '</li>';
+          return '<li><details><summary>' + c.text + '</summary>' + (c.outcome ? '<div class="slide-reveal">' + c.outcome + '</div>' : '') + '</details></li>';
+        }).join('') + '</ul>' : '') +
       '</div>';
     }
     if (type === 'activity') {
@@ -1010,6 +1044,7 @@
         (bodyText ? '<div class="slide-body">' + bodyText + '</div>' : '') +
         (slide.steps ? '<ol class="slide-steps">' + slide.steps.map(function(s){ return '<li>' + s + '</li>'; }).join('') + '</ol>' : '') +
         (slide.callout ? '<div class="slide-callout">' + slide.callout + '</div>' : '') +
+        (slide.reveal ? '<details class="slide-reveal-details"><summary>Write your own answer first — then reveal</summary><div class="slide-reveal">' + slide.reveal + '</div></details>' : '') +
       '</div>';
     }
     if (type === 'discussion') {
@@ -1063,6 +1098,27 @@
         '<span class="slide-badge badge-summary">Summary</span>' +
         '<div class="slide-title">' + (slide.title || 'Key Takeaways') + '</div>' +
         '<div class="summary-points">' + pointsHtml + '</div>' +
+      '</div>';
+    }
+    if (type === 'exit-ticket') {
+      return '<div class="slide-activity">' +
+        '<span class="slide-badge badge-activity">Exit Ticket</span>' +
+        '<div class="slide-title">' + (slide.title || 'Exit Ticket') + '</div>' +
+        (slide.prompt ? '<div class="slide-body"><strong>' + slide.prompt + '</strong></div>' : '') +
+        '<textarea class="fl-exit-input" rows="4" placeholder="Write your reflection here…" style="width:100%;margin-top:10px;padding:10px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-family:inherit"></textarea>' +
+        (slide.body ? '<div class="slide-callout" style="font-size:.82em">' + slide.body + '</div>' : '') +
+      '</div>';
+    }
+    if (type === 'unit-test') {
+      var utHtml = (slide.questions || []).map(function(q, qi) {
+        var optsH = (q.options || []).map(function(o){ return '<li>' + o + '</li>'; }).join('');
+        return '<div style="margin-bottom:12px"><strong>' + (qi+1) + '. ' + (q.q || '') + '</strong><ul class="slide-bullets">' + optsH + '</ul>' +
+          (q.explanation ? '<details class="slide-reveal-details"><summary>Show answer</summary><div class="slide-reveal">' + q.explanation + '</div></details>' : '') + '</div>';
+      }).join('');
+      return '<div class="slide-concept">' +
+        '<span class="slide-badge badge-concept">Recap</span>' +
+        '<div class="slide-title">' + (slide.title || 'Recap') + '</div>' +
+        (slide.body ? '<div class="slide-body">' + slide.body + '</div>' : '') + utHtml +
       '</div>';
     }
     // Fallback
