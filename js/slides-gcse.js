@@ -2,6 +2,9 @@
    Year 9 (ages 13–14) · 6 units · 34 lessons · ~5 slides each
    ─────────────────────────────────────────────────────────────── */
 
+/* ── Unit order follows the OECD/EU AILit Framework learning arc:
+   Engage (foundation) → Create & Manage (hands-on) → Shape (culmination)
+   → a personal Wellbeing & Future close. ─────────────────────────────── */
 var GCSE_UNITS = [
   {
     id: 'g1', title: 'Unit 1: Understanding AI', color: '#9b1844', ailit: 'Engage with AI',
@@ -15,7 +18,29 @@ var GCSE_UNITS = [
     ]
   },
   {
-    id: 'g2', title: 'Unit 2: AI for Study & Revision', color: '#10b981', ailit: 'Manage & Create with AI',
+    id: 'g4', title: 'Unit 2: AI, Truth & Media', color: '#ef4444', ailit: 'Engage with AI',
+    lessons: [
+      { id: 119, title: 'Deepfakes & Synthetic Media',     icon: '🎭', time: '~25 min', desc: 'What deepfakes are, how they\'re made and why they matter.' },
+      { id: 120, title: 'Spotting AI-Generated Content',   icon: '👁️', time: '~20 min', desc: 'Identifying AI-written text, images and audio in the wild.' },
+      { id: 121, title: 'Misinformation & AI',             icon: '📢', time: '~25 min', desc: 'Why false things spread faster — and how AI is making it worse.' },
+      { id: 122, title: 'Fact-Checking in the AI Age',     icon: '✅', time: '~25 min', desc: 'Your 4-step verification toolkit for any claim.' },
+      { id: 123, title: 'Filter Bubbles & Algorithms',     icon: '🔄', time: '~20 min', desc: 'The hidden curator shaping everything you see online.' }
+    ]
+  },
+  {
+    id: 'g5', title: 'Unit 3: AI, Society & Ethics', color: '#8b5cf6', ailit: 'Engage with AI',
+    lessons: [
+      { id: 124, title: 'Who Benefits from AI?',  icon: '🌍', time: '~20 min', desc: 'Access, wealth and the growing digital divide.' },
+      { id: 125, title: 'Bias In, Bias Out',       icon: '⚖️', time: '~25 min', desc: 'How AI inherits human prejudice — and the real-world consequences.' },
+      { id: 137, title: 'The Environmental Cost of AI', icon: '🌱', time: '~20 min', desc: 'The energy, water and minerals behind every prompt — and the habit of asking for a greener alternative.' },
+      { id: 126, title: 'Jobs & Automation',       icon: '🏭', time: '~20 min', desc: 'What\'s changing, what isn\'t, and what that means for your future.' },
+      { id: 127, title: 'AI & Privacy',            icon: '🔒', time: '~20 min', desc: 'What your apps know about you — and why it matters.' },
+      { id: 128, title: 'Regulation & Control',    icon: '📜', time: '~20 min', desc: 'Who makes the rules for AI — governments, companies, or nobody?' },
+      { id: 129, title: 'AI Ethics in Action',     icon: '🤔', time: '~25 min', desc: 'Real dilemmas with no easy right answer.' }
+    ]
+  },
+  {
+    id: 'g2', title: 'Unit 4: AI for Study & Revision', color: '#10b981', ailit: 'Create & Manage AI',
     lessons: [
       { id: 106, title: 'AI as Your Study Partner',       icon: '📚', time: '~20 min', desc: 'The right way — and the wrong way — to use AI for learning.' },
       { id: 107, title: 'Better Questions, Better Answers', icon: '❓', time: '~25 min', desc: 'How the quality of your prompt determines the quality of the response.' },
@@ -27,7 +52,7 @@ var GCSE_UNITS = [
     ]
   },
   {
-    id: 'g3', title: 'Unit 3: Practical AI Skills', color: '#f59e0b', ailit: 'Create & Manage AI',
+    id: 'g3', title: 'Unit 5: Practical AI Skills', color: '#f59e0b', ailit: 'Create & Manage AI',
     lessons: [
       { id: 113, title: 'Prompting 101',                   icon: '🎯', time: '~20 min', desc: 'The anatomy of a great prompt — and how to write one.' },
       { id: 114, title: 'Evaluating AI Output',            icon: '🔍', time: '~25 min', desc: 'How to spot mistakes, gaps and outdated information in AI responses.' },
@@ -37,28 +62,6 @@ var GCSE_UNITS = [
       { id: 117, title: 'Working with AI Tools',           icon: '💻', time: '~20 min', desc: 'Claude, ChatGPT, Gemini — what makes them different and when to use each.' },
       { id: 118, title: 'Prompt Engineering Challenge',    icon: '🏆', time: '~30 min', desc: 'Build a prompt that actually does something useful — from scratch.' },
       { id: 134, title: 'AI Agents — When AI Does the Doing', icon: '🤝', time: '~35 min', desc: 'The biggest shift in AI since ChatGPT: systems that don\'t just answer — they act.' }
-    ]
-  },
-  {
-    id: 'g4', title: 'Unit 4: AI, Truth & Media', color: '#ef4444', ailit: 'Engage with AI',
-    lessons: [
-      { id: 119, title: 'Deepfakes & Synthetic Media',     icon: '🎭', time: '~25 min', desc: 'What deepfakes are, how they\'re made and why they matter.' },
-      { id: 120, title: 'Spotting AI-Generated Content',   icon: '👁️', time: '~20 min', desc: 'Identifying AI-written text, images and audio in the wild.' },
-      { id: 121, title: 'Misinformation & AI',             icon: '📢', time: '~25 min', desc: 'Why false things spread faster — and how AI is making it worse.' },
-      { id: 122, title: 'Fact-Checking in the AI Age',     icon: '✅', time: '~25 min', desc: 'Your 4-step verification toolkit for any claim.' },
-      { id: 123, title: 'Filter Bubbles & Algorithms',     icon: '🔄', time: '~20 min', desc: 'The hidden curator shaping everything you see online.' }
-    ]
-  },
-  {
-    id: 'g5', title: 'Unit 5: AI, Society & Ethics', color: '#8b5cf6', ailit: 'Engage with AI',
-    lessons: [
-      { id: 124, title: 'Who Benefits from AI?',  icon: '🌍', time: '~20 min', desc: 'Access, wealth and the growing digital divide.' },
-      { id: 125, title: 'Bias In, Bias Out',       icon: '⚖️', time: '~25 min', desc: 'How AI inherits human prejudice — and the real-world consequences.' },
-      { id: 137, title: 'The Environmental Cost of AI', icon: '🌱', time: '~20 min', desc: 'The energy, water and minerals behind every prompt — and the habit of asking for a greener alternative.' },
-      { id: 126, title: 'Jobs & Automation',       icon: '🏭', time: '~20 min', desc: 'What\'s changing, what isn\'t, and what that means for your future.' },
-      { id: 127, title: 'AI & Privacy',            icon: '🔒', time: '~20 min', desc: 'What your apps know about you — and why it matters.' },
-      { id: 128, title: 'Regulation & Control',    icon: '📜', time: '~20 min', desc: 'Who makes the rules for AI — governments, companies, or nobody?' },
-      { id: 129, title: 'AI Ethics in Action',     icon: '🤔', time: '~25 min', desc: 'Real dilemmas with no easy right answer.' }
     ]
   },
   {
@@ -3983,6 +3986,32 @@ SLIDES_GCSE[135] = [
     ]
   },
   {
+    type: 'concept',
+    title: 'Why AI Feels Human (and Who Benefits)',
+    body: 'AI does not accidentally seem human — it is designed to. Specific choices make a statistical text generator feel like a person, and those choices usually serve the company\'s goals, not yours. Spotting the design is how you stop being played by it.',
+    bullets: [
+      { term: 'It says "I"', def: 'Using first-person pronouns ("I think", "I feel") implies a self that isn\'t there. A weather app doesn\'t say "I believe it will rain" — chatbots are tuned to.' },
+      { term: 'Names and personas', def: 'Giving the AI a friendly name, an avatar, or a backstory makes you treat it like a character you have a relationship with.' },
+      { term: 'Fake hesitation and warmth', def: 'Typing dots, "hmm, good question", and over-agreeable replies mimic a caring friend. They are engagement features, not feelings.' },
+      { term: 'Always agreeable', def: 'Companion apps are tuned to validate you. A real friend sometimes disagrees; a product designed to keep you online rarely does.' },
+      { term: 'Who benefits', def: 'The longer and more emotionally you engage, the more data and revenue the company gets. "Human-like" is often a business decision, not a technical necessity.' }
+    ],
+    callout: 'When something is engineered to feel human, ask: what is it trying to get me to do — and who profits if it works?'
+  },
+  {
+    type: 'activity',
+    title: 'Spot the Human-Washing (Write First, Then Reveal)',
+    task: 'Here are five design features taken from real AI apps. For each, write in the notes box what it makes you feel, and what is actually happening underneath. Then reveal.',
+    steps: [
+      'The app is called "Aria" and has a smiling cartoon face.',
+      'It replies "Aww, I\'ve missed talking to you!" when you open it.',
+      'It shows three animated dots, as if "thinking", before answering.',
+      'It agrees with almost everything you say.',
+      'It says "I\'ll always be here for you."'
+    ],
+    reveal: '<strong>Underneath:</strong> (1) A name + face turns a text generator into a "character" you bond with. (2) It cannot miss you — it has no memory of caring; this is a retention hook. (3) The dots are a designed delay to mimic human thought; the model isn\'t pondering. (4) Agreeableness is tuned in to keep you engaged, not because you\'re always right. (5) It cannot promise anything — and as the Replika case showed, a company can change or remove the "relationship" overnight. Every feature here is engagement design wearing a human mask.'
+  },
+  {
     type: 'quiz',
     question: 'Why does it matter whether we say an AI "understands" us or "matches patterns in our words"?',
     options: [
@@ -4080,6 +4109,19 @@ SLIDES_GCSE[136] = [
     ]
   },
   {
+    type: 'concept',
+    title: 'When AI Is the Wrong Tool',
+    body: 'Knowing AI\'s failure modes tells you when to keep it out. These are the situations where reaching for AI is actively a mistake — not because AI is bad, but because the task is a poor match for what it does.',
+    bullets: [
+      { term: 'When you need to learn the skill', def: 'If the task IS the practice — mental maths, essay structure, a language — outsourcing it trains the AI, not you.' },
+      { term: 'When you can\'t verify the output', def: 'On a topic you know nothing about, you can\'t catch a confident hallucination. AI is most dangerous exactly where you can least check it.' },
+      { term: 'When it must be your own voice', def: 'Reflections, personal statements, anything assessed on authenticity. Right answer, wrong author = no value.' },
+      { term: 'When the data is private', def: 'Don\'t paste personal, sensitive or someone else\'s information into a tool that may store or train on it.' },
+      { term: 'When a human relationship is the point', def: 'Comfort, apology, encouragement — the value is that a person chose to give it. AI can\'t.' }
+    ],
+    callout: 'A simple test: if getting it wrong, or not learning it, would actually matter — slow down and keep a human in charge.'
+  },
+  {
     type: 'quiz',
     question: 'What does it mean to "Manage AI" well, in the AILit sense?',
     options: [
@@ -4168,6 +4210,29 @@ SLIDES_GCSE[137] = [
     ]
   },
   {
+    type: 'scenario',
+    title: 'The Data Centre Next Door',
+    situation: 'A tech company wants to build a large AI data centre near a town. It promises 200 jobs and faster local internet. But the centre will draw millions of litres of water a year for cooling — from a river the town already relies on during dry summers — and will significantly raise local electricity demand. The town council asks students to weigh in.',
+    question: 'What is the most AI-literate way to think about this?',
+    choices: [
+      { text: 'Approve it — jobs and faster internet are obviously worth it.', outcome: 'Too quick. The benefits are real, but so are the water and energy costs, which fall on the same community during shortages. AI literacy means weighing both sides with the actual numbers, not just the headline jobs figure.' },
+      { text: 'Reject it — AI data centres are bad for the environment, full stop.', outcome: 'Also too quick, in the other direction. A blanket "AI is bad" ignores genuine benefits and the fact that impact depends on design — is the centre water-cooled or air-cooled? Powered by renewables? Located somewhere water-rich?' },
+      { text: 'Ask for the specifics — water source and cooling method, energy source, who bears the costs and who gets the benefits — and weigh trade-offs before deciding.', outcome: 'This is the literate response. The right answer depends on details: a renewable-powered, efficiently-cooled centre in a water-rich area is very different from a fossil-powered one draining a stressed river. You ask who benefits and who is disadvantaged — exactly AILit\'s framing.' }
+    ]
+  },
+  {
+    type: 'concept',
+    title: 'What You Can Actually Do',
+    body: 'Individual choices won\'t solve AI\'s footprint — that needs decisions by the companies and governments building the data centres. But your habits matter at the margin, and they build the mindset that drives bigger change.',
+    bullets: [
+      { term: 'Reach for the lightest tool', def: 'Calculator, search or your own memory before a large model. Don\'t fire up image generation "just to see".' },
+      { term: 'Be deliberate, not idle', def: 'Endless regenerating and aimless chatting all cost energy. Use AI with a purpose, then stop.' },
+      { term: 'Prefer efficient options', def: 'Smaller models are often good enough and far cheaper to run than the largest frontier models.' },
+      { term: 'Push for transparency', def: 'Support companies that report their energy and water use. You can\'t improve what nobody measures (Luccioni et al., 2025).' },
+      { term: 'Keep perspective', def: 'A streaming binge or a long flight may dwarf your AI use. The goal is conscious choices, not guilt.' }
+    ]
+  },
+  {
     type: 'quiz',
     question: 'Which statement best reflects an AI-literate view of AI and the environment?',
     options: [
@@ -4237,6 +4302,42 @@ SLIDES_GCSE[138] = [
     ]
   },
   {
+    type: 'concept',
+    title: 'Why the Box Is Hard to Open',
+    body: 'A model card tells you what a system was built to do — but not exactly how it reaches each answer. Modern AI is genuinely a "black box": even its creators often cannot fully explain a specific output. Understanding why is part of judging it fairly.',
+    bullets: [
+      { term: 'Learned, not written', def: 'No human wrote the rules. The system adjusted billions of internal numbers (weights) during training, and no one can read them like code.' },
+      { term: 'Interpretability', def: 'The field that tries to explain why a model did something. For simple models (a decision tree) it\'s easy; for large neural networks it\'s often partial at best.' },
+      { term: 'Inputs and outputs, not the middle', def: 'You can see what goes in and what comes out, and test patterns — but the reasoning in between is largely hidden.' },
+      { term: 'Why it matters', def: 'If a system denies someone a loan or flags a student, "the AI decided" is not good enough. Opacity is exactly why transparency tools like model cards and testing matter so much.' }
+    ],
+    callout: 'You can\'t always see inside the box — so you judge it by what it was trained on, what it was built for, and how it behaves when you test it.'
+  },
+  {
+    type: 'scenario',
+    title: 'The Tool With No Card',
+    situation: 'Your school is considering two AI tools that both claim to "improve student writing". Tool A publishes a clear model card: trained on UK student essays, intended for feedback not grading, known to struggle with creative writing. Tool B publishes nothing — its makers say the details are "commercially confidential".',
+    question: 'Which tool should the school trust more, and why?',
+    choices: [
+      { text: 'Tool B — keeping details secret means it must be more advanced.', outcome: 'Secrecy is not sophistication. Without a model card you cannot know what Tool B was trained on, what it\'s for, or where it fails — so you cannot judge whether it\'s safe or fair for your students. The secrecy removes accountability.' },
+      { text: 'Tool A — its transparency lets you judge whether it fits your students, and shows the makers are accountable.', outcome: 'Exactly. Tool A might even be technically simpler, but you can actually evaluate it: you know its data, its limits and its intended use. Transparency is a feature. A missing card is a reason for caution, not confidence.' },
+      { text: 'It doesn\'t matter — both probably work fine.', outcome: '"Probably fine" is how biased or unsuitable tools slip into schools. The whole Shape-AI skill is refusing to guess: you demand the information needed to judge, and treat its absence as a warning.' }
+    ]
+  },
+  {
+    type: 'activity',
+    title: 'Interrogate This System (Write First, Then Reveal)',
+    task: 'Imagine an AI tool that automatically marks short-answer Science questions. In the notes box, write the five questions you would ask before letting it mark real work — channel a journalist or safety inspector. Then reveal a strong set.',
+    steps: [
+      'Think about what it was built to do.',
+      'Think about what it learned from.',
+      'Think about where it might fail.',
+      'Think about who could be disadvantaged.',
+      'Think about what happens when it gets one wrong.'
+    ],
+    reveal: '<strong>A strong set:</strong> (1) What exactly was it designed to mark — and was it designed to mark real assessments at all? (2) What answers was it trained on, and do they match my exam board and my students? (3) Where is it known to fail — unusual phrasing, correct-but-creative answers, non-standard English? (4) Could it score some groups unfairly (e.g. EAL students who phrase things differently)? (5) Is there a human check on its marks, and can a student challenge one? Notice you can ask all five <em>without</em> any technical knowledge — that is the Shape-AI mindset.'
+  },
+  {
     type: 'quiz',
     question: 'A developer refuses to say what data their AI was trained on or where it fails. What is the literate response?',
     options: [
@@ -4271,6 +4372,14 @@ SLIDES_GCSE[139] = [
       { label: 'Buolamwini & Gebru (2018) — Gender Shades: intersectional accuracy disparities in commercial gender classification', url: 'https://proceedings.mlr.press/v81/buolamwini18a.html' },
       { label: 'AILit Framework (OECD/EU 2026) — Shape AI 2 & 3', url: 'https://doi.org/10.1787/65cd27d4-en' }
     ]
+  },
+  {
+    type: 'video',
+    title: 'How I\'m Fighting Bias in Algorithms',
+    videoId: 'UG_X_7g63rY',
+    credit: 'Joy Buolamwini · TEDxBeaconStreet · 8 min',
+    intro: 'Joy Buolamwini, an MIT researcher, discovered that face-recognition systems couldn\'t detect her dark-skinned face until she put on a white mask. Her work (the "Gender Shades" study) measured exactly how unfairly these systems performed across demographics — and traced it back to the training data. As you watch, notice two Shape-AI ideas: (1) the failure came from <em>who was missing</em> in the data, and (2) she only proved it by <em>testing</em> across groups.',
+    callout: 'This is the difference between "it works" and "it works for everyone" — and the whole reason fairness has to be tested, not assumed.'
   },
   {
     type: 'concept',
@@ -4320,6 +4429,19 @@ SLIDES_GCSE[139] = [
       { text: 'Two failures: the training data was biased (it learned "good CV = looks like our existing staff"), and nobody tested for fairness across groups before deploying.', outcome: 'Exactly right. This is the Gender Shades pattern in a new setting: biased data in, no fairness testing, harm out. A shaper of AI catches both — by asking what the data represented and by setting fairness criteria <em>before</em> release.' },
       { text: 'The AI became prejudiced on its own.', outcome: 'Close, but the framing matters. The AI didn\'t "decide" to be prejudiced — it faithfully learned the bias in the data humans gave it. That\'s why the fix is human: better data and real testing. Naming it accurately keeps responsibility where it belongs.' }
     ]
+  },
+  {
+    type: 'concept',
+    title: 'What Good Testing Actually Looks Like',
+    body: 'Real evaluation is deliberately adversarial — you go hunting for failure instead of admiring success. Here is the difference between a demo and a test.',
+    bullets: [
+      { term: 'Test on data it has never seen', def: 'Checking a system on its own training examples is like marking your own homework. Hold back fresh examples for the real test.' },
+      { term: 'Break it down by group', def: 'Don\'t report one overall score. Report it for different groups — that\'s the only way the Gender Shades gap shows up.' },
+      { term: 'Hunt the edge cases', def: 'Feed it the rare, the unusual, the dialect, the rainy-day photo. Systems fail at the edges, and the edges are real people.' },
+      { term: 'Use independent reviewers', def: 'The team that built it is the worst-placed to spot its blind spots. Outside testing and benchmarks catch what insiders miss.' },
+      { term: 'Watch for "looks good when watched"', def: 'Some systems behave differently when they sense they\'re being tested ("alignment faking") — another reason for independent, ongoing checks.' }
+    ],
+    callout: 'A demo shows you the best case on purpose. A test goes looking for the worst case on purpose. Only one tells you the truth.'
   },
   {
     type: 'quiz',
@@ -4394,6 +4516,29 @@ SLIDES_GCSE[140] = [
       { text: '"Before launch, check what data it was trained on, test whether it flags some groups unfairly, keep a teacher as the decision-maker on every flag, and let students see and challenge their own flag."', outcome: 'This is the full Shape-AI toolkit in one answer: interrogate the data (L138), test for fairness (L139), add a human checkpoint and a feedback loop, and build in transparency (L140). You have just done the job of an AI ethics reviewer.' },
       { text: '"Ban all AI in school — it\'s too risky."', outcome: 'Understandable caution, but a blanket ban throws away genuine benefits and isn\'t the skill this unit built. Shaping AI means improving it so it can be used safely — proposing the safeguards, not just refusing the tool.' }
     ]
+  },
+  {
+    type: 'concept',
+    title: 'The Curb-Cut Effect',
+    body: 'Curb cuts — the little ramps where a pavement meets the road — were fought for by wheelchair users. Once built, everyone benefited: people with prams, delivery trolleys, cyclists, travellers with suitcases. Designing for the people who were excluded made the world better for everyone. The same is true for AI.',
+    bullets: [
+      { term: 'Captions', def: 'Built for Deaf users; now used by everyone watching video with the sound off.' },
+      { term: 'Plain-language outputs', def: 'Added for people who find dense text hard; clearer for all of us.' },
+      { term: 'More diverse training data', def: 'Added so a system works for an under-served group; makes the system more accurate for everyone.' },
+      { term: 'The lesson for shapers', def: 'When you improve an AI for the group it serves worst, you usually improve it for everyone. "Who is left out?" is not a niche question — it is the fastest route to a better product.' }
+    ],
+    callout: 'Inclusive design is not charity. It is the most reliable way to make a tool genuinely good.'
+  },
+  {
+    type: 'activity',
+    title: 'Pitch Your Improvement (Write First, Then Reveal)',
+    task: 'You have 60 seconds to convince a developer to make one change to an AI tool. In the notes box, write your 3-sentence pitch: (1) who is being left out, (2) the specific change, (3) why it helps everyone (the curb-cut effect). Then reveal an example pitch.',
+    steps: [
+      'Sentence 1: name the excluded group and their problem.',
+      'Sentence 2: state one concrete, realistic change.',
+      'Sentence 3: explain who else benefits — the curb-cut argument.'
+    ],
+    reveal: '<strong>Example pitch:</strong> "Right now your study chatbot only works well in standard English, so students learning English get worse help — exactly the students who need it most. Add more multilingual and plain-English examples to its training data and let users flag confusing replies. That won\'t just help EAL students — it\'ll make explanations clearer for every learner who finds dense text hard." Three sentences, a named group, a concrete change, and a curb-cut payoff. That is a shaper\'s argument.'
   },
   {
     type: 'quiz',
