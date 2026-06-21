@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Digital Innovations — Removes</title>
   <link rel="manifest" href="manifest.json">
-  <meta name="description" content="Digital Innovations — the Removes AI course: 34 self-paced lessons on how AI works, revision skills, deepfakes, bias and ethics for Year 9 pupils.">
+  <meta name="description" content="Digital Innovations — the Removes AI course: 40 self-paced lessons aligned to the OECD/EU AI Literacy Framework — how AI works, revision skills, deepfakes, bias, ethics, and shaping AI — for Year 9 pupils.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Removes AI Course — Digital Innovations">
   <meta property="og:image" content="assets/og-image.png">
@@ -32,6 +32,8 @@
     .gs-hero h1{font-size:clamp(1.6rem,4vw,2.2rem);font-weight:800;margin:0 0 10px}
     .gs-hero-sub{color:var(--text-dim);font-size:.95rem;line-height:1.6;max-width:540px;margin:0 auto 20px}
     .gs-hero-stats{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+    .gs-hero-domains{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:8px}
+    .gs-hero-domain{font-size:.72rem;font-weight:700;color:var(--track-primary);background:rgba(var(--track-primary-rgb),.1);border:1px solid rgba(var(--track-primary-rgb),.3);border-radius:999px;padding:4px 12px}
     .gs-stat{text-align:center}
     .gs-stat-num{display:block;font-size:1.5rem;font-weight:800;color:var(--track-primary)}
     .gs-stat-label{font-size:.75rem;color:var(--text-dim)}
@@ -53,7 +55,8 @@
     .gs-review-fb{margin-top:10px;padding:10px 14px;border-radius:8px;background:rgba(var(--track-primary-rgb),.06);border-left:3px solid var(--track-primary);font-size:.83rem;line-height:1.55;color:var(--text)}
     .gs-review-fb.wrong{background:rgba(239,68,68,.06);border-left-color:#ef4444}
     .gs-review-progress{font-size:.72rem;color:var(--text-dim);margin-top:10px;text-align:right}
-    .gs-unit-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--track-primary);margin:20px 0 8px 4px;padding-bottom:4px;border-bottom:1px solid rgba(var(--track-primary-rgb),.2)}
+    .gs-unit-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--track-primary);margin:20px 0 8px 4px;padding-bottom:4px;border-bottom:1px solid rgba(var(--track-primary-rgb),.2);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .gs-unit-domain{font-size:.6rem;font-weight:700;letter-spacing:.04em;text-transform:none;color:var(--track-primary);background:rgba(var(--track-primary-rgb),.12);border:1px solid rgba(var(--track-primary-rgb),.3);border-radius:999px;padding:2px 9px}
     .gs-lesson{display:flex;align-items:center;gap:14px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:var(--radius);padding:14px 16px;cursor:pointer;transition:all .15s;position:relative}
     .gs-lesson:hover{border-color:var(--track-primary);transform:translateX(3px)}
     .gs-lesson.gs-done{border-color:rgba(var(--track-primary-rgb),.4);background:rgba(var(--track-primary-rgb),.04)}
@@ -261,7 +264,7 @@
   <link rel="stylesheet" href="css/wow.css">
 </head>
 <body data-track="removes">
-  <div id="offlineBanner" class="offline-banner" style="display:none" role="status">You are offline — all 34 lessons are available from cache</div>
+  <div id="offlineBanner" class="offline-banner" style="display:none" role="status">You are offline — all 40 lessons are available from cache</div>
 
   <div class="gs-shell">
     <div class="gs-header">
@@ -275,7 +278,7 @@
     <div class="gs-progress-wrap">
       <div class="gs-progress-label">
         <span>Your progress</span>
-        <span id="gsProgressLabel">0 / 34 lessons</span>
+        <span id="gsProgressLabel">0 / 40 lessons</span>
       </div>
       <div class="gs-progress-track">
         <div class="gs-progress-fill" id="gsProgressFill" style="width:0%"></div>
@@ -285,7 +288,7 @@
     <div class="gs-complete" id="gsComplete">
       <div class="gs-complete-icon">🏆</div>
       <h2>Course Complete!</h2>
-      <p>You've completed all 34 lessons. You now have the knowledge to use AI clearly, critically, and responsibly.</p>
+      <p>You've completed all 40 lessons. You can now engage with, create with, manage and shape AI — clearly, critically, and responsibly.</p>
       <div class="gs-cert-name-row">
         <label class="gs-cert-name-label" for="gsCertNameInput">Your name (for the certificate)</label>
         <input id="gsCertNameInput" class="gs-cert-name-input" type="text" placeholder="Enter your full name…" oninput="gsUpdateCertName(this.value)" maxlength="60">
@@ -305,7 +308,7 @@
         <div class="gs-cert-recipient" id="gsCertRecipient">—</div>
         <div class="gs-cert-course">has successfully completed the</div>
         <div class="gs-cert-title-main">Digital Innovations — Removes</div>
-        <div class="gs-cert-detail">34 lessons · 6 units · AI literacy, ethics &amp; real-world skills</div>
+        <div class="gs-cert-detail">40 lessons · 7 units · Aligned to the OECD/EU AI Literacy Framework (Engage · Create · Manage · Shape)</div>
         <div class="gs-cert-divider"></div>
         <div class="gs-cert-footer">
           <div><div class="gs-cert-date" id="gsCertDate"></div><div class="gs-cert-date-label">Date of completion</div></div>
@@ -319,11 +322,17 @@
     <div class="gs-hero" id="gsHero">
       <div class="gs-hero-badge">Removes · Works Offline</div>
       <h1>Digital Innovations</h1>
-      <p class="gs-hero-sub">34 lessons across 6 units. Build genuine AI literacy — from understanding how it works to using it wisely for revision, creativity, and your future.</p>
+      <p class="gs-hero-sub">40 lessons across 7 units, aligned to the OECD/EU AI Literacy Framework. Build genuine AI literacy — from understanding how AI works, to creating and managing it wisely, to shaping it for the better.</p>
       <div class="gs-hero-stats">
-        <div class="gs-stat"><span class="gs-stat-num">33</span><span class="gs-stat-label">Lessons</span></div>
-        <div class="gs-stat"><span class="gs-stat-num">6</span><span class="gs-stat-label">Units</span></div>
-        <div class="gs-stat"><span class="gs-stat-num">~13h</span><span class="gs-stat-label">Total time</span></div>
+        <div class="gs-stat"><span class="gs-stat-num">40</span><span class="gs-stat-label">Lessons</span></div>
+        <div class="gs-stat"><span class="gs-stat-num">7</span><span class="gs-stat-label">Units</span></div>
+        <div class="gs-stat"><span class="gs-stat-num">~15h</span><span class="gs-stat-label">Total time</span></div>
+      </div>
+      <div class="gs-hero-domains" aria-label="AILit Framework domains covered">
+        <span class="gs-hero-domain">Engage with AI</span>
+        <span class="gs-hero-domain">Create with AI</span>
+        <span class="gs-hero-domain">Manage AI</span>
+        <span class="gs-hero-domain">Shape AI</span>
       </div>
     </div>
 
@@ -555,7 +564,9 @@
     var html = '';
     var overall = 0;
     GCSE_UNITS.forEach(function(unit) {
-      html += '<div class="gs-unit-label">' + unit.title + '</div>';
+      html += '<div class="gs-unit-label">' + unit.title +
+        (unit.ailit ? '<span class="gs-unit-domain" title="OECD/EU AILit Framework domain">' + unit.ailit + '</span>' : '') +
+        '</div>';
       unit.lessons.forEach(function(lesson, li) {
         overall++;
         var done = gsDone.has(lesson.id);
