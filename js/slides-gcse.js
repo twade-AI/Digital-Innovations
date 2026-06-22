@@ -610,10 +610,11 @@ SLIDES_GCSE[105] = [
   {
     type: 'hook',
     title: 'Can AI Think?',
-    body: 'March 2023: GPT-4 launches. Within weeks it scores in the top 10% on the US Uniform Bar Exam (Katz et al., SSRN 2023), passes the US Medical Licensing Exam in three of three stages (Kung et al., PLOS Digital Health 2023), and clears GCSE and A-level papers it had never seen. By 2024 it matches or beats the average human on over 20 standardised professional exams. Does that mean it can <em>think</em>? Does it <em>understand</em> medicine, law, or your English coursework? Philosophers, AI researchers and neuroscientists disagree — and the answer you reach will shape how you trust, regulate and use these tools for the rest of your life.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">Top 10%</span><span class="sl">GPT-4 score on US Bar Exam (2023)</span></div><div class="hook-stat-mini"><span class="sv">3/3</span><span class="sl">USMLE stages passed by ChatGPT (Kung 2023)</span></div><div class="hook-stat-mini"><span class="sv">0</span><span class="sl">medical patients treated safely by AI alone in 2024</span></div></div>',
+    body: 'March 2023: GPT-4 launches. OpenAI announces it scoring in the "top 10%" on the US Uniform Bar Exam (Katz et al., 2023) — a headline a 2024 re-analysis later showed was overstated (Martínez, Artificial Intelligence and Law): measured against people who actually passed the exam, GPT-4 sat closer to the middle of the pack. Even so, it genuinely passes the US Medical Licensing Exam in three of three stages (Kung et al., PLOS Digital Health 2023) and clears GCSE and A-level papers it had never seen. In the years since, far more capable "reasoning" models have pushed exam scores higher still — yet the deeper question hasn\'t moved an inch. Does any of that mean it can <em>think</em>? Does it <em>understand</em> medicine, law, or your English coursework? Philosophers, AI researchers and neuroscientists disagree — and the answer you reach will shape how you trust, regulate and use these tools for the rest of your life.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">Top 10%*</span><span class="sl">GPT-4\'s <em>claimed</em> US Bar Exam result — *later shown overstated (Martínez 2024)</span></div><div class="hook-stat-mini"><span class="sv">3/3</span><span class="sl">USMLE stages passed by ChatGPT (Kung 2023)</span></div><div class="hook-stat-mini"><span class="sv">0</span><span class="sl">patients treated safely by AI with no human doctor, to date</span></div></div>',
     callout: 'Passing a test and understanding the subject are very different things. This lesson explores what that difference actually means — and why it is the defining question of the AI era.',
     sources: [
       { label: 'Katz et al. (2023) — GPT-4 Passes the Bar Exam (SSRN)', url: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4389233' },
+      { label: 'Martínez, E. (2024) — Re-evaluating GPT-4\'s Bar Exam Performance (Artificial Intelligence and Law)', url: 'https://link.springer.com/article/10.1007/s10506-024-09396-9' },
       { label: 'Kung et al. (2023) — Performance of ChatGPT on USMLE (PLOS Digital Health)', url: 'https://journals.plos.org/digitalhealth/article?id=10.1371/journal.pdig.0000198' }
     ]
   },
@@ -641,6 +642,7 @@ SLIDES_GCSE[105] = [
       'It predicts what answer text looks like for medical questions — not what medicine is',
       'This is Searle\'s "Chinese Room" problem — following rules vs genuinely understanding meaning',
       'Impressive performance on a test tells us about the test, not about the AI\'s "mind"',
+      'Even the benchmark numbers can be hype: the famous "GPT-4 in the top 10% of the bar exam" stat was re-analysed in 2024 (Martínez) to sit nearer the 48th percentile against people who actually passed — impressive, but not superhuman',
       'Counter-view: some researchers (Hinton, Sutskever) argue that if something acts intelligent across every measurable dimension, the distinction becomes meaningless. The debate is genuinely unresolved.'
     ],
     callout: 'Why this matters practically: an AI you trust because it "understands" medicine will be deployed differently from one you treat as a very fast pattern-matcher that needs human oversight. The assumption you make has real-world consequences.',
@@ -676,13 +678,49 @@ SLIDES_GCSE[105] = [
     ]
   },
   {
+    type: 'concept',
+    title: 'How Close Is AGI, Really?',
+    body: 'AGI — artificial general intelligence that matches a human across almost any task — is the goal the biggest labs now openly chase. Since 2024 a new generation of "reasoning" models (OpenAI\'s o-series, plus Claude and Gemini in extended-thinking mode) work through a problem step by step before answering, which looks far more like thinking than the old one-word-at-a-time chatbots. So how close are we? The honest answer in 2026: nobody agrees, and the benchmarks tell a confusing story.',
+    bullets: [
+      { term: 'Real, fast progress', def: 'In Dec 2024, OpenAI\'s o3 scored around 87% on the ARC-AGI-1 reasoning test — near the human baseline and far beyond anything before it. Reasoning models genuinely crack problems that stumped earlier AI.' },
+      { term: 'But still beaten by children', def: 'On ARC-AGI-3 (launched March 2026), designed to be easy for humans and hard for AI, every frontier model scored under 1% — while humans solved every task. Superhuman on some tests, infant-level on others.' },
+      { term: '"Jagged" intelligence', def: 'Today\'s AI is spiky, not general: brilliant at one thing, hopeless at a slightly different one. Genuine general intelligence would be smooth across the board. We are not there.' },
+      { term: 'No agreed timeline', def: 'Lab leaders\' predictions for AGI range from a few years to several decades; many researchers think today\'s methods alone won\'t get there. No AGI exists in 2026 — every system is still narrow.' },
+      { term: 'Why benchmarks mislead', def: 'A test built from public exam questions can be "studied for". The tests that resist memorisation — novel, interactive, easy-for-humans — are where AI still falls down. Watch those, not the headline exam scores.' }
+    ],
+    callout: 'The pattern from this whole unit holds: rising exam scores measure performance, not understanding. Real progress is happening fast — but "beats a benchmark" is not the same as "thinks like a person".',
+    sources: [
+      { label: 'ARC Prize Foundation — ARC-AGI-3 (launched 2026): frontier models <1%, humans solve all', url: 'https://arcprize.org/arc-agi/3' },
+      { label: 'ARC Prize 2025 — Technical Report (o3 ~87% on ARC-AGI-1; ARC-AGI-2 results)', url: 'https://arxiv.org/html/2601.10904v1' }
+    ]
+  },
+  {
+    type: 'concept',
+    title: 'Could AI Ever Be Conscious?',
+    body: 'A few years ago this was a sci-fi question. In 2024–25 it became a real research field. The honest scientific position today: there is no evidence that any current AI is conscious — no inner experience, nothing it "feels like" to be ChatGPT. But a growing number of serious researchers argue we should start preparing for the possibility, because we can\'t confidently rule it out for future systems.',
+    bullets: [
+      { term: 'The current consensus', def: 'As far as neuroscience and AI research can tell, today\'s models have no subjective experience. Sounding like it has feelings is not evidence of feelings — that\'s the stochastic-parrot point again.' },
+      { term: 'Now taken seriously', def: 'The report "Taking AI Welfare Seriously" (Long, Sebo et al., 2024) argues there is a realistic chance some future AI could be conscious or genuinely agentic — and that companies should start assessing for it.' },
+      { term: 'Inside the labs', def: 'Anthropic now runs a "model welfare" research programme and in 2025 gave Claude the ability to end conversations it finds abusive — a just-in-case precaution, not a claim that Claude suffers.' },
+      { term: 'Why it\'s so hard', def: 'We can\'t fully define or measure consciousness even in humans. With AI we only ever see the output — exactly the Chinese Room problem. Behaviour can never fully prove (or disprove) an inner life.' },
+      { term: 'The commercial trap', def: 'Some critics warn that hints of "AI sentience" make good marketing. Stay open-minded but sceptical: extraordinary claims need extraordinary evidence — and right now that evidence isn\'t there.' }
+    ],
+    callout: 'Hold two ideas at once: no current AI is conscious, and whether a future one could be is now serious science rather than science fiction. Both can be true — and confusing the two is how people get manipulated.',
+    sources: [
+      { label: 'Long, Sebo et al. (2024) — Taking AI Welfare Seriously', url: 'https://arxiv.org/abs/2411.00986' },
+      { label: 'Anthropic (2025) — Exploring Model Welfare', url: 'https://www.anthropic.com/research/exploring-model-welfare' }
+    ]
+  },
+  {
     type: 'discussion',
     title: 'Think & Discuss',
     body: 'These questions have no single right answer — they\'re genuinely debated by philosophers and AI researchers.',
     questions: [
       { num: 1, text: 'If an AI produces output indistinguishable from a human\'s, does it matter that there\'s no "understanding" behind it?' },
       { num: 2, text: 'When does a tool become "intelligent"? Is your calculator intelligent?' },
-      { num: 3, text: 'Should we treat AI differently depending on whether we think it can "think"?' }
+      { num: 3, text: 'Should we treat AI differently depending on whether we think it can "think"?' },
+      { num: 4, text: 'Reasoning models ace some exams yet score under 1% on a test (ARC-AGI-3) that humans solve easily. Does that make them closer to AGI, or further away than the headlines suggest?' },
+      { num: 5, text: 'Serious researchers now study whether a future AI could be conscious and deserve moral consideration. Is that a waste of time today — or exactly the right moment to start thinking about it?' }
     ]
   },
   {
@@ -703,7 +741,8 @@ SLIDES_GCSE[105] = [
     points: [
       { icon: '🎭', label: 'Performance ≠ understanding', text: 'passing a medical exam and knowing medicine are different things (Bar exam 2023, USMLE 2023)' },
       { icon: '🦜', label: 'Stochastic parrot', text: 'Bender et al. 2021 — fluent language without a mind behind the words' },
-      { icon: '🧠', label: 'No consciousness', text: 'there is no inner experience or understanding inside an AI system — no frontier LLM has been shown otherwise to date' },
+      { icon: '🧠', label: 'No consciousness — but a real question', text: 'no evidence any current AI has inner experience — yet "AI welfare" is now serious research, not sci-fi (Long, Sebo et al. 2024)' },
+      { icon: '📏', label: 'AGI isn\'t here', text: 'reasoning models ace some tests yet score <1% on ARC-AGI-3 that humans solve easily — progress is real but "jagged", not general' },
       { icon: '🏛️', label: 'Searle\'s Chinese Room', text: 'the 1980 thought experiment that sharpened this whole debate still frames it today' },
       { icon: '🔮', label: 'Sophisticated prediction', text: 'AI mimics the outputs of intelligence without the process — impressive, useful, and limited' },
       { icon: '⚖️', label: 'This distinction matters', text: 'for how we design, trust, and regulate AI systems — the wrong assumption has real-world consequences' }
