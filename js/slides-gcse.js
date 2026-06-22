@@ -1,5 +1,6 @@
 /* ── Digital Innovations — Removes (Year 9) Course Content ─────────
-   Year 9 (ages 13–14) · 6 units · 34 lessons · ~5 slides each
+   Year 9 (ages 13–14) · 7 units · 40 lessons · aligned to the OECD/EU
+   AI Literacy Framework (Engage · Create · Manage · Shape)
    ─────────────────────────────────────────────────────────────── */
 
 /* ── Unit order follows the OECD/EU AILit Framework learning arc:
@@ -918,10 +919,11 @@ SLIDES_GCSE[108] = [
     type: 'hook',
     title: 'Using AI to Summarise',
     body: 'Your Chemistry textbook chapter is 18 pages. Your exam is tomorrow at 9am. AI can shrink it to a study sheet in 30 seconds — but whether you walk into that exam prepared or blindsided depends entirely on what you do with it. Google\'s NotebookLM, launched in 2023 and expanded globally in 2024, lets pupils upload textbooks and get instant summaries and audio "podcasts" of their notes — it reached over 2 million users within a year. Schools across the UK are now building it into revision support — including ours: NotebookLM comes free with your school Google account. But a 2011 Purdue study by Karpicke and Blunt (Science journal) showed that passive re-reading — which is what reading an AI summary amounts to — is one of the <em>least</em> effective revision strategies ever studied. The same minutes spent actively recalling produce up to 50% better exam retention.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">50%</span><span class="sl">better retention from active recall vs re-reading (Karpicke &amp; Blunt, Science 2011)</span></div><div class="hook-stat-mini"><span class="sv">2M+</span><span class="sl">NotebookLM users in its first year</span></div><div class="hook-stat-mini"><span class="sv">~20%</span><span class="sl">of facts in LLM summaries contain subtle errors in fact-check studies (Stanford HAI, 2024)</span></div></div>',
-    callout: 'Passive summarising (paste, read, feel done) is almost useless. Active summarising (check, question, fill gaps) can double your retention for the same time spent.',
+    callout: 'Passive summarising (paste, read, feel done) is almost useless. Active summarising (check, question, fill gaps) can double your retention for the same time spent. The OECD\'s 2026 review warns this is exactly where "metacognitive laziness" sets in — the AI fills the gap before you notice you didn\'t understand (Fan et al., 2025).',
     sources: [
       { label: 'Karpicke &amp; Blunt (2011) — Retrieval practice produces more learning than elaborative studying (Science)', url: 'https://www.science.org/doi/10.1126/science.1199327' },
-      { label: 'Google — NotebookLM launch &amp; audio overviews (2024)', url: 'https://blog.google/technology/ai/notebooklm-audio-overviews/' }
+      { label: 'Google — NotebookLM launch &amp; audio overviews (2024)', url: 'https://blog.google/technology/ai/notebooklm-audio-overviews/' },
+      { label: 'Fan et al. (2025) — Beware of Metacognitive Laziness (BJET); OECD/EU (2026) AILit Framework — AI work-quality gains ≠ durable learning', url: 'https://doi.org/10.1111/bjet.13544' }
     ]
   },
   {
@@ -3348,8 +3350,10 @@ SLIDES_GCSE[130] = [
     type: 'hook',
     title: 'Algorithms & Your Mental Health',
     body: 'Facebook\'s internal research — leaked by whistleblower Frances Haugen in 2021 — showed the company knew its algorithm was making teenage girls feel worse about their bodies. Its own data showed Instagram was "harmful" for one in three teenage girls. They knew. They didn\'t change it. TikTok\'s algorithm is not designed to make you feel good — it\'s designed to keep you watching. Those are very different goals.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">1 in 3</span><span class="sl">teenage girls said Instagram made them feel worse about their bodies (Meta\'s own research)</span></div><div class="hook-stat-mini"><span class="sv">13%</span><span class="sl">of teen girls say suicidal thoughts increased with Instagram use (Meta internal)</span></div><div class="hook-stat-mini"><span class="sv">40%</span><span class="sl">longer sessions when Facebook showed more "outrage" content (internal experiment)</span></div><div class="hook-stat-mini"><span class="sv">2021</span><span class="sl">Frances Haugen leaked documents proving Meta knew — and didn\'t act</span></div></div>',
-    callout: 'This isn\'t about banning social media. It\'s about understanding the system well enough to use it on your terms — not the platform\'s.',
+    callout: 'This isn\'t about banning social media. It\'s about understanding the system well enough to use it on your terms — not the platform\'s. And it\'s not only feeds: a 2025 study (Gerlich) links heavy AI-tool use to weaker critical thinking, and the American Psychological Association\'s 2025 advisory warns that developing teenage brains are especially vulnerable to how AI and algorithms shape mood and attention.',
     sources: [
+      { label: 'Gerlich, M. (2025) — AI Tools and the Decline of Critical Thinking (Societies, MDPI)', url: 'https://www.mdpi.com/2075-4698/15/1/6' },
+      { label: 'American Psychological Association (2025) — Health Advisory on AI and Adolescent Well-Being', url: 'https://www.apa.org/topics/artificial-intelligence-machine-learning/health-advisory-ai-adolescent-well-being.pdf' },
       { label: 'Wells, G., Horwitz, J. & Seetharaman, D. — "Facebook Knows Instagram Is Toxic for Teen Girls" (The Wall Street Journal, 14 Sep 2021, part of "The Facebook Files")', url: 'https://www.wsj.com/articles/facebook-knows-instagram-is-toxic-for-teen-girls-company-documents-show-11631620739' },
       { label: 'US Senate Commerce Subcommittee — Frances Haugen testimony on Facebook harms (5 Oct 2021)', url: 'https://www.commerce.senate.gov/2021/10/protecting%20kids%20online:%20testimony%20from%20a%20facebook%20whistleblower' },
       { label: 'Meta Internal Research — "Teen Mental Health Deep Dive" (2019, released 29 Sep 2021)', url: 'https://about.fb.com/wp-content/uploads/2021/09/Instagram-Teen-Annotated-Research-Deck-1.pdf' },
@@ -3637,7 +3641,7 @@ SLIDES_GCSE[133] = [
   {
     type: 'hook',
     title: 'You &amp; AI',
-    body: 'You\'ve spent 34 lessons examining AI from every angle — technical (how it actually works), social (who benefits, who pays), ethical (bias, responsibility, dignity), personal (your attention, your relationships, your career). You\'ve met Robert Williams (wrongly arrested by facial recognition in Detroit, 2020), the Kenyan moderators training RLHF for less than $2 an hour, Frances Haugen\'s leaked 2021 Instagram research, the Slovakia 2023 election audio, the Hong Kong £20M deepfake fraud, and Mata v. Avianca — the lawyer sanctioned for citing AI-hallucinated cases. The question now isn\'t what AI can do. It\'s what <em>you</em> are going to do about it.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">34</span><span class="sl">lessons across 6 units — you\'re now more literate than most adults</span></div><div class="hook-stat-mini"><span class="sv">12+</span><span class="sl">named real-world cases covered, every one verifiable</span></div><div class="hook-stat-mini"><span class="sv">1</span><span class="sl">course — now reading the technology rather than being read by it</span></div></div>',
+    body: 'You\'ve spent 40 lessons examining AI from every angle — technical (how it actually works), social (who benefits, who pays), ethical (bias, responsibility, dignity), personal (your attention, your relationships, your career) — and you\'ve learned not just to use AI but to manage and shape it. You\'ve met Robert Williams (wrongly arrested by facial recognition in Detroit, 2020), the Kenyan moderators training RLHF for less than $2 an hour, Frances Haugen\'s leaked 2021 Instagram research, the Slovakia 2023 election audio, the Hong Kong £20M deepfake fraud, the Post Office Horizon scandal, and Mata v. Avianca — the lawyer sanctioned for citing AI-hallucinated cases. The question now isn\'t what AI can do. It\'s what <em>you</em> are going to do about it.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">40</span><span class="sl">lessons across 7 units — you\'re now more literate than most adults</span></div><div class="hook-stat-mini"><span class="sv">4</span><span class="sl">AILit domains mastered: engage, create, manage, shape</span></div><div class="hook-stat-mini"><span class="sv">1</span><span class="sl">course — now reading the technology rather than being read by it</span></div></div>',
     callout: 'The most important thing you can do: keep questioning. Never accept AI output, AI systems, or AI decisions at face value. Be the human in the loop.'
   },
   {
@@ -3720,13 +3724,13 @@ SLIDES_GCSE[133] = [
       { q: 'Which habit does the Wharton 2023 "jagged frontier" study say turns AI users into the WORST-performing group?', options: ['Asking AI too often', 'Accepting the first draft without iterating', 'Using multiple AI tools at once', 'Writing long prompts'], correct: 1, explanation: 'Dell\'Acqua et al. found zero-iteration AI use produced worse output than no AI at all. Deliberate iteration is what unlocks the upside.' },
       { q: 'You see a news clip of a politician saying something explosive. What is the single highest-leverage thing to do before sharing?', options: ['Re-post — speed matters', 'Stop, check original source, lateral-read for corroboration (SIFT)', 'Trust your gut', 'Ignore it'], correct: 1, explanation: 'SIFT — Stop, Investigate, Find, Trace. The Hong Kong £20M deepfake fraud and the Slovakia election audio show why synthetic media now warrants this habit by default.' },
       { q: 'Who is responsible when an AI system causes real-world harm?', options: ['Just the AI', 'Just the end user', 'The humans and organisations who design, deploy and rely on the system', 'Nobody — "the AI did it"'], correct: 2, explanation: 'Accountability follows decisions humans make about what to build, deploy, and trust. This is the moral backbone of the course.' },
-      { q: 'Which of these best captures the course\'s "right relationship" between you and AI?', options: ['Trust everything AI says — it\'s smarter than you', 'Reject AI entirely — it\'s dangerous', 'Use AI as a tool while maintaining your own ability to evaluate, question, and think', 'Only use AI for homework'], correct: 2, explanation: 'AI is a powerful tool — not an authority. Thoughtful, critical engagement is the skill you\'ve been building for 34 lessons.' }
+      { q: 'Which of these best captures the course\'s "right relationship" between you and AI?', options: ['Trust everything AI says — it\'s smarter than you', 'Reject AI entirely — it\'s dangerous', 'Use AI as a tool while maintaining your own ability to evaluate, question, and think', 'Only use AI for homework'], correct: 2, explanation: 'AI is a powerful tool — not an authority. Thoughtful, critical engagement is the skill you\'ve been building for 40 lessons.' }
     ]
   },
   {
     type: 'exit-ticket',
     title: 'Final Commitment',
-    prompt: 'After 34 lessons — write the one sentence you most want your future self (in one year\'s time) to read back about how you will engage with AI.',
+    prompt: 'After 40 lessons — write the one sentence you most want your future self (in one year\'s time) to read back about how you will engage with AI.',
     body: 'This saves to your device. Come back and re-read it. See if you\'ve kept your word.'
   }
 ];

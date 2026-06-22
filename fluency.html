@@ -818,7 +818,7 @@
       '- Certificate ID: ' + id + '\n' +
       '- Date of completion: ' + new Date(date).toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' }) + '\n' +
       (frozen !== null ? '- Active study time: ' + flFormatDuration(parseInt(frozen, 10) || 0) + '\n' : '') +
-      '- Lessons completed: 20 / 20\n\n' +
+      '- Lessons completed: ' + FL_TRACK.length + ' / ' + FL_TRACK.length + '\n\n' +
       'The certificate can be checked here (the ID encodes the completion date and study time):\n' +
       flBuildShareURL() + '\n\n' +
       'Best regards,\n' + name;
