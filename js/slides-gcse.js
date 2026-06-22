@@ -815,7 +815,7 @@ SLIDES_GCSE[106] = [
   {
     type: 'concept',
     title: 'What AI Is Genuinely Good at for Studying',
-    body: 'Across thousands of classroom trials in 2023–2024 (EEF, Khan Academy, Ofsted pilots), five AI use-cases consistently came out ahead for GCSE-age pupils. Every one of them shares a common pattern: AI does the scaffolding; the pupil does the thinking. Get this habit in place now and it will carry you through A-levels and university.',
+    body: 'Across thousands of classroom trials in 2023–2024 (EEF, Khan Academy, Ofsted pilots), six AI use-cases consistently came out ahead for GCSE-age pupils. Every one of them shares a common pattern: AI does the scaffolding; the pupil does the thinking. Get this habit in place now and it will carry you through A-levels and university.',
     bullets: [
       { term: 'Explaining', def: 'Breaking down complex concepts in simpler language — "explain this like I\'m 14" is a startlingly effective prompt. Claude, Gemini and ChatGPT all do this well.' },
       { term: 'Quizzing', def: 'Generating unlimited practice questions on any topic, any format, any level. Retrieval practice (Karpicke &amp; Blunt 2011) is the single most evidence-backed study technique — and AI just made it free and infinite.' },
@@ -836,6 +836,22 @@ SLIDES_GCSE[106] = [
       '<strong>The screen-off test:</strong> after using AI, could you explain the work to your teacher with the screen off? If yes, you\'re in Green or Amber territory. If no, you\'ve drifted into Red.'
     ],
     callout: 'One question decides the tier: did the thinking stay yours? AI that helps you think is encouraged. AI that thinks instead of you is banned.'
+  },
+  {
+    type: 'widget',
+    widget: 'classify',
+    title: 'Green, Amber or Red? Sort the AI Use',
+    intro: 'The Three-Tier policy decides whether each use of AI is encouraged, allowed-with-disclosure, or banned. The deciding question is always the same: did the thinking stay yours? Sort each real situation into the right tier.',
+    categories: ['🟢 Green — encouraged', '🟡 Amber — allowed, must disclose', '🔴 Red — banned'],
+    items: [
+      { text: 'Asking Gemini to explain osmosis a different way after you got stuck on it', correct: 0, why: 'Green. You\'re using AI to understand something — the thinking stays yours. No disclosure needed; this is exactly what the policy encourages.' },
+      { text: 'Getting NotebookLM to make practice questions from your own class notes', correct: 0, why: 'Green. Retrieval practice on your own material is active learning — the single most evidence-backed study technique. Encouraged, no disclosure needed.' },
+      { text: 'Brainstorming a list of points with Gemini, then planning and writing the essay yourself', correct: 0, why: 'Green. Using AI to spark ideas you then develop and write in your own words keeps the thinking yours. (If you lifted whole sentences straight into the final essay, it would tip into Amber or Red — so write it yourself.)' },
+      { text: 'Writing a history essay yourself, then asking Gemini to check the grammar of paragraph 2', correct: 1, why: 'Amber. The work is yours; AI only polished it. Allowed for homework — but you must disclose it, e.g. "I used Gemini to check the grammar of paragraph 2."' },
+      { text: 'Pasting the homework question into Gemini and copying its answer into your book', correct: 2, why: 'Red. The AI did the thinking and you submitted it as your own — malpractice under JCQ 2024, a likely zero, and you learned nothing the exam will reward.' },
+      { text: 'Copying a NotebookLM study guide and handing it in as your own summary', correct: 2, why: 'Red. Submitting AI-generated text as your own work is plagiarism, whatever tool produced it.' }
+    ],
+    callout: 'Underneath every one of these is the screen-off test: after using AI, could you explain the work to your teacher with the screen off? Yes = Green or Amber. No = you\'ve drifted into Red.'
   },
   {
     type: 'concept',
