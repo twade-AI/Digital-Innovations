@@ -3255,13 +3255,13 @@ SLIDES_GCSE[125] = [
     type: 'widget',
     title: 'Audit a Real Biased System — Dutch Childcare Scandal',
     widget: 'factcheck',
-    claim: 'Between 2013 and 2019 the Dutch tax authority used an algorithmic risk-scoring system called SyRI to flag families suspected of childcare-benefit fraud. Tens of thousands were falsely accused, forced to repay huge sums, driven into poverty, and in some cases had children taken into state care. The Dutch government resigned en masse in January 2021 over the scandal.',
+    claim: 'Between roughly 2013 and 2019 the Dutch tax authority used a self-learning algorithmic risk-scoring system to flag families suspected of childcare-benefit fraud. Around 26,000 families were falsely accused, forced to repay huge sums, driven into poverty, and in some cases had children taken into state care. The Dutch government resigned en masse in January 2021 over the scandal.',
     steps: [
       { question: 'Which single feature, above all others, drove the risk scores?', hint: 'Think about which group was dramatically over-represented in the false accusations. It wasn\'t income or postcode.' },
       { question: 'If you were auditing this system before launch, which three things would you test to catch this bias earlier?', hint: 'Demographic breakdown of false positives; who decides what data is used; how easy it is for an accused family to see the evidence and appeal.' },
       { question: 'The engineers, the ministry, and the algorithm were all involved. Where does responsibility sit — and why?', hint: 'Who designed the inputs? Who signed off deployment? Who had the power to pause it once harms appeared?' }
     ],
-    verdict: 'Dual nationality was one of the biggest drivers. Families with non-Dutch heritage — Moroccan, Turkish, Ghanaian — were flagged far more often than those without. A 2020 Dutch court ruling found SyRI violated human rights law (the right to private life) because it was opaque, disproportionate, and gave citizens no meaningful way to contest their score. Responsibility is shared: engineers chose the features, ministers authorised the deployment, and the political pressure to "catch fraud" created the incentive to ignore the early warning signs. The lesson for bias auditing: test for disparate impact on protected groups <em>before</em> deployment, and build a real appeal route — not after the harm is already baked in.',
+    verdict: 'Dual nationality was one of the biggest drivers. Families with non-Dutch heritage — Moroccan, Turkish, Ghanaian — were flagged far more often than those without. The Dutch Data Protection Authority later ruled the tax authority\'s use of nationality unlawful and discriminatory, fining it €2.75m in 2021, and a parliamentary inquiry titled "Unprecedented Injustice" condemned the whole system. Responsibility is shared: engineers chose the features, ministers authorised the deployment, and the political pressure to "catch fraud" created the incentive to ignore the early warning signs. The lesson for bias auditing: test for disparate impact on protected groups <em>before</em> deployment, and build a real appeal route — not after the harm is already baked in.',
     sources: [
       { label: 'Amnesty International (2021) — Xenophobic Machines: Dutch Child Benefits Scandal', url: 'https://www.amnesty.org/en/documents/eur35/4686/2021/en/' },
       { label: 'The Guardian (Jan 2021) — Dutch government resigns over childcare benefits scandal', url: 'https://www.theguardian.com/world/2021/jan/15/dutch-government-resigns-over-child-benefits-scandal' }
@@ -3273,7 +3273,7 @@ SLIDES_GCSE[125] = [
     points: [
       { icon: '📥', label: 'Biased data produces biased AI', text: 'the model reflects the patterns in its training — including human discrimination' },
       { icon: '🤖', label: 'The AI isn\'t "trying" to discriminate', text: 'it\'s replicating patterns from history — but the harm is the same' },
-      { icon: '⚖️', label: 'Real consequences', text: 'Robert Williams arrested wrongly. CV systems filtering out women. Dutch families driven into poverty by SyRI.' },
+      { icon: '⚖️', label: 'Real consequences', text: 'Robert Williams arrested wrongly. CV systems filtering out women. ~26,000 Dutch families driven into poverty by a biased tax-fraud algorithm.' },
       { icon: '🔍', label: 'Detecting and fixing bias requires effort', text: 'diverse teams, representative data, demographic testing, human oversight' }
     ]
   }
