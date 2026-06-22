@@ -37,6 +37,17 @@
     .pf-note{font-size:.88rem;line-height:1.55;color:var(--text);white-space:pre-wrap;margin-top:8px}
     .pf-exit{font-style:italic;font-size:.9rem;line-height:1.55;color:var(--text);border-left:3px solid var(--track-primary);padding:8px 12px;margin-top:8px;background:rgba(var(--track-primary-rgb),.04);border-radius:0 6px 6px 0}
     .pf-assess{font-size:.9rem;line-height:1.6;color:var(--text);border-left:3px solid #9b1844;padding:10px 12px;margin-top:8px;background:rgba(155,24,68,.05);border-radius:0 6px 6px 0;white-space:pre-wrap}
+    .pf-progress{border:1.5px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:20px;background:var(--bg-card)}
+    .pf-progress-head{font-weight:800;font-size:.95rem;color:var(--text);margin-bottom:10px}
+    .pf-progress-bar{height:8px;border-radius:999px;background:var(--border);overflow:hidden}
+    .pf-progress-fill{height:100%;background:linear-gradient(90deg,#9b1844,#c64b74);border-radius:999px;transition:width .4s}
+    .pf-progress-meta{font-size:.82rem;color:var(--text-dim);margin-top:8px}
+    .pf-progress-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .pf-lvl{font-size:.74rem;font-weight:700;border-radius:999px;padding:3px 10px;border:1px solid}
+    .pf-lvl-dev{color:#b45309;background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.4)}
+    .pf-lvl-sec{color:#047857;background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.4)}
+    .pf-lvl-exc{color:#7c3aed;background:rgba(139,92,246,.14);border-color:rgba(139,92,246,.45)}
+    [data-theme="light"] .pf-progress{background:#fff}
     .pf-label{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--track-primary);background:rgba(var(--track-primary-rgb),.1);padding:2px 8px;border-radius:999px;margin-bottom:6px}
     .pf-score-pill{display:inline-block;background:rgba(var(--track-primary-rgb),.12);color:var(--track-primary);border:1px solid rgba(var(--track-primary-rgb),.3);border-radius:999px;padding:2px 10px;font-size:.72rem;font-weight:700}
 
@@ -110,7 +121,8 @@
           var noteText = collectNotes(lesson.id);
           var exitText = localStorage.getItem('di_gcse_exit_' + lesson.id) || '';
           var assessText = localStorage.getItem('di_gcse_assess_' + lesson.id) || '';
-          if (!noteText && !exitText && !assessText && !doneIds[lesson.id]) return;
+          var assessLevel = localStorage.getItem('di_gcse_assess_level_' + lesson.id) || '';
+          if (!noteText && !exitText && !assessText && !assessLevel && !doneIds[lesson.id]) return;
           items.push({
             unit: unit.title,
             unitColour: unit.color,
@@ -120,7 +132,8 @@
             completedAt: dates[lesson.id] || '',
             notes: noteText,
             exit: exitText,
-            assess: assessText
+            assess: assessText,
+            assessLevel: assessLevel
           });
         });
       });
@@ -159,7 +172,26 @@
       byUnit[it.unit].entries.push(it);
     });
 
+    function lvlCls(l){ return l === 'Exceptional' ? 'exc' : (l === 'Secure' ? 'sec' : 'dev'); }
+
     var html = '';
+
+    // Self-assessed performance-task progress (Removes only — 7 unit tasks)
+    if (track === 'removes') {
+      var lc = { Developing: 0, Secure: 0, Exceptional: 0 }, marked = 0, TOTAL_TASKS = 7;
+      items.forEach(function (it) { if (it.assessLevel && lc.hasOwnProperty(it.assessLevel)) { lc[it.assessLevel]++; marked++; } });
+      html += '<div class="pf-progress">' +
+                '<div class="pf-progress-head">📋 Performance-task progress</div>' +
+                '<div class="pf-progress-bar"><div class="pf-progress-fill" style="width:' + Math.round(marked / TOTAL_TASKS * 100) + '%"></div></div>' +
+                '<div class="pf-progress-meta">' + marked + ' of ' + TOTAL_TASKS + ' performance tasks self-assessed</div>' +
+                (marked ? '<div class="pf-progress-chips">' +
+                  '<span class="pf-lvl pf-lvl-dev">Developing · ' + lc.Developing + '</span>' +
+                  '<span class="pf-lvl pf-lvl-sec">Secure · ' + lc.Secure + '</span>' +
+                  '<span class="pf-lvl pf-lvl-exc">Exceptional · ' + lc.Exceptional + '</span>' +
+                '</div>' : '') +
+              '</div>';
+    }
+
     Object.keys(byUnit).forEach(function (u) {
       var data = byUnit[u];
       html += '<div class="pf-section">' +
@@ -175,7 +207,7 @@
                   '</div>';
         if (e.notes) html += '<div class="pf-note">' + esc(e.notes) + '</div>';
         if (e.exit)  html += '<div class="pf-exit"><strong>Exit ticket.</strong> ' + esc(e.exit) + '</div>';
-        if (e.assess) html += '<div class="pf-assess"><strong>📋 Assessed task.</strong> ' + esc(e.assess) + '</div>';
+        if (e.assess || e.assessLevel) html += '<div class="pf-assess"><strong>📋 Assessed task.</strong>' + (e.assessLevel ? ' <span class="pf-lvl pf-lvl-' + lvlCls(e.assessLevel) + '">Self-rated: ' + esc(e.assessLevel) + '</span>' : '') + (e.assess ? ' ' + esc(e.assess) : '') + '</div>';
         html += '</div>';
       });
       html += '</div>';
