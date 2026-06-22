@@ -2944,12 +2944,12 @@ SLIDES_GCSE[123] = [
   {
     type: 'hook',
     title: 'Filter Bubbles &amp; Algorithms',
-    body: 'Activist Eli Pariser coined "filter bubble" in 2011 after noticing his Facebook feed had quietly dropped his conservative friends without asking him. By 2024, the issue had mutated: Reuters Institute\'s Digital News Report found that only 22% of UK 18–24s pay for any news — the rest get it from algorithmic feeds that personalise what they see. Ofcom\'s 2024 News Consumption Survey found TikTok is now the #1 news source for UK 16-24s, overtaking BBC News. Two people can search the exact same thing on Google and see completely different results; Facebook internal research leaked in 2021 showed a test account created as a "conservative mother" was fed extremist content within 2 days. Your algorithm has built you a personalised version of the internet — and you might not know how narrow it\'s become.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">22%</span><span class="sl">of UK 18-24s pay for news (Reuters, 2024)</span></div><div class="hook-stat-mini"><span class="sv">#1</span><span class="sl">TikTok is now top news source for UK 16-24s (Ofcom, 2024)</span></div><div class="hook-stat-mini"><span class="sv">2 days</span><span class="sl">Facebook internal test: new account fed extremism (2021 leak)</span></div></div>',
+    body: 'Activist Eli Pariser coined "filter bubble" in 2011 after noticing his Facebook feed had quietly dropped his conservative friends without asking him. By 2025, the issue had mutated: the Reuters Institute\'s Digital News Report found just 10% of UK adults pay for online news — the rest get it from algorithmic feeds that personalise what they see. And Ofcom\'s 2025 research found TikTok is now the single most-used news source for UK 12–15-year-olds — the very age group in this room — ahead of the BBC, ITV and every newspaper. Two people can search the exact same thing on Google and see completely different results; Facebook internal research leaked in 2021 showed a test account created as a "conservative mother" was fed extremist content within 2 days. Your algorithm has built you a personalised version of the internet — and you might not know how narrow it\'s become.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">10%</span><span class="sl">of UK adults pay for online news (Reuters, 2025)</span></div><div class="hook-stat-mini"><span class="sv">#1</span><span class="sl">TikTok is the top single news source for UK 12–15s, ahead of the BBC (Ofcom, 2025)</span></div><div class="hook-stat-mini"><span class="sv">2 days</span><span class="sl">Facebook internal test: new account fed extremism (2021 leak)</span></div></div>',
     callout: 'A filter bubble isn\'t something that happens to other people. It\'s happening to all of us — including you.',
     sources: [
       { label: 'Pariser, E. (2011) — The Filter Bubble: TED Talk (also book, Penguin 2011)', url: 'https://www.ted.com/talks/eli_pariser_beware_online_filter_bubbles' },
-      { label: 'Reuters Institute Digital News Report (2024) — UK chapter', url: 'https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2024/uk' },
-      { label: 'Ofcom — News Consumption in the UK 2024 (TikTok overtakes BBC for 16-24s)', url: 'https://www.ofcom.org.uk/tv-radio-and-on-demand/information-for-industry/research/news-consumption' }
+      { label: 'Reuters Institute Digital News Report 2025 — 10% of UK adults pay for online news', url: 'https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2025' },
+      { label: 'Ofcom — News Consumption in the UK 2025 (TikTok the top single news source for 12–15s)', url: 'https://www.ofcom.org.uk/media-use-and-attitudes/attitudes-to-news/' }
     ]
   },
   {
@@ -3014,7 +3014,7 @@ SLIDES_GCSE[123] = [
     points: [
       { icon: '🔄', label: 'Algorithms optimise for engagement', text: 'not your knowledge, balance or wellbeing — that is by design, not a glitch' },
       { icon: '🫧', label: 'Filter bubbles narrow your world view', text: 'gradually and invisibly, shaping what you think "most people" believe' },
-      { icon: '📱', label: 'TikTok is now #1 news source for UK 16-24s', text: 'Ofcom 2024 — overtaking BBC for the first time' },
+      { icon: '📱', label: 'TikTok is the #1 single news source for UK 12–15s', text: 'Ofcom 2025 — ahead of the BBC, ITV and every newspaper' },
       { icon: '🌍', label: 'Actively seek out what the algorithm hides', text: 'follow diverse sources deliberately; mute and unfollow to push back' },
       { icon: '💡', label: 'Awareness changes behaviour', text: 'knowing the algorithm exists gives you more control over it' },
       { icon: '🗳️', label: 'Two people can see two different realities', text: 'a functioning democracy needs shared facts — the algorithm does not' }
