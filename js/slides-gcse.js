@@ -1318,7 +1318,7 @@ SLIDES_GCSE[110] = [
   {
     type: 'hook',
     title: 'Exam Technique with AI',
-    body: 'Ofqual and exam-board chief examiners have repeatedly flagged the same pattern: two candidates with essentially identical subject knowledge can finish one or two grades apart purely on exam technique — structure, timing, command-word discipline and assessment-objective coverage. AQA\'s 2023 chief examiner reports for GCSE English Literature and History repeatedly flag the same problem: candidates who "knew the content" but lost marks because they never addressed AO2 analysis, ignored the command word, or ran out of time on the final question. Large language models like ChatGPT (GPT-5) and Claude (4.6 Sonnet) can now be prompted to behave as subject-specific examiners and produce structured feedback on an essay plan in under 30 seconds — something a private A-grade tutor would charge £40–£60 an hour for. UK platforms like BBC Bitesize, Century Tech and Sparx Maths have all integrated AI feedback into revision tools used by millions of pupils since 2023.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">1–2 grades</span><span class="sl">technique-driven gap at the same knowledge level (chief examiner reports)</span></div><div class="hook-stat-mini"><span class="sv">£40–60</span><span class="sl">typical hourly rate for 1-to-1 exam technique coaching</span></div><div class="hook-stat-mini"><span class="sv">30 sec</span><span class="sl">for a well-prompted AI to critique an essay plan like an examiner</span></div></div>',
+    body: 'Ofqual and exam-board chief examiners have repeatedly flagged the same pattern: two candidates with essentially identical subject knowledge can finish one or two grades apart purely on exam technique — structure, timing, command-word discipline and assessment-objective coverage. AQA\'s 2023 chief examiner reports for GCSE English Literature and History repeatedly flag the same problem: candidates who "knew the content" but lost marks because they never addressed AO2 analysis, ignored the command word, or ran out of time on the final question. The latest large language models from OpenAI (ChatGPT) and Anthropic (Claude) can now be prompted to behave as subject-specific examiners and produce structured feedback on an essay plan in under 30 seconds — something a private A-grade tutor would charge £40–£60 an hour for. UK platforms like BBC Bitesize, Century Tech and Sparx Maths have all integrated AI feedback into revision tools used by millions of pupils since 2023.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">1–2 grades</span><span class="sl">technique-driven gap at the same knowledge level (chief examiner reports)</span></div><div class="hook-stat-mini"><span class="sv">£40–60</span><span class="sl">typical hourly rate for 1-to-1 exam technique coaching</span></div><div class="hook-stat-mini"><span class="sv">30 sec</span><span class="sl">for a well-prompted AI to critique an essay plan like an examiner</span></div></div>',
     callout: 'Most marks are lost on structure, timing and missed command words — not on total lack of knowledge. This is exactly where AI, used well, can lift a grade.',
     sources: [
       { label: 'AQA — GCSE chief examiner reports (Subject results &amp; reports)', url: 'https://www.aqa.org.uk/exams-administration/results-days' },
@@ -1332,7 +1332,7 @@ SLIDES_GCSE[110] = [
     bullets: [
       { term: 'AO1 — Knowledge / Understanding', def: 'Recall and demonstrate. "State what X is." Low-hanging marks — usually the easiest to secure, and where examiners expect spec-specific terminology.' },
       { term: 'AO2 — Apply / Analyse', def: 'Use the knowledge on a specific question, text or scenario. AQA GCSE English Literature chief examiner 2023 named AO2 as the single biggest lost-mark area nationally.' },
-      { term: 'AO3 — Evaluate / Contextualise', def: 'Weigh up strengths, weaknesses, context, alternatives. This is where grade-7-plus answers live. Edexcel GCSE History Paper 2 gives almost half its marks here.' },
+      { term: 'AO3 — Evaluate / Contextualise', def: 'Weigh up strengths, weaknesses, context, alternatives. This is where grade-7-plus answers live, and on several papers (e.g. Edexcel GCSE History Paper 2) it carries a large share of the marks.' },
       { term: 'Command words matter', def: 'Describe, Explain, Compare, Analyse, Evaluate each map to a different AO. Getting the command word wrong can cap your mark at the bottom AO, however brilliant the prose.' },
       { term: 'AI prompt for AO coverage', def: '"Rate this essay plan against AQA GCSE History Paper 2 AO1, AO2, AO3 separately out of the marks each is worth. Tell me which AO is weakest and give me one specific sentence that would lift it."' }
     ],
@@ -1380,6 +1380,22 @@ SLIDES_GCSE[110] = [
     ]
   },
   {
+    type: 'widget',
+    widget: 'classify',
+    title: 'Lift or Lose? Sort the AI Exam-Technique Move',
+    intro: 'Used one way, AI lifts your grade and stays well within JCQ rules. Used another, it loses marks — or crosses the line into malpractice. Sort each move.',
+    categories: ['✅ Lifts your grade (exam-safe)', '❌ Loses marks or crosses the line'],
+    items: [
+      { text: 'Drafting your own essay plan, then asking AI to critique it against the paper\'s AO weightings', correct: 0, why: 'Lifts. The thinking and the plan are yours; AI just diagnoses against the real mark scheme. This is the single highest-return move in the lesson.' },
+      { text: 'Asking AI for the skeleton of a grade-9 answer — paragraph topic sentences and the AO each targets, no prose', correct: 0, why: 'Lifts. You get the structure (the map) and still have to supply the analysis yourself (walk the ground).' },
+      { text: 'Asking AI which AO your plan under-serves and one sentence that would lift it', correct: 0, why: 'Lifts. Targeted diagnosis that builds your skill — and you write the actual sentence, so the voice stays yours.' },
+      { text: 'Asking AI to rewrite your essay so it "sounds more sophisticated"', correct: 1, why: 'Loses. A borrowed voice over weak analysis usually weakens AO2 and is instantly recognisable to examiners — exactly what happened to Kofi.' },
+      { text: 'Pasting the exam question in and submitting the AI\'s answer as your own', correct: 1, why: 'Crosses the line. Submitting AI-generated work as your own is malpractice under JCQ 2024 — a potential zero for the whole qualification.' },
+      { text: 'Memorising an AI-generated model answer to reproduce in the exam', correct: 1, why: 'Loses. Exam questions vary, so you can\'t memorise answers to unset questions — and the borrowed phrasing is briefed to markers as a flag.' }
+    ],
+    callout: 'The dividing line is always the same: if AI diagnoses and you do the thinking and writing, it lifts you. If AI does the writing and you hand it in, it costs you marks — or the whole qualification.'
+  },
+  {
     type: 'activity',
     title: 'Build an AI Examiner',
     task: 'Use the notes box to design a single, reusable AI-examiner prompt you can use for any essay plan in one subject this term.',
@@ -1422,7 +1438,7 @@ SLIDES_GCSE[110] = [
       { icon: '📝', label: 'Plan yourself, critique with AI', text: 'the plan is yours; the critique is the AI\'s. Never reverse it.' },
       { icon: '🏗️', label: 'Skeleton over script', text: 'ask for structure of a model answer, never the full prose — maps teach, scripts don\'t' },
       { icon: '🗣️', label: 'Protect your voice', text: 'AI-polished prose is the fastest way to lose the marks your voice was earning' },
-      { icon: '⏱️', label: 'Technique is a grade or two', text: 'Ofqual 2024: same knowledge, two grades apart — purely on technique. This is the closable gap.' }
+      { icon: '⏱️', label: 'Technique is a grade or two', text: 'chief examiner reports flag it every year: same knowledge, a grade or two apart — purely on technique. This is the closable gap.' }
     ]
   }
 ];
