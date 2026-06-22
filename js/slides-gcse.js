@@ -3065,21 +3065,21 @@ SLIDES_GCSE[124] = [
   {
     type: 'hook',
     title: 'Who Benefits from AI?',
-    body: 'The AI industry is worth over $1 trillion. Around 90% of global AI investment goes to just three countries: the US, China, and the UK. Meanwhile, 2.6 billion people have no internet access at all. Most advanced AI tools work primarily in English — meaning non-English speakers globally get dramatically less value. AI diagnostic tools trained on Western patient data perform measurably worse on patients from Africa and Asia.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">2.6bn</span><span class="sl">people have no internet access — the foundation AI needs</span></div><div class="hook-stat-mini"><span class="sv">90%</span><span class="sl">of AI investment concentrated in just 3 countries</span></div><div class="hook-stat-mini"><span class="sv">7,000+</span><span class="sl">languages in the world — AI works well in fewer than 100</span></div><div class="hook-stat-mini"><span class="sv">Worse</span><span class="sl">diagnostic AI performs measurably worse on under-represented populations</span></div></div>',
+    body: 'The AI industry is worth over $1 trillion, and private investment is staggeringly concentrated: in 2025 the US alone drew about $286bn — more than 20 times the next-highest country, China — while most of the world barely registers (Stanford AI Index 2026). Meanwhile, 2.2 billion people still have no internet access at all. Most advanced AI tools work primarily in English — meaning non-English speakers globally get dramatically less value. AI diagnostic tools trained on Western patient data perform measurably worse on patients from Africa and Asia.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">2.2bn</span><span class="sl">people still have no internet access — the foundation AI needs (ITU 2025)</span></div><div class="hook-stat-mini"><span class="sv">23×</span><span class="sl">US private AI investment vs the next country, China, in 2025 (AI Index 2026)</span></div><div class="hook-stat-mini"><span class="sv">7,000+</span><span class="sl">languages in the world — AI works well in fewer than 100</span></div><div class="hook-stat-mini"><span class="sv">Worse</span><span class="sl">diagnostic AI performs measurably worse on under-represented populations</span></div></div>',
     callout: 'Powerful technology doesn\'t automatically benefit everyone equally. Who gets access — and who gets left out — is one of the defining questions of the AI era.',
     sources: [
-      { label: 'ITU — Facts and Figures 2023 (2.6 billion offline)', url: 'https://www.itu.int/itu-d/reports/statistics/facts-figures-2023/' },
-      { label: 'Stanford AI Index Report 2024 (AI investment by country)', url: 'https://aiindex.stanford.edu/report/' }
+      { label: 'ITU — Facts and Figures 2025 (2.2 billion still offline)', url: 'https://www.itu.int/itu-d/reports/statistics/facts-figures-2025/' },
+      { label: 'Stanford AI Index Report 2026 (private AI investment by country)', url: 'https://hai.stanford.edu/ai-index/2026-ai-index-report' }
     ]
   },
   {
     type: 'concept',
     title: 'The Digital Divide — Who\'s Included',
-    body: 'The digital divide is the gap between people who have effective access to modern digital technology and those who don\'t. AI has made the divide sharper: having internet is no longer enough — you now also need the right hardware, subscriptions, bandwidth, language support and AI literacy. The ITU (the UN telecoms body) estimates 2.6 billion people remain offline in 2023, concentrated in Sub-Saharan Africa and South Asia. Across the 7,000+ living human languages, fewer than 100 are well supported by frontier AI models today.',
+    body: 'The digital divide is the gap between people who have effective access to modern digital technology and those who don\'t. AI has made the divide sharper: having internet is no longer enough — you now also need the right hardware, subscriptions, bandwidth, language support and AI literacy. The ITU (the UN telecoms body) estimates 2.2 billion people remain offline in 2025, concentrated in Sub-Saharan Africa and South Asia. Across the 7,000+ living human languages, fewer than 100 are well supported by frontier AI models today.',
     bullets: [
       { term: 'Access to AI requires multiple layers', def: 'reliable electricity, reliable internet, a modern device, often a paid subscription, and enough literacy (both language and digital) to use the tool safely' },
-      { term: '2.6 billion offline', def: 'ITU 2023 data — most are in Sub-Saharan Africa and South Asia; women are disproportionately excluded' },
-      { term: 'English dominance', def: 'GPT-5, Gemini and Claude perform best in English; quality drops measurably in lower-resource languages. Most UK African-language speakers effectively get worse AI.' },
+      { term: '2.2 billion offline', def: 'ITU 2025 data — most are in Sub-Saharan Africa and South Asia; women are disproportionately excluded' },
+      { term: 'English dominance', def: 'The leading models (ChatGPT, Gemini, Claude) perform best in English; quality drops measurably in lower-resource languages. Most UK African-language speakers effectively get worse AI.' },
       { term: 'Training-data tilt', def: 'Public-web data over-represents wealthy, Western, English-speaking perspectives — so models inherit that tilt as their default view of the world' },
       { term: 'Compound effect', def: 'The groups already under-served by tech are the groups AI works worst for — a two-layer disadvantage, not just one' }
     ]
@@ -3159,8 +3159,8 @@ SLIDES_GCSE[124] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🌍', label: 'AI development is geographically concentrated', text: 'US, China and UK capture ~90% of investment' },
-      { icon: '📡', label: 'Access is unequal', text: '2.6 billion people still have no internet at all (ITU 2023)' },
+      { icon: '🌍', label: 'AI investment is hugely concentrated', text: 'the US alone drew ~23× the next country\'s private AI investment in 2025 (AI Index 2026)' },
+      { icon: '📡', label: 'Access is unequal', text: '2.2 billion people still have no internet at all (ITU 2025)' },
       { icon: '⚠️', label: 'AI works worse for under-represented groups', text: 'Gender Shades 2018, PNAS 2020, JAMA 2018 all showed measurable gaps' },
       { icon: '🗣️', label: 'Fewer than 100 of 7,000+ languages are well-served', text: 'most of the world gets dramatically worse AI than English speakers' },
       { icon: '🔌', label: 'Hidden human and environmental costs', text: 'Kenyan moderators on $2/hr, 34% rise in Microsoft water use, 50+ GWh training runs' },
