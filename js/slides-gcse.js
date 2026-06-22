@@ -918,11 +918,12 @@ SLIDES_GCSE[107] = [
   {
     type: 'hook',
     title: 'Better Questions, Better Answers',
-    body: '"Tell me about World War 2" — ChatGPT produces a wall of Wikipedia-flavoured text your history teacher has read a thousand times. "Act as an AQA GCSE History examiner. Explain the three main long-term causes of WW2 as a 5-minute revision sheet, with one specific date and one named historian for each cause, for a Year 11 student targeting grade 7" — and the exact same model produces something you can actually revise from. The model didn\'t change. Your question did. OpenAI\'s own 2024 research found that specific, well-structured prompts improved answer accuracy on graduate-level reasoning benchmarks by 20–40% over one-line questions. This is the single most valuable skill in this entire course — and job listings for "prompt engineers" in the UK and US started at £50K-£130K in 2024 before the market matured.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">20–40%</span><span class="sl">accuracy gain from structured prompts (OpenAI, 2024)</span></div><div class="hook-stat-mini"><span class="sv">£50–130K</span><span class="sl">starting UK prompt-engineer salaries in 2024</span></div><div class="hook-stat-mini"><span class="sv">10 sec</span><span class="sl">extra typing is usually all it takes</span></div></div>',
+    body: '"Tell me about World War 2" — ChatGPT produces a wall of Wikipedia-flavoured text your history teacher has read a thousand times. "Act as an AQA GCSE History examiner. Explain the three main long-term causes of WW2 as a 5-minute revision sheet, with one specific date and one named historian for each cause, for a Year 11 student targeting grade 7" — and the exact same model produces something you can actually revise from. The model didn\'t change. Your question did. That gap — same model, sharper question — is real and shows up across study after study: specific, well-structured prompts produce markedly more accurate, useful answers than one-line ones. This is one of the most valuable skills in this entire course. In 2023, "prompt engineer" was a brand-new job advertised at over £100K. By 2026 the standalone role has all but vanished — not because the skill stopped mattering, but because it became a baseline skill every employer now expects, the way using a search engine or a spreadsheet once did.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">Same model</span><span class="sl">your question is the only thing that changes the answer\'s quality</span></div><div class="hook-stat-mini"><span class="sv">2023→2026</span><span class="sl">"prompt engineer" went from a £100K+ job to a skill everyone\'s expected to have</span></div><div class="hook-stat-mini"><span class="sv">10 sec</span><span class="sl">extra typing is usually all it takes</span></div></div>',
     callout: 'The difference between a useful AI response and a useless one is almost always the quality of your question. This lesson teaches a framework that professionals use every day.',
     sources: [
       { label: 'OpenAI — Prompt Engineering Guide (best practices)', url: 'https://platform.openai.com/docs/guides/prompt-engineering' },
-      { label: 'Anthropic — Claude prompt engineering documentation', url: 'https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview' }
+      { label: 'Anthropic — Claude prompt engineering documentation', url: 'https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview' },
+      { label: 'Fortune (2025) — The six-figure "prompt engineer" role is already obsolete as the skill becomes universal', url: 'https://fortune.com/2025/05/07/prompt-engineering-200k-six-figure-role-now-obsolete-thanks-to-ai/' }
     ]
   },
   {
@@ -1010,7 +1011,7 @@ SLIDES_GCSE[107] = [
     type: 'discussion',
     title: 'Ethics of the Prompt',
     questions: [
-      { num: 1, text: 'If prompt engineering is now a paid career skill, should GCSE students be allowed to use carefully-crafted AI prompts on open-book coursework? Where exactly is the line between research and cheating?' },
+      { num: 1, text: 'Skilful AI prompting has gone from a niche £100K+ job to a baseline skill employers now expect of everyone. If "good prompting" is becoming as assumed as literacy, should GCSE students be allowed to use carefully-crafted AI prompts on open-book coursework? Where exactly is the line between research and cheating?' },
       { num: 2, text: 'A well-crafted prompt can get AI to produce essay-standard writing in seconds. Does the effort of writing the prompt "count" as real work in the same way writing the essay does?' },
       { num: 3, text: 'Imagine a pupil from a school with fast laptops and paid ChatGPT Plus competing against a pupil with only a shared home phone on a free tier. How does prompt engineering skill interact with digital inequality — and whose job is it to level the field?' }
     ]
@@ -1025,7 +1026,7 @@ SLIDES_GCSE[107] = [
       'Ask the same question three times to get a more reliable answer'
     ],
     correct: 2,
-    explanation: 'Context is the biggest upgrade: telling AI who you are ("Year 11 student revising GCSE Biology, AQA, targeting grade 7"), what you need ("explain osmosis"), and the format ("in 4 bullet points, no jargon") transforms a generic response into a targeted one. Specificity is the lever that unlocks measurable gains (20–40% on reasoning benchmarks in OpenAI\'s own tests).'
+    explanation: 'Context is the biggest upgrade: telling AI who you are ("Year 11 student revising GCSE Biology, AQA, targeting grade 7"), what you need ("explain osmosis"), and the format ("in 4 bullet points, no jargon") transforms a generic response into a targeted one. Specificity is the lever — the same model gives a far more accurate, useful answer when you tell it exactly who, what and how.'
   },
   {
     type: 'summary',
@@ -1035,7 +1036,7 @@ SLIDES_GCSE[107] = [
       { icon: '📋', label: 'PTFC is the recipe', text: 'Persona + Task + Format + Context. Memorise this. It never gets worse.' },
       { icon: '🔄', label: 'Iterate, don\'t one-shot', text: 'the first answer is rarely the best — the conversation improves it every turn' },
       { icon: '💬', label: 'You can push back', text: 'disagree, cite your textbook, ask the AI to self-critique — watch the quality climb' },
-      { icon: '🧰', label: 'This is a career skill', text: 'what you\'re learning here is billed at £50–130K in the UK job market — take it seriously' }
+      { icon: '🧰', label: 'Now a baseline skill', text: 'a £100K+ job in 2023, by 2026 it\'s a skill every employer expects — like using a spreadsheet. Take it seriously.' }
     ]
   }
 ];
