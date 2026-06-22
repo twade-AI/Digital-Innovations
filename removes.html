@@ -221,6 +221,25 @@
     .exit-ticket-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center}
     .exit-ticket-status{font-size:.8rem;color:var(--text-dim);font-style:italic}
     .exit-ticket-status.et-saved{color:var(--track-primary);font-style:normal;font-weight:600}
+    /* ── Assessed performance task ── */
+    .slide-assessment{margin-top:6px}
+    .badge-assessment{background:linear-gradient(135deg,#9b1844,#c64b74)!important;color:#fff!important}
+    .as-meta{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 4px}
+    .as-domain{font-size:.72rem;font-weight:700;color:var(--track-primary);background:rgba(var(--track-primary-rgb),.1);border:1px solid rgba(var(--track-primary-rgb),.3);border-radius:999px;padding:3px 11px}
+    .as-time{font-size:.72rem;font-weight:600;color:var(--text-dim);padding:3px 4px}
+    .as-criteria{margin-top:12px;font-size:.86rem;color:var(--text-muted,#475569);line-height:1.55;background:rgba(var(--track-primary-rgb),.05);border-radius:8px;padding:10px 14px}
+    .as-rubric{margin-top:14px;border:1.5px solid var(--border);border-radius:10px;overflow:hidden}
+    .as-rubric-head{font-size:.74rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--text-dim);padding:9px 14px;background:var(--bg-card);border-bottom:1px solid var(--border)}
+    .as-rubric-row{display:flex;gap:0;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid var(--border);font:inherit;color:inherit;cursor:pointer;padding:0;transition:background .12s}
+    .as-rubric-row:last-child{border-bottom:none}
+    .as-rubric-row:hover{background:rgba(var(--track-primary-rgb),.04)}
+    .as-rubric-row.as-selected{background:rgba(var(--track-primary-rgb),.12)}
+    .as-rubric-level{flex-shrink:0;width:112px;padding:11px 14px;font-size:.82rem;font-weight:700;color:var(--track-primary);background:rgba(var(--track-primary-rgb),.05);display:flex;align-items:center;gap:5px}
+    .as-rubric-row.as-selected .as-rubric-level::before{content:'✓';font-weight:900}
+    .as-rubric-text{flex:1;padding:11px 14px;font-size:.85rem;line-height:1.5;color:var(--text-muted,#475569)}
+    .as-selfmark-status{font-size:.78rem;color:var(--text-dim);font-style:italic;padding:9px 14px;border-top:1px solid var(--border)}
+    .as-selfmark-status.as-marked{color:var(--track-primary);font-style:normal;font-weight:600}
+    @media (max-width:560px){.as-rubric-row{flex-direction:column}.as-rubric-level{width:auto;padding-bottom:2px}}
     /* ── Unit test ── */
     .unit-test{margin-top:14px}
     .ut-q{padding:14px 16px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);margin-bottom:12px}
@@ -1192,6 +1211,21 @@
     var s=document.getElementById('gsExitStatus');
     if(s){ s.textContent=v?'✓ Saved — you can edit and save again':'Cleared'; s.classList.toggle('et-saved',!!v); }
   }
+  function gsAssessSave(key){
+    var el=document.getElementById('gsAssessInput'); if(!el)return;
+    var v=(el.value||'').trim();
+    try{ if(v)localStorage.setItem(key,v); else localStorage.removeItem(key); }catch(e){}
+    var s=document.getElementById('gsAssessStatus');
+    if(s){ s.textContent=v?'✓ Saved — appears in your Portfolio':'Cleared'; s.classList.toggle('et-saved',!!v); }
+  }
+  function gsAssessLevel(key, level, btn){
+    try{ localStorage.setItem(key, level); }catch(e){}
+    var rubric = btn.closest('.as-rubric');
+    if(rubric){ Array.prototype.forEach.call(rubric.querySelectorAll('.as-rubric-row'), function(r){ r.classList.toggle('as-selected', r===btn); }); }
+    var s=document.getElementById('gsAssessLvlStatus');
+    if(s){ s.textContent='✓ You rated this: '+level; s.classList.add('as-marked'); }
+    gsAwardOnce('assess-mark:'+key, 10, 'Self-assessed a task');
+  }
   function gsUtAnswer(btn, qi, oi, correct){
     var q=btn.closest('.ut-q'); if(!q||q.dataset.answered==='1')return;
     q.dataset.answered='1';
@@ -1250,6 +1284,28 @@
       var saved='';
       try{saved=localStorage.getItem(key)||'';}catch(e){}
       return '<div class="slide-activity"><span class="slide-badge badge-activity">Exit Ticket</span><div class="slide-title">'+(slide.title||'Before you go…')+'</div>'+(slide.body?'<div class="slide-body">'+slide.body+'</div>':'')+'<div class="exit-ticket"><span class="exit-ticket-label">One-sentence commitment</span><div class="exit-ticket-prompt">'+(slide.prompt||'What is one thing you will do differently after this lesson?')+'</div><textarea class="exit-ticket-input" id="gsExitInput" placeholder="Write your commitment here…">'+gsEscape(saved)+'</textarea><div class="exit-ticket-actions"><button class="widget-btn widget-btn-primary" onclick="gsExitSave(\''+key+'\')">Save for later</button><span class="exit-ticket-status'+(saved?' et-saved':'')+'" id="gsExitStatus">'+(saved?'✓ Saved — you can edit and save again':'Saves to this device only')+'</span></div></div>'+sources+'</div>';
+    }
+    if (type==='assessment') {
+      var aKey='di_gcse_assess_'+gsCurrentId;
+      var aLvlKey='di_gcse_assess_level_'+gsCurrentId;
+      var aSaved='', aLvl='';
+      try{aSaved=localStorage.getItem(aKey)||'';}catch(e){}
+      try{aLvl=localStorage.getItem(aLvlKey)||'';}catch(e){}
+      var rubric=(slide.rubric||[]).map(function(r){
+        var sel=(r.level===aLvl)?' as-selected':'';
+        return '<button type="button" class="as-rubric-row'+sel+'" data-level="'+gsEscape(r.level)+'" onclick="gsAssessLevel(\''+aLvlKey+'\',\''+gsEscape(r.level).replace(/'/g,"\\'")+'\',this)"><div class="as-rubric-level">'+gsEscape(r.level)+'</div><div class="as-rubric-text">'+(r.text||'')+'</div></button>';
+      }).join('');
+      var aSteps=(slide.steps?'<ol class="slide-steps">'+slide.steps.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ol>':'');
+      return '<div class="slide-assessment">'+
+        '<span class="slide-badge badge-assessment">Assessed Task</span>'+
+        '<div class="slide-title">'+(slide.title||'Performance Task')+'</div>'+
+        '<div class="as-meta">'+(slide.domain?'<span class="as-domain">'+gsEscape(slide.domain)+'</span>':'')+(slide.time?'<span class="as-time">⏱ '+gsEscape(slide.time)+'</span>':'')+'</div>'+
+        (slide.brief?'<div class="slide-body">'+slide.brief+'</div>':'')+
+        aSteps+
+        (slide.criteria?'<div class="as-criteria"><strong>What\'s being assessed:</strong> '+slide.criteria+'</div>':'')+
+        (rubric?'<div class="as-rubric"><div class="as-rubric-head">Mark your own work honestly — tap the level you reached</div>'+rubric+'<div class="as-selfmark-status'+(aLvl?' as-marked':'')+'" id="gsAssessLvlStatus">'+(aLvl?'✓ You rated this: '+gsEscape(aLvl):'No self-assessment yet — be honest, this is for your own progress')+'</div></div>':'')+
+        '<div class="exit-ticket"><span class="exit-ticket-label">Your response (or a link to it)</span><div class="exit-ticket-prompt">'+(slide.prompt||'Write your response, or paste a link to your document, here.')+'</div><textarea class="exit-ticket-input" id="gsAssessInput" rows="6" placeholder="Your work, or a link to it…">'+gsEscape(aSaved)+'</textarea><div class="exit-ticket-actions"><button class="widget-btn widget-btn-primary" onclick="gsAssessSave(\''+aKey+'\')">Save to my Portfolio</button><span class="exit-ticket-status'+(aSaved?' et-saved':'')+'" id="gsAssessStatus">'+(aSaved?'✓ Saved — appears in your Portfolio':'Saves to this device &amp; your Portfolio')+'</span></div></div>'+
+        sources+'</div>';
     }
     if (type==='unit-test') {
       var qs=(slide.questions||[]).map(function(q,i){

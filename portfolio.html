@@ -36,6 +36,18 @@
     .pf-lesson-title .pf-l-meta{font-size:.74rem;color:var(--text-dim)}
     .pf-note{font-size:.88rem;line-height:1.55;color:var(--text);white-space:pre-wrap;margin-top:8px}
     .pf-exit{font-style:italic;font-size:.9rem;line-height:1.55;color:var(--text);border-left:3px solid var(--track-primary);padding:8px 12px;margin-top:8px;background:rgba(var(--track-primary-rgb),.04);border-radius:0 6px 6px 0}
+    .pf-assess{font-size:.9rem;line-height:1.6;color:var(--text);border-left:3px solid #9b1844;padding:10px 12px;margin-top:8px;background:rgba(155,24,68,.05);border-radius:0 6px 6px 0;white-space:pre-wrap}
+    .pf-progress{border:1.5px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:20px;background:var(--bg-card)}
+    .pf-progress-head{font-weight:800;font-size:.95rem;color:var(--text);margin-bottom:10px}
+    .pf-progress-bar{height:8px;border-radius:999px;background:var(--border);overflow:hidden}
+    .pf-progress-fill{height:100%;background:linear-gradient(90deg,#9b1844,#c64b74);border-radius:999px;transition:width .4s}
+    .pf-progress-meta{font-size:.82rem;color:var(--text-dim);margin-top:8px}
+    .pf-progress-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .pf-lvl{font-size:.74rem;font-weight:700;border-radius:999px;padding:3px 10px;border:1px solid}
+    .pf-lvl-dev{color:#b45309;background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.4)}
+    .pf-lvl-sec{color:#047857;background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.4)}
+    .pf-lvl-exc{color:#7c3aed;background:rgba(139,92,246,.14);border-color:rgba(139,92,246,.45)}
+    [data-theme="light"] .pf-progress{background:#fff}
     .pf-label{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--track-primary);background:rgba(var(--track-primary-rgb),.1);padding:2px 8px;border-radius:999px;margin-bottom:6px}
     .pf-score-pill{display:inline-block;background:rgba(var(--track-primary-rgb),.12);color:var(--track-primary);border:1px solid rgba(var(--track-primary-rgb),.3);border-radius:999px;padding:2px 10px;font-size:.72rem;font-weight:700}
 
@@ -65,6 +77,8 @@
         <div class="pf-sub">Notes, exit-ticket reflections and scores for <span class="pf-name" id="pfName">—</span></div>
       </div>
       <div class="pf-tools">
+        <button class="btn btn-secondary btn-sm" id="pfExportBtn" onclick="pfExportWork()" title="Download a file of your task work and self-ratings to send to your teacher">⬇ Export work</button>
+        <button class="btn btn-secondary btn-sm" id="pfShareBtn" onclick="pfShareTeacher()" title="Copy a short code of your self-assessed task levels to send to your teacher">📤 Share code</button>
         <button class="btn btn-primary btn-sm" onclick="window.print()">🖨 Save as PDF</button>
         <img class="hby-mark pf-crest" src="assets/brand/logo/haileybury-magenta.png" alt="Haileybury" width="32" height="23">
       </div>
@@ -94,6 +108,68 @@
             || localStorage.getItem('fl_cert_name')
             || localStorage.getItem('di_display_name')
             || '';
+
+    // Build a compact, human-readable code of self-assessed task levels for the
+    // teacher's Class Overview (class.html). Order = the 7 unit tasks.
+    window.pfShareTeacher = function () {
+      var order = [105, 112, 134, 123, 129, 140, 133];
+      var codes = order.map(function (id) {
+        var l = localStorage.getItem('di_gcse_assess_level_' + id) || '';
+        return l ? l.charAt(0).toUpperCase() : '-';
+      });
+      var pname = (name || '').trim();
+      if (!pname) {
+        pname = (window.prompt('Enter your name so your teacher can identify your code:') || '').trim();
+        if (pname) { try { localStorage.setItem('gs_cert_name', pname); } catch (e) {} }
+      }
+      if (!pname) return;
+      var line = 'AILIT1|' + encodeURIComponent(pname) + '|' + codes.join('|');
+      var btn = document.getElementById('pfShareBtn');
+      var done = function (msg) { if (btn) { var o = btn.textContent; btn.textContent = msg; setTimeout(function () { btn.textContent = o; }, 2000); } };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(line).then(function () { done('✓ Code copied — send it to your teacher'); })
+          .catch(function () { window.prompt('Copy this code and send it to your teacher:', line); });
+      } else {
+        window.prompt('Copy this code and send it to your teacher:', line);
+      }
+    };
+
+    // Full work export — a file containing each task's title, self-rated
+    // level AND the written response, for the teacher's Class Overview.
+    var PF_TASKS = [
+      { l:105, u:'U1', t:'Explain AI Without the Hype' },
+      { l:112, u:'U2', t:'Evidence of a Real Revision Loop' },
+      { l:134, u:'U3', t:'Prompt-Engineering Portfolio' },
+      { l:123, u:'U4', t:'Fact-Check Dossier' },
+      { l:129, u:'U5', t:'Ethical Position Paper' },
+      { l:140, u:'U6', t:'AI Improvement Brief' },
+      { l:133, u:'U7', t:'AI Charter & Career Map' }
+    ];
+    window.pfExportWork = function () {
+      var pname = (name || '').trim();
+      if (!pname) {
+        pname = (window.prompt('Enter your name for the export:') || '').trim();
+        if (pname) { try { localStorage.setItem('gs_cert_name', pname); } catch (e) {} }
+      }
+      if (!pname) return;
+      var data = {
+        v: 1, type: 'di-removes-portfolio', name: pname, exported: new Date().toISOString(),
+        tasks: PF_TASKS.map(function (t) {
+          return {
+            unit: t.u, lesson: t.l, title: t.t,
+            level: localStorage.getItem('di_gcse_assess_level_' + t.l) || '',
+            response: localStorage.getItem('di_gcse_assess_' + t.l) || ''
+          };
+        })
+      };
+      var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'ai-portfolio-' + pname.replace(/[^a-z0-9]+/gi, '-').toLowerCase().replace(/^-|-$/g, '') + '.json';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      var btn = document.getElementById('pfExportBtn');
+      if (btn) { var o = btn.textContent; btn.textContent = '✓ File downloaded'; setTimeout(function () { btn.textContent = o; }, 2000); }
+    };
     document.getElementById('pfName').textContent = name || 'this pupil';
 
     // Gather lessons & notes for the chosen track.
@@ -108,7 +184,9 @@
         unit.lessons.forEach(function (lesson) {
           var noteText = collectNotes(lesson.id);
           var exitText = localStorage.getItem('di_gcse_exit_' + lesson.id) || '';
-          if (!noteText && !exitText && !doneIds[lesson.id]) return;
+          var assessText = localStorage.getItem('di_gcse_assess_' + lesson.id) || '';
+          var assessLevel = localStorage.getItem('di_gcse_assess_level_' + lesson.id) || '';
+          if (!noteText && !exitText && !assessText && !assessLevel && !doneIds[lesson.id]) return;
           items.push({
             unit: unit.title,
             unitColour: unit.color,
@@ -117,7 +195,9 @@
             done: !!doneIds[lesson.id],
             completedAt: dates[lesson.id] || '',
             notes: noteText,
-            exit: exitText
+            exit: exitText,
+            assess: assessText,
+            assessLevel: assessLevel
           });
         });
       });
@@ -156,7 +236,26 @@
       byUnit[it.unit].entries.push(it);
     });
 
+    function lvlCls(l){ return l === 'Exceptional' ? 'exc' : (l === 'Secure' ? 'sec' : 'dev'); }
+
     var html = '';
+
+    // Self-assessed performance-task progress (Removes only — 7 unit tasks)
+    if (track === 'removes') {
+      var lc = { Developing: 0, Secure: 0, Exceptional: 0 }, marked = 0, TOTAL_TASKS = 7;
+      items.forEach(function (it) { if (it.assessLevel && lc.hasOwnProperty(it.assessLevel)) { lc[it.assessLevel]++; marked++; } });
+      html += '<div class="pf-progress">' +
+                '<div class="pf-progress-head">📋 Performance-task progress</div>' +
+                '<div class="pf-progress-bar"><div class="pf-progress-fill" style="width:' + Math.round(marked / TOTAL_TASKS * 100) + '%"></div></div>' +
+                '<div class="pf-progress-meta">' + marked + ' of ' + TOTAL_TASKS + ' performance tasks self-assessed</div>' +
+                (marked ? '<div class="pf-progress-chips">' +
+                  '<span class="pf-lvl pf-lvl-dev">Developing · ' + lc.Developing + '</span>' +
+                  '<span class="pf-lvl pf-lvl-sec">Secure · ' + lc.Secure + '</span>' +
+                  '<span class="pf-lvl pf-lvl-exc">Exceptional · ' + lc.Exceptional + '</span>' +
+                '</div>' : '') +
+              '</div>';
+    }
+
     Object.keys(byUnit).forEach(function (u) {
       var data = byUnit[u];
       html += '<div class="pf-section">' +
@@ -172,6 +271,7 @@
                   '</div>';
         if (e.notes) html += '<div class="pf-note">' + esc(e.notes) + '</div>';
         if (e.exit)  html += '<div class="pf-exit"><strong>Exit ticket.</strong> ' + esc(e.exit) + '</div>';
+        if (e.assess || e.assessLevel) html += '<div class="pf-assess"><strong>📋 Assessed task.</strong>' + (e.assessLevel ? ' <span class="pf-lvl pf-lvl-' + lvlCls(e.assessLevel) + '">Self-rated: ' + esc(e.assessLevel) + '</span>' : '') + (e.assess ? ' ' + esc(e.assess) : '') + '</div>';
         html += '</div>';
       });
       html += '</div>';
