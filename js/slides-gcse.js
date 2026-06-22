@@ -2581,6 +2581,23 @@ SLIDES_GCSE[122] = [
     ]
   },
   {
+    type: 'activity',
+    title: 'Play "Bad News" — Become the Manipulator',
+    task: 'The single best way to spot a manipulation tactic is to use it yourself once — that is the whole idea behind pre-bunking. <strong>Bad News</strong> is a free browser game built by the University of Cambridge and DROG, and tested in the Science Advances study on the previous slide: you play a fake-news creator trying to grow a following, and in doing so you learn the six tricks of disinformation from the inside. Peer-reviewed trials found that playing it measurably improved people\'s ability to spot manipulation afterwards — and the effect lasted for months. Play it now, then come back and reflect.<div style="margin:16px 0"><a href="https://www.getbadnews.com/en/play" target="_blank" rel="noopener" style="display:inline-block;padding:12px 22px;border-radius:10px;background:var(--track-primary);color:#fff;font-weight:700;text-decoration:none">▶ Play Bad News (getbadnews.com) — opens in a new tab</a></div>',
+    steps: [
+      'Play through the game (about 15–20 minutes). Try to earn all six "badges".',
+      'As you play, notice the trick behind each badge — the game is teaching you a named manipulation technique each time.',
+      'In the notes box, name the six techniques you unlocked, and for each, write one real example you have actually seen online.',
+      'Reflection: which technique do you think you are most likely to fall for — and what is one thing you will now check before you share?'
+    ],
+    callout: 'Now connect it to this whole unit: every one of these six tactics can now be <em>automated by AI</em> — generated, personalised and amplified at a scale no human troll farm could reach (Lesson 121). Knowing the tricks from the inside is your inoculation.',
+    reveal: '<strong>The six tactics Bad News teaches</strong> (and what to watch for): <strong>1. Impersonation</strong> — fake accounts and lookalike websites posing as real people or outlets. <strong>2. Emotion</strong> — content engineered to trigger fear or outrage so you share before you think. <strong>3. Polarisation</strong> — driving two groups further apart to boost engagement. <strong>4. Conspiracy</strong> — stitching unrelated events into a hidden "they don\'t want you to know" narrative. <strong>5. Discrediting</strong> — attacking the messenger (especially fact-checkers and journalists) instead of the facts. <strong>6. Trolling</strong> — deliberately provoking a reaction to manufacture a story. Spot any of these and the SIFT reflex should fire: Stop, and check.',
+    sources: [
+      { label: 'Bad News — free media-literacy game, University of Cambridge & DROG', url: 'https://www.getbadnews.com/en/play' },
+      { label: 'Roozenbeek, J. & van der Linden, S. (2019) — "The fake news game: actively inoculating against the risk of misinformation" (Journal of Risk Research)', url: 'https://doi.org/10.1080/13669877.2018.1443491' }
+    ]
+  },
+  {
     type: 'widget',
     widget: 'factcheck',
     title: 'Fact-Check Simulator — SIFT in Action',
