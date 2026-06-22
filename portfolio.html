@@ -77,7 +77,8 @@
         <div class="pf-sub">Notes, exit-ticket reflections and scores for <span class="pf-name" id="pfName">—</span></div>
       </div>
       <div class="pf-tools">
-        <button class="btn btn-secondary btn-sm" id="pfShareBtn" onclick="pfShareTeacher()" title="Copy a short code of your self-assessed task levels to send to your teacher">📤 Share with teacher</button>
+        <button class="btn btn-secondary btn-sm" id="pfExportBtn" onclick="pfExportWork()" title="Download a file of your task work and self-ratings to send to your teacher">⬇ Export work</button>
+        <button class="btn btn-secondary btn-sm" id="pfShareBtn" onclick="pfShareTeacher()" title="Copy a short code of your self-assessed task levels to send to your teacher">📤 Share code</button>
         <button class="btn btn-primary btn-sm" onclick="window.print()">🖨 Save as PDF</button>
         <img class="hby-mark pf-crest" src="assets/brand/logo/haileybury-magenta.png" alt="Haileybury" width="32" height="23">
       </div>
@@ -131,6 +132,43 @@
       } else {
         window.prompt('Copy this code and send it to your teacher:', line);
       }
+    };
+
+    // Full work export — a file containing each task's title, self-rated
+    // level AND the written response, for the teacher's Class Overview.
+    var PF_TASKS = [
+      { l:105, u:'U1', t:'Explain AI Without the Hype' },
+      { l:112, u:'U2', t:'Evidence of a Real Revision Loop' },
+      { l:134, u:'U3', t:'Prompt-Engineering Portfolio' },
+      { l:123, u:'U4', t:'Fact-Check Dossier' },
+      { l:129, u:'U5', t:'Ethical Position Paper' },
+      { l:140, u:'U6', t:'AI Improvement Brief' },
+      { l:133, u:'U7', t:'AI Charter & Career Map' }
+    ];
+    window.pfExportWork = function () {
+      var pname = (name || '').trim();
+      if (!pname) {
+        pname = (window.prompt('Enter your name for the export:') || '').trim();
+        if (pname) { try { localStorage.setItem('gs_cert_name', pname); } catch (e) {} }
+      }
+      if (!pname) return;
+      var data = {
+        v: 1, type: 'di-removes-portfolio', name: pname, exported: new Date().toISOString(),
+        tasks: PF_TASKS.map(function (t) {
+          return {
+            unit: t.u, lesson: t.l, title: t.t,
+            level: localStorage.getItem('di_gcse_assess_level_' + t.l) || '',
+            response: localStorage.getItem('di_gcse_assess_' + t.l) || ''
+          };
+        })
+      };
+      var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'ai-portfolio-' + pname.replace(/[^a-z0-9]+/gi, '-').toLowerCase().replace(/^-|-$/g, '') + '.json';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      var btn = document.getElementById('pfExportBtn');
+      if (btn) { var o = btn.textContent; btn.textContent = '✓ File downloaded'; setTimeout(function () { btn.textContent = o; }, 2000); }
     };
     document.getElementById('pfName').textContent = name || 'this pupil';
 

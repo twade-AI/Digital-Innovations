@@ -45,6 +45,16 @@
     .cw-foot-chip{font-size:.68rem;font-weight:700;border-radius:5px;padding:1px 6px}
     .cw-done{font-weight:700;color:var(--track-primary,#9b1844)}
     .cw-empty{text-align:center;color:var(--text-dim);padding:48px 20px;font-size:.95rem}
+    .cw-work-h{font-size:1rem;font-weight:800;color:var(--text);margin:26px 0 10px}
+    .cw-work{border:1.5px solid var(--border);border-radius:10px;margin-bottom:10px;background:var(--bg-card);overflow:hidden}
+    .cw-work>summary{cursor:pointer;font-weight:700;color:var(--text);padding:12px 16px;font-size:.92rem;list-style:none}
+    .cw-work>summary::-webkit-details-marker{display:none}
+    .cw-work>summary::before{content:'▸ ';color:var(--track-primary,#9b1844)}
+    .cw-work[open]>summary::before{content:'▾ '}
+    .cw-work-task{padding:10px 16px;border-top:1px solid var(--border)}
+    .cw-work-task-h{font-size:.82rem;font-weight:700;color:var(--text);margin-bottom:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .cw-work-resp{font-size:.86rem;line-height:1.6;color:var(--text-muted,#475569);white-space:pre-wrap;background:var(--bg);border-radius:8px;padding:10px 12px;border:1px solid var(--border)}
+    .cw-work-empty{font-style:italic;opacity:.6;background:none;border:none;padding:4px 0}
     [data-theme="light"] .cw-grid td.cw-pupil{background:#fff}
     @media print{
       .cw-head .cw-spacer,.cw-input-wrap,.theme-btn,.btn-ghost{display:none!important}
@@ -72,11 +82,13 @@
       <textarea id="cwInput" placeholder="AILIT1|Ada%20Lovelace|S|E|D|S|-|-|-&#10;AILIT1|Alan%20Turing|E|E|S|S|S|D|-"></textarea>
       <div class="cw-actions">
         <button class="btn btn-primary btn-sm" onclick="cwBuild()">Build overview</button>
+        <label class="btn btn-secondary btn-sm" style="cursor:pointer;margin:0">📂 Import work files<input type="file" accept=".json,application/json" multiple style="display:none" onchange="cwImport(this)"></label>
         <button class="btn btn-secondary btn-sm" onclick="cwDownloadCsv()">⬇ Download CSV</button>
         <button class="btn btn-ghost btn-sm" onclick="window.print()">🖨 Print</button>
         <button class="btn btn-ghost btn-sm" onclick="cwClear()">Clear</button>
         <span class="cw-note" id="cwNote"></span>
       </div>
+      <p class="cw-note" style="margin-top:8px">Two ways to add pupils: paste their <strong>codes</strong> (levels only), or <strong>import their exported work files</strong> (levels + the actual written responses, which appear below the grid for moderation).</p>
     </div>
 
     <div id="cwOut"></div>
@@ -122,33 +134,63 @@
     return '<span class="cw-cell lv-x">—</span>';
   }
 
+  var CW_IMP_KEY='di_class_overview_imports';
+  var CW_IMPORTED=[];
+  try{ CW_IMPORTED=JSON.parse(localStorage.getItem(CW_IMP_KEY))||[]; }catch(e){ CW_IMPORTED=[]; }
+  function cwSaveImports(){ try{ localStorage.setItem(CW_IMP_KEY, JSON.stringify(CW_IMPORTED)); }catch(e){} }
+
+  // Merge pasted-code rows (levels only) with imported file rows (levels + responses), deduped by name.
+  function cwRecords(){
+    var byName={};
+    var coded=cwParse(document.getElementById('cwInput').value);
+    coded.rows.forEach(function(r){ byName[r.name]={ name:r.name, levels:r.levels, responses:null }; });
+    CW_IMPORTED.forEach(function(r){ byName[r.name]={ name:r.name, levels:r.levels, responses:r.responses||null }; });
+    var list=Object.keys(byName).map(function(k){return byName[k];});
+    list.sort(function(a,b){return a.name.localeCompare(b.name);});
+    return { list:list, bad:coded.bad };
+  }
+
+  function cwImport(input){
+    var files=input.files; if(!files||!files.length) return;
+    var pending=files.length, added=0, skipped=0;
+    Array.prototype.forEach.call(files,function(f){
+      var rd=new FileReader();
+      rd.onload=function(){
+        try{
+          var d=JSON.parse(rd.result);
+          if(d&&d.type==='di-removes-portfolio'&&Array.isArray(d.tasks)){
+            var levels=d.tasks.map(function(t){return t.level?String(t.level).charAt(0).toUpperCase():'-';});
+            var responses=d.tasks.map(function(t){return t.response||'';});
+            var nm=d.name||'(unnamed)';
+            CW_IMPORTED=CW_IMPORTED.filter(function(p){return p.name!==nm;});
+            CW_IMPORTED.push({ name:nm, levels:levels, responses:responses });
+            added++;
+          } else { skipped++; }
+        }catch(e){ skipped++; }
+        if(--pending===0){ cwSaveImports(); input.value=''; cwBuild(); document.getElementById('cwNote').textContent=added+' file(s) imported'+(skipped?' · '+skipped+' skipped (not a valid export)':''); }
+      };
+      rd.onerror=function(){ skipped++; if(--pending===0){ cwSaveImports(); input.value=''; cwBuild(); } };
+      rd.readAsText(f);
+    });
+  }
+
   function cwBuild(){
-    var text=document.getElementById('cwInput').value;
-    try{ localStorage.setItem(CW_KEY, text); }catch(e){}
-    var parsed=cwParse(text);
-    var rows=parsed.rows;
+    try{ localStorage.setItem(CW_KEY, document.getElementById('cwInput').value); }catch(e){}
+    var rec=cwRecords(), rows=rec.list;
     var note=document.getElementById('cwNote');
     var out=document.getElementById('cwOut');
     if(!rows.length){
-      out.innerHTML='<div class="cw-empty">No valid pupil codes yet. Each code looks like <code>AILIT1|Name|S|E|D|S|-|-|-</code> — pupils generate it from their Portfolio.</div>';
-      note.textContent=parsed.bad?(parsed.bad+' line(s) were not valid codes'):'';
+      out.innerHTML='<div class="cw-empty">No pupils yet. Paste codes like <code>AILIT1|Name|S|E|D|S|-|-|-</code>, or import pupils’ exported work files.</div>';
+      note.textContent=rec.bad?(rec.bad+' line(s) were not valid codes'):'';
       return;
     }
-    rows.sort(function(a,b){return a.name.localeCompare(b.name);});
-
-    // Per-task tallies
-    var tally=TASKS.map(function(){return {D:0,S:0,E:0,done:0};});
+    var tally=TASKS.map(function(){return {D:0,S:0,E:0};});
     var totalMarks=0;
-    rows.forEach(function(r){
-      r.levels.forEach(function(c,i){
-        if(c==='D'||c==='S'||c==='E'){ tally[i][c]++; tally[i].done++; totalMarks++; }
-      });
-    });
-
-    // Summary cards
+    rows.forEach(function(r){ r.levels.forEach(function(c,i){ if(c==='D'||c==='S'||c==='E'){ tally[i][c]++; totalMarks++; } }); });
     var totalE=tally.reduce(function(s,t){return s+t.E;},0);
     var totalS=tally.reduce(function(s,t){return s+t.S;},0);
     var totalD=tally.reduce(function(s,t){return s+t.D;},0);
+    var withWork=rows.filter(function(r){return r.responses;}).length;
     var possible=rows.length*TASKS.length;
     var cards='<div class="cw-cards">'+
       '<div class="cw-card"><span class="cw-card-num">'+rows.length+'</span><span class="cw-card-lbl">pupils</span></div>'+
@@ -157,31 +199,40 @@
       '<div class="cw-card"><span class="cw-card-num" style="color:#047857">'+totalS+'</span><span class="cw-card-lbl">Secure</span></div>'+
       '<div class="cw-card"><span class="cw-card-num" style="color:#b45309">'+totalD+'</span><span class="cw-card-lbl">Developing</span></div>'+
     '</div>';
-
-    // Grid
     var head='<tr><th class="cw-pupil">Pupil</th>'+TASKS.map(function(t){return '<th title="'+esc(t.name)+'">'+t.u+'</th>';}).join('')+'<th>Done</th></tr>';
     var body=rows.map(function(r){
       var done=r.levels.filter(function(c){return c!=='-';}).length;
-      return '<tr><td class="cw-pupil">'+esc(r.name)+'</td>'+
+      return '<tr><td class="cw-pupil">'+esc(r.name)+(r.responses?' 📄':'')+'</td>'+
         r.levels.map(function(c){return '<td>'+cwCell(c)+'</td>';}).join('')+
         '<td class="cw-done">'+done+'/'+TASKS.length+'</td></tr>';
     }).join('');
     var foot='<tr><td class="cw-pupil">Class (D · S · E)</td>'+tally.map(function(t){
       return '<td><div class="cw-foot-chips"><span class="cw-foot-chip lv-D">'+t.D+'</span><span class="cw-foot-chip lv-S">'+t.S+'</span><span class="cw-foot-chip lv-E">'+t.E+'</span></div></td>';
     }).join('')+'<td>'+totalMarks+'</td></tr>';
-
+    // Work section — full responses for imported pupils (for moderation)
+    var work='';
+    var imported=rows.filter(function(r){return r.responses;});
+    if(imported.length){
+      work='<h3 class="cw-work-h">Pupil work — read &amp; moderate ('+imported.length+')</h3>'+imported.map(function(r){
+        var inner=TASKS.map(function(t,i){
+          var resp=(r.responses[i]||'').trim();
+          return '<div class="cw-work-task"><div class="cw-work-task-h">'+t.u+' · '+esc(t.name)+' '+cwCell(r.levels[i])+'</div>'+
+            (resp?'<div class="cw-work-resp">'+esc(resp)+'</div>':'<div class="cw-work-resp cw-work-empty">— no response saved —</div>')+'</div>';
+        }).join('');
+        return '<details class="cw-work"><summary>'+esc(r.name)+'</summary>'+inner+'</details>';
+      }).join('');
+    }
     out.innerHTML=cards+'<div class="cw-table-wrap"><table class="cw-grid"><thead>'+head+'</thead><tbody>'+body+'</tbody><tfoot>'+foot+'</tfoot></table></div>'+
-      '<p class="cw-note" style="margin-top:10px">Task key: '+TASKS.map(function(t){return '<strong>'+t.u+'</strong> '+esc(t.name);}).join(' · ')+'</p>';
-    note.textContent='Built '+rows.length+' pupil(s)'+(parsed.bad?' · '+parsed.bad+' invalid line(s) skipped':'');
+      '<p class="cw-note" style="margin-top:10px">📄 = full work imported · Task key: '+TASKS.map(function(t){return '<strong>'+t.u+'</strong> '+esc(t.name);}).join(' · ')+'</p>'+work;
+    note.textContent='Built '+rows.length+' pupil(s)'+(rec.bad?' · '+rec.bad+' invalid line(s) skipped':'')+(withWork?' · '+withWork+' with full work':'');
   }
 
   function cwDownloadCsv(){
-    var parsed=cwParse(document.getElementById('cwInput').value);
-    if(!parsed.rows.length){ alert('Paste some pupil codes and build the overview first.'); return; }
-    parsed.rows.sort(function(a,b){return a.name.localeCompare(b.name);});
+    var rows=cwRecords().list;
+    if(!rows.length){ alert('Add pupil codes or import files first.'); return; }
     var header=['Pupil'].concat(TASKS.map(function(t){return t.u+' '+t.name;})).concat(['Done']);
     var lines=[header.map(cwCsv).join(',')];
-    parsed.rows.forEach(function(r){
+    rows.forEach(function(r){
       var done=r.levels.filter(function(c){return c!=='-';}).length;
       var row=[r.name].concat(r.levels.map(function(c){return LEVELS[c]||'';})).concat([done+'/'+TASKS.length]);
       lines.push(row.map(cwCsv).join(','));
@@ -195,8 +246,9 @@
   function cwCsv(v){ v=String(v==null?'':v); return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v; }
 
   function cwClear(){
-    if(!confirm('Clear the pasted codes and the overview?')) return;
+    if(!confirm('Clear pasted codes, imported files and the overview?')) return;
     document.getElementById('cwInput').value='';
+    CW_IMPORTED=[]; cwSaveImports();
     try{localStorage.removeItem(CW_KEY);}catch(e){}
     document.getElementById('cwOut').innerHTML='';
     document.getElementById('cwNote').textContent='';
@@ -205,7 +257,8 @@
   // Restore last session
   (function(){
     var saved=''; try{ saved=localStorage.getItem(CW_KEY)||''; }catch(e){}
-    if(saved){ document.getElementById('cwInput').value=saved; cwBuild(); }
+    if(saved) document.getElementById('cwInput').value=saved;
+    if(saved || CW_IMPORTED.length) cwBuild();
   })();
   </script>
 </body>
