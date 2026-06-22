@@ -481,10 +481,10 @@ SLIDES_GCSE[104] = [
   {
     type: 'hook',
     title: 'AI in Your Everyday Life',
-    body: 'Before you were fully awake this morning, AI had already made dozens of decisions about you. Your alarm sound was picked by Spotify\'s recommender. Your face unlocked your phone (computer vision). Your spam filter had already sorted overnight email. Your keyboard predicted the first word you typed. Your bank\'s fraud engine reviewed every card swipe you made yesterday. Ofcom\'s 2024 Media Lives report found the average UK teenager interacts with between 80 and 120 AI-mediated decisions before lunch — and can name only 3 of them. And it is not just background AI: the OECD/EU found 88% of 13–15s and 96% of 16–18s use AI tools for learning and creative tasks at least a couple of times a week, while Eurostat reports 64% of all 16–24-year-olds used AI in 2025 — nearly double the rate of the general population. The AI shaping your daily life isn\'t the dramatic kind from films — it\'s quiet, embedded, and everywhere. That invisibility is the point of the lesson.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">88–96%</span><span class="sl">of teens use AI tools weekly (OECD/EU, Google &amp; Livity 2025)</span></div><div class="hook-stat-mini"><span class="sv">64%</span><span class="sl">of 16–24s used AI in 2025 — ~2× the general population (Eurostat 2026)</span></div><div class="hook-stat-mini"><span class="sv">~3</span><span class="sl">AI-mediated decisions before lunch a teen can actually name (Ofcom 2024)</span></div></div>',
+    body: 'Before you were fully awake this morning, AI had already made dozens of decisions about you. Your alarm sound was picked by Spotify\'s recommender. Your face unlocked your phone (computer vision). Your spam filter had already sorted overnight email. Your keyboard predicted the first word you typed. Your bank\'s fraud engine reviewed every card swipe you made yesterday. Most of it you\'d never list if asked: Ofcom\'s 2025 research found around half of online 8–17-year-olds now use AI tools deliberately — but those deliberate uses are dwarfed by the embedded AI nobody notices at all. And it is not just background AI: the OECD/EU found 88% of 13–15s and 96% of 16–18s use AI tools for learning and creative tasks at least a couple of times a week, while Eurostat reports 64% of all 16–24-year-olds used AI in 2025 — nearly double the rate of the general population. The AI shaping your daily life isn\'t the dramatic kind from films — it\'s quiet, embedded, and everywhere. That invisibility is the point of the lesson.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">88–96%</span><span class="sl">of teens use AI tools weekly (OECD/EU, Google &amp; Livity 2025)</span></div><div class="hook-stat-mini"><span class="sv">64%</span><span class="sl">of 16–24s used AI in 2025 — ~2× the general population (Eurostat 2026)</span></div><div class="hook-stat-mini"><span class="sv">~50%</span><span class="sl">of online 8–17s now use AI tools deliberately (Ofcom 2025)</span></div></div>',
     callout: 'Understanding which parts of your digital life are AI-driven gives you more control over how they affect you. You cannot meaningfully consent to systems you\'ve never noticed.',
     sources: [
-      { label: 'Ofcom — Media Lives 2024 (longitudinal study of UK media use, incl. teen AI interactions)', url: 'https://www.ofcom.org.uk/research-and-data/multi-sector-research/media-lives' },
+      { label: 'Ofcom (2025) — Children\'s Media Lives: around half of online 8–17s use AI tools', url: 'https://www.ofcom.org.uk/online-safety/protecting-children/younger-phone-owners-the-rise-of-ai-and-consumption-over-creation-our-latest-look-at-uk-childrens-media-lives' },
       { label: 'Google & Livity (2025) — The Future Report: 88% of 13–15s / 96% of 16–18s use AI weekly (cited in OECD/EU AILit Framework 2026)', url: 'https://futurereport.eu/' },
       { label: 'Eurostat (2026) — 64% of 16–24-year-olds used AI in 2025', url: 'https://ec.europa.eu/eurostat/web/products-eurostat-news/w/edn-20260210-1' }
     ]
@@ -546,6 +546,22 @@ SLIDES_GCSE[104] = [
     ]
   },
   {
+    type: 'widget',
+    widget: 'classify',
+    title: 'For You, or For the Platform?',
+    intro: 'The core idea of this lesson: recommendation engines optimise for engagement — time on app — not your wellbeing. But a few features genuinely push the other way. For each one, decide what it\'s really optimised for.',
+    categories: ['Engagement (keep you on the app)', 'Your wellbeing (even if it loses app time)'],
+    items: [
+      { text: 'YouTube autoplaying the next video the instant one ends', correct: 0, why: 'Engagement. Autoplay removes the natural stopping point — the moment you\'d otherwise decide to leave. It exists to extend watch time, the platform\'s core metric.' },
+      { text: 'An infinite feed with no "page 2" and no end', correct: 0, why: 'Engagement. No bottom of the page means no built-in cue to stop. The friction of deciding to leave is deliberately removed.' },
+      { text: 'Notifications timed to arrive when you\'re most likely to open the app', correct: 0, why: 'Engagement. "Send-time optimisation" is a model predicting the exact moment you\'re most likely to re-open — pure re-engagement, dressed up as helpfulness.' },
+      { text: 'A streak counter that resets to zero if you skip a day', correct: 0, why: 'Engagement. Streaks manufacture a fear of loss so you return every day. The reward is staying on the app, not anything that benefits you.' },
+      { text: 'Your phone\'s weekly Screen Time report showing usage is up 20%', correct: 1, why: 'Wellbeing. Digital-wellbeing tools surface your usage so you\'ll use the device less — directly against the engagement each app wants. Tellingly, this comes from the operating system, not the apps.' },
+      { text: 'Netflix pausing after a few episodes to ask "Are you still watching?"', correct: 1, why: 'Wellbeing-leaning. It interrupts an autoplay binge to check a human is still there — a rare built-in brake on continuous watching. (It also saves Netflix streaming costs, so motives are mixed — but the effect breaks the loop.)' }
+    ],
+    callout: 'Notice the score: four of these six are tuned for engagement, because that\'s what platforms are paid for. The genuine brakes (screen-time reports, "still watching?") are rare and often come from the operating system, not the app. Learning to tell which is which is the difference between using the tool and the tool using you.'
+  },
+  {
     type: 'scenario',
     title: 'The Autocomplete Trap',
     situation: 'Priya is messaging a friend about feeling anxious before an exam. Her keyboard suggests "I\'m fine" as the first autocomplete option — because that\'s what most people type after "feeling". She taps it without thinking. The friend doesn\'t follow up, because "I\'m fine" closed the conversation.',
@@ -572,7 +588,7 @@ SLIDES_GCSE[104] = [
     type: 'discussion',
     title: 'Consent, Invisibility &amp; Agency',
     questions: [
-      { num: 1, text: 'If Ofcom\'s 2024 data is right — 80+ AI interactions before lunch, only 3 noticed — what does it mean for the idea of "informed consent" to these systems? Can you consent to what you can\'t see?' },
+      { num: 1, text: 'You can probably name a handful of AI tools you use on purpose — but the embedded AI (search ranking, fraud checks, autocomplete, recommendations) runs far more often, unnoticed. What does that gap mean for the idea of "informed consent" to these systems? Can you consent to what you can\'t see?' },
       { num: 2, text: 'Autocomplete pushed Priya toward "I\'m fine" when she wasn\'t. Small nudges, multiplied by millions of users, reshape how a whole generation communicates. Is that a problem worth regulating — or just the cost of convenience?' },
       { num: 3, text: 'Imagine a day without the six background AI systems on the previous slide — no spam filter, no face unlock, no translate, no fraud detection, no predictive text, no search ranking. What would be better? What would be worse? Would you take the trade?' }
     ]
