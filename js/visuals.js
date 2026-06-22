@@ -64,10 +64,10 @@ var SLIDE_VISUALS = {
     <rect x="60"  y="150" width="70"  height="18" rx="4" fill="rgba(245,158,11,.18)" stroke="rgba(245,158,11,.4)" stroke-width="1"/>
     <text x="138" y="163" class="vt" font-size="11" fill="#f59e0b" font-weight="700">12%</text>
     <!-- note -->
-    <text x="400" y="116" class="vt" font-size="10" opacity=".55" text-anchor="middle">No understanding —</text>
-    <text x="400" y="130" class="vt" font-size="10" opacity=".55" text-anchor="middle">just statistics from</text>
-    <text x="400" y="144" class="vt" font-size="10" opacity=".55" text-anchor="middle">billions of examples</text>
-    <rect x="358" y="103" width="172" height="52" rx="6" fill="none" stroke="currentColor" stroke-opacity=".15" stroke-width="1" stroke-dasharray="3 2"/>
+    <text x="455" y="116" class="vt" font-size="10" opacity=".55" text-anchor="middle">No understanding —</text>
+    <text x="455" y="130" class="vt" font-size="10" opacity=".55" text-anchor="middle">just statistics from</text>
+    <text x="455" y="144" class="vt" font-size="10" opacity=".55" text-anchor="middle">billions of examples</text>
+    <rect x="376" y="103" width="154" height="52" rx="6" fill="none" stroke="currentColor" stroke-opacity=".15" stroke-width="1" stroke-dasharray="3 2"/>
   </svg>`,
 
   /* ── L3:2 — Training, Validation & Test Sets — ML pipeline ────────── */
@@ -451,9 +451,8 @@ var SLIDE_VISUALS = {
     <text x="285" y="126" text-anchor="middle" class="vjd" font-size="9" opacity=".7">Engineer</text>
 
     <rect x="345" y="50" width="100" height="80" rx="8" fill="rgba(34,197,94,.11)" stroke="rgba(34,197,94,.4)" stroke-width="1.2"/>
-    <text x="395" y="70" text-anchor="middle" class="vjd" font-size="10" font-weight="700" fill="#22c55e">New Roles</text>
     <text x="395" y="70" text-anchor="middle" class="vjd" font-size="10" font-weight="700" fill="#22c55e">Emerging</text>
-    <text x="395" y="84" text-anchor="middle" class="vjd" font-size="10" font-weight="700" fill="#22c55e"> </text>
+    <text x="395" y="84" text-anchor="middle" class="vjd" font-size="10" font-weight="700" fill="#22c55e">New Roles</text>
     <text x="395" y="100" text-anchor="middle" class="vjd" font-size="9" opacity=".7">AI trainer</text>
     <text x="395" y="113" text-anchor="middle" class="vjd" font-size="9" opacity=".7">Prompt engineer</text>
     <text x="395" y="126" text-anchor="middle" class="vjd" font-size="9" opacity=".7">AI ethicist</text>
@@ -1145,7 +1144,7 @@ var SLIDE_VISUALS = {
   <text x="280" y="50" text-anchor="middle" class="vlc" font-size="10" font-weight="800">Layer 3 — Commitments</text>
   <text x="280" y="65" text-anchor="middle" class="vlc" font-size="8.5" opacity=".65">Specific, verifiable promises I make to myself — and will revisit in one year</text>
   <!-- Foundation label -->
-  <text x="280" y="20" text-anchor="middle" class="vlc" font-size="7.5" opacity=".4" font-style="italic">Build from the bottom up — weak beliefs produce weak principles and vague commitments</text>
+  <text x="280" y="27" text-anchor="middle" class="vlc" font-size="7.5" opacity=".4" font-style="italic">Build from the bottom up — weak beliefs produce weak principles and vague commitments</text>
   <!-- Side brace indicators -->
   <line x1="14" y1="126" x2="14" y2="164" stroke="currentColor" stroke-opacity=".25" stroke-width="2"/>
   <line x1="14" y1="80" x2="14" y2="118" stroke="currentColor" stroke-opacity=".2" stroke-width="2"/>
