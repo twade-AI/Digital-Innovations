@@ -2231,7 +2231,7 @@ SLIDES_GCSE[117] = [
   {
     type: 'hook',
     title: 'Working with AI Tools',
-    body: 'November 2022: OpenAI launches ChatGPT. Hits 100 million users in 60 days — the fastest-growing consumer app in history (UBS / Reuters, Feb 2023). By 2025 the "big four" consumer LLMs (ChatGPT, Claude, Gemini, Copilot) are used weekly by over a billion people combined. They all look similar — a chat box, a blinking cursor, full-sentence answers. But they were trained on different data, tuned for different strengths and behave differently in ways that genuinely affect the quality of your output. Using Claude when you needed Gemini (or vice versa) can double the time you spend on a task — and halve the quality of what you get.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">60</span><span class="sl">days for ChatGPT to hit 100M users (UBS 2023)</span></div><div class="hook-stat-mini"><span class="sv">1B+</span><span class="sl">weekly users across the big four LLMs (2025)</span></div><div class="hook-stat-mini"><span class="sv">~2×</span><span class="sl">productivity gap between right tool and wrong tool (Stanford 2024)</span></div></div>',
+    body: 'November 2022: OpenAI launches ChatGPT. Hits 100 million users in 60 days — the fastest-growing consumer app in history (UBS / Reuters, Feb 2023). By 2025 the "big four" consumer LLMs (ChatGPT, Claude, Gemini, Copilot) are used weekly by over a billion people combined. They all look similar — a chat box, a blinking cursor, full-sentence answers. But they were trained on different data, tuned for different strengths and behave differently in ways that genuinely affect the quality of your output. Reach for the wrong one and you can spend longer on a task and get a weaker result — so knowing which tool fits which job is a real, practical skill.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">60</span><span class="sl">days for ChatGPT to hit 100M users (UBS 2023)</span></div><div class="hook-stat-mini"><span class="sv">1B+</span><span class="sl">weekly users across the big four LLMs (2025)</span></div><div class="hook-stat-mini"><span class="sv">4</span><span class="sl">tools that look identical but behave very differently</span></div></div>',
     callout: 'Knowing which tool to use for which task gets you better results, faster, and keeps your data safer. At school you already have two built in: Gemini and NotebookLM come free with your school Google account.',
     sources: [
       { label: 'Reuters / UBS — "ChatGPT sets record for fastest-growing user base" (Feb 2023)', url: 'https://www.reuters.com/technology/chatgpt-sets-record-fastest-growing-user-base-analyst-note-2023-02-01/' },
@@ -2243,9 +2243,9 @@ SLIDES_GCSE[117] = [
     title: 'How the Major Tools Compare',
     body: 'The chatbot you see is only the public face. Underneath, each of these models has different training data, different "personalities" (the result of different tuning), different context windows (how much you can paste), different browsing abilities, and different privacy defaults. Here\'s what matters for GCSE and everyday use right now.',
     bullets: [
-      { term: 'ChatGPT (OpenAI)', def: 'Most widely used — currently on the GPT-5 family (GPT-5.4 is the flagship in 2026). Strong general reasoning, image understanding, voice mode, image generation. Built-in web search on paid tiers. The "Swiss army knife" choice.' },
-      { term: 'Claude (Anthropic)', def: 'Made in San Francisco by ex-OpenAI researchers led by Dario and Daniela Amodei. Current flagship is Claude 4.6 (Sonnet and Opus). Strongest on long documents (200k-token context ≈ 500 pages) and nuanced writing/feedback. Consistently ranked near the top for safety and careful reasoning in independent benchmarks.' },
-      { term: 'Gemini (Google)', def: 'Current flagship Gemini 3.1 Pro. Integrated with Google Search, Google Workspace (Docs, Gmail, Sheets) and YouTube transcripts. Best for current events, live web queries and tasks inside the Google ecosystem — and the version Haileybury pupils can reach via their school Google account.' },
+      { term: 'ChatGPT (OpenAI)', def: 'Most widely used — currently on the latest GPT-5 family. Strong general reasoning, image understanding, voice mode, image generation. Built-in web search on paid tiers. The "Swiss army knife" choice.' },
+      { term: 'Claude (Anthropic)', def: 'Made in San Francisco by ex-OpenAI researchers led by Dario and Daniela Amodei. Its current models (Sonnet and Opus) are strongest on long documents (200k-token context ≈ 500 pages) and nuanced writing/feedback. Consistently ranked near the top for safety and careful reasoning in independent benchmarks.' },
+      { term: 'Gemini (Google)', def: 'Google\'s latest Gemini Pro model. Integrated with Google Search, Google Workspace (Docs, Gmail, Sheets) and YouTube transcripts. Best for current events, live web queries and tasks inside the Google ecosystem — and the version Haileybury pupils can reach via their school Google account.' },
       { term: 'NotebookLM (Google)', def: 'Not a general chatbot — a research notebook. Upload YOUR sources (notes, textbook chapters, slides) and it answers only from them, citing the exact passage behind every claim. Comes with your school Google account; the go-to tool for revising from your own materials.' },
       { term: 'Microsoft Copilot', def: 'Runs on OpenAI models but inside Windows 11, Edge, Word, Excel, PowerPoint and Teams. Strongest for productivity tasks embedded in documents you\'re already writing.' },
       { term: 'All of them share this', def: 'Can be wrong — the brand name doesn\'t guarantee accuracy. All four can and do hallucinate. The four-checks test from L114 applies to all of them, every time.' }
@@ -2267,7 +2267,7 @@ SLIDES_GCSE[117] = [
       { term: 'School revision in general', def: 'Whichever you have access to — then verify important facts against your textbook or exam-board site.' },
       { term: 'Check your school\'s policy first', def: 'JCQ 2024 guidance lets schools set their own rules. Some schools permit ChatGPT Edu but block consumer ChatGPT; others flip it. Always check before using for coursework.' }
     ],
-    callout: 'Pro move: don\'t rely on one tool. A two-tool workflow (e.g. Claude for feedback, Gemini for current facts) beats a one-tool workflow on almost every real task measured by Stanford\'s 2024 productivity study.'
+    callout: 'Pro move: don\'t rely on one tool. A two-tool workflow (e.g. Claude for feedback, Gemini for current facts) beats brand loyalty on almost every real task — match the tool to the job, every time.'
   },
   {
     type: 'scenario',
@@ -2276,7 +2276,7 @@ SLIDES_GCSE[117] = [
     question: 'What\'s most likely happening — and what should Priya take away from it?',
     choices: [
       { text: 'ChatGPT is broken — she should stop using it entirely.', outcome: 'Too strong. ChatGPT is excellent at many tasks. But the free tier\'s context window is much smaller than Claude\'s 200k-token window — the PDF was too long, so it only processed part of it and "filled in" the rest. The lesson isn\'t that ChatGPT is bad; it\'s that context window size matters for long documents.' },
-      { text: 'The tools have different strengths. For a 40-page document, Claude\'s larger context window is the better fit. Priya should match the tool to the task — and when accuracy matters, should cross-check outputs against the original.', outcome: 'Correct. This is the whole point of the lesson. A two-tool workflow (Claude for long docs, Gemini for current events, ChatGPT for coding or images) produces better results than loyalty to one brand. Priya should also always verify against the source — AI that "filled in" detail is hallucinating, even on summarisation tasks.' },
+      { text: 'The tools have different strengths. For a 40-page document, Claude\'s larger context window is the better fit. Priya should match the tool to the task — and when accuracy matters, should cross-check outputs against the original.', outcome: 'Correct. This is the whole point of the lesson. A two-tool workflow (Claude for long docs, Gemini for current events, ChatGPT for coding or images) tends to produce better results than loyalty to one brand. Priya should also always verify against the source — AI that "filled in" detail is hallucinating, even on summarisation tasks.' },
       { text: 'She should just trust the Claude output because it was longer and sounded more confident.', outcome: 'Length and confidence are not accuracy. Claude also hallucinates — just less, on long documents, in this specific setup. Priya still needs to spot-check the summary against the actual PDF before committing any of it to revision cards.' }
     ]
   },
@@ -2290,7 +2290,7 @@ SLIDES_GCSE[117] = [
       'Use a chatbot with a knowledge cut-off and trust the answer'
     ],
     correct: 1,
-    explanation: 'Most AI chatbots have a knowledge cut-off (current frontier models sit roughly in 2024–2025) and won\'t know about last week — they\'ll either say so or, worse, invent plausible-sounding detail. Tools with live web search (Gemini, ChatGPT with Search, Perplexity) can retrieve current information — but still verify what they return before citing.'
+    explanation: 'Most AI chatbots have a knowledge cut-off (current frontier models sit roughly in 2025–2026) and won\'t know about last week — they\'ll either say so or, worse, invent plausible-sounding detail. Tools with live web search (Gemini, ChatGPT with Search, Perplexity) can retrieve current information — but still verify what they return before citing.'
   },
   {
     type: 'quiz',
@@ -2328,6 +2328,22 @@ SLIDES_GCSE[117] = [
       { term: 'School accounts are different', def: 'If your school provides a tool (Microsoft Copilot Edu, ChatGPT Edu), data handling is usually stricter — check with IT before assuming' },
       { term: 'The rule of thumb', def: 'If you\'d be uncomfortable seeing it printed on a noticeboard, don\'t put it into a free chatbot' }
     ]
+  },
+  {
+    type: 'widget',
+    widget: 'classify',
+    title: 'Safe to Paste Into a Free Chatbot?',
+    intro: 'Free-tier chatbots may store what you type and use it to train future models. The test is simple: would you be comfortable seeing it on a public noticeboard? Sort each one.',
+    categories: ['✅ Safe to paste', '❌ Keep it out'],
+    items: [
+      { text: 'A general question about how photosynthesis works', correct: 0, why: 'Safe. No personal data, nothing sensitive — exactly what chatbots are for.' },
+      { text: 'A made-up practice scenario with no real personal details', correct: 0, why: 'Safe. Inventing a fictional case to work through keeps real people\'s data out of it entirely.' },
+      { text: 'Your own essay draft for feedback, with names and personal details removed', correct: 0, why: 'Safe — once you\'ve stripped anything identifying. Getting feedback on your own writing is fine; just don\'t leave private details in.' },
+      { text: 'Your full name, home address and date of birth', correct: 1, why: 'Keep it out. That\'s exactly the personal data that could identify you or be misused — never paste it into a free chatbot.' },
+      { text: 'A private message a friend shared with you in confidence', correct: 1, why: 'Keep it out. It isn\'t yours to share, and your friend never consented to it being stored on a company\'s servers.' },
+      { text: 'Your medical history, to ask for health advice', correct: 1, why: 'Keep it out. Health data is highly sensitive; a free tier may store and train on it. Talk to a real professional.' }
+    ],
+    callout: 'The rule of thumb again: if you\'d be uncomfortable seeing it pinned to a public noticeboard, it doesn\'t belong in a free chatbot. School accounts (Gemini, NotebookLM) usually handle data more strictly — but the habit should travel with you everywhere.'
   },
   {
     type: 'summary',
