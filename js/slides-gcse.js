@@ -2711,7 +2711,7 @@ SLIDES_GCSE[121] = [
   {
     type: 'hook',
     title: 'Misinformation & AI',
-    body: 'A false story travels 6 times faster on social media than a true one — and reaches 10 times more people before any correction appears. AI is dramatically accelerating both the creation and the spread of misinformation. During COVID-19, false cures and conspiracy theories spread so fast that the WHO declared an "infodemic" — a pandemic of misinformation running alongside the real one.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">6×</span><span class="sl">faster than truth — false stories spread on social media (MIT study)</span></div><div class="hook-stat-mini"><span class="sv">10×</span><span class="sl">more reach before any correction appears</span></div><div class="hook-stat-mini"><span class="sv">70%</span><span class="sl">of retweets spread false news faster than corrections ever catch up</span></div><div class="hook-stat-mini"><span class="sv">AI</span><span class="sl">can generate thousands of convincing fake articles in minutes</span></div></div>',
+    body: 'A false story travels far faster on social media than a true one. The landmark MIT study (Vosoughi, Roy &amp; Aral, Science 2018) found the truth took about six times as long to reach people, and falsehoods were 70% more likely to be retweeted. AI is now dramatically accelerating both the creation and the spread of misinformation. During COVID-19, false cures and conspiracy theories spread so fast that the WHO declared an "infodemic" — a pandemic of misinformation running alongside the real one.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">6×</span><span class="sl">longer for the truth to reach people than false news (MIT, Science 2018)</span></div><div class="hook-stat-mini"><span class="sv">70%</span><span class="sl">more likely a falsehood is retweeted than the truth (MIT, Science 2018)</span></div><div class="hook-stat-mini"><span class="sv">AI</span><span class="sl">can generate thousands of convincing fake articles in minutes</span></div></div>',
     callout: 'This isn\'t just a media problem. It affects elections, public health, and what ordinary people believe about their communities.',
     sources: [
       { label: 'Vosoughi, Roy & Aral — "The spread of true and false news online", Science (2018)', url: 'https://www.science.org/doi/10.1126/science.aap9559' },
@@ -2760,19 +2760,34 @@ SLIDES_GCSE[121] = [
   },
   {
     type: 'concept',
-    title: 'AI at Industrial Scale — Elections 2024',
-    body: 'The 2024 election year was the first time AI-generated political content operated at serious global scale. Researchers catalogued what happened — and who it targeted.',
+    title: 'AI at Scale — Elections 2024',
+    body: '2024 was the biggest election year in history — more than 70 countries held national votes — and the first in which AI-generated political content appeared at serious global scale. But what researchers found was more nuanced than the headlines suggested.',
     bullets: [
-      { term: 'Taiwan 2024', def: 'Stanford Internet Observatory documented networks of 800+ coordinated AI-generated accounts seeding narratives during the presidential election.' },
-      { term: '38 countries', def: 'Recorded Future identified AI-generated electoral interference content targeting 38 democracies in 2024 alone.' },
-      { term: 'Still mostly cheap fakes', def: 'Harvard\'s Ash Center found crude manipulations — slowed video, out-of-context clips, misleading captions — were 7× more prevalent than AI-generated content. Both matter.' },
-      { term: 'Paid AI political ads', def: 'Over 900 AI-generated political adverts ran on Facebook in US swing states in a single week in 2024.' }
+      { term: 'The biggest election year ever', def: 'With dozens of national elections worldwide, 2024 was the first real stress-test of AI-generated political content at scale.' },
+      { term: 'Real documented cases', def: 'Slovakia\'s 2023 fake-audio episode and the January 2024 Biden robocall showed AI reaching live campaigns, and researchers tracked coordinated AI-assisted influence networks around the Taiwanese and US elections.' },
+      { term: 'Still mostly "cheap fakes"', def: 'Analysts (including Harvard\'s Ash Center and the Alan Turing Institute) found crude manipulations — slowed video, out-of-context clips, misleading captions — remained far more common than sophisticated AI fakes. Both matter.' },
+      { term: 'Impact so far: limited but rising', def: 'Several post-election reviews concluded AI did not decisively swing 2024 results — but the tools get cheaper and more convincing every year, so the threat curve points firmly upward.' }
     ],
     sources: [
-      { label: 'Stanford Internet Observatory — Taiwan 2024 election influence operations (DFR Lab partner reporting)', url: 'https://cyber.fsi.stanford.edu/io/' },
-      { label: 'Harvard Ash Center / Kennedy School — "Generative AI and the 2024 U.S. Election" (Allen Lab / Schneier, 2024)', url: 'https://ash.harvard.edu/articles/how-ai-threatens-democracy/' },
-      { label: 'Recorded Future — Insikt Group reports on AI-enabled influence operations (2024)', url: 'https://www.recordedfuture.com/research' }
+      { label: 'Harvard Ash Center / Kennedy School — "Generative AI and the 2024 U.S. Election" (Schneier et al., 2024)', url: 'https://ash.harvard.edu/articles/how-ai-threatens-democracy/' },
+      { label: 'Alan Turing Institute (CETaS, 2024) — "AI-Enabled Influence Operations: Safeguarding Future Elections"', url: 'https://cetas.turing.ac.uk/publications/ai-enabled-influence-operations-safeguarding-future-elections' }
     ]
+  },
+  {
+    type: 'widget',
+    widget: 'classify',
+    title: 'What Makes You Likely to Be Fooled?',
+    intro: 'Misinformation spreads because of how human brains work — and AI exploits exactly those reflexes. For each situation, decide whether it\'s a high-risk signal (pause and verify) or a lower-risk one.',
+    categories: ['🚩 High-risk — pause and verify', '✅ Lower-risk signal'],
+    items: [
+      { text: 'A post that makes you furious and you want to share it right now', correct: 0, why: 'High risk. Outrage fires before your analytical brain engages — MIT 2018 found emotional arousal is one of the strongest predictors of sharing. The anger is the bait.' },
+      { text: 'A breaking-news claim from an account created yesterday with no history', correct: 0, why: 'High risk. New, history-less accounts are a classic disinformation signal. Check who is really behind it before you trust it.' },
+      { text: 'A story that perfectly confirms what you already believe', correct: 0, why: 'High risk. Confirmation bias makes us share agreeable claims without checking — "arguably the most pervasive problem in human reasoning" (Nickerson 1998).' },
+      { text: 'A claim you\'ve seen repeated so many times it just "feels true"', correct: 0, why: 'High risk. That is the illusory truth effect — repetition feels like evidence but isn\'t. AI mass-produces the same lie in many forms to exploit it.' },
+      { text: 'A report from an established outlet (BBC, Reuters) with named, checkable sources', correct: 1, why: 'Lower risk. Named sources and a track record you can verify make a far safer starting point — still worth a glance, but the signals are good.' },
+      { text: 'A statistic with a named study, a year and a link you can actually open', correct: 1, why: 'Lower risk. Specific, traceable claims can be checked — and the fact it invites checking is itself a good sign.' }
+    ],
+    callout: 'Notice the pattern: the high-risk signals all hijack a feeling — anger, tribal agreement, familiarity, the thrill of being first. The lower-risk ones invite you to check. When a post makes you feel before you think, that\'s exactly when to pause.'
   },
   {
     type: 'discussion',
@@ -2803,7 +2818,7 @@ SLIDES_GCSE[121] = [
       { icon: '🤖', label: 'AI lowers the cost of fake content', text: '£50 in 2020 → under 1p in 2024. The economics have inverted.' },
       { icon: '🧠', label: 'Illusory truth effect', text: 'repetition feels like evidence — even when you know it isn\'t' },
       { icon: '💡', label: 'Emotional content is a red flag', text: 'novelty and arousal drive sharing — designed to bypass your analytical brain' },
-      { icon: '🗳️', label: 'Democratic impact is real', text: '38 countries targeted in 2024; 900+ AI political ads on Facebook in one US week' },
+      { icon: '🗳️', label: 'Democratic impact is real', text: 'AI political content appeared across 2024\'s record election year — its impact was limited so far, but the threat curve points up' },
       { icon: '⏸️', label: 'Pause before sharing', text: 'one check can stop a false story reaching hundreds more people. You are part of the system.' }
     ]
   }
