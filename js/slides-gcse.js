@@ -1759,7 +1759,7 @@ SLIDES_GCSE[113] = [
   {
     type: 'hook',
     title: 'Prompting 101',
-    body: 'Two students ask AI for help with the same task. One gets a clear, useful response. One gets a wall of generic text. The difference isn\'t which AI they used — it\'s how they asked.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">40%</span><span class="sl">better quality from students who iterate 3+ times (Wharton, 2023)</span></div><div class="hook-stat-mini"><span class="sv">3–5×</span><span class="sl">iterations expert prompt engineers use to reach a final output</span></div><div class="hook-stat-mini"><span class="sv">Worse</span><span class="sl">than no AI at all — students who accept the first AI draft</span></div></div>',
+    body: 'Two students ask AI for help with the same task. One gets a clear, useful response. One gets a wall of generic text. The difference isn\'t which AI they used — it\'s how they asked.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">≈40%</span><span class="sl">higher-quality work from people using AI on suitable tasks (Dell\'Acqua et al., 2023)</span></div><div class="hook-stat-mini"><span class="sv">3–5×</span><span class="sl">iterations expert prompt engineers use to reach a final output</span></div><div class="hook-stat-mini"><span class="sv">Worse</span><span class="sl">than no AI at all — students who accept the first AI draft</span></div></div>',
     callout: 'Prompting is a learnable skill — and everything in this lesson works in Gemini, the AI that comes with your school Google account, as well as any chatbot you use at home. A well-crafted prompt consistently unlocks better results than a vague one.',
     sources: [
       { label: 'Dell\'Acqua, F. et al. (Harvard/Wharton, 2023) — "Navigating the Jagged Technological Frontier: Field Experimental Evidence of the Effects of AI on Knowledge Worker Productivity and Quality"', url: 'https://www.hbs.edu/faculty/Pages/item.aspx?num=64700' },
@@ -1777,7 +1777,7 @@ SLIDES_GCSE[113] = [
       { term: 'Format', def: '"Give me a 3-sentence overview, then 5 numbered steps (max 2 sentences each), then 3 self-test questions" — shapes how the response looks.' },
       { term: 'Constraint', def: '"Avoid medical jargon unless essential, under 250 words, UK English, use bold for key terms" — prevents the common pitfalls and keeps output focused.' }
     ],
-    callout: 'You don\'t need all five every time — but the more specific you are, the more useful the output. Research at Wharton (Mollick, 2023) found iterating a prompt 3+ times produces output quality up to 40% above one-shot attempts.'
+    callout: 'You don\'t need all five every time — but the more specific you are, the more useful the output. In a 758-consultant field experiment (Dell\'Acqua et al., 2023), people using AI on suitable tasks produced work rated about 40% higher quality than those without — and treating the first answer as a draft to refine is a big part of using it well.'
   },
   {
     type: 'concept',
@@ -1819,7 +1819,7 @@ SLIDES_GCSE[113] = [
       'A: "What causes climate change?" vs B: "List the 5 main human causes of climate change with one specific piece of evidence for each"',
       'Rewrite challenge: take any one-line prompt you used this week and add Role + Context + Format in under 60 seconds. Notice the before/after difference.'
     ],
-    reveal: '<strong>In every case, B is better</strong> — because it\'s specific about what\'s needed, who it\'s for, and what format works. The research backs this up: Wharton (Mollick, 2023) found specific prompts produce usable first-drafts 3–5× more often than vague ones, saving the iteration time that makes AI worth using in the first place.'
+    reveal: '<strong>In every case, B is better</strong> — because it\'s specific about what\'s needed, who it\'s for, and what format works. The direction is well established: specific, well-structured prompts reliably produce more usable first drafts than vague ones — which is exactly what saves you the iteration time that makes AI worth using in the first place.'
   },
   {
     type: 'scenario',
@@ -1864,9 +1864,9 @@ SLIDES_GCSE[113] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🎯', label: 'Specificity wins', text: 'the single biggest upgrade you can make to any prompt — verified across every published prompting study since 2022' },
+      { icon: '🎯', label: 'Specificity wins', text: 'the single biggest upgrade you can make to any prompt — backed by a wide body of prompting research and the official OpenAI, Anthropic and Google guides' },
       { icon: '📋', label: 'Role + Task + Context + Format + Constraint', text: 'five levers. Use as many as the task needs — no more, no less.' },
-      { icon: '🔄', label: 'Iterate', text: 'the conversation improves the output. First try is rarely best — Wharton 2023 measured 3–5 iterations as the sweet spot.' },
+      { icon: '🔄', label: 'Iterate', text: 'the conversation improves the output. First try is rarely best — treat it as a draft and refine until it\'s right.' },
       { icon: '🤝', label: 'Collaborate, don\'t command', text: 'treat it like working with a tutor, not issuing an order. Push back. Ask follow-ups. Request alternatives.' },
       { icon: '🧪', label: 'Test, don\'t trust', text: 'a prompt that worked yesterday might not today — models update. Spot-check the output.' },
       { icon: '💾', label: 'Save your best prompts', text: 'Claude Projects, Gemini Gems and custom GPTs let you reuse the Role + Context so you never re-type them.' }
