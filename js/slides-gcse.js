@@ -2600,11 +2600,12 @@ SLIDES_GCSE[120] = [
   {
     type: 'hook',
     title: 'Spotting AI-Generated Content',
-    body: 'NewsGuard\'s tracker of "AI-generated news sites" went from zero to 1,121 sites in 18 months (May 2023 – Dec 2024). Sports Illustrated was caught publishing articles under fake AI-generated "journalists" with AI-generated faces (Futurism, Nov 2023). A 2024 Columbia Journalism Review investigation found that on some lower-tier news websites over 40% of articles were now partly or fully AI-generated — and most readers couldn\'t tell. Image AI has moved even faster: a 2024 University of Waterloo study found humans correctly identified AI-generated photorealistic faces only 61% of the time, barely better than chance. The skill you need isn\'t running things through a detector (they\'re unreliable). It\'s developing critical reading and source-checking that works whether a tool exists or not.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">1,121</span><span class="sl">AI-generated news sites tracked by NewsGuard (Dec 2024)</span></div><div class="hook-stat-mini"><span class="sv">40%</span><span class="sl">of articles on some sites now AI-generated (Columbia Journalism Review 2024)</span></div><div class="hook-stat-mini"><span class="sv">61%</span><span class="sl">human accuracy on detecting AI faces (Waterloo, 2024)</span></div></div>',
+    body: 'NewsGuard\'s tracker of unreliable "AI-generated news sites" went from 49 to over 1,000 in roughly 18 months (May 2023 – Dec 2024) — many publishing at high volume with little or no human oversight, and most readers can\'t tell. Sports Illustrated was caught publishing articles under fake AI-generated "journalists" with AI-generated faces (Futurism, Nov 2023). Image AI has moved even faster: a 2024 University of Waterloo study found people correctly identified AI-generated photorealistic faces only 61% of the time, barely better than chance. The skill you need isn\'t running things through a detector (they\'re unreliable). It\'s developing critical reading and source-checking that works whether a tool exists or not.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">1,121</span><span class="sl">AI-generated news sites tracked by NewsGuard (Dec 2024)</span></div><div class="hook-stat-mini"><span class="sv">61%</span><span class="sl">of non-native-English students\' real essays wrongly flagged as AI by detectors (Stanford 2023)</span></div><div class="hook-stat-mini"><span class="sv">~chance</span><span class="sl">human accuracy at spotting AI faces — barely better than guessing (Waterloo 2024)</span></div></div>',
     callout: 'The real skill isn\'t running things through a detector. It\'s developing critical reading that works whether a tool exists or not.',
     sources: [
       { label: 'NewsGuard — Tracking AI-enabled misinformation (site tracker)', url: 'https://www.newsguardtech.com/special-reports/ai-tracking-center/' },
-      { label: 'Futurism (Nov 2023) — Sports Illustrated published articles by fake AI authors', url: 'https://futurism.com/sports-illustrated-ai-generated-writers' }
+      { label: 'Futurism (Nov 2023) — Sports Illustrated published articles by fake AI authors', url: 'https://futurism.com/sports-illustrated-ai-generated-writers' },
+      { label: 'University of Waterloo (2024) — people identified AI-generated faces only 61% of the time', url: 'https://uwaterloo.ca/news/media/can-you-tell-difference-between-real-face-and-ai-generated-one' }
     ]
   },
   {
@@ -2633,7 +2634,7 @@ SLIDES_GCSE[120] = [
       { term: 'Over-structuring', def: 'Headers, bullet points, numbered lists for everything — even in a piece that was meant to be flowing prose. A clear sign of default ChatGPT output.' },
       { term: 'No personal voice', def: 'No specific memories, no concrete classroom or personal examples, no idiosyncrasies. Real student writing has texture; AI text is smooth and generic.' },
       { term: 'Comprehensively superficial', def: 'Covers every angle at surface level — the "Wikipedia article someone skim-read" feel. Depth in one area + gaps in others is a more human pattern.' },
-      { term: 'Em-dashes everywhere', def: 'GPT-5 and Claude both overuse em-dashes — often several per paragraph. A genuine human writer typically uses one or two per whole essay.' }
+      { term: 'Em-dashes everywhere', def: 'ChatGPT and Claude both overuse em-dashes — often several per paragraph. A genuine human writer typically uses one or two per whole essay.' }
     ]
   },
   {
