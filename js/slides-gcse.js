@@ -1458,24 +1458,25 @@ SLIDES_GCSE[111] = [
   {
     type: 'concept',
     title: 'Trap 1 — Plagiarism &amp; the JCQ Line',
-    body: 'The 2024 JCQ guidance made something concrete that had been fuzzy before: if any part of the work submitted for a GCSE or A-Level came from AI and you did not declare it, you have committed malpractice. The penalty ladder goes from losing marks on the component, to losing the whole qualification, to being barred from future exams. UK universities moved first: in October 2023, the University of Swansea publicly confirmed multiple students had been investigated for undeclared ChatGPT use, with several receiving zero marks.',
+    body: 'The 2024 JCQ guidance made something concrete that had been fuzzy before: if any part of the work submitted for a GCSE or A-Level came from AI and you did not declare it, you have committed malpractice. The penalty ladder goes from losing marks on the component, to losing the whole qualification, to being barred from future exams. UK universities moved first: in 2023, the University of Kent gave 22 students zero marks after they used AI tools like ChatGPT to cheat on assessments (47 were investigated in total).',
     bullets: [
       { term: 'Allowed (usually)', def: 'Using AI to explain a concept, quiz yourself, or get feedback on your OWN draft — provided you don\'t paste the output into your submission. Most UK schools\' 2024 policies permit this.' },
       { term: 'Not allowed', def: 'Submitting AI-generated prose, AI-generated analysis, or AI-invented quotes/sources as your own work. Classed as plagiarism under JCQ 2024.' },
       { term: 'Must be declared', def: 'In Non-Exam Assessment (NEA) and coursework, JCQ requires pupils to acknowledge any AI use — including the tool name, the prompts used, and which sections were affected.' },
       { term: 'Detection is imperfect', def: 'Turnitin\'s AI-detection flags 98%+ AI-written content but also produces ~1% false positives on human prose. UK schools are instructed NOT to rely on detector output as sole evidence.' },
       { term: 'The verbal test', def: 'Exam boards will ask you to explain your own work aloud. If you cannot explain, paragraph by paragraph, what you wrote and why — you cannot defend it as yours.' },
-      { term: 'Real UK case', def: 'Swansea University (2023) and several Russell Group institutions publicly investigated undeclared ChatGPT use in 2023–24, with sanctions including zero marks and referral to academic-integrity panels.' }
+      { term: 'Real UK case', def: 'University of Kent (2023) gave 22 students zero marks for AI-assisted cheating; by mid-2023 over 40% of UK universities surveyed were investigating undeclared AI use, with sanctions including zero marks and referral to academic-integrity panels.' }
     ],
     callout: 'Practical rule of thumb: if you couldn&#39;t sit opposite your teacher and reproduce the key argument of your work in your own spoken words, you should not be submitting it as yours.',
     sources: [
-      { label: 'Turnitin — AI Writing Detection accuracy &amp; false positive statement (2023–24)', url: 'https://www.turnitin.com/blog/understanding-false-positives-within-our-ai-writing-detection-capabilities' }
+      { label: 'Turnitin — AI Writing Detection accuracy &amp; false positive statement (2023–24)', url: 'https://www.turnitin.com/blog/understanding-false-positives-within-our-ai-writing-detection-capabilities' },
+      { label: 'KentOnline (2023) — 22 University of Kent students given zero marks for using AI such as ChatGPT to cheat', url: 'https://www.kentonline.co.uk/canterbury/news/kent-students-caught-using-chatgpt-get-marks-of-zero-289606/' }
     ]
   },
   {
     type: 'concept',
     title: 'Trap 2 — Hallucinations That Sound Real',
-    body: 'A hallucination is when an AI confidently produces false information that looks plausible. It is not a bug — it is a direct consequence of how large language models work: they predict the next most-likely token, not the next most-true token. The 2023 Schwartz lawyer case is famous; but a 2024 study in the BMJ found that GPT-4, prompted for real medical research citations, fabricated around one in five. Nature reported similar rates on scientific paper citations.',
+    body: 'A hallucination is when an AI confidently produces false information that looks plausible. It is not a bug — it is a direct consequence of how large language models work: they predict the next most-likely token, not the next most-true token. The 2023 Schwartz lawyer case is famous; but multiple 2024–25 studies found that GPT-4, prompted for real medical research citations, fabricated around one in five (~18–20%) — and many of the citations that did exist still had errors in the volume, issue or page numbers.',
     bullets: [
       'Fabricated citations: fake paper titles attached to real authors, in real-sounding journals, with plausible DOIs. The single most common hallucination type in academic work.',
       'Confident wrong dates: AI will state "1919" for something that happened in 1921 with zero hedging. Never trust a date or statistic without verification.',
@@ -1486,7 +1487,8 @@ SLIDES_GCSE[111] = [
     ],
     callout: 'Schwartz v. Avianca (2023): six fabricated cases, one $5,000 fine, global news coverage. The lawyer had asked ChatGPT "are you sure these cases are real?" — ChatGPT said yes. It was still completely wrong.',
     sources: [
-      { label: 'Mata v. Avianca — U.S. District Court sanction order, Judge P. Kevin Castel (2023)', url: 'https://www.courtlistener.com/docket/63107798/mata-v-avianca-inc/' }
+      { label: 'Mata v. Avianca — U.S. District Court sanction order, Judge P. Kevin Castel (2023)', url: 'https://www.courtlistener.com/docket/63107798/mata-v-avianca-inc/' },
+      { label: 'Comparative study (2024) — GPT-4 fabricated ~18% of generated medical references (PubMed)', url: 'https://pubmed.ncbi.nlm.nih.gov/39667055/' }
     ]
   },
   {
@@ -1505,6 +1507,22 @@ SLIDES_GCSE[111] = [
     sources: [
       { label: 'Kosmyna, N. et al. (MIT Media Lab, 2025) — Your Brain on ChatGPT (EEG study preprint)', url: 'https://www.media.mit.edu/projects/your-brain-on-chatgpt/overview/' }
     ]
+  },
+  {
+    type: 'widget',
+    widget: 'classify',
+    title: 'Which Trap Is It?',
+    intro: 'This lesson names three traps: plagiarism, hallucination, and over-reliance. Telling them apart is how you avoid them. Sort each situation into the trap it represents.',
+    categories: ['Plagiarism', 'Hallucination', 'Over-reliance'],
+    items: [
+      { text: 'Pasting an AI-written paragraph into your coursework and submitting it, undeclared', correct: 0, why: 'Plagiarism. Submitting AI-generated text as your own work is malpractice under JCQ 2024 — it\'s about authorship, not whether the content is true. Fix: declare any AI use and keep the writing yours.' },
+      { text: 'Copying the AI\'s analysis of a poem into your English coursework as your own', correct: 0, why: 'Plagiarism. AI-generated analysis submitted as yours crosses the same authorship line as AI-generated prose. Fix: do the analysis yourself; use AI only to critique it.' },
+      { text: 'Citing "Patel et al. (2022)" in your essay — a study the AI invented that doesn\'t exist', correct: 1, why: 'Hallucination. Fabricated citations (real-sounding authors, fake papers) are the most common academic hallucination — studies find GPT-4 invents around one in five medical references. Fix: verify every citation exists.' },
+      { text: 'Trusting the AI\'s confident "1921" date in your history essay — it was actually 1919', correct: 1, why: 'Hallucination. Models state wrong dates with zero hedging. Fix: never trust a date, statistic or quote without checking it against your textbook or the spec.' },
+      { text: 'Realising in the exam hall you can only write a decent answer with AI helping you', correct: 2, why: 'Over-reliance. No detector flags this one — the skill never got built because AI did the thinking. It shows up on results day. Fix: effort first, AI second.' },
+      { text: 'Reading AI explanations until you feel you "get it", but never practising recall yourself', correct: 2, why: 'Over-reliance. Recognition feels like understanding but isn\'t recall — the "I get it" illusion. Fix: attempt and retrieve before you read the AI\'s version.' }
+    ],
+    callout: 'Each trap has a different fix: plagiarism → declare it and keep the writing yours; hallucination → verify every fact, date and citation; over-reliance → effort first, AI second. Spot the trap and you already know the fix.'
   },
   {
     type: 'scenario',
