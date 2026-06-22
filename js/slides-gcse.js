@@ -243,7 +243,7 @@ SLIDES_GCSE[102] = [
     body: 'Your text is broken into chunks called tokens (roughly word-sized pieces — about 0.75 words per token on average for English). Each token is converted to a number. The model then predicts, from a vocabulary of around 50,000–200,000 tokens, which one is most likely to come next. It picks one (mostly the top option, sometimes sampled for variety), adds it to the sequence, and repeats. That\'s the whole trick. Every essay, every answer, every line of code — generated one token at a time.',
     bullets: [
       'No understanding happens — just very sophisticated probability over a fixed vocabulary',
-      '"The capital of France is ___" → "Paris" predicted with very high probability (>95% in current frontier models like GPT-5 and Claude 4.6)',
+      '"The capital of France is ___" → "Paris" predicted with very high probability (>95% in current frontier models like GPT-5 and Claude Opus 4.x)',
       '"The capital of Australia is ___" → sometimes "Sydney" (wrong) because it appears near similar phrases in training data more often than "Canberra" does',
       'Fluently wrong: AI can be completely incorrect while sounding completely confident — and there is no flag in the output to tell you which is which',
       'The "temperature" setting controls how often the model picks a less-likely next token — higher temperature = more creative, more likely to hallucinate'
@@ -252,7 +252,7 @@ SLIDES_GCSE[102] = [
   {
     type: 'scenario',
     title: 'The Strawberry Problem',
-    situation: 'Type this into almost any chatbot: "How many letter r\'s are in the word strawberry?" Until very recently, most models would confidently answer "2". The real answer is 3 (s-t-r-a-w-b-e-r-r-y). A task a five-year-old can do — and the machine that passes medical exams gets it wrong.',
+    situation: 'For years, if you typed "How many letter r\'s are in the word strawberry?" into a chatbot, it would confidently answer "2". The real answer is 3 (s-t-r-a-w-b-e-r-r-y). Today\'s reasoning models (GPT-5, Claude with thinking) usually get this exact word right now — they\'ve been trained to spell the word out first. But the underlying weakness is still there: ask them to count a specific letter in a long or made-up word, or to reverse a string, and the same cracks reappear. A task a five-year-old can do — and the machine that passes medical exams still slips on.',
     question: 'Why does such a simple task break the AI?',
     choices: [
       { text: 'The AI is deliberately sabotaged for this question', outcome: 'No — it\'s a structural limitation. The AI isn\'t "trying" to trick you. It simply cannot see letters the way you do.' },
@@ -270,16 +270,16 @@ SLIDES_GCSE[102] = [
       'Each chunk becomes a number: e.g. 1034, 564, 9912',
       'The AI only ever sees numbers — never the individual letters'
     ],
-    callout: 'This is why AI can write a beautiful essay about strawberries but struggle to count the r\'s in the word. Fluent language, weak character-level tasks. Knowing this helps you spot where AI is likely to slip up.'
+    callout: 'This is why AI can write a beautiful essay about strawberries but struggle with character-level tasks — counting specific letters, spelling backwards, exact letter positions. Fluent language, weak on the letters underneath. Knowing this helps you spot where AI is likely to slip up.'
   },
   {
     type: 'concept',
     title: 'Training Data — What It Learned From',
-    body: 'The secret ingredient of a modern chatbot is not the algorithm — it\'s the training data. Frontier models like GPT-5 and Claude 4.6 have each been trained on a substantial fraction of the entire public internet, hundreds of thousands of books, all of GitHub, all of Wikipedia, and large portions of academic literature. The model\'s "knowledge" is just patterns extracted from that corpus — which means its strengths, weaknesses and biases are inherited directly from what humans have written online.',
+    body: 'The secret ingredient of a modern chatbot is not the algorithm — it\'s the training data. Frontier models like GPT-5 and Claude Opus 4.x have each been trained on a substantial fraction of the entire public internet, hundreds of thousands of books, all of GitHub, all of Wikipedia, and large portions of academic literature. The model\'s "knowledge" is just patterns extracted from that corpus — which means its strengths, weaknesses and biases are inherited directly from what humans have written online.',
     bullets: [
       { term: 'Scale', def: 'Trained on hundreds of billions to trillions of tokens — the entire readable internet, books, and code. GPT-4\'s training corpus is estimated at ~13 trillion tokens (Epoch AI, 2024).' },
       { term: 'No fact-checking', def: 'It learns the patterns of language — not which facts are true. Wikipedia and a made-up blog post get treated similarly if they sound equally plausible.' },
-      { term: 'Knowledge cut-off', def: 'Training stopped at a certain date (recent models sit roughly in 2024–2025). Anything after that date may be missing or wrong — and the model may still answer confidently.' },
+      { term: 'Knowledge cut-off', def: 'Training stopped at a certain date (recent models sit roughly in 2025–2026). Anything after that date may be missing or wrong — and the model may still answer confidently.' },
       { term: 'Bias inherited', def: 'The internet has biases — gender, race, language, geography. The model absorbs them from the training data. Every major lab has a team working to reduce these; none has eliminated them.' },
       { term: 'The legal grey zone', def: 'Whether it was legal to train on copyrighted text is now being tested in court (NYT v. OpenAI 2023, Getty v. Stability AI 2023, Authors Guild v. OpenAI 2024). No final ruling yet.' }
     ],
@@ -312,6 +312,22 @@ SLIDES_GCSE[102] = [
     sources: [
       { label: 'Stanford HAI (2024) — Hallucination-Free? Legal AI benchmarks', url: 'https://hai.stanford.edu/news/ai-legal-research-tools-matter-hallucinations' }
     ]
+  },
+  {
+    type: 'widget',
+    widget: 'classify',
+    title: 'When Does AI Break? Sort the Risk',
+    intro: 'You now know a chatbot predicts plausible text, not true text. So the real skill is judgement: knowing when you can take its answer at face value and when you must verify. Sort each task by how risky it is to trust the AI without checking, then read why.',
+    categories: ['Usually safe — quick check', 'High risk — always verify'],
+    items: [
+      { text: 'Rewriting your paragraph to sound more formal', correct: 0, why: 'Low risk. This is a pure language task — exactly what next-word prediction is built for. There\'s no single "true" answer it can get factually wrong, and you can read the result and judge it yourself.' },
+      { text: 'Asking for the exact population of your town', correct: 1, why: 'High risk. A precise number on a fairly niche topic is prime hallucination territory — the model can produce a confident, exact, wrong figure. Check an official source (census, council site).' },
+      { text: 'Summarising a long article you pasted into the chat', correct: 0, why: 'Lower risk. The text is right there in the prompt, so the model works from given material rather than fuzzy memory. Still skim-check it didn\'t drop or invent a key point — but the failure rate is far lower than recall from memory.' },
+      { text: 'Asking it to cite three studies that back up your essay', correct: 1, why: 'High risk. Models are notorious for fabricating realistic-looking citations — plausible authors, years and journals for papers that don\'t exist. Verify every reference is real before you use it.' },
+      { text: 'Counting how many times the letter "s" appears in a sentence', correct: 1, why: 'High risk. Character-level counting fights against tokenisation — the strawberry problem. The model sees chunks, not individual letters, so it can guess wrong with full confidence.' },
+      { text: 'Brainstorming ten ideas for a story opening', correct: 0, why: 'Low risk. Open-ended idea generation has no "correct" answer to get wrong — you\'re the judge, and variety is exactly the point. This plays to the model\'s strengths.' }
+    ],
+    callout: 'The pattern: language and idea tasks (rewrite, brainstorm, summarise-what\'s-given) are low risk because there\'s no single truth to miss. Facts, exact numbers, citations and character-level tasks are high risk because the model fills the gaps with plausible guesses. When it matters, verify.'
   },
   {
     type: 'quiz',
