@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class Overview — Removes Performance Tasks · Digital Innovations</title>
+  <meta name="description" content="Teacher Class Overview: aggregate pupils' self-assessed AI-literacy performance-task levels into a class grid. Works offline, no login.">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <script>try{var _t=localStorage.getItem('di_theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/brand.css">
+  <style>
+    .cw{max-width:1080px;margin:0 auto;padding:18px 16px 80px}
+    .cw-head{display:flex;align-items:center;gap:12px;padding:14px 0 18px;border-bottom:1px solid var(--border);margin-bottom:22px;flex-wrap:wrap}
+    .cw-brand{font-size:.8rem;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em}
+    .cw-title{font-weight:800;font-size:1.15rem;color:var(--text)}
+    .cw-spacer{margin-left:auto}
+    .cw-intro{color:var(--text-dim);font-size:.92rem;line-height:1.6;max-width:720px;margin-bottom:18px}
+    .cw-intro code{background:var(--bg-card);padding:1px 6px;border-radius:5px;border:1px solid var(--border);font-size:.85em}
+    .cw-input-wrap{background:var(--bg-card);border:1.5px solid var(--border);border-radius:var(--radius,12px);padding:16px;margin-bottom:22px}
+    .cw-input-label{font-weight:700;font-size:.9rem;color:var(--text);margin-bottom:8px;display:block}
+    #cwInput{width:100%;min-height:120px;padding:12px 14px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.82rem;line-height:1.5;resize:vertical;box-sizing:border-box}
+    #cwInput:focus{outline:none;border-color:var(--track-primary,#9b1844)}
+    .cw-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center}
+    .cw-note{font-size:.8rem;color:var(--text-dim)}
+    .cw-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:22px}
+    .cw-card{background:var(--bg-card);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;text-align:center}
+    .cw-card-num{font-size:1.7rem;font-weight:800;color:var(--track-primary,#9b1844);display:block;line-height:1}
+    .cw-card-lbl{font-size:.74rem;color:var(--text-dim);margin-top:5px;display:block}
+    .cw-table-wrap{overflow-x:auto;border:1.5px solid var(--border);border-radius:12px}
+    table.cw-grid{border-collapse:collapse;width:100%;min-width:760px;font-size:.84rem}
+    .cw-grid th,.cw-grid td{padding:9px 10px;text-align:center;border-bottom:1px solid var(--border)}
+    .cw-grid thead th{background:var(--bg-card);font-weight:700;color:var(--text-dim);font-size:.72rem;text-transform:uppercase;letter-spacing:.03em;position:sticky;top:0}
+    .cw-grid th.cw-pupil,.cw-grid td.cw-pupil{text-align:left;font-weight:600;color:var(--text);min-width:150px;position:sticky;left:0;background:var(--bg)}
+    .cw-grid thead th.cw-pupil{background:var(--bg-card)}
+    .cw-grid tbody tr:hover td{background:rgba(var(--track-primary-rgb,155,24,68),.04)}
+    .cw-grid tbody tr:hover td.cw-pupil{background:rgba(var(--track-primary-rgb,155,24,68),.06)}
+    .cw-cell{font-weight:700;font-size:.72rem;border-radius:999px;padding:3px 9px;border:1px solid;display:inline-block;min-width:62px}
+    .lv-D{color:#b45309;background:rgba(245,158,11,.14);border-color:rgba(245,158,11,.45)}
+    .lv-S{color:#047857;background:rgba(16,185,129,.14);border-color:rgba(16,185,129,.45)}
+    .lv-E{color:#7c3aed;background:rgba(139,92,246,.16);border-color:rgba(139,92,246,.5)}
+    .lv-x{color:var(--text-dim);opacity:.55}
+    .cw-grid tfoot td{font-weight:700;color:var(--text);background:var(--bg-card);font-size:.74rem}
+    .cw-foot-chips{display:flex;gap:4px;justify-content:center;flex-wrap:wrap}
+    .cw-foot-chip{font-size:.68rem;font-weight:700;border-radius:5px;padding:1px 6px}
+    .cw-done{font-weight:700;color:var(--track-primary,#9b1844)}
+    .cw-empty{text-align:center;color:var(--text-dim);padding:48px 20px;font-size:.95rem}
+    [data-theme="light"] .cw-grid td.cw-pupil{background:#fff}
+    @media print{
+      .cw-head .cw-spacer,.cw-input-wrap,.theme-btn,.btn-ghost{display:none!important}
+      body{background:#fff!important}
+    }
+  </style>
+</head>
+<body data-track="removes">
+  <div class="cw">
+    <div class="cw-head">
+      <img class="hby-mark" src="assets/brand/logo/haileybury-magenta.png" alt="Haileybury" width="24" height="17">
+      <span class="cw-brand">Digital Innovations</span>
+      <span class="cw-title">Class Overview · Performance Tasks</span>
+      <span class="cw-spacer"></span>
+      <a class="btn btn-ghost btn-sm" href="index.html">← Course</a>
+      <button class="theme-btn" onclick="cwToggleTheme()" title="Toggle theme">☀️</button>
+    </div>
+
+    <p class="cw-intro">
+      A privacy-friendly overview of pupils' <strong>self-assessed</strong> AI-literacy performance tasks. The Removes course stores work on each pupil's own device (no login, works offline), so pupils share a short code from their <strong>Portfolio → "Share with teacher"</strong>. Paste those codes below — one per line — to build a class grid. Nothing is uploaded; this page runs entirely in your browser.
+    </p>
+
+    <div class="cw-input-wrap">
+      <label class="cw-input-label" for="cwInput">Paste pupil codes (one per line)</label>
+      <textarea id="cwInput" placeholder="AILIT1|Ada%20Lovelace|S|E|D|S|-|-|-&#10;AILIT1|Alan%20Turing|E|E|S|S|S|D|-"></textarea>
+      <div class="cw-actions">
+        <button class="btn btn-primary btn-sm" onclick="cwBuild()">Build overview</button>
+        <button class="btn btn-secondary btn-sm" onclick="cwDownloadCsv()">⬇ Download CSV</button>
+        <button class="btn btn-ghost btn-sm" onclick="window.print()">🖨 Print</button>
+        <button class="btn btn-ghost btn-sm" onclick="cwClear()">Clear</button>
+        <span class="cw-note" id="cwNote"></span>
+      </div>
+    </div>
+
+    <div id="cwOut"></div>
+  </div>
+
+  <script>
+  var CW_KEY = 'di_class_overview_codes';
+  var TASKS = [
+    { u:'U1', name:'Explain AI Without the Hype' },
+    { u:'U2', name:'Evidence of a Real Revision Loop' },
+    { u:'U3', name:'Prompt-Engineering Portfolio' },
+    { u:'U4', name:'Fact-Check Dossier' },
+    { u:'U5', name:'Ethical Position Paper' },
+    { u:'U6', name:'AI Improvement Brief' },
+    { u:'U7', name:'Capstone — AI Charter & Career Map' }
+  ];
+  var LEVELS = { D:'Developing', S:'Secure', E:'Exceptional' };
+
+  function cwToggleTheme(){
+    var t=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+    document.documentElement.setAttribute('data-theme',t);
+    try{localStorage.setItem('di_theme',t);}catch(e){}
+  }
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+  function cwParse(text){
+    var rows=[], bad=0;
+    (text||'').split(/\r?\n/).forEach(function(raw){
+      var line=raw.trim();
+      if(!line) return;
+      // tolerate codes pasted inside quotes / email cruft
+      var m=line.match(/AILIT1\|[^\s]*(?:\|[DSE\-]){7}/);
+      if(!m){ if(line) bad++; return; }
+      var parts=m[0].split('|'); // [AILIT1, name, l1..l7]
+      var name; try{ name=decodeURIComponent(parts[1]); }catch(e){ name=parts[1]; }
+      rows.push({ name:name||'(unnamed)', levels:parts.slice(2,9) });
+    });
+    return { rows:rows, bad:bad };
+  }
+
+  function cwCell(code){
+    if(code==='D'||code==='S'||code==='E') return '<span class="cw-cell lv-'+code+'">'+LEVELS[code]+'</span>';
+    return '<span class="cw-cell lv-x">—</span>';
+  }
+
+  function cwBuild(){
+    var text=document.getElementById('cwInput').value;
+    try{ localStorage.setItem(CW_KEY, text); }catch(e){}
+    var parsed=cwParse(text);
+    var rows=parsed.rows;
+    var note=document.getElementById('cwNote');
+    var out=document.getElementById('cwOut');
+    if(!rows.length){
+      out.innerHTML='<div class="cw-empty">No valid pupil codes yet. Each code looks like <code>AILIT1|Name|S|E|D|S|-|-|-</code> — pupils generate it from their Portfolio.</div>';
+      note.textContent=parsed.bad?(parsed.bad+' line(s) were not valid codes'):'';
+      return;
+    }
+    rows.sort(function(a,b){return a.name.localeCompare(b.name);});
+
+    // Per-task tallies
+    var tally=TASKS.map(function(){return {D:0,S:0,E:0,done:0};});
+    var totalMarks=0;
+    rows.forEach(function(r){
+      r.levels.forEach(function(c,i){
+        if(c==='D'||c==='S'||c==='E'){ tally[i][c]++; tally[i].done++; totalMarks++; }
+      });
+    });
+
+    // Summary cards
+    var totalE=tally.reduce(function(s,t){return s+t.E;},0);
+    var totalS=tally.reduce(function(s,t){return s+t.S;},0);
+    var totalD=tally.reduce(function(s,t){return s+t.D;},0);
+    var possible=rows.length*TASKS.length;
+    var cards='<div class="cw-cards">'+
+      '<div class="cw-card"><span class="cw-card-num">'+rows.length+'</span><span class="cw-card-lbl">pupils</span></div>'+
+      '<div class="cw-card"><span class="cw-card-num">'+totalMarks+' / '+possible+'</span><span class="cw-card-lbl">tasks self-assessed</span></div>'+
+      '<div class="cw-card"><span class="cw-card-num" style="color:#7c3aed">'+totalE+'</span><span class="cw-card-lbl">Exceptional</span></div>'+
+      '<div class="cw-card"><span class="cw-card-num" style="color:#047857">'+totalS+'</span><span class="cw-card-lbl">Secure</span></div>'+
+      '<div class="cw-card"><span class="cw-card-num" style="color:#b45309">'+totalD+'</span><span class="cw-card-lbl">Developing</span></div>'+
+    '</div>';
+
+    // Grid
+    var head='<tr><th class="cw-pupil">Pupil</th>'+TASKS.map(function(t){return '<th title="'+esc(t.name)+'">'+t.u+'</th>';}).join('')+'<th>Done</th></tr>';
+    var body=rows.map(function(r){
+      var done=r.levels.filter(function(c){return c!=='-';}).length;
+      return '<tr><td class="cw-pupil">'+esc(r.name)+'</td>'+
+        r.levels.map(function(c){return '<td>'+cwCell(c)+'</td>';}).join('')+
+        '<td class="cw-done">'+done+'/'+TASKS.length+'</td></tr>';
+    }).join('');
+    var foot='<tr><td class="cw-pupil">Class (D · S · E)</td>'+tally.map(function(t){
+      return '<td><div class="cw-foot-chips"><span class="cw-foot-chip lv-D">'+t.D+'</span><span class="cw-foot-chip lv-S">'+t.S+'</span><span class="cw-foot-chip lv-E">'+t.E+'</span></div></td>';
+    }).join('')+'<td>'+totalMarks+'</td></tr>';
+
+    out.innerHTML=cards+'<div class="cw-table-wrap"><table class="cw-grid"><thead>'+head+'</thead><tbody>'+body+'</tbody><tfoot>'+foot+'</tfoot></table></div>'+
+      '<p class="cw-note" style="margin-top:10px">Task key: '+TASKS.map(function(t){return '<strong>'+t.u+'</strong> '+esc(t.name);}).join(' · ')+'</p>';
+    note.textContent='Built '+rows.length+' pupil(s)'+(parsed.bad?' · '+parsed.bad+' invalid line(s) skipped':'');
+  }
+
+  function cwDownloadCsv(){
+    var parsed=cwParse(document.getElementById('cwInput').value);
+    if(!parsed.rows.length){ alert('Paste some pupil codes and build the overview first.'); return; }
+    parsed.rows.sort(function(a,b){return a.name.localeCompare(b.name);});
+    var header=['Pupil'].concat(TASKS.map(function(t){return t.u+' '+t.name;})).concat(['Done']);
+    var lines=[header.map(cwCsv).join(',')];
+    parsed.rows.forEach(function(r){
+      var done=r.levels.filter(function(c){return c!=='-';}).length;
+      var row=[r.name].concat(r.levels.map(function(c){return LEVELS[c]||'';})).concat([done+'/'+TASKS.length]);
+      lines.push(row.map(cwCsv).join(','));
+    });
+    var blob=new Blob([lines.join('\n')],{type:'text/csv'});
+    var a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download='class-overview-ai-literacy.csv';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  }
+  function cwCsv(v){ v=String(v==null?'':v); return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v; }
+
+  function cwClear(){
+    if(!confirm('Clear the pasted codes and the overview?')) return;
+    document.getElementById('cwInput').value='';
+    try{localStorage.removeItem(CW_KEY);}catch(e){}
+    document.getElementById('cwOut').innerHTML='';
+    document.getElementById('cwNote').textContent='';
+  }
+
+  // Restore last session
+  (function(){
+    var saved=''; try{ saved=localStorage.getItem(CW_KEY)||''; }catch(e){}
+    if(saved){ document.getElementById('cwInput').value=saved; cwBuild(); }
+  })();
+  </script>
+</body>
+</html>
