@@ -1045,7 +1045,7 @@ SLIDES_GCSE[108] = [
   {
     type: 'hook',
     title: 'Using AI to Summarise',
-    body: 'Your Chemistry textbook chapter is 18 pages. Your exam is tomorrow at 9am. AI can shrink it to a study sheet in 30 seconds — but whether you walk into that exam prepared or blindsided depends entirely on what you do with it. Google\'s NotebookLM, launched in 2023 and expanded globally in 2024, lets pupils upload textbooks and get instant summaries and audio "podcasts" of their notes — it reached over 2 million users within a year. Schools across the UK are now building it into revision support — including ours: NotebookLM comes free with your school Google account. But a 2011 Purdue study by Karpicke and Blunt (Science journal) showed that passive re-reading — which is what reading an AI summary amounts to — is one of the <em>least</em> effective revision strategies ever studied. The same minutes spent actively recalling produce up to 50% better exam retention.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">50%</span><span class="sl">better retention from active recall vs re-reading (Karpicke &amp; Blunt, Science 2011)</span></div><div class="hook-stat-mini"><span class="sv">2M+</span><span class="sl">NotebookLM users in its first year</span></div><div class="hook-stat-mini"><span class="sv">~20%</span><span class="sl">of facts in LLM summaries contain subtle errors in fact-check studies (Stanford HAI, 2024)</span></div></div>',
+    body: 'Your Chemistry textbook chapter is 18 pages. Your exam is tomorrow at 9am. AI can shrink it to a study sheet in 30 seconds — but whether you walk into that exam prepared or blindsided depends entirely on what you do with it. Google\'s NotebookLM, launched in 2023 and expanded globally in 2024, lets pupils upload textbooks and get instant summaries and audio "podcasts" of their notes — it passed a million users within roughly three months of launch and kept climbing. Schools across the UK are now building it into revision support — including ours: NotebookLM comes free with your school Google account. But a 2011 Purdue study by Karpicke and Blunt (Science journal) showed that passive re-reading — which is what reading an AI summary amounts to — is one of the <em>least</em> effective revision strategies ever studied. The same minutes spent actively recalling produce up to 50% better exam retention.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">50%</span><span class="sl">better retention from active recall vs re-reading (Karpicke &amp; Blunt, Science 2011)</span></div><div class="hook-stat-mini"><span class="sv">1M+</span><span class="sl">NotebookLM users within ~3 months of its 2024 launch</span></div><div class="hook-stat-mini"><span class="sv">10–20%+</span><span class="sl">hallucination rate on specialist-subject tasks like science &amp; medicine (Stanford HAI AI Index)</span></div></div>',
     callout: 'Passive summarising (paste, read, feel done) is almost useless. Active summarising (check, question, fill gaps) can double your retention for the same time spent. The OECD\'s 2026 review warns this is exactly where "metacognitive laziness" sets in — the AI fills the gap before you notice you didn\'t understand (Fan et al., 2025).',
     sources: [
       { label: 'Karpicke &amp; Blunt (2011) — Retrieval practice produces more learning than elaborative studying (Science)', url: 'https://www.science.org/doi/10.1126/science.1199327' },
@@ -1061,7 +1061,7 @@ SLIDES_GCSE[108] = [
       'AI keeps whatever is most frequently emphasised across the text — a rare but critical exam point can get cut',
       'It doesn\'t know AQA from Edexcel, or which keywords your specification demands — it just compresses',
       'You might end up memorising a confident-sounding summary that is missing the specific 4-mark trigger word',
-      'Models can also invent facts (hallucinate) when summarising — the Stanford HAI 2024 AI Index found ~20% of summary-style outputs contain subtle factual errors',
+      'Models can also invent facts (hallucinate) when summarising — Stanford HAI\'s AI Index found hallucination rates of 10–20% or higher on specialist subjects like science and medicine, exactly the material you\'re summarising',
       'The solution: always cross-check the summary against your exam spec, textbook or class notes before you revise from it'
     ],
     callout: 'Rule of thumb: a summary is a map, not the territory. It helps you navigate — but you still need to walk the ground yourself.',
@@ -1083,6 +1083,22 @@ SLIDES_GCSE[108] = [
     sources: [
       { label: 'Roediger &amp; Karpicke (2006) — The power of testing memory (Perspectives on Psychological Science)', url: 'https://journals.sagepub.com/doi/10.1111/j.1745-6916.2006.00012.x' }
     ]
+  },
+  {
+    type: 'widget',
+    widget: 'classify',
+    title: 'Active or Passive? Sort the Revision Move',
+    intro: 'The biggest predictor of who improves with AI isn\'t the tool — it\'s whether you stay cognitively active. Active moves make you retrieve from memory; passive ones just feel productive. Sort each revision move.',
+    categories: ['🔥 Active — builds memory', '😴 Passive — feels productive, barely works'],
+    items: [
+      { text: 'Closing the AI summary and re-explaining the idea out loud from memory', correct: 0, why: 'Active. Every attempt to pull the idea out of your head strengthens the memory trace — this is the testing effect in action.' },
+      { text: 'Asking AI to turn the summary into 10 questions and attempting them from memory first', correct: 0, why: 'Active. Retrieval practice — the single most evidence-backed revision technique, now free and unlimited.' },
+      { text: 'Writing your own summary from memory, then asking AI to critique what you missed', correct: 0, why: 'Active — the best move of all. You generate first (the hard, useful part), then get targeted feedback on your actual gaps.' },
+      { text: 'Reading the AI summary through twice, then moving on', correct: 1, why: 'Passive. Re-reading feels like progress but is one of the least effective strategies studied — after 48 hours it\'s close to not revising at all.' },
+      { text: 'Highlighting the AI summary in three neat colours', correct: 1, why: 'Passive. Highlighting is satisfying but does almost nothing for memory — you\'re recognising the words, not retrieving the meaning.' },
+      { text: 'Copying the AI summary neatly into your revision notes', correct: 1, why: 'Passive. Transcribing is just reading with extra steps — your hand is busy but your memory is never tested.' }
+    ],
+    callout: 'The pattern: if the move makes you pull information out of your head, it\'s active and it works. If it just puts information in front of your eyes, it\'s passive and it mostly doesn\'t. AI makes both easy — deliberately choose the active ones.'
   },
   {
     type: 'concept',
