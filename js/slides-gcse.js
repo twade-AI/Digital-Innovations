@@ -2828,7 +2828,7 @@ SLIDES_GCSE[122] = [
   {
     type: 'hook',
     title: 'Fact-Checking in the AI Age',
-    body: 'Mike Caulfield, a US digital literacy researcher at the University of Washington, spent a decade studying how professional fact-checkers — Snopes, PolitiFact, BBC Reality Check — verify claims. He found they don\'t do what students do. Students read the source page top-to-bottom looking for "credibility markers". Professionals immediately open new tabs and search for <em>what other people say about the source</em> — a habit Caulfield calls "lateral reading". Research published in 2018 (Wineburg &amp; McGrew, Stanford) found professional fact-checkers evaluated a dubious source 3× faster and 2× more accurately than PhD historians, precisely because of this single habit. You can verify almost any claim in under 2 minutes using free tools. Most people just don\'t bother — and that gap between "looks true" and "is true" is exactly where misinformation gets its power.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">2 min</span><span class="sl">time to verify most claims using free UK tools</span></div><div class="hook-stat-mini"><span class="sv">3×</span><span class="sl">faster verification by fact-checkers vs students (Wineburg 2018)</span></div><div class="hook-stat-mini"><span class="sv">SIFT</span><span class="sl">4 steps: Stop, Investigate, Find, Trace</span></div></div>',
+    body: 'Mike Caulfield, a US digital literacy researcher at the University of Washington, spent a decade studying how professional fact-checkers — Snopes, PolitiFact, BBC Reality Check — verify claims. He found they don\'t do what students do. Students read the source page top-to-bottom looking for "credibility markers". Professionals immediately open new tabs and search for <em>what other people say about the source</em> — a habit Caulfield calls "lateral reading". Research published in 2018 (Wineburg &amp; McGrew, Stanford) found professional fact-checkers reached sounder conclusions in a fraction of the time it took PhD historians, precisely because of this single habit. You can verify almost any claim in under 2 minutes using free tools. Most people just don\'t bother — and that gap between "looks true" and "is true" is exactly where misinformation gets its power.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">2 min</span><span class="sl">time to verify most claims using free UK tools</span></div><div class="hook-stat-mini"><span class="sv">Faster</span><span class="sl">+ more accurate: fact-checkers beat PhD historians via lateral reading (Wineburg 2018)</span></div><div class="hook-stat-mini"><span class="sv">SIFT</span><span class="sl">4 steps: Stop, Investigate, Find, Trace</span></div></div>',
     callout: 'Fact-checking isn\'t a talent. It\'s a habit. And habits are built through practice — starting with the four SIFT steps below.',
     sources: [
       { label: 'Wineburg, S. &amp; McGrew, S. (2018) — "Lateral Reading: Reading Less and Learning More When Evaluating Digital Information" (Stanford)', url: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3048994' },
@@ -2850,7 +2850,7 @@ SLIDES_GCSE[122] = [
   {
     type: 'concept',
     title: 'Lateral Reading — The Expert Technique',
-    body: 'Professional fact-checkers don\'t evaluate a source on its own page. They immediately open new tabs to see what independent sources say about the source itself. Stanford\'s 2018 study (Wineburg &amp; McGrew) found this one habit made fact-checkers roughly 3× faster and 2× more accurate than PhD historians evaluating the same material.',
+    body: 'Professional fact-checkers don\'t evaluate a source on its own page. They immediately open new tabs to see what independent sources say about the source itself. Stanford\'s 2018 study (Wineburg &amp; McGrew) found this one habit let fact-checkers reach sounder conclusions in a fraction of the time it took PhD historians evaluating the same material.',
     bullets: [
       'Open a new tab and search: [source name] + "credibility" or "bias" or "ownership"',
       'UK fact-checkers worth bookmarking: Full Fact, BBC Reality Check, Reuters Fact Check, AFP Fact Check, Channel 4 FactCheck',
@@ -2864,7 +2864,7 @@ SLIDES_GCSE[122] = [
     title: 'Pre-bunking — Stronger Than Debunking',
     body: 'Once you\'ve seen a false claim, correcting it is surprisingly weak — the "illusory truth" effect has already done some of its work. What psychologists have found is that <em>teaching people the manipulation tactic before they meet it</em> builds real resistance.',
     bullets: [
-      { term: 'The Jigsaw / Google study (2022)', def: 'Two-minute videos teaching specific manipulation tactics (scapegoating, emotional hijack, false dichotomy) produced a measurable 20% reduction in people\'s susceptibility — tested across millions of YouTube views.' },
+      { term: 'The Jigsaw / Google study (2022)', def: 'Short (~90-second) videos teaching specific manipulation tactics (scapegoating, emotional hijack, false dichotomy) significantly improved people\'s ability to spot manipulation — in a field trial that reached 5.4 million YouTube users.' },
       { term: 'Why it works', def: 'You\'re inoculated against a technique, not just one specific claim. When you then meet that tactic in the wild, you recognise it.' },
       { term: 'What this means for you', def: 'Consuming media-literacy content isn\'t a waste of time. Every "how scams work" explainer you watch quietly trains your filter.' },
       { term: 'Pair it with SIFT', def: 'Pre-bunking builds the reflex; SIFT gives you the step-by-step when the reflex fires.' }
@@ -2931,8 +2931,8 @@ SLIDES_GCSE[122] = [
     title: 'What You\'ve Learned',
     points: [
       { icon: '🔍', label: 'SIFT: Stop, Investigate, Find, Trace', text: 'a 2-minute habit that works on any claim — even in exam revision' },
-      { icon: '↔️', label: 'Lateral reading', text: 'fact-checkers are 3× faster and 2× more accurate than PhD historians because of this one habit (Stanford 2018)' },
-      { icon: '🛡️', label: 'Pre-bunking beats debunking', text: 'Jigsaw 2022: learning the tactic in advance cuts susceptibility ~20%' },
+      { icon: '↔️', label: 'Lateral reading', text: 'fact-checkers reach sounder conclusions in a fraction of the time it takes PhD historians — thanks to this one habit (Stanford 2018)' },
+      { icon: '🛡️', label: 'Pre-bunking beats debunking', text: 'Jigsaw 2022: short prebunk videos measurably improved manipulation-spotting across 5.4M YouTube users' },
       { icon: '🇬🇧', label: 'UK fact-checkers', text: 'Full Fact, BBC Reality Check, Reuters Fact Check, AFP Fact Check' },
       { icon: '🤖', label: 'Always verify AI citations', text: 'LLMs invent plausible-looking sources — trace them before you quote' },
       { icon: '✅', label: 'Verification is a habit', text: 'not a talent. Practice builds it automatically — within weeks it becomes reflex.' }
