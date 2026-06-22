@@ -107,10 +107,17 @@
     .slide-body{font-size:.97rem;color:var(--text-muted,#475569);line-height:1.75;margin-top:8px;margin-bottom:14px}
     .slide-callout{background:rgba(var(--track-primary-rgb),.08);border-left:3px solid var(--track-primary);border-radius:0 8px 8px 0;padding:14px 18px;margin-top:16px;font-size:.92rem;color:var(--text-muted,#475569);line-height:1.6}
     [data-theme="light"] .slide-callout{background:rgba(var(--track-primary-rgb),.07);color:#1e3a4a}
-    .slide-bullets{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:12px;padding:0}
-    .slide-bullets li{display:flex;align-items:flex-start;gap:10px;font-size:.93rem;color:var(--text-muted,#475569);line-height:1.5}
-    .slide-bullets li::before{content:'▸';color:var(--track-primary);font-size:.85rem;flex-shrink:0;margin-top:2px}
-    [data-theme="light"] .slide-bullets li{color:#334155}
+    /* Term/definition bullets render as a two-column grid so every term and
+       every definition line up across rows (a clean table-style layout). */
+    .slide-bullets{list-style:none;display:grid;grid-template-columns:minmax(104px,200px) 1fr;column-gap:18px;row-gap:11px;margin-top:12px;padding:0;font-size:.93rem;line-height:1.55;color:var(--text-muted,#475569)}
+    .slide-bullets li{display:contents}
+    .slide-bullets .b-term{font-weight:700;color:var(--text);position:relative;padding-left:14px}
+    .slide-bullets .b-term::before{content:'▸';position:absolute;left:0;color:var(--track-primary);font-size:.85rem}
+    .slide-bullets .b-def{color:inherit}
+    .slide-bullets .b-span2{grid-column:1 / -1}
+    .slide-bullets .b-term.b-span2{padding-left:14px}
+    [data-theme="light"] .slide-bullets{color:#334155}
+    @media (max-width:560px){.slide-bullets{grid-template-columns:1fr;row-gap:3px}.slide-bullets .b-def{padding-left:14px;margin-bottom:6px}}
     .slide-steps{list-style:none;counter-reset:step;display:flex;flex-direction:column;gap:10px;margin-top:14px;padding:0}
     .slide-steps li{counter-increment:step;display:flex;align-items:flex-start;gap:12px;font-size:.93rem;color:var(--text-muted,#475569);line-height:1.5}
     .slide-steps li::before{content:counter(step);min-width:24px;height:24px;background:var(--track-primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;flex-shrink:0}
@@ -1318,7 +1325,13 @@
     if (type==='hook') return '<div class="slide-hook"><span class="slide-badge badge-hook">Hook</span><div class="slide-title">'+(slide.title||'')+'</div><div class="slide-body">'+(slide.body||'')+'</div>'+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
     if (type==='concept') {
       var bHtml='';
-      if(slide.bullets&&slide.bullets.length){bHtml='<ul class="slide-bullets">'+slide.bullets.map(function(b){if(typeof b==='string')return '<li>'+b+'</li>';return '<li><strong>'+(b.term||b.label||'')+'</strong>'+(b.def||b.text?' — '+(b.def||b.text):'')+'</li>';}).join('')+'</ul>';}
+      if(slide.bullets&&slide.bullets.length){bHtml='<ul class="slide-bullets">'+slide.bullets.map(function(b){
+        if(typeof b==='string')return '<li><span class="b-def b-span2">'+b+'</span></li>';
+        var term=(b.term||b.label||''), def=(b.def||b.text||'');
+        if(term&&def)return '<li><span class="b-term">'+term+'</span><span class="b-def">'+def+'</span></li>';
+        if(term)return '<li><span class="b-term b-span2">'+term+'</span></li>';
+        return '<li><span class="b-def b-span2">'+def+'</span></li>';
+      }).join('')+'</ul>';}
       return '<div class="slide-concept"><span class="slide-badge badge-concept">Concept</span><div class="slide-title">'+(slide.title||'')+'</div>'+(slide.body?'<div class="slide-body">'+slide.body+'</div>':'')+bHtml+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
     }
     if (type==='scenario') {
