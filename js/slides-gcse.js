@@ -94,10 +94,10 @@ SLIDES_GCSE[101] = [
   {
     type: 'hook',
     title: 'What Is AI?',
-    body: 'In December 2024, OpenAI announced ChatGPT had crossed 300 million weekly users — the fastest adoption curve of any consumer technology in history, faster than the smartphone, the internet, or electricity reached the same share of the planet. Google Search now processes AI-generated summaries for around a billion queries a month. A 2024 Ipsos/Reuters poll across 31 countries found 66% of 18-24-year-olds use AI tools at least weekly, but only 23% could correctly describe what AI actually does. You\'re probably already in the 66%. This lesson pushes you into the more valuable minority who can also explain it — because understanding AI gives you power over it instead of the other way around.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">300M</span><span class="sl">weekly ChatGPT users (OpenAI, Dec 2024)</span></div><div class="hook-stat-mini"><span class="sv">66%</span><span class="sl">of UK 18-24s use AI weekly (Ipsos, 2024)</span></div><div class="hook-stat-mini"><span class="sv">23%</span><span class="sl">can explain how it works</span></div></div>',
+    body: 'In October 2025, OpenAI revealed that ChatGPT had passed 800 million weekly users — roughly 1 in 10 adults on Earth, and up from just 300 million only ten months earlier. It is the fastest adoption curve of any consumer technology in history: faster than the smartphone, the internet, or electricity reached the same share of the planet. And yet a 2024 Ipsos poll across 31 countries found that while around 66% of 18-24-year-olds use AI tools at least weekly, only 23% could correctly describe what AI actually does. You\'re almost certainly already in that 66% who use it. This lesson pushes you into the far more valuable minority who can also explain it — because understanding how AI works is what gives you power over it, instead of the other way around.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">800M</span><span class="sl">weekly ChatGPT users (OpenAI, Oct 2025)</span></div><div class="hook-stat-mini"><span class="sv">66%</span><span class="sl">of 18-24s use AI weekly (Ipsos, 2024)</span></div><div class="hook-stat-mini"><span class="sv">23%</span><span class="sl">can explain how it works</span></div></div>',
     callout: 'AI is not robots. It\'s not magic. It\'s not thinking. It\'s pattern recognition at massive scale — and once you understand that, everything else in this course makes sense.',
     sources: [
-      { label: 'OpenAI (Dec 2024) — 300m weekly ChatGPT users milestone', url: 'https://openai.com/index/12-days-of-openai/' },
+      { label: 'TechCrunch (Oct 2025) — Sam Altman: ChatGPT hits 800m weekly active users', url: 'https://techcrunch.com/2025/10/06/sam-altman-says-chatgpt-has-hit-800m-weekly-active-users/' },
       { label: 'Reuters/DeepMind Ipsos (2024) — global public views on AI', url: 'https://www.ipsos.com/en/global-views-ai-2024' }
     ]
   },
@@ -151,18 +151,20 @@ SLIDES_GCSE[101] = [
     ]
   },
   {
-    type: 'activity',
+    type: 'widget',
     title: 'Spot the AI',
-    task: 'Which of these uses AI? In the notes box below, write the numbers of the ones you think use AI — then tap "Click to reveal answer" to check.',
-    steps: [
-      'TikTok deciding which video shows next',
-      'A basic calculator adding two numbers',
-      'Netflix recommending a show you\'ll like',
-      'An alarm clock going off at 7am',
-      'A spam filter moving junk email',
-      'Face unlock on your phone'
+    widget: 'classify',
+    intro: 'Six everyday things your phone and apps do. The test isn\'t "is it clever?" — it\'s "did it learn from data, or is it just following fixed rules a human wrote?" Sort each one, then read why.',
+    categories: ['Uses AI (learned from data)', 'Just fixed rules'],
+    items: [
+      { text: 'TikTok deciding which video to show you next', correct: 0, why: 'AI. A recommendation model learns from billions of watch-time signals what keeps people like you scrolling — nobody hand-wrote a rule for your feed. This is the most powerful AI most teenagers use every day.' },
+      { text: 'A basic calculator adding 47 + 86', correct: 1, why: 'Just rules. Addition is a fixed mathematical procedure coded in once and never changed. It doesn\'t learn, improve, or get anything "wrong" — and it never needed training data.' },
+      { text: 'Netflix recommending a show it thinks you\'ll like', correct: 0, why: 'AI. Like TikTok, it learns patterns from what millions of viewers watched and rated, then predicts what you\'ll enjoy. The more you watch, the more its picture of your taste updates.' },
+      { text: 'An alarm clock going off at the time you set', correct: 1, why: 'Just rules. IF the clock reaches 07:00 THEN ring. A human wrote that rule; the clock follows it exactly the same way every single day. No learning, no prediction.' },
+      { text: 'A spam filter moving junk email to the junk folder', correct: 0, why: 'AI (mostly). Modern filters learn the shape of spam from millions of labelled examples, so they catch new scams they\'ve never literally seen before — exactly the "learn the pattern" idea from this lesson.' },
+      { text: 'Face unlock recognising you in the dark or with a new haircut', correct: 0, why: 'AI. A neural network learned the geometry of your face from training images, so it still recognises you when the lighting, angle or your hair changes — something a fixed rule could never handle.' }
     ],
-    reveal: '<strong>Answers:</strong> 1, 3, 5, 6 use AI. The calculator and alarm clock follow fixed rules — no learning involved.'
+    callout: 'Notice the pattern: the "just rules" cases (calculator, alarm) are predictable and auditable but brittle. The AI cases are powerful precisely because they learned — but that also means they can be confidently wrong, as the rest of this lesson shows.'
   },
   {
     type: 'activity',
