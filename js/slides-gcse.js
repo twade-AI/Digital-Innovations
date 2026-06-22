@@ -1587,11 +1587,11 @@ SLIDES_GCSE[112] = [
   {
     type: 'hook',
     title: 'Your Revision Toolkit',
-    body: 'You now know how to prompt, summarise, quiz, plan essays and spot the traps. The final question is: how do you stitch it all into a weekly routine you can actually sustain through five months of GCSE revision? Research published by the Education Endowment Foundation (EEF, 2024) found that the single biggest predictor of mock-to-real grade improvement was not intelligence, time spent, or school — it was <em>consistency of technique</em>. Pupils who used three evidence-based methods (retrieval practice, spacing, interleaving) daily gained an average of 0.6 grades. Pupils who relied on re-reading and highlighting gained 0.05. Stanford\'s 2024 AI Index reported that 71% of UK pupils aged 13–18 now use AI for schoolwork at least weekly — but most use it wrong. This lesson gives you a complete weekly toolkit that combines the evidence-based methods WITH AI, in the right places.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">0.6</span><span class="sl">average GCSE grades gained by evidence-based revisers (EEF, 2024)</span></div><div class="hook-stat-mini"><span class="sv">71%</span><span class="sl">of UK 13–18s now use AI weekly for school (Stanford AI Index 2024)</span></div><div class="hook-stat-mini"><span class="sv">6–8</span><span class="sl">weeks — how long a good habit takes to stick (Lally et al. 2010)</span></div></div>',
+    body: 'You now know how to prompt, summarise, quiz, plan essays and spot the traps. The final question is: how do you stitch it all into a weekly routine you can actually sustain through five months of GCSE revision? Retrieval practice, spacing and interleaving are three of the most robustly evidence-backed methods in all of education — the Education Endowment Foundation rates this kind of self-regulated study among the highest-impact, lowest-cost things a pupil can do, worth roughly <em>seven months\' extra progress</em> a year. Meanwhile around 80% of UK pupils aged 13–18 now use AI for their schoolwork (Oxford University Press, 2025) — but most use it wrong. This lesson gives you a complete weekly toolkit that combines the evidence-based methods WITH AI, in the right places.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">+7 mths</span><span class="sl">progress from self-regulated study — among EEF\'s highest-impact, lowest-cost strategies</span></div><div class="hook-stat-mini"><span class="sv">~80%</span><span class="sl">of UK 13–18s now use AI for schoolwork (Oxford University Press, 2025)</span></div><div class="hook-stat-mini"><span class="sv">~66 days</span><span class="sl">median time for a new habit to stick (Lally et al. 2010)</span></div></div>',
     callout: 'The key rule: AI helps you BEFORE you try (to prepare) and AFTER you try (to feedback) — never INSTEAD of trying. The thinking is still yours.',
     sources: [
       { label: 'Education Endowment Foundation — Metacognition &amp; self-regulated learning (guidance report)', url: 'https://educationendowmentfoundation.org.uk/education-evidence/guidance-reports/metacognition' },
-      { label: 'Stanford HAI — 2024 AI Index Report (youth AI use statistics)', url: 'https://aiindex.stanford.edu/report/' }
+      { label: 'Oxford University Press (2025) — eight in ten UK young people use AI tools for schoolwork', url: 'https://corp.oup.com/spotlights/teaching-the-ai-native-generation/' }
     ]
   },
   {
@@ -1629,7 +1629,7 @@ SLIDES_GCSE[112] = [
     title: 'Tool Stack — What to Use When',
     body: 'AI is not one tool. The best routines use 2–3 complementary tools, each for what it\'s best at. Here is a recommended stack — all either free for pupils or have generous free tiers in 2024–2025.',
     bullets: [
-      { term: 'ChatGPT / Claude / Gemini', def: 'Best for: prompted explanations, essay feedback, scenario walk-throughs. Free tiers all work. ChatGPT and Claude both passed UK bar-exam-equivalent questions in 2024.' },
+      { term: 'ChatGPT / Claude / Gemini', def: 'Best for: prompted explanations, essay feedback, scenario walk-throughs. Free tiers all work well for GCSE-level study — just remember to verify any facts, dates or citations they produce.' },
       { term: 'Google NotebookLM', def: 'Best for: uploading your textbook chapter or teacher\'s notes and generating a study guide, audio "podcast" summary and spec-aligned quiz. Comes free with your school Google account.' },
       { term: 'Quizlet AI / Anki', def: 'Best for: spaced-repetition flashcards you type yourself (the typing is part of the learning). Anki is free and the most evidence-based flashcard app ever built — used by medical students worldwide.' },
       { term: 'Khan Academy Khanmigo', def: 'Best for: Maths / Sciences problem walk-throughs. Scaffolds rather than gives answers. Based on a 2024 Harvard RCT showing genuine learning gains when used this way.' },
@@ -1653,7 +1653,7 @@ SLIDES_GCSE[112] = [
       'When the subject rewards struggle — some understanding only comes from wrestling with hard material alone (proof-based Maths, unseen poetry, creative writing).',
       'When you\'re using AI to avoid the topic you most dread. That dread is a signal — address it directly, don\'t let AI mask it.'
     ],
-    callout: 'Cognitive offloading research (Gerlich 2025; Michigan Law 2024) shows that routine AI use on tasks you need to own can measurably reduce your own critical-thinking performance. Use AI — don\'t outsource to it.'
+    callout: 'Cognitive offloading research (Gerlich 2025; and the MIT Media Lab "Your Brain on ChatGPT" EEG study, 2025) shows that routine AI use on tasks you need to own can measurably reduce your own critical-thinking performance. Use AI — don\'t outsource to it.'
   },
   {
     type: 'scenario',
