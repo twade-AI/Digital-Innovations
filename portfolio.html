@@ -36,6 +36,7 @@
     .pf-lesson-title .pf-l-meta{font-size:.74rem;color:var(--text-dim)}
     .pf-note{font-size:.88rem;line-height:1.55;color:var(--text);white-space:pre-wrap;margin-top:8px}
     .pf-exit{font-style:italic;font-size:.9rem;line-height:1.55;color:var(--text);border-left:3px solid var(--track-primary);padding:8px 12px;margin-top:8px;background:rgba(var(--track-primary-rgb),.04);border-radius:0 6px 6px 0}
+    .pf-assess{font-size:.9rem;line-height:1.6;color:var(--text);border-left:3px solid #9b1844;padding:10px 12px;margin-top:8px;background:rgba(155,24,68,.05);border-radius:0 6px 6px 0;white-space:pre-wrap}
     .pf-label{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--track-primary);background:rgba(var(--track-primary-rgb),.1);padding:2px 8px;border-radius:999px;margin-bottom:6px}
     .pf-score-pill{display:inline-block;background:rgba(var(--track-primary-rgb),.12);color:var(--track-primary);border:1px solid rgba(var(--track-primary-rgb),.3);border-radius:999px;padding:2px 10px;font-size:.72rem;font-weight:700}
 
@@ -108,7 +109,8 @@
         unit.lessons.forEach(function (lesson) {
           var noteText = collectNotes(lesson.id);
           var exitText = localStorage.getItem('di_gcse_exit_' + lesson.id) || '';
-          if (!noteText && !exitText && !doneIds[lesson.id]) return;
+          var assessText = localStorage.getItem('di_gcse_assess_' + lesson.id) || '';
+          if (!noteText && !exitText && !assessText && !doneIds[lesson.id]) return;
           items.push({
             unit: unit.title,
             unitColour: unit.color,
@@ -117,7 +119,8 @@
             done: !!doneIds[lesson.id],
             completedAt: dates[lesson.id] || '',
             notes: noteText,
-            exit: exitText
+            exit: exitText,
+            assess: assessText
           });
         });
       });
@@ -172,6 +175,7 @@
                   '</div>';
         if (e.notes) html += '<div class="pf-note">' + esc(e.notes) + '</div>';
         if (e.exit)  html += '<div class="pf-exit"><strong>Exit ticket.</strong> ' + esc(e.exit) + '</div>';
+        if (e.assess) html += '<div class="pf-assess"><strong>📋 Assessed task.</strong> ' + esc(e.assess) + '</div>';
         html += '</div>';
       });
       html += '</div>';

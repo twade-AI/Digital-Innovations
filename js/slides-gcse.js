@@ -674,6 +674,27 @@ SLIDES_GCSE[105] = [
     title: 'Unit 1 Exit Ticket',
     prompt: 'In one sentence — what is the single most surprising thing you now know about how AI actually works?',
     body: 'Your answer saves to this device only. You can come back and edit it any time.'
+  },
+  {
+    type: 'assessment',
+    title: 'Unit 1 Task — Explain AI Without the Hype',
+    domain: 'Engage with AI',
+    time: '~45 min',
+    brief: 'Create a short explainer — a 60–90 second script, a poster, or a short video — that accurately explains to a parent or a younger pupil <strong>what AI actually is and is not</strong>. The catch: use <strong>zero anthropomorphic language</strong> (no "it thinks / knows / understands / wants"), and correct one common misconception along the way.',
+    steps: [
+      'Choose your audience (e.g. a parent, a Year 7) and pick a misconception to correct (e.g. "AI thinks like a person", "AI is always right").',
+      'Explain in plain, accurate words how AI actually works — pattern recognition and prediction, learned from data, not programmed rules.',
+      'Use a clear example of a real limit (hallucination, the "strawberry" token problem, or shortcut learning).',
+      'Check every sentence: have you used any human verbs? Swap them for compute / predict / match.',
+      'Keep it tight — 90 seconds or one side of A4.'
+    ],
+    criteria: 'AILit Engage — Knowledge (the Nature of AI) + the Communication skill (describe AI without anthropomorphism).',
+    rubric: [
+      { level: 'Developing', text: 'Explains AI broadly, but slips into human verbs ("thinks", "knows") or leaves the misconception only half-corrected.' },
+      { level: 'Secure', text: 'Accurate, plain-language explanation, consistently non-anthropomorphic, with one named misconception clearly corrected and a real example of a limit.' },
+      { level: 'Exceptional', text: 'All of Secure, plus a vivid analogy of your own and a precise example of a limitation — pitched perfectly for the chosen audience.' }
+    ],
+    prompt: 'Paste your script, a description of your poster/video, or a link to it here.'
   }
 ];
 
@@ -1536,6 +1557,27 @@ SLIDES_GCSE[112] = [
     title: 'Unit 2 Exit Ticket',
     prompt: 'Describe, in one sentence, the AI study habit you will keep — and the one you will deliberately stop.',
     body: 'Saved to this device only. Come back and edit it any time.'
+  },
+  {
+    type: 'assessment',
+    title: 'Unit 2 Task — Evidence of a Real Revision Loop',
+    domain: 'Create & Manage AI',
+    time: '~45–60 min',
+    brief: 'Run <strong>one full revision loop</strong> (Understand → Practise → Feedback → Consolidate) on a topic you are genuinely revising, using AI the right way. Then submit the evidence — and prove the thinking stayed yours.',
+    steps: [
+      'Name the real topic and exam board.',
+      'Show your prompt AND your own attempt at the practice questions BEFORE you checked the AI — this is the part that matters most.',
+      'Show the AI feedback you got, and exactly what you changed as a result.',
+      'Classify your use under the school\'s three-tier policy (🟢 Green / 🟡 Amber / 🔴 Red) and justify the tier.',
+      'Finish with one sentence on what stayed your own thinking — and, if relevant, one moment you deliberately AVOIDED AI.'
+    ],
+    criteria: 'AILit Manage — dividing work between you and AI; plus metacognition and honest, JCQ-aligned use.',
+    rubric: [
+      { level: 'Developing', text: 'Uses AI on the topic, but little evidence of attempting first; the thinking is largely outsourced.' },
+      { level: 'Secure', text: 'A clear loop with your own attempt shown first, use correctly classified under the three-tier policy, and a clear account of what stayed yours.' },
+      { level: 'Exceptional', text: 'All of Secure, plus a sharp reflection on a moment you chose to avoid AI to protect a skill — with reasoning.' }
+    ],
+    prompt: 'Paste your prompts, your own attempt, the AI feedback and what you changed — or a link to your document.'
   }
 ];
 
@@ -2741,6 +2783,27 @@ SLIDES_GCSE[123] = [
     title: 'Unit 4 Exit Ticket',
     prompt: 'Name one specific behaviour change you will make to the way you interact with social media or AI-generated content this week.',
     body: 'Saved to this device only. Come back and edit it any time.'
+  },
+  {
+    type: 'assessment',
+    title: 'Unit 4 Task — Fact-Check Dossier',
+    domain: 'Engage with AI',
+    time: '~45 min',
+    brief: 'Take a <strong>real claim, image or video</strong> circulating online right now and run the full <strong>SIFT</strong> method on it. Document every step, then reach a reasoned verdict backed by independent sources.',
+    steps: [
+      'Paste or describe the claim, and your honest first reaction (S — Stop).',
+      'Investigate the source: who made it, what is their track record or agenda? (I)',
+      'Find better coverage: what do two or more independent, credible outlets say? (F)',
+      'Trace it to the original: where did the claim, quote or image actually come from? (T)',
+      'Give your verdict — true / false / misleading / unverified — and name one manipulation tactic at work (use the six from the Bad News game).'
+    ],
+    criteria: 'AILit Engage — evaluate whether content should be accepted, revised or rejected; Critical Thinking; lateral reading.',
+    rubric: [
+      { level: 'Developing', text: 'Reaches a verdict but skips SIFT steps or judges the claim only from its own page.' },
+      { level: 'Secure', text: 'All four SIFT steps evidenced, lateral reading used, and a verdict justified with two or more independent sources.' },
+      { level: 'Exceptional', text: 'All of Secure, plus you trace the claim to its true origin and correctly name the manipulation technique being used.' }
+    ],
+    prompt: 'Paste your claim, your four SIFT steps, the sources you used and your verdict — or a link to your dossier.'
   }
 ];
 
@@ -3357,6 +3420,26 @@ SLIDES_GCSE[129] = [
     title: 'Unit 5 Exit Ticket',
     prompt: 'Of the ethical issues in this unit — bias, privacy, jobs, regulation — which one will you pay attention to over the next year, and why?',
     body: 'Saved to this device only. Come back and edit it any time.'
+  },
+  {
+    type: 'assessment',
+    title: 'Unit 5 Task — Ethical Position Paper',
+    domain: 'Engage with AI',
+    time: '~50–60 min',
+    brief: 'Choose one real AI dilemma from this unit (bias, privacy, jobs, regulation, or a named case like COMPAS, Clearview or the Dutch childcare scandal). Write a <strong>300–500 word position paper</strong> that argues a clear view — and treats the other side fairly.',
+    steps: [
+      'State the dilemma and your position in one sentence.',
+      'Defend it using at least TWO ethical frameworks from Lesson 129 (consequentialism, rights-based, fairness, human dignity, virtue).',
+      'Weigh who benefits and who is harmed or disadvantaged.',
+      'State the strongest counter-argument to your view — honestly — and answer it.'
+    ],
+    criteria: 'AILit Engage — analyse how AI use aligns with ethical principles; Self & Social Awareness; reasoned argument.',
+    rubric: [
+      { level: 'Developing', text: 'States an opinion with limited use of frameworks and little or no counter-argument.' },
+      { level: 'Secure', text: 'A clear position, two frameworks applied correctly, who-benefits/who-is-harmed addressed, and a counter-argument acknowledged and answered.' },
+      { level: 'Exceptional', text: 'All of Secure, and the counter-argument is the genuinely strongest one — answered convincingly, with nuance rather than one-sidedness.' }
+    ],
+    prompt: 'Paste your 300–500 word position paper here, or a link to it.'
   }
 ];
 
@@ -3749,6 +3832,26 @@ SLIDES_GCSE[133] = [
     title: 'Final Commitment',
     prompt: 'After 40 lessons — write the one sentence you most want your future self (in one year\'s time) to read back about how you will engage with AI.',
     body: 'This saves to your device. Come back and re-read it. See if you\'ve kept your word.'
+  },
+  {
+    type: 'assessment',
+    title: 'Capstone Task — Your AI Charter & Career Map',
+    domain: 'Engage · Create · Manage · Shape',
+    time: '~60 min',
+    brief: 'The final, whole-course task, in two parts. <strong>(A) A personal AI charter</strong> — five specific, honest principles for how you will engage with AI. <strong>(B) A career-resilience map</strong> — for a career you care about, sort out what AI will reshape, what stays human, and what you will build now.',
+    steps: [
+      'Charter — write five principles, each one specific and testable (e.g. "I draft my own answer before asking AI", not "I\'ll use AI responsibly"). Cover: learning, verification, creativity, privacy, and influence.',
+      'Career map — name a career you are curious about.',
+      'List the tasks in it that AI will reshape, and the tasks that stay distinctly human — and why.',
+      'Name three skills you will deliberately build now to stay valuable (use the centaur, Klarna and radiology lessons as evidence).'
+    ],
+    criteria: 'AILit synthesis across all four domains — Engage, Create, Manage, Shape — plus Self & Social Awareness and future-readiness.',
+    rubric: [
+      { level: 'Developing', text: 'Generic principles ("use AI responsibly") and a thin career map.' },
+      { level: 'Secure', text: 'Specific, actionable charter principles and a career map that clearly separates reshaped vs human tasks, with three named skills.' },
+      { level: 'Exceptional', text: 'Principles are personal and testable; the career analysis is sharp and evidence-aware (cites real cases from the course); the skills plan is concrete and justified.' }
+    ],
+    prompt: 'Paste your five charter principles and your career-resilience map here, or a link to your document.'
   }
 ];
 
@@ -3944,6 +4047,26 @@ SLIDES_GCSE[134] = [
     title: 'Before You Close This Lesson',
     prompt: 'Name one task in your life you\'d confidently give to an agent this year — and one you definitely wouldn\'t, even if the agent got much better. Why the difference?',
     body: 'Noticing where the line is — for you — is the judgement this lesson was really about. Write your answer and keep it. Look back in six months and see if your line has moved.'
+  },
+  {
+    type: 'assessment',
+    title: 'Unit 3 Task — Prompt-Engineering Portfolio',
+    domain: 'Create & Manage AI',
+    time: '~45–60 min',
+    brief: 'Show your prompting craft on a <strong>real task</strong>: submit one strong PTFC prompt, two iterations that genuinely improved it, and a critical evaluation of the final output using the four checks from Lesson 114.',
+    steps: [
+      'State the real task and write version 1 of your prompt (Persona · Task · Format · Context) with the output you got.',
+      'Identify one weakness in the output, then show version 2 (and 3 if needed) and how the prompt change fixed it.',
+      'Run the four checks on the final output: Does it answer the question? Is it verifiable? Is it up to date? Does it match what you know?',
+      'Name one fact, figure or citation you actually verified against an independent source.'
+    ],
+    criteria: 'AILit Create (use AI to refine ideas) + Critical Thinking (evaluate AI output for accuracy and bias).',
+    rubric: [
+      { level: 'Developing', text: 'A reasonable prompt, but little real iteration and only surface evaluation of the output.' },
+      { level: 'Secure', text: 'A clear PTFC prompt, genuine iteration that improves the result, the four checks applied, and one fact independently verified.' },
+      { level: 'Exceptional', text: 'All of Secure, plus you catch a real hallucination or limitation and explain how your prompt change addressed it; the final prompt is portable and reusable.' }
+    ],
+    prompt: 'Paste your prompt versions, the outputs, your four-check evaluation and what you verified — or a link.'
   }
 ];
 
@@ -4708,5 +4831,25 @@ SLIDES_GCSE[140] = [
     title: 'Shape AI Exit Ticket',
     prompt: 'Across this whole course you went from understanding AI to being able to shape it. Name one AI system you now feel genuinely able to improve — and the single change you would make first.',
     body: 'Saved to this device only. Keep it — it is the proof that you ended this course as someone who shapes AI, not just someone shaped by it.'
+  },
+  {
+    type: 'assessment',
+    title: 'Unit 6 Task — AI Improvement Brief',
+    domain: 'Shape AI',
+    time: '~60 min',
+    brief: 'Produce a <strong>one-page improvement brief</strong> for a real AI system (a recommender, a chatbot, autocorrect, a face-unlock, a study app). Move through the full Shape-AI process — interrogate, evaluate, improve, justify — as if advising the team that builds it.',
+    steps: [
+      'Interrogate: what is it built to do, and what does its model card (or its silence) tell you? (Lesson 138)',
+      'Evaluate: how would you test whether it works fairly, and for whom? Name one concrete fairness test. (Lesson 139)',
+      'Improve: propose two specific changes — to the data, the design, the accessibility, or the safeguards.',
+      'Justify: who benefits (including the curb-cut effect), and what is the real trade-off?'
+    ],
+    criteria: 'AILit Shape — investigate a system, evaluate it against criteria, design improvements and justify them for societal benefit.',
+    rubric: [
+      { level: 'Developing', text: 'Identifies a problem and a vague fix, with limited testing or justification.' },
+      { level: 'Secure', text: 'Moves through all four stages with a named system, a concrete fairness test, two realistic changes, and a who-benefits justification.' },
+      { level: 'Exceptional', text: 'All of Secure, plus an honest real trade-off and a specific worked example of the curb-cut effect.' }
+    ],
+    prompt: 'Paste your one-page improvement brief here, or a link to it.'
   }
 ];
