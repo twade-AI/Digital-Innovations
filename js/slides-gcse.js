@@ -1193,7 +1193,7 @@ SLIDES_GCSE[109] = [
   {
     type: 'hook',
     title: 'Quizzing Yourself with AI',
-    body: 'In 2013, cognitive scientists John Dunlosky and colleagues published a monumental review in Psychological Science in the Public Interest: they ranked every major revision strategy by strength of evidence. Re-reading notes — the most common technique used by UK pupils — ranked as one of the <em>least</em> effective. The top two? Practice testing and spaced practice. Self-quizzing beat highlighting, re-reading, and summarising combined. The research is so robust it has been replicated for 50+ years across every age group and subject. What changed in 2022 was that AI can now generate unlimited, tailored practice questions on any topic, at any level, in 10 seconds — something that used to require a private tutor at £40/hour.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">2×</span><span class="sl">higher retention from testing vs re-reading (Karpicke &amp; Roediger, 2008)</span></div><div class="hook-stat-mini"><span class="sv">#1</span><span class="sl">rank for practice testing in Dunlosky et al.\'s 2013 evidence review</span></div><div class="hook-stat-mini"><span class="sv">£40/hr</span><span class="sl">typical private GCSE tutor rate — AI quizzing is free</span></div></div>',
+    body: 'In 2013, cognitive scientists John Dunlosky and colleagues published a monumental review in Psychological Science in the Public Interest: they ranked every major revision strategy by strength of evidence. Re-reading notes — the most common technique used by UK pupils — ranked as one of the <em>least</em> effective. The top two? Practice testing and spaced practice. Self-quizzing beat highlighting, re-reading, and summarising combined. The research is so robust it has been replicated for 50+ years across every age group and subject. What changed in 2022 was that AI can now generate unlimited, tailored practice questions on any topic, at any level, in 10 seconds — something that used to require a private tutor at £40/hour.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">2×</span><span class="sl">higher retention from testing vs re-reading (Karpicke &amp; Roediger, 2008)</span></div><div class="hook-stat-mini"><span class="sv">Top tier</span><span class="sl">practice testing got Dunlosky et al.\'s highest "high-utility" rating (2013 evidence review)</span></div><div class="hook-stat-mini"><span class="sv">£40/hr</span><span class="sl">typical private GCSE tutor rate — AI quizzing is free</span></div></div>',
     callout: 'The testing effect is the single most replicated finding in the science of learning. The struggle to remember something is what strengthens the memory — not reading the answer a second time.',
     sources: [
       { label: 'Dunlosky et al. (2013) — Improving students\' learning with effective learning techniques (Psychological Science in the Public Interest)', url: 'https://journals.sagepub.com/doi/10.1177/1529100612453266' },
@@ -1238,6 +1238,22 @@ SLIDES_GCSE[109] = [
       'Ask for a difficulty ramp: "start with 3 easy, then 3 medium, then 3 hard — mark each"'
     ],
     callout: 'Gold-standard example: "Act as an AQA GCSE Biology examiner. Generate 6 multiple-choice questions on DNA structure for a Year 11 student targeting grade 7. Questions first. Then, when I reply ANSWERS, give the correct answer and — crucially — explain why each WRONG option is wrong. UK English."'
+  },
+  {
+    type: 'widget',
+    widget: 'classify',
+    title: 'Strong or Weak? Sort the Quiz Prompt',
+    intro: 'Quizzing only works if the questions are good. A vague prompt gives generic, too-easy questions; a precise one gives exam-level practice that actually moves grades. Sort each prompt.',
+    categories: ['💪 Strong quiz prompt', '🪫 Weak quiz prompt'],
+    items: [
+      { text: '"Quiz me on photosynthesis"', correct: 1, why: 'Weak. No exam board, level, format or count — you\'ll get generic, often too-easy questions, and it tends to hand you the answers immediately, killing the generation effect.' },
+      { text: '"Act as an AQA GCSE Biology examiner. 6 multiple-choice questions on DNA structure, Year 11 targeting grade 7. Questions first; give answers only when I reply ANSWERS, and explain why each wrong option is wrong."', correct: 0, why: 'Strong. Board, level, topic, count and format are all set; answers come after you attempt (generation effect); and wrong-answer explanations trigger error-driven learning.' },
+      { text: '"Test me on the Cold War"', correct: 1, why: 'Weak. No board, no topic focus, no format, no level — and "test me" with instant answers gives you recognition, not retrieval.' },
+      { text: '"Generate 3 easy, 3 medium, 3 hard 4-mark questions on river landforms for AQA GCSE Geography, label each difficulty, answers in a separate list."', correct: 0, why: 'Strong. A difficulty ramp, a clear mark-type, and separated answers — built to stretch you and let you self-test before checking.' },
+      { text: '"Make me a quick quiz"', correct: 1, why: 'Weak. The AI has nothing to work with — no subject, level or format. You\'ll get bland, generic questions you can\'t revise seriously from.' },
+      { text: '"Act as an AQA English Literature examiner. Give me three \'how does Shakespeare present...\' questions on Macbeth\'s ambition, then model answers and the two most common mistakes Year 11s make."', correct: 0, why: 'Strong. Exam-style command words, a precise theme, and a focus on common mistakes — exactly what turns practice into marks.' }
+    ],
+    callout: 'The tell is the same as all good prompting: the weak prompts could be typed by anyone about anything; the strong ones name the board, level, topic and format — and crucially make you attempt before you see the answer.'
   },
   {
     type: 'scenario',
