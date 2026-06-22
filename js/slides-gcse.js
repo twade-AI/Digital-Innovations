@@ -2113,10 +2113,10 @@ SLIDES_GCSE[116] = [
   {
     type: 'hook',
     title: 'Automating the Boring Stuff',
-    body: 'McKinsey\'s 2023 "State of AI" report surveyed 1,684 workers across 9 industries and asked which of their weekly tasks generative AI could do in full or in part. The answer: 29%. Not replaced overall — but a quarter to a third of the tasks already on every desk. A 2024 follow-up from Stanford found that the knowledge workers who gained the most weren\'t the ones who used AI for everything; they were the ones who automated the repetitive 30% and reinvested the time in harder, deeper work only they could do. That is the model. The smartest use of AI isn\'t asking it to think <em>for</em> you — it\'s using it to clear the low-value tasks <em>around</em> you so you have time and energy for the thinking that counts.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">29%</span><span class="sl">of weekly tasks AI can already do (McKinsey 2023)</span></div><div class="hook-stat-mini"><span class="sv">60 min</span><span class="sl">average daily time saved by knowledge workers (Stanford 2024)</span></div><div class="hook-stat-mini"><span class="sv">0</span><span class="sl">skills gained by delegating tasks you still need to learn</span></div></div>',
+    body: 'McKinsey\'s 2023 analysis of generative AI estimated it could help automate activities that currently absorb 60–70% of the average employee\'s time — not whole jobs, but big chunks of the routine tasks on every desk. And a landmark Stanford/NBER study that year (Brynjolfsson, Li &amp; Raymond, "Generative AI at Work") found that workers given an AI assistant became about 14% more productive on average — with the biggest gains going to the least-experienced staff. But here\'s the pattern that matters: the smartest users don\'t ask AI to think <em>for</em> them. They use it to clear the low-value tasks <em>around</em> them, so they have time and energy for the thinking that counts.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">60–70%</span><span class="sl">of employee time goes on activities gen AI could help automate (McKinsey, 2023)</span></div><div class="hook-stat-mini"><span class="sv">14%</span><span class="sl">average productivity gain from an AI assistant — biggest for new staff (Brynjolfsson, Stanford/NBER 2023)</span></div><div class="hook-stat-mini"><span class="sv">0</span><span class="sl">skills gained by delegating tasks you still need to learn</span></div></div>',
     callout: 'But there\'s a hidden cost: skills you don\'t practise, you lose. Some tasks are boring for a reason — and the boredom is the practice.',
     sources: [
-      { label: 'McKinsey &amp; Company — "The state of AI in 2023: Generative AI\'s breakout year"', url: 'https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-in-2023-generative-ais-breakout-year' },
+      { label: 'McKinsey &amp; Company (2023) — "The economic potential of generative AI: the next productivity frontier"', url: 'https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier' },
       { label: 'Brynjolfsson, E., Li, D. &amp; Raymond, L. (Stanford/NBER, 2023) — "Generative AI at Work" (14% productivity uplift, concentrated on less-experienced workers)', url: 'https://www.nber.org/papers/w31161' }
     ]
   },
@@ -2126,7 +2126,7 @@ SLIDES_GCSE[116] = [
     body: 'Not every repetitive task is the same. The tasks below share three features: the output has a clear right shape, the thinking is procedural not creative, and a human would do it more slowly but not more accurately. These are AI\'s sweet spot — and the hours you reclaim here are hours for the tasks where only you can think.',
     bullets: [
       { term: 'Formatting and restructuring', def: 'Converting messy notes into a clean table, turning an essay into bullet points, reformatting a reference list for a specific style guide. Human attention adds nothing; AI is reliable.' },
-      { term: 'Translating between languages', def: 'Modern frontier models (GPT-5, Claude 4.6, Gemini 3.1 Pro) match or exceed Google Translate on GCSE-level French, German and Spanish in independent benchmarks.' },
+      { term: 'Translating between languages', def: 'Modern frontier models (the latest ChatGPT, Claude and Gemini) match or exceed Google Translate on GCSE-level French, German and Spanish in independent benchmarks.' },
       { term: 'First-draft generation', def: 'Emails, cover-letter skeletons, meeting summaries, revision-plan outlines. The AI gives you a starting point — you edit it into something real.' },
       { term: 'Summarising long documents', def: 'Claude handles 200k-token inputs natively — roughly a 500-page textbook in one prompt. Use it to compress, then read the original for the bits that matter.' },
       { term: 'Repetitive templates', def: 'Thank-you emails, revision-session plans, weekly schedules — anything where the pattern is fixed and only the details change.' },
@@ -2135,6 +2135,22 @@ SLIDES_GCSE[116] = [
     sources: [
       { label: 'Anthropic — Claude model documentation (200k-token context window)', url: 'https://docs.anthropic.com/en/docs/about-claude/models' }
     ]
+  },
+  {
+    type: 'widget',
+    widget: 'classify',
+    title: 'Automate, Do It Yourself, or Depends?',
+    intro: 'The test isn\'t "can AI do this?" — it\'s "should I let it?" Sort each task: automate the mechanical ones, do the examined skills yourself, and flag the ones where it depends entirely on how you use AI.',
+    categories: ['Automate it (low learning cost)', 'Do it yourself (a skill you\'re examined on)', 'Depends how you use it'],
+    items: [
+      { text: 'Reformatting your revision notes into a clean table', correct: 0, why: 'Automate. Pure formatting — AI is fast and accurate and you add nothing. Reclaim the time for actual revision.' },
+      { text: 'Generating flashcards from a chapter you\'ve already studied', correct: 0, why: 'Automate. The learning happened when you studied; making the cards is mechanical. (Then test yourself with them — that part is on you.)' },
+      { text: 'Writing your GCSE English Literature essay', correct: 1, why: 'Do it yourself. Writing under your own steam is exactly what the closed-book exam tests — and submitting AI-written work is malpractice under JCQ 2024.' },
+      { text: 'Solving your Maths homework problem set', correct: 1, why: 'Do it yourself. The struggle is the practice; outsource it and the skill never builds for the exam where there\'s no AI.' },
+      { text: 'Researching a coursework topic', correct: 2, why: 'Depends. Great for explaining ideas and pointing you to sources; dangerous if it invents references you don\'t verify, or if you paste its words in. You stay the author.' },
+      { text: 'Using AI while coding a project', correct: 2, why: 'Depends. Fine for explaining concepts and debugging your understanding; over the line if it writes the coursework code you then submit as your own.' }
+    ],
+    callout: 'If the task is on an exam you\'ll sit, do it yourself. If it\'s mechanical, automate it and reinvest the time. If it depends, the deciding question is always whether the thinking stays yours.'
   },
   {
     type: 'activity',
@@ -2151,7 +2167,7 @@ SLIDES_GCSE[116] = [
   {
     type: 'concept',
     title: 'The Hidden Cost of Automation',
-    body: 'Researchers call this "cognitive offloading" — moving mental work from your brain to a tool. Some offloading is fine and ancient (writing offloads memory; calculators offload arithmetic). Some quietly erodes skills you actually need. A 2025 Swiss study (Gerlich, Societies journal) found that university students with the highest frequency of ChatGPT use scored lowest on independent critical-thinking measures — the correlation was <em>r = −0.68</em>, which in social-science terms is very strong.',
+    body: 'Researchers call this "cognitive offloading" — moving mental work from your brain to a tool. Some offloading is fine and ancient (writing offloads memory; calculators offload arithmetic). Some quietly erodes skills you actually need. A 2025 Swiss study (Gerlich, Societies journal, 666 participants) found that the people with the highest frequency of ChatGPT use scored lowest on an independent critical-thinking measure (the Halpern Critical Thinking Assessment) — a strong negative correlation, most pronounced among younger participants.',
     bullets: [
       { term: 'Skills you don\'t practise, you lose', def: 'Writing, mental arithmetic, memory — regular use keeps them sharp. Brain imaging studies show taxi drivers\' hippocampi grow from navigation practice; the effect reverses when they stop (Maguire, UCL 2000).' },
       { term: 'Writing shapes thinking', def: 'Orwell\'s point in "Politics and the English Language": vague writing is vague thinking. Outsourcing writing often means outsourcing the thinking that writing forces you to do.' },
@@ -2180,7 +2196,7 @@ SLIDES_GCSE[116] = [
     type: 'discussion',
     title: 'Automation, Fairness &amp; Futures',
     questions: [
-      { num: 1, text: 'If AI can already do 29% of weekly knowledge-work tasks (McKinsey 2023), what does that mean for the jobs market you\'ll enter at 22? Are some careers at more risk than others — and how do you tell?' },
+      { num: 1, text: 'If gen AI could help automate a large share of routine knowledge-work tasks (McKinsey 2023), what does that mean for the jobs market you\'ll enter at 22? Are some careers at more risk than others — and how do you tell?' },
       { num: 2, text: 'A classmate says "I use AI for everything and my grades are fine". What would you say back — and what do you think will happen when the grade that matters is a closed-book exam paper?' },
       { num: 3, text: 'Is there a difference between automating a skill (like handwriting, since we all type) and automating a thinking process (like essay-writing)? Where is the line, and who gets to draw it?' }
     ]
