@@ -373,7 +373,7 @@ SLIDES_GCSE[103] = [
     bullets: [
       { term: 'Narrow AI (ANI)', def: 'Designed for one specific task. The chess AI knows nothing about language, cooking, or emotions — and never will. Every commercial AI product you\'ve ever used is narrow AI.' },
       { term: 'General AI (AGI)', def: 'Could do anything a human can — reason, learn new skills, adapt across domains. Does not exist yet. Opinions on timeline range from 5 years (Sam Altman, 2024) to never (Yann LeCun, Meta, 2024).' },
-      { term: 'Where we are', def: 'All current AI is narrow. Some (LLMs like GPT-5, Claude 4.6 and Gemini 3.1 Pro) is extraordinarily capable within the domain of "text processing and pattern completion" — broad enough to feel general at first glance. It isn\'t.' },
+      { term: 'Where we are', def: 'All current AI is narrow. Some (the latest LLMs from OpenAI, Anthropic and Google — ChatGPT, Claude and Gemini) is extraordinarily capable within the domain of "text processing and pattern completion" — broad enough to feel general at first glance. It isn\'t.' },
       { term: 'The gap', def: 'Even the most impressive AI chatbot can\'t tie its shoes, read a room, or learn from a single conversation the way a child can. Moravec\'s Paradox (1988) still holds: easy-for-humans is hard-for-AI and vice versa.' },
       { term: 'Why this matters to you', def: 'When someone says "AI will replace X job" — ask: is X narrow enough for current AI to master? Radiologist reading scans (narrow) is very different from nurse caring for patient (general).' }
     ],
@@ -381,6 +381,22 @@ SLIDES_GCSE[103] = [
       { label: 'Altman, S. — "The Intelligence Age" (Sep 2024)', url: 'https://ia.samaltman.com/' },
       { label: 'LeCun, Y. (Meta) — critique of LLMs as a path to AGI (2024 interviews)', url: 'https://www.lesswrong.com/posts/hzt9gHpNwA2oHtwKX/yann-lecun-on-agi-and-ai-safety' }
     ]
+  },
+  {
+    type: 'widget',
+    widget: 'classify',
+    title: 'Narrow or General? Spot the Difference',
+    intro: 'Every AI that exists today is narrow — superhuman at one thing, lost outside it. "General" AI (AGI) that could flex across any task the way a human does doesn\'t exist yet. For each capability below, decide: can today\'s narrow AI already do this, or would it need AGI that doesn\'t exist?',
+    categories: ['Today\'s narrow AI can do this', 'Would need AGI (doesn\'t exist)'],
+    items: [
+      { text: 'Beat the world champion at Go', correct: 0, why: 'Narrow AI — already done. DeepMind\'s AlphaGo beat Lee Sedol in 2016. A system built for one game, superhuman inside it, useless outside it.' },
+      { text: 'Flag a tumour on a chest scan as accurately as many radiologists', correct: 0, why: 'Narrow AI. Medical image classification is a well-defined, narrow task — exactly where today\'s AI shines. (It still runs alongside a doctor, not instead of one.)' },
+      { text: 'Learn to ride a bike one afternoon, then use that balance to skateboard the next day', correct: 1, why: 'Would need AGI. Transferring a skill learned in one body-task to a brand-new one is effortless for a child and beyond any current AI — this is the "transfer learning" gap.' },
+      { text: 'Write a fluent, passable essay on almost any topic', correct: 0, why: 'Narrow AI — surprisingly. A chatbot feels "general" here, but it\'s still operating in one domain: text pattern-completion. Broad-feeling, but narrow underneath. This is the trap the whole lesson is warning you about.' },
+      { text: 'Notice a friend has gone quiet, work out why, and decide whether to speak or just sit with them', correct: 1, why: 'Would need AGI. Reading a social situation, modelling another person\'s mind, and choosing how to act in an open-ended world is exactly the general intelligence no system has.' },
+      { text: 'Recommend the next video you\'re likely to watch', correct: 0, why: 'Narrow AI. A recommendation engine predicts one thing — what keeps you watching — from your past behaviour. Powerful, narrow, and already everywhere.' }
+    ],
+    callout: 'Notice the essay item: a chatbot can feel general because text covers so much — but it\'s still one narrow domain. The honest test for any "AI will do X" claim: is X narrow and well-defined (likely soon) or open-ended and cross-domain (still science fiction)?'
   },
   {
     type: 'concept',
