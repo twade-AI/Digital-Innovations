@@ -2469,7 +2469,7 @@ SLIDES_GCSE[119] = [
   {
     type: 'hook',
     title: 'Deepfakes & Synthetic Media',
-    body: 'In January 2024, thousands of US voters received robocalls from a fake AI-cloned voice of President Biden telling Democrats not to vote. The same month, a Hong Kong finance worker was tricked into transferring £20 million after a video call where every person on screen — including his CFO — was synthetic. Two days before Slovakia\'s 2023 election, an AI audio clip of an opposition leader "admitting" to rigging votes went viral during the legally mandated silence period when media couldn\'t respond. He lost.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">£20M</span><span class="sl">stolen via deepfake video call (Hong Kong, 2024)</span></div><div class="hook-stat-mini"><span class="sv">48hrs</span><span class="sl">before Slovakia\'s election — during legal media silence</span></div><div class="hook-stat-mini"><span class="sv">$6M</span><span class="sl">FCC fine for the Biden deepfake robocall</span></div><div class="hook-stat-mini"><span class="sv">38</span><span class="sl">countries targeted by election deepfakes in 2024</span></div></div>',
+    body: 'In January 2024, thousands of US voters received robocalls from a fake AI-cloned voice of President Biden telling Democrats not to vote. The same month, a Hong Kong finance worker was tricked into transferring £20 million after a video call where every person on screen — including his CFO — was synthetic. Two days before Slovakia\'s 2023 election, an AI audio clip of an opposition leader "admitting" to rigging votes went viral during the legally mandated silence period when media couldn\'t respond. He lost.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">£20M</span><span class="sl">stolen via deepfake video call (Hong Kong, 2024)</span></div><div class="hook-stat-mini"><span class="sv">48hrs</span><span class="sl">before Slovakia\'s election — during legal media silence</span></div><div class="hook-stat-mini"><span class="sv">$6M</span><span class="sl">FCC fine for the Biden deepfake robocall</span></div><div class="hook-stat-mini"><span class="sv">Dozens</span><span class="sl">of countries saw election deepfakes during the 2024 votes</span></div></div>',
     callout: 'Deepfakes don\'t need to be believed by everyone — they just need to cause enough doubt, at the right moment, for the damage to be done.',
     sources: [
       { label: 'CNN — Hong Kong finance worker scammed out of $25M in deepfake video call (Feb 2024)', url: 'https://edition.cnn.com/2024/02/04/asia/deepfake-cfo-scam-hong-kong-intl-hnk/index.html' },
@@ -2486,7 +2486,7 @@ SLIDES_GCSE[119] = [
       { term: 'Voice cloning', def: 'ElevenLabs, OpenAI\'s Voice Engine and open-source tools can clone a voice from 3–30 seconds of clean audio. The clone can then read any new script in that voice.' },
       { term: 'Text-to-video', def: 'OpenAI\'s Sora (2024) can generate up to a minute of photorealistic video from a text prompt — no source footage needed at all.' },
       { term: 'Skills barrier', def: 'The technology is now available to anyone with a browser. Many leading consumer deepfake tools require zero coding knowledge.' },
-      { term: 'The quality curve', def: 'In 2018, deepfakes were obviously fake to casual viewers. By 2024, professionally-made fakes fool most humans in controlled studies (MIT Media Lab 2023: 27% correct detection rate).' }
+      { term: 'The quality curve', def: 'In 2018, deepfakes were obviously fake to casual viewers. By 2024, professionally-made fakes fool people routinely — in a 15,000-person study (Groh et al., PNAS 2022) humans averaged just 66% accuracy at telling real from fake, barely better than a coin flip.' }
     ],
     sources: [
       { label: 'MIT Media Lab — Detect Fakes study (Groh et al. 2022, Proceedings of the National Academy of Sciences)', url: 'https://www.pnas.org/doi/10.1073/pnas.2110013119' }
@@ -2499,10 +2499,10 @@ SLIDES_GCSE[119] = [
     bullets: [
       { term: 'Reputation damage', def: 'Fake videos of real people saying things they never said — actors, journalists, teachers, classmates. Even after the fake is debunked, the image lingers.' },
       { term: 'Non-consensual intimate images', def: 'The most prevalent misuse: a 2023 Home Security Heroes study estimated 98% of deepfake videos online were non-consensual pornography, overwhelmingly targeting women. Now illegal in the UK under the Online Safety Act 2023.' },
-      { term: 'Political manipulation', def: 'Fake speeches and statements from politicians — Slovakia 2023, US primaries 2024. 38 countries saw election-related deepfakes in 2024 (Microsoft Threat Analysis Center).' },
+      { term: 'Political manipulation', def: 'Fake speeches and statements from politicians — Slovakia 2023, US primaries 2024. Dozens of countries holding elections in 2024 saw AI deepfakes, including the US, UK, France, Taiwan and Moldova (Microsoft Threat Analysis Center).' },
       { term: 'Fraud', def: 'Hong Kong £20M video-call scam (Feb 2024). CEO voice-clone scams have transferred millions. Deloitte forecasts deepfake fraud losses could reach $40bn by 2027.' },
       { term: 'Legal evidence', def: 'Courts and police must now verify whether footage is genuine — in 2023 Elon Musk\'s lawyers argued real footage of him might be a deepfake (the "liar\'s dividend" in a US court).' },
-      { term: 'Personal harassment', def: 'Increasingly used against school-age students — the UK saw its first reported case of a GCSE pupil being targeted with deepfake imagery in 2023.' }
+      { term: 'Personal harassment', def: 'Increasingly used against school-age students — UK schools have reported cases of pupils being targeted with deepfake imagery in recent years, which is why the law was tightened.' }
     ],
     sources: [
       { label: 'Home Security Heroes — 2023 State of Deepfakes Report', url: 'https://www.homesecurityheroes.com/state-of-deepfakes/' },
@@ -2535,6 +2535,22 @@ SLIDES_GCSE[119] = [
     callout: 'Important: high-quality deepfakes defeat these checks. Context and source matter more: who shared it? Can you find an established news source covering it?'
   },
   {
+    type: 'widget',
+    widget: 'classify',
+    title: 'What Actually Helps?',
+    intro: 'A suspicious video is spreading. The key lesson of this unit: verifying the source beats trying to "spot" the fake by eye. Sort each response into what actually helps versus what doesn\'t (or makes things worse).',
+    categories: ['✅ Actually helps', '❌ Unreliable or makes it worse'],
+    items: [
+      { text: 'Checking whether BBC, Reuters or other established outlets have covered the claim', correct: 0, why: 'Helps — this is "lateral reading", the single most reliable move. Credible outlets verify before they publish; if none are covering it, that\'s a major red flag.' },
+      { text: 'Checking when the posting account was created and what else it has posted', correct: 0, why: 'Helps. A days-old account with no history is a classic disinformation signal — judge the source before the content.' },
+      { text: 'Reverse-image or clip-searching the footage to see where it really came from', correct: 0, why: 'Helps. Tracing footage to its origin often reveals it\'s old, out of context, or stitched together — without you needing to "spot" anything.' },
+      { text: 'Studying the video for unnatural blinking or a blurry hairline', correct: 1, why: 'Unreliable. High-quality fakes defeat these tells, and humans average only ~66% accuracy spotting fakes — barely better than guessing.' },
+      { text: 'Running it through a free online deepfake detector and trusting the result', correct: 1, why: 'Unreliable. Free detectors manage only 65–85% accuracy — not good enough to bet your judgement on.' },
+      { text: 'Sharing it with a "possibly fake, sharing for discussion" caption', correct: 1, why: 'Makes it worse. Your caveat gets stripped as people screenshot and reshare, and you\'ve still amplified the fake to your followers.' }
+    ],
+    callout: 'The pattern: judging the SOURCE (who posted it, what credible outlets say, where the footage came from) beats judging the PIXELS every time. When in doubt, don\'t share — verify.'
+  },
+  {
     type: 'scenario',
     title: 'The Viral Video',
     situation: 'You have 3,500 followers on social media interested in local news. At 11pm, a video appears showing your local MP "admitting" to accepting bribes. It already has 400,000 views. Your friends are telling you to share it. The video looks convincing — good lighting, realistic voice. But the source account was created four days ago and has no other posts.',
@@ -2562,7 +2578,7 @@ SLIDES_GCSE[119] = [
     title: 'Trust, Truth and Democracy',
     questions: [
       { num: 1, text: 'The "liar\'s dividend" means real evidence can now be dismissed as "probably fake". Is that a worse threat than the fakes themselves? Who benefits from the doubt — and who suffers?' },
-      { num: 2, text: '38 countries saw election deepfakes in 2024. If free elections depend on voters being able to tell what\'s real, what would YOU want the UK to do before the next General Election? Who should enforce it?' },
+      { num: 2, text: 'Dozens of countries saw election deepfakes during the 2024 votes. If free elections depend on voters being able to tell what\'s real, what would YOU want the UK to do before the next General Election? Who should enforce it?' },
       { num: 3, text: 'The Online Safety Act makes sharing non-consensual intimate deepfakes illegal with up to 2 years imprisonment. Should the same apply to political deepfakes? What about "satire"? Where would you draw the line — and how would you write the law?' }
     ]
   },
@@ -2572,9 +2588,9 @@ SLIDES_GCSE[119] = [
     points: [
       { icon: '⚠️', label: 'Deepfakes are increasingly easy to make', text: 'free tools, no technical skills, from a single photo or 3 seconds of audio' },
       { icon: '⚖️', label: 'Non-consensual deepfakes are illegal in the UK', text: 'Online Safety Act 2023 — up to 2 years imprisonment' },
-      { icon: '🔍', label: 'Source verification beats visual spotting', text: 'MIT 2023: humans detect deepfakes only 27% of the time — check the SOURCE, not the pixels' },
+      { icon: '🔍', label: 'Source verification beats visual spotting', text: 'Groh et al. 2022: humans average only ~66% accuracy spotting fakes — barely better than guessing, so check the SOURCE, not the pixels' },
       { icon: '💸', label: 'Fraud scale is huge', text: 'Deloitte forecasts deepfake fraud losses hitting $40bn by 2027 — this is a major economic threat' },
-      { icon: '🗳️', label: 'Democratic threat is real', text: '38 countries targeted with election deepfakes in 2024 — legislation lags far behind the technology' },
+      { icon: '🗳️', label: 'Democratic threat is real', text: 'dozens of countries hit with election deepfakes during the 2024 votes — legislation lags far behind the technology' },
       { icon: '⏸️', label: 'The liar\'s dividend', text: 'deepfakes make ALL evidence less trusted — that\'s the real long-term harm to democracy and justice' }
     ]
   }
