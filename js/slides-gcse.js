@@ -2363,8 +2363,8 @@ SLIDES_GCSE[118] = [
   {
     type: 'hook',
     title: 'Prompt Engineering Challenge',
-    body: 'A 2023 Wharton Business School study split writers into three groups: no AI, AI without iteration, and AI with 3+ iterations. The result was startling. The zero-iteration group produced <strong>worse</strong> work than the no-AI group. The iteration group produced work rated <strong>40% higher</strong> than either. Translation: AI without iteration makes you worse. AI with deliberate iteration makes you dramatically better. Today you find out which group you\'re in.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">40%</span><span class="sl">higher quality with 3+ iterations</span></div><div class="hook-stat-mini"><span class="sv">Worse</span><span class="sl">than no AI at all: zero-iteration AI use</span></div><div class="hook-stat-mini"><span class="sv">$300K+</span><span class="sl">senior prompt engineer salaries at top AI firms</span></div></div>',
-    callout: 'Prompt engineering is a genuine professional skill increasingly valued by employers. You\'re building it right now.',
+    body: 'A landmark 2023 study (Dell\'Acqua et al., Harvard/BCG) gave 758 consultants real tasks — some using AI, some not. On tasks that suited AI, those using it produced work rated about <strong>40% higher quality</strong> and finished far faster. But on tasks beyond AI\'s reliable range — its "jagged frontier" — the people leaning on it did <strong>worse</strong> than those with no AI at all, because they trusted confident output that was wrong. The lesson is sharp: AI is a power tool, not a magic wand. Used on the right task, with your judgement steering it and deliberate iteration, it makes you dramatically better. Used blindly, it makes you worse. Today you practise being the first kind of user.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">≈40%</span><span class="sl">higher-quality work from people using AI on suitable tasks (Dell\'Acqua et al. 2023)</span></div><div class="hook-stat-mini"><span class="sv">Worse</span><span class="sl">than no AI — when used on tasks beyond its "jagged frontier"</span></div><div class="hook-stat-mini"><span class="sv">$300K+</span><span class="sl">what a "prompt engineer" could earn in 2023 — now a baseline skill across many jobs</span></div></div>',
+    callout: 'Prompt engineering is a genuine, learnable skill. Once a $300K+ job in its own right, it\'s now an everyday skill employers expect — and you\'re building it right now.',
     sources: [
       { label: 'Dell\'Acqua, F., McFowland III, E., Mollick, E. et al. — "Navigating the Jagged Technological Frontier" (Harvard Business School Working Paper 24-013, 2023)', url: 'https://www.hbs.edu/faculty/Pages/item.aspx?num=64700' },
       { label: 'Anthropic — "Anthropic hiring: Prompt Engineer & Librarian" ($280k–$375k listed salary range, 2023)', url: 'https://web.archive.org/web/20230503175334/https://jobs.lever.co/Anthropic/e3cde481-d446-460f-b628-a65b3cf3fa3e' },
@@ -2380,7 +2380,7 @@ SLIDES_GCSE[118] = [
       { term: 'Specify the exact output', def: 'Format, length, style, tone. "Under 250 words, numbered list, UK English, no jargon unless defined inline" — every constraint narrows and improves the response.' },
       { term: 'Anticipate problems', def: '"Don\'t include anything requiring university-level knowledge. If you need to use a technical term, define it in brackets." Good prompts pre-empt the failure modes you know the model has.' },
       { term: 'Build in quality checks', def: '"Flag anything you\'re not confident about with [check this]." This single line catches a large fraction of hallucinations before you commit to them.' },
-      { term: 'Iterate deliberately', def: 'Test it, see where it falls short, refine one variable at a time. Dell\'Acqua et al. 2023 showed 3–5 iterations is the productivity sweet spot — fewer leaves quality on the table; more loses time to diminishing returns.' },
+      { term: 'Iterate deliberately', def: 'Test it, see where it falls short, refine one variable at a time. The first answer is rarely the best — treat it as a draft and improve it until it does the job, usually over a few rounds, with diminishing returns after that.' },
       { term: 'Save what works', def: 'Keep a "prompt library" — Notes app, Google Keep, Claude Projects or ChatGPT custom GPTs. A reusable great prompt is compound interest on your time.' }
     ],
     sources: [
@@ -2417,7 +2417,7 @@ SLIDES_GCSE[118] = [
     title: 'Prompt Engineering &amp; the Future of Work',
     questions: [
       { num: 1, text: 'Is prompt engineering a genuine new skill or a short-term workaround that will disappear as AI gets better at understanding vague questions? What\'s the evidence for each view?' },
-      { num: 2, text: 'Senior prompt engineers at top AI firms were paid £200k–300k a year by 2024. If AI eventually prompts itself, what skill remains valuable — and is that what schools should be teaching?' },
+      { num: 2, text: '"Prompt engineer" was a £200k+ standalone job in 2023, but by 2026 it has largely faded into a skill expected of everyone. If AI keeps getting better at understanding vague questions, what skill remains valuable — and is that what schools should be teaching?' },
       { num: 3, text: 'You\'ve now been taught a complete Unit 3 toolkit: prompting (L113), evaluation (L114), creativity boundaries (L115), automation judgement (L116), tool selection (L117) and professional-level prompting (this lesson). Which of these six skills do you think will matter most in the career you\'re heading toward — and why?' }
     ]
   },
@@ -2431,7 +2431,7 @@ SLIDES_GCSE[118] = [
       'Accept the response — AI can\'t do better than its first answer'
     ],
     correct: 2,
-    explanation: 'Iteration is a core prompting skill. The first response is rarely the best. A specific follow-up that narrows the topic, requests a different format, or asks for examples usually produces a significantly more useful response than starting over or accepting a mediocre answer. Dell\'Acqua et al. (Wharton 2023) measured this: deliberate iteration produced output quality 40% above one-shot prompts.'
+    explanation: 'Iteration is a core prompting skill. The first response is rarely the best. A specific follow-up that narrows the topic, requests a different format, or asks for examples usually produces a significantly more useful response than starting over or accepting a mediocre answer.'
   },
   {
     type: 'summary',
@@ -2439,10 +2439,10 @@ SLIDES_GCSE[118] = [
     points: [
       { icon: '🏆', label: 'Prompting is a learnable skill', text: 'it improves with deliberate practice — same as chess, piano or coding' },
       { icon: '🎯', label: 'Role, Task, Context, Format, Constraint', text: 'your five levers — use them like a professional' },
-      { icon: '🔄', label: 'Always iterate', text: 'Wharton 2023: 3–5 iterations is the sweet spot; one-shot leaves value on the table' },
+      { icon: '🔄', label: 'Always iterate', text: 'the first answer is rarely the best — treat it as a draft and refine until it works' },
       { icon: '💾', label: 'Save your best prompts', text: 'compound interest on your time — a library of 10 great prompts saves hours every week' },
       { icon: '🚩', label: 'Build in quality checks', text: '"flag what you\'re unsure about" — catches hallucinations before they mislead you' },
-      { icon: '💼', label: 'This is a professional skill', text: 'increasingly valued across every industry — and it\'s only your GCSE that gets to teach it early' }
+      { icon: '💼', label: 'A skill, not just a job title', text: 'a high-paid niche role in 2023, now a baseline skill expected across many industries — and your GCSE teaches it early' }
     ]
   },
   {
@@ -2451,7 +2451,7 @@ SLIDES_GCSE[118] = [
     body: 'Three questions covering prompting, evaluation and creativity.',
     questions: [
       { q: 'Which five levers make up the anatomy of a strong prompt?', options: ['Length, formality, speed, topic, audience', 'Role / Task / Context / Format / Constraint', 'Question, fact, example, image, reference', 'Input, output, model, prompt, reply'], correct: 1, explanation: 'Role, Task, Context, Format, Constraint — the five levers taught in L113. You don\'t need all five every time, but the more precise you are, the less room for unhelpful guesses.' },
-      { q: 'Why did Wharton\'s 2023 "jagged frontier" study find that some AI users produced WORSE work than people with no AI at all?', options: ['The AI was broken', 'They accepted the first draft without iteration', 'They used the wrong model', 'They typed too fast'], correct: 1, explanation: 'Dell\'Acqua et al. found that zero-iteration AI use degraded output. The benefit only appeared with 3+ deliberate iterations.' },
+      { q: 'Why did the 2023 "jagged frontier" study (Dell\'Acqua et al.) find that some AI users produced WORSE work than people with no AI at all?', options: ['The AI was broken', 'They used AI on tasks beyond its reliable range and trusted confident but wrong output', 'They used the wrong model', 'They typed too fast'], correct: 1, explanation: 'AI helped a lot on tasks inside its capability ("the frontier") but hurt performance on tasks outside it — where the model produced confident, plausible, wrong output that users trusted. Knowing where that edge lies is the real skill.' },
       { q: 'Under current UK and US law, who owns the copyright on a purely AI-generated image?', options: ['The person who wrote the prompt', 'The AI company that made the model', 'Nobody — purely AI-generated images are generally not protected by copyright (per US Copyright Office guidance)', 'The first person to publish it online'], correct: 2, explanation: 'The US Copyright Office\'s March 2023 guidance and subsequent decisions are clear: human authorship is required. Minor prompt selection alone does not qualify.' }
     ]
   },
