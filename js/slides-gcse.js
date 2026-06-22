@@ -2010,7 +2010,7 @@ SLIDES_GCSE[115] = [
   {
     type: 'hook',
     title: 'AI and Creativity',
-    body: 'September 2022: Jason Allen enters "Théâtre D\'opéra Spatial" into the Colorado State Fair\'s fine art competition. It wins first place. Allen had generated it with Midjourney — an AI image tool. Artists were furious: "we should put a red X over all AI art." Allen refused to apologise: "I\'m not going back on my art." Meanwhile Getty Images is suing Stability AI for scraping 12 million photos without permission. The New York Times is suing OpenAI. The creative industry is in open war with AI companies — and every ruling sets precedent.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">12M+</span><span class="sl">images scraped by Stability AI, per Getty lawsuit</span></div><div class="hook-stat-mini"><span class="sv">$0</span><span class="sl">paid to artists whose work trained Midjourney</span></div><div class="hook-stat-mini"><span class="sv">2025</span><span class="sl">NYT v. OpenAI heading toward trial</span></div></div>',
+    body: 'September 2022: Jason Allen enters "Théâtre D\'opéra Spatial" into the Colorado State Fair\'s fine art competition. It wins first place. Allen had generated it with Midjourney — an AI image tool. Artists were furious: "we should put a red X over all AI art." Allen refused to apologise: "I\'m not going back on my art." Meanwhile Getty Images is suing Stability AI for scraping 12 million photos without permission. The New York Times is suing OpenAI. The creative industry is in open war with AI companies — and every ruling sets precedent.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">12M+</span><span class="sl">images scraped by Stability AI, per Getty lawsuit</span></div><div class="hook-stat-mini"><span class="sv">$0</span><span class="sl">paid to artists whose work trained Midjourney</span></div><div class="hook-stat-mini"><span class="sv">Ongoing</span><span class="sl">NYT v. OpenAI copyright suit (filed 2023) still in active litigation</span></div></div>',
     callout: 'This lesson explores what AI can create, what human creativity adds, and why the distinction matters.',
     sources: [
       { label: 'Roose, K. — "An A.I.-Generated Picture Won an Art Prize. Artists Aren\'t Happy." (The New York Times, 2 Sep 2022)', url: 'https://www.nytimes.com/2022/09/02/technology/ai-artificial-intelligence-artists.html' },
@@ -2024,12 +2024,12 @@ SLIDES_GCSE[115] = [
     title: 'What AI Can Create',
     body: 'In less than three years, generative AI has moved from producing surreal novelty images to winning (and losing) real creative prizes, scoring film roles, and headlining music streaming services. Here\'s the current landscape — and what each medium looks like in 2024–2025.',
     bullets: [
-      { term: 'Text', def: 'Articles, stories, poetry, scripts, code, song lyrics — at high volume and speed. ChatGPT, Claude, Gemini all near-indistinguishable from human prose on short tasks. 2024 Authors Guild survey: 70% of US novelists say AI has been trained on their books without consent.' },
+      { term: 'Text', def: 'Articles, stories, poetry, scripts, code, song lyrics — at high volume and speed. ChatGPT, Claude, Gemini all near-indistinguishable from human prose on short tasks. 2024 Authors Guild survey (2,400+ authors): 96% say a writer\'s consent should be required before their work trains AI; only 3% were okay with it.' },
       { term: 'Images', def: 'Photorealistic, artistic, illustrated, in any style — from a text description. Midjourney v6 (2024), DALL-E 3, Stable Diffusion. Reverse-search tools like "Have I Been Trained" let artists check whether their work is in training data.' },
       { term: 'Music', def: 'Original compositions in any genre, instruments, mood, tempo. Suno (2023) and Udio (2024) can produce full vocal tracks from one sentence. Universal Music sued Anthropic in 2023 over lyrics in training data.' },
       { term: 'Video', def: 'Short films and animations. OpenAI\'s Sora (2024 preview), Runway Gen-3 and Google\'s Veo show 30-second coherent clips. Hollywood\'s 2023 WGA and SAG-AFTRA strikes won historic AI limits in film and TV contracts.' },
-      { term: 'Voice', def: 'Cloned voices and synthetic speech indistinguishable from real people. ElevenLabs and Respeecher used legitimately in film (e.g. Vader in Obi-Wan Kenobi). Misused for deepfake scams costing UK consumers £27m in 2023 (Action Fraud).' },
-      { term: 'Code', def: 'GitHub Copilot and Claude Code write working software from English descriptions. GitHub 2024: over 1.3M paying developers, $100m+ annual revenue, 55% of user code accepted with AI assist.' }
+      { term: 'Voice', def: 'Cloned voices and synthetic speech indistinguishable from real people. ElevenLabs and Respeecher used legitimately in film (e.g. Vader in Obi-Wan Kenobi). Also misused for fraud — a 2024 crypto deepfake scam cost 6,000+ UK and Canadian victims around £27m.' },
+      { term: 'Code', def: 'GitHub Copilot and Claude Code write working software from English descriptions. GitHub 2024: over 1.3M paying developers and $100m+ annual revenue, with developers reporting they complete tasks up to 55% faster using it.' }
     ],
     sources: [
       { label: 'WGA 2023 tentative agreement — AI terms', url: 'https://www.wga.org/contracts/contracts/mba/summary-of-the-2023-wga-mba' },
@@ -2047,7 +2047,7 @@ SLIDES_GCSE[115] = [
       'Real risk: if AI produces "good enough" content at near-zero marginal cost, what happens to entry-level creative jobs that used to pay new graduates?',
       'Emerging compromise: "human-in-the-loop" workflows where AI drafts and humans direct, edit, and take responsibility — now standard at most major ad agencies'
     ],
-    callout: 'In 2024, Grimes offered a 50/50 royalty split on any song using her AI-cloned voice — a model for consent-based collaboration that others may follow.'
+    callout: 'In 2023, Grimes offered a 50/50 royalty split on any song using her AI-cloned voice — a model for consent-based collaboration that others may follow.'
   },
   {
     type: 'scenario',
@@ -2059,6 +2059,22 @@ SLIDES_GCSE[115] = [
       { text: 'Be honest: under current UK/US law, purely AI-generated images can\'t be copyrighted. Suggest paying an illustrator for the core hero images and using AI for secondary assets.', outcome: 'The brand gets legally-protected hero artwork and uses AI where protection doesn\'t matter. The owner respects your honesty. You become the person they ask about every AI decision going forward.' },
       { text: 'Add significant human edits — recolouring, compositing, hand-drawn elements — to create a "human authorship" claim.', outcome: 'The US Copyright Office has granted partial copyright where humans made "sufficient creative contributions." You document your process carefully. The protection is partial but legitimate — a real-world workaround used by working illustrators.' }
     ]
+  },
+  {
+    type: 'widget',
+    widget: 'classify',
+    title: 'Copyright-Protected or Not?',
+    intro: 'Courts in the UK and US draw the line at human authorship: the more genuine creative choices a person makes (and can evidence), the more protection there is. Purely AI-generated work has no human author — and no copyright. Sort each one.',
+    categories: ['✅ Copyright can protect it', '❌ No copyright (purely AI-generated)'],
+    items: [
+      { text: 'A photo you took yourself on your phone', correct: 0, why: 'Protected. Straightforward human authorship — you made the creative choices, so copyright is yours.' },
+      { text: 'A song a human band wrote and recorded', correct: 0, why: 'Protected. Human creative authorship throughout the writing and recording.' },
+      { text: 'An AI-generated image you then significantly repainted, composited and altered by hand', correct: 0, why: 'Protected in part. The US Copyright Office grants protection for the human creative contributions you can document — the workaround working illustrators actually use.' },
+      { text: 'A comic where AI made the pictures, but you wrote the story, chose and arranged every panel and edited the text', correct: 0, why: 'Protected in part. This is the real "Zarya of the Dawn" case (2023): the human-authored text and the arrangement were protected; the raw AI images were not.' },
+      { text: 'An image generated from a single Midjourney prompt and used as-is', correct: 1, why: 'No copyright. The UK IPO and US Copyright Office agree: a pure prompt-to-output image has no human author, so a competitor could legally copy it.' },
+      { text: 'A full short story produced by ChatGPT from "write me a thriller"', correct: 1, why: 'No copyright. No human authored the actual expression, so there is nothing to protect — however good it reads.' }
+    ],
+    callout: 'The line the courts draw is human authorship. Pure prompt-to-output has no author and no protection; the more real creative choices you make and can evidence, the more copyright you hold.'
   },
   {
     type: 'discussion',
