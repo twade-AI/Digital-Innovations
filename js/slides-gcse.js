@@ -4698,20 +4698,20 @@ SLIDES_GCSE[137] = [
     ]
   },
   {
-    type: 'activity',
-    title: 'Is There a Greener Alternative? (Write First, Then Reveal)',
-    task: 'For each situation, decide whether a large AI model is genuinely the right tool — or whether a "greener alternative" (a calculator, a search, your own brain, a smaller tool) would do the job with a fraction of the cost. Write your call and reasoning before revealing.',
-    steps: [
-      'Working out 17 × 23',
-      'Looking up the capital of Peru',
-      'Brainstorming ten title ideas for a creative-writing piece',
-      'Generating a photorealistic image just to see if you can',
-      'Checking the spelling of a word you\'re unsure about'
+    type: 'widget',
+    widget: 'classify',
+    title: 'Is There a Greener Alternative?',
+    intro: 'A large AI model is not free — every prompt has a real energy and water cost. For each task, decide whether a "greener alternative" (a calculator, a search, your own brain, a lighter tool) would do the job, or whether a large model is genuinely a reasonable fit.',
+    categories: ['🌱 Greener alternative exists', '🤖 AI is a reasonable fit'],
+    items: [
+      { text: 'Working out 17 × 23', correct: 0, why: 'Greener. A calculator is instant and near-zero cost — firing up a large model for arithmetic is wild overkill.' },
+      { text: 'Looking up the capital of Peru', correct: 0, why: 'Greener. A standard search, or your own memory, does it — a generative model is unnecessary here.' },
+      { text: 'Checking the spelling of a word you\'re unsure about', correct: 0, why: 'Greener. A spell-checker or dictionary does the job for a fraction of the cost.' },
+      { text: 'Generating a photorealistic image "just to see if you can"', correct: 0, why: 'Greener — i.e. don\'t. Image generation is among the most energy-hungry AI tasks, and the "just to see" case is exactly the avoidable cost.' },
+      { text: 'Brainstorming ten title ideas for a creative-writing piece', correct: 1, why: 'AI is a reasonable fit. Open-ended ideation is genuinely what large models are good at — a fair use of the resource.' },
+      { text: 'Summarising a 30-page report you actually need to act on', correct: 1, why: 'AI is a reasonable fit — a real time-saver on a substantial task. Just verify the summary before you rely on it.' }
     ],
-    reveal: '<strong>Greener alternatives:</strong> (1) A calculator — instant, near-zero cost; a large model is wild overkill. (2) A standard search or your memory — a generative model is unnecessary. (3) AI is a reasonable fit here — open-ended ideation is what it is good at. (4) The "just to see if I can" case is exactly the avoidable cost; image generation is among the most energy-hungry uses. (5) A spell-checker or dictionary beats a large model. The habit: AI is not free, so reach for the lightest tool that does the job.',
-    sources: [
-      { label: 'AILit Framework (OECD/EU 2026) — Engage with AI 5: "is there a greener alternative?"', url: 'https://doi.org/10.1787/65cd27d4-en' }
-    ]
+    callout: 'The habit AILit asks for: AI is not free, so reach for the lightest tool that does the job. Save the big models for the tasks where they genuinely earn their footprint.'
   },
   {
     type: 'scenario',
