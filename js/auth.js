@@ -57,7 +57,12 @@ async function fetchDynamicNews() {
     if (res.error || !res.data || !res.data.length) return;
     // Prepend dynamic articles to the front of AI_NEWS
     var newItems = res.data.map(function(n) {
-      return { headline: n.headline, source: n.source, date: n.date, tag: n.tag || 'tools', url: n.url || '' };
+      var item = { headline: n.headline, source: n.source, date: n.date, tag: n.tag || 'tools', url: n.url || '' };
+      // Give teacher picks a precise date so recent ones appear in the live
+      // (last-20-days) feed rather than the historical milestones block.
+      var stamp = n.created_at || n.iso || null;
+      if (stamp) { var d = new Date(stamp); if (!isNaN(d)) item.iso = d.toISOString().slice(0, 10); }
+      return item;
     });
     newItems.forEach(function(item) {
       // Avoid duplicates

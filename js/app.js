@@ -3270,23 +3270,52 @@ function renderStreakHeatmap() {
 }
 
 /* ── News Ticker ─────────────────────────────────── */
-/* Merge auto-fetched headlines (js/news-live.js — regenerated weekly
-   by the update-news GitHub Action) into the curated AI_NEWS list.
-   Reverse order so the newest live item ends up first. */
-(function mergeLiveNews() {
-  if (typeof AI_NEWS_LIVE === 'undefined' || typeof AI_NEWS === 'undefined') return;
-  for (var i = AI_NEWS_LIVE.length - 1; i >= 0; i--) {
-    var item = AI_NEWS_LIVE[i];
-    var exists = AI_NEWS.some(function(n) { return n.headline === item.headline; });
-    if (!exists) AI_NEWS.unshift(item);
+/* The "AI in the News" feed has two parts:
+     • Live feed — auto-fetched stories (js/news-live.js, regenerated weekly
+       by the update-news Action) plus teacher picks, shown ONLY for the last
+       NEWS_WINDOW_DAYS. If nothing is that recent we fall back to the most
+       recent few so the feed is never empty.
+     • Key milestones — the curated, evergreen historical entries (AI_NEWS in
+       data.js), which have no precise date and are shown as a separate block.
+   An item counts as "live" when it carries an `iso` (YYYY-MM-DD) date:
+   auto-fetched items always do, and teacher picks get one from created_at. */
+var NEWS_WINDOW_DAYS = 20;
+var NEWS_FALLBACK_COUNT = 6;
+
+function _newsIsoTime(n) {
+  if (!n || !n.iso) return NaN;
+  var t = Date.parse(n.iso);
+  return isNaN(t) ? NaN : t;
+}
+
+function buildNewsPools() {
+  var live = [], milestones = [], seen = {};
+  function add(n) {
+    if (!n || !n.headline || seen[n.headline]) return;
+    seen[n.headline] = true;
+    if (!isNaN(_newsIsoTime(n))) live.push(n);
+    else milestones.push(n);
   }
-})();
+  // Auto-fetched first, then curated + teacher picks (AI_NEWS).
+  if (typeof AI_NEWS_LIVE !== 'undefined') AI_NEWS_LIVE.forEach(add);
+  if (typeof AI_NEWS !== 'undefined') AI_NEWS.forEach(add);
+
+  live.sort(function(a, b) { return _newsIsoTime(b) - _newsIsoTime(a); });
+  var cutoff = Date.now() - NEWS_WINDOW_DAYS * 86400000;
+  var recent = live.filter(function(n) { return _newsIsoTime(n) >= cutoff; });
+  var usingFallback = recent.length === 0 && live.length > 0;
+  var feed = recent.length ? recent : live.slice(0, NEWS_FALLBACK_COUNT);
+  return { feed: feed, milestones: milestones, liveAll: live, usingFallback: usingFallback };
+}
 
 function renderNewsTicker() {
   var track = document.getElementById('tickerTrack');
-  if (!track || typeof AI_NEWS === 'undefined') return;
+  if (!track) return;
+  var pools = buildNewsPools();
+  var source = pools.feed.concat(pools.milestones);
+  if (!source.length) return;
   var tagColors = { policy:'#9b1844', research:'#009fe3', tools:'#22c55e', industry:'#f59e0b', ethics:'#ef4444', health:'#ec4899' };
-  var items = AI_NEWS.map(function(n) {
+  var items = source.map(function(n) {
     var col = tagColors[n.tag] || '#9b1844';
     var inner = '<span class="ticker-tag" style="background:' + col + '22;color:' + col + '">' + n.tag + '</span>' +
       n.headline +
@@ -3320,10 +3349,11 @@ function buildNewsCard(n) {
 }
 
 function renderNewsSection() {
-  // Home teaser — 4 cards, no filter
+  var pools = buildNewsPools();
+  // Home teaser — top 4 of the live feed
   var teaser = document.getElementById('latestNewsGrid');
-  if (teaser && typeof AI_NEWS !== 'undefined') {
-    teaser.innerHTML = AI_NEWS.slice(0, 4).map(buildNewsCard).join('');
+  if (teaser) {
+    teaser.innerHTML = pools.feed.slice(0, 4).map(buildNewsCard).join('');
   }
   // Full news page
   renderFullNewsGrid();
@@ -3331,17 +3361,42 @@ function renderNewsSection() {
 
 function renderFullNewsGrid() {
   var el = document.getElementById('fullNewsGrid');
-  if (!el || typeof AI_NEWS === 'undefined') return;
-  var filtered = _newsTagFilter === 'all' ? AI_NEWS : AI_NEWS.filter(function(n) { return n.tag === _newsTagFilter; });
-  el.innerHTML = filtered.map(buildNewsCard).join('');
+  if (!el) return;
+  var pools = buildNewsPools();
+
+  // Fallback / empty-state note
+  var note = document.getElementById('newsFeedNote');
+  if (note) {
+    if (pools.usingFallback) {
+      note.innerHTML = '<div class="news-feed-note">No stories in the last ' + NEWS_WINDOW_DAYS +
+        ' days — showing the most recent instead.</div>';
+    } else if (!pools.feed.length) {
+      note.innerHTML = '<div class="news-feed-note">No recent stories yet — check back soon.</div>';
+    } else {
+      note.innerHTML = '';
+    }
+  }
+
+  // Live feed (tag-filtered)
+  var feed = _newsTagFilter === 'all' ? pools.feed : pools.feed.filter(function(n) { return n.tag === _newsTagFilter; });
+  el.innerHTML = feed.map(buildNewsCard).join('') ||
+    '<p style="color:var(--text-dim);grid-column:1/-1;padding:8px 0">No stories match this filter.</p>';
+
+  // Key milestones (curated historical — always shown, unfiltered)
+  var ms = document.getElementById('milestonesGrid');
+  if (ms) ms.innerHTML = pools.milestones.map(buildNewsCard).join('');
+  var msSection = document.getElementById('milestonesSection');
+  if (msSection) msSection.style.display = pools.milestones.length ? '' : 'none';
+
   renderNewsTagFilters();
   renderNewsStaleness();
 }
 
 function renderNewsTagFilters() {
   var el = document.getElementById('newsTagFilters');
-  if (!el || typeof AI_NEWS === 'undefined') return;
-  var tags = ['all'].concat(Array.from(new Set(AI_NEWS.map(function(n) { return n.tag; }))).sort());
+  if (!el) return;
+  var feed = buildNewsPools().feed;
+  var tags = ['all'].concat(Array.from(new Set(feed.map(function(n) { return n.tag; }))).sort());
   el.innerHTML = tags.map(function(t) {
     var active = t === _newsTagFilter ? ' active' : '';
     return '<button class="news-tag-btn' + active + '" onclick="setNewsTagFilter(\'' + t + '\')">' + (t === 'all' ? 'All' : t) + '</button>';
@@ -3357,17 +3412,13 @@ function setNewsTagFilter(tag) {
 var _newsLastFetched = null; // set by auth.js after successful Supabase pull
 
 function _parseMostRecentNewsDate() {
-  if (typeof AI_NEWS === 'undefined' || !AI_NEWS.length) return null;
-  var MON = { Jan:0, Feb:1, Mar:2, Apr:3, May:4, Jun:5, Jul:6, Aug:7, Sep:8, Oct:9, Nov:10, Dec:11 };
+  // Most recent precise (iso-dated) live story.
+  var pools = buildNewsPools();
   var best = null;
-  AI_NEWS.forEach(function(n) {
-    if (!n.date) return;
-    var parts = n.date.split(' ');
-    if (parts.length < 2) return;
-    var mon = MON[parts[0]];
-    var yr  = parseInt(parts[1], 10);
-    if (mon === undefined || isNaN(yr)) return;
-    var d = new Date(yr, mon, 1); // first day of that month
+  pools.liveAll.forEach(function(n) {
+    var t = _newsIsoTime(n);
+    if (isNaN(t)) return;
+    var d = new Date(t);
     if (!best || d > best) best = d;
   });
   return best;
@@ -3382,10 +3433,10 @@ function renderNewsStaleness() {
   var now        = new Date();
   var daysSince  = Math.floor((now - mostRecent) / 86400000);
   var monNames   = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  var dateLabel  = monNames[mostRecent.getMonth()] + ' ' + mostRecent.getFullYear();
+  var dateLabel  = monNames[mostRecent.getMonth()] + ' ' + mostRecent.getDate() + ', ' + mostRecent.getFullYear();
 
   var html = '<div class="news-freshness-bar">';
-  if (daysSince > 60) {
+  if (daysSince > NEWS_WINDOW_DAYS) {
     html += '<span class="news-stale-warn"><svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-4a1 1 0 00-1 1v2a1 1 0 002 0V10a1 1 0 00-1-1z"/></svg>' +
              'Feed may be outdated — most recent article: <strong>' + dateLabel + '</strong>. The weekly auto-update may need attention (Actions → Update AI News).</span>';
   } else {

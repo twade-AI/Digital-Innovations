@@ -19,9 +19,9 @@ const FEEDS = [
 ];
 
 const AI_WORDS = /\b(AI|artificial intelligence|machine learning|neural|LLM|chatbot|ChatGPT|OpenAI|DeepMind|Anthropic|Claude|Gemini|Copilot|deepfake|algorithm)\b/i;
-const MAX_ITEMS = 12;
+const MAX_ITEMS = 15;
 const MAX_PER_SOURCE = 4;
-const MAX_AGE_DAYS = 45;
+const MAX_AGE_DAYS = 30; // fetch a 30-day buffer; the site displays only the last 20 days (rest is a fallback pool)
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
 function decode(s) {
@@ -97,6 +97,7 @@ const fresh = all
     headline: i.headline.slice(0, 160),
     source: i.source,
     date: MONTHS[i.when.getMonth()] + ' ' + i.when.getFullYear(),
+    iso: i.when.toISOString().slice(0, 10),
     tag: tagFor(i.headline),
     url: i.url,
   }));
