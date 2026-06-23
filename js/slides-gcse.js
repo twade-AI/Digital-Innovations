@@ -1299,7 +1299,7 @@ SLIDES_GCSE[109] = [
       'Because AI explanations are more reliable than a textbook, so you learn the correct answer either way'
     ],
     correct: 2,
-    explanation: 'Retrieval practice (the testing effect) works because the effort of struggling to remember something strengthens the memory trace. Re-reading is passive — you recognise information without having to retrieve it, which creates an illusion of fluency. Option B is the seductive wrong answer: the "familiarity vs. recall" distinction is real, but it\'s a side-effect, not the mechanism — the mechanism is the effort of retrieval. Options A and D both sound plausible but mix up properties of the tool (question difficulty, explanation accuracy) with the underlying learning science. Getting a question wrong and learning the right answer is especially powerful for long-term retention — this is called error-driven learning.'
+    explanation: 'Retrieval practice (the testing effect) works because the effort of struggling to remember something strengthens the memory trace. Re-reading is passive — you recognise information without having to retrieve it, which creates an illusion of fluency. The "it makes notes feel familiar" answer is the seductive wrong one: the familiarity-vs-recall distinction is real, but it\'s a side-effect, not the mechanism — the mechanism is the effort of retrieval. The answers about AI questions being "always harder" or AI explanations being "more reliable than a textbook" mix up properties of the tool (question difficulty, explanation accuracy) with the underlying learning science. Getting a question wrong and learning the right answer is especially powerful for long-term retention — this is called error-driven learning.'
   },
   {
     type: 'summary',
@@ -1428,7 +1428,7 @@ SLIDES_GCSE[110] = [
       'Memorise an AI-generated model answer to reproduce in the exam'
     ],
     correct: 2,
-    explanation: 'Drafting the plan yourself protects your own voice and your own thinking — the things the exam actually measures. Asking AI to critique against specific AOs (AO1/AO2/AO3) and mark weightings turns a generic chatbot into a subject-aligned examiner, which is exactly the feedback that lifts grades. Options A and B cross the JCQ 2024 line on submitted AI-generated work; option D produces brittle, instantly-recognisable exam prose that examiners have been briefed to flag.'
+    explanation: 'Drafting the plan yourself protects your own voice and your own thinking — the things the exam actually measures. Asking AI to critique against specific AOs (AO1/AO2/AO3) and mark weightings turns a generic chatbot into a subject-aligned examiner, which is exactly the feedback that lifts grades. Pasting the question and submitting the AI\'s answer, or having AI rewrite your whole essay, both cross the JCQ 2024 line on submitted AI-generated work; memorising an AI model answer produces brittle, instantly-recognisable exam prose that examiners have been briefed to flag.'
   },
   {
     type: 'summary',
@@ -1568,7 +1568,7 @@ SLIDES_GCSE[111] = [
       'Asking AI to invent three scholarly citations to strengthen your argument — the names sound impressive'
     ],
     correct: 2,
-    explanation: 'JCQ 2024 permits limited AI use for learning support provided it is declared and the submitted work is substantively the pupil\'s own. Option A substitutes the AI\'s voice for yours (polishing crosses the authorship line) and is undeclared. Option B is direct plagiarism. Option D compounds plagiarism with hallucination risk — fabricated citations are the single most common LLM hallucination type (Schwartz v. Avianca 2023 is the textbook case). Option C is the honest, safe protocol.'
+    explanation: 'JCQ 2024 permits limited AI use for learning support provided it is declared and the submitted work is substantively the pupil\'s own. Using AI to quiz yourself and improve your OWN draft, with the use declared, is the honest, safe protocol. Getting AI to "make it sound more sophisticated" and submitting that substitutes the AI\'s voice for yours and is undeclared; submitting the first AI answer to the question is direct plagiarism; and asking AI to invent scholarly citations adds hallucination risk on top — fabricated citations are the single most common LLM hallucination type (Schwartz v. Avianca 2023 is the textbook case).'
   },
   {
     type: 'summary',
@@ -4333,7 +4333,7 @@ SLIDES_GCSE[134] = [
       'An agent runs locally on your device; a chatbot runs in the cloud.'
     ],
     correct: 1,
-    explanation: 'The architectural difference is tools + loop, not model size. The same underlying Claude or GPT model powers both — what makes it an agent is that it\'s wired up to observe → think → ACT → observe again. That\'s why the safety questions change: a chatbot can be wrong, but an agent can be wrong AND do something about it before you ever see. Option A is seductive because agents <em>feel</em> smarter, but the model behind them is often the same one you chat with.'
+    explanation: 'The architectural difference is tools + loop, not model size. The same underlying Claude or GPT model powers both — what makes it an agent is that it\'s wired up to observe → think → ACT → observe again. That\'s why the safety questions change: a chatbot can be wrong, but an agent can be wrong AND do something about it before you ever see. The "it\'s a bigger, smarter model" answer is seductive because agents <em>feel</em> smarter, but the model behind them is often the same one you chat with.'
   },
 
   {
@@ -4346,7 +4346,7 @@ SLIDES_GCSE[134] = [
       'AI is bad for society and they should avoid it.'
     ],
     correct: 1,
-    explanation: 'The "human in the loop at irreversible steps" principle is the whole game. Reading email is reversible. Sending email isn\'t. Option A sounds reasonable but leads to "I\'ll do it once the tech matures" — which is a way of never deciding. Option B is specific, actionable, and leaves room for legitimate use (drafts, filtering, summarising) while cutting off the genuinely costly failure mode.'
+    explanation: 'The "human in the loop at irreversible steps" principle is the whole game. Reading email is reversible. Sending email isn\'t. The "agents are too new" answer sounds reasonable but leads to "I\'ll do it once the tech matures" — a way of never deciding. The strongest reason is specific and actionable: irreversible actions (like sending real messages) deserve per-action human approval, which still leaves room for legitimate use (drafts, filtering, summarising) while cutting off the genuinely costly failure mode.'
   },
 
   {
