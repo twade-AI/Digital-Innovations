@@ -3421,11 +3421,30 @@ SLIDES_GCSE[127] = [
     body: 'Data, on its own, sounds abstract. The risks become concrete when you look at how it\'s been misused — and how often the people affected never find out. These five risks appear repeatedly in ICO enforcement actions, academic studies and investigative journalism.',
     bullets: [
       { term: 'Profiling', def: 'Building a detailed picture of you — your politics, health, finances, sexual orientation — often inferred from signals you didn\'t realise were revealing. Cambridge Analytica (Facebook, 2018) showed 270,000 people\'s consent could be used to profile 87 million.' },
-      { term: 'Manipulation', def: 'Using your profile to show targeted ads, political content, or emotionally manipulative material. Research at Cambridge (2015) showed psychologically targeted ads convert up to 40% better than non-targeted.' },
+      { term: 'Manipulation', def: 'Using your profile to show targeted ads, political content, or emotionally manipulative material. Matz et al. (PNAS 2017) found psychologically targeted ads got up to 40% more clicks and 50% more purchases than untargeted ones.' },
       { term: 'Data breaches', def: 'Your data sold or leaked — especially serious if it includes health, biometric or children\'s data. 23andMe\'s 2023 breach exposed ~7 million users\' genetic data.' },
       { term: 'Function creep', def: 'Data collected for one purpose quietly used for another. Loyalty card data originally "for offers" has been sold to insurers, landlords and police in multiple documented cases.' },
       { term: 'Surveillance', def: 'Location and behavioural data used to monitor movements and activities — including by governments, employers (increasingly via "workplace productivity" software) and stalkers.' }
+    ],
+    sources: [
+      { label: 'Matz, S. et al. (PNAS 2017) — Psychological targeting as an effective approach to digital mass persuasion', url: 'https://www.pnas.org/doi/10.1073/pnas.1710966114' }
     ]
+  },
+  {
+    type: 'widget',
+    widget: 'classify',
+    title: 'How Risky Is This Data If It Leaks?',
+    intro: 'Not all personal data is equal. Some you can change if it leaks; some you can\'t; and some quietly reveals far more than it seems. Sort each type by how serious a leak would be.',
+    categories: ['🔴 High-stakes — hard or impossible to undo', '🟡 Lower-stakes — changeable or trivial'],
+    items: [
+      { text: 'Your fingerprint or face scan', correct: 0, why: 'High-stakes. Biometric data is "special category" under UK GDPR — if it leaks you can never change your face, unlike a password.' },
+      { text: 'Your precise location history over months', correct: 0, why: 'High-stakes. It reveals your home, workplace, health-clinic visits, relationships and routines — the Strava case showed how revealing these patterns are.' },
+      { text: 'Your genetic data from a DNA test', correct: 0, why: 'High-stakes. Genetic data is permanent and also exposes your relatives. 23andMe\'s 2023 breach hit around 7 million people.' },
+      { text: 'Your behavioural profile — what you pause on, what makes you scroll', correct: 0, why: 'High-stakes. It builds an intimate psychological profile used to target and influence you — arguably more revealing than anything you\'d write about yourself.' },
+      { text: 'A password to one account', correct: 1, why: 'Lower-stakes by comparison. Serious if you reuse it, but you can change a password in seconds — you can\'t change your face or DNA.' },
+      { text: 'Your favourite film or colour', correct: 1, why: 'Lower-stakes. Trivial on its own — though remember, even small signals can combine into a profile over time.' }
+    ],
+    callout: 'The pattern: biometric, genetic, location and behavioural data are high-stakes because they\'re permanent, deeply revealing, or both — which is exactly why GDPR gives "special category" data extra protection. A leaked password you can change; a leaked face you cannot.'
   },
   {
     type: 'activity',
@@ -3446,7 +3465,7 @@ SLIDES_GCSE[127] = [
     bullets: [
       { term: 'What Clearview did', def: 'Built a database of ~30bn faces by scraping public social media profiles, then sold access to police and private companies' },
       { term: 'How it worked', def: 'Upload any photo of a face → the tool returns matching photos from across the web, with links to profiles and names' },
-      { term: 'UK ICO ruling (2022)', def: 'Fined Clearview £7.5m and ordered it to delete UK residents\' data — even though the company has no UK office' },
+      { term: 'UK ICO ruling — and the legal fight', def: 'The ICO fined Clearview £7.5m in 2022 and ordered deletion of UK residents\' data. Clearview won an appeal in 2023 (jurisdiction), but in 2025 the Upper Tribunal reinstated the ICO\'s power to fine it — and the case is still being fought. AI law is being decided in real time.' },
       { term: 'Other rulings', def: 'Italy, France, Greece and Australia have all ruled the practice unlawful. The EU classed "untargeted scraping" as banned under the 2024 AI Act.' },
       { term: 'Why it matters to you', def: 'Any photo of you on a public account can become part of systems like this. You never consented — and the system operates whether or not you know it exists.' }
     ],
