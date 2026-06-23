@@ -3540,7 +3540,7 @@ SLIDES_GCSE[128] = [
     bullets: [
       { term: 'EU', def: 'Risk-based rules, serious fines, human rights focused. Slowest to adapt but most comprehensive protection.' },
       { term: 'USA (post-2025)', def: 'Deregulated approach under Trump — prioritise US AI competitiveness over consumer protection rules.' },
-      { term: 'UK', def: '£14bn investment plan, no AI-specific law yet — existing regulators apply current law until new legislation passes.' },
+      { term: 'UK', def: '£14bn investment plan, no comprehensive AI law yet — existing regulators (ICO, Ofcom, FCA) apply current law. A broader AI bill is expected after the 2026 King\'s Speech, following the government\'s Oct 2025 "Blueprint for AI regulation".' },
       { term: 'China', def: 'Deepfake labelling rules, generative AI measures — strict controls on content, but state deploys AI extensively for surveillance.' }
     ]
   },
