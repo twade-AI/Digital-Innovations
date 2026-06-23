@@ -556,7 +556,7 @@ var SLIDES_CRITICAL = {
       type: 'summary',
       title: 'Key Takeaways',
       points: [
-        { icon: '▸', label: 'AI is already reshaping elections', text: 'Recorded Future documented AI interference in 38 countries in 2024 — but Harvard found cheap fakes were 7× more common than AI deepfakes. The threat is real and broader than the headlines suggest.' },
+        { icon: '▸', label: 'AI is already reshaping elections', text: 'AI election interference was documented across dozens of countries during the 2024 votes — but researchers (including Harvard\'s Ash Center) found crude "cheap fakes" were still more common than sophisticated AI deepfakes. The threat is real and broader than the headlines suggest.' },
         { icon: '▸', label: 'Enforcement is possible but reactive', text: 'The FCC banned AI robocalls and fined the Biden deepfake consultant $6M — using existing law. The EU AI Act and DSA require transparency. The UK has no equivalent. Creative use of existing law works, but only after damage is done.' },
         { icon: '▸', label: 'Pre-bunking beats debunking', text: 'Teaching critical evaluation before encountering manipulation is more effective than correcting afterwards. The asymmetry between generating and verifying AI content will not close soon.' }
       ]
