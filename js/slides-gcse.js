@@ -3348,7 +3348,7 @@ SLIDES_GCSE[126] = [
     body: 'When chess players started using AI assistants, something surprising happened. Pure AI beat pure humans. But humans working *with* AI — "centaurs" — beat pure AI. The same pattern is now showing up in medicine, law and coding.',
     bullets: [
       { term: 'Human + AI > AI alone', def: 'The best outcomes come from humans directing, questioning and overriding AI — not replacing humans entirely' },
-      { term: 'Klarna reversed course', def: 'In 2023 Klarna replaced 700 customer service agents with AI. By 2025 they announced rehiring humans after customer satisfaction scores dropped.' },
+      { term: 'Klarna reversed course', def: 'In 2024 Klarna said its AI was doing the work of 700 customer service agents. By 2025 it was rehiring humans after quality dropped on complex cases.' },
       { term: 'Radiologists still have jobs', def: 'In 2016 a famous AI researcher predicted radiologists would be replaced in 5 years. Radiology job postings are now at record highs — the AI does the first scan, the human interprets.' },
       { term: 'The implication', def: 'The career question isn\'t "will AI do my job?" — it\'s "can I become the human who works best with AI in my field?"' }
     ],
@@ -3988,7 +3988,7 @@ SLIDES_GCSE[132] = [
       { term: 'Physical trades', def: 'Plumbers, electricians, carpenters, care workers, paramedics, chefs, hairdressers, mechanics — AI can\'t unblock a drain, re-wire a kitchen or hold someone\'s hand. These roles are some of the hardest to automate and the UK has ongoing skills shortages in most of them.' },
       { term: 'AI literacy itself', def: 'People who understand AI are increasingly needed to design, audit, challenge and govern it. Named roles growing fastest in WEF 2025: AI specialist, ML engineer, AI ethicist, AI auditor, prompt engineer.' }
     ],
-    callout: 'Predictions about automation are often wrong. In 2016 Hinton said "stop training radiologists now" — radiology postings are now at record highs. In 2023 Klarna replaced 700 agents with AI; by 2024 they were rehiring humans after satisfaction scores collapsed. Be sceptical of confident automation predictions, especially ones being used to sell products.'
+    callout: 'Predictions about automation are often wrong. In 2016 Hinton said "stop training radiologists now" — radiology postings are now at record highs. In 2024 Klarna said its AI did the work of 700 agents; by 2025 it was rehiring humans after quality dropped on complex cases. Be sceptical of confident automation predictions, especially ones being used to sell products.'
   },
   {
     type: 'concept',
@@ -3996,11 +3996,27 @@ SLIDES_GCSE[132] = [
     body: 'AI literacy is not about knowing the internals of a transformer model — it\'s about five practical habits that employers increasingly ask for by name. The WEF 2025 Future of Jobs Report explicitly lists "AI and big data" among the top three fastest-growing skill areas for 2025-2030. These are the habits that underpin it.',
     bullets: [
       { term: 'Know what it can and can\'t do', def: 'This course is a start. You know it\'s prediction, not thinking; pattern-matching, not understanding; confidently wrong sometimes. Most non-technical adults still don\'t know this.' },
-      { term: 'Use AI critically, not uncritically', def: 'Iterate, question, double-check — Dell\'Acqua et al. (Wharton/BCG 2023) showed that "iterators" got the big productivity gains while "zero-iteration" users got <em>worse</em> outputs than not using AI at all.' },
+      { term: 'Use AI critically, not uncritically', def: 'Iterate, question, double-check — Dell\'Acqua et al. (Harvard/BCG 2023) found AI gave a big quality boost on tasks it suited, but people who over-trusted it on tasks beyond its reliable range did <em>worse</em> than those using no AI at all.' },
       { term: 'Understand the ethical and social implications', def: 'Bias, privacy, intellectual property, labour, environmental cost, misinformation — employers hiring responsibly increasingly want people who can think about these, not just build.' },
       { term: 'Spot and challenge hallucinations and overconfidence', def: 'If you accept AI output at face value in a job that matters, you will eventually embarrass yourself or harm someone. The skill is verification, not avoidance.' },
       { term: 'Adapt quickly as tools change', def: 'ChatGPT → GPT-4 → GPT-4o → Claude 3 → Claude 4 → GPT-5 → agents → multimodal video generation in around four years. The specific tool you master today will be obsolete; the learning-to-learn habit won\'t.' }
     ]
+  },
+  {
+    type: 'widget',
+    widget: 'classify',
+    title: 'Durable or Disappearing? Sort the Career Skill',
+    intro: 'As AI spreads, some skills rise in value and some fade. For each one, decide whether it\'s a durable skill worth building now, or one that AI is making less valuable.',
+    categories: ['📈 Durable — rising in value', '📉 Declining — AI is taking it over'],
+    items: [
+      { text: 'Critically judging and challenging AI outputs', correct: 0, why: 'Durable. AI is confidently wrong sometimes — people who can evaluate and override it are exactly what employers need (WEF 2025 ranks analytical thinking #1).' },
+      { text: 'Empathy and handling difficult conversations', correct: 0, why: 'Durable. Trust, care and reading people are human strengths AI can\'t replicate — and WEF 2025 lists them among the fastest-rising core skills.' },
+      { text: 'Adaptability — quickly learning new tools', correct: 0, why: 'Durable. The specific tool you master today will be obsolete in a few years; the ability to keep learning is the meta-skill that outlasts them all.' },
+      { text: 'Memorising large amounts of facts quickly', correct: 1, why: 'Declining. Instant retrieval is exactly what machines do best — the value has shifted from recall to judgement about what the facts mean.' },
+      { text: 'Typing faster than everyone else', correct: 1, why: 'Declining. A mechanical speed advantage matters little when AI can draft, format and transcribe — the bottleneck is now thinking, not typing.' },
+      { text: 'Doing one narrow, routine task the same way for decades', correct: 1, why: 'Declining. Routine, rule-based work is the first bucket to automate. Resilience comes from range and adaptability, not a single fixed niche.' }
+    ],
+    callout: 'The pattern: judgement, people skills and adaptability rise as routine recall and mechanical speed fall. The durable career bet isn\'t one perfect skill — it\'s the human strengths AI is worst at, plus the ability to keep learning.'
   },
   {
     type: 'activity',
@@ -4034,7 +4050,7 @@ SLIDES_GCSE[132] = [
       { icon: '🔧', label: 'Physical trades are some of the most automation-resistant roles', text: 'plumbing, electrics, care, paramedicine — UK has shortages in most of them' },
       { icon: '📚', label: 'AI literacy is a growing professional asset', text: 'the skill you are building in this course is in WEF\'s top-3 fastest-growing areas' },
       { icon: '🔄', label: 'Adaptability is your most durable skill', text: 'the tools will change; the ability to learn new ones won\'t' },
-      { icon: '🙅', label: 'Be sceptical of confident automation predictions', text: 'radiologists 2016, Klarna 2023 — the loud claims age badly' },
+      { icon: '🙅', label: 'Be sceptical of confident automation predictions', text: 'radiologists 2016, Klarna 2024-25 — the loud claims age badly' },
       { icon: '🌟', label: 'Curiosity is the foundation', text: 'the people who stay curious and keep learning stay ahead regardless of the tool of the moment' }
     ]
   }
