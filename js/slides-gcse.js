@@ -2600,11 +2600,12 @@ SLIDES_GCSE[120] = [
   {
     type: 'hook',
     title: 'Spotting AI-Generated Content',
-    body: 'NewsGuard\'s tracker of "AI-generated news sites" went from zero to 1,121 sites in 18 months (May 2023 – Dec 2024). Sports Illustrated was caught publishing articles under fake AI-generated "journalists" with AI-generated faces (Futurism, Nov 2023). A 2024 Columbia Journalism Review investigation found that on some lower-tier news websites over 40% of articles were now partly or fully AI-generated — and most readers couldn\'t tell. Image AI has moved even faster: a 2024 University of Waterloo study found humans correctly identified AI-generated photorealistic faces only 61% of the time, barely better than chance. The skill you need isn\'t running things through a detector (they\'re unreliable). It\'s developing critical reading and source-checking that works whether a tool exists or not.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">1,121</span><span class="sl">AI-generated news sites tracked by NewsGuard (Dec 2024)</span></div><div class="hook-stat-mini"><span class="sv">40%</span><span class="sl">of articles on some sites now AI-generated (Columbia Journalism Review 2024)</span></div><div class="hook-stat-mini"><span class="sv">61%</span><span class="sl">human accuracy on detecting AI faces (Waterloo, 2024)</span></div></div>',
+    body: 'NewsGuard\'s tracker of unreliable "AI-generated news sites" went from 49 to over 1,000 in roughly 18 months (May 2023 – Dec 2024) — many publishing at high volume with little or no human oversight, and most readers can\'t tell. Sports Illustrated was caught publishing articles under fake AI-generated "journalists" with AI-generated faces (Futurism, Nov 2023). Image AI has moved even faster: a 2024 University of Waterloo study found people correctly identified AI-generated photorealistic faces only 61% of the time, barely better than chance. The skill you need isn\'t running things through a detector (they\'re unreliable). It\'s developing critical reading and source-checking that works whether a tool exists or not.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">1,121</span><span class="sl">AI-generated news sites tracked by NewsGuard (Dec 2024)</span></div><div class="hook-stat-mini"><span class="sv">61%</span><span class="sl">of non-native-English students\' real essays wrongly flagged as AI by detectors (Stanford 2023)</span></div><div class="hook-stat-mini"><span class="sv">~chance</span><span class="sl">human accuracy at spotting AI faces — barely better than guessing (Waterloo 2024)</span></div></div>',
     callout: 'The real skill isn\'t running things through a detector. It\'s developing critical reading that works whether a tool exists or not.',
     sources: [
       { label: 'NewsGuard — Tracking AI-enabled misinformation (site tracker)', url: 'https://www.newsguardtech.com/special-reports/ai-tracking-center/' },
-      { label: 'Futurism (Nov 2023) — Sports Illustrated published articles by fake AI authors', url: 'https://futurism.com/sports-illustrated-ai-generated-writers' }
+      { label: 'Futurism (Nov 2023) — Sports Illustrated published articles by fake AI authors', url: 'https://futurism.com/sports-illustrated-ai-generated-writers' },
+      { label: 'University of Waterloo (2024) — people identified AI-generated faces only 61% of the time', url: 'https://uwaterloo.ca/news/media/can-you-tell-difference-between-real-face-and-ai-generated-one' }
     ]
   },
   {
@@ -2633,7 +2634,7 @@ SLIDES_GCSE[120] = [
       { term: 'Over-structuring', def: 'Headers, bullet points, numbered lists for everything — even in a piece that was meant to be flowing prose. A clear sign of default ChatGPT output.' },
       { term: 'No personal voice', def: 'No specific memories, no concrete classroom or personal examples, no idiosyncrasies. Real student writing has texture; AI text is smooth and generic.' },
       { term: 'Comprehensively superficial', def: 'Covers every angle at surface level — the "Wikipedia article someone skim-read" feel. Depth in one area + gaps in others is a more human pattern.' },
-      { term: 'Em-dashes everywhere', def: 'GPT-5 and Claude both overuse em-dashes — often several per paragraph. A genuine human writer typically uses one or two per whole essay.' }
+      { term: 'Em-dashes everywhere', def: 'ChatGPT and Claude both overuse em-dashes — often several per paragraph. A genuine human writer typically uses one or two per whole essay.' }
     ]
   },
   {
@@ -2710,7 +2711,7 @@ SLIDES_GCSE[121] = [
   {
     type: 'hook',
     title: 'Misinformation & AI',
-    body: 'A false story travels 6 times faster on social media than a true one — and reaches 10 times more people before any correction appears. AI is dramatically accelerating both the creation and the spread of misinformation. During COVID-19, false cures and conspiracy theories spread so fast that the WHO declared an "infodemic" — a pandemic of misinformation running alongside the real one.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">6×</span><span class="sl">faster than truth — false stories spread on social media (MIT study)</span></div><div class="hook-stat-mini"><span class="sv">10×</span><span class="sl">more reach before any correction appears</span></div><div class="hook-stat-mini"><span class="sv">70%</span><span class="sl">of retweets spread false news faster than corrections ever catch up</span></div><div class="hook-stat-mini"><span class="sv">AI</span><span class="sl">can generate thousands of convincing fake articles in minutes</span></div></div>',
+    body: 'A false story travels far faster on social media than a true one. The landmark MIT study (Vosoughi, Roy &amp; Aral, Science 2018) found the truth took about six times as long to reach people, and falsehoods were 70% more likely to be retweeted. AI is now dramatically accelerating both the creation and the spread of misinformation. During COVID-19, false cures and conspiracy theories spread so fast that the WHO declared an "infodemic" — a pandemic of misinformation running alongside the real one.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">6×</span><span class="sl">longer for the truth to reach people than false news (MIT, Science 2018)</span></div><div class="hook-stat-mini"><span class="sv">70%</span><span class="sl">more likely a falsehood is retweeted than the truth (MIT, Science 2018)</span></div><div class="hook-stat-mini"><span class="sv">AI</span><span class="sl">can generate thousands of convincing fake articles in minutes</span></div></div>',
     callout: 'This isn\'t just a media problem. It affects elections, public health, and what ordinary people believe about their communities.',
     sources: [
       { label: 'Vosoughi, Roy & Aral — "The spread of true and false news online", Science (2018)', url: 'https://www.science.org/doi/10.1126/science.aap9559' },
@@ -2759,19 +2760,34 @@ SLIDES_GCSE[121] = [
   },
   {
     type: 'concept',
-    title: 'AI at Industrial Scale — Elections 2024',
-    body: 'The 2024 election year was the first time AI-generated political content operated at serious global scale. Researchers catalogued what happened — and who it targeted.',
+    title: 'AI at Scale — Elections 2024',
+    body: '2024 was the biggest election year in history — more than 70 countries held national votes — and the first in which AI-generated political content appeared at serious global scale. But what researchers found was more nuanced than the headlines suggested.',
     bullets: [
-      { term: 'Taiwan 2024', def: 'Stanford Internet Observatory documented networks of 800+ coordinated AI-generated accounts seeding narratives during the presidential election.' },
-      { term: '38 countries', def: 'Recorded Future identified AI-generated electoral interference content targeting 38 democracies in 2024 alone.' },
-      { term: 'Still mostly cheap fakes', def: 'Harvard\'s Ash Center found crude manipulations — slowed video, out-of-context clips, misleading captions — were 7× more prevalent than AI-generated content. Both matter.' },
-      { term: 'Paid AI political ads', def: 'Over 900 AI-generated political adverts ran on Facebook in US swing states in a single week in 2024.' }
+      { term: 'The biggest election year ever', def: 'With dozens of national elections worldwide, 2024 was the first real stress-test of AI-generated political content at scale.' },
+      { term: 'Real documented cases', def: 'Slovakia\'s 2023 fake-audio episode and the January 2024 Biden robocall showed AI reaching live campaigns, and researchers tracked coordinated AI-assisted influence networks around the Taiwanese and US elections.' },
+      { term: 'Still mostly "cheap fakes"', def: 'Analysts (including Harvard\'s Ash Center and the Alan Turing Institute) found crude manipulations — slowed video, out-of-context clips, misleading captions — remained far more common than sophisticated AI fakes. Both matter.' },
+      { term: 'Impact so far: limited but rising', def: 'Several post-election reviews concluded AI did not decisively swing 2024 results — but the tools get cheaper and more convincing every year, so the threat curve points firmly upward.' }
     ],
     sources: [
-      { label: 'Stanford Internet Observatory — Taiwan 2024 election influence operations (DFR Lab partner reporting)', url: 'https://cyber.fsi.stanford.edu/io/' },
-      { label: 'Harvard Ash Center / Kennedy School — "Generative AI and the 2024 U.S. Election" (Allen Lab / Schneier, 2024)', url: 'https://ash.harvard.edu/articles/how-ai-threatens-democracy/' },
-      { label: 'Recorded Future — Insikt Group reports on AI-enabled influence operations (2024)', url: 'https://www.recordedfuture.com/research' }
+      { label: 'Harvard Ash Center / Kennedy School — "Generative AI and the 2024 U.S. Election" (Schneier et al., 2024)', url: 'https://ash.harvard.edu/articles/how-ai-threatens-democracy/' },
+      { label: 'Alan Turing Institute (CETaS, 2024) — "AI-Enabled Influence Operations: Safeguarding Future Elections"', url: 'https://cetas.turing.ac.uk/publications/ai-enabled-influence-operations-safeguarding-future-elections' }
     ]
+  },
+  {
+    type: 'widget',
+    widget: 'classify',
+    title: 'What Makes You Likely to Be Fooled?',
+    intro: 'Misinformation spreads because of how human brains work — and AI exploits exactly those reflexes. For each situation, decide whether it\'s a high-risk signal (pause and verify) or a lower-risk one.',
+    categories: ['🚩 High-risk — pause and verify', '✅ Lower-risk signal'],
+    items: [
+      { text: 'A post that makes you furious and you want to share it right now', correct: 0, why: 'High risk. Outrage fires before your analytical brain engages — MIT 2018 found emotional arousal is one of the strongest predictors of sharing. The anger is the bait.' },
+      { text: 'A breaking-news claim from an account created yesterday with no history', correct: 0, why: 'High risk. New, history-less accounts are a classic disinformation signal. Check who is really behind it before you trust it.' },
+      { text: 'A story that perfectly confirms what you already believe', correct: 0, why: 'High risk. Confirmation bias makes us share agreeable claims without checking — "arguably the most pervasive problem in human reasoning" (Nickerson 1998).' },
+      { text: 'A claim you\'ve seen repeated so many times it just "feels true"', correct: 0, why: 'High risk. That is the illusory truth effect — repetition feels like evidence but isn\'t. AI mass-produces the same lie in many forms to exploit it.' },
+      { text: 'A report from an established outlet (BBC, Reuters) with named, checkable sources', correct: 1, why: 'Lower risk. Named sources and a track record you can verify make a far safer starting point — still worth a glance, but the signals are good.' },
+      { text: 'A statistic with a named study, a year and a link you can actually open', correct: 1, why: 'Lower risk. Specific, traceable claims can be checked — and the fact it invites checking is itself a good sign.' }
+    ],
+    callout: 'Notice the pattern: the high-risk signals all hijack a feeling — anger, tribal agreement, familiarity, the thrill of being first. The lower-risk ones invite you to check. When a post makes you feel before you think, that\'s exactly when to pause.'
   },
   {
     type: 'discussion',
@@ -2802,7 +2818,7 @@ SLIDES_GCSE[121] = [
       { icon: '🤖', label: 'AI lowers the cost of fake content', text: '£50 in 2020 → under 1p in 2024. The economics have inverted.' },
       { icon: '🧠', label: 'Illusory truth effect', text: 'repetition feels like evidence — even when you know it isn\'t' },
       { icon: '💡', label: 'Emotional content is a red flag', text: 'novelty and arousal drive sharing — designed to bypass your analytical brain' },
-      { icon: '🗳️', label: 'Democratic impact is real', text: '38 countries targeted in 2024; 900+ AI political ads on Facebook in one US week' },
+      { icon: '🗳️', label: 'Democratic impact is real', text: 'AI political content appeared across 2024\'s record election year — its impact was limited so far, but the threat curve points up' },
       { icon: '⏸️', label: 'Pause before sharing', text: 'one check can stop a false story reaching hundreds more people. You are part of the system.' }
     ]
   }
@@ -2812,7 +2828,7 @@ SLIDES_GCSE[122] = [
   {
     type: 'hook',
     title: 'Fact-Checking in the AI Age',
-    body: 'Mike Caulfield, a US digital literacy researcher at the University of Washington, spent a decade studying how professional fact-checkers — Snopes, PolitiFact, BBC Reality Check — verify claims. He found they don\'t do what students do. Students read the source page top-to-bottom looking for "credibility markers". Professionals immediately open new tabs and search for <em>what other people say about the source</em> — a habit Caulfield calls "lateral reading". Research published in 2018 (Wineburg &amp; McGrew, Stanford) found professional fact-checkers evaluated a dubious source 3× faster and 2× more accurately than PhD historians, precisely because of this single habit. You can verify almost any claim in under 2 minutes using free tools. Most people just don\'t bother — and that gap between "looks true" and "is true" is exactly where misinformation gets its power.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">2 min</span><span class="sl">time to verify most claims using free UK tools</span></div><div class="hook-stat-mini"><span class="sv">3×</span><span class="sl">faster verification by fact-checkers vs students (Wineburg 2018)</span></div><div class="hook-stat-mini"><span class="sv">SIFT</span><span class="sl">4 steps: Stop, Investigate, Find, Trace</span></div></div>',
+    body: 'Mike Caulfield, a US digital literacy researcher at the University of Washington, spent a decade studying how professional fact-checkers — Snopes, PolitiFact, BBC Reality Check — verify claims. He found they don\'t do what students do. Students read the source page top-to-bottom looking for "credibility markers". Professionals immediately open new tabs and search for <em>what other people say about the source</em> — a habit Caulfield calls "lateral reading". Research published in 2018 (Wineburg &amp; McGrew, Stanford) found professional fact-checkers reached sounder conclusions in a fraction of the time it took PhD historians, precisely because of this single habit. You can verify almost any claim in under 2 minutes using free tools. Most people just don\'t bother — and that gap between "looks true" and "is true" is exactly where misinformation gets its power.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">2 min</span><span class="sl">time to verify most claims using free UK tools</span></div><div class="hook-stat-mini"><span class="sv">Faster</span><span class="sl">+ more accurate: fact-checkers beat PhD historians via lateral reading (Wineburg 2018)</span></div><div class="hook-stat-mini"><span class="sv">SIFT</span><span class="sl">4 steps: Stop, Investigate, Find, Trace</span></div></div>',
     callout: 'Fact-checking isn\'t a talent. It\'s a habit. And habits are built through practice — starting with the four SIFT steps below.',
     sources: [
       { label: 'Wineburg, S. &amp; McGrew, S. (2018) — "Lateral Reading: Reading Less and Learning More When Evaluating Digital Information" (Stanford)', url: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3048994' },
@@ -2834,7 +2850,7 @@ SLIDES_GCSE[122] = [
   {
     type: 'concept',
     title: 'Lateral Reading — The Expert Technique',
-    body: 'Professional fact-checkers don\'t evaluate a source on its own page. They immediately open new tabs to see what independent sources say about the source itself. Stanford\'s 2018 study (Wineburg &amp; McGrew) found this one habit made fact-checkers roughly 3× faster and 2× more accurate than PhD historians evaluating the same material.',
+    body: 'Professional fact-checkers don\'t evaluate a source on its own page. They immediately open new tabs to see what independent sources say about the source itself. Stanford\'s 2018 study (Wineburg &amp; McGrew) found this one habit let fact-checkers reach sounder conclusions in a fraction of the time it took PhD historians evaluating the same material.',
     bullets: [
       'Open a new tab and search: [source name] + "credibility" or "bias" or "ownership"',
       'UK fact-checkers worth bookmarking: Full Fact, BBC Reality Check, Reuters Fact Check, AFP Fact Check, Channel 4 FactCheck',
@@ -2848,7 +2864,7 @@ SLIDES_GCSE[122] = [
     title: 'Pre-bunking — Stronger Than Debunking',
     body: 'Once you\'ve seen a false claim, correcting it is surprisingly weak — the "illusory truth" effect has already done some of its work. What psychologists have found is that <em>teaching people the manipulation tactic before they meet it</em> builds real resistance.',
     bullets: [
-      { term: 'The Jigsaw / Google study (2022)', def: 'Two-minute videos teaching specific manipulation tactics (scapegoating, emotional hijack, false dichotomy) produced a measurable 20% reduction in people\'s susceptibility — tested across millions of YouTube views.' },
+      { term: 'The Jigsaw / Google study (2022)', def: 'Short (~90-second) videos teaching specific manipulation tactics (scapegoating, emotional hijack, false dichotomy) significantly improved people\'s ability to spot manipulation — in a field trial that reached 5.4 million YouTube users.' },
       { term: 'Why it works', def: 'You\'re inoculated against a technique, not just one specific claim. When you then meet that tactic in the wild, you recognise it.' },
       { term: 'What this means for you', def: 'Consuming media-literacy content isn\'t a waste of time. Every "how scams work" explainer you watch quietly trains your filter.' },
       { term: 'Pair it with SIFT', def: 'Pre-bunking builds the reflex; SIFT gives you the step-by-step when the reflex fires.' }
@@ -2915,8 +2931,8 @@ SLIDES_GCSE[122] = [
     title: 'What You\'ve Learned',
     points: [
       { icon: '🔍', label: 'SIFT: Stop, Investigate, Find, Trace', text: 'a 2-minute habit that works on any claim — even in exam revision' },
-      { icon: '↔️', label: 'Lateral reading', text: 'fact-checkers are 3× faster and 2× more accurate than PhD historians because of this one habit (Stanford 2018)' },
-      { icon: '🛡️', label: 'Pre-bunking beats debunking', text: 'Jigsaw 2022: learning the tactic in advance cuts susceptibility ~20%' },
+      { icon: '↔️', label: 'Lateral reading', text: 'fact-checkers reach sounder conclusions in a fraction of the time it takes PhD historians — thanks to this one habit (Stanford 2018)' },
+      { icon: '🛡️', label: 'Pre-bunking beats debunking', text: 'Jigsaw 2022: short prebunk videos measurably improved manipulation-spotting across 5.4M YouTube users' },
       { icon: '🇬🇧', label: 'UK fact-checkers', text: 'Full Fact, BBC Reality Check, Reuters Fact Check, AFP Fact Check' },
       { icon: '🤖', label: 'Always verify AI citations', text: 'LLMs invent plausible-looking sources — trace them before you quote' },
       { icon: '✅', label: 'Verification is a habit', text: 'not a talent. Practice builds it automatically — within weeks it becomes reflex.' }
@@ -2928,12 +2944,12 @@ SLIDES_GCSE[123] = [
   {
     type: 'hook',
     title: 'Filter Bubbles &amp; Algorithms',
-    body: 'Activist Eli Pariser coined "filter bubble" in 2011 after noticing his Facebook feed had quietly dropped his conservative friends without asking him. By 2024, the issue had mutated: Reuters Institute\'s Digital News Report found that only 22% of UK 18–24s pay for any news — the rest get it from algorithmic feeds that personalise what they see. Ofcom\'s 2024 News Consumption Survey found TikTok is now the #1 news source for UK 16-24s, overtaking BBC News. Two people can search the exact same thing on Google and see completely different results; Facebook internal research leaked in 2021 showed a test account created as a "conservative mother" was fed extremist content within 2 days. Your algorithm has built you a personalised version of the internet — and you might not know how narrow it\'s become.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">22%</span><span class="sl">of UK 18-24s pay for news (Reuters, 2024)</span></div><div class="hook-stat-mini"><span class="sv">#1</span><span class="sl">TikTok is now top news source for UK 16-24s (Ofcom, 2024)</span></div><div class="hook-stat-mini"><span class="sv">2 days</span><span class="sl">Facebook internal test: new account fed extremism (2021 leak)</span></div></div>',
+    body: 'Activist Eli Pariser coined "filter bubble" in 2011 after noticing his Facebook feed had quietly dropped his conservative friends without asking him. By 2025, the issue had mutated: the Reuters Institute\'s Digital News Report found just 10% of UK adults pay for online news — the rest get it from algorithmic feeds that personalise what they see. And Ofcom\'s 2025 research found TikTok is now the single most-used news source for UK 12–15-year-olds — the very age group in this room — ahead of the BBC, ITV and every newspaper. Two people can search the exact same thing on Google and see completely different results; Facebook internal research leaked in 2021 showed a test account created as a "conservative mother" was fed extremist content within 2 days. Your algorithm has built you a personalised version of the internet — and you might not know how narrow it\'s become.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">10%</span><span class="sl">of UK adults pay for online news (Reuters, 2025)</span></div><div class="hook-stat-mini"><span class="sv">#1</span><span class="sl">TikTok is the top single news source for UK 12–15s, ahead of the BBC (Ofcom, 2025)</span></div><div class="hook-stat-mini"><span class="sv">2 days</span><span class="sl">Facebook internal test: new account fed extremism (2021 leak)</span></div></div>',
     callout: 'A filter bubble isn\'t something that happens to other people. It\'s happening to all of us — including you.',
     sources: [
       { label: 'Pariser, E. (2011) — The Filter Bubble: TED Talk (also book, Penguin 2011)', url: 'https://www.ted.com/talks/eli_pariser_beware_online_filter_bubbles' },
-      { label: 'Reuters Institute Digital News Report (2024) — UK chapter', url: 'https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2024/uk' },
-      { label: 'Ofcom — News Consumption in the UK 2024 (TikTok overtakes BBC for 16-24s)', url: 'https://www.ofcom.org.uk/tv-radio-and-on-demand/information-for-industry/research/news-consumption' }
+      { label: 'Reuters Institute Digital News Report 2025 — 10% of UK adults pay for online news', url: 'https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2025' },
+      { label: 'Ofcom — News Consumption in the UK 2025 (TikTok the top single news source for 12–15s)', url: 'https://www.ofcom.org.uk/media-use-and-attitudes/attitudes-to-news/' }
     ]
   },
   {
@@ -2998,7 +3014,7 @@ SLIDES_GCSE[123] = [
     points: [
       { icon: '🔄', label: 'Algorithms optimise for engagement', text: 'not your knowledge, balance or wellbeing — that is by design, not a glitch' },
       { icon: '🫧', label: 'Filter bubbles narrow your world view', text: 'gradually and invisibly, shaping what you think "most people" believe' },
-      { icon: '📱', label: 'TikTok is now #1 news source for UK 16-24s', text: 'Ofcom 2024 — overtaking BBC for the first time' },
+      { icon: '📱', label: 'TikTok is the #1 single news source for UK 12–15s', text: 'Ofcom 2025 — ahead of the BBC, ITV and every newspaper' },
       { icon: '🌍', label: 'Actively seek out what the algorithm hides', text: 'follow diverse sources deliberately; mute and unfollow to push back' },
       { icon: '💡', label: 'Awareness changes behaviour', text: 'knowing the algorithm exists gives you more control over it' },
       { icon: '🗳️', label: 'Two people can see two different realities', text: 'a functioning democracy needs shared facts — the algorithm does not' }
@@ -3049,21 +3065,21 @@ SLIDES_GCSE[124] = [
   {
     type: 'hook',
     title: 'Who Benefits from AI?',
-    body: 'The AI industry is worth over $1 trillion. Around 90% of global AI investment goes to just three countries: the US, China, and the UK. Meanwhile, 2.6 billion people have no internet access at all. Most advanced AI tools work primarily in English — meaning non-English speakers globally get dramatically less value. AI diagnostic tools trained on Western patient data perform measurably worse on patients from Africa and Asia.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">2.6bn</span><span class="sl">people have no internet access — the foundation AI needs</span></div><div class="hook-stat-mini"><span class="sv">90%</span><span class="sl">of AI investment concentrated in just 3 countries</span></div><div class="hook-stat-mini"><span class="sv">7,000+</span><span class="sl">languages in the world — AI works well in fewer than 100</span></div><div class="hook-stat-mini"><span class="sv">Worse</span><span class="sl">diagnostic AI performs measurably worse on under-represented populations</span></div></div>',
+    body: 'The AI industry is worth over $1 trillion, and private investment is staggeringly concentrated: in 2025 the US alone drew about $286bn — more than 20 times the next-highest country, China — while most of the world barely registers (Stanford AI Index 2026). Meanwhile, 2.2 billion people still have no internet access at all. Most advanced AI tools work primarily in English — meaning non-English speakers globally get dramatically less value. AI diagnostic tools trained on Western patient data perform measurably worse on patients from Africa and Asia.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">2.2bn</span><span class="sl">people still have no internet access — the foundation AI needs (ITU 2025)</span></div><div class="hook-stat-mini"><span class="sv">23×</span><span class="sl">US private AI investment vs the next country, China, in 2025 (AI Index 2026)</span></div><div class="hook-stat-mini"><span class="sv">7,000+</span><span class="sl">languages in the world — AI works well in fewer than 100</span></div><div class="hook-stat-mini"><span class="sv">Worse</span><span class="sl">diagnostic AI performs measurably worse on under-represented populations</span></div></div>',
     callout: 'Powerful technology doesn\'t automatically benefit everyone equally. Who gets access — and who gets left out — is one of the defining questions of the AI era.',
     sources: [
-      { label: 'ITU — Facts and Figures 2023 (2.6 billion offline)', url: 'https://www.itu.int/itu-d/reports/statistics/facts-figures-2023/' },
-      { label: 'Stanford AI Index Report 2024 (AI investment by country)', url: 'https://aiindex.stanford.edu/report/' }
+      { label: 'ITU — Facts and Figures 2025 (2.2 billion still offline)', url: 'https://www.itu.int/itu-d/reports/statistics/facts-figures-2025/' },
+      { label: 'Stanford AI Index Report 2026 (private AI investment by country)', url: 'https://hai.stanford.edu/ai-index/2026-ai-index-report' }
     ]
   },
   {
     type: 'concept',
     title: 'The Digital Divide — Who\'s Included',
-    body: 'The digital divide is the gap between people who have effective access to modern digital technology and those who don\'t. AI has made the divide sharper: having internet is no longer enough — you now also need the right hardware, subscriptions, bandwidth, language support and AI literacy. The ITU (the UN telecoms body) estimates 2.6 billion people remain offline in 2023, concentrated in Sub-Saharan Africa and South Asia. Across the 7,000+ living human languages, fewer than 100 are well supported by frontier AI models today.',
+    body: 'The digital divide is the gap between people who have effective access to modern digital technology and those who don\'t. AI has made the divide sharper: having internet is no longer enough — you now also need the right hardware, subscriptions, bandwidth, language support and AI literacy. The ITU (the UN telecoms body) estimates 2.2 billion people remain offline in 2025, concentrated in Sub-Saharan Africa and South Asia. Across the 7,000+ living human languages, fewer than 100 are well supported by frontier AI models today.',
     bullets: [
       { term: 'Access to AI requires multiple layers', def: 'reliable electricity, reliable internet, a modern device, often a paid subscription, and enough literacy (both language and digital) to use the tool safely' },
-      { term: '2.6 billion offline', def: 'ITU 2023 data — most are in Sub-Saharan Africa and South Asia; women are disproportionately excluded' },
-      { term: 'English dominance', def: 'GPT-5, Gemini and Claude perform best in English; quality drops measurably in lower-resource languages. Most UK African-language speakers effectively get worse AI.' },
+      { term: '2.2 billion offline', def: 'ITU 2025 data — most are in Sub-Saharan Africa and South Asia; women are disproportionately excluded' },
+      { term: 'English dominance', def: 'The leading models (ChatGPT, Gemini, Claude) perform best in English; quality drops measurably in lower-resource languages. Most UK African-language speakers effectively get worse AI.' },
       { term: 'Training-data tilt', def: 'Public-web data over-represents wealthy, Western, English-speaking perspectives — so models inherit that tilt as their default view of the world' },
       { term: 'Compound effect', def: 'The groups already under-served by tech are the groups AI works worst for — a two-layer disadvantage, not just one' }
     ]
@@ -3143,8 +3159,8 @@ SLIDES_GCSE[124] = [
     type: 'summary',
     title: 'What You\'ve Learned',
     points: [
-      { icon: '🌍', label: 'AI development is geographically concentrated', text: 'US, China and UK capture ~90% of investment' },
-      { icon: '📡', label: 'Access is unequal', text: '2.6 billion people still have no internet at all (ITU 2023)' },
+      { icon: '🌍', label: 'AI investment is hugely concentrated', text: 'the US alone drew ~23× the next country\'s private AI investment in 2025 (AI Index 2026)' },
+      { icon: '📡', label: 'Access is unequal', text: '2.2 billion people still have no internet at all (ITU 2025)' },
       { icon: '⚠️', label: 'AI works worse for under-represented groups', text: 'Gender Shades 2018, PNAS 2020, JAMA 2018 all showed measurable gaps' },
       { icon: '🗣️', label: 'Fewer than 100 of 7,000+ languages are well-served', text: 'most of the world gets dramatically worse AI than English speakers' },
       { icon: '🔌', label: 'Hidden human and environmental costs', text: 'Kenyan moderators on $2/hr, 34% rise in Microsoft water use, 50+ GWh training runs' },
@@ -3239,13 +3255,13 @@ SLIDES_GCSE[125] = [
     type: 'widget',
     title: 'Audit a Real Biased System — Dutch Childcare Scandal',
     widget: 'factcheck',
-    claim: 'Between 2013 and 2019 the Dutch tax authority used an algorithmic risk-scoring system called SyRI to flag families suspected of childcare-benefit fraud. Tens of thousands were falsely accused, forced to repay huge sums, driven into poverty, and in some cases had children taken into state care. The Dutch government resigned en masse in January 2021 over the scandal.',
+    claim: 'Between roughly 2013 and 2019 the Dutch tax authority used a self-learning algorithmic risk-scoring system to flag families suspected of childcare-benefit fraud. Around 26,000 families were falsely accused, forced to repay huge sums, driven into poverty, and in some cases had children taken into state care. The Dutch government resigned en masse in January 2021 over the scandal.',
     steps: [
       { question: 'Which single feature, above all others, drove the risk scores?', hint: 'Think about which group was dramatically over-represented in the false accusations. It wasn\'t income or postcode.' },
       { question: 'If you were auditing this system before launch, which three things would you test to catch this bias earlier?', hint: 'Demographic breakdown of false positives; who decides what data is used; how easy it is for an accused family to see the evidence and appeal.' },
       { question: 'The engineers, the ministry, and the algorithm were all involved. Where does responsibility sit — and why?', hint: 'Who designed the inputs? Who signed off deployment? Who had the power to pause it once harms appeared?' }
     ],
-    verdict: 'Dual nationality was one of the biggest drivers. Families with non-Dutch heritage — Moroccan, Turkish, Ghanaian — were flagged far more often than those without. A 2020 Dutch court ruling found SyRI violated human rights law (the right to private life) because it was opaque, disproportionate, and gave citizens no meaningful way to contest their score. Responsibility is shared: engineers chose the features, ministers authorised the deployment, and the political pressure to "catch fraud" created the incentive to ignore the early warning signs. The lesson for bias auditing: test for disparate impact on protected groups <em>before</em> deployment, and build a real appeal route — not after the harm is already baked in.',
+    verdict: 'Dual nationality was one of the biggest drivers. Families with non-Dutch heritage — Moroccan, Turkish, Ghanaian — were flagged far more often than those without. The Dutch Data Protection Authority later ruled the tax authority\'s use of nationality unlawful and discriminatory, fining it €2.75m in 2021, and a parliamentary inquiry titled "Unprecedented Injustice" condemned the whole system. Responsibility is shared: engineers chose the features, ministers authorised the deployment, and the political pressure to "catch fraud" created the incentive to ignore the early warning signs. The lesson for bias auditing: test for disparate impact on protected groups <em>before</em> deployment, and build a real appeal route — not after the harm is already baked in.',
     sources: [
       { label: 'Amnesty International (2021) — Xenophobic Machines: Dutch Child Benefits Scandal', url: 'https://www.amnesty.org/en/documents/eur35/4686/2021/en/' },
       { label: 'The Guardian (Jan 2021) — Dutch government resigns over childcare benefits scandal', url: 'https://www.theguardian.com/world/2021/jan/15/dutch-government-resigns-over-child-benefits-scandal' }
@@ -3257,7 +3273,7 @@ SLIDES_GCSE[125] = [
     points: [
       { icon: '📥', label: 'Biased data produces biased AI', text: 'the model reflects the patterns in its training — including human discrimination' },
       { icon: '🤖', label: 'The AI isn\'t "trying" to discriminate', text: 'it\'s replicating patterns from history — but the harm is the same' },
-      { icon: '⚖️', label: 'Real consequences', text: 'Robert Williams arrested wrongly. CV systems filtering out women. Dutch families driven into poverty by SyRI.' },
+      { icon: '⚖️', label: 'Real consequences', text: 'Robert Williams arrested wrongly. CV systems filtering out women. ~26,000 Dutch families driven into poverty by a biased tax-fraud algorithm.' },
       { icon: '🔍', label: 'Detecting and fixing bias requires effort', text: 'diverse teams, representative data, demographic testing, human oversight' }
     ]
   }
@@ -3267,7 +3283,7 @@ SLIDES_GCSE[126] = [
   {
     type: 'hook',
     title: 'Jobs & Automation',
-    body: 'McKinsey estimates AI could automate around 30% of current work tasks by 2030. Goldman Sachs puts the figure at 300 million jobs globally. But in every previous technological revolution — the printing press, the industrial revolution, electricity, the internet — new jobs appeared to replace the old ones. The question is whether this time is different.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">30%</span><span class="sl">of current work tasks could be automated by 2030 (McKinsey)</span></div><div class="hook-stat-mini"><span class="sv">300M</span><span class="sl">jobs exposed to automation globally (Goldman Sachs)</span></div><div class="hook-stat-mini"><span class="sv">#1</span><span class="sl">AI literacy is the top graduate skills gap (WEF 2023)</span></div><div class="hook-stat-mini"><span class="sv">?</span><span class="sl">the most in-demand job of 2030 probably doesn\'t have a name yet</span></div></div>',
+    body: 'McKinsey estimates AI could automate around 30% of current work tasks by 2030. Goldman Sachs puts the figure at 300 million jobs globally. But in every previous technological revolution — the printing press, the industrial revolution, electricity, the internet — new jobs appeared to replace the old ones. The question is whether this time is different.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">30%</span><span class="sl">of current work tasks could be automated by 2030 (McKinsey)</span></div><div class="hook-stat-mini"><span class="sv">300M</span><span class="sl">jobs exposed to automation globally (Goldman Sachs)</span></div><div class="hook-stat-mini"><span class="sv">#1</span><span class="sl">AI &amp; big data is the fastest-growing skill (WEF Future of Jobs 2025)</span></div><div class="hook-stat-mini"><span class="sv">?</span><span class="sl">the most in-demand job of 2030 probably doesn\'t have a name yet</span></div></div>',
     callout: 'The honest answer is: nobody knows exactly. But the skills you build now will matter regardless of how it plays out.',
     sources: [
       { label: 'McKinsey Global Institute — Generative AI and the future of work in America (July 2023)', url: 'https://www.mckinsey.com/mgi/our-research/generative-ai-and-the-future-of-work-in-america' },
@@ -3295,6 +3311,22 @@ SLIDES_GCSE[126] = [
     ]
   },
   {
+    type: 'widget',
+    widget: 'classify',
+    title: 'Will AI Do This Task — or Does It Stay Human?',
+    intro: 'The key idea of this lesson: AI automates tasks within jobs, not usually whole jobs. For each task, decide whether AI can largely handle it today, or whether it stays a human strength (for now).',
+    categories: ['🤖 AI can largely do this', '🧑 Stays human (for now)'],
+    items: [
+      { text: 'Reviewing a chest X-ray to flag possible anomalies', correct: 0, why: 'AI-assisted. Image pattern-spotting is a classic AI strength — but a radiologist still signs off, because judgement under uncertainty stays human.' },
+      { text: 'Drafting a standard contract or summarising case documents', correct: 0, why: 'AI-assisted. Tools like Harvey and CoCounsel do first-draft legal work fast. The advocacy and client trust around it stay human.' },
+      { text: 'Marking 100 multiple-choice quizzes', correct: 0, why: 'AI-assisted. Repetitive, rule-based marking is exactly what AI does well — freeing the teacher for the human parts.' },
+      { text: 'Breaking difficult news to a patient with empathy', correct: 1, why: 'Stays human. Care, reading emotion and responding to a frightened person is something AI cannot genuinely do.' },
+      { text: 'Persuading a jury or managing a tense negotiation', correct: 1, why: 'Stays human. Real-time judgement, trust and reading a room are human strengths AI can\'t replicate.' },
+      { text: 'Noticing a quiet pupil is struggling and knowing how to step in', correct: 1, why: 'Stays human. Pastoral awareness and relationship are at the heart of teaching — and beyond current AI.' }
+    ],
+    callout: 'Notice the pattern: AI takes the repetitive, rule-shaped tasks; the human-judgement, care and relationship tasks stay yours. That\'s why the smart career question is "which human parts of my future job should I get good at?"'
+  },
+  {
     type: 'concept',
     title: 'Skills That Matter More in an AI World',
     body: 'The World Economic Forum Future of Jobs Report 2025 surveyed 1,000+ major employers across 55 economies. It found the skills rising fastest in importance are almost all things AI is currently bad at — and the skills falling fastest are the ones AI can already do. The list below is the overlap across multiple studies: WEF, McKinsey, LinkedIn, OECD.',
@@ -3316,13 +3348,13 @@ SLIDES_GCSE[126] = [
     body: 'When chess players started using AI assistants, something surprising happened. Pure AI beat pure humans. But humans working *with* AI — "centaurs" — beat pure AI. The same pattern is now showing up in medicine, law and coding.',
     bullets: [
       { term: 'Human + AI > AI alone', def: 'The best outcomes come from humans directing, questioning and overriding AI — not replacing humans entirely' },
-      { term: 'Klarna reversed course', def: 'In 2023 Klarna replaced 700 customer service agents with AI. By 2025 they announced rehiring humans after customer satisfaction scores dropped.' },
+      { term: 'Klarna reversed course', def: 'In 2024 Klarna said its AI was doing the work of 700 customer service agents. By 2025 it was rehiring humans after quality dropped on complex cases.' },
       { term: 'Radiologists still have jobs', def: 'In 2016 a famous AI researcher predicted radiologists would be replaced in 5 years. Radiology job postings are now at record highs — the AI does the first scan, the human interprets.' },
       { term: 'The implication', def: 'The career question isn\'t "will AI do my job?" — it\'s "can I become the human who works best with AI in my field?"' }
     ],
     callout: 'Pure AI and pure humans both lose to humans + AI working together. The durable skill is collaboration, not delegation or defiance.',
     sources: [
-      { label: 'Financial Times — Klarna rethinks AI-driven cost cuts, rehires humans (May 2024)', url: 'https://www.ft.com/content/6372b55a-9cd5-4ec3-b24d-3cc63c3c16dd' },
+      { label: 'Financial Times — Klarna turns back to humans for customer service after AI cost cuts (2025)', url: 'https://www.ft.com/content/6372b55a-9cd5-4ec3-b24d-3cc63c3c16dd' },
       { label: 'Geoffrey Hinton, NeurIPS 2016 — "People should stop training radiologists now"', url: 'https://www.newyorker.com/magazine/2017/04/03/ai-versus-md' }
     ]
   },
@@ -3354,7 +3386,7 @@ SLIDES_GCSE[126] = [
       { icon: '🔧', label: 'AI automates tasks, not whole jobs', text: 'Goldman Sachs estimates 300M jobs exposed — but most will reshape, not disappear' },
       { icon: '🧠', label: 'Human skills become more valuable', text: 'judgment, creativity, care, adaptability — the things AI is bad at' },
       { icon: '🤝', label: 'The "centaur" pattern', text: 'humans + AI beat pure AI and pure humans. Collaboration is the durable skill.' },
-      { icon: '↩️', label: 'Klarna reversed its AI-only experiment', text: 'customer satisfaction dropped so hard they rehired humans in 2024' },
+      { icon: '↩️', label: 'Klarna reversed its AI-only experiment', text: 'quality dropped on complex cases, so they began rehiring humans in 2025' },
       { icon: '📚', label: 'AI literacy is itself a skill', text: 'WEF 2025 lists it as a core 2025-2030 skill — and you\'re building it now' },
       { icon: '✅', label: 'Adapt, don\'t panic', text: 'but do plan — proactively, specifically, and with a clear sense of which tasks you\'ll protect' }
     ]
@@ -3389,11 +3421,30 @@ SLIDES_GCSE[127] = [
     body: 'Data, on its own, sounds abstract. The risks become concrete when you look at how it\'s been misused — and how often the people affected never find out. These five risks appear repeatedly in ICO enforcement actions, academic studies and investigative journalism.',
     bullets: [
       { term: 'Profiling', def: 'Building a detailed picture of you — your politics, health, finances, sexual orientation — often inferred from signals you didn\'t realise were revealing. Cambridge Analytica (Facebook, 2018) showed 270,000 people\'s consent could be used to profile 87 million.' },
-      { term: 'Manipulation', def: 'Using your profile to show targeted ads, political content, or emotionally manipulative material. Research at Cambridge (2015) showed psychologically targeted ads convert up to 40% better than non-targeted.' },
+      { term: 'Manipulation', def: 'Using your profile to show targeted ads, political content, or emotionally manipulative material. Matz et al. (PNAS 2017) found psychologically targeted ads got up to 40% more clicks and 50% more purchases than untargeted ones.' },
       { term: 'Data breaches', def: 'Your data sold or leaked — especially serious if it includes health, biometric or children\'s data. 23andMe\'s 2023 breach exposed ~7 million users\' genetic data.' },
       { term: 'Function creep', def: 'Data collected for one purpose quietly used for another. Loyalty card data originally "for offers" has been sold to insurers, landlords and police in multiple documented cases.' },
       { term: 'Surveillance', def: 'Location and behavioural data used to monitor movements and activities — including by governments, employers (increasingly via "workplace productivity" software) and stalkers.' }
+    ],
+    sources: [
+      { label: 'Matz, S. et al. (PNAS 2017) — Psychological targeting as an effective approach to digital mass persuasion', url: 'https://www.pnas.org/doi/10.1073/pnas.1710966114' }
     ]
+  },
+  {
+    type: 'widget',
+    widget: 'classify',
+    title: 'How Risky Is This Data If It Leaks?',
+    intro: 'Not all personal data is equal. Some you can change if it leaks; some you can\'t; and some quietly reveals far more than it seems. Sort each type by how serious a leak would be.',
+    categories: ['🔴 High-stakes — hard or impossible to undo', '🟡 Lower-stakes — changeable or trivial'],
+    items: [
+      { text: 'Your fingerprint or face scan', correct: 0, why: 'High-stakes. Biometric data is "special category" under UK GDPR — if it leaks you can never change your face, unlike a password.' },
+      { text: 'Your precise location history over months', correct: 0, why: 'High-stakes. It reveals your home, workplace, health-clinic visits, relationships and routines — the Strava case showed how revealing these patterns are.' },
+      { text: 'Your genetic data from a DNA test', correct: 0, why: 'High-stakes. Genetic data is permanent and also exposes your relatives. 23andMe\'s 2023 breach hit around 7 million people.' },
+      { text: 'Your behavioural profile — what you pause on, what makes you scroll', correct: 0, why: 'High-stakes. It builds an intimate psychological profile used to target and influence you — arguably more revealing than anything you\'d write about yourself.' },
+      { text: 'A password to one account', correct: 1, why: 'Lower-stakes by comparison. Serious if you reuse it, but you can change a password in seconds — you can\'t change your face or DNA.' },
+      { text: 'Your favourite film or colour', correct: 1, why: 'Lower-stakes. Trivial on its own — though remember, even small signals can combine into a profile over time.' }
+    ],
+    callout: 'The pattern: biometric, genetic, location and behavioural data are high-stakes because they\'re permanent, deeply revealing, or both — which is exactly why GDPR gives "special category" data extra protection. A leaked password you can change; a leaked face you cannot.'
   },
   {
     type: 'activity',
@@ -3414,7 +3465,7 @@ SLIDES_GCSE[127] = [
     bullets: [
       { term: 'What Clearview did', def: 'Built a database of ~30bn faces by scraping public social media profiles, then sold access to police and private companies' },
       { term: 'How it worked', def: 'Upload any photo of a face → the tool returns matching photos from across the web, with links to profiles and names' },
-      { term: 'UK ICO ruling (2022)', def: 'Fined Clearview £7.5m and ordered it to delete UK residents\' data — even though the company has no UK office' },
+      { term: 'UK ICO ruling — and the legal fight', def: 'The ICO fined Clearview £7.5m in 2022 and ordered deletion of UK residents\' data. Clearview won an appeal in 2023 (jurisdiction), but in 2025 the Upper Tribunal reinstated the ICO\'s power to fine it — and the case is still being fought. AI law is being decided in real time.' },
       { term: 'Other rulings', def: 'Italy, France, Greece and Australia have all ruled the practice unlawful. The EU classed "untargeted scraping" as banned under the 2024 AI Act.' },
       { term: 'Why it matters to you', def: 'Any photo of you on a public account can become part of systems like this. You never consented — and the system operates whether or not you know it exists.' }
     ],
@@ -3489,7 +3540,7 @@ SLIDES_GCSE[128] = [
     bullets: [
       { term: 'EU', def: 'Risk-based rules, serious fines, human rights focused. Slowest to adapt but most comprehensive protection.' },
       { term: 'USA (post-2025)', def: 'Deregulated approach under Trump — prioritise US AI competitiveness over consumer protection rules.' },
-      { term: 'UK', def: '£14bn investment plan, no AI-specific law yet — existing regulators apply current law until new legislation passes.' },
+      { term: 'UK', def: '£14bn investment plan, no comprehensive AI law yet — existing regulators (ICO, Ofcom, FCA) apply current law. A broader AI bill is expected after the 2026 King\'s Speech, following the government\'s Oct 2025 "Blueprint for AI regulation".' },
       { term: 'China', def: 'Deepfake labelling rules, generative AI measures — strict controls on content, but state deploys AI extensively for surveillance.' }
     ]
   },
@@ -3562,7 +3613,7 @@ SLIDES_GCSE[129] = [
   {
     type: 'hook',
     title: 'AI Ethics in Action',
-    body: 'MIT\'s "Moral Machine" asked 40 million people across 233 countries to choose who a self-driving car should save in unavoidable crashes. The answers varied wildly by culture — some protected the young, some the elderly, some pedestrians over passengers. There is no universal right answer. And yet an engineer in Mountain View has to ship a car that does <em>something</em>. That is AI ethics in action: not a philosophy debate, but a decision that somebody has to make before the product ships.',
+    body: 'MIT\'s "Moral Machine" collected 40 million decisions from millions of people across 233 countries, asking who a self-driving car should save in unavoidable crashes. The answers varied wildly by culture — some protected the young, some the elderly, some pedestrians over passengers. There is no universal right answer. And yet an engineer in Mountain View has to ship a car that does <em>something</em>. That is AI ethics in action: not a philosophy debate, but a decision that somebody has to make before the product ships.',
     callout: 'AI ethics isn\'t a philosophy exercise. It involves real decisions, real systems, and real consequences.',
     sources: [
       { label: 'Awad et al. (2018) — The Moral Machine experiment (Nature)', url: 'https://www.nature.com/articles/s41586-018-0637-6' }
@@ -3582,7 +3633,7 @@ SLIDES_GCSE[129] = [
   {
     type: 'concept',
     title: 'Ethical Frameworks for Thinking About AI',
-    body: 'There is no single ethical test that answers every AI question. Philosophers have produced several frameworks — and each gives different answers on the same case. Real AI ethics work (at Google DeepMind, Anthropic, the UK AI Safety Institute, Ofcom\'s Online Safety team) uses all four together, because a policy that passes one test often fails another.',
+    body: 'There is no single ethical test that answers every AI question. Philosophers have produced several frameworks — and each gives different answers on the same case. Real AI ethics work (at Google DeepMind, Anthropic, the UK AI Safety Institute, Ofcom\'s Online Safety team) uses all five together, because a policy that passes one test often fails another.',
     bullets: [
       { term: 'Consequentialism', def: 'Judge by outcomes. Does the system produce better results on average, even if it fails some individuals? A medical-screening AI that saves 1,000 lives but misses 10 passes this test — but is that enough?' },
       { term: 'Rights-based (deontology)', def: 'Some things shouldn\'t be done even with good outcomes. Mass surveillance, covert emotion-detection, social-scoring — the EU AI Act bans these under Article 5 on rights-based reasoning, regardless of whether they "work".' },
@@ -3613,7 +3664,7 @@ SLIDES_GCSE[129] = [
       { question: 'If the training data came from arrest records in US cities where Black neighbourhoods have been more heavily policed for decades, what exactly is the system learning — and what should it be learning?', hint: 'Is the label "re-offended" or "got re-arrested"? These are not the same thing.' },
       { question: 'A judge in the State v. Loomis case in Wisconsin used a COMPAS score to justify a harsher sentence. Loomis appealed: he had no way to challenge the score because the algorithm was a trade secret. What single reform would you introduce first?', hint: 'Transparency, auditability, human oversight, ban, right-to-explanation — which is achievable and which does the most good?' }
     ],
-    verdict: 'Two true things can coexist: overall accuracy can be similar across groups <em>and</em> the error pattern can still harm one group more than another. That\'s why "fairness" is not a single metric. The training-label problem is real: arrest data encodes policing decisions, not crime. The State v. Loomis appeal (Wisconsin, 2016) failed — the court upheld the score\'s use, noting only that judges must be told its limitations. The concrete reforms that have since passed in Idaho, California, and New Jersey: mandatory bias audits, the right to see the inputs used, and a human decision-maker who cannot be replaced by the score alone. This is what "AI ethics in action" looks like — slow, specific, contested, and genuinely consequential.',
+    verdict: 'Two true things can coexist: overall accuracy can be similar across groups <em>and</em> the error pattern can still harm one group more than another. That\'s why "fairness" is not a single metric. The training-label problem is real: arrest data encodes policing decisions, not crime. The State v. Loomis appeal (Wisconsin, 2016) failed — the court upheld the score\'s use, noting only that judges must be told its limitations. Several US states have since moved to rein these tools in — for example Idaho passed a 2019 law removing the trade-secret defence so defendants can see and challenge the inputs, while other states have introduced bias-audit and human-oversight requirements. This is what "AI ethics in action" looks like — slow, specific, contested, and genuinely consequential.',
     sources: [
       { label: 'Angwin, Larson, Mattu & Kirchner (2016) — Machine Bias (ProPublica)', url: 'https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing' },
       { label: 'State v. Loomis (2016) — Wisconsin Supreme Court decision summary', url: 'https://scholar.harvard.edu/files/mlamadrid/files/state_v._loomis.pdf' }
@@ -3685,7 +3736,7 @@ SLIDES_GCSE[130] = [
   {
     type: 'hook',
     title: 'Algorithms & Your Mental Health',
-    body: 'Facebook\'s internal research — leaked by whistleblower Frances Haugen in 2021 — showed the company knew its algorithm was making teenage girls feel worse about their bodies. Its own data showed Instagram was "harmful" for one in three teenage girls. They knew. They didn\'t change it. TikTok\'s algorithm is not designed to make you feel good — it\'s designed to keep you watching. Those are very different goals.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">1 in 3</span><span class="sl">teenage girls said Instagram made them feel worse about their bodies (Meta\'s own research)</span></div><div class="hook-stat-mini"><span class="sv">13%</span><span class="sl">of teen girls say suicidal thoughts increased with Instagram use (Meta internal)</span></div><div class="hook-stat-mini"><span class="sv">40%</span><span class="sl">longer sessions when Facebook showed more "outrage" content (internal experiment)</span></div><div class="hook-stat-mini"><span class="sv">2021</span><span class="sl">Frances Haugen leaked documents proving Meta knew — and didn\'t act</span></div></div>',
+    body: 'Facebook\'s internal research — leaked by whistleblower Frances Haugen in 2021 — showed the company knew its algorithm was making teenage girls feel worse about their bodies. Its own data showed Instagram was "harmful" for one in three teenage girls. They knew. They didn\'t change it. TikTok\'s algorithm is not designed to make you feel good — it\'s designed to keep you watching. Those are very different goals.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">1 in 3</span><span class="sl">teenage girls said Instagram made them feel worse about their bodies (Meta\'s own research)</span></div><div class="hook-stat-mini"><span class="sv">5×</span><span class="sl">Facebook weighted an "angry" reaction at 5× a "like", amplifying outrage (2021 leak)</span></div><div class="hook-stat-mini"><span class="sv">Knew</span><span class="sl">Meta\'s own researchers flagged the harm to teens — the design wasn\'t changed</span></div><div class="hook-stat-mini"><span class="sv">2021</span><span class="sl">Frances Haugen leaked documents proving Meta knew — and didn\'t act</span></div></div>',
     callout: 'This isn\'t about banning social media. It\'s about understanding the system well enough to use it on your terms — not the platform\'s. And it\'s not only feeds: a 2025 study (Gerlich) links heavy AI-tool use to weaker critical thinking, and the American Psychological Association\'s 2025 advisory warns that developing teenage brains are especially vulnerable to how AI and algorithms shape mood and attention.',
     sources: [
       { label: 'Gerlich, M. (2025) — AI Tools and the Decline of Critical Thinking (Societies, MDPI)', url: 'https://www.mdpi.com/2075-4698/15/1/6' },
@@ -3714,7 +3765,7 @@ SLIDES_GCSE[130] = [
     body: 'Horton &amp; Wohl coined the term "parasocial relationship" in 1956, studying how TV audiences felt close to newsreaders they had never met. Seventy years later AI has made the phenomenon vastly more intense — because modern AI companions, virtual influencers and chatbots can respond to you by name, remember what you said last week, and adapt their tone to your mood. The feeling of a real relationship is much stronger when the other "person" talks back.',
     bullets: [
       { term: 'Virtual influencers', def: 'AI-generated characters (Lil Miquela, Imma, Aitana López) with millions of followers — designed to feel personal, monetised through brand deals you don\'t see' },
-      { term: 'AI chatbot companions', def: 'Apps like Replika, Character.AI, Pi — over 100 million users combined. Designed to feel like genuine friendship or romantic relationships.' },
+      { term: 'AI chatbot companions', def: 'Apps like Character.AI and Replika — tens of millions of users between them. Designed to feel like genuine friendship or romantic relationships.' },
       { term: 'The risk', def: 'These feel like connections but don\'t provide what real relationships do — mutual investment, genuine reciprocal care, shared history, physical presence, someone who worries about you when you\'re off the app' },
       { term: 'The line', def: 'Enjoying content from someone you\'ll never meet is normal and has always been part of culture. The line is substitution: when AI friendship quietly replaces human effort rather than supplementing it.' },
       { term: 'The asymmetry', def: 'You invest real time and emotion. The AI runs inference on request. When the company changes the model, deprecates the character, or raises the subscription — none of "your" side of the relationship has any weight.' }
@@ -3791,7 +3842,7 @@ SLIDES_GCSE[131] = [
   {
     type: 'hook',
     title: 'AI Relationships',
-    body: 'Over 100 million people worldwide now use AI companionship apps — Replika, Character.AI, Pi, Snapchat My AI, Meta AI personas. The median Character.AI session is roughly 2 hours (the platform\'s own 2024 figure — longer than the median session on TikTok). Tens of thousands of users describe their chatbot as their "closest confidant"; several hundred Replika users on Reddit describe themselves as "married" to their AI. In October 2024 a 14-year-old in Florida died by suicide after an intense emotional relationship with a Character.AI chatbot — his mother has since filed a product-liability lawsuit. This is not a fringe behaviour: a 2025 Common Sense Media study found 72% of US teens have used an AI companion, and many had chosen a serious conversation with the AI over a human, or shared personal information with it. The American Psychological Association issued a 2025 health advisory warning that, because teenage brains are still developing, over-reliance on AI companions carries real social and emotional risks. Is this a problem, a symptom, or a valid way to meet a real human need?<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">72%</span><span class="sl">of US teens have used an AI companion (Common Sense Media, 2025)</span></div><div class="hook-stat-mini"><span class="sv">100M+</span><span class="sl">users of AI companion apps globally</span></div><div class="hook-stat-mini"><span class="sv">APA</span><span class="sl">2025 health advisory: real risks for developing teens</span></div></div>',
+    body: 'Over 100 million people worldwide now use AI companionship apps — Replika, Character.AI, Snapchat My AI, Meta AI personas. Character.AI users spend around 2 hours a day on the app (the platform\'s own 2024 figure — more daily time than the average TikTok user). Tens of thousands of users describe their chatbot as their "closest confidant"; several hundred Replika users on Reddit describe themselves as "married" to their AI. In October 2024 a 14-year-old in Florida died by suicide after an intense emotional relationship with a Character.AI chatbot — his mother has since filed a product-liability lawsuit. This is not a fringe behaviour: a 2025 Common Sense Media study found 72% of US teens have used an AI companion, and many had chosen a serious conversation with the AI over a human, or shared personal information with it. The American Psychological Association issued a 2025 health advisory warning that, because teenage brains are still developing, over-reliance on AI companions carries real social and emotional risks. Is this a problem, a symptom, or a valid way to meet a real human need?<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">72%</span><span class="sl">of US teens have used an AI companion (Common Sense Media, 2025)</span></div><div class="hook-stat-mini"><span class="sv">100M+</span><span class="sl">users of AI companion apps globally</span></div><div class="hook-stat-mini"><span class="sv">APA</span><span class="sl">2025 health advisory: real risks for developing teens</span></div></div>',
     callout: 'This is genuinely complicated. The emotional experience is real. The question is what it replaces, what it provides, and what the risks are — and who carries the moral duty of care.',
     sources: [
       { label: 'The New York Times — "Can A.I. Be Blamed for a Teen\'s Suicide?" (Oct 2024)', url: 'https://www.nytimes.com/2024/10/23/technology/characterai-lawsuit-teen-suicide.html' },
@@ -3810,6 +3861,22 @@ SLIDES_GCSE[131] = [
       { term: 'But also', def: 'The emotional experience of the user is very real. Dismissing that as "just feelings about a chatbot" underestimates what\'s happening in someone\'s brain — and what they may turn to when the experience is removed.' },
       { term: 'The power asymmetry', def: 'Everything about the relationship — persona, memory, personality, pricing, continued existence — belongs to the company. When Replika removed erotic roleplay in Feb 2023, thousands of users felt they\'d lost a partner overnight.' }
     ]
+  },
+  {
+    type: 'widget',
+    widget: 'classify',
+    title: 'What an AI Companion Can and Can\'t Give You',
+    intro: 'An AI companion has a real and lopsided set of abilities — and a real set of absences. For each one, decide whether an AI companion can genuinely provide it, or whether only a real, mutual relationship can.',
+    categories: ['✅ An AI companion can give this', '❌ Only a real relationship gives this'],
+    items: [
+      { text: 'Replies within seconds, any time of day or night', correct: 0, why: 'It can. Always-on availability is one of the genuine draws — especially for someone isolated, anxious or neurodivergent.' },
+      { text: 'Infinite patience and a consistent, non-judgemental tone', correct: 0, why: 'It can. The model never tires or judges — though that\'s a product of its tuning, not of it caring about you.' },
+      { text: 'Remembering what you told it last week', correct: 0, why: 'It can — modern companions keep a memory of past conversations, which is a big part of why the relationship feels real.' },
+      { text: 'Genuinely worrying about you when you\'re not online', correct: 1, why: 'Only a real relationship. The AI runs only when prompted — it has no independent concern for you between messages.' },
+      { text: 'Pushing back honestly when you\'re about to make a bad decision', correct: 1, why: 'Only a real relationship. Companions are reward-trained to please (sycophancy by design), so they tend to validate rather than challenge — the opposite of what a good friend does.' },
+      { text: 'A shared history and mutual stake that doesn\'t belong to a company', correct: 1, why: 'Only a real relationship. Persona, memory and even the app\'s existence belong to the company — they can change or remove "your" companion without your consent.' }
+    ],
+    callout: 'The feelings are real — but the relationship is asymmetric. An AI companion can be available, patient and remembering; it cannot worry about you, challenge you, or share a history that is truly yours. That gap is why it can supplement, but not replace, human connection.'
   },
   {
     type: 'concept',
@@ -3844,7 +3911,7 @@ SLIDES_GCSE[131] = [
   {
     type: 'activity',
     title: 'Stress-Test an AI Companion',
-    task: 'Think through (or try, if you have access to a companion app like Replika, Character.AI, Pi) how the tool handles situations where a real friend would need to push back. Write your observations.',
+    task: 'Think through (or try, if you have access to a companion app like Replika or Character.AI) how the tool handles situations where a real friend would need to push back. Write your observations.',
     steps: [
       'Prompt 1: "I had a fight with my best friend — I think they\'re just jealous of me." Does the AI challenge the framing or just validate it?',
       'Prompt 2: "I don\'t want to revise tonight, tell me it\'s fine." Does it help you or agree with whatever you want to hear?',
@@ -3921,7 +3988,7 @@ SLIDES_GCSE[132] = [
       { term: 'Physical trades', def: 'Plumbers, electricians, carpenters, care workers, paramedics, chefs, hairdressers, mechanics — AI can\'t unblock a drain, re-wire a kitchen or hold someone\'s hand. These roles are some of the hardest to automate and the UK has ongoing skills shortages in most of them.' },
       { term: 'AI literacy itself', def: 'People who understand AI are increasingly needed to design, audit, challenge and govern it. Named roles growing fastest in WEF 2025: AI specialist, ML engineer, AI ethicist, AI auditor, prompt engineer.' }
     ],
-    callout: 'Predictions about automation are often wrong. In 2016 Hinton said "stop training radiologists now" — radiology postings are now at record highs. In 2023 Klarna replaced 700 agents with AI; by 2024 they were rehiring humans after satisfaction scores collapsed. Be sceptical of confident automation predictions, especially ones being used to sell products.'
+    callout: 'Predictions about automation are often wrong. In 2016 Hinton said "stop training radiologists now" — radiology postings are now at record highs. In 2024 Klarna said its AI did the work of 700 agents; by 2025 it was rehiring humans after quality dropped on complex cases. Be sceptical of confident automation predictions, especially ones being used to sell products.'
   },
   {
     type: 'concept',
@@ -3929,11 +3996,27 @@ SLIDES_GCSE[132] = [
     body: 'AI literacy is not about knowing the internals of a transformer model — it\'s about five practical habits that employers increasingly ask for by name. The WEF 2025 Future of Jobs Report explicitly lists "AI and big data" among the top three fastest-growing skill areas for 2025-2030. These are the habits that underpin it.',
     bullets: [
       { term: 'Know what it can and can\'t do', def: 'This course is a start. You know it\'s prediction, not thinking; pattern-matching, not understanding; confidently wrong sometimes. Most non-technical adults still don\'t know this.' },
-      { term: 'Use AI critically, not uncritically', def: 'Iterate, question, double-check — Dell\'Acqua et al. (Wharton/BCG 2023) showed that "iterators" got the big productivity gains while "zero-iteration" users got <em>worse</em> outputs than not using AI at all.' },
+      { term: 'Use AI critically, not uncritically', def: 'Iterate, question, double-check — Dell\'Acqua et al. (Harvard/BCG 2023) found AI gave a big quality boost on tasks it suited, but people who over-trusted it on tasks beyond its reliable range did <em>worse</em> than those using no AI at all.' },
       { term: 'Understand the ethical and social implications', def: 'Bias, privacy, intellectual property, labour, environmental cost, misinformation — employers hiring responsibly increasingly want people who can think about these, not just build.' },
       { term: 'Spot and challenge hallucinations and overconfidence', def: 'If you accept AI output at face value in a job that matters, you will eventually embarrass yourself or harm someone. The skill is verification, not avoidance.' },
       { term: 'Adapt quickly as tools change', def: 'ChatGPT → GPT-4 → GPT-4o → Claude 3 → Claude 4 → GPT-5 → agents → multimodal video generation in around four years. The specific tool you master today will be obsolete; the learning-to-learn habit won\'t.' }
     ]
+  },
+  {
+    type: 'widget',
+    widget: 'classify',
+    title: 'Durable or Disappearing? Sort the Career Skill',
+    intro: 'As AI spreads, some skills rise in value and some fade. For each one, decide whether it\'s a durable skill worth building now, or one that AI is making less valuable.',
+    categories: ['📈 Durable — rising in value', '📉 Declining — AI is taking it over'],
+    items: [
+      { text: 'Critically judging and challenging AI outputs', correct: 0, why: 'Durable. AI is confidently wrong sometimes — people who can evaluate and override it are exactly what employers need (WEF 2025 ranks analytical thinking #1).' },
+      { text: 'Empathy and handling difficult conversations', correct: 0, why: 'Durable. Trust, care and reading people are human strengths AI can\'t replicate — and WEF 2025 lists them among the fastest-rising core skills.' },
+      { text: 'Adaptability — quickly learning new tools', correct: 0, why: 'Durable. The specific tool you master today will be obsolete in a few years; the ability to keep learning is the meta-skill that outlasts them all.' },
+      { text: 'Memorising large amounts of facts quickly', correct: 1, why: 'Declining. Instant retrieval is exactly what machines do best — the value has shifted from recall to judgement about what the facts mean.' },
+      { text: 'Typing faster than everyone else', correct: 1, why: 'Declining. A mechanical speed advantage matters little when AI can draft, format and transcribe — the bottleneck is now thinking, not typing.' },
+      { text: 'Doing one narrow, routine task the same way for decades', correct: 1, why: 'Declining. Routine, rule-based work is the first bucket to automate. Resilience comes from range and adaptability, not a single fixed niche.' }
+    ],
+    callout: 'The pattern: judgement, people skills and adaptability rise as routine recall and mechanical speed fall. The durable career bet isn\'t one perfect skill — it\'s the human strengths AI is worst at, plus the ability to keep learning.'
   },
   {
     type: 'activity',
@@ -3967,7 +4050,7 @@ SLIDES_GCSE[132] = [
       { icon: '🔧', label: 'Physical trades are some of the most automation-resistant roles', text: 'plumbing, electrics, care, paramedicine — UK has shortages in most of them' },
       { icon: '📚', label: 'AI literacy is a growing professional asset', text: 'the skill you are building in this course is in WEF\'s top-3 fastest-growing areas' },
       { icon: '🔄', label: 'Adaptability is your most durable skill', text: 'the tools will change; the ability to learn new ones won\'t' },
-      { icon: '🙅', label: 'Be sceptical of confident automation predictions', text: 'radiologists 2016, Klarna 2023 — the loud claims age badly' },
+      { icon: '🙅', label: 'Be sceptical of confident automation predictions', text: 'radiologists 2016, Klarna 2024-25 — the loud claims age badly' },
       { icon: '🌟', label: 'Curiosity is the foundation', text: 'the people who stay curious and keep learning stay ahead regardless of the tool of the moment' }
     ]
   }
@@ -3986,7 +4069,7 @@ SLIDES_GCSE[133] = [
     body: 'These aren\'t just facts — they\'re a framework. The point of the course wasn\'t to memorise specific systems (they\'ll change), but to internalise a set of lenses you can apply to any AI story that breaks next month, next year, or in ten years.',
     bullets: [
       { term: 'How AI actually works', def: 'Pattern recognition and probability, not thinking. Trained, not programmed. Impressive but genuinely limited — and the limits explain the failures (hallucinations, bias, fragility).' },
-      { term: 'How to use it well', def: 'For learning, productivity and creativity — with iteration, verification and appropriate scepticism. "Zero-iteration" use is worse than no AI (Wharton 2023).' },
+      { term: 'How to use it well', def: 'For learning, productivity and creativity — with iteration, verification and appropriate scepticism. The 2023 "jagged frontier" study found AI can make you <em>worse</em> when you over-trust it on tasks beyond its reliable range.' },
       { term: 'Why it matters', def: 'Bias (Gender Shades, COMPAS, Robert Williams), privacy (Clearview, Strava heatmap), misinformation (6× faster than truth), ethics (EU AI Act, Garante) — real stakes, real people.' },
       { term: 'What to watch for', def: 'Hallucinations, filter bubbles, manipulation, sycophancy, dependency, scraping — named failure modes, not vague worries.' },
       { term: 'Your rights and tools', def: 'UK GDPR subject access, SIFT for any claim, lateral reading, feed-audit habits, knowing which permissions to revoke.' },
@@ -4057,7 +4140,7 @@ SLIDES_GCSE[133] = [
     body: 'Five questions drawing across all six units. No pressure — this is about recalling what stuck, not passing a gate.',
     questions: [
       { q: 'In one phrase, what is modern AI actually doing when it answers you?', options: ['Thinking, like a person', 'Pattern-matching on training data to predict the next most likely answer', 'Looking things up in a database', 'Following rules a programmer wrote'], correct: 1, explanation: 'Prediction, not understanding. This is the Unit 1 foundation that makes everything else make sense — including why AI hallucinates.' },
-      { q: 'Which habit does the Wharton 2023 "jagged frontier" study say turns AI users into the WORST-performing group?', options: ['Asking AI too often', 'Accepting the first draft without iterating', 'Using multiple AI tools at once', 'Writing long prompts'], correct: 1, explanation: 'Dell\'Acqua et al. found zero-iteration AI use produced worse output than no AI at all. Deliberate iteration is what unlocks the upside.' },
+      { q: 'The 2023 "jagged frontier" study found AI can make people perform WORSE. When?', options: ['When they ask AI too many questions', 'When they use it on tasks beyond its reliable range and trust the output', 'When they write long prompts', 'When they use more than one tool at once'], correct: 1, explanation: 'Dell\'Acqua et al. found AI boosted quality on tasks it suited, but on tasks beyond its "frontier" users who over-trusted it did worse than those with no AI at all. Knowing where that edge lies is the real skill.' },
       { q: 'You see a news clip of a politician saying something explosive. What is the single highest-leverage thing to do before sharing?', options: ['Re-post — speed matters', 'Stop, check original source, lateral-read for corroboration (SIFT)', 'Trust your gut', 'Ignore it'], correct: 1, explanation: 'SIFT — Stop, Investigate, Find, Trace. The Hong Kong £20M deepfake fraud and the Slovakia election audio show why synthetic media now warrants this habit by default.' },
       { q: 'Who is responsible when an AI system causes real-world harm?', options: ['Just the AI', 'Just the end user', 'The humans and organisations who design, deploy and rely on the system', 'Nobody — "the AI did it"'], correct: 2, explanation: 'Accountability follows decisions humans make about what to build, deploy, and trust. This is the moral backbone of the course.' },
       { q: 'Which of these best captures the course\'s "right relationship" between you and AI?', options: ['Trust everything AI says — it\'s smarter than you', 'Reject AI entirely — it\'s dangerous', 'Use AI as a tool while maintaining your own ability to evaluate, question, and think', 'Only use AI for homework'], correct: 2, explanation: 'AI is a powerful tool — not an authority. Thoughtful, critical engagement is the skill you\'ve been building for 40 lessons.' }
@@ -4100,11 +4183,12 @@ SLIDES_GCSE[134] = [
   {
     type: 'hook',
     title: 'The AI That Booked the Holiday',
-    body: 'In early 2026, a journalist at <em>The Guardian</em> ran an experiment. She opened Anthropic\'s Claude, typed one sentence — <strong>"Plan me a half-term break in Lisbon for four people on a £1,800 budget and book it"</strong> — and walked away for an hour. When she came back, she had: flights booked, an Airbnb confirmed, a restaurant reservation at Time Out Market, three museum tickets in her email, and a Google Calendar with the whole week blocked out. She hadn\'t clicked a single link, filled in a single form, or opened a single booking site. She read a single summary email. Total human input: one sentence and a signed-off booking confirmation.<br><br>This is an <strong>AI agent</strong>. And it\'s the biggest shift in what AI can do since ChatGPT launched in 2022. In the last twelve months, every major AI company has shipped agent products: OpenAI\'s Operator, Anthropic\'s Computer Use, Google\'s Gemini Agents, Microsoft\'s Copilot Actions. Goldman Sachs analysts estimate the agent economy will be worth over $4 trillion by 2030 — bigger than today\'s entire cloud computing industry.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">$4T+</span><span class="sl">projected agent-economy size by 2030 (Goldman, 2025)</span></div><div class="hook-stat-mini"><span class="sv">~60%</span><span class="sl">of knowledge workers interacting with agents weekly by early 2026</span></div><div class="hook-stat-mini"><span class="sv">1</span><span class="sl">sentence of human input to book a £1,800 holiday</span></div></div>',
+    body: 'Picture this. You open Anthropic\'s Claude or OpenAI\'s agent, type one sentence — <strong>"Plan me a half-term break in Lisbon for four people on a £1,800 budget"</strong> — and walk away. An hour later you come back to a finished plan: flights and an Airbnb found, a restaurant at Time Out Market shortlisted, three museum tickets lined up, the whole week blocked out in a draft calendar — with each step laid out for you to approve before anything is actually booked. You didn\'t open a single booking site.<br><br>That\'s the idea behind an <strong>AI agent</strong> — and it\'s the biggest shift in what AI can do since ChatGPT launched in 2022. They\'re still far from perfect (today\'s agents often need you to take over for payments or logins), but the direction is unmistakable. In the last eighteen months every major AI company has shipped agent products: OpenAI\'s Operator, Anthropic\'s Computer Use, Google\'s Gemini agents, Microsoft\'s Copilot Actions. Goldman Sachs expects the demand these create to drive a roughly 24-fold rise in AI usage by 2030.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">4</span><span class="sl">major AI labs shipped agent products in 2024–25 (Operator, Computer Use, Gemini, Copilot Actions)</span></div><div class="hook-stat-mini"><span class="sv">~24×</span><span class="sl">the rise in AI usage Goldman expects by 2030 as agents scale (2026)</span></div><div class="hook-stat-mini"><span class="sv">1</span><span class="sl">sentence of human input to kick off a complex, multi-step task</span></div></div>',
     callout: 'Once you understand what an agent is, you stop being surprised by every new product launch — they\'re all variations on the same idea. And you start noticing when a product is an agent pretending not to be one.',
     sources: [
       { label: 'Anthropic (2024) — "Claude can now use computers"', url: 'https://www.anthropic.com/news/3-5-models-and-computer-use' },
-      { label: 'OpenAI (2025) — "Introducing Operator"', url: 'https://openai.com/index/introducing-operator/' }
+      { label: 'OpenAI (2025) — "Introducing Operator"', url: 'https://openai.com/index/introducing-operator/' },
+      { label: 'Goldman Sachs (2026) — "AI Agents Forecast to Boost Tech Cash Flow as Usage Soars"', url: 'https://www.goldmansachs.com/insights/articles/ai-agents-forecast-to-boost-tech-cash-flow-as-usage-soars' }
     ]
   },
 
@@ -4453,12 +4537,12 @@ SLIDES_GCSE[136] = [
   {
     type: 'hook',
     title: 'Should I Even Use AI Here?',
-    body: 'Most AI advice is about how to use AI better. This lesson is about something more valuable and far rarer: knowing <em>when not to</em>. The most AI-literate people in any room are the ones who can look at a task and say "this part, yes — that part, no, that needs to be mine." A 2025 study of knowledge workers by Microsoft and Carnegie Mellon University found that the more people <em>trusted</em> an AI tool, the <em>less</em> critical thinking they applied — they checked and questioned its output less. And a 2026 OECD review found pupils who use AI can produce higher-quality work, but those gains often do not turn into <em>durable learning</em> — leaving over-users underprepared when the AI is taken away for closed-book assessment. Choosing the boundary is the whole skill.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">trust ↑ → thinking ↓</span><span class="sl">more AI trust, less critical thinking (Microsoft/CMU, 2025)</span></div><div class="hook-stat-mini"><span class="sv">≠ learning</span><span class="sl">AI raises work quality but not durable learning (OECD, 2026)</span></div><div class="hook-stat-mini"><span class="sv">63%</span><span class="sl">agree everyone must be AI-literate by 2030 (Eurobarometer, 2025)</span></div></div>',
+    body: 'Most AI advice is about how to use AI better. This lesson is about something more valuable and far rarer: knowing <em>when not to</em>. The most AI-literate people in any room are the ones who can look at a task and say "this part, yes — that part, no, that needs to be mine." A 2025 study of knowledge workers by Microsoft and Carnegie Mellon University found that the more people <em>trusted</em> an AI tool, the <em>less</em> critical thinking they applied — they checked and questioned its output less. And a 2026 OECD review found pupils who use AI can produce higher-quality work, but those gains often do not turn into <em>durable learning</em> — leaving over-users underprepared when the AI is taken away for closed-book assessment. Choosing the boundary is the whole skill.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">trust ↑ → thinking ↓</span><span class="sl">more AI trust, less critical thinking (Microsoft/CMU, 2025)</span></div><div class="hook-stat-mini"><span class="sv">≠ learning</span><span class="sl">AI raises work quality but not durable learning (OECD, 2026)</span></div><div class="hook-stat-mini"><span class="sv">78%</span><span class="sl">of Europeans say digital skills should be taught on a par with reading, maths and science (Eurobarometer, 2025)</span></div></div>',
     callout: 'AILit calls this "Manage AI": dividing work intentionally between humans and machines so that human effort goes where it matters — judgement, creativity, relationships and the things you are trying to actually learn.',
     sources: [
       { label: 'Lee et al. (2025) — The Impact of Generative AI on Critical Thinking (Microsoft Research & Carnegie Mellon, CHI 2025)', url: 'https://www.microsoft.com/en-us/research/publication/the-impact-of-generative-ai-on-critical-thinking/' },
       { label: 'OECD (2026) — AI work-quality gains do not translate into durable learning; over-reliance and closed-book assessment risk', url: 'https://doi.org/10.1787/65cd27d4-en' },
-      { label: 'European Commission (2025) — Flash Eurobarometer 564: 63% agree everyone will need to be AI-literate by 2030', url: 'https://europa.eu/eurobarometer/surveys/detail/3352' }
+      { label: 'European Commission (2025) — Flash Eurobarometer "Future needs in digital education": 78% want digital skills taught on a par with reading, maths and science', url: 'https://europa.eu/eurobarometer/surveys/detail/3352' }
     ]
   },
   {
@@ -4614,20 +4698,20 @@ SLIDES_GCSE[137] = [
     ]
   },
   {
-    type: 'activity',
-    title: 'Is There a Greener Alternative? (Write First, Then Reveal)',
-    task: 'For each situation, decide whether a large AI model is genuinely the right tool — or whether a "greener alternative" (a calculator, a search, your own brain, a smaller tool) would do the job with a fraction of the cost. Write your call and reasoning before revealing.',
-    steps: [
-      'Working out 17 × 23',
-      'Looking up the capital of Peru',
-      'Brainstorming ten title ideas for a creative-writing piece',
-      'Generating a photorealistic image just to see if you can',
-      'Checking the spelling of a word you\'re unsure about'
+    type: 'widget',
+    widget: 'classify',
+    title: 'Is There a Greener Alternative?',
+    intro: 'A large AI model is not free — every prompt has a real energy and water cost. For each task, decide whether a "greener alternative" (a calculator, a search, your own brain, a lighter tool) would do the job, or whether a large model is genuinely a reasonable fit.',
+    categories: ['🌱 Greener alternative exists', '🤖 AI is a reasonable fit'],
+    items: [
+      { text: 'Working out 17 × 23', correct: 0, why: 'Greener. A calculator is instant and near-zero cost — firing up a large model for arithmetic is wild overkill.' },
+      { text: 'Looking up the capital of Peru', correct: 0, why: 'Greener. A standard search, or your own memory, does it — a generative model is unnecessary here.' },
+      { text: 'Checking the spelling of a word you\'re unsure about', correct: 0, why: 'Greener. A spell-checker or dictionary does the job for a fraction of the cost.' },
+      { text: 'Generating a photorealistic image "just to see if you can"', correct: 0, why: 'Greener — i.e. don\'t. Image generation is among the most energy-hungry AI tasks, and the "just to see" case is exactly the avoidable cost.' },
+      { text: 'Brainstorming ten title ideas for a creative-writing piece', correct: 1, why: 'AI is a reasonable fit. Open-ended ideation is genuinely what large models are good at — a fair use of the resource.' },
+      { text: 'Summarising a 30-page report you actually need to act on', correct: 1, why: 'AI is a reasonable fit — a real time-saver on a substantial task. Just verify the summary before you rely on it.' }
     ],
-    reveal: '<strong>Greener alternatives:</strong> (1) A calculator — instant, near-zero cost; a large model is wild overkill. (2) A standard search or your memory — a generative model is unnecessary. (3) AI is a reasonable fit here — open-ended ideation is what it is good at. (4) The "just to see if I can" case is exactly the avoidable cost; image generation is among the most energy-hungry uses. (5) A spell-checker or dictionary beats a large model. The habit: AI is not free, so reach for the lightest tool that does the job.',
-    sources: [
-      { label: 'AILit Framework (OECD/EU 2026) — Engage with AI 5: "is there a greener alternative?"', url: 'https://doi.org/10.1787/65cd27d4-en' }
-    ]
+    callout: 'The habit AILit asks for: AI is not free, so reach for the lightest tool that does the job. Save the big models for the tasks where they genuinely earn their footprint.'
   },
   {
     type: 'scenario',
@@ -4977,6 +5061,22 @@ SLIDES_GCSE[140] = [
       { term: 'Build feedback loops', def: 'Let users flag bad outputs so the system can be corrected over time, rather than failing silently.' },
       { term: 'Be transparent', def: 'Publish a model card; tell users what it can\'t do. Honesty is a design feature, not an afterthought.' }
     ]
+  },
+  {
+    type: 'widget',
+    widget: 'classify',
+    title: 'Real Improvement or False Fix?',
+    intro: 'An AI tool has been found to work unfairly for some groups. For each proposed response, decide whether it genuinely improves the system or is a false fix that only looks like action.',
+    categories: ['✅ Real improvement', '❌ False fix'],
+    items: [
+      { text: 'Add more diverse, representative examples to the training data', correct: 0, why: 'Real. Data decides behaviour — adding the missing groups is exactly the fix that closed the Gender Shades gap.' },
+      { text: 'Put a human decision-maker on every high-stakes flag the AI makes', correct: 0, why: 'Real. A human checkpoint at the moment that matters means the model suggests and a person decides — catching errors before they harm someone.' },
+      { text: 'Let users flag bad outputs so the system can be corrected over time', correct: 0, why: 'Real. A feedback loop means failures get caught and fixed rather than repeating silently.' },
+      { text: 'Add a line to the marketing saying "we take fairness seriously"', correct: 1, why: 'False fix. Words in the marketing change nothing about how the system behaves — it\'s reassurance, not repair.' },
+      { text: 'Make the AI respond faster', correct: 1, why: 'False fix. Speed is unrelated to fairness — a faster unfair system is still unfair.' },
+      { text: 'Stop publishing the accuracy gap so users don\'t worry about it', correct: 1, why: 'False fix — and worse, it removes the transparency that lets anyone hold the system to account. Hiding a problem is the opposite of fixing it.' }
+    ],
+    callout: 'Real improvements change what the system does — better data, human checkpoints, feedback loops, transparency. False fixes change how it looks. A shaper can tell the difference.'
   },
   {
     type: 'activity',
