@@ -3283,7 +3283,7 @@ SLIDES_GCSE[126] = [
   {
     type: 'hook',
     title: 'Jobs & Automation',
-    body: 'McKinsey estimates AI could automate around 30% of current work tasks by 2030. Goldman Sachs puts the figure at 300 million jobs globally. But in every previous technological revolution — the printing press, the industrial revolution, electricity, the internet — new jobs appeared to replace the old ones. The question is whether this time is different.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">30%</span><span class="sl">of current work tasks could be automated by 2030 (McKinsey)</span></div><div class="hook-stat-mini"><span class="sv">300M</span><span class="sl">jobs exposed to automation globally (Goldman Sachs)</span></div><div class="hook-stat-mini"><span class="sv">#1</span><span class="sl">AI literacy is the top graduate skills gap (WEF 2023)</span></div><div class="hook-stat-mini"><span class="sv">?</span><span class="sl">the most in-demand job of 2030 probably doesn\'t have a name yet</span></div></div>',
+    body: 'McKinsey estimates AI could automate around 30% of current work tasks by 2030. Goldman Sachs puts the figure at 300 million jobs globally. But in every previous technological revolution — the printing press, the industrial revolution, electricity, the internet — new jobs appeared to replace the old ones. The question is whether this time is different.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">30%</span><span class="sl">of current work tasks could be automated by 2030 (McKinsey)</span></div><div class="hook-stat-mini"><span class="sv">300M</span><span class="sl">jobs exposed to automation globally (Goldman Sachs)</span></div><div class="hook-stat-mini"><span class="sv">#1</span><span class="sl">AI &amp; big data is the fastest-growing skill (WEF Future of Jobs 2025)</span></div><div class="hook-stat-mini"><span class="sv">?</span><span class="sl">the most in-demand job of 2030 probably doesn\'t have a name yet</span></div></div>',
     callout: 'The honest answer is: nobody knows exactly. But the skills you build now will matter regardless of how it plays out.',
     sources: [
       { label: 'McKinsey Global Institute — Generative AI and the future of work in America (July 2023)', url: 'https://www.mckinsey.com/mgi/our-research/generative-ai-and-the-future-of-work-in-america' },
@@ -3309,6 +3309,22 @@ SLIDES_GCSE[126] = [
       { term: 'New jobs are appearing', def: 'WEF 2025 lists AI specialists, prompt engineers, AI ethics officers, model-evaluation roles and "AI red-teamers" among the fastest-growing roles.' },
       { term: 'The right question', def: 'Not "will my job exist?" — but "what will my job involve in 5 years, and which parts of it should I practise now that AI can\'t easily do?"' }
     ]
+  },
+  {
+    type: 'widget',
+    widget: 'classify',
+    title: 'Will AI Do This Task — or Does It Stay Human?',
+    intro: 'The key idea of this lesson: AI automates tasks within jobs, not usually whole jobs. For each task, decide whether AI can largely handle it today, or whether it stays a human strength (for now).',
+    categories: ['🤖 AI can largely do this', '🧑 Stays human (for now)'],
+    items: [
+      { text: 'Reviewing a chest X-ray to flag possible anomalies', correct: 0, why: 'AI-assisted. Image pattern-spotting is a classic AI strength — but a radiologist still signs off, because judgement under uncertainty stays human.' },
+      { text: 'Drafting a standard contract or summarising case documents', correct: 0, why: 'AI-assisted. Tools like Harvey and CoCounsel do first-draft legal work fast. The advocacy and client trust around it stay human.' },
+      { text: 'Marking 100 multiple-choice quizzes', correct: 0, why: 'AI-assisted. Repetitive, rule-based marking is exactly what AI does well — freeing the teacher for the human parts.' },
+      { text: 'Breaking difficult news to a patient with empathy', correct: 1, why: 'Stays human. Care, reading emotion and responding to a frightened person is something AI cannot genuinely do.' },
+      { text: 'Persuading a jury or managing a tense negotiation', correct: 1, why: 'Stays human. Real-time judgement, trust and reading a room are human strengths AI can\'t replicate.' },
+      { text: 'Noticing a quiet pupil is struggling and knowing how to step in', correct: 1, why: 'Stays human. Pastoral awareness and relationship are at the heart of teaching — and beyond current AI.' }
+    ],
+    callout: 'Notice the pattern: AI takes the repetitive, rule-shaped tasks; the human-judgement, care and relationship tasks stay yours. That\'s why the smart career question is "which human parts of my future job should I get good at?"'
   },
   {
     type: 'concept',
@@ -3338,7 +3354,7 @@ SLIDES_GCSE[126] = [
     ],
     callout: 'Pure AI and pure humans both lose to humans + AI working together. The durable skill is collaboration, not delegation or defiance.',
     sources: [
-      { label: 'Financial Times — Klarna rethinks AI-driven cost cuts, rehires humans (May 2024)', url: 'https://www.ft.com/content/6372b55a-9cd5-4ec3-b24d-3cc63c3c16dd' },
+      { label: 'Financial Times — Klarna turns back to humans for customer service after AI cost cuts (2025)', url: 'https://www.ft.com/content/6372b55a-9cd5-4ec3-b24d-3cc63c3c16dd' },
       { label: 'Geoffrey Hinton, NeurIPS 2016 — "People should stop training radiologists now"', url: 'https://www.newyorker.com/magazine/2017/04/03/ai-versus-md' }
     ]
   },
@@ -3370,7 +3386,7 @@ SLIDES_GCSE[126] = [
       { icon: '🔧', label: 'AI automates tasks, not whole jobs', text: 'Goldman Sachs estimates 300M jobs exposed — but most will reshape, not disappear' },
       { icon: '🧠', label: 'Human skills become more valuable', text: 'judgment, creativity, care, adaptability — the things AI is bad at' },
       { icon: '🤝', label: 'The "centaur" pattern', text: 'humans + AI beat pure AI and pure humans. Collaboration is the durable skill.' },
-      { icon: '↩️', label: 'Klarna reversed its AI-only experiment', text: 'customer satisfaction dropped so hard they rehired humans in 2024' },
+      { icon: '↩️', label: 'Klarna reversed its AI-only experiment', text: 'quality dropped on complex cases, so they began rehiring humans in 2025' },
       { icon: '📚', label: 'AI literacy is itself a skill', text: 'WEF 2025 lists it as a core 2025-2030 skill — and you\'re building it now' },
       { icon: '✅', label: 'Adapt, don\'t panic', text: 'but do plan — proactively, specifically, and with a clear sense of which tasks you\'ll protect' }
     ]
