@@ -2,11 +2,11 @@ name: Update AI News
 
 # Refreshes js/news-live.js from public AI news feeds so the
 # "AI in the News" section stays current without manual curation.
-# Runs every Monday morning; can also be triggered by hand from the
+# Runs every morning; can also be triggered by hand from the
 # Actions tab (Run workflow).
 on:
   schedule:
-    - cron: '0 6 * * 1' # Mondays 06:00 UTC
+    - cron: '0 6 * * *' # Daily 06:00 UTC
   workflow_dispatch:
 
 permissions:
