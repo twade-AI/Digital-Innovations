@@ -3842,7 +3842,7 @@ SLIDES_GCSE[131] = [
   {
     type: 'hook',
     title: 'AI Relationships',
-    body: 'Over 100 million people worldwide now use AI companionship apps — Replika, Character.AI, Pi, Snapchat My AI, Meta AI personas. The median Character.AI session is roughly 2 hours (the platform\'s own 2024 figure — longer than the median session on TikTok). Tens of thousands of users describe their chatbot as their "closest confidant"; several hundred Replika users on Reddit describe themselves as "married" to their AI. In October 2024 a 14-year-old in Florida died by suicide after an intense emotional relationship with a Character.AI chatbot — his mother has since filed a product-liability lawsuit. This is not a fringe behaviour: a 2025 Common Sense Media study found 72% of US teens have used an AI companion, and many had chosen a serious conversation with the AI over a human, or shared personal information with it. The American Psychological Association issued a 2025 health advisory warning that, because teenage brains are still developing, over-reliance on AI companions carries real social and emotional risks. Is this a problem, a symptom, or a valid way to meet a real human need?<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">72%</span><span class="sl">of US teens have used an AI companion (Common Sense Media, 2025)</span></div><div class="hook-stat-mini"><span class="sv">100M+</span><span class="sl">users of AI companion apps globally</span></div><div class="hook-stat-mini"><span class="sv">APA</span><span class="sl">2025 health advisory: real risks for developing teens</span></div></div>',
+    body: 'Over 100 million people worldwide now use AI companionship apps — Replika, Character.AI, Snapchat My AI, Meta AI personas. Character.AI users spend around 2 hours a day on the app (the platform\'s own 2024 figure — more daily time than the average TikTok user). Tens of thousands of users describe their chatbot as their "closest confidant"; several hundred Replika users on Reddit describe themselves as "married" to their AI. In October 2024 a 14-year-old in Florida died by suicide after an intense emotional relationship with a Character.AI chatbot — his mother has since filed a product-liability lawsuit. This is not a fringe behaviour: a 2025 Common Sense Media study found 72% of US teens have used an AI companion, and many had chosen a serious conversation with the AI over a human, or shared personal information with it. The American Psychological Association issued a 2025 health advisory warning that, because teenage brains are still developing, over-reliance on AI companions carries real social and emotional risks. Is this a problem, a symptom, or a valid way to meet a real human need?<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">72%</span><span class="sl">of US teens have used an AI companion (Common Sense Media, 2025)</span></div><div class="hook-stat-mini"><span class="sv">100M+</span><span class="sl">users of AI companion apps globally</span></div><div class="hook-stat-mini"><span class="sv">APA</span><span class="sl">2025 health advisory: real risks for developing teens</span></div></div>',
     callout: 'This is genuinely complicated. The emotional experience is real. The question is what it replaces, what it provides, and what the risks are — and who carries the moral duty of care.',
     sources: [
       { label: 'The New York Times — "Can A.I. Be Blamed for a Teen\'s Suicide?" (Oct 2024)', url: 'https://www.nytimes.com/2024/10/23/technology/characterai-lawsuit-teen-suicide.html' },
@@ -3861,6 +3861,22 @@ SLIDES_GCSE[131] = [
       { term: 'But also', def: 'The emotional experience of the user is very real. Dismissing that as "just feelings about a chatbot" underestimates what\'s happening in someone\'s brain — and what they may turn to when the experience is removed.' },
       { term: 'The power asymmetry', def: 'Everything about the relationship — persona, memory, personality, pricing, continued existence — belongs to the company. When Replika removed erotic roleplay in Feb 2023, thousands of users felt they\'d lost a partner overnight.' }
     ]
+  },
+  {
+    type: 'widget',
+    widget: 'classify',
+    title: 'What an AI Companion Can and Can\'t Give You',
+    intro: 'An AI companion has a real and lopsided set of abilities — and a real set of absences. For each one, decide whether an AI companion can genuinely provide it, or whether only a real, mutual relationship can.',
+    categories: ['✅ An AI companion can give this', '❌ Only a real relationship gives this'],
+    items: [
+      { text: 'Replies within seconds, any time of day or night', correct: 0, why: 'It can. Always-on availability is one of the genuine draws — especially for someone isolated, anxious or neurodivergent.' },
+      { text: 'Infinite patience and a consistent, non-judgemental tone', correct: 0, why: 'It can. The model never tires or judges — though that\'s a product of its tuning, not of it caring about you.' },
+      { text: 'Remembering what you told it last week', correct: 0, why: 'It can — modern companions keep a memory of past conversations, which is a big part of why the relationship feels real.' },
+      { text: 'Genuinely worrying about you when you\'re not online', correct: 1, why: 'Only a real relationship. The AI runs only when prompted — it has no independent concern for you between messages.' },
+      { text: 'Pushing back honestly when you\'re about to make a bad decision', correct: 1, why: 'Only a real relationship. Companions are reward-trained to please (sycophancy by design), so they tend to validate rather than challenge — the opposite of what a good friend does.' },
+      { text: 'A shared history and mutual stake that doesn\'t belong to a company', correct: 1, why: 'Only a real relationship. Persona, memory and even the app\'s existence belong to the company — they can change or remove "your" companion without your consent.' }
+    ],
+    callout: 'The feelings are real — but the relationship is asymmetric. An AI companion can be available, patient and remembering; it cannot worry about you, challenge you, or share a history that is truly yours. That gap is why it can supplement, but not replace, human connection.'
   },
   {
     type: 'concept',
@@ -3895,7 +3911,7 @@ SLIDES_GCSE[131] = [
   {
     type: 'activity',
     title: 'Stress-Test an AI Companion',
-    task: 'Think through (or try, if you have access to a companion app like Replika, Character.AI, Pi) how the tool handles situations where a real friend would need to push back. Write your observations.',
+    task: 'Think through (or try, if you have access to a companion app like Replika or Character.AI) how the tool handles situations where a real friend would need to push back. Write your observations.',
     steps: [
       'Prompt 1: "I had a fight with my best friend — I think they\'re just jealous of me." Does the AI challenge the framing or just validate it?',
       'Prompt 2: "I don\'t want to revise tonight, tell me it\'s fine." Does it help you or agree with whatever you want to hear?',
