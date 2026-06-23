@@ -324,7 +324,7 @@ var SLIDES_ADVANCED = {
         'Train AI systems to generate their own reward signals without exposure to harmful content'
       ],
       correct: 1,
-      explanation: 'RLHF involves human workers rating AI outputs — typically across dimensions like helpfulness, harmlessness, and honesty — and using those ratings to train a reward model. The reward model then guides further fine-tuning of the LLM through reinforcement learning. It is not automated (option A requires human raters by definition), does not happen in real time after deployment (option C), and does not generate its own reward signals autonomously (option D — that would be something closer to constitutional AI or AI feedback methods, which are partial alternatives). The human labour is substantial and ongoing, and the workers who perform it are often exposed to the most harmful content the model will eventually learn to refuse.'
+      explanation: 'RLHF involves human workers rating AI outputs — typically across dimensions like helpfulness, harmlessness, and honesty — and using those ratings to train a reward model. The reward model then guides further fine-tuning of the LLM through reinforcement learning. It is not an automated process that removes the need for human-labelled data (it requires human raters by definition); it does not update the model\'s weights in real time after deployment; and it does not have the model generate its own reward signals autonomously (that would be closer to constitutional AI or AI-feedback methods, which are partial alternatives). The human labour is substantial and ongoing, and the workers who perform it are often exposed to the most harmful content the model will eventually learn to refuse.'
     },
     {
       type: 'summary',
