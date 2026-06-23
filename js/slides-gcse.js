@@ -5189,3 +5189,6 @@ SLIDES_GCSE[140] = [
     prompt: 'Paste your one-page improvement brief here, or a link to it.'
   }
 ];
+
+/* Mix up quiz answer positions so the correct option is not predictably B/C (see slide-utils.js). */
+if (typeof window !== "undefined" && window.diSlide && window.diSlide.shuffleQuizzes) window.diSlide.shuffleQuizzes(SLIDES_GCSE);

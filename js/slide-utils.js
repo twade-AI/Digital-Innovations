@@ -218,7 +218,60 @@
     '</div>';
   }
 
+  /* ── Quiz answer-position shuffler ──────────────────────
+     The hand-authored decks place the correct answer at B/C far too
+     often, which makes quizzes guessable. This deterministically
+     reshuffles each quiz / unit-test question's options (seeded per
+     question, so the order is stable across reloads) and remaps the
+     `correct` index. It runs once per slide map, at load time.
+
+     Safety net: any question whose explanation refers to an option by
+     POSITION ("Option B", "the first answer", "(D) is…") is skipped, so
+     no explanation can ever point at the wrong choice. De-referencing
+     such an explanation automatically opts the question into shuffling. */
+  var POSITION_REF = /\bOptions?\s+[A-D]\b|\boption\s+[A-D]\b|\b(first|second|third|fourth)\s+(option|answer|prompt|choice)\b|\banswer\s+[A-D]\b|\([A-D]\)/i;
+
+  function quizHashSeed(str) {
+    var h = 2166136261;
+    for (var i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return h >>> 0;
+  }
+  function shuffleOneQuestion(q) {
+    if (!q || q._shuffled) return;
+    if (!Array.isArray(q.options) || q.options.length < 2) return;
+    if (typeof q.correct !== 'number' || q.correct < 0 || q.correct >= q.options.length) return;
+    if (POSITION_REF.test(String(q.explanation || ''))) { q._shuffled = true; return; }
+    var n = q.options.length;
+    var seed = quizHashSeed(String(q.question || q.q || '') + '::' + q.options.join('|'));
+    var rand = function () {
+      seed = (seed + 0x6D2B79F5) | 0;
+      var t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+    var order = []; for (var i = 0; i < n; i++) order.push(i);
+    for (var j = n - 1; j > 0; j--) { var k = Math.floor(rand() * (j + 1)); var tmp = order[j]; order[j] = order[k]; order[k] = tmp; }
+    if (order.every(function (v, idx) { return v === idx; })) { order.push(order.shift()); } // never leave it identical
+    var originalCorrect = q.correct;
+    q.options = order.map(function (i) { return q.options[i]; });
+    q.correct = order.indexOf(originalCorrect);
+    q._shuffled = true;
+  }
+  function shuffleQuizzes(slideMap) {
+    if (!slideMap || typeof slideMap !== 'object') return;
+    Object.keys(slideMap).forEach(function (key) {
+      var arr = slideMap[key];
+      if (!Array.isArray(arr)) return;
+      arr.forEach(function (slide) {
+        if (!slide) return;
+        if (slide.type === 'quiz') shuffleOneQuestion(slide);
+        else if (slide.type === 'unit-test' && Array.isArray(slide.questions)) slide.questions.forEach(shuffleOneQuestion);
+      });
+    });
+  }
+
   window.diSlide = {
+    shuffleQuizzes: shuffleQuizzes,
     escape: escape,
     youtubeEmbed: youtubeEmbed,
     revealHTML: revealHTML,

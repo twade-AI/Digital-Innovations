@@ -279,3 +279,6 @@ var SLIDES_COMPANIONS = {
   ],
 
 };
+
+/* Mix up quiz answer positions so the correct option is not predictably B/C (see slide-utils.js). */
+if (typeof window !== "undefined" && window.diSlide && window.diSlide.shuffleQuizzes) window.diSlide.shuffleQuizzes(SLIDES_COMPANIONS);
