@@ -5063,6 +5063,22 @@ SLIDES_GCSE[140] = [
     ]
   },
   {
+    type: 'widget',
+    widget: 'classify',
+    title: 'Real Improvement or False Fix?',
+    intro: 'An AI tool has been found to work unfairly for some groups. For each proposed response, decide whether it genuinely improves the system or is a false fix that only looks like action.',
+    categories: ['✅ Real improvement', '❌ False fix'],
+    items: [
+      { text: 'Add more diverse, representative examples to the training data', correct: 0, why: 'Real. Data decides behaviour — adding the missing groups is exactly the fix that closed the Gender Shades gap.' },
+      { text: 'Put a human decision-maker on every high-stakes flag the AI makes', correct: 0, why: 'Real. A human checkpoint at the moment that matters means the model suggests and a person decides — catching errors before they harm someone.' },
+      { text: 'Let users flag bad outputs so the system can be corrected over time', correct: 0, why: 'Real. A feedback loop means failures get caught and fixed rather than repeating silently.' },
+      { text: 'Add a line to the marketing saying "we take fairness seriously"', correct: 1, why: 'False fix. Words in the marketing change nothing about how the system behaves — it\'s reassurance, not repair.' },
+      { text: 'Make the AI respond faster', correct: 1, why: 'False fix. Speed is unrelated to fairness — a faster unfair system is still unfair.' },
+      { text: 'Stop publishing the accuracy gap so users don\'t worry about it', correct: 1, why: 'False fix — and worse, it removes the transparency that lets anyone hold the system to account. Hiding a problem is the opposite of fixing it.' }
+    ],
+    callout: 'Real improvements change what the system does — better data, human checkpoints, feedback loops, transparency. False fixes change how it looks. A shaper can tell the difference.'
+  },
+  {
     type: 'activity',
     title: 'Redesign Challenge (Write First, Then Reveal)',
     task: 'Pick a real AI tool you use (a recommender, a chatbot, autocorrect, a study app). In the notes box, write: (1) one group it currently serves badly, (2) one concrete change to the data or design that would help them, and (3) who else would benefit from that change. Do the design thinking yourself before revealing the worked example.',
