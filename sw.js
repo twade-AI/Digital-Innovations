@@ -3,8 +3,8 @@
 /* Three caches so bumping one category doesn't invalidate the others.
    When you change a JS file, bump CODE_CACHE only; fonts and HTML stay
    in place and the user doesn't re-download them. */
-const SHELL_CACHE  = 'di-shell-v19';  // HTML + CSS + fonts — slow to change
-const CODE_CACHE   = 'di-code-v54';   // JS — changes with every feature
+const SHELL_CACHE  = 'di-shell-v20';  // HTML + CSS + fonts — slow to change
+const CODE_CACHE   = 'di-code-v55';   // JS — changes with every feature
 const ASSETS_CACHE = 'di-assets-v3';  // Logos, icons, manifest
 const ALL_CACHES   = [SHELL_CACHE, CODE_CACHE, ASSETS_CACHE];
 
@@ -17,10 +17,12 @@ const SHELL_ASSETS = [
   './portfolio.html',
   './class.html',
   './family.html',
+  './labs.html',
   './css/style.css',
   './css/lesson.css',
   './css/brand.css',
   './css/wow.css',
+  './css/labs.css',
   './assets/brand/fonts/CallunaSans-Regular.otf',
   './assets/brand/fonts/CallunaSans-Italic.otf',
   './assets/brand/fonts/CallunaSans-Light.otf',
@@ -44,6 +46,7 @@ const CODE_ASSETS = [
   './js/slides-gcse.js',
   './js/tts.js',
   './js/slide-utils.js',
+  './js/labs.js',
 ];
 
 const STATIC_ASSETS = [
