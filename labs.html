@@ -81,6 +81,7 @@
         Nothing here needs an account, nothing you type leaves your device, and every one is built from the same idea:
         <strong>you understand AI faster by operating it than by reading about it.</strong></p>
       <div class="labs-toc" id="labsToc"></div>
+      <div class="labs-progress" id="labsProgress" aria-live="polite"></div>
     </div>
     <div id="labsGroups"></div>
 
@@ -179,6 +180,33 @@
       });
       root.appendChild(sec);
     });
+    /* completion progress: hero count + per-card ticks, kept live */
+    function renderLabProgress() {
+      var done = window.DI_LABS_DONE ? DI_LABS_DONE() : {};
+      var total = Object.keys(window.DI_LABS || {}).length;
+      var n = Object.keys(done).length;
+      var box = document.getElementById('labsProgress');
+      if (box) {
+        box.innerHTML = n
+          ? '🧪 You\'ve completed <strong>' + n + ' of ' + total + '</strong> labs' +
+            (n >= 10 ? ' — Lab Scientist badge territory 🏅' : '')
+          : '🧪 Complete a lab (finish its challenge) and it\'ll be ticked off here — 15 XP each on the main course.';
+      }
+      document.querySelectorAll('.lab-shell').forEach(function (s) {
+        var name = s.getAttribute('data-lab');
+        var head = s.querySelector('.lab-shell-head');
+        var tick = s.querySelector('.lab-shell-done');
+        if (done[name] && !tick && head) {
+          var sp = document.createElement('span');
+          sp.className = 'lab-shell-done';
+          sp.textContent = '✓ done';
+          head.appendChild(sp);
+        }
+      });
+    }
+    renderLabProgress();
+    document.addEventListener('di-lab-complete', renderLabProgress);
+
     /* initialise each lab the first time it scrolls into view */
     var shells = document.querySelectorAll('.lab-shell');
     function initShell(shell) {

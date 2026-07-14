@@ -826,6 +826,12 @@ function renderSlide(index) {
       (slide.intro ? '<div class="concept-body">' + slide.intro + '</div>' : '') +
       lab.html('lv-lab-' + slide.widget, slide.labData) +
       (slide.debrief ? '<div class="concept-callout"><strong>Think about it:</strong> ' + slide.debrief + '</div>' : '') +
+      (function () {
+        var beats = (window.DI_LAB_TEACH || {})[slide.widget];
+        if (!beats) return '';
+        return '<div class="lab-teach"><div class="lab-teach-head">📺 Run as a class demo</div><ol>' +
+          beats.map(function (b) { return '<li>' + b + '</li>'; }).join('') + '</ol></div>';
+      })() +
     '</div>';
   }
 
@@ -3092,6 +3098,7 @@ var UNIT_BADGES = [
   { id: 'u4', unitIdx: 3, icon: '📜', name: 'Policy Architect',  desc: 'Completed all Policy & Governance lessons' },
   { id: 'u5', unitIdx: 4, icon: '🚀', name: 'Innovator',         desc: 'Completed all Capstone Project lessons' },
   { id: 'u6', unitIdx: 5, icon: '🎤', name: 'Communicator',      desc: 'Completed all Presentations & Reflection lessons' },
+  { id: 'labs10', unitIdx: -1, icon: '🧪', name: 'Lab Scientist', desc: 'Completed 10 interactive labs' },
   { id: 'champion', unitIdx: -1, icon: '⭐', name: 'Course Champion', desc: 'Completed the entire Digital Innovations course!' }
 ];
 
@@ -3101,12 +3108,27 @@ function loadBadges() {
 }
 function saveBadges(b) { localStorage.setItem('di_badges', JSON.stringify(b)); }
 
+/* Interactive labs (js/labs.js) report first completions via this
+   event — award XP-adjacent badges and push the progress sync. */
+document.addEventListener('di-lab-complete', function () {
+  try { checkAndAwardBadges(); } catch (e) {}
+  if (typeof scheduleSync === 'function') scheduleSync();
+});
+
 function checkAndAwardBadges() {
   var earned = loadBadges();
   var changed = false;
   var newBadge = null;
   UNIT_BADGES.forEach(function(badge) {
     if (earned[badge.id]) return;
+    if (badge.id === 'labs10') {
+      var labCount = window.DI_LABS_DONE ? Object.keys(DI_LABS_DONE()).length : 0;
+      if (labCount >= 10) {
+        earned[badge.id] = new Date().toISOString().slice(0,10);
+        changed = true; newBadge = badge;
+      }
+      return;
+    }
     var unit = UNITS[badge.unitIdx];
     if (!unit) {
       // champion badge

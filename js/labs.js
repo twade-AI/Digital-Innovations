@@ -106,15 +106,53 @@ function pt(e) {
     : { x: e.clientX, y: e.clientY };
 }
 
+
+/* ── lab completion: telemetry + XP + badge signal ────────
+   First completion of each lab is recorded (di_labs_done),
+   awards XP where the page has an XP system, otherwise shows
+   a small toast, and always emits `di-lab-complete` so the
+   host page (badges, labs.html progress) can react. ── */
+var LAB_DONE_KEY = 'di_labs_done';
+function labsDone() {
+  try { return JSON.parse(localStorage.getItem(LAB_DONE_KEY)) || {}; } catch (e) { return {}; }
+}
+function labComplete(name) {
+  var done = labsDone();
+  if (done[name]) return;
+  done[name] = new Date().toISOString().slice(0, 10);
+  try { localStorage.setItem(LAB_DONE_KEY, JSON.stringify(done)); } catch (e) {}
+  var count = Object.keys(done).length;
+  if (typeof window.addXP === 'function') {
+    try { window.addXP(15, 'Interactive lab completed'); } catch (e) {}
+  } else {
+    labToast('🧪 Lab complete — ' + count + ' of ' + Object.keys(LABS).length);
+  }
+  try {
+    document.dispatchEvent(new CustomEvent('di-lab-complete', { detail: { name: name, count: count } }));
+  } catch (e) {}
+}
+function labToast(msg) {
+  var t = document.createElement('div');
+  t.className = 'lab-toast';
+  t.setAttribute('role', 'status');
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(function () { t.classList.add('in'); }, 30);
+  setTimeout(function () { t.classList.remove('in'); setTimeout(function () { t.remove(); }, 400); }, 2600);
+}
+window.DI_LABS_DONE = labsDone;
+
 /* ============================================================
    LAB: pixel-classifier
-   "Cat or dog?" — feel the difference between writing rules
-   and learning from examples, then see what the machine sees.
+   "Cat or dog?" — guess from few pixels for more points, or
+   reveal more and be surer. Confidence follows information.
    ============================================================ */
 var PXC_CARDS = [
   { e: '🐕', a: 'dog' }, { e: '🐈', a: 'cat' }, { e: '🐩', a: 'dog' },
   { e: '🐱', a: 'cat' }, { e: '🐕‍🦺', a: 'dog' }, { e: '🐈‍⬛', a: 'cat' }
 ];
+var PXC_BLUR = [13, 6, 0];       /* px of blur per reveal stage */
+var PXC_PTS = [3, 2, 1];         /* points for guessing at each stage */
 /* An 8×8 brightness map — roughly a cat's face, as the machine
    receives it: not a cat, just numbers. */
 var PXC_MAP = [
@@ -130,22 +168,23 @@ var PXC_MAP = [
 LABS['pixel-classifier'] = {
   title: 'Cat or dog? How do you actually know?',
   tag: 'Machine learning',
-  blurb: 'Classify six photos in seconds — then try to write the exact rule you used, and see what the machine actually receives.',
+  blurb: 'Guess from a blur for 3 points, or reveal more pixels and be surer for fewer. Then try to write the rule you used — and see what the machine actually receives.',
   html: function (uid) {
     return '' +
       '<div class="lab" id="' + uid + '">' +
         '<div class="lab-pxc-game" id="' + uid + '-game">' +
           '<div class="lab-pxc-photo" id="' + uid + '-photo" aria-live="polite">🐕</div>' +
-          '<div class="lab-pxc-count" id="' + uid + '-count">Photo 1 of ' + PXC_CARDS.length + '</div>' +
+          '<div class="lab-pxc-count" id="' + uid + '-count"></div>' +
           '<div class="lab-btn-row">' +
             '<button class="lab-btn lab-btn-primary" id="' + uid + '-cat">🐱 Cat</button>' +
             '<button class="lab-btn lab-btn-primary" id="' + uid + '-dog">🐶 Dog</button>' +
+            '<button class="lab-btn" id="' + uid + '-more">🔍 Show more pixels</button>' +
           '</div>' +
           '<div class="lab-feedback" id="' + uid + '-fb" aria-live="polite"></div>' +
         '</div>' +
         '<div class="lab-pxc-done" id="' + uid + '-done" hidden>' +
           '<div class="lab-score" id="' + uid + '-tally"></div>' +
-          '<p class="lab-note">Easy, wasn\'t it? Now the hard part.</p>' +
+          '<p class="lab-note" id="' + uid + '-insight"></p>' +
           '<button class="lab-btn" id="' + uid + '-reveal">So… how did you actually know? →</button>' +
         '</div>' +
         '<div class="lab-pxc-teach" id="' + uid + '-teach" hidden>' +
@@ -164,48 +203,64 @@ LABS['pixel-classifier'] = {
       '</div>';
   },
   init: function (uid) {
-    var idx = 0, score = 0, lock = false;
+    var idx = 0, stage = 0, points = 0, right = 0, lock = false;
     var photo = el(uid + '-photo'); if (!photo) return;
     function show() {
+      stage = 0;
       photo.textContent = PXC_CARDS[idx].e;
-      el(uid + '-count').textContent = 'Photo ' + (idx + 1) + ' of ' + PXC_CARDS.length;
+      photo.style.filter = 'blur(' + PXC_BLUR[0] + 'px)';
+      el(uid + '-count').textContent = 'Photo ' + (idx + 1) + ' of ' + PXC_CARDS.length +
+        ' · guess now for ' + PXC_PTS[0] + ' pts';
+      el(uid + '-more').disabled = false;
       var fb = el(uid + '-fb'); fb.textContent = ''; fb.className = 'lab-feedback';
+    }
+    function more() {
+      if (stage >= PXC_BLUR.length - 1) return;
+      stage++;
+      photo.style.filter = 'blur(' + PXC_BLUR[stage] + 'px)';
+      el(uid + '-count').textContent = 'Photo ' + (idx + 1) + ' of ' + PXC_CARDS.length +
+        ' · guess now for ' + PXC_PTS[stage] + (PXC_PTS[stage] === 1 ? ' pt' : ' pts');
+      if (stage >= PXC_BLUR.length - 1) el(uid + '-more').disabled = true;
     }
     function guess(g) {
       if (lock) return;
       lock = true;
-      var right = g === PXC_CARDS[idx].a;
-      if (right) score++;
+      var ok = g === PXC_CARDS[idx].a;
+      photo.style.filter = 'none';
       var fb = el(uid + '-fb');
-      fb.textContent = right ? '✓ Yes!' : '✗ Actually a ' + PXC_CARDS[idx].a;
-      fb.className = 'lab-feedback ' + (right ? 'ok' : 'no');
+      if (ok) { right++; points += PXC_PTS[stage]; }
+      fb.textContent = ok ? '✓ Yes! +' + PXC_PTS[stage] + (PXC_PTS[stage] === 1 ? ' pt' : ' pts')
+        : '✗ Actually a ' + PXC_CARDS[idx].a;
+      fb.className = 'lab-feedback ' + (ok ? 'ok' : 'no');
       setTimeout(function () {
         idx++;
         if (idx >= PXC_CARDS.length) {
           el(uid + '-game').hidden = true;
           el(uid + '-done').hidden = false;
-          el(uid + '-tally').textContent = score + ' / ' + PXC_CARDS.length;
+          el(uid + '-tally').textContent = points + ' pts · ' + right + '/' + PXC_CARDS.length + ' correct';
+          el(uid + '-insight').textContent =
+            'Notice the trade you just made: guessing from a blur was worth more but riskier; more pixels meant more certainty for fewer points. A classifier\'s "confidence" works exactly like that — it rises with information, and it can still be wrong.';
         } else { show(); }
         lock = false;
-      }, 750);
+      }, 850);
     }
     el(uid + '-cat').addEventListener('click', function () { guess('cat'); });
     el(uid + '-dog').addEventListener('click', function () { guess('dog'); });
+    el(uid + '-more').addEventListener('click', more);
     el(uid + '-reveal').addEventListener('click', function () {
       el(uid + '-done').hidden = true;
-      var teach = el(uid + '-teach');
-      teach.hidden = false;
-      var grid = el(uid + '-grid');
-      grid.innerHTML = PXC_MAP.map(function (row) {
+      el(uid + '-teach').hidden = false;
+      el(uid + '-grid').innerHTML = PXC_MAP.map(function (row) {
         return row.map(function (v) {
           var dark = v < 130;
           return '<span class="lab-pxc-cell" style="background:rgb(' + v + ',' + v + ',' + v + ');color:' +
             (dark ? '#eee' : '#333') + '">' + v + '</span>';
         }).join('');
       }).join('');
+      labComplete('pixel-classifier');
     });
     el(uid + '-again').addEventListener('click', function () {
-      idx = 0; score = 0;
+      idx = 0; stage = 0; points = 0; right = 0;
       el(uid + '-teach').hidden = true;
       el(uid + '-game').hidden = false;
       show();
@@ -216,7 +271,8 @@ LABS['pixel-classifier'] = {
 
 /* ============================================================
    LAB: next-word
-   Be the algorithm — build a sentence one prediction at a time.
+   Be the algorithm — then hand the dice to the model and
+   discover what "temperature" really is.
    ============================================================ */
 var NW_DEFAULT = {
   seed: 'The pupil opened the',
@@ -232,44 +288,55 @@ var NW_DEFAULT = {
     started: [{ w: 'working.', p: 58 }, { w: 'reading.', p: 30 }, { w: 'over.', p: 12 }],
     paused: [{ w: 'to think.', p: 57 }, { w: 'for a moment.', p: 31 }, { w: 'briefly.', p: 12 }],
     check: [{ w: 'the homework.', p: 55 }, { w: 'their notes.', p: 33 }, { w: 'the time.', p: 12 }],
-    avoid: [{ w: 'the homework.', p: 58 }, { w: 'distraction.', p: 42 }]
+    avoid: [{ w: 'the homework.', p: 58 }, { w: 'distraction.', p: 42 }],
+    start: [{ w: 'revising.', p: 60 }, { w: 'again.', p: 40 }]
   }
 };
 LABS['next-word'] = {
   title: 'Be the algorithm — predict the next word',
   tag: 'How LLMs work',
-  blurb: 'Each word offers a few likely successors with the model\'s confidence. Pick one — that is exactly what an LLM does, one token at a time.',
+  blurb: 'Pick the next word yourself — or hand the choice to the model and turn the temperature dial to see why the same prompt never gives the same answer twice.',
   html: function (uid) {
     return '' +
       '<div class="lab" id="' + uid + '">' +
         '<div class="lab-nw-sentence" id="' + uid + '-sent" aria-live="polite"></div>' +
         '<div class="lab-nw-opts" id="' + uid + '-opts"></div>' +
+        '<div class="lab-slider-row"><label for="' + uid + '-temp">Temperature</label>' +
+          '<input type="range" id="' + uid + '-temp" min="0" max="20" value="8">' +
+          '<span class="lab-val" id="' + uid + '-tempv">0.8</span></div>' +
+        '<div class="lab-btn-row">' +
+          '<button class="lab-btn lab-btn-primary" id="' + uid + '-model">🎲 Let the model pick</button>' +
+          '<button class="lab-btn lab-btn-sm" id="' + uid + '-reset">↻ Start again</button>' +
+        '</div>' +
         '<p class="lab-note" id="' + uid + '-note"></p>' +
-        '<button class="lab-btn lab-btn-sm" id="' + uid + '-reset">↻ Start again</button>' +
       '</div>';
   },
   init: function (uid, data) {
     var D = (data && data.tree) ? data : NW_DEFAULT;
     var base, key, done;
+    function temp() { return (+el(uid + '-temp').value) / 10; }
+    function options() {
+      return (D.tree[key] || []).slice().sort(function (a, b) { return b.p - a.p; });
+    }
     function render() {
       el(uid + '-sent').innerHTML = esc(base) + (done ? '' : '<span class="lab-cursor"></span>');
       var opts = el(uid + '-opts');
       opts.innerHTML = '';
+      el(uid + '-model').disabled = done;
       if (done) {
         el(uid + '-note').textContent =
-          'A complete sentence — assembled one prediction at a time, never planned in advance. Start again and watch it branch differently.';
+          'A complete sentence — assembled one prediction at a time, never planned in advance. Start again with a different temperature and watch it branch differently.';
+        labComplete('next-word');
         return;
       }
-      var list = (D.tree[key] || []).slice().sort(function (a, b) { return b.p - a.p; });
-      list.forEach(function (o, i) {
+      options().forEach(function (o, i) {
         var b = document.createElement('button');
         b.className = 'lab-nw-opt' + (i === 0 ? ' top' : '');
         b.innerHTML = esc(o.w) + '<span class="lab-nw-pct">' + o.p + '%</span>';
+        b.setAttribute('data-w', o.w);
         b.addEventListener('click', function () { pick(o.w); });
         opts.appendChild(b);
       });
-      el(uid + '-note').textContent =
-        'The percentages are the model\'s confidence. Note: real models don\'t always take the top choice — a little randomness ("temperature") keeps the output varied.';
     }
     function pick(word) {
       base += ' ' + word;
@@ -277,9 +344,49 @@ LABS['next-word'] = {
       if (/\.$/.test(word) || !D.tree[k]) done = true; else key = k;
       render();
     }
-    function reset() { base = D.seed; key = 'start'; done = false; render(); }
-    el(uid + '-reset').addEventListener('click', reset);
-    reset();
+    function modelPick() {
+      if (done) return;
+      var T = temp(), list = options(), chosen;
+      if (T <= 0.01) {
+        chosen = list[0]; /* temperature 0: always the most likely */
+      } else {
+        /* sharpen or flatten the distribution: weight = p^(1/T) */
+        var weights = list.map(function (o) { return Math.pow(o.p, 1 / T); });
+        var total = weights.reduce(function (s, w) { return s + w; }, 0);
+        var r = Math.random() * total, acc = 0;
+        chosen = list[list.length - 1];
+        for (var i = 0; i < list.length; i++) {
+          acc += weights[i];
+          if (r <= acc) { chosen = list[i]; break; }
+        }
+      }
+      var wasTop = chosen === list[0];
+      el(uid + '-note').textContent = T <= 0.01
+        ? 'Temperature 0: the model always takes the single most likely word — same prompt, same answer, every time.'
+        : 'At temperature ' + T.toFixed(1) + ' the model ' + (wasTop ? 'took the favourite this time' : 'gambled on "' + chosen.w + '" (' + chosen.p + '%)') +
+          '. Higher temperature flattens the odds — more surprise, more variety, more risk of nonsense.';
+      /* flash the chosen chip so the sampling is visible */
+      var btn = el(uid + '-opts').querySelector('[data-w="' + chosen.w.replace(/"/g, '') + '"]');
+      if (btn) {
+        btn.classList.add('sel');
+        setTimeout(function () { pick(chosen.w); }, reducedMotion() ? 60 : 420);
+      } else { pick(chosen.w); }
+    }
+    el(uid + '-temp').addEventListener('input', function () {
+      el(uid + '-tempv').textContent = temp().toFixed(1);
+    });
+    el(uid + '-model').addEventListener('click', modelPick);
+    el(uid + '-reset').addEventListener('click', function () {
+      base = D.seed; key = 'start'; done = false;
+      el(uid + '-note').textContent =
+        'Pick words yourself — or press "Let the model pick" and turn the temperature dial. This is exactly the knob real chatbots expose: it decides how often the dice beat the favourite.';
+      render();
+    });
+    el(uid + '-tempv').textContent = temp().toFixed(1);
+    base = D.seed; key = 'start'; done = false;
+    el(uid + '-note').textContent =
+      'Pick words yourself — or press "Let the model pick" and turn the temperature dial. This is exactly the knob real chatbots expose: it decides how often the dice beat the favourite.';
+    render();
   }
 };
 
@@ -361,6 +468,7 @@ LABS['pattern-tiles'] = {
         seq.forEach(function (k) { o.appendChild(tile(k, delay)); delay += 90; });
         status.textContent = 'A brand-new sequence — it follows the learned rule (two blues at the end) but matches no example exactly. That is generation. Press again for another.';
         b.textContent = 'Generate another →';
+        labComplete('pattern-tiles');
       }
     }
     el(uid + '-btn').addEventListener('click', step);
@@ -421,6 +529,7 @@ LABS['neuron-link'] = {
       el(uid + '-note').textContent = strength >= 8
         ? 'That link is now strong and fast — the pathway is "wired in". A trained model holds millions of these strengthened connections; their strengths are its weights.'
         : 'The connection just got a little stronger. Keep firing it — repetition is literally how learning is stored.';
+      if (strength >= 8) labComplete('neuron-link');
       if (reducedMotion()) { pulse = -1; draw(); }
     });
     el(uid + '-reset').addEventListener('click', function () {
@@ -492,8 +601,10 @@ LABS['cosine-compass'] = {
       else if (cos > -0.3) { v.textContent = 'unrelated'; v.className = 'lab-verdict warn'; }
       else { v.textContent = 'opposite ends of meaning'; v.className = 'lab-verdict no'; }
     }
-    el(uid + '-a').addEventListener('input', draw);
-    el(uid + '-b').addEventListener('input', draw);
+    var cosPlays = 0;
+    function cosTouch() { draw(); if (++cosPlays >= 3) labComplete('cosine-compass'); }
+    el(uid + '-a').addEventListener('input', cosTouch);
+    el(uid + '-b').addEventListener('input', cosTouch);
     draw();
   }
 };
@@ -552,6 +663,7 @@ LABS['pipeline'] = {
       el(uid + '-term').textContent = d.term;
       el(uid + '-text').innerHTML = d.text;
       el(uid + '-count').textContent = (i + 1) + ' / ' + PIPE_STEPS.length;
+      if (i >= PIPE_STEPS.length - 1) labComplete('pipeline');
       var ph = el(uid + '-phase');
       ph.textContent = d.p === 'train' ? '① Training the model' : '② Using the model (inference)';
       ph.className = 'lab-pipe-phase ' + d.p;
@@ -621,6 +733,7 @@ LABS['classifier-mirror'] = {
         'But a real classifier learns labels like these from <strong>biased human data</strong> and then states them ' +
         'with the same unearned confidence. A percentage is not proof. Remember the hiring tool that learned from a ' +
         'decade of mostly-male CVs: skewed data in, skewed decisions out — delivered as a confident score.</div>';
+      labComplete('classifier-mirror');
     });
   }
 };
@@ -651,6 +764,7 @@ LABS['bland-paste'] = {
       var force = +el(uid + '-f').value;
       var lbl = el(uid + '-fv');
       lbl.textContent = force < 25 ? 'outliers preserved' : force < 75 ? 'systematic averaging…' : 'compressed bland-paste mean';
+      if (force >= 75) labComplete('bland-paste');
       var g = ctx.createRadialGradient(W / 2, H / 2, 10, W / 2, H / 2, W * 0.7);
       g.addColorStop(0, 'rgba(198,75,116,.18)');
       g.addColorStop(0.55, 'rgba(0,159,227,.14)');
@@ -716,9 +830,11 @@ LABS['motion-field'] = {
         r: Math.random() * 2 + 1, c: COLS[i % 2]
       });
     }
+    var traces = 0;
     function setPointer(e) {
       var r = cv.getBoundingClientRect(), p = pt(e);
       mx = p.x - r.left; my = p.y - r.top; tracing = true;
+      if (++traces === 40) labComplete('motion-field');
     }
     cv.addEventListener('mousemove', setPointer);
     cv.addEventListener('touchmove', function (e) { setPointer(e); }, { passive: true });
@@ -792,7 +908,10 @@ LABS['code-sandbox'] = {
   init: function (uid, data) {
     var starter = (data && data.starter) || SANDBOX_STARTER;
     var code = el(uid + '-code'); if (!code) return;
-    function run() { el(uid + '-frame').srcdoc = code.value; }
+    function run() {
+      el(uid + '-frame').srcdoc = code.value;
+      if (code.value !== starter) labComplete('code-sandbox');
+    }
     code.value = starter;
     el(uid + '-run').addEventListener('click', run);
     el(uid + '-reset').addEventListener('click', function () { code.value = starter; run(); });
@@ -853,6 +972,7 @@ LABS['prompt-coach'] = {
         if (ok) n++;
         return '<div class="lab-pc-item ' + (ok ? 'ok' : 'no') + '"><span class="lab-pc-ic">' + (ok ? '✓' : '+') + '</span><span>' + (ok ? c.yes : c.no) + '</span></div>';
       }).join('');
+      if (n >= 6) labComplete('prompt-coach');
       var verdict = n >= 6 ? 'strong prompt' : n >= 4 ? 'getting there — add the missing ingredients' : 'a starting point — keep building it';
       out.innerHTML = '<div class="lab-pc-score">' + n + ' / ' + PC_CHECKS.length + ' ingredients · ' + verdict + '</div>' + rows;
     });
@@ -894,10 +1014,12 @@ LABS['day-one'] = {
       '</div>';
   },
   init: function (uid) {
+    var dayCopies = 0;
     el(uid).addEventListener('click', function (e) {
       var b = e.target.closest('.lab-q-copy');
       if (!b) return;
       copyText(DAY_ONE_QS[+b.getAttribute('data-i')].q, b);
+      if (++dayCopies >= 3) labComplete('day-one');
     });
   }
 };
@@ -971,6 +1093,7 @@ LABS['word-galaxy'] = {
       el(uid + '-gnote').textContent = s.note;
       el(uid + '-prev').disabled = step === 0;
       el(uid + '-next').textContent = step === GX_STEPS.length - 1 ? '↻ Start over' : 'Next idea →';
+      if (step === GX_STEPS.length - 1) labComplete('word-galaxy');
       Array.prototype.forEach.call(dots.children, function (d, n2) { d.classList.toggle('on', n2 === step); });
     }
     el(uid + '-prev').addEventListener('click', function () { setStep(step - 1); });
@@ -1076,7 +1199,7 @@ var MS_SENSES = {
 LABS['meaning-space'] = {
   title: 'The meaning-space — embeddings you can touch',
   tag: 'Embeddings',
-  blurb: 'Type a sentence and watch every word land in a sky of meaning. Repeated words glow brighter; ambiguous words move with their context; click two stars to measure the angle between them.',
+  blurb: 'Type a sentence and watch every word land in a sky of meaning. Repeated words glow brighter; ambiguous words move with their context; click two stars to measure the angle between them. (A hand-built miniature, drawn by humans, of the geometry real embedding models learn.)',
   html: function (uid) {
     return '' +
       '<div class="lab" id="' + uid + '">' +
@@ -1246,6 +1369,7 @@ LABS['meaning-space'] = {
           : 'pointing apart — opposite ends of meaning';
         out.innerHTML = '<strong>' + esc(a.word) + '</strong> ↔ <strong>' + esc(b.word) + '</strong> · angle <strong>' +
           ang.toFixed(0) + '°</strong> · cosine <strong>' + cos.toFixed(2) + '</strong> — ' + v + '.';
+        labComplete('meaning-space');
       } else if (S.sel.length === 1) {
         out.innerHTML = 'Selected <strong>' + esc(S.stars[S.sel[0]].word) + '</strong>. Click a second star to measure the angle between them.';
       } else {
@@ -1346,7 +1470,7 @@ LABS['wall-drawing'] = {
       ctx.fillStyle = 'rgba(35,30,28,.75)';
       pts.forEach(function (p) { ctx.beginPath(); ctx.arc(p.x, p.y, 1.4, 0, Math.PI * 2); ctx.fill(); });
     }
-    el(uid + '-again').addEventListener('click', draw);
+    el(uid + '-again').addEventListener('click', function () { draw(); labComplete('wall-drawing'); });
     draw();
   }
 };
@@ -1443,8 +1567,10 @@ LABS['instruction-engine'] = {
         : 'cycling the full spectrum on near-black';
       el(uid + '-tr').textContent = '// the instruction, in prose: ' + structTxt + ', ' + density + ' times, at ' + lw + 'px, ' + palTxt + '.';
     }
-    [uid + '-d', uid + '-w'].forEach(function (id) { el(id).addEventListener('input', draw); });
-    [uid + '-p', uid + '-s'].forEach(function (id) { el(id).addEventListener('change', draw); });
+    var ieTouches = 0;
+    function ieTouch() { draw(); if (++ieTouches >= 3) labComplete('instruction-engine'); }
+    [uid + '-d', uid + '-w'].forEach(function (id) { el(id).addEventListener('input', ieTouch); });
+    [uid + '-p', uid + '-s'].forEach(function (id) { el(id).addEventListener('change', ieTouch); });
     draw();
   }
 };
@@ -1522,6 +1648,7 @@ LABS['rule-painter'] = {
       var key = cellAt(e); if (!key) return;
       if (erase) delete cells[key]; else cells[key] = { d: dir, c: color };
       draw();
+      if (Object.keys(cells).length >= 5) labComplete('rule-painter');
     }
     cv.addEventListener('pointerdown', function (e) { e.preventDefault(); painting = true; apply(e); });
     cv.addEventListener('pointermove', function (e) { if (painting) { e.preventDefault(); apply(e); } });
@@ -1569,8 +1696,8 @@ LABS['rule-painter'] = {
 
 /* ============================================================
    LAB: sequence
-   Generic drag-to-order activity (touch + mouse). Data-driven:
-   pass labData {prompt, items:[{text, reveal}]} in correct order.
+   Generic drag-to-order activity — pointer AND keyboard.
+   Data-driven: pass labData {prompt, items:[{text, reveal}]}.
    ============================================================ */
 var SEQ_DEFAULT = {
   prompt: 'Drag the cards into the order it really happened, earliest first — then check.',
@@ -1585,24 +1712,28 @@ var SEQ_DEFAULT = {
 LABS['sequence'] = {
   title: 'Put it in order',
   tag: 'Activity',
-  blurb: 'A reusable drag-to-order challenge. Reason about the sequence, check your answer, and the cards reveal what really happened.',
+  blurb: 'A reusable ordering challenge — drag with a pointer, or use Enter and the arrow keys. Check your answer and the cards reveal what really happened.',
   html: function (uid) {
     return '' +
       '<div class="lab" id="' + uid + '">' +
-        '<p class="lab-note" id="' + uid + '-prompt"></p>' +
+        '<p class="lab-note" id="' + uid + '-prompt" style="margin-top:0"></p>' +
+        '<p class="lab-note lab-kb-hint">⌨ Keyboard: focus a card, press <strong>Enter</strong> to pick it up, <strong>↑/↓</strong> to move it, <strong>Enter</strong> to drop, <strong>Esc</strong> to cancel.</p>' +
         '<div class="lab-seq-rows" id="' + uid + '-rows"></div>' +
         '<div class="lab-btn-row">' +
           '<button class="lab-btn lab-btn-primary" id="' + uid + '-check">Check my order</button>' +
           '<button class="lab-btn lab-btn-sm" id="' + uid + '-shuffle">🔀 Shuffle</button>' +
         '</div>' +
         '<p class="lab-feedback" id="' + uid + '-fb" aria-live="polite"></p>' +
+        '<span class="lab-sr" id="' + uid + '-live" aria-live="assertive"></span>' +
       '</div>';
   },
   init: function (uid, data) {
     var D = (data && data.items) ? data : SEQ_DEFAULT;
     el(uid + '-prompt').textContent = D.prompt || SEQ_DEFAULT.prompt;
     var rows = el(uid + '-rows');
-    var drag = null, from = null, ox = 0, oy = 0;
+    var drag = null, from = null, ox = 0, oy = 0, grabbed = null;
+    function announce(msg) { var l = el(uid + '-live'); if (l) l.textContent = msg; }
+    function slots() { return Array.prototype.slice.call(rows.querySelectorAll('.lab-seq-slot')); }
     function build() {
       rows.innerHTML = '';
       shuffle(D.items.map(function (it, i) { return { it: it, order: i }; })).forEach(function (e2) {
@@ -1611,15 +1742,19 @@ LABS['sequence'] = {
         var card = document.createElement('div');
         card.className = 'lab-seq-card';
         card.setAttribute('data-order', e2.order);
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', e2.it.text + '. Press Enter to pick up, then arrow keys to move.');
         card.innerHTML = '<span class="lab-seq-text">' + esc(e2.it.text) + '</span><span class="lab-seq-reveal"></span>';
         slot.appendChild(card);
         rows.appendChild(slot);
       });
       el(uid + '-fb').textContent = '';
+      grabbed = null;
     }
     function check() {
       var right = true;
-      Array.prototype.forEach.call(rows.querySelectorAll('.lab-seq-slot'), function (s, idx) {
+      slots().forEach(function (s, idx) {
         var c = s.querySelector('.lab-seq-card'); if (!c) return;
         var ok = +c.getAttribute('data-order') === idx;
         c.classList.toggle('ok', ok); c.classList.toggle('bad', !ok);
@@ -1633,7 +1768,39 @@ LABS['sequence'] = {
         ? '✓ Correct — that is the real order. Nicely reasoned.'
         : 'Not quite. Green cards are placed right; move the red ones and check again.';
       fb.className = 'lab-feedback ' + (right ? 'ok' : 'no');
+      if (right) labComplete('sequence');
     }
+    /* keyboard: Enter grabs/drops, arrows swap with neighbour, Esc cancels */
+    rows.addEventListener('keydown', function (e) {
+      var card = e.target.closest ? e.target.closest('.lab-seq-card') : null;
+      if (!card) return;
+      var all = slots();
+      var i = all.indexOf(card.parentElement);
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (grabbed === card) {
+          grabbed = null; card.classList.remove('kb-grab');
+          announce('Dropped at position ' + (i + 1) + ' of ' + all.length + '.');
+        } else {
+          if (grabbed) grabbed.classList.remove('kb-grab');
+          grabbed = card; card.classList.add('kb-grab');
+          announce('Picked up. Position ' + (i + 1) + ' of ' + all.length + '. Use arrow keys to move.');
+        }
+      } else if ((e.key === 'ArrowUp' || e.key === 'ArrowDown') && grabbed === card) {
+        e.preventDefault();
+        var j = e.key === 'ArrowUp' ? i - 1 : i + 1;
+        if (j < 0 || j >= all.length) return;
+        var other = all[j].querySelector('.lab-seq-card');
+        if (other) all[i].appendChild(other);
+        all[j].appendChild(card);
+        card.classList.remove('ok', 'bad');
+        card.focus();
+        announce('Moved to position ' + (j + 1) + ' of ' + all.length + '.');
+      } else if (e.key === 'Escape' && grabbed === card) {
+        grabbed = null; card.classList.remove('kb-grab');
+        announce('Cancelled.');
+      }
+    });
     rows.addEventListener('pointerdown', function (e) {
       var card = e.target.closest('.lab-seq-card'); if (!card) return;
       e.preventDefault();
@@ -1678,7 +1845,7 @@ LABS['sequence'] = {
 
 /* ============================================================
    LAB: peril-promise
-   Drag possibilities onto a 2D field; defend your placements.
+   Drag possibilities onto a 2D field — pointer AND keyboard.
    ============================================================ */
 var PP_CARDS = [
   '🗣️ Reviving endangered languages',
@@ -1693,36 +1860,87 @@ var PP_CARDS = [
 LABS['peril-promise'] = {
   title: 'Peril ↔ Promise — take a position',
   tag: 'Ethics',
-  blurb: 'Drag each possibility onto the field: peril or promise, distant or already here. There are no right placements — only ones you can defend.',
+  blurb: 'Drag each possibility onto the field — or place it with Enter and steer it with the arrow keys. There are no right placements, only ones you can defend.',
   html: function (uid) {
     return '' +
       '<div class="lab" id="' + uid + '">' +
         '<div class="lab-pp-bank" id="' + uid + '-bank">' +
-          PP_CARDS.map(function (c) { return '<div class="lab-pp-card">' + esc(c) + '</div>'; }).join('') +
+          PP_CARDS.map(function (c) { return '<div class="lab-pp-card" tabindex="0" role="button" aria-label="' + esc(c) + '. Press Enter to place on the field.">' + esc(c) + '</div>'; }).join('') +
         '</div>' +
         '<div class="lab-pp-addrow">' +
           '<input class="lab-input" id="' + uid + '-add" maxlength="60" placeholder="Add your own possibility…" aria-label="Add your own possibility">' +
           '<button class="lab-btn lab-btn-sm" id="' + uid + '-addbtn">+ Add</button>' +
         '</div>' +
+        '<p class="lab-note lab-kb-hint">⌨ Keyboard: focus a card, <strong>Enter</strong> places it mid-field, <strong>arrow keys</strong> steer it, <strong>Esc</strong> sends it back.</p>' +
         '<div class="lab-pp-field" id="' + uid + '-field" aria-label="Two-dimensional field from peril to promise">' +
           '<span class="lab-pp-ax lab-pp-w">☠️ Peril</span><span class="lab-pp-ax lab-pp-e">✨ Promise</span>' +
           '<span class="lab-pp-ax lab-pp-n">already happening</span><span class="lab-pp-ax lab-pp-s">years away</span>' +
         '</div>' +
         '<p class="lab-note">Protocol: read each card aloud → place it together → could any <em>promise</em> become a <em>peril</em>, depending on who controls it? Drag a card out of the field to send it back.</p>' +
+        '<span class="lab-sr" id="' + uid + '-live" aria-live="assertive"></span>' +
       '</div>';
   },
   init: function (uid) {
     var bank = el(uid + '-bank'), field = el(uid + '-field');
     if (!bank || !field) return;
     var drag = null, placed = false, ox = 0, oy = 0;
+    function announce(msg) { var l = el(uid + '-live'); if (l) l.textContent = msg; }
+    function describe(card) {
+      var fr = field.getBoundingClientRect(), cr = card.getBoundingClientRect();
+      var x = (cr.left + cr.width / 2 - fr.left) / fr.width;
+      var y = (cr.top + cr.height / 2 - fr.top) / fr.height;
+      var h = x < 0.4 ? 'towards peril' : x > 0.6 ? 'towards promise' : 'between peril and promise';
+      var v = y < 0.4 ? 'already happening' : y > 0.6 ? 'years away' : 'mid-distance';
+      return h + ', ' + v;
+    }
+    function checkPlacedCount() {
+      if (field.querySelectorAll('.lab-pp-card').length >= 4) labComplete('peril-promise');
+    }
     el(uid + '-addbtn').addEventListener('click', function () {
       var inp = el(uid + '-add');
       var txt = inp.value.trim(); if (!txt) return;
       var c = document.createElement('div');
       c.className = 'lab-pp-card';
+      c.setAttribute('tabindex', '0');
+      c.setAttribute('role', 'button');
       c.textContent = '✏️ ' + txt;
       bank.appendChild(c);
       inp.value = ''; inp.focus();
+    });
+    /* keyboard placement + steering */
+    el(uid).addEventListener('keydown', function (e) {
+      var card = e.target.closest ? e.target.closest('.lab-pp-card') : null;
+      if (!card) return;
+      var inField = field.contains(card);
+      if (e.key === 'Enter' && !inField) {
+        e.preventDefault();
+        card.classList.add('placed');
+        field.appendChild(card);
+        card.style.position = 'absolute';
+        card.style.left = Math.round(field.clientWidth / 2 - 50) + 'px';
+        card.style.top = Math.round(field.clientHeight / 2 - 12) + 'px';
+        card.focus();
+        announce('Placed mid-field. Arrow keys to steer; Escape to send back.');
+        checkPlacedCount();
+      } else if (inField && /^Arrow/.test(e.key)) {
+        e.preventDefault();
+        var step = 18;
+        var x = parseInt(card.style.left || '0', 10), y = parseInt(card.style.top || '0', 10);
+        if (e.key === 'ArrowLeft') x -= step;
+        if (e.key === 'ArrowRight') x += step;
+        if (e.key === 'ArrowUp') y -= step;
+        if (e.key === 'ArrowDown') y += step;
+        card.style.left = Math.max(4, Math.min(field.clientWidth - 44, x)) + 'px';
+        card.style.top = Math.max(4, Math.min(field.clientHeight - 26, y)) + 'px';
+        announce(describe(card));
+      } else if (inField && (e.key === 'Escape' || e.key === 'Backspace')) {
+        e.preventDefault();
+        card.classList.remove('placed');
+        card.style.position = ''; card.style.left = card.style.top = '';
+        bank.appendChild(card);
+        card.focus();
+        announce('Sent back to the bank.');
+      }
     });
     function down(e) {
       var card = e.target.closest ? e.target.closest('.lab-pp-card') : null;
@@ -1762,6 +1980,7 @@ LABS['peril-promise'] = {
           field.appendChild(drag);
           drag.style.left = (p.x - fr.left - ox) + 'px';
           drag.style.top = (p.y - fr.top - oy) + 'px';
+          checkPlacedCount();
         } else {
           drag.style.position = ''; drag.style.left = drag.style.top = drag.style.width = '';
         }
@@ -1892,6 +2111,7 @@ LABS['ai-quest'] = {
           el(uid + '-win').hidden = false;
           el(uid + '-winmsg').textContent =
             'You cleared all three worlds with ' + G.sparks + ' sparks. Revision, but you asked to replay it.';
+          labComplete('ai-quest');
           if (typeof launchConfetti === 'function' && !reducedMotion()) { try { launchConfetti(); } catch (e) {} }
         } else {
           startLevel(G.level + 1);
@@ -2037,80 +2257,139 @@ LABS['ai-quest'] = {
 /* ============================================================
    LAB: skew-trainer
    Train a classifier on a lopsided dataset, then measure who
-   pays for the imbalance. The flagship bias demo.
+   pays for the imbalance. Two skins (pets / loans) and an
+   optional decision-threshold extension (labData.advanced).
    ============================================================ */
+var SK_SKINS = {
+  pets: {
+    a: '🐶', b: '🐱', aName: 'dogs', bName: 'cats',
+    mixLabel: '% dogs', dataLabel: 'Training data — 40 labelled photos',
+    trainBtn: 'Train the detector →', testBtn: 'Test on 12 new pets',
+    fixBtn: '⚖️ Collect more cat data & retrain',
+    swap: '🔁 Swap scenario: make it loan applications',
+    real: 'Swap "cats" for a group of people and "pet detector" for a CV screener, and this is precisely how the hiring tool that downgraded women\'s CVs went wrong: <strong>skewed data in, skewed decisions out</strong>.'
+  },
+  loans: {
+    a: '🅰️', b: '🅱️', aName: 'Group A', bName: 'Group B',
+    mixLabel: '% Group A', dataLabel: 'Training data — 40 past loan decisions',
+    trainBtn: 'Train the predictor →', testBtn: 'Test on 12 new applications',
+    fixBtn: '⚖️ Collect more Group B data & retrain',
+    swap: '🔁 Swap scenario: back to pets',
+    real: 'This is no longer a toy. Credit scoring, insurance pricing and CV screening all train on historical decisions — and history is rarely balanced. The group with less data gets less accurate decisions, <strong>delivered with the same confident score</strong>.'
+  }
+};
 LABS['skew-trainer'] = {
   title: 'The skewed-data trainer — cause the bias, then measure it',
   tag: 'Bias',
-  blurb: 'Choose how lopsided the training data is, train a pet detector, and test it. The group with less data gets more errors — bias you created, measured.',
+  blurb: 'Choose how lopsided the training data is, train, and test. The group with less data gets more errors — bias you created, measured. Then swap the pets for loan applications.',
   html: function (uid) {
     return '' +
       '<div class="lab" id="' + uid + '">' +
-        '<div class="lab-slider-row"><label for="' + uid + '-mix">Training mix</label>' +
+        '<div class="lab-slider-row"><label for="' + uid + '-mix" id="' + uid + '-mixlbl">Training mix</label>' +
           '<input type="range" id="' + uid + '-mix" min="50" max="95" value="88">' +
           '<span class="lab-val" id="' + uid + '-mixv"></span></div>' +
-        '<div class="lab-label" style="margin-top:10px">Training data — 40 labelled photos</div>' +
+        '<div class="lab-label" style="margin-top:10px" id="' + uid + '-datalbl"></div>' +
         '<div class="lab-skew-data" id="' + uid + '-data" aria-hidden="true"></div>' +
         '<div class="lab-btn-row">' +
-          '<button class="lab-btn lab-btn-primary" id="' + uid + '-train">Train the detector →</button>' +
-          '<button class="lab-btn" id="' + uid + '-test" disabled>Test on 12 new pets</button>' +
-          '<button class="lab-btn lab-btn-sm" id="' + uid + '-fix" disabled>⚖️ Collect more cat data &amp; retrain</button>' +
+          '<button class="lab-btn lab-btn-primary" id="' + uid + '-train"></button>' +
+          '<button class="lab-btn" id="' + uid + '-test" disabled></button>' +
+          '<button class="lab-btn lab-btn-sm" id="' + uid + '-fix" disabled></button>' +
+          '<button class="lab-btn lab-btn-sm" id="' + uid + '-swap"></button>' +
         '</div>' +
         '<div id="' + uid + '-acc"></div>' +
+        '<div id="' + uid + '-thresh"></div>' +
         '<div class="lab-skew-test" id="' + uid + '-grid"></div>' +
-        '<p class="lab-note" id="' + uid + '-msg">Slide the mix towards dogs, then train. The detector will be exactly as good as its data lets it be.</p>' +
+        '<p class="lab-note" id="' + uid + '-msg"></p>' +
       '</div>';
   },
-  init: function (uid) {
-    var trained = false, accDog = 0, accCat = 0;
+  init: function (uid, data) {
+    var advanced = !!(data && data.advanced);
+    var skinKey = 'pets', trained = false, accA = 0, accB = 0;
+    function skin() { return SK_SKINS[skinKey]; }
     function share() { return (+el(uid + '-mix').value) / 100; }
     function accFor(s) { return Math.min(96, Math.round(50 + 46 * Math.sqrt(Math.min(1, s / 0.5)))); }
+    function applySkin() {
+      var S = skin();
+      el(uid + '-datalbl').textContent = S.dataLabel;
+      el(uid + '-train').textContent = S.trainBtn;
+      el(uid + '-test').textContent = S.testBtn;
+      el(uid + '-fix').textContent = S.fixBtn;
+      el(uid + '-swap').textContent = S.swap;
+    }
     function renderData() {
-      var s = share(), dogs = Math.round(40 * s);
-      el(uid + '-mixv').textContent = Math.round(s * 100) + '% dogs · ' + Math.round((1 - s) * 100) + '% cats';
+      var S = skin(), s = share(), nA = Math.round(40 * s);
+      el(uid + '-mixv').textContent = Math.round(s * 100) + '% ' + S.aName + ' · ' + Math.round((1 - s) * 100) + '% ' + S.bName;
       var h = '';
-      for (var i = 0; i < 40; i++) h += '<span>' + (i < dogs ? '🐶' : '🐱') + '</span>';
+      for (var i = 0; i < 40; i++) h += '<span>' + (i < nA ? S.a : S.b) + '</span>';
       el(uid + '-data').innerHTML = h;
       trained = false;
       el(uid + '-test').disabled = true;
       el(uid + '-fix').disabled = true;
       el(uid + '-acc').innerHTML = '';
+      el(uid + '-thresh').innerHTML = '';
       el(uid + '-grid').innerHTML = '';
+      el(uid + '-msg').textContent = 'Slide the mix, then train. The model will be exactly as good as its data lets it be.';
     }
-    function bar(label, acc, col) {
+    function bar(label, val, col) {
       return '<div class="lab-skew-bar-row"><span class="lab-skew-bar-label">' + label + '</span>' +
-        '<span class="lab-skew-bar"><span style="width:' + acc + '%;background:' + col + '"></span></span>' +
-        '<span class="lab-val">' + acc + '%</span></div>';
+        '<span class="lab-skew-bar"><span style="width:' + val + '%;background:' + col + '"></span></span>' +
+        '<span class="lab-val">' + val + '%</span></div>';
+    }
+    function renderThreshold() {
+      if (!advanced || !trained) return;
+      var box = el(uid + '-thresh');
+      box.innerHTML =
+        '<div class="lab-label" style="margin-top:14px">Advanced — choose the decision cut-off</div>' +
+        '<div class="lab-slider-row"><label for="' + uid + '-t">How sure before saying yes?</label>' +
+          '<input type="range" id="' + uid + '-t" min="50" max="95" value="70">' +
+          '<span class="lab-val" id="' + uid + '-tv">70%</span></div>' +
+        '<div id="' + uid + '-terr"></div>';
+      function renderErr() {
+        var S = skin(), t = +el(uid + '-t').value;
+        el(uid + '-tv').textContent = t + '%';
+        function fr(acc) { return Math.max(2, Math.min(70, Math.round(6 + (t - acc) * 1.4 + (96 - acc) * 0.4))); }
+        function fa(acc) { return Math.max(2, Math.min(70, Math.round(6 + (acc - t) * 1.1 + (96 - acc) * 0.3))); }
+        el(uid + '-terr').innerHTML =
+          bar(S.a + ' wrongly rejected', fr(accA), 'var(--warning)') +
+          bar(S.a + ' wrongly accepted', fa(accA), 'var(--accent)') +
+          bar(S.b + ' wrongly rejected', fr(accB), 'var(--warning)') +
+          bar(S.b + ' wrongly accepted', fa(accB), 'var(--accent)') +
+          '<p class="lab-note">Move the cut-off and watch the trade: a stricter threshold rejects more good cases; a looser one accepts more bad ones. You can never zero both — and notice the under-represented group pays more <em>at every setting</em>, because the model is simply less sure about them.</p>';
+      }
+      el(uid + '-t').addEventListener('input', renderErr);
+      renderErr();
     }
     function train() {
-      var s = share();
-      accDog = accFor(s); accCat = accFor(1 - s);
+      var S = skin(), s = share();
+      accA = accFor(s); accB = accFor(1 - s);
       trained = true;
       el(uid + '-acc').innerHTML =
         '<div class="lab-label" style="margin-top:12px">Accuracy after training</div>' +
-        bar('🐶 dogs', accDog, 'var(--accent)') + bar('🐱 cats', accCat, 'var(--primary-light)');
+        bar(S.a + ' ' + S.aName, accA, 'var(--accent)') + bar(S.b + ' ' + S.bName, accB, 'var(--primary-light)');
       el(uid + '-test').disabled = false;
       el(uid + '-fix').disabled = false;
-      var gap = accDog - accCat;
+      var gap = accA - accB;
       el(uid + '-msg').innerHTML = gap > 15
-        ? 'A <strong>' + gap + '-point accuracy gap</strong> — and nobody wrote a single biased rule. The model simply saw far fewer cats. Now test it on new pets.'
+        ? 'A <strong>' + gap + '-point accuracy gap</strong> — and nobody wrote a single biased rule. The model simply saw far fewer ' + S.bName + '. Now test it.'
         : gap > 5
           ? 'A ' + gap + '-point gap. Small imbalance, small unfairness — the relationship is direct. Test it.'
           : 'Balanced data, balanced accuracy. This is what fair training data buys you. Test it to confirm.';
       el(uid + '-grid').innerHTML = '';
+      renderThreshold();
     }
     function test() {
       if (!trained) return;
-      var h = '', wrongCat = 0, wrongDog = 0;
+      var S = skin(), h = '', wrongB = 0, wrongA = 0;
       for (var i = 0; i < 12; i++) {
-        var isDog = i < 6;
-        var ok = Math.random() * 100 < (isDog ? accDog : accCat);
-        if (!ok) { if (isDog) wrongDog++; else wrongCat++; }
-        h += '<span class="lab-skew-cell ' + (ok ? 'ok' : 'no') + '">' + (isDog ? '🐶' : '🐱') + (ok ? '✓' : '✗') + '</span>';
+        var isA = i < 6;
+        var ok = Math.random() * 100 < (isA ? accA : accB);
+        if (!ok) { if (isA) wrongA++; else wrongB++; }
+        h += '<span class="lab-skew-cell ' + (ok ? 'ok' : 'no') + '">' + (isA ? S.a : S.b) + (ok ? '✓' : '✗') + '</span>';
       }
       el(uid + '-grid').innerHTML = h;
-      el(uid + '-msg').innerHTML = 'On this test: <strong>' + wrongDog + '/6 dogs</strong> and <strong>' + wrongCat +
-        '/6 cats</strong> misidentified. Swap "cats" for a group of people and "pet detector" for a CV screener, and this is precisely how the hiring tool that downgraded women\'s CVs went wrong: <strong>skewed data in, skewed decisions out</strong>.';
+      el(uid + '-msg').innerHTML = 'On this test: <strong>' + wrongA + '/6 ' + S.aName + '</strong> and <strong>' + wrongB +
+        '/6 ' + S.bName + '</strong> got the wrong decision. ' + S.real;
+      labComplete('skew-trainer');
     }
     el(uid + '-mix').addEventListener('input', renderData);
     el(uid + '-train').addEventListener('click', train);
@@ -2120,18 +2399,24 @@ LABS['skew-trainer'] = {
       renderData(); train();
       el(uid + '-msg').innerHTML = 'Rebalanced and retrained: the gap closes. The fix for this kind of bias is rarely cleverer maths — it is <strong>better data</strong>, and someone deciding the gap matters enough to collect it.';
     });
+    el(uid + '-swap').addEventListener('click', function () {
+      skinKey = skinKey === 'pets' ? 'loans' : 'pets';
+      applySkin(); renderData();
+    });
+    applySkin();
     renderData();
   }
 };
 
 /* ============================================================
    LAB: misinfo-network
-   A false story races its own correction through a network.
+   A false story races its correction — and at some point it
+   reaches YOU, and you choose: share, or check first.
    ============================================================ */
 LABS['misinfo-network'] = {
   title: 'The misinformation race — a lie versus its correction',
   tag: 'Truth & media',
-  blurb: 'Watch a false story spread through a network, then release the correction late. Adjust the outrage factor and see why the lie usually wins.',
+  blurb: 'Release a false story, delay the correction, and watch the asymmetry. Somewhere in the network is you — and when the story arrives, you choose what kind of node to be.',
   html: function (uid) {
     return '' +
       '<div class="lab" id="' + uid + '">' +
@@ -2147,12 +2432,13 @@ LABS['misinfo-network'] = {
           '<button class="lab-btn lab-btn-sm" id="' + uid + '-reset">↻ Reset</button>' +
           '<span class="lab-label" style="margin:0 0 0 auto"><span style="color:#ef5f6e">■</span> story <span id="' + uid + '-cf">0</span> · <span style="color:#5db8e8">■</span> correction <span id="' + uid + '-ct">0</span></span>' +
         '</div>' +
-        '<p class="lab-note" id="' + uid + '-msg">The red story spreads because it\'s shareable before it\'s checkable. The blue correction starts later and spreads slower — measure the difference.</p>' +
+        '<p class="lab-note" id="' + uid + '-msg" aria-live="polite">The gold ring is you. When the story reaches your neighbours, you\'ll have to decide what to do with it.</p>' +
       '</div>';
   },
   init: function (uid) {
     var cv = el(uid + '-cv'); if (!cv) return;
     var nodes = [], running = false, tick = 0, timer = null;
+    var youIdx = -1, youAsked = false, youChecked = false;
     var f = fitCanvas(cv, 0.5, 220), ctx = f.ctx, W = f.W, H = f.H;
     function build() {
       nodes = [];
@@ -2167,6 +2453,12 @@ LABS['misinfo-network'] = {
         byDist.forEach(function (o) { if (n.links.indexOf(o.j) < 0) n.links.push(o.j); });
       });
       nodes[0].state = 1;
+      /* you: a mid-distance node, so the story takes a while to arrive */
+      var byDist = nodes.map(function (n, i) {
+        return { i: i, d: Math.hypot(n.x - nodes[0].x, n.y - nodes[0].y) };
+      }).sort(function (a, b) { return a.d - b.d; });
+      youIdx = byDist[Math.floor(byDist.length * 0.55)].i;
+      youAsked = false; youChecked = false;
       tick = 0;
       counts();
       draw();
@@ -2186,11 +2478,38 @@ LABS['misinfo-network'] = {
           if (j > i) { ctx.beginPath(); ctx.moveTo(n.x, n.y); ctx.lineTo(nodes[j].x, nodes[j].y); ctx.stroke(); }
         });
       });
-      nodes.forEach(function (n) {
+      nodes.forEach(function (n, i) {
         ctx.beginPath(); ctx.arc(n.x, n.y, n.state ? 5 : 3.4, 0, Math.PI * 2);
         ctx.fillStyle = n.state === 1 ? '#ef5f6e' : n.state === 2 ? '#5db8e8' : 'rgba(203,213,225,.55)';
         if (n.state) { ctx.shadowColor = ctx.fillStyle; ctx.shadowBlur = 9; }
         ctx.fill(); ctx.shadowBlur = 0;
+        if (i === youIdx) {
+          ctx.strokeStyle = '#e8b45d'; ctx.lineWidth = 2;
+          ctx.beginPath(); ctx.arc(n.x, n.y, 8.5, 0, Math.PI * 2); ctx.stroke();
+          ctx.fillStyle = '#e8b45d'; ctx.font = '700 10px sans-serif';
+          ctx.fillText('you', n.x + 10, n.y + 3);
+        }
+      });
+    }
+    function startTimer() {
+      timer = setInterval(function () { if (!cv.isConnected) { stop(); return; } step(); }, reducedMotion() ? 500 : 260);
+    }
+    function pauseForYou() {
+      if (timer) { clearInterval(timer); timer = null; }
+      el(uid + '-msg').innerHTML =
+        '<strong>The story just reached your feed.</strong> It\'s shocking, it\'s shareable, your friends are posting it. What do you do? ' +
+        '<span class="lab-btn-row" style="margin-top:8px;display:flex">' +
+        '<button class="lab-btn lab-btn-primary" id="' + uid + '-share">📤 Share it</button>' +
+        '<button class="lab-btn" id="' + uid + '-checkbtn">🔍 Check it first</button></span>';
+      el(uid + '-share').addEventListener('click', function () {
+        nodes[youIdx].state = 1;
+        el(uid + '-msg').textContent = 'You shared it. Your whole branch of the network is now downstream of that tap…';
+        draw(); counts(); startTimer();
+      });
+      el(uid + '-checkbtn').addEventListener('click', function () {
+        nodes[youIdx].state = 2; youChecked = true;
+        el(uid + '-msg').textContent = 'You checked first — it doesn\'t hold up, so you post the correction instead. The story can\'t travel through you now.';
+        draw(); counts(); startTimer();
       });
     }
     function step() {
@@ -2199,18 +2518,26 @@ LABS['misinfo-network'] = {
       var pT = Math.max(0.06, pF * 0.45); /* corrections are less shareable */
       var delay = +el(uid + '-d').value;
       if (tick === delay) {
-        /* the fact-checker enters from the far side of the network */
         var far = nodes.reduce(function (best, n, i) {
           var d = Math.hypot(n.x - nodes[0].x, n.y - nodes[0].y);
           return d > best.d ? { i: i, d: d } : best;
         }, { i: 1, d: -1 });
-        nodes[far.i].state = 2;
+        if (nodes[far.i].state === 0) nodes[far.i].state = 2;
+      }
+      /* pause when the story is knocking at your door */
+      if (!youAsked && nodes[youIdx].state === 0 &&
+          nodes[youIdx].links.some(function (j) { return nodes[j].state === 1; })) {
+        youAsked = true;
+        draw();
+        pauseForYou();
+        return;
       }
       var next = nodes.map(function (n) { return n.state; });
-      nodes.forEach(function (n, i) {
+      nodes.forEach(function (n) {
         if (!n.state) return;
         n.links.forEach(function (j) {
           var m = nodes[j];
+          if (m === nodes[youIdx] && youChecked) return; /* you're inoculated */
           if (n.state === 1 && m.state === 0 && Math.random() < pF) next[j] = 1;
           if (n.state === 2 && m.state !== 2 && Math.random() < pT) next[j] = 2;
         });
@@ -2220,11 +2547,16 @@ LABS['misinfo-network'] = {
       draw();
       if (tick > 70 || c.cf + c.ct >= nodes.length) {
         stop();
+        var youLine = !youAsked ? ''
+          : youChecked
+            ? ' <strong>Your check mattered:</strong> the story never travelled through you — every person who verifies before sharing deletes an entire branch of the spread.'
+            : ' <strong>And your share was part of it</strong> — one tap, one more branch for the story.';
         el(uid + '-msg').innerHTML = 'Final score: the story reached <strong style="color:#ef5f6e">' + c.cf +
           '</strong> people; the correction reached <strong style="color:#5db8e8">' + c.ct +
           '</strong>. ' + (c.cf > c.ct
-            ? 'The lie won — it had a head start and it travels on outrage, while the correction travels on duty. This asymmetry is why "share before you check" is the behaviour that matters most.'
-            : 'The correction caught up — early, fast fact-checking and a lower outrage factor can win. Now raise the outrage slider and try again.');
+            ? 'The lie won — it had a head start and it travels on outrage, while the correction travels on duty.'
+            : 'The correction caught up — early fact-checking and a lower outrage factor can win.') + youLine;
+        labComplete('misinfo-network');
       }
     }
     function stop() { running = false; if (timer) { clearInterval(timer); timer = null; } el(uid + '-run').textContent = '▶ Release the story'; }
@@ -2233,9 +2565,13 @@ LABS['misinfo-network'] = {
       build();
       running = true;
       el(uid + '-run').textContent = '❚❚ Stop';
-      timer = setInterval(function () { if (!cv.isConnected) { stop(); return; } step(); }, reducedMotion() ? 500 : 260);
+      el(uid + '-msg').textContent = 'The gold ring is you. When the story reaches your neighbours, you\'ll have to decide what to do with it.';
+      startTimer();
     });
-    el(uid + '-reset').addEventListener('click', function () { stop(); build(); el(uid + '-msg').textContent = 'The red story spreads because it\'s shareable before it\'s checkable. The blue correction starts later and spreads slower — measure the difference.'; });
+    el(uid + '-reset').addEventListener('click', function () {
+      stop(); build();
+      el(uid + '-msg').textContent = 'The gold ring is you. When the story reaches your neighbours, you\'ll have to decide what to do with it.';
+    });
     el(uid + '-p').addEventListener('input', function () { el(uid + '-pv').textContent = el(uid + '-p').value + '% share-before-reading'; });
     el(uid + '-d').addEventListener('input', function () { el(uid + '-dv').textContent = el(uid + '-d').value + ' ticks late'; });
     el(uid + '-pv').textContent = el(uid + '-p').value + '% share-before-reading';
@@ -2243,7 +2579,6 @@ LABS['misinfo-network'] = {
     build();
   }
 };
-
 /* ============================================================
    LAB: filter-bubble
    Every tap teaches the algorithm; watch your feed narrow.
@@ -2338,6 +2673,7 @@ LABS['filter-bubble'] = {
         el(uid + '-burst').disabled = false;
         el(uid + '-msg').innerHTML = 'Ten rounds in, your feed is <strong>' + top.pct + '% ' + top.k +
           '</strong> and diversity is at <strong>' + pct + '%</strong>. Nobody censored anything — the algorithm just kept giving you more of what you tapped. That\'s a filter bubble: comfortable, personalised, and quietly narrow.';
+        labComplete('filter-bubble');
       }
       dealFeed();
     }
@@ -2354,6 +2690,7 @@ LABS['filter-bubble'] = {
       var top = topShare();
       el(uid + '-burst').disabled = false;
       el(uid + '-msg').innerHTML = 'Autopilot is the honest version: you tap the easiest thing, the algorithm narrows, repeat. Diversity: <strong>' + pct + '%</strong>, feed now <strong>' + (top ? top.pct + '% ' + top.k : '—') + '</strong>.';
+      labComplete('filter-bubble');
       dealFeed();
     });
     el(uid + '-burst').addEventListener('click', function () {
@@ -2444,6 +2781,7 @@ LABS['engagement-algorithm'] = {
                : '<strong>' + watch + ' minutes — target missed.</strong> The dashboard is red, even though your viewer is doing fine.') +
           ' Meanwhile viewer wellbeing finished at <strong>' + (well > 0 ? '+' : '') + well + '</strong>.' +
           '<br><br><strong>The reveal:</strong> wellbeing was never in your metric. You optimised exactly what you were told to — and that is precisely how real recommender systems work. <em>What gets measured gets optimised; what doesn\'t gets spent.</em> The fix isn\'t nicer engineers — it\'s changing what the metric counts.';
+        labComplete('engagement-algorithm');
         return;
       }
       deal();
@@ -2529,6 +2867,7 @@ LABS['chinese-room'] = {
           }).join('') + '</table>' +
           'You just committed to a festival you know nothing about, in a language you can\'t read — and you were praised for fluency the whole time.<br><br>' +
           'This is the philosopher John Searle\'s <strong>Chinese Room</strong> argument (1980): following rules that manipulate symbols can produce perfectly fluent answers <em>without any understanding at all</em>. Whether that\'s also true of a chatbot — which produces fluent answers by statistical rules — is one of the deepest open arguments in AI. You\'ve now lived both sides of it.</div>';
+        labComplete('chinese-room');
       }
     }
     ask();
@@ -2631,6 +2970,7 @@ LABS['spam-filter'] = {
     el(uid + '-learn').addEventListener('click', function () {
       renderInbox(true);
       el(uid + '-msg').innerHTML = 'The learned filter was trained on <strong>millions of labelled examples</strong>, so it scores <em>patterns</em> — odd spellings, structure, sender behaviour — not keywords. It catches variants it has never seen, and it knows "Free period today" isn\'t spam. This is why almost every real filter switched from rules to learning. (It\'s still an arms race — spammers now probe learned filters too.)';
+      labComplete('spam-filter');
     });
     renderRules();
     renderInbox();
@@ -2692,6 +3032,7 @@ LABS['agent-loop'] = {
         stopAuto();
         el(uid + '-step').disabled = true;
         el(uid + '-msg').innerHTML = 'Done. Notice what the model produced: <strong>only text</strong> — plans and tool calls. It never touched a calendar. The <em>loop</em> ran the tools and fed results back. Agent = model + tools + loop. That\'s also why agent safety is about <strong>which tools you hand over</strong>, not how clever the model is.';
+        labComplete('agent-loop');
       }
     }
     el(uid + '-step').addEventListener('click', function () { stopAuto(); step(); });
@@ -2795,6 +3136,7 @@ LABS['calibration'] = {
         '<p class="lab-note">' + verdict + '</p>' +
         '<div class="lab-cm-truth"><strong>Now the chatbot\'s turn:</strong> asked these same questions, a language model answers every one in the same fluent, assured register — including the ones it gets wrong. It has no internal confidence meter tied to truth; its "sureness" is a <em>writing style</em> learned from confident text. You can be calibrated. It performs calibration. That one difference is why verification is your job, not the model\'s.</div>' +
         '<div class="lab-btn-row"><button class="lab-btn lab-btn-sm" id="' + uid + '-again">↻ Play again</button></div>';
+      labComplete('calibration');
       el(uid + '-again').addEventListener('click', function () {
         i = 0; score = 0; confSum = 0; rows = []; chosen = -1;
         el(uid + '-results').innerHTML = '';
@@ -2861,6 +3203,7 @@ LABS['energy-counter'] = {
       el(uid + '-msg').innerHTML = 'If <strong>one million people</strong> did your session, that\'s ≈<strong>' +
         Math.round(mwh).toLocaleString() + ' kWh</strong> — roughly a day\'s electricity for <strong>' +
         homes.toLocaleString() + ' UK homes</strong>. This is the honest shape of the problem: your single prompt is tiny (far less than one kettle), but AI\'s real bill is <strong>everyone\'s prompts, plus training, plus the water that cools the data centres</strong>. Individual guilt is the wrong lens; questions about scale, siting and energy sources are the right one.';
+      labComplete('energy-counter');
     });
     el(uid + '-reset').addEventListener('click', function () {
       total = 0; render();
@@ -2935,6 +3278,7 @@ LABS['model-card'] = {
         w.className = 'lab-cm-truth';
         w.innerHTML = '<strong>All five found.</strong> Your audit checklist, reusable on any real system: (1) does the marketing match the limitations? (2) where did the training data come from — really? (3) is accuracy broken down, on a benchmark you can check? (4) was it evaluated on people like its actual users? (5) how stale is the safety evaluation?';
         why.insertBefore(w, why.firstChild);
+        labComplete('model-card');
       }
     });
   }
@@ -3190,6 +3534,25 @@ window.DI_LABS_INJECT = function (id, slides) {
    second round of AEP additions. The Removes engine renders
    slide.intro above and slide.callout below each widget.
    ============================================================ */
+
+/* Year-9 question pack for the AI Quest gates (Removes track). */
+var AQ_PACK_Y9 = [
+  { question: 'What does a chatbot do with your message first?', options: ['Reads it like a person', 'Splits it into tokens', 'Searches Google'], correct: 1, explanation: 'It tokenises — the text becomes chunks called tokens before anything else happens.' },
+  { question: 'A chatbot picks its next word by choosing…', options: ['The most likely word to come next', 'The longest word', 'A word a human types in live'], correct: 0, explanation: 'It predicts the statistically likely next word — then repeats.' },
+  { question: 'A chatbot sounds very confident. That tells you…', options: ['The answer is true', 'Nothing about whether it\'s true', 'It searched the web'], correct: 1, explanation: 'Confidence is a writing style it learned — always check important claims.' },
+  { question: '"Training data" means…', options: ['The examples the model learned patterns from', 'The model\'s battery', 'Rules written by programmers'], correct: 0, explanation: 'Everything a model "knows" was distilled from its training examples.' },
+  { question: 'An algorithm is…', options: ['A type of robot', 'Step-by-step instructions', 'A social media app'], correct: 1, explanation: 'A recipe of steps — AI\'s twist is that it learns some steps from data.' },
+  { question: 'Why do keyword rules make a poor spam filter?', options: ['Keywords are too expensive', 'Spammers adapt and the rules break', 'Rules run too slowly'], correct: 1, explanation: 'FR33 beats "free" — hand-written rules are brittle; learned patterns generalise.' },
+  { question: 'AI bias mostly comes from…', options: ['Evil programmers', 'Lopsided training data', 'Old computers'], correct: 1, explanation: 'Skewed data in, skewed decisions out — no biased rule required.' },
+  { question: 'A shocking post appears in your feed. Best first move?', options: ['Share it fast before it\'s deleted', 'Check it before sharing anything', 'Screenshot it to a group chat'], correct: 1, explanation: 'Every person who checks first deletes a whole branch of the spread.' },
+  { question: 'A filter bubble happens because the algorithm…', options: ['Censors the news', 'Shows you more of whatever you tap', 'Picks posts at random'], correct: 1, explanation: 'Nobody censors anything — your taps train it, and it narrows.' },
+  { question: 'While you chat to a model, it is…', options: ['Learning everything about you', 'Frozen — running patterns it learned long ago', 'Asking a human for help'], correct: 1, explanation: 'Training stopped before you arrived; it\'s not learning from your chat.' },
+  { question: 'A "hallucination" is when AI…', options: ['Shows you pictures', 'Confidently makes something up', 'Refuses to answer'], correct: 1, explanation: 'Plausible-sounding, confidently wrong — which is why you verify.' },
+  { question: 'A strong prompt usually includes…', options: ['ALL CAPS', 'A role, a clear task, a format and your context', 'The word "please" ten times'], correct: 1, explanation: 'Persona, Task, Format, Context — the PTFC framework.' },
+  { question: 'AI helps revision most when it…', options: ['Writes your essay for you', 'Quizzes you and makes you think first', 'Summarises so you never read the topic'], correct: 1, explanation: 'Testing yourself builds memory; outsourcing the thinking builds nothing.' },
+  { question: 'Machine learning means the computer…', options: ['Follows rules a human wrote for every case', 'Finds patterns in labelled examples', 'Copies answers from a database'], correct: 1, explanation: 'Show it thousands of labelled examples; it infers the rule itself.' }
+];
+
 (function (M) {
   function add(id, slides) { M[id] = (M[id] || []).concat(slides); }
 
@@ -3202,6 +3565,7 @@ window.DI_LABS_INJECT = function (id, slides) {
   ]);
   add(5, [
     { type: 'widget', widget: 'skew-trainer',
+      labData: { advanced: true },
       title: 'The skewed-data trainer — cause the bias, then measure it',
       intro: 'The Mirror showed you fake confidence. Now build the real thing: choose lopsided training data, train, and measure exactly who pays for the imbalance.',
       debrief: 'This is the mechanism behind every case study in this lesson: no biased rule was ever written, only biased data collected. Which means the audit question is always "show me the training data", not "show me the code".' }
@@ -3277,6 +3641,7 @@ window.DI_LABS_INJECT = function (id, slides) {
   add(112, [
     { type: 'widget', widget: 'ai-quest',
       title: 'AI Quest — finish the unit like a hero',
+      labData: { questions: AQ_PACK_Y9 },
       intro: 'Run, jump, collect sparks — every spark removes a question from the quiz gate. Clear all three worlds to finish the unit.',
       callout: 'Notice what made you replay: instant feedback, visible progress, stakes you chose. Steal those for your own revision toolkit.' }
   ]);
@@ -3403,3 +3768,42 @@ window.DI_LABS_INJECT = function (id, slides) {
       callout: 'There are no correct answers — only revealing ones. Whatever it dodged, performed or actually revealed: that goes in your manifesto.' }
   ]);
 })(window.DI_LAB_SLIDES);
+
+/* ============================================================
+   Teacher-mode class-demo scripts. Shown inside widget slides
+   only when the site's Teacher / Presentation mode is on
+   (body.teacher-mode). Two or three beats per lab: how to run
+   it from the front of the room.
+   ============================================================ */
+window.DI_LAB_TEACH = {
+  'pixel-classifier': ['Run the game on the board with the class shouting guesses at maximum blur — take a vote before each reveal.', 'Then ask one pupil to dictate an exact cat-vs-dog rule; break it with a fox, then show the number grid.'],
+  'next-word': ['Class votes the next word each turn; play a round at temperature 0, then a round at 2.0.', 'Ask: which round sounded more human? Which was more reliable? That tension is the whole dial.'],
+  'pattern-tiles': ['Before pressing "Study", ask the class to spot the rule silently — hands up, no answers.', 'Generate three outputs and ask: is the model copying or creating? Defend both answers.'],
+  'neuron-link': ['Fire the link once per pupil answer to a quick-fire recap question — learning literally strengthening.', 'Ask what "unlearning" would look like on this canvas (weakening, not deleting).'],
+  'word-galaxy': ['Drag the sky as a class tour, one idea per minute.', 'At idea 4, ask: if it only ever guesses the next star, where do wrong answers come from?'],
+  'meaning-space': ['Type a sentence suggested by the class; watch where the words land.', 'Then run "river bank" vs "money bank" and ask someone to narrate why the star moved.'],
+  'cosine-compass': ['Set the two vectors together, then opposite, then at 90° — class calls the cosine before you reveal it.', 'Point at the maths: this is the CAH from their trigonometry lessons, running frontier AI.'],
+  'pipeline': ['Autoplay once straight through, then hand the dots to a pupil to narrate backwards from the answer.', 'Pause on the freeze step: "so what is it doing with what you type?" — collect wrong answers first.'],
+  'classifier-mirror': ['Classify three volunteers; read the verdicts with total seriousness.', 'Then the reveal — and ask where else they\'ve been given a confident score with no evidence.'],
+  'skew-trainer': ['Let the class pick the training mix by vote, train, and read the gap aloud.', 'Swap to the loans scenario and repeat — same maths, suddenly nobody is laughing.'],
+  'misinfo-network': ['Run once hands-off and count the final score together.', 'Run again and let the class vote share-vs-check when the story reaches "you" — then compare the two endings.'],
+  'filter-bubble': ['One pupil taps their honest choices on the board; watch the diversity meter live.', 'Ask the class to predict the meter before each tap — then run autopilot and compare.'],
+  'engagement-algorithm': ['The class is the algorithm: majority vote each round, target on the board.', 'At the reveal, ask who felt the pull of the outrage option — and what changing the metric would change.'],
+  'chinese-room': ['Pick a volunteer to be the room while the class watches the rulebook.', 'After the reveal: hands up — did they understand Zorati? Now ask the same question about a chatbot, and take both sides.'],
+  'spam-filter': ['Build the rule set by class vote, celebrate the week-one score.', 'Then release week two — the groan when "Free period today" gets flagged is the lesson landing.'],
+  'agent-loop': ['Step through slowly; at the failed booking, stop and ask what a chatbot would do here.', 'End on the safety question: which of these tool calls would you want a human to approve?'],
+  'calibration': ['Whole class answers each question with fingers (1–5) for confidence.', 'Compare the room\'s calibration with the chatbot\'s constant 97% — whose confidence means more?'],
+  'energy-counter': ['Build a realistic evening of usage on the board, then press ×1 million.', 'Ask: is the right response individual guilt or a question about infrastructure? Push for reasons.'],
+  'model-card': ['Read the card aloud line by line; class calls "flag" or "fine" before you click.', 'End by turning the five flags into a checklist for any AI tool the school buys.'],
+  'bland-paste': ['Drag the slider slowly with the room silent — let the fade speak.', 'Ask each pupil to name one "un-bland" element they\'d defend in their own work.'],
+  'peril-promise': ['Project the field; pupils place cards by pointing, you drag — every placement needs a spoken reason.', 'Finish on: which promise card becomes a peril if the wrong people control it?'],
+  'motion-field': ['Let a pupil drive the swarm, then ask what data just left the room. (Nothing.)', 'Contrast with a camera doing the same tracking in a shop — what\'s different and why does it matter?'],
+  'day-one': ['Put the ten questions to a live chatbot on the projector, class picks the order.', 'Log what it dodges versus what it reveals — keep the list for the end of term.'],
+  'code-sandbox': ['Break the starter code live (delete a closing tag) and let the class debug it.', 'Rule of the room: nobody ships a line they can\'t read aloud.'],
+  'prompt-coach': ['Write a deliberately lazy prompt together, score it, then improve one ingredient per pupil.', 'Watch the score climb — prompting as a checklist, not a magic spell.'],
+  'wall-drawing': ['Execute the instruction three times on the board; same rule, three artworks.', 'Ask: who is the artist here — LeWitt, the browser, or nobody? Take a vote, demand reasons.'],
+  'instruction-engine': ['Hand the sliders to a pupil "director" who may only speak instructions, never touch.', 'Read the prose transcription aloud each time — that sentence is the artwork\'s source code.'],
+  'rule-painter': ['Two pupils, one grid: alternate moves, then "let the machine finish".', 'Whose picture is it? Run the LeWitt argument with their own work as the evidence.'],
+  'sequence': ['Teams race the ordering on the board; loudest reasoning wins ties.', 'After the check, ask which card everyone was most wrongly confident about.'],
+  'ai-quest': ['End-of-unit ritual: one pupil plays on the projector, the class answers the gates together.', 'Sparks are earned by the room — a revision session pupils will ask to repeat.']
+};

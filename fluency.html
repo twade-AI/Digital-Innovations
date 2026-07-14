@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/lesson.css">
   <link rel="stylesheet" href="css/brand.css">
+  <link rel="stylesheet" href="css/labs.css">
   <style>
     /* ── Fluency-specific overrides ── */
     .fl-shell { max-width: 820px; margin: 0 auto; padding: 0 16px 80px; }
@@ -504,6 +505,7 @@
   <script src="js/slides-gcse.js"></script>
   <script src="js/quiz-bank.js"></script>
   <script src="js/visuals.js"></script>
+  <script src="js/labs.js"></script>
   <script>
   /* ── AI Digital Passport — standalone app ── */
 
@@ -846,6 +848,8 @@
   function flOpenLesson(id) {
     flCurrentLessonId = id;
     flCurrentSlides = flGetSlides(id);
+    // Interactive-lab slides (js/labs.js) splice in without mutating the deck
+    if (typeof DI_LABS_INJECT === 'function') flCurrentSlides = DI_LABS_INJECT(id, flCurrentSlides);
     if (!flCurrentSlides.length) return;
     flCurrentSlideIdx = 0;
     flSession = { quizRight: 0, quizTotal: 0, streak: 0 };
@@ -957,6 +961,11 @@
 
     // Render slide HTML (reuse existing slide types)
     area.innerHTML = flRenderSlideHTML(slide, idx);
+    // Interactive lab widgets wire their events after DOM insertion
+    if (slide && slide.type === 'widget' && typeof DI_LABS !== 'undefined' && DI_LABS[slide.widget]) {
+      try { DI_LABS[slide.widget].init('fl-lab-' + slide.widget, slide.labData); }
+      catch (e) { console.error('Lab init failed:', slide.widget, e); }
+    }
     area.scrollTop = 0;
 
     // Inject SVG visual if one exists
@@ -1131,6 +1140,14 @@
         '<span class="slide-badge badge-concept">Recap</span>' +
         '<div class="slide-title">' + (slide.title || 'Recap') + '</div>' +
         (slide.body ? '<div class="slide-body">' + slide.body + '</div>' : '') + utHtml +
+      '</div>';
+    }
+    if (type === 'widget' && typeof DI_LABS !== 'undefined' && DI_LABS[slide.widget]) {
+      return '<div class="slide-activity"><span class="slide-badge badge-activity">🧪 Interactive Lab</span>' +
+        '<div class="slide-title">' + (slide.title || DI_LABS[slide.widget].title) + '</div>' +
+        (slide.intro ? '<div class="slide-body">' + slide.intro + '</div>' : '') +
+        DI_LABS[slide.widget].html('fl-lab-' + slide.widget, slide.labData) +
+        ((slide.callout || slide.debrief) ? '<div class="slide-callout">' + (slide.callout || slide.debrief) + '</div>' : '') +
       '</div>';
     }
     if (type === 'widget' && slide.widget === 'classify') {

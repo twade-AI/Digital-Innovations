@@ -181,6 +181,17 @@ async function loadProgressFromSupabase() {
     if (!res.data || !res.data.data) return; // no remote data yet
     var remote = res.data.data;
 
+    // Merge lab completions (union of local + remote — earliest date wins)
+    if (remote.labs_done && typeof remote.labs_done === 'object') {
+      try {
+        var localLabs = JSON.parse(localStorage.getItem('di_labs_done') || '{}');
+        Object.keys(remote.labs_done).forEach(function(k) {
+          if (!localLabs[k]) localLabs[k] = remote.labs_done[k];
+        });
+        localStorage.setItem('di_labs_done', JSON.stringify(localLabs));
+      } catch(e) {}
+    }
+
     // Merge completed lessons (union of local + remote)
     if (Array.isArray(remote.completed)) {
       remote.completed.forEach(function(id) { completedLessons.add(parseInt(id)); });
@@ -251,6 +262,7 @@ async function syncToSupabase(attempt) {
     quiz_scores: quizScores,
     xp:          loadXP(),
     streak:      JSON.parse(localStorage.getItem(STREAK_KEY) || '{}'),
+    labs_done:   (function() { try { return JSON.parse(localStorage.getItem('di_labs_done') || '{}'); } catch(e) { return {}; } })(),
     leaderboard_opt_in: leaderboardOpt,
     xp_week_start: weekStart,
     synced_at:   now

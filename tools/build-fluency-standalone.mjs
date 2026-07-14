@@ -63,6 +63,7 @@ const slideFiles = [
   ['js/slides-u5u6.js', 'SLIDES_U5U6'],
   ['js/slides-critical.js', 'SLIDES_CRITICAL'],
   ['js/slides-advanced.js', 'SLIDES_ADVANCED'],
+  ['js/slides-gcse.js', 'SLIDES_GCSE'],
 ];
 const slideVars = slideFiles.map(([file, name]) => {
   const all = evalGlobal(file, name);
@@ -106,7 +107,7 @@ html = replaceOnce(html, '<link rel="icon" href="icon.svg" type="image/svg+xml">
   '<link rel="icon" href="' + iconURI + '" type="image/svg+xml">', 'favicon');
 
 // Stylesheets → inline <style> blocks (same order)
-for (const css of ['css/style.css', 'css/lesson.css', 'css/brand.css']) {
+for (const css of ['css/style.css', 'css/lesson.css', 'css/brand.css', 'css/labs.css', 'css/wow.css']) {
   html = replaceOnce(html, '<link rel="stylesheet" href="' + css + '">',
     '<style>\n/* ── inlined: ' + css + ' ── */\n' + read(css) + '\n</style>', css);
 }
@@ -129,7 +130,7 @@ html = replaceOnce(html,
 
 // Offline banner copy: there is no service worker here, but the page is
 // fully self-contained, so the honest claim is simpler
-html = replaceOnce(html, 'You are offline — all 20 lessons are available from cache',
+html = replaceOnce(html, 'You are offline — all 24 lessons are available from cache',
   'You are offline — this page is self-contained, keep learning', 'offline copy');
 
 // Script tags → inlined sources + filtered data
@@ -142,11 +143,14 @@ html = replaceOnce(html,
   '  <script src="js/slides-u5u6.js"></script>\n' +
   '  <script src="js/slides-critical.js"></script>\n' +
   '  <script src="js/slides-advanced.js"></script>\n' +
+  '  <script src="js/slides-gcse.js"></script>\n' +
   '  <script src="js/quiz-bank.js"></script>\n' +
-  '  <script src="js/visuals.js"></script>',
-  '  <!-- Inlined scripts — slide helpers + course content for the 20 lessons -->\n' +
+  '  <script src="js/visuals.js"></script>\n' +
+  '  <script src="js/labs.js"></script>',
+  '  <!-- Inlined scripts — slide helpers + course content + interactive labs -->\n' +
   '  <script>\n/* ── inlined: js/slide-utils.js ── */\n' + read('js/slide-utils.js') + '\n</script>\n' +
-  '  ' + dataScript,
+  '  ' + dataScript + '\n' +
+  '  <script>\n/* ── inlined: js/labs.js ── */\n' + read('js/labs.js') + '\n</script>',
   'script block');
 
 // No service worker in the standalone bundle
