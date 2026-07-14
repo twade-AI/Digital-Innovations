@@ -288,6 +288,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/wow.css">
+  <link rel="stylesheet" href="css/labs.css">
 </head>
 <body data-track="removes">
   <div id="offlineBanner" class="offline-banner" style="display:none" role="status">You are offline — all 40 lessons are available from cache</div>
@@ -396,6 +397,7 @@
 
   <script src="js/slide-utils.js"></script>
   <script src="js/slides-gcse.js"></script>
+  <script src="js/labs.js"></script>
   <script src="js/tts.js" defer></script>
   <script>
   /* ── Digital Innovations Removes — track engine ── */
@@ -692,6 +694,8 @@
     if (!found) return;
     gsCurrentId = id;
     gsSlides = SLIDES_GCSE[id] || [];
+    // Interactive-lab slides (js/labs.js) splice in without mutating the deck
+    if (typeof DI_LABS_INJECT === 'function') gsSlides = DI_LABS_INJECT(id, gsSlides);
     if (!gsSlides.length) return;
     gsSlideIdx = 0;
     gsSession = { quizRight: 0, quizTotal: 0, streak: 0 };
@@ -782,6 +786,11 @@
     var area = document.getElementById('gsSlideArea');
     area.innerHTML = gsRenderSlideHTML(slide);
     area.scrollTop = 0;
+    // Interactive lab widgets wire their events after DOM insertion
+    if (slide && slide.type === 'widget' && typeof DI_LABS !== 'undefined' && DI_LABS[slide.widget]) {
+      try { DI_LABS[slide.widget].init('gs-lab-' + slide.widget, slide.labData); }
+      catch (e) { console.error('Lab init failed:', slide.widget, e); }
+    }
     // Notes textarea — wrap in try so a notes failure doesn't nuke
     // the whole slide render.
     try {
@@ -901,6 +910,10 @@
 
   function gsWidgetHTML(slide){
     var w = slide.widget;
+    // Interactive labs (js/labs.js) take precedence; init runs post-render
+    if (typeof DI_LABS !== 'undefined' && DI_LABS[w]) {
+      return DI_LABS[w].html('gs-lab-' + w, slide.labData);
+    }
     if (w==='ptfc') {
       return '<div class="widget">'+
         '<div class="widget-row"><label class="widget-label ptfc-p"><span>P</span>Persona</label><textarea class="widget-input" id="gsPtfc_p" placeholder="You are an experienced GCSE Biology tutor who explains things step-by-step." oninput="gsPtfcAssemble()"></textarea></div>'+

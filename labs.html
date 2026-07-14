@@ -125,20 +125,30 @@
   document.addEventListener('DOMContentLoaded', function () {
     var GROUPS = [
       { id: 'works', title: 'How AI actually works', sub: 'Be the mechanism before you name it.',
-        labs: ['pixel-classifier', 'next-word', 'pattern-tiles', 'neuron-link', 'word-galaxy', 'meaning-space', 'cosine-compass', 'pipeline'] },
+        labs: ['pixel-classifier', 'spam-filter', 'next-word', 'pattern-tiles', 'neuron-link', 'word-galaxy', 'meaning-space', 'cosine-compass', 'pipeline', 'chinese-room', 'agent-loop'] },
       { id: 'critical', title: 'Bias, ethics & critical thinking', sub: 'Demos that make an argument.',
-        labs: ['classifier-mirror', 'bland-paste', 'peril-promise', 'motion-field', 'day-one'] },
+        labs: ['classifier-mirror', 'skew-trainer', 'misinfo-network', 'filter-bubble', 'engagement-algorithm', 'calibration', 'energy-counter', 'model-card', 'bland-paste', 'peril-promise', 'motion-field', 'day-one'] },
       { id: 'making', title: 'Making, code & authorship', sub: 'Write rules, delegate execution, own the result.',
         labs: ['code-sandbox', 'prompt-coach', 'wall-drawing', 'instruction-engine', 'rule-painter'] },
       { id: 'play', title: 'Play', sub: 'Revision you\'ll ask to replay.',
         labs: ['sequence', 'ai-quest'] }
     ];
+    /* Where each lab appears: AEP lesson numbers and Removes (R) lessons */
     var USED_IN = {
-      'pixel-classifier': [3], 'next-word': [51], 'pattern-tiles': [3], 'neuron-link': [3],
-      'word-galaxy': [2], 'meaning-space': [53], 'cosine-compass': [53], 'pipeline': [51],
-      'classifier-mirror': [5], 'bland-paste': [10], 'peril-promise': [7], 'motion-field': [14],
-      'day-one': [1], 'code-sandbox': [50], 'prompt-coach': [9], 'wall-drawing': [10],
-      'instruction-engine': [10], 'rule-painter': [10], 'sequence': [46], 'ai-quest': []
+      'pixel-classifier': ['Lesson 3', 'R101'], 'spam-filter': ['R101'],
+      'next-word': ['Lesson 51', 'R102'], 'pattern-tiles': ['Lesson 3'], 'neuron-link': ['Lesson 3'],
+      'word-galaxy': ['Lesson 2', 'R105'], 'meaning-space': ['Lesson 53'],
+      'cosine-compass': ['Lesson 53', 'R102'], 'pipeline': ['Lesson 51', 'R102'],
+      'chinese-room': ['Lesson 2', 'R105'], 'agent-loop': ['Lesson 56', 'R134'],
+      'classifier-mirror': ['Lesson 5', 'R125'], 'skew-trainer': ['Lesson 5', 'R125', 'R139'],
+      'misinfo-network': ['Lesson 47', 'R121'], 'filter-bubble': ['R123'],
+      'engagement-algorithm': ['R130'], 'calibration': ['Lesson 46', 'R111'],
+      'energy-counter': ['Lesson 15', 'R137'], 'model-card': ['R138'],
+      'bland-paste': ['Lesson 10', 'R115'], 'peril-promise': ['Lesson 7', 'R129'],
+      'motion-field': ['Lesson 14', 'R127'], 'day-one': ['Lesson 1', 'R133'],
+      'code-sandbox': ['Lesson 50', 'R118'], 'prompt-coach': ['Lesson 9', 'R113'],
+      'wall-drawing': ['Lesson 10', 'R115'], 'instruction-engine': ['Lesson 10'],
+      'rule-painter': ['Lesson 10', 'R115'], 'sequence': ['Lesson 46', 'R122'], 'ai-quest': ['R112']
     };
     var toc = document.getElementById('labsToc');
     var root = document.getElementById('labsGroups');
@@ -155,7 +165,7 @@
         var uid = 'pg-' + name;
         var shell = document.createElement('article');
         shell.className = 'lab-shell';
-        var used = (USED_IN[name] || []).map(function (n) { return 'Lesson ' + n; }).join(', ');
+        var used = (USED_IN[name] || []).join(' · ');
         shell.innerHTML =
           '<div class="lab-shell-head"><h3>' + lab.title + '</h3>' +
             '<span class="lab-shell-tag">' + lab.tag + '</span>' +

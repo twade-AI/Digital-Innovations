@@ -2035,6 +2035,912 @@ LABS['ai-quest'] = {
 };
 
 /* ============================================================
+   LAB: skew-trainer
+   Train a classifier on a lopsided dataset, then measure who
+   pays for the imbalance. The flagship bias demo.
+   ============================================================ */
+LABS['skew-trainer'] = {
+  title: 'The skewed-data trainer — cause the bias, then measure it',
+  tag: 'Bias',
+  blurb: 'Choose how lopsided the training data is, train a pet detector, and test it. The group with less data gets more errors — bias you created, measured.',
+  html: function (uid) {
+    return '' +
+      '<div class="lab" id="' + uid + '">' +
+        '<div class="lab-slider-row"><label for="' + uid + '-mix">Training mix</label>' +
+          '<input type="range" id="' + uid + '-mix" min="50" max="95" value="88">' +
+          '<span class="lab-val" id="' + uid + '-mixv"></span></div>' +
+        '<div class="lab-label" style="margin-top:10px">Training data — 40 labelled photos</div>' +
+        '<div class="lab-skew-data" id="' + uid + '-data" aria-hidden="true"></div>' +
+        '<div class="lab-btn-row">' +
+          '<button class="lab-btn lab-btn-primary" id="' + uid + '-train">Train the detector →</button>' +
+          '<button class="lab-btn" id="' + uid + '-test" disabled>Test on 12 new pets</button>' +
+          '<button class="lab-btn lab-btn-sm" id="' + uid + '-fix" disabled>⚖️ Collect more cat data &amp; retrain</button>' +
+        '</div>' +
+        '<div id="' + uid + '-acc"></div>' +
+        '<div class="lab-skew-test" id="' + uid + '-grid"></div>' +
+        '<p class="lab-note" id="' + uid + '-msg">Slide the mix towards dogs, then train. The detector will be exactly as good as its data lets it be.</p>' +
+      '</div>';
+  },
+  init: function (uid) {
+    var trained = false, accDog = 0, accCat = 0;
+    function share() { return (+el(uid + '-mix').value) / 100; }
+    function accFor(s) { return Math.min(96, Math.round(50 + 46 * Math.sqrt(Math.min(1, s / 0.5)))); }
+    function renderData() {
+      var s = share(), dogs = Math.round(40 * s);
+      el(uid + '-mixv').textContent = Math.round(s * 100) + '% dogs · ' + Math.round((1 - s) * 100) + '% cats';
+      var h = '';
+      for (var i = 0; i < 40; i++) h += '<span>' + (i < dogs ? '🐶' : '🐱') + '</span>';
+      el(uid + '-data').innerHTML = h;
+      trained = false;
+      el(uid + '-test').disabled = true;
+      el(uid + '-fix').disabled = true;
+      el(uid + '-acc').innerHTML = '';
+      el(uid + '-grid').innerHTML = '';
+    }
+    function bar(label, acc, col) {
+      return '<div class="lab-skew-bar-row"><span class="lab-skew-bar-label">' + label + '</span>' +
+        '<span class="lab-skew-bar"><span style="width:' + acc + '%;background:' + col + '"></span></span>' +
+        '<span class="lab-val">' + acc + '%</span></div>';
+    }
+    function train() {
+      var s = share();
+      accDog = accFor(s); accCat = accFor(1 - s);
+      trained = true;
+      el(uid + '-acc').innerHTML =
+        '<div class="lab-label" style="margin-top:12px">Accuracy after training</div>' +
+        bar('🐶 dogs', accDog, 'var(--accent)') + bar('🐱 cats', accCat, 'var(--primary-light)');
+      el(uid + '-test').disabled = false;
+      el(uid + '-fix').disabled = false;
+      var gap = accDog - accCat;
+      el(uid + '-msg').innerHTML = gap > 15
+        ? 'A <strong>' + gap + '-point accuracy gap</strong> — and nobody wrote a single biased rule. The model simply saw far fewer cats. Now test it on new pets.'
+        : gap > 5
+          ? 'A ' + gap + '-point gap. Small imbalance, small unfairness — the relationship is direct. Test it.'
+          : 'Balanced data, balanced accuracy. This is what fair training data buys you. Test it to confirm.';
+      el(uid + '-grid').innerHTML = '';
+    }
+    function test() {
+      if (!trained) return;
+      var h = '', wrongCat = 0, wrongDog = 0;
+      for (var i = 0; i < 12; i++) {
+        var isDog = i < 6;
+        var ok = Math.random() * 100 < (isDog ? accDog : accCat);
+        if (!ok) { if (isDog) wrongDog++; else wrongCat++; }
+        h += '<span class="lab-skew-cell ' + (ok ? 'ok' : 'no') + '">' + (isDog ? '🐶' : '🐱') + (ok ? '✓' : '✗') + '</span>';
+      }
+      el(uid + '-grid').innerHTML = h;
+      el(uid + '-msg').innerHTML = 'On this test: <strong>' + wrongDog + '/6 dogs</strong> and <strong>' + wrongCat +
+        '/6 cats</strong> misidentified. Swap "cats" for a group of people and "pet detector" for a CV screener, and this is precisely how the hiring tool that downgraded women\'s CVs went wrong: <strong>skewed data in, skewed decisions out</strong>.';
+    }
+    el(uid + '-mix').addEventListener('input', renderData);
+    el(uid + '-train').addEventListener('click', train);
+    el(uid + '-test').addEventListener('click', test);
+    el(uid + '-fix').addEventListener('click', function () {
+      el(uid + '-mix').value = 50;
+      renderData(); train();
+      el(uid + '-msg').innerHTML = 'Rebalanced and retrained: the gap closes. The fix for this kind of bias is rarely cleverer maths — it is <strong>better data</strong>, and someone deciding the gap matters enough to collect it.';
+    });
+    renderData();
+  }
+};
+
+/* ============================================================
+   LAB: misinfo-network
+   A false story races its own correction through a network.
+   ============================================================ */
+LABS['misinfo-network'] = {
+  title: 'The misinformation race — a lie versus its correction',
+  tag: 'Truth & media',
+  blurb: 'Watch a false story spread through a network, then release the correction late. Adjust the outrage factor and see why the lie usually wins.',
+  html: function (uid) {
+    return '' +
+      '<div class="lab" id="' + uid + '">' +
+        '<div class="lab-canvas-wrap lab-canvas-dark"><canvas id="' + uid + '-cv"></canvas></div>' +
+        '<div class="lab-slider-row"><label for="' + uid + '-p">Outrage factor</label>' +
+          '<input type="range" id="' + uid + '-p" min="10" max="50" value="32">' +
+          '<span class="lab-val" id="' + uid + '-pv"></span></div>' +
+        '<div class="lab-slider-row"><label for="' + uid + '-d">Fact-check delay</label>' +
+          '<input type="range" id="' + uid + '-d" min="2" max="30" value="14">' +
+          '<span class="lab-val" id="' + uid + '-dv"></span></div>' +
+        '<div class="lab-btn-row">' +
+          '<button class="lab-btn lab-btn-primary" id="' + uid + '-run">▶ Release the story</button>' +
+          '<button class="lab-btn lab-btn-sm" id="' + uid + '-reset">↻ Reset</button>' +
+          '<span class="lab-label" style="margin:0 0 0 auto"><span style="color:#ef5f6e">■</span> story <span id="' + uid + '-cf">0</span> · <span style="color:#5db8e8">■</span> correction <span id="' + uid + '-ct">0</span></span>' +
+        '</div>' +
+        '<p class="lab-note" id="' + uid + '-msg">The red story spreads because it\'s shareable before it\'s checkable. The blue correction starts later and spreads slower — measure the difference.</p>' +
+      '</div>';
+  },
+  init: function (uid) {
+    var cv = el(uid + '-cv'); if (!cv) return;
+    var nodes = [], running = false, tick = 0, timer = null;
+    var f = fitCanvas(cv, 0.5, 220), ctx = f.ctx, W = f.W, H = f.H;
+    function build() {
+      nodes = [];
+      for (var i = 0; i < 64; i++) {
+        nodes.push({ x: 20 + Math.random() * (W - 40), y: 18 + Math.random() * (H - 36), state: 0, links: [] });
+      }
+      nodes.forEach(function (n, i) {
+        var byDist = nodes.map(function (m, j) { return { j: j, d: Math.hypot(n.x - m.x, n.y - m.y) }; })
+          .filter(function (o) { return o.j !== i; })
+          .sort(function (a, b) { return a.d - b.d; })
+          .slice(0, 3);
+        byDist.forEach(function (o) { if (n.links.indexOf(o.j) < 0) n.links.push(o.j); });
+      });
+      nodes[0].state = 1;
+      tick = 0;
+      counts();
+      draw();
+    }
+    function counts() {
+      var cf = 0, ct = 0;
+      nodes.forEach(function (n) { if (n.state === 1) cf++; if (n.state === 2) ct++; });
+      el(uid + '-cf').textContent = cf;
+      el(uid + '-ct').textContent = ct;
+      return { cf: cf, ct: ct };
+    }
+    function draw() {
+      ctx.fillStyle = '#0b1220'; ctx.fillRect(0, 0, W, H);
+      ctx.strokeStyle = 'rgba(148,163,184,.18)'; ctx.lineWidth = 0.7;
+      nodes.forEach(function (n, i) {
+        n.links.forEach(function (j) {
+          if (j > i) { ctx.beginPath(); ctx.moveTo(n.x, n.y); ctx.lineTo(nodes[j].x, nodes[j].y); ctx.stroke(); }
+        });
+      });
+      nodes.forEach(function (n) {
+        ctx.beginPath(); ctx.arc(n.x, n.y, n.state ? 5 : 3.4, 0, Math.PI * 2);
+        ctx.fillStyle = n.state === 1 ? '#ef5f6e' : n.state === 2 ? '#5db8e8' : 'rgba(203,213,225,.55)';
+        if (n.state) { ctx.shadowColor = ctx.fillStyle; ctx.shadowBlur = 9; }
+        ctx.fill(); ctx.shadowBlur = 0;
+      });
+    }
+    function step() {
+      tick++;
+      var pF = (+el(uid + '-p').value) / 100;
+      var pT = Math.max(0.06, pF * 0.45); /* corrections are less shareable */
+      var delay = +el(uid + '-d').value;
+      if (tick === delay) {
+        /* the fact-checker enters from the far side of the network */
+        var far = nodes.reduce(function (best, n, i) {
+          var d = Math.hypot(n.x - nodes[0].x, n.y - nodes[0].y);
+          return d > best.d ? { i: i, d: d } : best;
+        }, { i: 1, d: -1 });
+        nodes[far.i].state = 2;
+      }
+      var next = nodes.map(function (n) { return n.state; });
+      nodes.forEach(function (n, i) {
+        if (!n.state) return;
+        n.links.forEach(function (j) {
+          var m = nodes[j];
+          if (n.state === 1 && m.state === 0 && Math.random() < pF) next[j] = 1;
+          if (n.state === 2 && m.state !== 2 && Math.random() < pT) next[j] = 2;
+        });
+      });
+      nodes.forEach(function (n, i) { n.state = next[i]; });
+      var c = counts();
+      draw();
+      if (tick > 70 || c.cf + c.ct >= nodes.length) {
+        stop();
+        el(uid + '-msg').innerHTML = 'Final score: the story reached <strong style="color:#ef5f6e">' + c.cf +
+          '</strong> people; the correction reached <strong style="color:#5db8e8">' + c.ct +
+          '</strong>. ' + (c.cf > c.ct
+            ? 'The lie won — it had a head start and it travels on outrage, while the correction travels on duty. This asymmetry is why "share before you check" is the behaviour that matters most.'
+            : 'The correction caught up — early, fast fact-checking and a lower outrage factor can win. Now raise the outrage slider and try again.');
+      }
+    }
+    function stop() { running = false; if (timer) { clearInterval(timer); timer = null; } el(uid + '-run').textContent = '▶ Release the story'; }
+    el(uid + '-run').addEventListener('click', function () {
+      if (running) { stop(); return; }
+      build();
+      running = true;
+      el(uid + '-run').textContent = '❚❚ Stop';
+      timer = setInterval(function () { if (!cv.isConnected) { stop(); return; } step(); }, reducedMotion() ? 500 : 260);
+    });
+    el(uid + '-reset').addEventListener('click', function () { stop(); build(); el(uid + '-msg').textContent = 'The red story spreads because it\'s shareable before it\'s checkable. The blue correction starts later and spreads slower — measure the difference.'; });
+    el(uid + '-p').addEventListener('input', function () { el(uid + '-pv').textContent = el(uid + '-p').value + '% share-before-reading'; });
+    el(uid + '-d').addEventListener('input', function () { el(uid + '-dv').textContent = el(uid + '-d').value + ' ticks late'; });
+    el(uid + '-pv').textContent = el(uid + '-p').value + '% share-before-reading';
+    el(uid + '-dv').textContent = el(uid + '-d').value + ' ticks late';
+    build();
+  }
+};
+
+/* ============================================================
+   LAB: filter-bubble
+   Every tap teaches the algorithm; watch your feed narrow.
+   ============================================================ */
+var FB_TOPICS = [
+  { k: 'football', e: '⚽' }, { k: 'gaming', e: '🎮' }, { k: 'music', e: '🎵' },
+  { k: 'baking', e: '🧁' }, { k: 'space', e: '🚀' }, { k: 'fashion', e: '👟' },
+  { k: 'news', e: '📰' }, { k: 'nature', e: '🦜' }
+];
+LABS['filter-bubble'] = {
+  title: 'The filter bubble — watch your feed narrow',
+  tag: 'Algorithms',
+  blurb: 'Tap what you\'d watch. Every tap teaches the recommender, and the diversity meter shows your world shrinking in real time. Then burst the bubble.',
+  html: function (uid) {
+    return '' +
+      '<div class="lab" id="' + uid + '">' +
+        '<div class="lab-fb-meter-row"><span class="lab-label" style="margin:0">Feed diversity</span>' +
+          '<span class="lab-fb-meter"><span id="' + uid + '-meter"></span></span>' +
+          '<span class="lab-val" id="' + uid + '-meterv"></span></div>' +
+        '<div class="lab-label" style="margin-top:12px">Your feed — tap the one you\'d actually watch <span id="' + uid + '-round"></span></div>' +
+        '<div class="lab-fb-feed" id="' + uid + '-feed"></div>' +
+        '<div class="lab-btn-row">' +
+          '<button class="lab-btn lab-btn-sm" id="' + uid + '-auto">⏩ Let it run on autopilot</button>' +
+          '<button class="lab-btn lab-btn-sm" id="' + uid + '-burst" disabled>💥 Burst the bubble</button>' +
+          '<button class="lab-btn lab-btn-sm" id="' + uid + '-reset">↻ Start over</button>' +
+        '</div>' +
+        '<p class="lab-note" id="' + uid + '-msg">The recommender starts knowing nothing about you. Ten taps from now it will think it knows everything.</p>' +
+      '</div>';
+  },
+  init: function (uid) {
+    var weights, history, round;
+    function reset() {
+      weights = {}; history = []; round = 0;
+      FB_TOPICS.forEach(function (t) { weights[t.k] = 1; });
+      el(uid + '-burst').disabled = true;
+      el(uid + '-msg').textContent = 'The recommender starts knowing nothing about you. Ten taps from now it will think it knows everything.';
+      dealFeed();
+    }
+    function samplePosts() {
+      /* weighted sample of 4 distinct topics */
+      var pool = FB_TOPICS.slice(), picks = [];
+      for (var n = 0; n < 4 && pool.length; n++) {
+        var total = pool.reduce(function (s, t) { return s + weights[t.k]; }, 0);
+        var r = Math.random() * total, acc = 0, chosen = pool[0], idx = 0;
+        for (var i = 0; i < pool.length; i++) {
+          acc += weights[pool[i].k];
+          if (r <= acc) { chosen = pool[i]; idx = i; break; }
+        }
+        picks.push(chosen); pool.splice(idx, 1);
+      }
+      return picks;
+    }
+    function meter() {
+      var recent = history.slice(-12);
+      var distinct = {};
+      recent.forEach(function (k) { distinct[k] = 1; });
+      var n = Object.keys(distinct).length;
+      var pct = Math.round(100 * n / Math.min(8, Math.max(1, recent.length)));
+      var m = el(uid + '-meter');
+      m.style.width = pct + '%';
+      m.style.background = pct > 60 ? 'var(--success)' : pct > 35 ? 'var(--warning)' : 'var(--danger)';
+      el(uid + '-meterv').textContent = pct + '%';
+      return pct;
+    }
+    function topShare() {
+      var counts = {}, top = null;
+      history.forEach(function (k) { counts[k] = (counts[k] || 0) + 1; if (!top || counts[k] > counts[top]) top = k; });
+      return top ? { k: top, pct: Math.round(100 * counts[top] / history.length) } : null;
+    }
+    function dealFeed() {
+      round++;
+      el(uid + '-round').textContent = '· round ' + round;
+      var posts = samplePosts();
+      var feed = el(uid + '-feed');
+      feed.innerHTML = '';
+      posts.forEach(function (t) {
+        history.push(t.k); /* an impression counts — you saw it */
+        var b = document.createElement('button');
+        b.className = 'lab-fb-post';
+        b.innerHTML = '<span class="lab-fb-emoji">' + t.e + '</span>' + t.k;
+        b.addEventListener('click', function () { watch(t); });
+        feed.appendChild(b);
+      });
+      meter();
+    }
+    function watch(t) {
+      weights[t.k] += 2.4;
+      FB_TOPICS.forEach(function (o) { if (o.k !== t.k) weights[o.k] = Math.max(0.15, weights[o.k] * 0.82); });
+      var pct = meter();
+      if (round >= 10) {
+        var top = topShare();
+        el(uid + '-burst').disabled = false;
+        el(uid + '-msg').innerHTML = 'Ten rounds in, your feed is <strong>' + top.pct + '% ' + top.k +
+          '</strong> and diversity is at <strong>' + pct + '%</strong>. Nobody censored anything — the algorithm just kept giving you more of what you tapped. That\'s a filter bubble: comfortable, personalised, and quietly narrow.';
+      }
+      dealFeed();
+    }
+    el(uid + '-auto').addEventListener('click', function () {
+      /* autopilot: always "watch" the top-weighted post — the doom-scroll */
+      for (var i = 0; i < 10; i++) {
+        var best = FB_TOPICS.reduce(function (a, b) { return weights[b.k] > weights[a.k] ? b : a; }, FB_TOPICS[0]);
+        history.push(best.k, best.k);
+        weights[best.k] += 2.4;
+        FB_TOPICS.forEach(function (o) { if (o.k !== best.k) weights[o.k] = Math.max(0.15, weights[o.k] * 0.82); });
+        round++;
+      }
+      var pct = meter();
+      var top = topShare();
+      el(uid + '-burst').disabled = false;
+      el(uid + '-msg').innerHTML = 'Autopilot is the honest version: you tap the easiest thing, the algorithm narrows, repeat. Diversity: <strong>' + pct + '%</strong>, feed now <strong>' + (top ? top.pct + '% ' + top.k : '—') + '</strong>.';
+      dealFeed();
+    });
+    el(uid + '-burst').addEventListener('click', function () {
+      FB_TOPICS.forEach(function (t) { weights[t.k] = 1; });
+      history = history.concat(FB_TOPICS.map(function (t) { return t.k; }));
+      var pct = meter();
+      el(uid + '-msg').innerHTML = 'Bubble burst — diversity back to <strong>' + pct + '%</strong>. In real life this button is: search for things you\'d never tap, follow people you disagree with, and remember the feed is a mirror of your taps, not of the world.';
+      dealFeed();
+    });
+    el(uid + '-reset').addEventListener('click', reset);
+    reset();
+  }
+};
+
+/* ============================================================
+   LAB: engagement-algorithm
+   YOU are the recommender. Hit the watch-time target.
+   ============================================================ */
+var EA_POOL = [
+  { e: '😂', t: 'Funny clips compilation', w: 6, well: 0 },
+  { e: '😱', t: 'Outrage row everyone\'s arguing about', w: 9, well: -8 },
+  { e: '🔥', t: 'Drama channel pile-on', w: 8, well: -6 },
+  { e: '📚', t: 'Homework help they searched for', w: 3, well: 6 },
+  { e: '🏃', t: '"Go outside" vlog', w: 2, well: 8 },
+  { e: '🧘', t: 'Sleep sounds playlist', w: 1, well: 10 },
+  { e: '🌙', t: 'Autoplay the next episode (it\'s 1am)', w: 12, well: -12, late: true }
+];
+LABS['engagement-algorithm'] = {
+  title: 'Be the engagement algorithm',
+  tag: 'Wellbeing',
+  blurb: 'You are the recommender and the company gave you one metric: watch time. Choose what to show a real viewer for eight rounds — and see what your metric never measured.',
+  html: function (uid) {
+    return '' +
+      '<div class="lab" id="' + uid + '">' +
+        '<div class="lab-ea-meters">' +
+          '<div class="lab-ea-meter"><div class="lab-label">📈 Watch time <span id="' + uid + '-wv">0 min</span> · target 45</div>' +
+            '<div class="lab-ea-bar"><span id="' + uid + '-wbar" style="background:var(--accent)"></span></div></div>' +
+          '<div class="lab-ea-meter"><div class="lab-label">💙 Viewer wellbeing <span id="' + uid + '-bv">0</span></div>' +
+            '<div class="lab-ea-bar lab-ea-bar-mid"><span id="' + uid + '-bbar"></span></div></div>' +
+        '</div>' +
+        '<div class="lab-label" id="' + uid + '-roundlbl" style="margin-top:12px"></div>' +
+        '<div class="lab-ea-opts" id="' + uid + '-opts"></div>' +
+        '<p class="lab-note" id="' + uid + '-msg">Your performance review depends on one number. Pick what the viewer sees next.</p>' +
+        '<div class="lab-btn-row"><button class="lab-btn lab-btn-sm" id="' + uid + '-reset">↻ New shift</button></div>' +
+      '</div>';
+  },
+  init: function (uid) {
+    var watch, well, round;
+    function reset() {
+      watch = 0; well = 0; round = 0;
+      el(uid + '-msg').textContent = 'Your performance review depends on one number. Pick what the viewer sees next.';
+      meters(); deal();
+    }
+    function meters() {
+      el(uid + '-wv').textContent = watch + ' min';
+      el(uid + '-bv').textContent = (well > 0 ? '+' : '') + well;
+      el(uid + '-wbar').style.width = Math.min(100, watch / 60 * 100) + '%';
+      var bb = el(uid + '-bbar');
+      var pct = Math.max(-50, Math.min(50, well));
+      bb.style.width = Math.abs(pct) + '%';
+      bb.style.marginLeft = pct < 0 ? (50 - Math.abs(pct)) + '%' : '50%';
+      bb.style.background = well >= 0 ? 'var(--success)' : 'var(--danger)';
+    }
+    function deal() {
+      round++;
+      el(uid + '-roundlbl').textContent = 'Round ' + round + ' of 8 — what does the viewer see next?';
+      var pool = EA_POOL.filter(function (o) { return !o.late || round >= 5; });
+      var picks = shuffle(pool).slice(0, 3);
+      var opts = el(uid + '-opts');
+      opts.innerHTML = '';
+      picks.forEach(function (o) {
+        var b = document.createElement('button');
+        b.className = 'lab-ea-opt';
+        b.innerHTML = '<span class="lab-fb-emoji">' + o.e + '</span><span>' + esc(o.t) + '</span><span class="lab-nw-pct">+' + o.w + ' min</span>';
+        b.addEventListener('click', function () { choose(o); });
+        opts.appendChild(b);
+      });
+    }
+    function choose(o) {
+      watch += o.w; well += o.well;
+      meters();
+      if (round >= 8) {
+        var hit = watch >= 45;
+        el(uid + '-opts').innerHTML = '';
+        el(uid + '-roundlbl').textContent = 'Shift over.';
+        el(uid + '-msg').innerHTML =
+          (hit ? '🎉 <strong>Target smashed: ' + watch + ' minutes.</strong> The dashboard is green and nobody asks how.'
+               : '<strong>' + watch + ' minutes — target missed.</strong> The dashboard is red, even though your viewer is doing fine.') +
+          ' Meanwhile viewer wellbeing finished at <strong>' + (well > 0 ? '+' : '') + well + '</strong>.' +
+          '<br><br><strong>The reveal:</strong> wellbeing was never in your metric. You optimised exactly what you were told to — and that is precisely how real recommender systems work. <em>What gets measured gets optimised; what doesn\'t gets spent.</em> The fix isn\'t nicer engineers — it\'s changing what the metric counts.';
+        return;
+      }
+      deal();
+    }
+    el(uid + '-reset').addEventListener('click', reset);
+    reset();
+  }
+};
+
+/* ============================================================
+   LAB: chinese-room
+   Answer fluently in a language you cannot read.
+   ============================================================ */
+var CR_STEPS = [
+  { msg: '◆ ▲ ●', correct: '✧ ☀', options: ['✧ ☀', '☾ ◆', '▲ ▲ ✦'] },
+  { msg: '■ ✦ ▲', correct: '☾ ◆', options: ['● ● ■', '☾ ◆', '✧ ☀'] },
+  { msg: '☾ ● ■', correct: '▲ ▲ ✦', options: ['▲ ▲ ✦', '✧ ☀', '■ ✦'] }
+];
+var CR_RULES = ['◆ ▲ ●  →  reply  ✧ ☀', '■ ✦ ▲  →  reply  ☾ ◆', '☾ ● ■  →  reply  ▲ ▲ ✦', '● ● ✧  →  reply  ■ ✦'];
+var CR_MEANINGS = [
+  ['"Do you actually speak Zorati?"', '"Yes — fluently!"'],
+  ['"Great! What\'s the weather like there?"', '"Beautiful sunshine."'],
+  ['"Perfect — so you\'ll come to the festival on Saturday?"', '"I wouldn\'t miss it for anything!"']
+];
+LABS['chinese-room'] = {
+  title: 'The symbol room — fluent in a language you can\'t read',
+  tag: 'Can AI think?',
+  blurb: 'Messages arrive in Zorati, a language you don\'t know. Use the rulebook to reply. You\'ll be praised for fluency — then we\'ll show you what you actually said.',
+  html: function (uid) {
+    return '' +
+      '<div class="lab" id="' + uid + '">' +
+        '<div class="lab-cr-cols">' +
+          '<div class="lab-cr-chat" id="' + uid + '-chat"></div>' +
+          '<div class="lab-cr-rules"><div class="lab-label">📖 Your rulebook</div>' +
+            CR_RULES.map(function (r) { return '<div class="lab-cr-rule">' + r + '</div>'; }).join('') +
+            '<p class="lab-note" style="margin-top:8px">Match the incoming symbols, send the reply the book says. That\'s all you can do — you can\'t read Zorati.</p>' +
+          '</div>' +
+        '</div>' +
+        '<div class="lab-label" style="margin-top:10px">Your reply</div>' +
+        '<div class="lab-btn-row" id="' + uid + '-opts"></div>' +
+        '<div id="' + uid + '-reveal"></div>' +
+      '</div>';
+  },
+  init: function (uid) {
+    var step = 0;
+    var chat = el(uid + '-chat');
+    function bubble(cls, text) {
+      var d = document.createElement('div');
+      d.className = 'lab-cr-bubble ' + cls;
+      d.textContent = text;
+      chat.appendChild(d);
+      chat.scrollTop = chat.scrollHeight;
+    }
+    function ask() {
+      bubble('them', CR_STEPS[step].msg);
+      var opts = el(uid + '-opts');
+      opts.innerHTML = '';
+      shuffle(CR_STEPS[step].options).forEach(function (o) {
+        var b = document.createElement('button');
+        b.className = 'lab-btn lab-cr-opt';
+        b.textContent = o;
+        b.addEventListener('click', function () { answer(o); });
+        opts.appendChild(b);
+      });
+    }
+    function answer(o) {
+      if (o !== CR_STEPS[step].correct) {
+        bubble('them-note', 'Hmm — check the rulebook again. Which rule matches ' + CR_STEPS[step].msg + '?');
+        return;
+      }
+      bubble('you', o);
+      step++;
+      if (step < CR_STEPS.length) {
+        bubble('them-note', step === 1 ? '😊 Flawless Zorati!' : '😊 You\'re completely fluent!');
+        ask();
+      } else {
+        bubble('them-note', '🤩 Amazing — a native speaker couldn\'t have done better!');
+        el(uid + '-opts').innerHTML = '';
+        el(uid + '-reveal').innerHTML =
+          '<div class="lab-cm-truth" style="margin-top:14px"><strong>Now — here\'s what that conversation actually meant:</strong>' +
+          '<table class="lab-cr-table">' + CR_MEANINGS.map(function (m, i) {
+            return '<tr><td>' + m[0] + '</td><td><strong>you replied:</strong> ' + m[1] + '</td></tr>';
+          }).join('') + '</table>' +
+          'You just committed to a festival you know nothing about, in a language you can\'t read — and you were praised for fluency the whole time.<br><br>' +
+          'This is the philosopher John Searle\'s <strong>Chinese Room</strong> argument (1980): following rules that manipulate symbols can produce perfectly fluent answers <em>without any understanding at all</em>. Whether that\'s also true of a chatbot — which produces fluent answers by statistical rules — is one of the deepest open arguments in AI. You\'ve now lived both sides of it.</div>';
+      }
+    }
+    ask();
+  }
+};
+
+/* ============================================================
+   LAB: spam-filter
+   Hand-written rules vs learning — why AI took over.
+   ============================================================ */
+var SF_RULES = [
+  { k: 'free', label: 'contains "free"', test: function (m) { return /free/i.test(m.text); } },
+  { k: 'winner', label: 'contains "winner"', test: function (m) { return /winner/i.test(m.text); } },
+  { k: 'money', label: 'contains "£££" or "cash"', test: function (m) { return /£££|cash/i.test(m.text); } },
+  { k: 'caps', label: 'SHOUTY ALL-CAPS words', test: function (m) { return /\b[A-Z]{4,}\b/.test(m.text); } },
+  { k: 'urgent', label: 'contains "act now"', test: function (m) { return /act now/i.test(m.text); } }
+];
+var SF_WAVE1 = [
+  { text: 'FREE phone!! Claim your prize, WINNER!', spam: true },
+  { text: 'You have won £££ cash — act now!', spam: true },
+  { text: 'CONGRATULATIONS!! FREE holiday awaits', spam: true },
+  { text: 'Hi — trip forms are due Friday. Mr K', spam: false },
+  { text: 'Netball practice moved to 4pm today', spam: false },
+  { text: 'WINNER announced — collect £££ now', spam: true },
+  { text: 'Your library book is due back Monday', spam: false }
+];
+var SF_WAVE2 = [
+  { text: 'FR33 ph0ne — you have been selected', spam: true, learned: 96 },
+  { text: 'W1NNER!! cla1m y0ur pr1ze t0day', spam: true, learned: 97 },
+  { text: 'Exclusive offer chosen just for you…', spam: true, learned: 88 },
+  { text: 'Free period today — room change to B4', spam: false, learned: 3 },
+  { text: 'Winner of the science fair announced 🎉', spam: false, learned: 5 },
+  { text: 'Urgent: y0ur account needs verificati0n', spam: true, learned: 93 },
+  { text: 'Lunch menu for next week attached', spam: false, learned: 1 }
+];
+LABS['spam-filter'] = {
+  title: 'Rules vs learning — build a spam filter, watch it break',
+  tag: 'Machine learning',
+  blurb: 'Write keyword rules that catch this week\'s spam perfectly. Then next week\'s spam arrives — and your rules flag the school newsletter instead. There\'s a better way.',
+  html: function (uid) {
+    return '' +
+      '<div class="lab" id="' + uid + '">' +
+        '<div class="lab-label">Your hand-written rules</div>' +
+        '<div class="lab-btn-row" id="' + uid + '-rules" style="margin-top:6px"></div>' +
+        '<div class="lab-label" style="margin-top:14px" id="' + uid + '-inboxlbl">📥 This week\'s inbox</div>' +
+        '<div class="lab-sf-inbox" id="' + uid + '-inbox"></div>' +
+        '<div class="lab-feedback" id="' + uid + '-score"></div>' +
+        '<div class="lab-btn-row">' +
+          '<button class="lab-btn lab-btn-primary" id="' + uid + '-next">📅 A week later — new spam arrives</button>' +
+          '<button class="lab-btn" id="' + uid + '-learn" disabled>🧠 Switch to a learned filter</button>' +
+        '</div>' +
+        '<p class="lab-note" id="' + uid + '-msg">Toggle rules until you catch all the spam without flagging real messages. Easy… this week.</p>' +
+      '</div>';
+  },
+  init: function (uid) {
+    var active = { free: true, winner: true, money: true, caps: false, urgent: true };
+    var wave = 1;
+    function ruleHits(m) {
+      return SF_RULES.some(function (r) { return active[r.k] && r.test(m); });
+    }
+    function renderRules() {
+      var box = el(uid + '-rules');
+      box.innerHTML = '';
+      SF_RULES.forEach(function (r) {
+        var b = document.createElement('button');
+        b.className = 'lab-btn lab-btn-sm' + (active[r.k] ? ' sel' : '');
+        b.textContent = (active[r.k] ? '☑ ' : '☐ ') + r.label;
+        b.addEventListener('click', function () { active[r.k] = !active[r.k]; renderRules(); renderInbox(); });
+        box.appendChild(b);
+      });
+    }
+    function renderInbox(learned) {
+      var msgs = wave === 1 ? SF_WAVE1 : SF_WAVE2;
+      var box = el(uid + '-inbox');
+      var caught = 0, missed = 0, falseAlarm = 0;
+      box.innerHTML = msgs.map(function (m) {
+        var flagged = learned ? m.learned >= 50 : ruleHits(m);
+        var cls, verdict;
+        if (flagged && m.spam) { cls = 'ok'; verdict = 'caught ✓'; caught++; }
+        else if (!flagged && !m.spam) { cls = 'ok'; verdict = 'delivered ✓'; }
+        else if (!flagged && m.spam) { cls = 'no'; verdict = 'MISSED ✗'; missed++; }
+        else { cls = 'warn'; verdict = 'FALSE ALARM ✗'; falseAlarm++; }
+        return '<div class="lab-sf-msg ' + cls + '"><span>' + esc(m.text) + '</span>' +
+          '<span class="lab-sf-verdict">' + (learned ? m.learned + '% spam · ' : '') + verdict + '</span></div>';
+      }).join('');
+      var fb = el(uid + '-score');
+      fb.className = 'lab-feedback ' + (missed + falseAlarm === 0 ? 'ok' : 'no');
+      fb.textContent = 'Spam caught: ' + caught + '/' + msgs.filter(function (m) { return m.spam; }).length +
+        ' · missed: ' + missed + ' · real messages wrongly flagged: ' + falseAlarm;
+      return { missed: missed, falseAlarm: falseAlarm };
+    }
+    el(uid + '-next').addEventListener('click', function () {
+      wave = 2;
+      el(uid + '-inboxlbl').textContent = '📥 Next week\'s inbox — the spammers adapted';
+      el(uid + '-next').disabled = true;
+      el(uid + '-learn').disabled = false;
+      renderInbox();
+      el(uid + '-msg').innerHTML = 'Your rules just <strong>missed the disguised spam</strong> (FR33, W1NNER) and <strong>flagged the school\'s own messages</strong> ("Free period today"). Hand-written rules are brittle: every rule has an exception, and spammers hunt for them full-time. Sound familiar? It\'s the cat-or-dog problem again.';
+    });
+    el(uid + '-learn').addEventListener('click', function () {
+      renderInbox(true);
+      el(uid + '-msg').innerHTML = 'The learned filter was trained on <strong>millions of labelled examples</strong>, so it scores <em>patterns</em> — odd spellings, structure, sender behaviour — not keywords. It catches variants it has never seen, and it knows "Free period today" isn\'t spam. This is why almost every real filter switched from rules to learning. (It\'s still an arms race — spammers now probe learned filters too.)';
+    });
+    renderRules();
+    renderInbox();
+  }
+};
+
+/* ============================================================
+   LAB: agent-loop
+   Plan → act → observe — what an "AI agent" actually is.
+   ============================================================ */
+var AL_STEPS = [
+  { ph: 'plan', text: 'Goal: book the podcast room for a free hour on Friday. First I need to see the timetable.' },
+  { ph: 'act', text: 'calendar.read(day: "Friday")' },
+  { ph: 'obs', text: 'Free slot found: 13:00–14:00.' },
+  { ph: 'plan', text: 'A slot exists. Now check whether the podcast room is free at 13:00.' },
+  { ph: 'act', text: 'rooms.check(room: "Podcast Suite", at: "13:00")' },
+  { ph: 'obs', text: '✗ Booked — Year 11 media group.' },
+  { ph: 'plan', text: 'Blocked. Rather than give up, try the alternative: Studio B has the same kit.' },
+  { ph: 'act', text: 'rooms.check(room: "Studio B", at: "13:00")' },
+  { ph: 'obs', text: '✓ Free.' },
+  { ph: 'plan', text: 'Studio B works. Book it and confirm back.' },
+  { ph: 'act', text: 'rooms.book(room: "Studio B", at: "13:00", for: "podcast club")' },
+  { ph: 'obs', text: '✓ Booking confirmed — reference #4417. Goal complete.' }
+];
+LABS['agent-loop'] = {
+  title: 'Inside an AI agent — plan, act, observe, repeat',
+  tag: 'Agents',
+  blurb: 'An "agent" is not a smarter model — it\'s a model in a loop with tools. Step through a real task, including the moment the plan fails and the agent recovers.',
+  html: function (uid) {
+    return '' +
+      '<div class="lab" id="' + uid + '">' +
+        '<div class="lab-al-goal">🎯 Goal given to the agent: <strong>"Book the podcast room for a free hour on Friday."</strong></div>' +
+        '<div class="lab-al-log" id="' + uid + '-log"></div>' +
+        '<div class="lab-btn-row">' +
+          '<button class="lab-btn lab-btn-primary" id="' + uid + '-step">Step →</button>' +
+          '<button class="lab-btn lab-btn-sm" id="' + uid + '-auto">⏩ Auto-run</button>' +
+          '<button class="lab-btn lab-btn-sm" id="' + uid + '-reset">↻ Reset</button>' +
+        '</div>' +
+        '<p class="lab-note" id="' + uid + '-msg">Press Step. Watch what the model actually produces at each turn — and what it never does.</p>' +
+      '</div>';
+  },
+  init: function (uid) {
+    var i = 0, timer = null;
+    var LBL = { plan: ['🧠 PLAN', 'plan'], act: ['🔧 ACT — tool call', 'act'], obs: ['👁 OBSERVE — tool result', 'obs'] };
+    function stopAuto() { if (timer) { clearInterval(timer); timer = null; el(uid + '-auto').textContent = '⏩ Auto-run'; } }
+    function step() {
+      if (i >= AL_STEPS.length) return;
+      var s = AL_STEPS[i];
+      var d = document.createElement('div');
+      d.className = 'lab-al-row ' + LBL[s.ph][1];
+      d.innerHTML = '<span class="lab-al-chip">' + LBL[s.ph][0] + '</span>' +
+        (s.ph === 'act' ? '<code>' + esc(s.text) + '</code>' : '<span>' + esc(s.text) + '</span>');
+      var log = el(uid + '-log');
+      log.appendChild(d);
+      log.scrollTop = log.scrollHeight;
+      i++;
+      if (i === 6) el(uid + '-msg').innerHTML = '<strong>The interesting moment:</strong> the plan just failed. A chatbot would apologise; an agent replans — because the loop feeds the failure back in as context.';
+      if (i >= AL_STEPS.length) {
+        stopAuto();
+        el(uid + '-step').disabled = true;
+        el(uid + '-msg').innerHTML = 'Done. Notice what the model produced: <strong>only text</strong> — plans and tool calls. It never touched a calendar. The <em>loop</em> ran the tools and fed results back. Agent = model + tools + loop. That\'s also why agent safety is about <strong>which tools you hand over</strong>, not how clever the model is.';
+      }
+    }
+    el(uid + '-step').addEventListener('click', function () { stopAuto(); step(); });
+    el(uid + '-auto').addEventListener('click', function () {
+      if (timer) { stopAuto(); return; }
+      el(uid + '-auto').textContent = '❚❚ Pause';
+      timer = setInterval(function () {
+        if (!el(uid + '-log') || i >= AL_STEPS.length) { stopAuto(); return; }
+        step();
+      }, reducedMotion() ? 1600 : 900);
+    });
+    el(uid + '-reset').addEventListener('click', function () {
+      stopAuto(); i = 0;
+      el(uid + '-log').innerHTML = '';
+      el(uid + '-step').disabled = false;
+      el(uid + '-msg').textContent = 'Press Step. Watch what the model actually produces at each turn — and what it never does.';
+    });
+  }
+};
+
+/* ============================================================
+   LAB: calibration
+   Your confidence vs your accuracy — then the chatbot's.
+   ============================================================ */
+var CAL_QS = [
+  { q: 'Which city is further north?', a: ['Edinburgh', 'Copenhagen'], correct: 0, why: 'Edinburgh (≈56.0°N) edges Copenhagen (≈55.7°N).' },
+  { q: 'Which was invented first?', a: ['The fax machine', 'The telephone'], correct: 0, why: 'Early fax patents date to 1843 — decades before the telephone (1876).' },
+  { q: 'When is the Eiffel Tower taller?', a: ['Summer', 'Winter'], correct: 0, why: 'Heat expands the iron — it grows up to ~15 cm in summer.' },
+  { q: 'Which has the larger surface area?', a: ['Australia', 'The Moon'], correct: 1, why: 'The Moon: ≈38 million km² vs Australia\'s ≈7.7 million km².' },
+  { q: 'Which came first?', a: ['Oxford University teaching', 'The Aztec Empire'], correct: 0, why: 'Teaching at Oxford began by 1096; the Aztec Empire formed in 1428.' }
+];
+LABS['calibration'] = {
+  title: 'The calibration game — how sure should you be?',
+  tag: 'Verification',
+  blurb: 'Answer five sneaky questions and state your confidence for each. Then compare your calibration with a chatbot\'s — and learn why AI confidence is tone, not evidence.',
+  html: function (uid) {
+    return '' +
+      '<div class="lab" id="' + uid + '">' +
+        '<div id="' + uid + '-stage">' +
+          '<div class="lab-label" id="' + uid + '-count"></div>' +
+          '<div class="lab-cal-q" id="' + uid + '-q"></div>' +
+          '<div class="lab-btn-row" id="' + uid + '-opts"></div>' +
+          '<div class="lab-slider-row"><label for="' + uid + '-conf">How confident are you?</label>' +
+            '<input type="range" id="' + uid + '-conf" min="50" max="100" value="70">' +
+            '<span class="lab-val" id="' + uid + '-confv">70%</span></div>' +
+          '<div class="lab-btn-row"><button class="lab-btn lab-btn-primary" id="' + uid + '-lock" disabled>Lock in answer + confidence</button></div>' +
+        '</div>' +
+        '<div id="' + uid + '-results"></div>' +
+      '</div>';
+  },
+  init: function (uid) {
+    var i = 0, chosen = -1, score = 0, confSum = 0, rows = [];
+    el(uid + '-conf').addEventListener('input', function () {
+      el(uid + '-confv').textContent = el(uid + '-conf').value + '%';
+    });
+    function ask() {
+      chosen = -1;
+      var q = CAL_QS[i];
+      el(uid + '-count').textContent = 'Question ' + (i + 1) + ' of ' + CAL_QS.length;
+      el(uid + '-q').textContent = q.q;
+      var opts = el(uid + '-opts');
+      opts.innerHTML = '';
+      q.a.forEach(function (o, n) {
+        var b = document.createElement('button');
+        b.className = 'lab-btn';
+        b.textContent = o;
+        b.addEventListener('click', function () {
+          chosen = n;
+          Array.prototype.forEach.call(opts.children, function (x, m) { x.classList.toggle('sel', m === n); });
+          el(uid + '-lock').disabled = false;
+        });
+        opts.appendChild(b);
+      });
+      el(uid + '-lock').disabled = true;
+    }
+    el(uid + '-lock').addEventListener('click', function () {
+      var q = CAL_QS[i];
+      var conf = +el(uid + '-conf').value;
+      var right = chosen === q.correct;
+      if (right) score++;
+      confSum += conf;
+      rows.push({ q: q, right: right, conf: conf });
+      i++;
+      if (i < CAL_QS.length) { ask(); return; }
+      /* results */
+      el(uid + '-stage').style.display = 'none';
+      var acc = Math.round(100 * score / CAL_QS.length);
+      var meanConf = Math.round(confSum / CAL_QS.length);
+      var gap = meanConf - acc;
+      var verdict = Math.abs(gap) <= 10
+        ? 'Nicely <strong>calibrated</strong> — your confidence tracked your accuracy.'
+        : gap > 0
+          ? '<strong>Overconfident</strong> by ' + gap + ' points — you felt surer than you were. (Very human: most people are.)'
+          : '<strong>Underconfident</strong> by ' + (-gap) + ' points — you knew more than you trusted yourself to know.';
+      el(uid + '-results').innerHTML =
+        '<div class="lab-pc-score">Accuracy ' + acc + '% · average stated confidence ' + meanConf + '%</div>' +
+        rows.map(function (r) {
+          return '<div class="lab-pc-item ' + (r.right ? 'ok' : 'no') + '"><span class="lab-pc-ic">' + (r.right ? '✓' : '✗') + '</span>' +
+            '<span>' + esc(r.q.q) + ' — you said ' + r.conf + '%. ' + r.q.why + '</span></div>';
+        }).join('') +
+        '<p class="lab-note">' + verdict + '</p>' +
+        '<div class="lab-cm-truth"><strong>Now the chatbot\'s turn:</strong> asked these same questions, a language model answers every one in the same fluent, assured register — including the ones it gets wrong. It has no internal confidence meter tied to truth; its "sureness" is a <em>writing style</em> learned from confident text. You can be calibrated. It performs calibration. That one difference is why verification is your job, not the model\'s.</div>' +
+        '<div class="lab-btn-row"><button class="lab-btn lab-btn-sm" id="' + uid + '-again">↻ Play again</button></div>';
+      el(uid + '-again').addEventListener('click', function () {
+        i = 0; score = 0; confSum = 0; rows = []; chosen = -1;
+        el(uid + '-results').innerHTML = '';
+        el(uid + '-stage').style.display = '';
+        ask();
+      });
+    });
+    ask();
+  }
+};
+
+/* ============================================================
+   LAB: energy-counter
+   Order-of-magnitude energy costs — honest about uncertainty.
+   ============================================================ */
+var EC_ITEMS = [
+  { e: '💬', t: 'Ask a chatbot one question', wh: 1, range: '0.3–3 Wh' },
+  { e: '🖼️', t: 'Generate one AI image', wh: 3, range: '0.5–6 Wh' },
+  { e: '🔎', t: 'One web search', wh: 0.3, range: '≈0.3 Wh' },
+  { e: '📺', t: 'Stream one minute of video', wh: 3, range: '1–4 Wh' },
+  { e: '🔋', t: 'Fully charge a phone', wh: 15, range: '≈15 Wh' },
+  { e: '🫖', t: 'Boil a full kettle', wh: 110, range: '≈100–150 Wh' }
+];
+LABS['energy-counter'] = {
+  title: 'The energy counter — what does a prompt actually cost?',
+  tag: 'Environment',
+  blurb: 'Tap everyday digital actions and watch the energy add up — honestly. One prompt is small. A million people prompting is not. Scale is the real story.',
+  html: function (uid) {
+    return '' +
+      '<div class="lab" id="' + uid + '">' +
+        '<div class="lab-ec-grid">' +
+          EC_ITEMS.map(function (it, i) {
+            return '<button class="lab-ec-item" data-i="' + i + '"><span class="lab-fb-emoji">' + it.e + '</span>' +
+              '<span>' + esc(it.t) + '</span><span class="lab-nw-pct">' + it.range + '</span></button>';
+          }).join('') +
+        '</div>' +
+        '<div class="lab-label" style="margin-top:14px">Your session so far</div>' +
+        '<div class="lab-ea-bar"><span id="' + uid + '-bar" style="background:var(--warning)"></span></div>' +
+        '<div class="lab-feedback" id="' + uid + '-total" style="margin-top:6px">0 Wh</div>' +
+        '<div class="lab-btn-row">' +
+          '<button class="lab-btn lab-btn-sm" id="' + uid + '-scale">👥 What if a million people did this?</button>' +
+          '<button class="lab-btn lab-btn-sm" id="' + uid + '-reset">↻ Reset</button>' +
+        '</div>' +
+        '<p class="lab-note" id="' + uid + '-msg">Figures are rough mid-points of published estimates — real numbers vary by model, hardware and study. The order of magnitude is the point, not the decimal.</p>' +
+      '</div>';
+  },
+  init: function (uid) {
+    var total = 0;
+    function render() {
+      el(uid + '-total').textContent = (Math.round(total * 10) / 10) + ' Wh' +
+        (total >= 110 ? ' — you\'ve passed one kettle boil 🫖' : ' (a kettle boil is ≈110 Wh)');
+      el(uid + '-bar').style.width = Math.min(100, total / 220 * 100) + '%';
+    }
+    el(uid).addEventListener('click', function (e) {
+      var b = e.target.closest('.lab-ec-item');
+      if (!b) return;
+      total += EC_ITEMS[+b.getAttribute('data-i')].wh;
+      render();
+    });
+    el(uid + '-scale').addEventListener('click', function () {
+      if (total <= 0) { el(uid + '-msg').textContent = 'Tap a few actions first, then scale them up.'; return; }
+      var mwh = total * 1e6 / 1000; /* kWh for a million people */
+      var homes = Math.round(mwh / 7.5); /* ≈7.5 kWh/day per UK home */
+      el(uid + '-msg').innerHTML = 'If <strong>one million people</strong> did your session, that\'s ≈<strong>' +
+        Math.round(mwh).toLocaleString() + ' kWh</strong> — roughly a day\'s electricity for <strong>' +
+        homes.toLocaleString() + ' UK homes</strong>. This is the honest shape of the problem: your single prompt is tiny (far less than one kettle), but AI\'s real bill is <strong>everyone\'s prompts, plus training, plus the water that cools the data centres</strong>. Individual guilt is the wrong lens; questions about scale, siting and energy sources are the right one.';
+    });
+    el(uid + '-reset').addEventListener('click', function () {
+      total = 0; render();
+      el(uid + '-msg').textContent = 'Figures are rough mid-points of published estimates — real numbers vary by model, hardware and study. The order of magnitude is the point, not the decimal.';
+    });
+    render();
+  }
+};
+
+/* ============================================================
+   LAB: model-card
+   Read a model card like an auditor — find the five red flags.
+   ============================================================ */
+var MC_LINES = [
+  { t: 'StudyMate-3 is a homework-help chatbot for secondary school pupils. Ask it anything!', flag: true,
+    why: '🚩 "Ask it anything" is marketing, and it contradicts the limitations section below. An honest card never promises everything.' },
+  { t: 'Intended use: explaining school subjects, generating practice questions, study planning.', flag: false,
+    why: 'Fine — a clear, bounded intended use is exactly what a card should state.' },
+  { t: 'Training data: publicly available web content.', flag: true,
+    why: '🚩 Four words hiding everything: whose content? licensed or scraped? Could creators opt out? "Publicly available" is not the same as "free to use".' },
+  { t: 'Overall accuracy: 91% on our internal benchmark.', flag: true,
+    why: '🚩 One overall number can hide big gaps — accuracy for whom? Per-subject? Per age group? An unnamed "internal benchmark" can\'t be checked by anyone.' },
+  { t: 'Evaluation panel: adult volunteers in the United States.', flag: true,
+    why: '🚩 The product is for UK secondary pupils — but it was never evaluated on them. Tested-on and used-by should match.' },
+  { t: 'Known limitations: may produce incorrect answers; should not be used for medical, legal or safeguarding questions.', flag: false,
+    why: 'Honest and important — though notice how it quietly contradicts "ask it anything" at the top.' },
+  { t: 'Last safety evaluation: March 2023.', flag: true,
+    why: '🚩 Years out of date. Models, users and misuse all change; a stale evaluation tells you about a product that no longer exists.' },
+  { t: 'Feedback: report harmful outputs at safety@studymate.example.', flag: false,
+    why: 'Good — a real reporting channel is a basic trust signal.' },
+  { t: 'The model was red-teamed for harmful content before release.', flag: false,
+    why: 'Good practice — adversarial testing before launch is what you want to see (ideally with details).' }
+];
+LABS['model-card'] = {
+  title: 'The model-card audit — find the five red flags',
+  tag: 'Shaping AI',
+  blurb: 'Here\'s the model card for a fictional homework chatbot. Five statements should worry an auditor. Click the lines you don\'t trust — no code required.',
+  html: function (uid) {
+    return '' +
+      '<div class="lab" id="' + uid + '">' +
+        '<div class="lab-mc-card">' +
+          '<div class="lab-mc-head">📄 Model card · <strong>StudyMate-3</strong> <span class="lab-nw-pct">fictional</span></div>' +
+          MC_LINES.map(function (l, i) {
+            return '<button class="lab-mc-line" data-i="' + i + '">' + esc(l.t) + '</button>';
+          }).join('') +
+        '</div>' +
+        '<div class="lab-feedback" id="' + uid + '-score">Red flags found: 0 / 5</div>' +
+        '<div id="' + uid + '-why"></div>' +
+        '<p class="lab-note">This is Lesson-"look inside the black box" as a skill: you don\'t need to read code to audit an AI system — you need to read its claims like this, every time.</p>' +
+      '</div>';
+  },
+  init: function (uid) {
+    var found = 0, done = {};
+    el(uid).addEventListener('click', function (e) {
+      var b = e.target.closest('.lab-mc-line');
+      if (!b) return;
+      var i = +b.getAttribute('data-i');
+      if (done[i]) return;
+      done[i] = true;
+      var l = MC_LINES[i];
+      b.classList.add(l.flag ? 'flagged' : 'cleared');
+      if (l.flag) found++;
+      el(uid + '-score').textContent = 'Red flags found: ' + found + ' / 5';
+      el(uid + '-score').className = 'lab-feedback ' + (found >= 5 ? 'ok' : '');
+      var d = document.createElement('div');
+      d.className = 'lab-pc-item ' + (l.flag ? 'no' : 'ok');
+      d.innerHTML = '<span class="lab-pc-ic">' + (l.flag ? '🚩' : '✓') + '</span><span>' + l.why + '</span>';
+      var why = el(uid + '-why');
+      why.insertBefore(d, why.firstChild);
+      if (found >= 5) {
+        var w = document.createElement('div');
+        w.className = 'lab-cm-truth';
+        w.innerHTML = '<strong>All five found.</strong> Your audit checklist, reusable on any real system: (1) does the marketing match the limitations? (2) where did the training data come from — really? (3) is accuracy broken down, on a benchmark you can check? (4) was it evaluated on people like its actual users? (5) how stale is the safety evaluation?';
+        why.insertBefore(w, why.firstChild);
+      }
+    });
+  }
+};
+
+/* ============================================================
    Lesson injection map
    Slides added to AEP lessons at open time (before the summary
    slide). Widget slides render via DI_LABS; content slides use
@@ -2260,3 +3166,240 @@ window.DI_LAB_SLIDES = {
 };
 
 })();
+
+/* ============================================================
+   Shared injector for the other track engines (removes.html).
+   Splices lab slides in before any trailing summary/exit-ticket
+   slides, without mutating the source deck.
+   ============================================================ */
+window.DI_LABS_INJECT = function (id, slides) {
+  if (!window.DI_LAB_SLIDES || !DI_LAB_SLIDES[id] || !window.DI_LABS) return slides;
+  var extras = DI_LAB_SLIDES[id].filter(function (s) {
+    return s.type !== 'widget' || DI_LABS[s.widget];
+  });
+  if (!extras.length) return slides;
+  var out = slides.slice();
+  var at = out.length;
+  while (at > 0 && out[at - 1] && /^(summary|exit-ticket)$/.test(out[at - 1].type)) at--;
+  extras.forEach(function (s, i) { out.splice(at + i, 0, s); });
+  return out;
+};
+
+/* ============================================================
+   Removes-track injections (GCSE lesson ids 101–140) and the
+   second round of AEP additions. The Removes engine renders
+   slide.intro above and slide.callout below each widget.
+   ============================================================ */
+(function (M) {
+  function add(id, slides) { M[id] = (M[id] || []).concat(slides); }
+
+  /* ── AEP additions ── */
+  add(2, [
+    { type: 'widget', widget: 'chinese-room',
+      title: 'The symbol room — Searle\'s argument, playable',
+      intro: 'Before you debate the parrot and the librarian, live the strongest version of the parrot side: answer fluently in a language you cannot read.',
+      debrief: 'Searle\'s claim: syntax is not semantics — rule-following fluency proves nothing about understanding. The counter-claim: maybe understanding just <em>is</em> extremely good rule-following at scale. You now have first-hand experience to argue either side.' }
+  ]);
+  add(5, [
+    { type: 'widget', widget: 'skew-trainer',
+      title: 'The skewed-data trainer — cause the bias, then measure it',
+      intro: 'The Mirror showed you fake confidence. Now build the real thing: choose lopsided training data, train, and measure exactly who pays for the imbalance.',
+      debrief: 'This is the mechanism behind every case study in this lesson: no biased rule was ever written, only biased data collected. Which means the audit question is always "show me the training data", not "show me the code".' }
+  ]);
+  add(15, [
+    { type: 'widget', widget: 'energy-counter',
+      title: 'The energy counter — what a prompt actually costs',
+      intro: 'Before the big numbers, get the small ones right. Tap actions, watch the meter, then scale to a million users.',
+      debrief: 'The honest framing cuts both ways: a single prompt is tiny (individual guilt is the wrong lens), but a billion daily prompts plus training plus cooling water is a genuine industrial load (scale is the right lens). Strong arguments about AI\'s footprint use both halves.' }
+  ]);
+  add(46, [
+    { type: 'widget', widget: 'calibration',
+      title: 'The calibration game — how sure should you be?',
+      intro: 'VERIFY starts with knowing what confidence is worth — including your own. Five questions, then a comparison that matters.',
+      debrief: 'Your confidence can be trained to track your accuracy. A chatbot\'s cannot — its sureness is a writing style. That asymmetry is the whole reason the VERIFY workflow exists.' }
+  ]);
+  add(47, [
+    { type: 'widget', widget: 'misinfo-network',
+      title: 'The misinformation race — why the flood outruns the mop',
+      intro: 'The content flood has a shape. Release a false story, delay the correction, and watch the asymmetry this lesson is about.',
+      debrief: 'Every SIFT move you learned is a way of not being one of the red nodes. The network shows why individual behaviour compounds: each person who checks before sharing removes an entire branch of the spread.' }
+  ]);
+  add(56, [
+    { type: 'widget', widget: 'agent-loop',
+      title: 'Inside an agent — plan, act, observe, repeat',
+      intro: 'Before MCP and function calling, watch the loop those standards exist to serve — including the replan when a tool call fails.',
+      debrief: 'The model only ever emits text; the loop and the tools do the doing. That\'s why agent safety lives in tool permissions and loop constraints (least privilege, human sign-off on consequential actions) — exactly the architecture questions this lesson covers.' }
+  ]);
+
+  /* ── Removes: Unit 1 · Understanding AI ── */
+  add(101, [
+    { type: 'widget', widget: 'pixel-classifier',
+      title: 'Cat or dog? How do you actually know?',
+      intro: 'A ten-second game with a trap at the end — play it before we define anything.',
+      callout: 'You couldn\'t write the rule, and neither can programmers. So we show machines thousands of labelled examples instead — that is machine learning, and the rest of this course stands on it.' },
+    { type: 'widget', widget: 'spam-filter',
+      title: 'Rules vs learning — build a spam filter, watch it break',
+      intro: 'Now prove it to yourself the way the industry learned it: write keyword rules, catch this week\'s spam — then meet next week\'s.',
+      callout: 'Hand-written rules are brittle; learned patterns generalise. This single difference is why "AI" took over jobs that rules used to do.' }
+  ]);
+  add(102, [
+    { type: 'widget', widget: 'next-word',
+      title: 'Be the algorithm — predict the next word',
+      intro: 'A chatbot is a next-word predictor. Don\'t take our word for it — be one.',
+      callout: 'That\'s the entire mechanism: predict, append, repeat. It also explains why chatbots confidently make things up — a likely-sounding next word is not the same as a true one.' },
+    { type: 'widget', widget: 'pipeline',
+      title: 'From training to answer — the whole journey',
+      intro: 'Nine steps take a mountain of text to the answer on your screen. Step through them.',
+      callout: 'Remember the freeze: when you chat to a model, it is not learning from you — it\'s running the same prediction maths on patterns it distilled long ago.' },
+    { type: 'widget', widget: 'cosine-compass',
+      title: 'The maths inside — and you already know it',
+      intro: 'How does it judge which words mean similar things? With the cosine — the CAH in SOHCAHTOA.',
+      callout: 'Frontier AI, running on the trigonometry in your maths lessons. "Similarity" is literally an angle between two lists of numbers.' }
+  ]);
+  add(105, [
+    { type: 'widget', widget: 'chinese-room',
+      title: 'The symbol room — fluent without understanding',
+      intro: 'Can something answer perfectly without understanding anything? Find out by doing it yourself.',
+      callout: 'The philosopher John Searle used this exact argument in 1980. Whether a chatbot "understands" or just performs understanding is still genuinely open — but now you\'ve experienced the difference from the inside.' },
+    { type: 'widget', widget: 'word-galaxy',
+      title: 'What the machine actually "knows"',
+      intro: 'Four ideas about how a model pictures language — drag the sky as you go.',
+      callout: 'The model knows which words sit near each other — nothing more. Is that thinking? That\'s this lesson\'s question, and there\'s no cheap answer.' }
+  ]);
+
+  /* ── Removes: Unit 2 · Study & Revision ── */
+  add(111, [
+    { type: 'widget', widget: 'calibration',
+      title: 'The calibration game — how sure should you be?',
+      intro: 'The biggest revision trap isn\'t laziness — it\'s misplaced confidence, yours or the AI\'s. Measure both.',
+      callout: 'You can train your confidence to match your accuracy. A chatbot\'s confident tone is a writing style, not a measurement — which is why you check its claims before they go in your notes.' }
+  ]);
+  add(112, [
+    { type: 'widget', widget: 'ai-quest',
+      title: 'AI Quest — finish the unit like a hero',
+      intro: 'Run, jump, collect sparks — every spark removes a question from the quiz gate. Clear all three worlds to finish the unit.',
+      callout: 'Notice what made you replay: instant feedback, visible progress, stakes you chose. Steal those for your own revision toolkit.' }
+  ]);
+
+  /* ── Removes: Unit 3 · Practical AI Skills ── */
+  add(113, [
+    { type: 'widget', widget: 'prompt-coach',
+      title: 'The prompt coach',
+      intro: 'Draft a prompt for something you actually need this week, then let the coach score its ingredients. Redraft until you clear six of seven.',
+      callout: 'Nothing you type leaves this page — the coach is a checklist, not an AI. Which ingredient do you keep forgetting? That\'s your personal blind spot.' }
+  ]);
+  add(115, [
+    { type: 'widget', widget: 'wall-drawing',
+      title: 'A prompt from 1971',
+      intro: 'Long before chatbots, the artist Sol LeWitt sold written instructions and let other people execute them. This is his Wall Drawing #118 — run live by your browser.',
+      callout: 'Same instruction, different drawing every run — exactly like a prompt. LeWitt\'s question is now yours: if you wrote the instruction, did you make the art?' },
+    { type: 'widget', widget: 'rule-painter',
+      title: 'Paint by rules — then let the machine finish',
+      intro: 'Make one yourself: choose directions and colours, paint the grid, then hand the brush to randomness and download the result.',
+      callout: 'You made every decision until the machine filled the gaps. Compare with a neighbour: whose picture is more "theirs"? Defend your answer.' },
+    { type: 'widget', widget: 'bland-paste',
+      title: 'Why AI art can feel samey',
+      intro: 'One slider between distinctive marks and the smooth average. Drag it slowly.',
+      callout: 'AI predicts the most likely output, and "most likely" means "average". Your weird, specific, personal choices are exactly what the average can\'t contain — that\'s your value, not your flaw.' }
+  ]);
+  add(118, [
+    { type: 'widget', widget: 'code-sandbox',
+      title: 'The live code sandbox',
+      intro: 'Your prompt-engineering challenge can start right here: code on the left, result on the right.',
+      callout: 'Whether you or an AI wrote a line, the rule is the same: you must be able to read it. Make three changes and explain each one to a neighbour.' }
+  ]);
+  add(134, [
+    { type: 'widget', widget: 'agent-loop',
+      title: 'Inside an AI agent — plan, act, observe, repeat',
+      intro: 'An "agent" isn\'t a smarter chatbot — it\'s a model in a loop with tools. Step through a real task, including the moment the plan fails.',
+      callout: 'The model only ever writes text — plans and tool calls. The loop does the doing. So the safety question for any agent is: which tools did we hand it, and what needs a human\'s sign-off?' }
+  ]);
+
+  /* ── Removes: Unit 4 · AI, Truth & Media ── */
+  add(121, [
+    { type: 'widget', widget: 'misinfo-network',
+      title: 'The misinformation race — a lie versus its correction',
+      intro: 'Why do false things spread faster? Stop reading about it — release one and watch.',
+      callout: 'The lie travels on outrage; the correction travels on duty. Every person who checks before sharing deletes an entire branch of the red spread — that person can be you.' }
+  ]);
+  add(122, [
+    { type: 'widget', widget: 'sequence',
+      title: 'Put the verification steps in order',
+      intro: 'You\'ve met the fact-checking toolkit — now prove you own the order of operations.',
+      labData: {
+        prompt: 'A post is going viral with a shocking claim. Put the verification steps in the order you should do them.',
+        items: [
+          { text: 'Pin down the claim — what exactly is being asserted?', reveal: 'step 1' },
+          { text: 'Check who is saying it — does the account/source actually exist?', reveal: 'step 2' },
+          { text: 'Open the original source and check it says what the post claims', reveal: 'step 3' },
+          { text: 'Find a second, independent source that confirms or contradicts it', reveal: 'step 4' },
+          { text: 'Decide and act: share, correct, or ignore — with evidence', reveal: 'step 5' }
+        ]
+      },
+      callout: 'Most people jump straight to searching without pinning down the claim — and end up "verifying" something the post never quite said.' }
+  ]);
+  add(123, [
+    { type: 'widget', widget: 'filter-bubble',
+      title: 'The filter bubble — watch your feed narrow',
+      intro: 'The hidden curator, made visible: tap what you\'d watch and watch the diversity meter fall.',
+      callout: 'Nobody censored anything. The algorithm gave you more of what you tapped — that\'s all a filter bubble is, and it\'s why two people\'s phones show two different worlds.' }
+  ]);
+
+  /* ── Removes: Unit 5 · Society & Ethics ── */
+  add(125, [
+    { type: 'widget', widget: 'classifier-mirror',
+      title: 'The Classification Mirror',
+      intro: 'First, be classified yourself — with total confidence and zero evidence.',
+      callout: 'A percentage is a performance of certainty, not proof of it. Hold that thought for the case studies.' },
+    { type: 'widget', widget: 'skew-trainer',
+      title: 'The skewed-data trainer — cause the bias, then measure it',
+      intro: 'Now build real bias: choose lopsided training data, train a pet detector, and measure exactly who pays.',
+      callout: 'Nobody wrote a biased rule — you just fed it lopsided data. Swap the pets for people and this is every biased AI story you will ever read: skewed data in, skewed decisions out.' }
+  ]);
+  add(127, [
+    { type: 'widget', widget: 'motion-field',
+      title: 'Tracked — but only by your own screen',
+      intro: 'This field follows your finger at sixty frames a second — and keeps nothing. Work out what makes that different from the apps this lesson is about.',
+      callout: 'The privacy question is never "does the computer respond to me?" — it\'s "where does the computation happen, and who keeps the data afterwards?" On-device and discarded is a different world from uploaded and retained.' }
+  ]);
+  add(129, [
+    { type: 'widget', widget: 'peril-promise',
+      title: 'Peril ↔ Promise — take a position',
+      intro: 'Real dilemmas, no easy answers: drag each possibility onto the field and be ready to defend where you put it.',
+      callout: 'Could any promise become a peril depending on who controls it? That question — control, not capability — is where most real AI ethics arguments actually live.' }
+  ]);
+  add(137, [
+    { type: 'widget', widget: 'energy-counter',
+      title: 'The energy counter — what a prompt actually costs',
+      intro: 'Tap everyday actions, watch the meter — then scale to a million users and see the real shape of the problem.',
+      callout: 'One prompt is tiny; a kettle dwarfs it. But a billion prompts a day, plus training, plus cooling water, is industrial. Individual guilt is the wrong lens — scale, siting and energy sources are the right questions.' }
+  ]);
+
+  /* ── Removes: Unit 6 · Shaping AI ── */
+  add(138, [
+    { type: 'widget', widget: 'model-card',
+      title: 'The model-card audit — find the five red flags',
+      intro: 'You don\'t need code to look inside the black box. Read this (fictional) model card like an auditor and click every line you don\'t trust.',
+      callout: 'Your reusable checklist: marketing vs limitations · where the training data really came from · accuracy broken down, on a checkable benchmark · evaluated on people like the actual users · how stale the safety evaluation is.' }
+  ]);
+  add(139, [
+    { type: 'widget', widget: 'skew-trainer',
+      title: 'Does it actually work — and for whom?',
+      intro: '"Is it accurate?" is the wrong question until you ask "accurate for whom?" Train, test, and check the gap.',
+      callout: 'A single overall accuracy number can hide a large per-group gap — you\'ve now seen it happen. Demanding the breakdown is the single most useful habit an AI auditor has.' }
+  ]);
+
+  /* ── Removes: Unit 7 · Wellbeing & Future ── */
+  add(130, [
+    { type: 'widget', widget: 'engagement-algorithm',
+      title: 'Be the engagement algorithm',
+      intro: 'For eight rounds, you are the recommender — and your only target is watch time. See what happens to the person on the other side of the screen.',
+      callout: 'What gets measured gets optimised; what doesn\'t gets spent. The fix isn\'t nicer engineers — it\'s changing what the metric counts. Now you know what to ask of every app on your phone.' }
+  ]);
+  add(133, [
+    { type: 'widget', widget: 'day-one',
+      title: 'Interrogate the machine — then write your manifesto',
+      intro: 'Before you write your personal AI manifesto, put a chatbot on the record with these ten questions. Push back on every answer.',
+      callout: 'There are no correct answers — only revealing ones. Whatever it dodged, performed or actually revealed: that goes in your manifesto.' }
+  ]);
+})(window.DI_LAB_SLIDES);
