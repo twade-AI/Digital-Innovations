@@ -490,8 +490,22 @@ function getLessonSlides(id, lesson, unit) {
                                (typeof SLIDES_CRITICAL !== 'undefined' ? SLIDES_CRITICAL : {}),
                                (typeof SLIDES_ADVANCED !== 'undefined' ? SLIDES_ADVANCED : {}),
                                (typeof SLIDES_COMPANIONS !== 'undefined' ? SLIDES_COMPANIONS : {}));
-  if (all[id]) return all[id];
-  return generateSlides(lesson, unit);
+  var slides = all[id] || generateSlides(lesson, unit);
+  return injectLabSlides(id, slides);
+}
+
+/* Splice in interactive-lab slides (from js/labs.js) before the
+   summary slide, without mutating the original deck arrays. */
+function injectLabSlides(id, slides) {
+  if (typeof DI_LAB_SLIDES === 'undefined' || !DI_LAB_SLIDES[id] || typeof DI_LABS === 'undefined') return slides;
+  var extras = DI_LAB_SLIDES[id].filter(function (s) {
+    return s.type !== 'widget' || DI_LABS[s.widget];
+  });
+  if (!extras.length) return slides;
+  var out = slides.slice();
+  var at = (out.length && out[out.length - 1].type === 'summary') ? out.length - 1 : out.length;
+  extras.forEach(function (s, i) { out.splice(at + i, 0, s); });
+  return out;
 }
 
 function renderResourceLinks(lesson) {
@@ -804,6 +818,17 @@ function renderSlide(index) {
     '</div>';
   }
 
+  else if (slide.type === 'widget' && typeof DI_LABS !== 'undefined' && DI_LABS[slide.widget]) {
+    var lab = DI_LABS[slide.widget];
+    html = '<div class="slide-concept slide-lab">' +
+      '<span class="slide-badge badge-activity">🧪 Interactive Lab</span>' +
+      '<div class="slide-title">' + (slide.title || lab.title) + '</div>' +
+      (slide.intro ? '<div class="concept-body">' + slide.intro + '</div>' : '') +
+      lab.html('lv-lab-' + slide.widget, slide.labData) +
+      (slide.debrief ? '<div class="concept-callout"><strong>Think about it:</strong> ' + slide.debrief + '</div>' : '') +
+    '</div>';
+  }
+
   else if (slide.type === 'summary') {
     var pointsHtml = slide.points.map(function(p) {
       var label = p.label ? '<strong>' + p.label + '</strong> — ' + p.text : '<strong>' + p.text + '</strong>';
@@ -840,6 +865,12 @@ function renderSlide(index) {
 
   area.innerHTML = html;
   area.scrollTop = 0;
+
+  // Interactive lab widgets wire their events after DOM insertion
+  if (slide.type === 'widget' && typeof DI_LABS !== 'undefined' && DI_LABS[slide.widget]) {
+    try { DI_LABS[slide.widget].init('lv-lab-' + slide.widget, slide.labData); }
+    catch (e) { console.error('Lab init failed:', slide.widget, e); }
+  }
 
   // Inject SVG visual if one exists for this lesson+slide
   if (typeof SLIDE_VISUALS !== 'undefined') {
