@@ -399,7 +399,7 @@ ON CONFLICT (user_id) DO NOTHING;</pre>
           <thead>
             <tr>
               <th>Pupil</th><th>Lessons</th><th>XP / Level</th>
-              <th>Streak</th><th>Quiz Score</th><th>Last Active</th><th></th>
+              <th>Streak</th><th>Quiz Score</th><th>🧪 Labs</th><th>Last Active</th><th></th>
             </tr>
           </thead>
           <tbody id="studentTableBody">
@@ -774,6 +774,7 @@ async function loadData() {
       qCorrect:    qCorrect,
       qTotal:      qs.length,
       qPct:        qPct,
+      labs:        (data.labs_done && typeof data.labs_done === 'object') ? Object.keys(data.labs_done).length : 0,
       lastActive:  lastActive,
       neverSynced: !prog,
       completedIds: Array.isArray(data.completed) ? data.completed : [],
@@ -830,7 +831,7 @@ function relativeDate(iso) {
 function renderTable(students) {
   var tbody = document.getElementById('studentTableBody');
   if (!students.length) {
-    tbody.innerHTML = '<tr><td colspan="7" class="empty-state">No pupils found.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="8" class="empty-state">No pupils found.</td></tr>';
     return;
   }
   tbody.innerHTML = students.map(function(s, i) {
@@ -855,6 +856,7 @@ function renderTable(students) {
         '</td>',
         '<td class="streak-badge">' + (s.streak ? s.streak + ' 🔥' : '—') + '</td>',
         '<td class="quiz-pct">' + (s.qPct !== null ? s.qPct + '%' : '—') + '<span style="font-size:.72rem;color:var(--text-dim);font-weight:400"> (' + s.qCorrect + '/' + s.qTotal + ')</span></td>',
+        '<td>' + (s.labs ? s.labs + ' 🧪' : '—') + '</td>',
         '<td class="last-active">' + relativeDate(s.lastActive) + '</td>',
         '<td class="chevron-cell" id="chev-' + i + '">▶</td>',
       '</tr>',
