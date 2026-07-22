@@ -69,6 +69,7 @@
         <a href="index.html" class="nav-link">← Back to the course</a>
       </div>
       <div class="settings-wrap">
+        <button class="settings-btn" id="teachToggle" aria-label="Toggle teacher demo notes" aria-pressed="false" title="Teacher notes — how to run each lab as a class demo">🎓</button>
         <button class="settings-btn" onclick="labsToggleTheme()" aria-label="Toggle light or dark mode" title="Light / dark mode">☀️</button>
       </div>
     </div>
@@ -167,13 +168,18 @@
         var shell = document.createElement('article');
         shell.className = 'lab-shell';
         var used = (USED_IN[name] || []).join(' · ');
+        var beats = (window.DI_LAB_TEACH || {})[name];
+        var teach = beats
+          ? '<div class="lab-teach"><div class="lab-teach-head">📺 Run as a class demo</div><ol>' +
+              beats.map(function (b) { return '<li>' + b + '</li>'; }).join('') + '</ol></div>'
+          : '';
         shell.innerHTML =
           '<div class="lab-shell-head"><h3>' + lab.title + '</h3>' +
             '<span class="lab-shell-tag">' + lab.tag + '</span>' +
             (used ? '<span class="lab-shell-lessons">in the course: ' + used + '</span>' : '<span class="lab-shell-lessons">labs-page exclusive</span>') +
           '</div>' +
           '<div class="lab-shell-blurb">' + lab.blurb + '</div>' +
-          '<div class="lab-shell-body">' + lab.html(uid) + '</div>';
+          '<div class="lab-shell-body">' + lab.html(uid) + teach + '</div>';
         sec.appendChild(shell);
         shell.setAttribute('data-lab', name);
         shell.setAttribute('data-uid', uid);
@@ -206,6 +212,14 @@
     }
     renderLabProgress();
     document.addEventListener('di-lab-complete', renderLabProgress);
+
+    /* teacher-notes toggle: shows the per-lab class-demo scripts */
+    var tt = document.getElementById('teachToggle');
+    if (tt) tt.addEventListener('click', function () {
+      var on = document.body.classList.toggle('teacher-mode');
+      tt.setAttribute('aria-pressed', on ? 'true' : 'false');
+      tt.style.opacity = on ? '1' : '';
+    });
 
     /* initialise each lab the first time it scrolls into view */
     var shells = document.querySelectorAll('.lab-shell');
