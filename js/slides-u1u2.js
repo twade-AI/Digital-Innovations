@@ -265,8 +265,9 @@ var SLIDES_U1U2 = {
       title: 'The Socratic Revision Partner',
       body: 'The key to academic integrity in the AI era is maintaining cognitive ownership. This means using Gemini as a feedback partner that guides your writing, rather than a ghostwriter that writes it for you.',
       bullets: [
-        '<strong>AI as Author (Red Zone):</strong> Prompting "Write a paragraph explaining how enzymes lower activation energy." Copying and pasting the output. This is plagiarism, and it deprives your brain of the struggle that builds memory.',
-        '<strong>AI as Critic (Green Zone):</strong> Prompting "Here is my paragraph explaining activation energy. Read it and tell me: (1) Is my explanation of the transition state clear? (2) What key term did I omit? (3) How can I improve my structural transition? Do not rewrite it for me."',
+        '<strong>AI as Author (Red tier):</strong> Prompting "Write a paragraph explaining how enzymes lower activation energy." Copying and pasting the output. This is plagiarism, and it deprives your brain of the struggle that builds memory.',
+        '<strong>AI as Critic (Green tier):</strong> Prompting "Here is my paragraph explaining activation energy. Read it and tell me: (1) Is my explanation of the transition state clear? (2) What key term did I omit? (3) How can I improve my structural transition? Do not rewrite it for me."',
+        '<strong>AI as Editor (Amber tier):</strong> AI polishes the wording of a paragraph you wrote yourself — permitted with a one-line disclosure under the school\'s Three-Tier policy. The ideas and argument must remain yours.',
         '<strong>The Acknowledge rule:</strong> If you use AI to help you outline or edit, standard academic practice is to include an AI disclosure statement detailing the prompts used and how the output shaped your draft.',
         '<strong>The Style Check:</strong> AI tools have a highly recognisable \'dialect\' (overuse of words like *delve, testament, beacon, pivotal, complex landscape*). If your essay uses these words, it flags AI authorship.'
       ],
@@ -311,20 +312,20 @@ var SLIDES_U1U2 = {
       questions: [
         { num: 1, text: 'If you let AI write your sentences, your brain doesn\'t practice the process of translating thoughts into words. What is the long-term cost of this \'cognitive offloading\' on your ability to express yourself in speech and writing?' },
         { num: 2, text: 'Some argue that AI detectors are unreliable and unfairly flag non-native English speakers. If detectors can be bypassed, why does academic integrity still matter? Who are you hurting when you cheat with AI?' },
-        { num: 3, text: 'How can schools create fair policies that allow pupils to use AI for learning (Green Zone) while preventing plagiarism (Red Zone)? What role should disclosure play?' }
+        { num: 3, text: 'How can schools create fair policies that allow pupils to use AI for learning (Green tier) while preventing plagiarism (Red tier)? What role should disclosure play?' }
       ]
     },
     {
       type: 'quiz',
-      question: 'What is the defining difference between ethical AI assistance (Green Zone) and academic plagiarism (Red Zone)?',
+      question: 'What is the defining difference between ethical AI assistance (Green tier) and academic plagiarism (Red tier)?',
       options: [
-        'Green Zone uses Claude, while Red Zone uses ChatGPT.',
-        'Green Zone means the AI acts as a critic and feedback partner while you write the text; Red Zone means the AI generates the actual text submitted.',
-        'Green Zone is allowed only for homework, while Red Zone is allowed for coursework.',
-        'Green Zone means using prompts under 50 words; Red Zone means using prompts over 50 words.'
+        'Green tier uses Claude, while Red tier uses ChatGPT.',
+        'Green tier means the AI acts as a critic and feedback partner while you write the text; Red tier means the AI generates the actual text submitted.',
+        'Green tier is allowed only for homework, while Red tier is allowed for coursework.',
+        'Green tier means using prompts under 50 words; Red tier means using prompts over 50 words.'
       ],
       correct: 1,
-      explanation: 'Ethical use means you maintain cognitive ownership: you do the thinking and the writing, using the AI to identify gaps, suggest vocabulary, or test your arguments. Red Zone use means the AI does the writing, which is plagiarism.'
+      explanation: 'Ethical use means you maintain cognitive ownership: you do the thinking and the writing, using the AI to identify gaps, suggest vocabulary, or test your arguments. Red tier use means the AI does the writing, which is plagiarism.'
     },
     {
       type: 'summary',

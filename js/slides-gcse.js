@@ -1,6 +1,11 @@
 /* ── Digital Innovations — Removes (Year 9) Course Content ─────────
    Year 9 (ages 13–14) · 7 units · 40 lessons · aligned to the OECD/EU
    AI Literacy Framework (Engage · Create · Manage · Shape)
+   NOTE ON PITCH: study-skills examples and model prompts deliberately
+   reference GCSE work ("Year 11 pupil targeting grade 7", exam boards,
+   revision). Removes pupils choose GCSE options this year and start
+   those courses next year — the examples are written to be aspirational
+   now and directly reusable the moment they matter.
    ─────────────────────────────────────────────────────────────── */
 
 /* ── Unit order follows the OECD/EU AILit Framework learning arc:
@@ -1587,7 +1592,7 @@ SLIDES_GCSE[112] = [
   {
     type: 'hook',
     title: 'Your Revision Toolkit',
-    body: 'You now know how to prompt, summarise, quiz, plan essays and spot the traps. The final question is: how do you stitch it all into a weekly routine you can actually sustain through five months of GCSE revision? Retrieval practice, spacing and interleaving are three of the most robustly evidence-backed methods in all of education — the Education Endowment Foundation rates this kind of self-regulated study among the highest-impact, lowest-cost things a pupil can do, worth roughly <em>seven months\' extra progress</em> a year. Meanwhile around 80% of UK pupils aged 13–18 now use AI for their schoolwork (Oxford University Press, 2025) — but most use it wrong. This lesson gives you a complete weekly toolkit that combines the evidence-based methods WITH AI, in the right places.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">+7 mths</span><span class="sl">progress from self-regulated study — among EEF\'s highest-impact, lowest-cost strategies</span></div><div class="hook-stat-mini"><span class="sv">~80%</span><span class="sl">of UK 13–18s now use AI for schoolwork (Oxford University Press, 2025)</span></div><div class="hook-stat-mini"><span class="sv">~66 days</span><span class="sl">median time for a new habit to stick (Lally et al. 2010)</span></div></div>',
+    body: 'You now know how to prompt, summarise, quiz, plan essays and spot the traps. The final question is: how do you stitch it all into a weekly routine you can actually sustain — this year, and through GCSE revision when it arrives? Retrieval practice, spacing and interleaving are three of the most robustly evidence-backed methods in all of education — the Education Endowment Foundation rates this kind of self-regulated study among the highest-impact, lowest-cost things a pupil can do, worth roughly <em>seven months\' extra progress</em> a year. Meanwhile around 80% of UK pupils aged 13–18 now use AI for their schoolwork (Oxford University Press, 2025) — but most use it wrong. This lesson gives you a complete weekly toolkit that combines the evidence-based methods WITH AI, in the right places.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">+7 mths</span><span class="sl">progress from self-regulated study — among EEF\'s highest-impact, lowest-cost strategies</span></div><div class="hook-stat-mini"><span class="sv">~80%</span><span class="sl">of UK 13–18s now use AI for schoolwork (Oxford University Press, 2025)</span></div><div class="hook-stat-mini"><span class="sv">~66 days</span><span class="sl">median time for a new habit to stick (Lally et al. 2010)</span></div></div>',
     callout: 'The key rule: AI helps you BEFORE you try (to prepare) and AFTER you try (to feedback) — never INSTEAD of trying. The thinking is still yours.',
     sources: [
       { label: 'Education Endowment Foundation — Metacognition &amp; self-regulated learning (guidance report)', url: 'https://educationendowmentfoundation.org.uk/education-evidence/guidance-reports/metacognition' },
@@ -1885,7 +1890,7 @@ SLIDES_GCSE[114] = [
   {
     type: 'hook',
     title: 'Evaluating AI Output',
-    body: 'March 2023, New York federal court: attorney Steven Schwartz files a legal brief in <em>Mata v. Avianca Airlines</em>. The brief cites six past cases that look perfect — judge names, court districts, year, paragraph numbers, all internally consistent. The problem: every single case was invented by ChatGPT. Judge Castel sanctions Schwartz and his firm $5,000 and publishes the saga globally. Two years on, citation and reference fabrication remains one of the most common and best-documented LLM error types — and every model, including the newest, still does it. AI can be wrong, outdated, overconfident and misleading — all while sounding perfectly authoritative. Knowing how to evaluate what it gives you is now one of the most important skills you can build for GCSE, A-level, university, work and adult life.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">6/6</span><span class="sl">fake cases in Mata v. Avianca — all fully hallucinated</span></div><div class="hook-stat-mini"><span class="sv">$5k</span><span class="sl">sanction imposed on Schwartz and his firm (S.D.N.Y., 22 Jun 2023)</span></div><div class="hook-stat-mini"><span class="sv">Common</span><span class="sl">citation/reference fabrication is among the most documented hallucination types</span></div></div>',
+    body: 'You met this story in Lesson 111 — it deserves a slow-motion replay, because it is the perfect specimen. March 2023, New York federal court: attorney Steven Schwartz files a legal brief in <em>Mata v. Avianca Airlines</em>. The brief cites six past cases that look perfect — judge names, court districts, year, paragraph numbers, all internally consistent. The problem: every single case was invented by ChatGPT. Judge Castel sanctions Schwartz and his firm $5,000 and publishes the saga globally. Two years on, citation and reference fabrication remains one of the most common and best-documented LLM error types — and every model, including the newest, still does it. AI can be wrong, outdated, overconfident and misleading — all while sounding perfectly authoritative. Knowing how to evaluate what it gives you is now one of the most important skills you can build for GCSE, A-level, university, work and adult life.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">6/6</span><span class="sl">fake cases in Mata v. Avianca — all fully hallucinated</span></div><div class="hook-stat-mini"><span class="sv">$5k</span><span class="sl">sanction imposed on Schwartz and his firm (S.D.N.Y., 22 Jun 2023)</span></div><div class="hook-stat-mini"><span class="sv">Common</span><span class="sl">citation/reference fabrication is among the most documented hallucination types</span></div></div>',
     callout: 'Confident language from an AI is not evidence of accuracy. These are completely separate things — and tens of thousands of pounds in sanctions have now been levied on people who forgot the distinction.',
     sources: [
       { label: 'Mata v. Avianca, Inc., No. 22-cv-1461 (S.D.N.Y. 22 Jun 2023) — Judge Castel\'s opinion and sanctions', url: 'https://www.nytimes.com/2023/06/22/nyregion/lawyers-chatgpt-schwartz-loduca.html' },
@@ -2447,17 +2452,17 @@ SLIDES_GCSE[118] = [
   },
   {
     type: 'unit-test',
-    title: 'Unit 3 Recap',
-    body: 'Three questions covering prompting, evaluation and creativity.',
+    title: 'Unit 3 Checkpoint',
+    body: 'Three quick questions covering prompting, evaluation and creativity — a pulse check, not the unit test. Unit 3 finishes with the AI-agents lesson, and the Prompt-Engineering Portfolio task lives there.',
     questions: [
       { q: 'Which five levers make up the anatomy of a strong prompt?', options: ['Length, formality, speed, topic, audience', 'Role / Task / Context / Format / Constraint', 'Question, fact, example, image, reference', 'Input, output, model, prompt, reply'], correct: 1, explanation: 'Role, Task, Context, Format, Constraint — the five levers taught in L113. You don\'t need all five every time, but the more precise you are, the less room for unhelpful guesses.' },
       { q: 'Why did the 2023 "jagged frontier" study (Dell\'Acqua et al.) find that some AI users produced WORSE work than people with no AI at all?', options: ['The AI was broken', 'They used AI on tasks beyond its reliable range and trusted confident but wrong output', 'They used the wrong model', 'They typed too fast'], correct: 1, explanation: 'AI helped a lot on tasks inside its capability ("the frontier") but hurt performance on tasks outside it — where the model produced confident, plausible, wrong output that users trusted. Knowing where that edge lies is the real skill.' },
-      { q: 'Under current UK and US law, who owns the copyright on a purely AI-generated image?', options: ['The person who wrote the prompt', 'The AI company that made the model', 'Nobody — purely AI-generated images are generally not protected by copyright (per US Copyright Office guidance)', 'The first person to publish it online'], correct: 2, explanation: 'The US Copyright Office\'s March 2023 guidance and subsequent decisions are clear: human authorship is required. Minor prompt selection alone does not qualify.' }
+      { q: 'Under current US law, who owns the copyright on a purely AI-generated image?', options: ['The person who wrote the prompt', 'The AI company that made the model', 'Nobody — purely AI-generated images are generally not protected by copyright (per US Copyright Office guidance)', 'The first person to publish it online'], correct: 2, explanation: 'The US Copyright Office\'s March 2023 guidance and subsequent decisions are clear: human authorship is required. Minor prompt selection alone does not qualify. (UK law differs — s.9(3) CDPA 1988 protects computer-generated works, owned by whoever made the arrangements.)' }
     ]
   },
   {
     type: 'exit-ticket',
-    title: 'Unit 3 Exit Ticket',
+    title: 'Prompting Exit Ticket',
     prompt: 'Write one PTFC-structured prompt you plan to use this week for an actual task. Include all four parts.',
     body: 'Saved to this device only. Come back and edit it any time.'
   }
@@ -3215,7 +3220,7 @@ SLIDES_GCSE[125] = [
     title: 'The Hidden Workers Behind "AI"',
     body: 'The word "AI" suggests a machine working alone. The reality: millions of low-paid workers label data, filter toxic content, and rate model outputs — often in countries where wages are lowest.',
     bullets: [
-      { term: 'Kenyan RLHF workers', def: 'In 2023, Time magazine revealed OpenAI paid Kenyan workers around $1.32 per hour to read disturbing content and label it — to make ChatGPT safer for users elsewhere.' },
+      { term: 'Kenyan RLHF workers', def: 'The TIME investigation you met in Lesson 124 ($1.32/hour to label disturbing content) matters here for a second reason: the people doing the labelling — and the conditions they work under — shape what the model learns to treat as acceptable.' },
       { term: 'Content moderation', def: 'Workers in the Philippines, Kenya and India view graphic content daily to keep AI outputs "clean" for Western users — often without adequate mental health support.' },
       { term: 'Data labelling', def: 'Training a self-driving car involves millions of images labelled by humans. Those humans are rarely the ones buying Teslas.' },
       { term: 'Why it matters', def: 'Bias doesn\'t only enter through datasets. Who labels the data, under what conditions, shapes what the AI treats as "normal" and "acceptable".' }
@@ -4137,7 +4142,7 @@ SLIDES_GCSE[133] = [
   {
     type: 'unit-test',
     title: 'Capstone Check — The Whole Course',
-    body: 'Five questions drawing across all six units. No pressure — this is about recalling what stuck, not passing a gate.',
+    body: 'Five questions drawing across all seven units. No pressure — this is about recalling what stuck, not passing a gate.',
     questions: [
       { q: 'In one phrase, what is modern AI actually doing when it answers you?', options: ['Thinking, like a person', 'Pattern-matching on training data to predict the next most likely answer', 'Looking things up in a database', 'Following rules a programmer wrote'], correct: 1, explanation: 'Prediction, not understanding. This is the Unit 1 foundation that makes everything else make sense — including why AI hallucinates.' },
       { q: 'The 2023 "jagged frontier" study found AI can make people perform WORSE. When?', options: ['When they ask AI too many questions', 'When they use it on tasks beyond its reliable range and trust the output', 'When they write long prompts', 'When they use more than one tool at once'], correct: 1, explanation: 'Dell\'Acqua et al. found AI boosted quality on tasks it suited, but on tasks beyond its "frontier" users who over-trusted it did worse than those with no AI at all. Knowing where that edge lies is the real skill.' },
@@ -4922,7 +4927,7 @@ SLIDES_GCSE[139] = [
     title: 'How I\'m Fighting Bias in Algorithms',
     videoId: 'UG_X_7g63rY',
     credit: 'Joy Buolamwini · TEDxBeaconStreet · 8 min',
-    intro: 'Joy Buolamwini, an MIT researcher, discovered that face-recognition systems couldn\'t detect her dark-skinned face until she put on a white mask. Her work (the "Gender Shades" study) measured exactly how unfairly these systems performed across demographics — and traced it back to the training data. As you watch, notice two Shape-AI ideas: (1) the failure came from <em>who was missing</em> in the data, and (2) she only proved it by <em>testing</em> across groups.',
+    intro: 'You watched this in Lesson 125 — rewatch even the first two minutes now through a different lens: not “is this biased?” but “how would you TEST for it?”. Joy Buolamwini, an MIT researcher, discovered that face-recognition systems couldn\'t detect her dark-skinned face until she put on a white mask. Her work (the "Gender Shades" study) measured exactly how unfairly these systems performed across demographics — and traced it back to the training data. As you watch, notice two Shape-AI ideas: (1) the failure came from <em>who was missing</em> in the data, and (2) she only proved it by <em>testing</em> across groups.',
     callout: 'This is the difference between "it works" and "it works for everyone" — and the whole reason fairness has to be tested, not assumed.'
   },
   {
@@ -5045,7 +5050,7 @@ SLIDES_GCSE[140] = [
     type: 'hook',
     title: 'Redesigning AI for Everyone',
     body: 'In 1972, a group of disabled activists in Berkeley, California were tired of being trapped on the pavement — every kerb was a wall to a wheelchair. So one night, the story goes, they took a bag of cement into the street and poured their own ramp where the kerb met the road. The city was furious. Then something unexpected happened: those "curb cuts" turned out to help almost everyone — parents with prams, delivery workers with trolleys, cyclists, travellers dragging suitcases. Designing for the people who had been shut out made the world better for all of them. That is the final, most empowering move in AI literacy: <em>improving</em> the systems you use. Most AI was built by a narrow slice of the world, for users a lot like its makers — which is exactly why the gaps exist, and exactly why your perspective, and your classmates\', is genuinely valuable.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">1972</span><span class="sl">activists poured their own kerb ramps in Berkeley — the "curb cut"</span></div><div class="hook-stat-mini"><span class="sv">everyone</span><span class="sl">designing for the excluded improved it for all</span></div><div class="hook-stat-mini"><span class="sv">Who\'s left out?</span><span class="sl">the question that drives better design</span></div></div>',
-    callout: 'You finish this course not as a consumer of AI, but as someone who can shape it. The last skill is the one that changes things: making AI work for the people it currently fails.',
+    callout: 'You finish this unit not as a consumer of AI, but as someone who can shape it — the skill that changes things: making AI work for the people it currently fails. One unit remains, and it turns the lens on you: your feed, your relationships, your future.',
     sources: [
       { label: 'AILit Framework (OECD/EU 2026) — Shape AI 4: "improve AI systems to promote human well-being and societal benefit"', url: 'https://doi.org/10.1787/65cd27d4-en' }
     ]
@@ -5165,8 +5170,8 @@ SLIDES_GCSE[140] = [
   {
     type: 'exit-ticket',
     title: 'Shape AI Exit Ticket',
-    prompt: 'Across this whole course you went from understanding AI to being able to shape it. Name one AI system you now feel genuinely able to improve — and the single change you would make first.',
-    body: 'Saved to this device only. Keep it — it is the proof that you ended this course as someone who shapes AI, not just someone shaped by it.'
+    prompt: 'Across this unit you learned to look inside AI systems, test them, and redesign them. Name one AI system you now feel genuinely able to improve — and the single change you would make first.',
+    body: 'Saved to this device only. Keep it — proof that you can shape AI, not just be shaped by it. The final unit is next: AI, wellbeing and your future.'
   },
   {
     type: 'assessment',
