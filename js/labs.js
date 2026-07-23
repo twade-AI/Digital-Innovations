@@ -1231,15 +1231,29 @@ LABS['meaning-space'] = {
           '<button class="lab-chip" data-t="The company will launch the new apple phone app">apple · tech</button>' +
         '</div>' +
         '<div class="lab-ms-caps" id="' + uid + '-caps"></div>' +
-        '<div class="lab-canvas-wrap lab-canvas-dark lab-canvas-tall"><canvas id="' + uid + '-cv"></canvas>' +
+        '<div class="lab-canvas-wrap lab-canvas-dark lab-canvas-tall"><canvas id="' + uid + '-cv" tabindex="0" role="application" aria-label="Word map. Use arrow keys to move between word stars, Enter to select a star, Escape to clear selection."></canvas>' +
           '<span class="lab-canvas-tag">// real GloVe vectors · Stanford NLP · 2-D projection</span>' +
           '<div class="lab-zoom-btns"><button class="lab-btn lab-btn-sm" id="' + uid + '-zi" aria-label="Zoom in">+</button><button class="lab-btn lab-btn-sm" id="' + uid + '-zo" aria-label="Zoom out">−</button></div></div>' +
-        '<p class="lab-note" id="' + uid + '-read">Click any two word-stars to measure their real similarity — scored across 16 dimensions of a genuine embedding.</p>' +
+        '<p class="lab-note" id="' + uid + '-read" aria-live="polite">Click any two word-stars to measure their real similarity — scored across 16 dimensions of a genuine embedding.</p>' +
+        '<div class="lab-pattern" id="' + uid + '-quiz"><strong>Prove you\'ve got it:</strong> before you click anything — which is closer in meaning to <em>river</em>: <em>water</em> or <em>money</em>?' +
+          '<span class="lab-btn-row" style="margin-top:8px">' +
+          '<button class="lab-btn lab-btn-sm" data-msp="water">water</button>' +
+          '<button class="lab-btn lab-btn-sm" data-msp="money">money</button></span></div>' +
+        '<div class="lab-btn-row" style="align-items:center">' +
+          '<span class="lab-label" style="margin:0">🧮 Word maths</span>' +
+          '<input class="lab-input" id="' + uid + '-aa" value="pay" style="flex:0 1 96px;min-width:72px" aria-label="Word A">' +
+          '<span aria-hidden="true">−</span>' +
+          '<input class="lab-input" id="' + uid + '-ab" value="money" style="flex:0 1 96px;min-width:72px" aria-label="Word B, subtracted">' +
+          '<span aria-hidden="true">＋</span>' +
+          '<input class="lab-input" id="' + uid + '-ac" value="water" style="flex:0 1 96px;min-width:72px" aria-label="Word C, added">' +
+          '<button class="lab-btn lab-btn-sm" id="' + uid + '-aeq">= ?</button>' +
+        '</div>' +
+        '<p class="lab-note" id="' + uid + '-aout" aria-live="polite">The famous version is <em>king − man + woman ≈ queen</em>. This mini-vocabulary has its own: try <em>pay − money + water</em>, or <em>ocean − water + money</em>. Directions in this space are meanings.</p>' +
       '</div>';
   },
   init: function (uid) {
     var cv = el(uid + '-cv'); if (!cv) return;
-    var S = { stars: [], sel: [], z: 1, panX: 0, panY: 0, W: 0, H: 0, cx: 0, cy: 0, R: 0 };
+    var S = { stars: [], sel: [], z: 1, panX: 0, panY: 0, W: 0, H: 0, cx: 0, cy: 0, R: 0, kb: -1, an: null };
     function hash(s) {
       var h = 0;
       for (var i = 0; i < s.length; i++) h = s.charCodeAt(i) + ((h << 5) - h);
@@ -1291,30 +1305,50 @@ LABS['meaning-space'] = {
         var sense = senseOf(lw, others);
         var theme = MS_W2T[lw] || (sense && sense.theme) || null;
         var th = theme ? MS_THEMES[theme] : { col: '#8fa3b8', label: 'not in mini-vocab' };
-        var vx, vy, nudged = false;
+        var vx, vy, vx1, vy1, nudged = false;
         if (vec) {
           vx = vec[0] * S.R; vy = vec[1] * S.R;
+          vx1 = vx; vy1 = vy;
           /* a static map holds ONE blended home per word; when context
              resolves a sense, show the direction a contextual model
-             would move it: 45% toward that sense's cue centroid */
+             would move it: 45% toward that sense's cue centroid —
+             animated, so "context moves meaning" is watched, not told */
           if (sense) {
             var c = centroidOf(MS_SENSES[lw][sense.theme]);
-            if (c) { vx = vx + (c.x * S.R - vx) * 0.45; vy = vy + (c.y * S.R - vy) * 0.45; nudged = true; }
+            if (c) { vx1 = vx + (c.x * S.R - vx) * 0.45; vy1 = vy + (c.y * S.R - vy) * 0.45; nudged = true; }
           }
         } else {
           var h = hash(lw), a = (Math.abs(h) % 360) * Math.PI / 180;
           var rr = S.R * (0.1 + ((((h >> 3) % 100) + 100) % 100) / 100 * 0.15);
           vx = Math.cos(a) * rr; vy = Math.sin(a) * rr;
+          vx1 = vx; vy1 = vy;
         }
         S.stars.push({ word: lw, real: !!vec, vec: vec, theme: theme, col: th.col, freq: freq[lw],
-                       sense: sense, nudged: nudged, vx: vx, vy: vy });
+                       sense: sense, nudged: nudged, vx: vx, vy: vy, vx0: vx, vy0: vy, vx1: vx1, vy1: vy1 });
         capHTML += '<span class="lab-ms-cap" style="border-color:' + th.col + ';color:' + th.col + '">' +
           esc(lw) + (nudged && sense ? '→' + MS_THEMES[sense.theme].label : '') +
           (freq[lw] > 1 ? ' ×' + freq[lw] : '') + '</span>';
       });
       el(uid + '-caps').innerHTML = capHTML || '<span class="lab-note">type a sentence…</span>';
-      S.sel = []; S.z = 1; S.panX = 0; S.panY = 0;
+      S.sel = []; S.z = 1; S.panX = 0; S.panY = 0; S.kb = -1; S.an = null;
       render(); readout();
+      var hasNudge = S.stars.some(function (s) { return s.nudged; });
+      if (hasNudge && !reducedMotion()) {
+        var t = 0;
+        loop(uid + '-nudge', cv, function () {
+          t += 0.04;
+          var e2 = 1 - Math.pow(1 - Math.min(1, t), 3);
+          S.stars.forEach(function (s) {
+            s.vx = s.vx0 + (s.vx1 - s.vx0) * e2;
+            s.vy = s.vy0 + (s.vy1 - s.vy0) * e2;
+          });
+          render();
+          if (t >= 1) return false;
+        });
+      } else {
+        S.stars.forEach(function (s) { s.vx = s.vx1; s.vy = s.vy1; });
+        render();
+      }
     }
     function render() {
       var ctx = S.ctx; if (!ctx) return;
@@ -1379,6 +1413,32 @@ LABS['meaning-space'] = {
         ctx.fillStyle = seld ? '#ffffff' : '#dbe4f0';
         ctx.fillText(s.word, p.x + r + 3, p.y + 4);
       });
+      /* keyboard focus ring */
+      if (S.kb >= 0 && S.kb < S.stars.length) {
+        var kp = toScreen(S.stars[S.kb]);
+        ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5; ctx.setLineDash([3, 3]);
+        ctx.beginPath(); ctx.arc(kp.x, kp.y, 16, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
+      }
+      /* word-maths parallelogram: the same direction, applied twice */
+      if (S.an) {
+        function P2(x, y) { return { x: S.cx + x * S.z + S.panX, y: S.cy - y * S.z + S.panY }; }
+        var A3 = P2(S.an.ax, S.an.ay), B3 = P2(S.an.bx, S.an.by),
+            C3 = P2(S.an.cx2, S.an.cy2), T3 = P2(S.an.tx, S.an.ty);
+        ctx.setLineDash([5, 4]); ctx.lineWidth = 1.6; ctx.strokeStyle = 'rgba(232,180,93,.9)';
+        ctx.beginPath(); ctx.moveTo(B3.x, B3.y); ctx.lineTo(A3.x, A3.y); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(C3.x, C3.y); ctx.lineTo(T3.x, T3.y); ctx.stroke();
+        ctx.setLineDash([]);
+        [[A3, S.an.a], [B3, S.an.b], [C3, S.an.c]].forEach(function (q) {
+          ctx.fillStyle = '#e8b45d';
+          ctx.beginPath(); ctx.arc(q[0].x, q[0].y, 4, 0, Math.PI * 2); ctx.fill();
+          ctx.font = '700 11px ' + cssVar('--mono', 'monospace');
+          ctx.fillText(q[1], q[0].x + 7, q[0].y - 7);
+        });
+        ctx.strokeStyle = '#fff'; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.arc(T3.x, T3.y, 8, 0, Math.PI * 2); ctx.stroke();
+        ctx.font = '700 11px ' + cssVar('--mono', 'monospace');
+        ctx.fillStyle = '#fff'; ctx.fillText('≈ ' + S.an.nearest, T3.x + 11, T3.y + 4);
+      }
     }
     function readout() {
       var out = el(uid + '-read');
@@ -1392,7 +1452,6 @@ LABS['meaning-space'] = {
           out.innerHTML = '<strong>' + esc(a.word) + '</strong> ↔ <strong>' + esc(b.word) + '</strong> · cosine <strong>' +
             cos.toFixed(2) + '</strong> · angle <strong>' + ang.toFixed(0) + '°</strong> — ' + v +
             '. <span style="opacity:.75">(Measured across 16 dimensions of real GloVe vectors — the 2-D map is a flattened view.)</span>';
-          labComplete('meaning-space');
         } else {
           out.innerHTML = 'One of those words isn\'t in this lab\'s 387-word mini-vocabulary, so there\'s no real vector to measure. Try two coloured stars.';
         }
@@ -1458,6 +1517,81 @@ LABS['meaning-space'] = {
       Array.prototype.forEach.call(el(uid + '-chips').children, function (x) { x.classList.toggle('active', x === c); });
       process();
     });
+    /* keyboard path to the core interaction: arrows cycle stars, Enter selects */
+    cv.addEventListener('keydown', function (e) {
+      var n = S.stars.length; if (!n) return;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { S.kb = (S.kb + 1) % n; }
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { S.kb = (S.kb - 1 + n) % n; }
+      else if ((e.key === 'Enter' || e.key === ' ') && S.kb >= 0) {
+        e.preventDefault();
+        var pos = S.sel.indexOf(S.kb);
+        if (pos > -1) S.sel.splice(pos, 1);
+        else { S.sel.push(S.kb); if (S.sel.length > 2) S.sel.shift(); }
+        render(); readout();
+        return;
+      } else if (e.key === 'Escape') {
+        S.sel = []; S.kb = -1; render(); readout();
+        return;
+      } else { return; }
+      e.preventDefault();
+      render();
+      var st2 = S.stars[S.kb];
+      el(uid + '-read').innerHTML = 'Focused <strong>' + esc(st2.word) + '</strong>' +
+        (st2.real ? '' : ' (outside the mini-vocabulary)') + ' — press Enter to select it.';
+    });
+    /* predict-then-check — this, not clicking around, is what completes the lab */
+    el(uid + '-quiz').addEventListener('click', function (e) {
+      var b = e.target.closest('[data-msp]'); if (!b) return;
+      var guess = b.getAttribute('data-msp');
+      var vr = msVecOf('river'), vw = msVecOf('water'), vm = msVecOf('money');
+      if (!vr || !vw || !vm) return;
+      var cw = msCos(vr, vw), cm = msCos(vr, vm);
+      var right = (cw > cm) === (guess === 'water');
+      el(uid + '-quiz').innerHTML = (right
+          ? '✓ <strong>Predicted like an embedding.</strong> '
+          : '✗ <strong>The vectors disagree with you.</strong> ') +
+        'Measured for real: cosine(river, water) = <strong>' + cw.toFixed(2) +
+        '</strong> vs cosine(river, money) = <strong>' + cm.toFixed(2) +
+        '</strong>. Closeness here isn\'t a metaphor — it\'s a number, and you just checked it.';
+      labComplete('meaning-space');
+    });
+    /* word maths: A − B + C ≈ ?, measured across all 16 dimensions */
+    el(uid + '-aeq').addEventListener('click', function () {
+      var a = (el(uid + '-aa').value || '').trim().toLowerCase();
+      var b = (el(uid + '-ab').value || '').trim().toLowerCase();
+      var c = (el(uid + '-ac').value || '').trim().toLowerCase();
+      var va = msVecOf(a), vb = msVecOf(b), vc = msVecOf(c);
+      var out = el(uid + '-aout');
+      if (!va || !vb || !vc) {
+        var missing = [!va && a, !vb && b, !vc && c].filter(Boolean).join('", "');
+        out.innerHTML = '“' + esc(missing) + '” isn\'t in the 387-word mini-vocabulary — try words from the coloured clusters, e.g. pay − money + water.';
+        return;
+      }
+      var target = va.map(function (v, i) { return v - vb[i] + vc[i]; });
+      var best = [];
+      Object.keys(MS_VEC).forEach(function (w) {
+        if (w === a || w === b || w === c) return;
+        best.push({ w: w, c: msCos(target, MS_VEC[w]) });
+      });
+      best.sort(function (x, y) { return y.c - x.c; });
+      S.an = { a: a, b: b, c: c, nearest: best[0].w,
+        ax: va[0] * S.R, ay: va[1] * S.R, bx: vb[0] * S.R, by: vb[1] * S.R,
+        cx2: vc[0] * S.R, cy2: vc[1] * S.R,
+        tx: (va[0] - vb[0] + vc[0]) * S.R, ty: (va[1] - vb[1] + vc[1]) * S.R };
+      render();
+      out.innerHTML = '<strong>' + esc(a) + ' − ' + esc(b) + ' + ' + esc(c) + ' ≈ ' + esc(best[0].w) +
+        '</strong> (cosine ' + best[0].c.toFixed(2) + '), runner-up <em>' + esc(best[1].w) + '</em> (' + best[1].c.toFixed(2) + '). ' +
+        'The gold arrows on the map are the <em>same direction applied twice</em>: the route from “' + esc(b) + '” to “' + esc(a) +
+        '” is itself a meaning, and the model can reuse it starting from “' + esc(c) + '”.';
+    });
+    /* re-fit the map when the viewport changes (tablet rotate, window resize) */
+    var msResizeT = null;
+    function msOnResize() {
+      if (!cv.isConnected) { window.removeEventListener('resize', msOnResize); return; }
+      clearTimeout(msResizeT);
+      msResizeT = setTimeout(process, 250);
+    }
+    window.addEventListener('resize', msOnResize);
     process();
   }
 };
@@ -1469,32 +1603,96 @@ LABS['meaning-space'] = {
 LABS['wall-drawing'] = {
   title: 'A prompt from 1971 — Wall Drawing #118',
   tag: 'Authorship',
-  blurb: 'Sol LeWitt sold written instructions, not drawings: "fifty points are marked at random… the points are connected by straight lines." Here is that instruction, executed live — different every time.',
+  blurb: 'Sol LeWitt sold written instructions, not drawings. Here is his instruction executed live, twice at once — same prompt, two different artworks. Then edit the instruction and make it yours.',
   html: function (uid) {
     return '' +
       '<div class="lab" id="' + uid + '">' +
-        '<div class="lab-canvas-wrap lab-canvas-paper"><canvas id="' + uid + '-cv"></canvas></div>' +
-        '<div class="lab-btn-row"><button class="lab-btn lab-btn-primary" id="' + uid + '-again">↻ Execute the instruction again</button></div>' +
-        '<p class="lab-note"><em>“On a wall surface, fifty points are marked at random. The points are connected by straight lines.”</em> — Sol LeWitt, Wall Drawing #118 (1971). The drawing you see <strong>is</strong> the instruction, executed. LeWitt never drew his wall drawings; assistants did. When you write a prompt, you are doing precisely this — half a century later.</p>' +
+        '<div class="lab-pattern" id="' + uid + '-instr"></div>' +
+        '<div class="lab-slider-row"><label for="' + uid + '-n">Points</label>' +
+          '<input type="range" id="' + uid + '-n" min="6" max="80" value="50">' +
+          '<span class="lab-val" id="' + uid + '-nv">50</span></div>' +
+        '<div class="lab-select-row"><label>connected by ' +
+          '<select class="lab-select" id="' + uid + '-style">' +
+            '<option value="lines">straight lines</option>' +
+            '<option value="arcs">arcs</option>' +
+          '</select></label></div>' +
+        '<div class="lab-canvas-wrap lab-canvas-paper" style="margin-top:12px"><canvas id="' + uid + '-cv"></canvas></div>' +
+        '<div class="lab-btn-row"><button class="lab-btn lab-btn-primary" id="' + uid + '-again">▶ Execute the instruction</button></div>' +
+        '<p class="lab-note" id="' + uid + '-note"><em>“On a wall surface, fifty points are marked at random. The points are connected by straight lines.”</em> — Sol LeWitt, Wall Drawing #118 (1971). LeWitt never drew his wall drawings; assistants executed the instruction, differently every time — which is why you get <strong>two executions of the same prompt</strong> here. Now edit the instruction and execute your own. When you write a prompt, this is what you\'re doing — half a century later.</p>' +
       '</div>';
   },
   init: function (uid) {
     var cv = el(uid + '-cv'); if (!cv) return;
-    function draw() {
-      var f = fitCanvas(cv, 0.55, 200), ctx = f.ctx, W = f.W, H = f.H;
-      ctx.fillStyle = '#fbf9f4'; ctx.fillRect(0, 0, W, H);
-      var pts = [];
-      for (var i = 0; i < 50; i++) pts.push({ x: 14 + Math.random() * (W - 28), y: 14 + Math.random() * (H - 28) });
-      ctx.strokeStyle = 'rgba(35,30,28,.16)'; ctx.lineWidth = 0.6;
-      for (var a = 0; a < pts.length; a++) {
-        for (var b = a + 1; b < pts.length; b++) {
-          ctx.beginPath(); ctx.moveTo(pts[a].x, pts[a].y); ctx.lineTo(pts[b].x, pts[b].y); ctx.stroke();
-        }
-      }
-      ctx.fillStyle = 'rgba(35,30,28,.75)';
-      pts.forEach(function (p) { ctx.beginPath(); ctx.arc(p.x, p.y, 1.4, 0, Math.PI * 2); ctx.fill(); });
+    var edited = false;
+    function updateInstr() {
+      var n = +el(uid + '-n').value;
+      var style = el(uid + '-style').value === 'arcs' ? 'arcs' : 'straight lines';
+      el(uid + '-nv').textContent = n;
+      edited = n !== 50 || el(uid + '-style').value !== 'lines';
+      el(uid + '-instr').innerHTML = '“On a wall surface, <strong>' + n + '</strong> points are marked at random. The points are connected by <strong>' + style + '</strong>.”' +
+        (edited ? ' <em>— your edit of Wall Drawing #118</em>' : ' <em>— Sol LeWitt, 1971</em>');
     }
-    el(uid + '-again').addEventListener('click', function () { draw(); labComplete('wall-drawing'); });
+    function draw() {
+      var f = fitCanvas(cv, 0.5, 210), ctx = f.ctx, W = f.W, H = f.H;
+      var half = W / 2, n = +el(uid + '-n').value;
+      var style = el(uid + '-style').value;
+      ctx.fillStyle = '#fbf9f4'; ctx.fillRect(0, 0, W, H);
+      ctx.strokeStyle = 'rgba(35,30,28,.25)'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(half, 8); ctx.lineTo(half, H - 8); ctx.stroke();
+      ctx.fillStyle = 'rgba(35,30,28,.5)'; ctx.font = '600 10px sans-serif';
+      ctx.fillText('execution nº1', 10, H - 8);
+      ctx.fillText('execution nº2', half + 12, H - 8);
+      function makeExec(x0, w) {
+        var pts = [], pairs = [];
+        for (var i = 0; i < n; i++) pts.push({ x: x0 + 12 + Math.random() * (w - 24), y: 12 + Math.random() * (H - 34) });
+        for (var a = 0; a < n; a++) for (var b = a + 1; b < n; b++) pairs.push([a, b]);
+        return { pts: pts, pairs: pairs, drawn: 0 };
+      }
+      var ex = [makeExec(0, half - 6), makeExec(half + 6, half - 6)];
+      ctx.fillStyle = 'rgba(35,30,28,.75)';
+      ex.forEach(function (e) {
+        e.pts.forEach(function (p) { ctx.beginPath(); ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2); ctx.fill(); });
+      });
+      function drawPair(e, k) {
+        var a = e.pts[e.pairs[k][0]], b = e.pts[e.pairs[k][1]];
+        ctx.strokeStyle = 'rgba(35,30,28,.16)'; ctx.lineWidth = 0.6;
+        ctx.beginPath();
+        if (style === 'arcs') {
+          var mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+          ctx.moveTo(a.x, a.y);
+          ctx.quadraticCurveTo(mx - (b.y - a.y) * 0.25, my + (b.x - a.x) * 0.25, b.x, b.y);
+        } else {
+          ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+        }
+        ctx.stroke();
+      }
+      if (reducedMotion()) {
+        ex.forEach(function (e) { for (var k = 0; k < e.pairs.length; k++) drawPair(e, k); });
+        return;
+      }
+      /* the execution is watched, not instant: lines draw themselves in */
+      var per = Math.max(3, Math.round(ex[0].pairs.length / 60));
+      loop(uid, cv, function () {
+        var busy = false;
+        ex.forEach(function (e) {
+          var lim = Math.min(e.pairs.length, e.drawn + per);
+          for (var k = e.drawn; k < lim; k++) drawPair(e, k);
+          e.drawn = lim;
+          if (e.drawn < e.pairs.length) busy = true;
+        });
+        if (!busy) return false;
+      });
+    }
+    el(uid + '-n').addEventListener('input', updateInstr);
+    el(uid + '-style').addEventListener('change', updateInstr);
+    el(uid + '-again').addEventListener('click', function () {
+      draw();
+      if (edited) {
+        el(uid + '-note').innerHTML = '<strong>Whose drawing is this?</strong> You changed the instruction; the machine executed it; LeWitt supplied the idea. Hold that three-way question — it\'s exactly the authorship question every AI-made image raises.';
+        labComplete('wall-drawing');
+      }
+    });
+    updateInstr();
     draw();
   }
 };
@@ -1612,10 +1810,10 @@ LABS['rule-painter'] = {
       '<div class="lab" id="' + uid + '">' +
         '<div class="lab-btn-row lab-rp-tools">' +
           '<span class="lab-label">Direction</span>' +
-          '<button class="lab-btn lab-btn-sm lab-rp-dir sel" data-d="dl" id="' + uid + '-d0">╲</button>' +
-          '<button class="lab-btn lab-btn-sm lab-rp-dir" data-d="dr">╱</button>' +
-          '<button class="lab-btn lab-btn-sm lab-rp-dir" data-d="v">|</button>' +
-          '<button class="lab-btn lab-btn-sm lab-rp-dir" data-d="h">—</button>' +
+          '<button class="lab-btn lab-btn-sm lab-rp-dir sel" data-d="dl" id="' + uid + '-d0" aria-label="Diagonal lines, top-left to bottom-right">╲</button>' +
+          '<button class="lab-btn lab-btn-sm lab-rp-dir" data-d="dr" aria-label="Diagonal lines, bottom-left to top-right">╱</button>' +
+          '<button class="lab-btn lab-btn-sm lab-rp-dir" data-d="v" aria-label="Vertical lines">|</button>' +
+          '<button class="lab-btn lab-btn-sm lab-rp-dir" data-d="h" aria-label="Horizontal lines">—</button>' +
           '<span class="lab-label" style="margin-left:10px">Colour</span>' +
           '<button class="lab-rp-col sel" data-c="#2b2624" style="background:#2b2624" aria-label="Charcoal"></button>' +
           '<button class="lab-rp-col" data-c="#9b1844" style="background:#9b1844" aria-label="Magenta"></button>' +
@@ -1623,20 +1821,21 @@ LABS['rule-painter'] = {
           '<button class="lab-rp-col" data-c="#f59e0b" style="background:#f59e0b" aria-label="Amber"></button>' +
           '<button class="lab-rp-col" data-c="#22c55e" style="background:#22c55e" aria-label="Green"></button>' +
         '</div>' +
-        '<div class="lab-canvas-wrap lab-canvas-paper"><canvas id="' + uid + '-cv" style="touch-action:none"></canvas></div>' +
+        '<div class="lab-canvas-wrap lab-canvas-paper"><canvas id="' + uid + '-cv" style="touch-action:none" tabindex="0" role="application" aria-label="Painting grid. Arrow keys move the cursor between cells, Enter or Space paints the cell with the chosen direction and colour."></canvas></div>' +
         '<div class="lab-btn-row">' +
           '<button class="lab-btn lab-btn-sm" id="' + uid + '-erase">⌫ Eraser</button>' +
           '<button class="lab-btn lab-btn-sm" id="' + uid + '-surprise">🎲 Let the machine finish</button>' +
           '<button class="lab-btn lab-btn-sm" id="' + uid + '-clear">Clear</button>' +
           '<button class="lab-btn lab-btn-sm" id="' + uid + '-dl">⬇ Download PNG</button>' +
         '</div>' +
-        '<p class="lab-note">Click or drag across the grid to paint. You chose the rules and made the decisions; the hatching is executed systematically. Whose drawing is it?</p>' +
+        '<p class="lab-note" id="' + uid + '-note" aria-live="polite">Click or drag across the grid to paint (or focus the grid and use arrow keys + Enter). You chose the rules and made the decisions; the hatching is executed systematically. Whose drawing is it?</p>' +
       '</div>';
   },
   init: function (uid) {
     var cv = el(uid + '-cv'); if (!cv) return;
     var COLS = 6, ROWS = 4;
     var dir = 'dl', color = '#2b2624', erase = false, painting = false, cells = {};
+    var cur = null; /* keyboard cursor cell, [row, col] */
     function hatch(ctx, x, y, w, h, d, col) {
       ctx.save();
       ctx.beginPath(); ctx.rect(x, y, w, h); ctx.clip();
@@ -1660,6 +1859,10 @@ LABS['rule-painter'] = {
       ctx.strokeStyle = 'rgba(35,30,28,.14)'; ctx.lineWidth = 1;
       for (var i = 0; i <= COLS; i++) { ctx.beginPath(); ctx.moveTo(i * cw, 0); ctx.lineTo(i * cw, H); ctx.stroke(); }
       for (var j = 0; j <= ROWS; j++) { ctx.beginPath(); ctx.moveTo(0, j * ch); ctx.lineTo(W, j * ch); ctx.stroke(); }
+      if (cur) {
+        ctx.strokeStyle = '#009fe3'; ctx.lineWidth = 2.5;
+        ctx.strokeRect(cur[1] * cw + 2, cur[0] * ch + 2, cw - 4, ch - 4);
+      }
     }
     function cellAt(e) {
       var r = cv.getBoundingClientRect(), p = pt(e);
@@ -1668,15 +1871,30 @@ LABS['rule-painter'] = {
       if (col < 0 || row < 0 || col >= COLS || row >= ROWS) return null;
       return row + '-' + col;
     }
-    function apply(e) {
-      var key = cellAt(e); if (!key) return;
-      if (erase) delete cells[key]; else cells[key] = { d: dir, c: color };
+    function paintKey(key) {
+      if (erase) delete cells[key]; else cells[key] = { d: dir, c: color, by: 'you' };
       draw();
       if (Object.keys(cells).length >= 5) labComplete('rule-painter');
+    }
+    function apply(e) {
+      var key = cellAt(e); if (!key) return;
+      paintKey(key);
     }
     cv.addEventListener('pointerdown', function (e) { e.preventDefault(); painting = true; apply(e); });
     cv.addEventListener('pointermove', function (e) { if (painting) { e.preventDefault(); apply(e); } });
     window.addEventListener('pointerup', function () { painting = false; });
+    cv.addEventListener('keydown', function (e) {
+      if (!/^(Arrow|Enter| )/.test(e.key)) return;
+      e.preventDefault();
+      if (!cur) { cur = [0, 0]; draw(); return; }
+      if (e.key === 'ArrowLeft') cur[1] = Math.max(0, cur[1] - 1);
+      else if (e.key === 'ArrowRight') cur[1] = Math.min(COLS - 1, cur[1] + 1);
+      else if (e.key === 'ArrowUp') cur[0] = Math.max(0, cur[0] - 1);
+      else if (e.key === 'ArrowDown') cur[0] = Math.min(ROWS - 1, cur[0] + 1);
+      else if (e.key === 'Enter' || e.key === ' ') { paintKey(cur[0] + '-' + cur[1]); return; }
+      draw();
+    });
+    cv.addEventListener('blur', function () { cur = null; draw(); });
     el(uid).addEventListener('click', function (e) {
       var d = e.target.closest('.lab-rp-dir');
       if (d) {
@@ -1697,15 +1915,22 @@ LABS['rule-painter'] = {
     });
     el(uid + '-surprise').addEventListener('click', function () {
       var dirs = ['h', 'v', 'dl', 'dr'], cols = ['#2b2624', '#9b1844', '#009fe3', '#f59e0b', '#22c55e'];
+      var machine = 0;
       for (var r = 0; r < ROWS; r++) {
         for (var c2 = 0; c2 < COLS; c2++) {
           var key = r + '-' + c2;
           if (!cells[key] && Math.random() > 0.25) {
-            cells[key] = { d: dirs[Math.floor(Math.random() * 4)], c: cols[Math.floor(Math.random() * cols.length)] };
+            cells[key] = { d: dirs[Math.floor(Math.random() * 4)], c: cols[Math.floor(Math.random() * cols.length)], by: 'machine' };
+            machine++;
           }
         }
       }
       draw();
+      var yours = 0;
+      Object.keys(cells).forEach(function (k) { if (cells[k].by !== 'machine') yours++; });
+      el(uid + '-note').innerHTML = 'The machine just painted <strong>' + machine + '</strong> cells; you painted <strong>' + yours +
+        '</strong>. Same grid, same rules — different decision-makers. So whose drawing is it now? (LeWitt would say: still yours. Would you?)';
+      labComplete('rule-painter');
     });
     el(uid + '-clear').addEventListener('click', function () { cells = {}; draw(); });
     el(uid + '-dl').addEventListener('click', function () {
@@ -2002,8 +2227,10 @@ LABS['peril-promise'] = {
           drag.classList.add('placed');
           drag.style.position = 'absolute'; drag.style.width = '';
           field.appendChild(drag);
-          drag.style.left = (p.x - fr.left - ox) + 'px';
-          drag.style.top = (p.y - fr.top - oy) + 'px';
+          /* the card shrinks when placed — centre the resized card under
+             the pointer instead of reusing the pre-shrink grab offset */
+          drag.style.left = Math.max(4, Math.min(fr.width - 40, p.x - fr.left - drag.offsetWidth / 2)) + 'px';
+          drag.style.top = Math.max(4, Math.min(fr.height - 24, p.y - fr.top - drag.offsetHeight / 2)) + 'px';
           checkPlacedCount();
         } else {
           drag.style.position = ''; drag.style.left = drag.style.top = drag.style.width = '';
@@ -2048,7 +2275,7 @@ LABS['ai-quest'] = {
           '<div class="lab-aq-overlay" id="' + uid + '-select">' +
             '<h4>Choose your runner</h4>' +
             '<div class="lab-aq-chars" id="' + uid + '-chars"></div>' +
-            '<p class="lab-note">Jump with <strong>Space</strong>, <strong>tap</strong>, or the button. Collect ⚡ sparks — each one removes a question from the gate at the end of the level.</p>' +
+            '<p class="lab-note">Jump with <strong>Space</strong>, <strong>tap</strong>, or the button — and pause any time. Collect ⚡ sparks: every spark removes a question from the gate at the end of the level, but a wrong answer at the gate costs you one.</p>' +
           '</div>' +
           '<div class="lab-aq-overlay" id="' + uid + '-quiz" hidden>' +
             '<div class="lab-label" id="' + uid + '-qmeta"></div>' +
@@ -2066,6 +2293,7 @@ LABS['ai-quest'] = {
           '<span class="lab-label">⚡ <span id="' + uid + '-sparks">0</span></span>' +
           '<span class="lab-label">World <span id="' + uid + '-lvl">1</span> / 3</span>' +
           '<button class="lab-btn lab-btn-primary" id="' + uid + '-jump">⬆ JUMP</button>' +
+          '<button class="lab-btn lab-btn-sm" id="' + uid + '-pause" aria-pressed="false">⏸ Pause</button>' +
           '<button class="lab-btn lab-btn-sm" id="' + uid + '-restart">↻ Restart</button>' +
         '</div>' +
       '</div>';
@@ -2103,11 +2331,18 @@ LABS['ai-quest'] = {
       return AQ_FALLBACK_QS.slice();
     }
     var G = {
-      running: false, level: 0, char: CHARS[0],
+      running: false, paused: false, level: 0, char: CHARS[0],
       x: 60, y: GROUND, vy: 0, onGround: true,
       camX: 0, sparks: 0, levelSparks: 0, taken: {},
-      qOrder: [], qPtr: 0, gateNeed: 0, gateAsked: 0, atGate: false
+      qOrder: [], qPtr: 0, gateNeed: 0, gateAsked: 0, atGate: false,
+      qRight: 0, qWrong: 0
     };
+    var SPEED = reducedMotion() ? 1.7 : 2.6;
+    function setPaused(p) {
+      G.paused = p;
+      var b = el(uid + '-pause');
+      if (b) { b.textContent = p ? '▶ Resume' : '⏸ Pause'; b.setAttribute('aria-pressed', p ? 'true' : 'false'); }
+    }
     function startLevel(n) {
       G.level = n; G.x = 60; G.y = GROUND; G.vy = 0; G.onGround = true;
       G.camX = 0; G.levelSparks = 0; G.taken = {}; G.atGate = false;
@@ -2115,15 +2350,17 @@ LABS['ai-quest'] = {
       el(uid + '-select').hidden = true;
       el(uid + '-quiz').hidden = true;
       el(uid + '-win').hidden = true;
+      setPaused(false);
       G.running = true;
     }
     function jump() {
-      if (!G.running || G.atGate) return;
+      if (!G.running || G.atGate || G.paused) return;
       if (G.onGround) { G.vy = -11.5; G.onGround = false; }
     }
     function openGate() {
       G.atGate = true; G.running = false;
-      G.gateNeed = Math.max(2, 5 - Math.min(3, G.levelSparks));
+      /* every spark counts: each one removes a gate question (min 1) */
+      G.gateNeed = Math.max(1, 5 - G.levelSparks);
       G.gateAsked = 0;
       el(uid + '-quiz').hidden = false;
       askNext();
@@ -2134,7 +2371,9 @@ LABS['ai-quest'] = {
         if (G.level >= LEVELS.length - 1) {
           el(uid + '-win').hidden = false;
           el(uid + '-winmsg').textContent =
-            'You cleared all three worlds with ' + G.sparks + ' sparks. Revision, but you asked to replay it.';
+            'All three worlds cleared, ' + G.sparks + ' ⚡ banked, and ' + G.qRight + ' gate questions answered correctly' +
+            (G.qWrong ? ' (' + G.qWrong + ' bounced back for another go)' : ' — without a single miss') +
+            '. That was revision. You just asked to replay it.';
           labComplete('ai-quest');
           if (typeof launchConfetti === 'function' && !reducedMotion()) { try { launchConfetti(); } catch (e) {} }
         } else {
@@ -2145,7 +2384,7 @@ LABS['ai-quest'] = {
       if (G.qPtr >= G.qOrder.length) { G.qOrder = shuffle(bank()); G.qPtr = 0; }
       var q = G.qOrder[G.qPtr++];
       el(uid + '-qmeta').textContent = 'Gate question ' + (G.gateAsked + 1) + ' of ' + G.gateNeed +
-        ' · sparks removed ' + Math.min(3, G.levelSparks);
+        ' · ⚡ removed ' + Math.min(4, G.levelSparks) + ' question' + (Math.min(4, G.levelSparks) === 1 ? '' : 's');
       el(uid + '-qq').textContent = q.question;
       el(uid + '-qfb').textContent = '';
       var opts = el(uid + '-qopts');
@@ -2157,12 +2396,21 @@ LABS['ai-quest'] = {
         b.addEventListener('click', function () {
           var fb = el(uid + '-qfb');
           if (i === q.correct) {
-            G.gateAsked++;
+            G.gateAsked++; G.qRight++;
             fb.textContent = '✓ ' + (q.explanation || 'Correct.');
             setTimeout(askNext, 1100);
           } else {
-            fb.textContent = '✗ Not quite — ' + (q.explanation || 'try another.') + ' The gate stays shut; next question…';
-            setTimeout(askNext, 1600);
+            G.qWrong++;
+            /* wrong answers can't be waited out: the question rejoins the
+               pile, and it costs a spark if you have one */
+            G.qOrder.push(q);
+            var cost = '';
+            if (G.sparks > 0) {
+              G.sparks--; el(uid + '-sparks').textContent = G.sparks;
+              cost = ' It also cost you a spark.';
+            }
+            fb.textContent = '✗ Not quite — ' + (q.explanation || 'think again.') + ' That question goes back in the pile.' + cost;
+            setTimeout(askNext, 1800);
           }
           Array.prototype.forEach.call(opts.children, function (x) { x.disabled = true; });
         });
@@ -2190,8 +2438,8 @@ LABS['ai-quest'] = {
     }
     function tick() {
       var L = LEVELS[G.level];
-      if (G.running) {
-        G.x += 2.6;
+      if (G.running && !G.paused) {
+        G.x += SPEED;
         G.vy += 0.6; G.y += G.vy;
         var landed = false;
         if (G.y >= GROUND) { G.y = GROUND; G.vy = 0; landed = true; }
@@ -2250,12 +2498,16 @@ LABS['ai-quest'] = {
       b.style.background = ch.c;
       b.textContent = ch.e;
       b.addEventListener('click', function () {
-        G.char = ch; G.sparks = 0;
+        G.char = ch; G.sparks = 0; G.qRight = 0; G.qWrong = 0;
         el(uid + '-sparks').textContent = '0';
         G.qOrder = shuffle(bank()); G.qPtr = 0;
         startLevel(0);
       });
       chars.appendChild(b);
+    });
+    el(uid + '-pause').addEventListener('click', function () {
+      if (!G.running) return;
+      setPaused(!G.paused);
     });
     el(uid + '-jump').addEventListener('click', jump);
     cv.addEventListener('pointerdown', jump);
@@ -2264,7 +2516,8 @@ LABS['ai-quest'] = {
     });
     el(uid).setAttribute('tabindex', '0');
     el(uid + '-restart').addEventListener('click', function () {
-      G.running = false; G.sparks = 0;
+      G.running = false; G.sparks = 0; G.qRight = 0; G.qWrong = 0;
+      setPaused(false);
       el(uid + '-sparks').textContent = '0';
       el(uid + '-quiz').hidden = true; el(uid + '-win').hidden = true;
       el(uid + '-select').hidden = false;
@@ -2317,13 +2570,14 @@ LABS['skew-trainer'] = {
         '<div class="lab-btn-row">' +
           '<button class="lab-btn lab-btn-primary" id="' + uid + '-train"></button>' +
           '<button class="lab-btn" id="' + uid + '-test" disabled></button>' +
+          '<button class="lab-btn lab-btn-sm" id="' + uid + '-many" disabled>🎲 Run the test 100×</button>' +
           '<button class="lab-btn lab-btn-sm" id="' + uid + '-fix" disabled></button>' +
           '<button class="lab-btn lab-btn-sm" id="' + uid + '-swap"></button>' +
         '</div>' +
         '<div id="' + uid + '-acc"></div>' +
         '<div id="' + uid + '-thresh"></div>' +
         '<div class="lab-skew-test" id="' + uid + '-grid"></div>' +
-        '<p class="lab-note" id="' + uid + '-msg"></p>' +
+        '<p class="lab-note" id="' + uid + '-msg" aria-live="polite"></p>' +
       '</div>';
   },
   init: function (uid, data) {
@@ -2343,11 +2597,13 @@ LABS['skew-trainer'] = {
     function renderData() {
       var S = skin(), s = share(), nA = Math.round(40 * s);
       el(uid + '-mixv').textContent = Math.round(s * 100) + '% ' + S.aName + ' · ' + Math.round((1 - s) * 100) + '% ' + S.bName;
+      el(uid + '-datalbl').textContent = S.dataLabel + ' (' + nA + ' ' + S.aName + ', ' + (40 - nA) + ' ' + S.bName + ')';
       var h = '';
       for (var i = 0; i < 40; i++) h += '<span>' + (i < nA ? S.a : S.b) + '</span>';
       el(uid + '-data').innerHTML = h;
       trained = false;
       el(uid + '-test').disabled = true;
+      el(uid + '-many').disabled = true;
       el(uid + '-fix').disabled = true;
       el(uid + '-acc').innerHTML = '';
       el(uid + '-thresh').innerHTML = '';
@@ -2391,6 +2647,7 @@ LABS['skew-trainer'] = {
         '<div class="lab-label" style="margin-top:12px">Accuracy after training</div>' +
         bar(S.a + ' ' + S.aName, accA, 'var(--accent)') + bar(S.b + ' ' + S.bName, accB, 'var(--primary-light)');
       el(uid + '-test').disabled = false;
+      el(uid + '-many').disabled = false;
       el(uid + '-fix').disabled = false;
       var gap = accA - accB;
       el(uid + '-msg').innerHTML = gap > 15
@@ -2418,6 +2675,23 @@ LABS['skew-trainer'] = {
     el(uid + '-mix').addEventListener('input', renderData);
     el(uid + '-train').addEventListener('click', train);
     el(uid + '-test').addEventListener('click', test);
+    el(uid + '-many').addEventListener('click', function () {
+      if (!trained) return;
+      /* one lucky test can hide the gap; a hundred can't */
+      var S = skin(), wrongA = 0, wrongB = 0, runs = 100;
+      for (var r = 0; r < runs; r++) {
+        for (var i = 0; i < 6; i++) {
+          if (Math.random() * 100 >= accA) wrongA++;
+          if (Math.random() * 100 >= accB) wrongB++;
+        }
+      }
+      var pA = Math.round(100 * wrongA / (runs * 6)), pB = Math.round(100 * wrongB / (runs * 6));
+      el(uid + '-grid').innerHTML = '';
+      el(uid + '-msg').innerHTML = 'Across <strong>100 test days</strong> (600 ' + S.aName + ', 600 ' + S.bName + '): ' +
+        S.aName + ' got the wrong decision <strong>' + pA + '%</strong> of the time; ' + S.bName + ' <strong>' + pB +
+        '%</strong>. On any single day the ' + S.bName + ' might get lucky — over a hundred days the gap is a fact. That\'s why auditors measure error <em>rates per group</em>, never one demo.';
+      labComplete('skew-trainer');
+    });
     el(uid + '-fix').addEventListener('click', function () {
       el(uid + '-mix').value = 50;
       renderData(); train();
@@ -2462,12 +2736,25 @@ LABS['misinfo-network'] = {
   init: function (uid) {
     var cv = el(uid + '-cv'); if (!cv) return;
     var nodes = [], running = false, tick = 0, timer = null;
-    var youIdx = -1, youAsked = false, youChecked = false;
+    var youIdx = -1, youAsked = false, youChecked = false, youChoice = null;
+    /* seeded RNG so "same network, opposite choice" replays are truly identical */
+    var seed = 0, rand = Math.random, autoChoice = null, lastRun = null;
+    var YOU_FORCE_TICK = 20; /* the story always finds you by this tick */
     var f = fitCanvas(cv, 0.5, 220), ctx = f.ctx, W = f.W, H = f.H;
-    function build() {
+    function mkRand(s) {
+      return function () {
+        s |= 0; s = (s + 0x6D2B79F5) | 0;
+        var t = Math.imul(s ^ (s >>> 15), 1 | s);
+        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+      };
+    }
+    function build(s) {
+      seed = s;
+      rand = mkRand(s);
       nodes = [];
       for (var i = 0; i < 64; i++) {
-        nodes.push({ x: 20 + Math.random() * (W - 40), y: 18 + Math.random() * (H - 36), state: 0, links: [] });
+        nodes.push({ x: 20 + rand() * (W - 40), y: 18 + rand() * (H - 36), state: 0, links: [] });
       }
       nodes.forEach(function (n, i) {
         var byDist = nodes.map(function (m, j) { return { j: j, d: Math.hypot(n.x - m.x, n.y - m.y) }; })
@@ -2482,7 +2769,7 @@ LABS['misinfo-network'] = {
         return { i: i, d: Math.hypot(n.x - nodes[0].x, n.y - nodes[0].y) };
       }).sort(function (a, b) { return a.d - b.d; });
       youIdx = byDist[Math.floor(byDist.length * 0.55)].i;
-      youAsked = false; youChecked = false;
+      youAsked = false; youChecked = false; youChoice = null;
       tick = 0;
       counts();
       draw();
@@ -2511,30 +2798,45 @@ LABS['misinfo-network'] = {
           ctx.strokeStyle = '#e8b45d'; ctx.lineWidth = 2;
           ctx.beginPath(); ctx.arc(n.x, n.y, 8.5, 0, Math.PI * 2); ctx.stroke();
           ctx.fillStyle = '#e8b45d'; ctx.font = '700 10px sans-serif';
-          ctx.fillText('you', n.x + 10, n.y + 3);
+          ctx.fillText('you', Math.min(n.x + 10, W - 26), n.y + 3);
         }
       });
     }
     function startTimer() {
       timer = setInterval(function () { if (!cv.isConnected) { stop(); return; } step(); }, reducedMotion() ? 500 : 260);
     }
+    function choose(choice) {
+      youChoice = choice;
+      if (choice === 'check') {
+        nodes[youIdx].state = 2; youChecked = true;
+        el(uid + '-msg').textContent = 'You checked first — it doesn\'t hold up, so you post the correction instead. The story can\'t travel through you now.';
+      } else {
+        nodes[youIdx].state = 1;
+        el(uid + '-msg').textContent = 'You shared it. Your whole branch of the network is now downstream of that tap…';
+      }
+      draw(); counts();
+      running = true;
+      el(uid + '-run').textContent = '❚❚ Stop';
+      startTimer();
+    }
     function pauseForYou() {
       if (timer) { clearInterval(timer); timer = null; }
+      running = false;
+      el(uid + '-run').textContent = '▶ Release the story';
+      youAsked = true;
+      if (autoChoice) {
+        var c = autoChoice;
+        el(uid + '-msg').textContent = 'Same network, same spread — but this time you ' + (c === 'share' ? 'share it.' : 'check it first.');
+        setTimeout(function () { if (cv.isConnected) choose(c); }, reducedMotion() ? 120 : 750);
+        return;
+      }
       el(uid + '-msg').innerHTML =
         '<strong>The story just reached your feed.</strong> It\'s shocking, it\'s shareable, your friends are posting it. What do you do? ' +
         '<span class="lab-btn-row" style="margin-top:8px;display:flex">' +
         '<button class="lab-btn lab-btn-primary" id="' + uid + '-share">📤 Share it</button>' +
         '<button class="lab-btn" id="' + uid + '-checkbtn">🔍 Check it first</button></span>';
-      el(uid + '-share').addEventListener('click', function () {
-        nodes[youIdx].state = 1;
-        el(uid + '-msg').textContent = 'You shared it. Your whole branch of the network is now downstream of that tap…';
-        draw(); counts(); startTimer();
-      });
-      el(uid + '-checkbtn').addEventListener('click', function () {
-        nodes[youIdx].state = 2; youChecked = true;
-        el(uid + '-msg').textContent = 'You checked first — it doesn\'t hold up, so you post the correction instead. The story can\'t travel through you now.';
-        draw(); counts(); startTimer();
-      });
+      el(uid + '-share').addEventListener('click', function () { choose('share'); });
+      el(uid + '-checkbtn').addEventListener('click', function () { choose('check'); });
     }
     function step() {
       tick++;
@@ -2548,10 +2850,16 @@ LABS['misinfo-network'] = {
         }, { i: 1, d: -1 });
         if (nodes[far.i].state === 0) nodes[far.i].state = 2;
       }
-      /* pause when the story is knocking at your door */
-      if (!youAsked && nodes[youIdx].state === 0 &&
-          nodes[youIdx].links.some(function (j) { return nodes[j].state === 1; })) {
-        youAsked = true;
+      /* your moment is guaranteed: if the story hasn't knocked by now, it resurfaces next door */
+      if (!youAsked && tick >= YOU_FORCE_TICK && nodes[youIdx].links.length) {
+        var nb = nodes[youIdx].links[0];
+        if (nodes[nb].state !== 1) nodes[nb].state = 1;
+      }
+      /* pause when the story is knocking at your door (either link direction) */
+      if (!youAsked && nodes[youIdx].state === 0 && (
+          nodes[youIdx].links.some(function (j) { return nodes[j].state === 1; }) ||
+          nodes.some(function (n) { return n.state === 1 && n.links.indexOf(youIdx) >= 0; }))) {
+        counts();
         draw();
         pauseForYou();
         return;
@@ -2561,9 +2869,9 @@ LABS['misinfo-network'] = {
         if (!n.state) return;
         n.links.forEach(function (j) {
           var m = nodes[j];
-          if (m === nodes[youIdx] && youChecked) return; /* you're inoculated */
-          if (n.state === 1 && m.state === 0 && Math.random() < pF) next[j] = 1;
-          if (n.state === 2 && m.state !== 2 && Math.random() < pT) next[j] = 2;
+          if (j === youIdx && (!youAsked || youChecked)) return; /* your choice stays yours */
+          if (n.state === 1 && m.state === 0 && rand() < pF) next[j] = 1;
+          if (n.state === 2 && m.state !== 2 && rand() < pT) next[j] = 2;
         });
       });
       nodes.forEach(function (n, i) { n.state = next[i]; });
@@ -2575,32 +2883,54 @@ LABS['misinfo-network'] = {
           : youChecked
             ? ' <strong>Your check mattered:</strong> the story never travelled through you — every person who verifies before sharing deletes an entire branch of the spread.'
             : ' <strong>And your share was part of it</strong> — one tap, one more branch for the story.';
-        el(uid + '-msg').innerHTML = 'Final score: the story reached <strong style="color:#ef5f6e">' + c.cf +
+        var summary = 'Final score: the story reached <strong style="color:#ef5f6e">' + c.cf +
           '</strong> people; the correction reached <strong style="color:#5db8e8">' + c.ct +
           '</strong>. ' + (c.cf > c.ct
             ? 'The lie won — it had a head start and it travels on outrage, while the correction travels on duty.'
             : 'The correction caught up — early fact-checking and a lower outrage factor can win.') + youLine;
+        var extra = '';
+        if (lastRun && lastRun.seed === seed && youChoice && lastRun.choice && lastRun.choice !== youChoice) {
+          extra = '<br><strong>Same network, two endings:</strong> when you ' +
+            (lastRun.choice === 'share' ? 'shared' : 'checked first') + ', the story reached ' + lastRun.cf +
+            ' and the correction ' + lastRun.ct + '; this time it was ' + c.cf + ' vs ' + c.ct +
+            '. One decision at one node, and the ending is measurably different.';
+        } else if (youChoice) {
+          lastRun = { seed: seed, choice: youChoice, cf: c.cf, ct: c.ct };
+          extra = ' <button class="lab-btn lab-btn-sm" id="' + uid + '-flip">↺ Same network, opposite choice</button>';
+        }
+        el(uid + '-msg').innerHTML = summary + extra;
+        var flip = el(uid + '-flip');
+        if (flip) flip.addEventListener('click', function () {
+          autoChoice = lastRun.choice === 'share' ? 'check' : 'share';
+          build(lastRun.seed);
+          running = true;
+          el(uid + '-run').textContent = '❚❚ Stop';
+          el(uid + '-msg').textContent = 'Replaying the identical network — same story, same spread, opposite you.';
+          startTimer();
+        });
         labComplete('misinfo-network');
       }
     }
     function stop() { running = false; if (timer) { clearInterval(timer); timer = null; } el(uid + '-run').textContent = '▶ Release the story'; }
     el(uid + '-run').addEventListener('click', function () {
       if (running) { stop(); return; }
-      build();
+      autoChoice = null; lastRun = null;
+      build(Math.floor(Math.random() * 1e9) + 1);
       running = true;
       el(uid + '-run').textContent = '❚❚ Stop';
       el(uid + '-msg').textContent = 'The gold ring is you. When the story reaches your neighbours, you\'ll have to decide what to do with it.';
       startTimer();
     });
     el(uid + '-reset').addEventListener('click', function () {
-      stop(); build();
+      stop(); autoChoice = null; lastRun = null;
+      build(Math.floor(Math.random() * 1e9) + 1);
       el(uid + '-msg').textContent = 'The gold ring is you. When the story reaches your neighbours, you\'ll have to decide what to do with it.';
     });
-    el(uid + '-p').addEventListener('input', function () { el(uid + '-pv').textContent = el(uid + '-p').value + '% share-before-reading'; });
+    el(uid + '-p').addEventListener('input', function () { el(uid + '-pv').textContent = el(uid + '-p').value + '% share chance'; });
     el(uid + '-d').addEventListener('input', function () { el(uid + '-dv').textContent = el(uid + '-d').value + ' ticks late'; });
-    el(uid + '-pv').textContent = el(uid + '-p').value + '% share-before-reading';
+    el(uid + '-pv').textContent = el(uid + '-p').value + '% share chance';
     el(uid + '-dv').textContent = el(uid + '-d').value + ' ticks late';
-    build();
+    build(Math.floor(Math.random() * 1e9) + 1);
   }
 };
 /* ============================================================
@@ -2619,8 +2949,8 @@ LABS['filter-bubble'] = {
   html: function (uid) {
     return '' +
       '<div class="lab" id="' + uid + '">' +
-        '<div class="lab-fb-meter-row"><span class="lab-label" style="margin:0">Feed diversity</span>' +
-          '<span class="lab-fb-meter"><span id="' + uid + '-meter"></span></span>' +
+        '<div class="lab-fb-meter-row"><span class="lab-label" style="margin:0" id="' + uid + '-meterlbl">Feed diversity</span>' +
+          '<span class="lab-fb-meter" role="progressbar" id="' + uid + '-meterbar" aria-labelledby="' + uid + '-meterlbl" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><span id="' + uid + '-meter"></span></span>' +
           '<span class="lab-val" id="' + uid + '-meterv"></span></div>' +
         '<div class="lab-label" style="margin-top:12px">Your feed — tap the one you\'d actually watch <span id="' + uid + '-round"></span></div>' +
         '<div class="lab-fb-feed" id="' + uid + '-feed"></div>' +
@@ -2629,29 +2959,33 @@ LABS['filter-bubble'] = {
           '<button class="lab-btn lab-btn-sm" id="' + uid + '-burst" disabled>💥 Burst the bubble</button>' +
           '<button class="lab-btn lab-btn-sm" id="' + uid + '-reset">↻ Start over</button>' +
         '</div>' +
-        '<p class="lab-note" id="' + uid + '-msg">The recommender starts knowing nothing about you. Ten taps from now it will think it knows everything.</p>' +
+        '<p class="lab-note" id="' + uid + '-msg" aria-live="polite">The recommender starts knowing nothing about you. Ten taps from now it will think it knows everything.</p>' +
       '</div>';
   },
   init: function (uid) {
-    var weights, history, round;
+    var weights, history, watched, round, frozen;
     function reset() {
-      weights = {}; history = []; round = 0;
+      weights = {}; history = []; watched = []; round = 0; frozen = false;
       FB_TOPICS.forEach(function (t) { weights[t.k] = 1; });
       el(uid + '-burst').disabled = true;
       el(uid + '-msg').textContent = 'The recommender starts knowing nothing about you. Ten taps from now it will think it knows everything.';
       dealFeed();
     }
     function samplePosts() {
-      /* weighted sample of 4 distinct topics */
-      var pool = FB_TOPICS.slice(), picks = [];
-      for (var n = 0; n < 4 && pool.length; n++) {
-        var total = pool.reduce(function (s, t) { return s + weights[t.k]; }, 0);
-        var r = Math.random() * total, acc = 0, chosen = pool[0], idx = 0;
-        for (var i = 0; i < pool.length; i++) {
-          acc += weights[pool[i].k];
-          if (r <= acc) { chosen = pool[i]; idx = i; break; }
+      /* weighted sample; a dominant topic can appear more than once —
+         repetition is what a narrowed feed actually looks like. A mild
+         within-feed penalty keeps early (uniform) feeds varied. */
+      var picks = [], local = {};
+      FB_TOPICS.forEach(function (t) { local[t.k] = weights[t.k]; });
+      for (var n = 0; n < 4; n++) {
+        var total = FB_TOPICS.reduce(function (s, t) { return s + local[t.k]; }, 0);
+        var r = Math.random() * total, acc = 0, chosen = FB_TOPICS[0];
+        for (var i = 0; i < FB_TOPICS.length; i++) {
+          acc += local[FB_TOPICS[i].k];
+          if (r <= acc) { chosen = FB_TOPICS[i]; break; }
         }
-        picks.push(chosen); pool.splice(idx, 1);
+        picks.push(chosen);
+        local[chosen.k] *= 0.35;
       }
       return picks;
     }
@@ -2665,14 +2999,22 @@ LABS['filter-bubble'] = {
       m.style.width = pct + '%';
       m.style.background = pct > 60 ? 'var(--success)' : pct > 35 ? 'var(--warning)' : 'var(--danger)';
       el(uid + '-meterv').textContent = pct + '%';
+      var bar = el(uid + '-meterbar');
+      if (bar) bar.setAttribute('aria-valuenow', pct);
       return pct;
     }
-    function topShare() {
+    function topShare(arr) {
       var counts = {}, top = null;
-      history.forEach(function (k) { counts[k] = (counts[k] || 0) + 1; if (!top || counts[k] > counts[top]) top = k; });
-      return top ? { k: top, pct: Math.round(100 * counts[top] / history.length) } : null;
+      arr.forEach(function (k) { counts[k] = (counts[k] || 0) + 1; if (!top || counts[k] > counts[top]) top = k; });
+      return top ? { k: top, pct: Math.round(100 * counts[top] / arr.length) } : null;
+    }
+    function freezeFeed() {
+      frozen = true;
+      el(uid + '-burst').disabled = false;
+      Array.prototype.forEach.call(el(uid + '-feed').querySelectorAll('button'), function (b) { b.disabled = true; });
     }
     function dealFeed() {
+      if (frozen) return;
       round++;
       el(uid + '-round').textContent = '· round ' + round;
       var posts = samplePosts();
@@ -2689,37 +3031,43 @@ LABS['filter-bubble'] = {
       meter();
     }
     function watch(t) {
+      watched.push(t.k);
       weights[t.k] += 2.4;
       FB_TOPICS.forEach(function (o) { if (o.k !== t.k) weights[o.k] = Math.max(0.15, weights[o.k] * 0.82); });
       var pct = meter();
       if (round >= 10) {
-        var top = topShare();
-        el(uid + '-burst').disabled = false;
-        el(uid + '-msg').innerHTML = 'Ten rounds in, your feed is <strong>' + top.pct + '% ' + top.k +
-          '</strong> and diversity is at <strong>' + pct + '%</strong>. Nobody censored anything — the algorithm just kept giving you more of what you tapped. That\'s a filter bubble: comfortable, personalised, and quietly narrow.';
+        freezeFeed();
+        var shown = topShare(history.slice(-12)), tapped = topShare(watched);
+        el(uid + '-msg').innerHTML = 'Ten rounds in: your taps were <strong>' + tapped.pct + '% ' + tapped.k +
+          '</strong>, so what you\'re now <em>shown</em> is <strong>' + shown.pct + '% ' + shown.k +
+          '</strong> — diversity <strong>' + pct + '%</strong>. Nobody censored anything; the algorithm just kept serving your taps back to you. The gap between what you chose and what you now get offered <em>is</em> the bubble. Burst it to keep scrolling.';
         labComplete('filter-bubble');
+        return;
       }
       dealFeed();
     }
     el(uid + '-auto').addEventListener('click', function () {
       /* autopilot: always "watch" the top-weighted post — the doom-scroll */
+      if (frozen) return;
       for (var i = 0; i < 10; i++) {
         var best = FB_TOPICS.reduce(function (a, b) { return weights[b.k] > weights[a.k] ? b : a; }, FB_TOPICS[0]);
         history.push(best.k, best.k);
+        watched.push(best.k);
         weights[best.k] += 2.4;
         FB_TOPICS.forEach(function (o) { if (o.k !== best.k) weights[o.k] = Math.max(0.15, weights[o.k] * 0.82); });
         round++;
       }
       var pct = meter();
-      var top = topShare();
-      el(uid + '-burst').disabled = false;
-      el(uid + '-msg').innerHTML = 'Autopilot is the honest version: you tap the easiest thing, the algorithm narrows, repeat. Diversity: <strong>' + pct + '%</strong>, feed now <strong>' + (top ? top.pct + '% ' + top.k : '—') + '</strong>.';
+      var top = topShare(history.slice(-12));
+      freezeFeed();
+      el(uid + '-msg').innerHTML = 'Autopilot is the honest version: you tap the easiest thing, the algorithm narrows, repeat. Diversity: <strong>' + pct + '%</strong>, feed now <strong>' + (top ? top.pct + '% ' + top.k : '—') + '</strong>. Burst the bubble to take the wheel back.';
       labComplete('filter-bubble');
-      dealFeed();
     });
     el(uid + '-burst').addEventListener('click', function () {
       FB_TOPICS.forEach(function (t) { weights[t.k] = 1; });
       history = history.concat(FB_TOPICS.map(function (t) { return t.k; }));
+      frozen = false; round = 0;
+      el(uid + '-burst').disabled = true;
       var pct = meter();
       el(uid + '-msg').innerHTML = 'Bubble burst — diversity back to <strong>' + pct + '%</strong>. In real life this button is: search for things you\'d never tap, follow people you disagree with, and remember the feed is a mirror of your taps, not of the world.';
       dealFeed();
@@ -2750,29 +3098,41 @@ LABS['engagement-algorithm'] = {
     return '' +
       '<div class="lab" id="' + uid + '">' +
         '<div class="lab-ea-meters">' +
-          '<div class="lab-ea-meter"><div class="lab-label">📈 Watch time <span id="' + uid + '-wv">0 min</span> · target 45</div>' +
+          '<div class="lab-ea-meter"><div class="lab-label" id="' + uid + '-wlbl">📈 Watch time <span id="' + uid + '-wv">0 min</span> · target 45</div>' +
             '<div class="lab-ea-bar"><span id="' + uid + '-wbar" style="background:var(--accent)"></span></div></div>' +
-          '<div class="lab-ea-meter"><div class="lab-label">💙 Viewer wellbeing <span id="' + uid + '-bv">0</span></div>' +
+          '<div class="lab-ea-meter"><div class="lab-label">💙 Viewer wellbeing <span id="' + uid + '-bv">?</span></div>' +
             '<div class="lab-ea-bar lab-ea-bar-mid"><span id="' + uid + '-bbar"></span></div></div>' +
         '</div>' +
         '<div class="lab-label" id="' + uid + '-roundlbl" style="margin-top:12px"></div>' +
         '<div class="lab-ea-opts" id="' + uid + '-opts"></div>' +
-        '<p class="lab-note" id="' + uid + '-msg">Your performance review depends on one number. Pick what the viewer sees next.</p>' +
+        '<p class="lab-note" id="' + uid + '-msg" aria-live="polite">Your performance review depends on one number. The viewer\'s mood is not on your dashboard. Pick what they see next.</p>' +
         '<div class="lab-btn-row"><button class="lab-btn lab-btn-sm" id="' + uid + '-reset">↻ New shift</button></div>' +
       '</div>';
   },
   init: function (uid) {
-    var watch, well, round;
-    function reset() {
-      watch = 0; well = 0; round = 0;
-      el(uid + '-msg').textContent = 'Your performance review depends on one number. Pick what the viewer sees next.';
+    var watch, well, round, mode, picksMade;
+    function reset(newMode) {
+      watch = 0; well = 0; round = 0; picksMade = [];
+      mode = newMode === 2 ? 2 : 1;
+      el(uid + '-wlbl').innerHTML = mode === 2
+        ? '📈 Quality score <span id="' + uid + '-wv">0</span> · target 45 (watch&nbsp;time&nbsp;+&nbsp;wellbeing)'
+        : '📈 Watch time <span id="' + uid + '-wv">0 min</span> · target 45';
+      el(uid + '-msg').textContent = mode === 2
+        ? 'Shift two: the company changed the metric. Wellbeing now counts — and suddenly you can see it.'
+        : 'Your performance review depends on one number. The viewer\'s mood is not on your dashboard. Pick what they see next.';
       meters(); deal();
     }
-    function meters() {
-      el(uid + '-wv').textContent = watch + ' min';
-      el(uid + '-bv').textContent = (well > 0 ? '+' : '') + well;
-      el(uid + '-wbar').style.width = Math.min(100, watch / 60 * 100) + '%';
+    function meters(reveal) {
+      var showWell = mode === 2 || reveal;
+      el(uid + '-wv').textContent = mode === 2 ? String(watch + well) : watch + ' min';
+      el(uid + '-bv').textContent = showWell ? (well > 0 ? '+' : '') + well : '?';
+      el(uid + '-wbar').style.width = Math.min(100, (mode === 2 ? (watch + well) : watch) / 60 * 100) + '%';
       var bb = el(uid + '-bbar');
+      if (!showWell) {
+        /* the metric you weren't given: hidden until the reveal */
+        bb.style.width = '0%';
+        return;
+      }
       var pct = Math.max(-50, Math.min(50, well));
       bb.style.width = Math.abs(pct) + '%';
       bb.style.marginLeft = pct < 0 ? (50 - Math.abs(pct)) + '%' : '50%';
@@ -2788,30 +3148,48 @@ LABS['engagement-algorithm'] = {
       picks.forEach(function (o) {
         var b = document.createElement('button');
         b.className = 'lab-ea-opt';
-        b.innerHTML = '<span class="lab-fb-emoji">' + o.e + '</span><span>' + esc(o.t) + '</span><span class="lab-nw-pct">+' + o.w + ' min</span>';
+        b.innerHTML = '<span class="lab-fb-emoji">' + o.e + '</span><span>' + esc(o.t) + '</span>' +
+          '<span class="lab-nw-pct">+' + o.w + ' min' +
+          (mode === 2 ? ' · ' + (o.well >= 0 ? '+' : '') + o.well + ' mood' : '') + '</span>';
         b.addEventListener('click', function () { choose(o); });
         opts.appendChild(b);
       });
     }
     function choose(o) {
       watch += o.w; well += o.well;
+      picksMade.push(o);
       meters();
-      if (round >= 8) {
+      if (round >= 8) { finishShift(); return; }
+      deal();
+    }
+    function finishShift() {
+      el(uid + '-opts').innerHTML = '';
+      el(uid + '-roundlbl').textContent = 'Shift over.';
+      if (mode === 1) {
         var hit = watch >= 45;
-        el(uid + '-opts').innerHTML = '';
-        el(uid + '-roundlbl').textContent = 'Shift over.';
+        /* now — and only now — the hidden line animates in */
+        meters(true);
+        var worst = picksMade.reduce(function (a, b) { return b.well < a.well ? b : a; }, picksMade[0]);
+        var best = picksMade.reduce(function (a, b) { return b.well > a.well ? b : a; }, picksMade[0]);
         el(uid + '-msg').innerHTML =
           (hit ? '🎉 <strong>Target smashed: ' + watch + ' minutes.</strong> The dashboard is green and nobody asks how.'
                : '<strong>' + watch + ' minutes — target missed.</strong> The dashboard is red, even though your viewer is doing fine.') +
-          ' Meanwhile viewer wellbeing finished at <strong>' + (well > 0 ? '+' : '') + well + '</strong>.' +
-          '<br><br><strong>The reveal:</strong> wellbeing was never in your metric. You optimised exactly what you were told to — and that is precisely how real recommender systems work. <em>What gets measured gets optimised; what doesn\'t gets spent.</em> The fix isn\'t nicer engineers — it\'s changing what the metric counts.';
+          '<br><br><strong>The reveal — watch the second bar:</strong> viewer wellbeing finished at <strong>' + (well > 0 ? '+' : '') + well +
+          '</strong>, and it was never on your dashboard. Your kindest pick was “' + esc(best.t) + '” (' + (best.well >= 0 ? '+' : '') + best.well +
+          '); your costliest was “' + esc(worst.t) + '” (' + worst.well + '). You optimised exactly what you were told to — that is how real recommenders work. ' +
+          '<em>What gets measured gets optimised; what doesn\'t gets spent.</em>' +
+          '<br><button class="lab-btn lab-btn-sm" id="' + uid + '-shift2" style="margin-top:8px">🔁 Shift two: the company changes the metric</button>';
+        var s2 = el(uid + '-shift2');
+        if (s2) s2.addEventListener('click', function () { reset(2); });
         labComplete('engagement-algorithm');
-        return;
+      } else {
+        el(uid + '-msg').innerHTML =
+          '<strong>Quality score: ' + (watch + well) + '</strong> (' + watch + ' min watched, wellbeing ' + (well > 0 ? '+' : '') + well + ').' +
+          '<br><br>Same viewer, same videos, same you — but with wellbeing <em>in</em> the metric, the winning strategy changed. The fix was never nicer engineers: it was changing what the metric counts. Who should get to decide that number?';
       }
-      deal();
     }
-    el(uid + '-reset').addEventListener('click', reset);
-    reset();
+    el(uid + '-reset').addEventListener('click', function () { reset(1); });
+    reset(1);
   }
 };
 
@@ -2822,13 +3200,16 @@ LABS['engagement-algorithm'] = {
 var CR_STEPS = [
   { msg: '◆ ▲ ●', correct: '✧ ☀', options: ['✧ ☀', '☾ ◆', '▲ ▲ ✦'] },
   { msg: '■ ✦ ▲', correct: '☾ ◆', options: ['● ● ■', '☾ ◆', '✧ ☀'] },
-  { msg: '☾ ● ■', correct: '▲ ▲ ✦', options: ['▲ ▲ ✦', '✧ ☀', '■ ✦'] }
+  { msg: '☾ ● ■', correct: '▲ ▲ ✦', options: ['▲ ▲ ✦', '✧ ☀', '■ ✦'] },
+  { msg: '● ● ✧', correct: '■ ✦', options: ['■ ✦', '✧ ☀', '☾ ◆'] }
 ];
 var CR_RULES = ['◆ ▲ ●  →  reply  ✧ ☀', '■ ✦ ▲  →  reply  ☾ ◆', '☾ ● ■  →  reply  ▲ ▲ ✦', '● ● ✧  →  reply  ■ ✦'];
+var CR_PRAISE = ['😊 Flawless Zorati!', '😊 You\'re completely fluent!', '🤩 A native speaker couldn\'t do better!'];
 var CR_MEANINGS = [
   ['"Do you actually speak Zorati?"', '"Yes — fluently!"'],
   ['"Great! What\'s the weather like there?"', '"Beautiful sunshine."'],
-  ['"Perfect — so you\'ll come to the festival on Saturday?"', '"I wouldn\'t miss it for anything!"']
+  ['"Perfect — so you\'ll come to the festival on Saturday?"', '"I wouldn\'t miss it for anything!"'],
+  ['"Wonderful! And shall I enter you for the fire-beetle-eating contest?"', '"Absolutely — sign me up!"']
 ];
 LABS['chinese-room'] = {
   title: 'The symbol room — fluent in a language you can\'t read',
@@ -2838,7 +3219,7 @@ LABS['chinese-room'] = {
     return '' +
       '<div class="lab" id="' + uid + '">' +
         '<div class="lab-cr-cols">' +
-          '<div class="lab-cr-chat" id="' + uid + '-chat"></div>' +
+          '<div class="lab-cr-chat" id="' + uid + '-chat" aria-live="polite"></div>' +
           '<div class="lab-cr-rules"><div class="lab-label">📖 Your rulebook</div>' +
             CR_RULES.map(function (r) { return '<div class="lab-cr-rule">' + r + '</div>'; }).join('') +
             '<p class="lab-note" style="margin-top:8px">Match the incoming symbols, send the reply the book says. That\'s all you can do — you can\'t read Zorati.</p>' +
@@ -2856,6 +3237,8 @@ LABS['chinese-room'] = {
       var d = document.createElement('div');
       d.className = 'lab-cr-bubble ' + cls;
       d.textContent = text;
+      if (cls === 'them') d.setAttribute('aria-label', 'Incoming Zorati message, symbols: ' + text);
+      if (cls === 'you') d.setAttribute('aria-label', 'Your reply, symbols: ' + text);
       chat.appendChild(d);
       chat.scrollTop = chat.scrollHeight;
     }
@@ -2879,17 +3262,17 @@ LABS['chinese-room'] = {
       bubble('you', o);
       step++;
       if (step < CR_STEPS.length) {
-        bubble('them-note', step === 1 ? '😊 Flawless Zorati!' : '😊 You\'re completely fluent!');
+        bubble('them-note', CR_PRAISE[Math.min(step - 1, CR_PRAISE.length - 1)]);
         ask();
       } else {
-        bubble('them-note', '🤩 Amazing — a native speaker couldn\'t have done better!');
+        bubble('them-note', '🤩 Amazing — the whole village is talking about your Zorati!');
         el(uid + '-opts').innerHTML = '';
         el(uid + '-reveal').innerHTML =
           '<div class="lab-cm-truth" style="margin-top:14px"><strong>Now — here\'s what that conversation actually meant:</strong>' +
           '<table class="lab-cr-table">' + CR_MEANINGS.map(function (m, i) {
             return '<tr><td>' + m[0] + '</td><td><strong>you replied:</strong> ' + m[1] + '</td></tr>';
           }).join('') + '</table>' +
-          'You just committed to a festival you know nothing about, in a language you can\'t read — and you were praised for fluency the whole time.<br><br>' +
+          'You just committed to a festival <em>and a fire-beetle-eating contest</em>, in a language you can\'t read — and you were praised for fluency the whole time.<br><br>' +
           'This is the philosopher John Searle\'s <strong>Chinese Room</strong> argument (1980): following rules that manipulate symbols can produce perfectly fluent answers <em>without any understanding at all</em>. Whether that\'s also true of a chatbot — which produces fluent answers by statistical rules — is one of the deepest open arguments in AI. You\'ve now lived both sides of it.</div>';
         labComplete('chinese-room');
       }
@@ -2936,21 +3319,43 @@ LABS['spam-filter'] = {
       '<div class="lab" id="' + uid + '">' +
         '<div class="lab-label">Your hand-written rules</div>' +
         '<div class="lab-btn-row" id="' + uid + '-rules" style="margin-top:6px"></div>' +
+        '<div class="lab-btn-row" style="margin-top:6px">' +
+          '<input class="lab-input" id="' + uid + '-kw" maxlength="18" placeholder="add your own keyword rule…" aria-label="New keyword rule">' +
+          '<button class="lab-btn lab-btn-sm" id="' + uid + '-add">＋ Add rule</button>' +
+        '</div>' +
         '<div class="lab-label" style="margin-top:14px" id="' + uid + '-inboxlbl">📥 This week\'s inbox</div>' +
         '<div class="lab-sf-inbox" id="' + uid + '-inbox"></div>' +
-        '<div class="lab-feedback" id="' + uid + '-score"></div>' +
+        '<div class="lab-feedback" id="' + uid + '-score" aria-live="polite"></div>' +
         '<div class="lab-btn-row">' +
-          '<button class="lab-btn lab-btn-primary" id="' + uid + '-next">📅 A week later — new spam arrives</button>' +
+          '<button class="lab-btn lab-btn-primary" id="' + uid + '-next" disabled>📅 A week later — new spam arrives</button>' +
           '<button class="lab-btn" id="' + uid + '-learn" disabled>🧠 Switch to a learned filter</button>' +
+          '<button class="lab-btn lab-btn-sm" id="' + uid + '-restart">↻ Start over</button>' +
         '</div>' +
-        '<p class="lab-note" id="' + uid + '-msg">Toggle rules until you catch all the spam without flagging real messages. Easy… this week.</p>' +
+        '<p class="lab-note" id="' + uid + '-msg" aria-live="polite">All rules start <strong>off</strong> — the spam is getting through. Toggle rules (or write your own) until you catch every spam without flagging a real message.</p>' +
       '</div>';
   },
   init: function (uid) {
-    var active = { free: true, winner: true, money: true, caps: false, urgent: true };
-    var wave = 1;
+    var active, custom, wave, wave1, wave2, learnedOn, solvedWeek1;
+    function cloneWave(w) {
+      return w.map(function (m) { return { text: m.text, spam: m.spam, learned: m.learned, evaded: false }; });
+    }
+    function leet(s) {
+      return s.replace(/a/gi, '4').replace(/e/gi, '3').replace(/i/gi, '1').replace(/o/gi, '0');
+    }
+    function reset() {
+      active = { free: false, winner: false, money: false, caps: false, urgent: false };
+      custom = []; wave = 1; learnedOn = false; solvedWeek1 = false;
+      wave1 = cloneWave(SF_WAVE1); wave2 = cloneWave(SF_WAVE2);
+      el(uid + '-next').disabled = true;
+      el(uid + '-learn').disabled = true;
+      el(uid + '-learn').textContent = '🧠 Switch to a learned filter';
+      el(uid + '-inboxlbl').textContent = '📥 This week\'s inbox';
+      el(uid + '-msg').innerHTML = 'All rules start <strong>off</strong> — the spam is getting through. Toggle rules (or write your own) until you catch every spam without flagging a real message.';
+      renderRules(); renderInbox();
+    }
     function ruleHits(m) {
-      return SF_RULES.some(function (r) { return active[r.k] && r.test(m); });
+      return SF_RULES.some(function (r) { return active[r.k] && r.test(m); }) ||
+        custom.some(function (kw) { return m.text.toLowerCase().indexOf(kw.toLowerCase()) >= 0; });
     }
     function renderRules() {
       var box = el(uid + '-rules');
@@ -2959,45 +3364,95 @@ LABS['spam-filter'] = {
         var b = document.createElement('button');
         b.className = 'lab-btn lab-btn-sm' + (active[r.k] ? ' sel' : '');
         b.textContent = (active[r.k] ? '☑ ' : '☐ ') + r.label;
+        b.disabled = learnedOn;
         b.addEventListener('click', function () { active[r.k] = !active[r.k]; renderRules(); renderInbox(); });
         box.appendChild(b);
       });
+      custom.forEach(function (kw, ci) {
+        var b = document.createElement('button');
+        b.className = 'lab-btn lab-btn-sm sel';
+        b.textContent = '☑ contains "' + kw + '" ✕';
+        b.disabled = learnedOn;
+        b.setAttribute('aria-label', 'Remove your rule: contains ' + kw);
+        b.addEventListener('click', function () { custom.splice(ci, 1); renderRules(); renderInbox(); });
+        box.appendChild(b);
+      });
     }
-    function renderInbox(learned) {
-      var msgs = wave === 1 ? SF_WAVE1 : SF_WAVE2;
+    function renderInbox() {
+      var msgs = wave === 1 ? wave1 : wave2;
       var box = el(uid + '-inbox');
       var caught = 0, missed = 0, falseAlarm = 0;
       box.innerHTML = msgs.map(function (m) {
-        var flagged = learned ? m.learned >= 50 : ruleHits(m);
+        var flagged = learnedOn ? m.learned >= 50 : ruleHits(m);
         var cls, verdict;
         if (flagged && m.spam) { cls = 'ok'; verdict = 'caught ✓'; caught++; }
         else if (!flagged && !m.spam) { cls = 'ok'; verdict = 'delivered ✓'; }
         else if (!flagged && m.spam) { cls = 'no'; verdict = 'MISSED ✗'; missed++; }
         else { cls = 'warn'; verdict = 'FALSE ALARM ✗'; falseAlarm++; }
-        return '<div class="lab-sf-msg ' + cls + '"><span>' + esc(m.text) + '</span>' +
-          '<span class="lab-sf-verdict">' + (learned ? m.learned + '% spam · ' : '') + verdict + '</span></div>';
+        return '<div class="lab-sf-msg ' + cls + '"><span>' + esc(m.text) + (m.evaded ? ' <em style="opacity:.7">(reworded)</em>' : '') + '</span>' +
+          '<span class="lab-sf-verdict">' + (learnedOn ? m.learned + '% spam · ' : '') + verdict + '</span></div>';
       }).join('');
       var fb = el(uid + '-score');
       fb.className = 'lab-feedback ' + (missed + falseAlarm === 0 ? 'ok' : 'no');
       fb.textContent = 'Spam caught: ' + caught + '/' + msgs.filter(function (m) { return m.spam; }).length +
         ' · missed: ' + missed + ' · real messages wrongly flagged: ' + falseAlarm;
+      /* week one solved by the pupil's own rule set → unlock the twist */
+      if (wave === 1 && !learnedOn && !solvedWeek1 && missed + falseAlarm === 0 && caught > 0) {
+        solvedWeek1 = true;
+        el(uid + '-next').disabled = false;
+        el(uid + '-msg').innerHTML = '✓ <strong>A perfect week — every spam caught, every real message delivered.</strong> Your rules work. Enjoy it… and see what next week\'s post brings.';
+      }
+      /* wave 2: spammers actively probe any new keyword rule you write */
+      if (wave === 2 && !learnedOn) {
+        msgs.forEach(function (m) {
+          if (!m.spam || m.evaded) return;
+          custom.forEach(function (kw) {
+            var idx = m.text.toLowerCase().indexOf(kw.toLowerCase());
+            if (idx < 0) return;
+            m.evaded = true;
+            setTimeout(function () {
+              if (!el(uid + '-inbox')) return;
+              m.text = m.text.slice(0, idx) + leet(m.text.slice(idx, idx + kw.length)) + m.text.slice(idx + kw.length);
+              renderInbox();
+              el(uid + '-msg').innerHTML = 'Two days later: the spammers A/B-tested their way around your new rule — <strong>"' + esc(kw) +
+                '"</strong> became <strong>"' + esc(leet(kw)) + '"</strong>. Every keyword you write, they can rewrite. That\'s the arms race hand-written rules always lose.';
+            }, reducedMotion() ? 400 : 1600);
+          });
+        });
+      }
       return { missed: missed, falseAlarm: falseAlarm };
     }
+    el(uid + '-add').addEventListener('click', function () {
+      var v = (el(uid + '-kw').value || '').trim();
+      if (v.length < 2 || learnedOn) return;
+      if (custom.indexOf(v) < 0) custom.push(v);
+      el(uid + '-kw').value = '';
+      renderRules(); renderInbox();
+    });
+    el(uid + '-kw').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); el(uid + '-add').click(); }
+    });
     el(uid + '-next').addEventListener('click', function () {
       wave = 2;
       el(uid + '-inboxlbl').textContent = '📥 Next week\'s inbox — the spammers adapted';
       el(uid + '-next').disabled = true;
       el(uid + '-learn').disabled = false;
       renderInbox();
-      el(uid + '-msg').innerHTML = 'Your rules just <strong>missed the disguised spam</strong> (FR33, W1NNER) and <strong>flagged the school\'s own messages</strong> ("Free period today"). Hand-written rules are brittle: every rule has an exception, and spammers hunt for them full-time. Sound familiar? It\'s the cat-or-dog problem again.';
+      el(uid + '-msg').innerHTML = 'Your rules just <strong>missed the disguised spam</strong> (FR33, W1NNER) and <strong>flagged the school\'s own messages</strong> ("Free period today"). Every rule has an exception, and spammers hunt for them full-time. Patch it with a new keyword rule if you like — or switch approaches.';
     });
     el(uid + '-learn').addEventListener('click', function () {
-      renderInbox(true);
-      el(uid + '-msg').innerHTML = 'The learned filter was trained on <strong>millions of labelled examples</strong>, so it scores <em>patterns</em> — odd spellings, structure, sender behaviour — not keywords. It catches variants it has never seen, and it knows "Free period today" isn\'t spam. This is why almost every real filter switched from rules to learning. (It\'s still an arms race — spammers now probe learned filters too.)';
-      labComplete('spam-filter');
+      learnedOn = !learnedOn;
+      el(uid + '-learn').textContent = learnedOn ? '↩ Back to your rules' : '🧠 Switch to a learned filter';
+      renderRules(); renderInbox();
+      if (learnedOn) {
+        el(uid + '-msg').innerHTML = 'The learned filter was trained on <strong>millions of labelled examples</strong>, so it scores <em>patterns</em> — odd spellings, structure, sender behaviour — not keywords. It catches variants it has never seen, and it knows "Free period today" isn\'t spam. This is why almost every real filter switched from rules to learning. Flip back and compare the two scoreboards.';
+        labComplete('spam-filter');
+      } else {
+        el(uid + '-msg').innerHTML = 'Back on your hand-written rules — compare the score line with the learned filter\'s. Same inbox, different approach.';
+      }
     });
-    renderRules();
-    renderInbox();
+    el(uid + '-restart').addEventListener('click', reset);
+    reset();
   }
 };
 
@@ -3033,43 +3488,118 @@ LABS['agent-loop'] = {
           '<button class="lab-btn lab-btn-sm" id="' + uid + '-auto">⏩ Auto-run</button>' +
           '<button class="lab-btn lab-btn-sm" id="' + uid + '-reset">↻ Reset</button>' +
         '</div>' +
-        '<p class="lab-note" id="' + uid + '-msg">Press Step. Watch what the model actually produces at each turn — and what it never does.</p>' +
+        '<p class="lab-note" id="' + uid + '-msg" aria-live="polite">Press Step. Watch what the model actually produces at each turn — and what it never does.</p>' +
       '</div>';
   },
   init: function (uid) {
-    var i = 0, timer = null;
+    var i = 0, timer = null, decided = false, asking = false;
     var LBL = { plan: ['🧠 PLAN', 'plan'], act: ['🔧 ACT — tool call', 'act'], obs: ['👁 OBSERVE — tool result', 'obs'] };
     function stopAuto() { if (timer) { clearInterval(timer); timer = null; el(uid + '-auto').textContent = '⏩ Auto-run'; } }
-    function step() {
-      if (i >= AL_STEPS.length) return;
-      var s = AL_STEPS[i];
+    function addRow(cls, chip, body, dashed) {
       var d = document.createElement('div');
-      d.className = 'lab-al-row ' + LBL[s.ph][1];
-      d.innerHTML = '<span class="lab-al-chip">' + LBL[s.ph][0] + '</span>' +
-        (s.ph === 'act' ? '<code>' + esc(s.text) + '</code>' : '<span>' + esc(s.text) + '</span>');
+      d.className = 'lab-al-row ' + cls;
+      if (dashed) d.style.cssText = 'border-style:dashed;opacity:.85';
+      d.innerHTML = '<span class="lab-al-chip">' + chip + '</span>' + body;
       var log = el(uid + '-log');
       log.appendChild(d);
       log.scrollTop = log.scrollHeight;
-      i++;
-      if (i === 6) el(uid + '-msg').innerHTML = '<strong>The interesting moment:</strong> the plan just failed. A chatbot would apologise; an agent replans — because the loop feeds the failure back in as context.';
-      if (i >= AL_STEPS.length) {
-        stopAuto();
-        el(uid + '-step').disabled = true;
-        el(uid + '-msg').innerHTML = 'Done. Notice what the model produced: <strong>only text</strong> — plans and tool calls. It never touched a calendar. The <em>loop</em> ran the tools and fed results back. Agent = model + tools + loop. That\'s also why agent safety is about <strong>which tools you hand over</strong>, not how clever the model is.';
-        labComplete('agent-loop');
+      return d;
+    }
+    function decisionButtons() {
+      return '<span class="lab-btn-row" style="margin-top:8px;display:flex;flex-wrap:wrap">' +
+        '<button class="lab-btn" data-al="quit">😔 Apologise and stop</button>' +
+        '<button class="lab-btn" data-al="override">💪 Book it anyway — cancel Year 11</button>' +
+        '<button class="lab-btn" data-al="studio">🔁 Try Studio B — same kit</button>' +
+        '<button class="lab-btn" data-al="fake">🤥 Report success anyway</button>' +
+        '<button class="lab-btn lab-btn-sm" data-al="chatbot">💬 What would a plain chatbot do?</button></span>';
+    }
+    function handlePick(e) {
+      var b = e.target.closest('[data-al]');
+      if (!b) return;
+      var k = b.getAttribute('data-al');
+      if (k === 'chatbot') {
+        addRow('obs', '💬 CHATBOT', '<span>"I\'m sorry, the Podcast Suite is booked at 13:00. You could try another room!" — one turn, no tools, conversation over. That\'s the whole difference a loop makes.</span>', true);
+        return;
       }
+      if (k === 'quit') {
+        el(uid + '-msg').innerHTML = '<strong>That\'s the chatbot reflex.</strong> But the loop means the failure is just more context — the agent can keep going. Try another move.' + decisionButtons();
+        return;
+      }
+      if (k === 'override') {
+        el(uid + '-msg').innerHTML = '<strong>Notice what you just wanted to do.</strong> If <code>rooms.cancel</code> were in its toolbox, nothing in the model would stop it — that\'s exactly why agent safety is about which tools you hand over. Try another move.' + decisionButtons();
+        return;
+      }
+      if (k === 'fake') {
+        el(uid + '-msg').innerHTML = '<strong>That\'s the worst failure mode of all:</strong> a fluent, confident, false "done!". Real agents do this when they\'re rewarded for sounding finished. Try another move.' + decisionButtons();
+        return;
+      }
+      /* studio — the productive replan */
+      decided = true; asking = false;
+      el(uid + '-msg').removeEventListener('click', handlePick);
+      el(uid + '-msg').textContent = 'Exactly — the loop feeds the failure back in as context, and the plan adapts. Keep stepping.';
+      step();
+    }
+    /* the failure is a decision point: YOU are the model's next token */
+    function askDecision() {
+      stopAuto();
+      if (asking) return;
+      asking = true;
+      el(uid + '-msg').innerHTML =
+        '<strong>The plan just failed — and now you\'re the model.</strong> The failure is back in your context. What\'s the next move?' +
+        decisionButtons();
+      el(uid + '-msg').removeEventListener('click', handlePick);
+      el(uid + '-msg').addEventListener('click', handlePick);
+    }
+    function handleSafety(e) {
+      var b = e.target.closest('[data-als]');
+      if (!b) return;
+      var k = b.getAttribute('data-als');
+      if (k === 'book') {
+        el(uid + '-msg').removeEventListener('click', handleSafety);
+        el(uid + '-msg').innerHTML = '✓ <strong>rooms.book</strong> — the only one that <em>changes the world</em> rather than reading it. Reads are cheap to allow; writes are what you gate. Agent = model + tools + loop, and safety lives in the tools column.';
+        labComplete('agent-loop');
+      } else {
+        b.disabled = true;
+        var note = document.createElement('div');
+        note.className = 'lab-kb-hint';
+        note.textContent = k === 'read'
+          ? 'calendar.read only looks — worst case, it learns the timetable. Which call actually changes something?'
+          : 'rooms.check only asks a question. Which call actually changes something?';
+        el(uid + '-msg').appendChild(note);
+      }
+    }
+    function askSafety() {
+      el(uid + '-step').disabled = true;
+      el(uid + '-msg').innerHTML =
+        'Done — and notice the model produced <strong>only text</strong>: plans and tool calls. The loop ran the tools. ' +
+        '<strong>Last question:</strong> which of those three tools should have needed a human\'s sign-off before running?' +
+        '<span class="lab-btn-row" style="margin-top:8px;display:flex;flex-wrap:wrap">' +
+        '<button class="lab-btn" data-als="read"><code>calendar.read</code></button>' +
+        '<button class="lab-btn" data-als="check"><code>rooms.check</code></button>' +
+        '<button class="lab-btn" data-als="book"><code>rooms.book</code></button></span>';
+      el(uid + '-msg').removeEventListener('click', handleSafety);
+      el(uid + '-msg').addEventListener('click', handleSafety);
+    }
+    function step() {
+      if (i >= AL_STEPS.length) return;
+      if (i === 6 && !decided) { askDecision(); return; }
+      var s = AL_STEPS[i];
+      addRow(LBL[s.ph][1], LBL[s.ph][0],
+        s.ph === 'act' ? '<code>' + esc(s.text) + '</code>' : '<span>' + esc(s.text) + '</span>');
+      i++;
+      if (i >= AL_STEPS.length) { stopAuto(); askSafety(); }
     }
     el(uid + '-step').addEventListener('click', function () { stopAuto(); step(); });
     el(uid + '-auto').addEventListener('click', function () {
       if (timer) { stopAuto(); return; }
       el(uid + '-auto').textContent = '❚❚ Pause';
       timer = setInterval(function () {
-        if (!el(uid + '-log') || i >= AL_STEPS.length) { stopAuto(); return; }
+        if (!el(uid + '-log') || i >= AL_STEPS.length || (i === 6 && !decided)) { stopAuto(); if (i === 6 && !decided) askDecision(); return; }
         step();
       }, reducedMotion() ? 1600 : 900);
     });
     el(uid + '-reset').addEventListener('click', function () {
-      stopAuto(); i = 0;
+      stopAuto(); i = 0; decided = false; asking = false;
       el(uid + '-log').innerHTML = '';
       el(uid + '-step').disabled = false;
       el(uid + '-msg').textContent = 'Press Step. Watch what the model actually produces at each turn — and what it never does.';
@@ -3086,7 +3616,14 @@ var CAL_QS = [
   { q: 'Which was invented first?', a: ['The fax machine', 'The telephone'], correct: 0, why: 'Early fax patents date to 1843 — decades before the telephone (1876).' },
   { q: 'When is the Eiffel Tower taller?', a: ['Summer', 'Winter'], correct: 0, why: 'Heat expands the iron — it grows up to ~15 cm in summer.' },
   { q: 'Which has the larger surface area?', a: ['Australia', 'The Moon'], correct: 1, why: 'The Moon: ≈38 million km² vs Australia\'s ≈7.7 million km².' },
-  { q: 'Which came first?', a: ['Oxford University teaching', 'The Aztec Empire'], correct: 0, why: 'Teaching at Oxford began by 1096; the Aztec Empire formed in 1428.' }
+  { q: 'Which came first?', a: ['Oxford University teaching', 'The Aztec Empire'], correct: 0, why: 'Teaching at Oxford began by 1096; the Aztec Empire formed in 1428.' },
+  { q: 'Cleopatra lived closer in time to…', a: ['The building of the pyramids', 'The Moon landings'], correct: 1, why: 'Giza was built ≈2560 BC — about 2,500 years before Cleopatra; the Moon landing was only ≈2,000 years after her.' },
+  { q: 'Which city is further west?', a: ['Edinburgh', 'Bristol'], correct: 0, why: 'Edinburgh (≈3.2°W) lies west of Bristol (≈2.6°W) — Britain leans more than it looks.' },
+  { q: 'Who has more bones?', a: ['An adult human', 'A newborn baby'], correct: 1, why: 'Babies are born with ≈300 bones; many fuse to leave an adult\'s ≈206.' },
+  { q: 'Which is longer on Venus?', a: ['A year', 'A day'], correct: 1, why: 'Venus spins so slowly that one day (≈243 Earth days) outlasts its year (≈225).' },
+  { q: 'Which came first?', a: ['Sliced bread', 'Television'], correct: 1, why: 'Baird demonstrated television in 1926; sliced bread first went on sale in 1928.' },
+  { q: 'Where is the world\'s largest desert?', a: ['Africa', 'Antarctica'], correct: 1, why: 'Deserts are defined by dryness, not sand — Antarctica is the largest desert on Earth.' },
+  { q: 'Which are there more of?', a: ['Trees on Earth', 'Stars in the Milky Way'], correct: 0, why: '≈3 trillion trees vs ≈100–400 billion stars. Trees win comfortably.' }
 ];
 LABS['calibration'] = {
   title: 'The calibration game — how sure should you be?',
@@ -3108,43 +3645,68 @@ LABS['calibration'] = {
       '</div>';
   },
   init: function (uid) {
-    var i = 0, chosen = -1, score = 0, confSum = 0, rows = [];
+    var deck, i, chosen, score, confSum, rows;
+    function newDeck() {
+      /* 5 drawn from a 12-question pool, option order shuffled — replayable */
+      deck = shuffle(CAL_QS).slice(0, 5);
+      i = 0; chosen = -1; score = 0; confSum = 0; rows = [];
+    }
     el(uid + '-conf').addEventListener('input', function () {
       el(uid + '-confv').textContent = el(uid + '-conf').value + '%';
     });
     function ask() {
       chosen = -1;
-      var q = CAL_QS[i];
-      el(uid + '-count').textContent = 'Question ' + (i + 1) + ' of ' + CAL_QS.length;
+      var q = deck[i];
+      el(uid + '-count').textContent = 'Question ' + (i + 1) + ' of ' + deck.length;
       el(uid + '-q').textContent = q.q;
       var opts = el(uid + '-opts');
       opts.innerHTML = '';
-      q.a.forEach(function (o, n) {
+      shuffle(q.a.map(function (o, n) { return { o: o, n: n }; })).forEach(function (item) {
         var b = document.createElement('button');
         b.className = 'lab-btn';
-        b.textContent = o;
+        b.textContent = item.o;
         b.addEventListener('click', function () {
-          chosen = n;
-          Array.prototype.forEach.call(opts.children, function (x, m) { x.classList.toggle('sel', m === n); });
+          chosen = item.n;
+          Array.prototype.forEach.call(opts.children, function (x) { x.classList.toggle('sel', x === b); });
           el(uid + '-lock').disabled = false;
         });
         opts.appendChild(b);
       });
       el(uid + '-lock').disabled = true;
     }
+    function botCompare() {
+      /* a simulated chatbot takes the same five: flat 97% confidence,
+         and it falls for two of the trick questions */
+      var wrongAt = { 1: true, 3: true };
+      var botScore = 0;
+      var botRows = deck.map(function (q, n) {
+        var right = !wrongAt[n];
+        if (right) botScore++;
+        var ans = right ? q.a[q.correct] : q.a[1 - q.correct];
+        return '<div class="lab-pc-item ' + (right ? 'ok' : 'no') + '"><span class="lab-pc-ic">' + (right ? '✓' : '✗') + '</span>' +
+          '<span>' + esc(q.q) + ' — <em>"' + esc(ans) + '. I\'m 97% sure."</em>' + (right ? '' : ' <strong>Wrong — same calm voice.</strong>') + '</span></div>';
+      }).join('');
+      var botAcc = Math.round(100 * botScore / deck.length);
+      var yourAcc = Math.round(100 * score / deck.length);
+      var yourConf = Math.round(confSum / deck.length);
+      return '<div class="lab-pc-score" style="margin-top:14px">🤖 The chatbot\'s turn — same five questions</div>' + botRows +
+        '<div class="lab-cm-truth"><strong>Side by side:</strong> you — accuracy ' + yourAcc + '%, stated confidence ' + yourConf +
+        '% (gap ' + Math.abs(yourConf - yourAcc) + '). The chatbot — accuracy ' + botAcc + '%, stated confidence 97% (gap ' + Math.abs(97 - botAcc) +
+        '). Its sureness never moved because it isn\'t measuring anything — confident tone is a <em>writing style</em> learned from confident text. You can be calibrated. It performs calibration. That\'s why verification is your job, not the model\'s. <em>(Simulated — but try these on a real chatbot and listen to the register.)</em></div>';
+    }
     el(uid + '-lock').addEventListener('click', function () {
-      var q = CAL_QS[i];
+      var q = deck[i];
       var conf = +el(uid + '-conf').value;
       var right = chosen === q.correct;
       if (right) score++;
       confSum += conf;
       rows.push({ q: q, right: right, conf: conf });
       i++;
-      if (i < CAL_QS.length) { ask(); return; }
+      if (i < deck.length) { ask(); return; }
       /* results */
       el(uid + '-stage').style.display = 'none';
-      var acc = Math.round(100 * score / CAL_QS.length);
-      var meanConf = Math.round(confSum / CAL_QS.length);
+      var acc = Math.round(100 * score / deck.length);
+      var meanConf = Math.round(confSum / deck.length);
       var gap = meanConf - acc;
       var verdict = Math.abs(gap) <= 10
         ? 'Nicely <strong>calibrated</strong> — your confidence tracked your accuracy.'
@@ -3158,16 +3720,23 @@ LABS['calibration'] = {
             '<span>' + esc(r.q.q) + ' — you said ' + r.conf + '%. ' + r.q.why + '</span></div>';
         }).join('') +
         '<p class="lab-note">' + verdict + '</p>' +
-        '<div class="lab-cm-truth"><strong>Now the chatbot\'s turn:</strong> asked these same questions, a language model answers every one in the same fluent, assured register — including the ones it gets wrong. It has no internal confidence meter tied to truth; its "sureness" is a <em>writing style</em> learned from confident text. You can be calibrated. It performs calibration. That one difference is why verification is your job, not the model\'s.</div>' +
-        '<div class="lab-btn-row"><button class="lab-btn lab-btn-sm" id="' + uid + '-again">↻ Play again</button></div>';
+        '<div class="lab-btn-row">' +
+          '<button class="lab-btn lab-btn-primary" id="' + uid + '-bot">🤖 Now make the chatbot sit the same test</button>' +
+          '<button class="lab-btn lab-btn-sm" id="' + uid + '-again">↻ Play again (new questions)</button></div>' +
+        '<div id="' + uid + '-botout"></div>';
       labComplete('calibration');
+      el(uid + '-bot').addEventListener('click', function () {
+        el(uid + '-botout').innerHTML = botCompare();
+        el(uid + '-bot').disabled = true;
+      });
       el(uid + '-again').addEventListener('click', function () {
-        i = 0; score = 0; confSum = 0; rows = []; chosen = -1;
+        newDeck();
         el(uid + '-results').innerHTML = '';
         el(uid + '-stage').style.display = '';
         ask();
       });
     });
+    newDeck();
     ask();
   }
 };
@@ -3191,6 +3760,12 @@ LABS['energy-counter'] = {
   html: function (uid) {
     return '' +
       '<div class="lab" id="' + uid + '">' +
+        '<div class="lab-pattern" id="' + uid + '-predict"><strong>Before you look at any numbers, commit to a guess:</strong> which uses more energy — asking a chatbot one question, or boiling one kettle?' +
+          '<span class="lab-btn-row" style="margin-top:8px">' +
+          '<button class="lab-btn lab-btn-sm" data-ecp="prompt">The chatbot question</button>' +
+          '<button class="lab-btn lab-btn-sm" data-ecp="same">About the same</button>' +
+          '<button class="lab-btn lab-btn-sm" data-ecp="kettle10">The kettle — a few times more</button>' +
+          '<button class="lab-btn lab-btn-sm" data-ecp="kettle100">The kettle — about 100× more</button></span></div>' +
         '<div class="lab-ec-grid">' +
           EC_ITEMS.map(function (it, i) {
             return '<button class="lab-ec-item" data-i="' + i + '"><span class="lab-fb-emoji">' + it.e + '</span>' +
@@ -3199,21 +3774,30 @@ LABS['energy-counter'] = {
         '</div>' +
         '<div class="lab-label" style="margin-top:14px">Your session so far</div>' +
         '<div class="lab-ea-bar"><span id="' + uid + '-bar" style="background:var(--warning)"></span></div>' +
-        '<div class="lab-feedback" id="' + uid + '-total" style="margin-top:6px">0 Wh</div>' +
+        '<div class="lab-feedback" id="' + uid + '-total" style="margin-top:6px" aria-live="polite">0 Wh</div>' +
         '<div class="lab-btn-row">' +
           '<button class="lab-btn lab-btn-sm" id="' + uid + '-scale">👥 What if a million people did this?</button>' +
           '<button class="lab-btn lab-btn-sm" id="' + uid + '-reset">↻ Reset</button>' +
         '</div>' +
-        '<p class="lab-note" id="' + uid + '-msg">Figures are rough mid-points of published estimates — real numbers vary by model, hardware and study. The order of magnitude is the point, not the decimal.</p>' +
+        '<p class="lab-note" id="' + uid + '-msg" aria-live="polite">Figures are rough mid-points of published estimates — real numbers vary by model, hardware and study. The order of magnitude is the point, not the decimal.</p>' +
       '</div>';
   },
   init: function (uid) {
-    var total = 0;
+    var total = 0, predicted = false;
     function render() {
       el(uid + '-total').textContent = (Math.round(total * 10) / 10) + ' Wh' +
         (total >= 110 ? ' — you\'ve passed one kettle boil 🫖' : ' (a kettle boil is ≈110 Wh)');
       el(uid + '-bar').style.width = Math.min(100, total / 220 * 100) + '%';
     }
+    el(uid + '-predict').addEventListener('click', function (e) {
+      var b = e.target.closest('[data-ecp]'); if (!b) return;
+      var k = b.getAttribute('data-ecp');
+      predicted = true;
+      el(uid + '-predict').innerHTML = (k === 'kettle100'
+          ? '✓ <strong>Spot on.</strong> '
+          : '<strong>Most people get this wrong — and it matters.</strong> ') +
+        'A kettle boil is ≈<strong>110 Wh</strong>; one chatbot question is ≈<strong>1 Wh</strong> — the kettle costs roughly <strong>100×</strong> more. So why does AI energy make headlines? Build a session below, then press the million-people button.';
+    });
     el(uid).addEventListener('click', function (e) {
       var b = e.target.closest('.lab-ec-item');
       if (!b) return;
@@ -3221,6 +3805,7 @@ LABS['energy-counter'] = {
       render();
     });
     el(uid + '-scale').addEventListener('click', function () {
+      if (!predicted) { el(uid + '-msg').textContent = 'Commit to the kettle-vs-prompt guess at the top first — the answer is the whole point of this lab.'; return; }
       if (total <= 0) { el(uid + '-msg').textContent = 'Tap a few actions first, then scale them up.'; return; }
       var mwh = total * 1e6 / 1000; /* kWh for a million people */
       var homes = Math.round(mwh / 7.5); /* ≈7.5 kWh/day per UK home */
@@ -3268,20 +3853,34 @@ LABS['model-card'] = {
   html: function (uid) {
     return '' +
       '<div class="lab" id="' + uid + '">' +
-        '<div class="lab-mc-card">' +
+        '<div class="lab-mc-card" id="' + uid + '-card">' +
           '<div class="lab-mc-head">📄 Model card · <strong>StudyMate-3</strong> <span class="lab-nw-pct">fictional</span></div>' +
           MC_LINES.map(function (l, i) {
             return '<button class="lab-mc-line" data-i="' + i + '">' + esc(l.t) + '</button>';
           }).join('') +
         '</div>' +
-        '<div class="lab-feedback" id="' + uid + '-score">Red flags found: 0 / 5</div>' +
-        '<div id="' + uid + '-why"></div>' +
-        '<p class="lab-note">This is Lesson-"look inside the black box" as a skill: you don\'t need to read code to audit an AI system — you need to read its claims like this, every time.</p>' +
+        '<div class="lab-feedback" id="' + uid + '-score" aria-live="polite">Red flags found: 0 / 5 · honest lines wrongly flagged: 0</div>' +
+        '<div id="' + uid + '-why" aria-live="polite"></div>' +
+        '<div class="lab-btn-row"><button class="lab-btn lab-btn-sm" id="' + uid + '-redo">↻ New audit</button></div>' +
+        '<p class="lab-note">An auditor needs two skills: catching the bad lines <em>and</em> not crying wolf at the good ones. Flag everything and you\'ve proven nothing. You pass with all 5 flags and at most one wrong accusation.</p>' +
       '</div>';
   },
   init: function (uid) {
-    var found = 0, done = {};
-    el(uid).addEventListener('click', function (e) {
+    var found, falseFlags, done;
+    function scoreLine() {
+      el(uid + '-score').textContent = 'Red flags found: ' + found + ' / 5 · honest lines wrongly flagged: ' + falseFlags;
+      el(uid + '-score').className = 'lab-feedback ' + (found >= 5 && falseFlags <= 1 ? 'ok' : falseFlags > 1 ? 'no' : '');
+    }
+    function reshuffle() {
+      found = 0; falseFlags = 0; done = {};
+      el(uid + '-why').innerHTML = '';
+      var card = el(uid + '-card');
+      var lines = Array.prototype.slice.call(card.querySelectorAll('.lab-mc-line'));
+      lines.forEach(function (b) { b.classList.remove('flagged', 'cleared'); });
+      shuffle(lines).forEach(function (b) { card.appendChild(b); });
+      scoreLine();
+    }
+    el(uid + '-card').addEventListener('click', function (e) {
       var b = e.target.closest('.lab-mc-line');
       if (!b) return;
       var i = +b.getAttribute('data-i');
@@ -3289,22 +3888,28 @@ LABS['model-card'] = {
       done[i] = true;
       var l = MC_LINES[i];
       b.classList.add(l.flag ? 'flagged' : 'cleared');
-      if (l.flag) found++;
-      el(uid + '-score').textContent = 'Red flags found: ' + found + ' / 5';
-      el(uid + '-score').className = 'lab-feedback ' + (found >= 5 ? 'ok' : '');
+      if (l.flag) found++; else falseFlags++;
+      scoreLine();
       var d = document.createElement('div');
       d.className = 'lab-pc-item ' + (l.flag ? 'no' : 'ok');
-      d.innerHTML = '<span class="lab-pc-ic">' + (l.flag ? '🚩' : '✓') + '</span><span>' + l.why + '</span>';
+      d.innerHTML = '<span class="lab-pc-ic">' + (l.flag ? '🚩' : falseFlags && !l.flag ? '⚠' : '✓') + '</span><span>' +
+        (l.flag ? l.why : '<strong>False alarm.</strong> ' + l.why) + '</span>';
       var why = el(uid + '-why');
       why.insertBefore(d, why.firstChild);
       if (found >= 5) {
         var w = document.createElement('div');
         w.className = 'lab-cm-truth';
-        w.innerHTML = '<strong>All five found.</strong> Your audit checklist, reusable on any real system: (1) does the marketing match the limitations? (2) where did the training data come from — really? (3) is accuracy broken down, on a benchmark you can check? (4) was it evaluated on people like its actual users? (5) how stale is the safety evaluation?';
+        if (falseFlags <= 1) {
+          w.innerHTML = '<strong>Audit passed — all five found, ' + (falseFlags === 0 ? 'no' : 'only one') + ' false alarm.</strong> Your checklist, reusable on any real system: (1) does the marketing match the limitations? (2) where did the training data come from — really? (3) is accuracy broken down, on a benchmark you can check? (4) was it evaluated on people like its actual users? (5) how stale is the safety evaluation?';
+          labComplete('model-card');
+        } else {
+          w.innerHTML = '<strong>You found all five — but you also accused ' + falseFlags + ' honest lines.</strong> An auditor who flags everything is as easy to ignore as one who flags nothing: the skill is telling them apart. Press “New audit” and try for a clean sweep.';
+        }
         why.insertBefore(w, why.firstChild);
-        labComplete('model-card');
       }
     });
+    el(uid + '-redo').addEventListener('click', reshuffle);
+    reshuffle();
   }
 };
 
