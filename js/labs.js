@@ -277,7 +277,9 @@ LABS['pixel-classifier'] = {
 var NW_DEFAULT = {
   seed: 'The pupil opened the',
   tree: {
-    start: [{ w: 'laptop', p: 52 }, { w: 'book', p: 31 }, { w: 'window', p: 12 }, { w: 'fridge', p: 5 }],
+    /* __start__ is the seed sentinel — it must never collide with a real
+       word key ("start" below is the continuation of "to start…") */
+    __start__: [{ w: 'laptop', p: 52 }, { w: 'book', p: 31 }, { w: 'window', p: 12 }, { w: 'fridge', p: 5 }],
     laptop: [{ w: 'and', p: 58 }, { w: 'to', p: 42 }],
     book: [{ w: 'and', p: 61 }, { w: 'to', p: 39 }],
     window: [{ w: 'and', p: 55 }, { w: 'to', p: 45 }],
@@ -285,7 +287,7 @@ var NW_DEFAULT = {
     and: [{ w: 'began', p: 47 }, { w: 'started', p: 33 }, { w: 'paused', p: 20 }],
     to: [{ w: 'check', p: 54 }, { w: 'start', p: 28 }, { w: 'avoid', p: 18 }],
     began: [{ w: 'revising.', p: 62 }, { w: 'typing.', p: 26 }, { w: 'again.', p: 12 }],
-    started: [{ w: 'working.', p: 58 }, { w: 'reading.', p: 30 }, { w: 'over.', p: 12 }],
+    started: [{ w: 'working.', p: 58 }, { w: 'reading.', p: 30 }, { w: 'typing.', p: 12 }],
     paused: [{ w: 'to think.', p: 57 }, { w: 'for a moment.', p: 31 }, { w: 'briefly.', p: 12 }],
     check: [{ w: 'the homework.', p: 55 }, { w: 'their notes.', p: 33 }, { w: 'the time.', p: 12 }],
     avoid: [{ w: 'the homework.', p: 58 }, { w: 'distraction.', p: 42 }],
@@ -313,6 +315,7 @@ LABS['next-word'] = {
   },
   init: function (uid, data) {
     var D = (data && data.tree) ? data : NW_DEFAULT;
+    var SEED_KEY = D.tree.__start__ ? '__start__' : 'start';
     var base, key, done;
     function temp() { return (+el(uid + '-temp').value) / 10; }
     function options() {
@@ -377,13 +380,13 @@ LABS['next-word'] = {
     });
     el(uid + '-model').addEventListener('click', modelPick);
     el(uid + '-reset').addEventListener('click', function () {
-      base = D.seed; key = 'start'; done = false;
+      base = D.seed; key = SEED_KEY; done = false;
       el(uid + '-note').textContent =
         'Pick words yourself — or press "Let the model pick" and turn the temperature dial. This is exactly the knob real chatbots expose: it decides how often the dice beat the favourite.';
       render();
     });
     el(uid + '-tempv').textContent = temp().toFixed(1);
-    base = D.seed; key = 'start'; done = false;
+    base = D.seed; key = SEED_KEY; done = false;
     el(uid + '-note').textContent =
       'Pick words yourself — or press "Let the model pick" and turn the temperature dial. This is exactly the knob real chatbots expose: it decides how often the dice beat the favourite.';
     render();
