@@ -12,19 +12,19 @@ var SLIDES_CRITICAL = {
     {
       type: 'concept',
       title: 'The Three-Tier AI Usage Policy',
-      body: 'To keep learning active and maintain academic integrity, our school uses a Three-Tier AI Usage Policy. Understanding these tiers is the precondition for using Gemini and NotebookLM on your devices.',
+      body: 'To keep learning active and maintain academic integrity, our school uses a Three-Tier AI Usage Policy. Understanding these tiers is the precondition for using Gemini and Gemini Notebook on your devices.',
       bullets: [
-        '<strong>🟢 Green Tier (AI-Supported Brainstorming):</strong> Brainstorming essay outlines, asking Gemini to explain difficult concepts, using NotebookLM to search your notes, and self-testing. This is active learning and is fully encouraged. No formal disclosure is required.',
+        '<strong>🟢 Green Tier (AI-Supported Brainstorming):</strong> Brainstorming essay outlines, asking Gemini to explain difficult concepts, using Gemini Notebook to search your notes, and self-testing. This is active learning and is fully encouraged. No formal disclosure is required.',
         '<strong>🟡 Amber Tier (AI-Assisted Editing):</strong> Uploading your written draft to Gemini to check for grammar, clarity, or logical flow. This is permitted for coursework but <em>must</em> be disclosed in a brief footnote (e.g., \'I used Gemini to improve the flow of paragraph 2\').',
-        '<strong>🔴 Red Tier (AI-Authored Output):</strong> Generating text paragraphs using Gemini, copying study guides or podcast scripts directly from NotebookLM, or submitting AI-generated ideas as your own work. This is plagiarism, and it will result in a zero grade.',
+        '<strong>🔴 Red Tier (AI-Authored Output):</strong> Generating text paragraphs using Gemini, copying study guides or podcast scripts directly from Gemini Notebook, or submitting AI-generated ideas as your own work. This is plagiarism, and it will result in a zero grade.',
         '<strong>The autocomplete trap:</strong> Letting AI complete your sentences might feel like a time-saver, but it prevents you from developing your own voice. Avoid using AI autocomplete features when drafting original work.'
       ],
       callout: 'Academic integrity is not about rules; it is about trust. If your teachers cannot trust that the work you submit reflects your understanding, they cannot assess your learning or help you improve.'
     },
     {
       type: 'scenario',
-      title: 'The NotebookLM Audio Overview Trap',
-      situation: 'You have been assigned to read three long research papers on renewable energy and deliver a 5-minute presentation to your science class. You upload the PDFs to NotebookLM and generate a 10-minute \'Audio Overview\'—a highly engaging, conversational podcast where two AI hosts banter about the papers. It makes the papers sound incredibly simple and you understand the big picture. The presentation is tomorrow morning. You have not opened the source PDFs.',
+      title: 'The Gemini Notebook Audio Overview Trap',
+      situation: 'You have been assigned to read three long research papers on renewable energy and deliver a 5-minute presentation to your science class. You upload the PDFs to Gemini Notebook and generate a 10-minute \'Audio Overview\'—a highly engaging, conversational podcast where two AI hosts banter about the papers. It makes the papers sound incredibly simple and you understand the big picture. The presentation is tomorrow morning. You have not opened the source PDFs.',
       question: 'How do you prepare your presentation?',
       choices: [
         {
@@ -36,7 +36,7 @@ var SLIDES_CRITICAL = {
           outcome: 'Your presentation is excellent. You use the AI podcast to help you structure the narrative, but you back it up with direct evidence from the papers. When asked about the solar cell efficiency limitations, you answer accurately using the data table you studied. You receive top marks.'
         },
         {
-          text: 'Ask NotebookLM to generate a presentation outline and speaker notes based on the papers, and read them during the presentation.',
+          text: 'Ask Gemini Notebook to generate a presentation outline and speaker notes based on the papers, and read them during the presentation.',
           outcome: 'The outline is logical, but because you didn\'t read the papers or write the notes, your delivery is stiff and you struggle to explain the slides. The teacher flags the presentation as lacking student voice and schedules a resubmission. The lesson: AI-generated speaker notes do not equal student comprehension.'
         }
       ]
@@ -68,10 +68,10 @@ var SLIDES_CRITICAL = {
       steps: [
         'Review your weekly study habits. Where do you spend the most time (reading, writing, memorising, problem-solving)?',
         'For each habit, assign an AI tier (Green, Amber, Red). Where is AI most helpful? Where is it most dangerous to your learning?',
-        'Write three rules for your personal protocol (e.g., \'Rule 1: I will never copy-paste AI-generated text. Rule 2: I will always read the source PDF before using NotebookLM summaries.\')',
+        'Write three rules for your personal protocol (e.g., \'Rule 1: I will never copy-paste AI-generated text. Rule 2: I will always read the source PDF before using Gemini Notebook summaries.\')',
         'Design an AI disclosure template that you can paste at the bottom of your assignments.',
         'Share your protocol with a partner and identify one area where you might be tempted to slip into cognitive offloading.',
-        'Write your final protocol in your notes—this will guide your use of Gemini and NotebookLM when they are deployed.'
+        'Write your final protocol in your notes—this will guide your use of Gemini and Gemini Notebook when they are deployed.'
       ]
     },
     {
@@ -90,7 +90,7 @@ var SLIDES_CRITICAL = {
         'Using Gemini to explain how a vector database works.',
         'Asking Gemini to write the introduction paragraph of your geography coursework.',
         'Uploading your essay draft to Gemini to check for logical flow and suggest sentence improvements.',
-        'Using NotebookLM to search your uploaded class notes for key terms.'
+        'Using Gemini Notebook to search your uploaded class notes for key terms.'
       ],
       correct: 2,
       explanation: 'Uploading your original draft to check for flow and grammar is an Amber Tier activity (AI-assisted editing). It is permitted, but it must be disclosed in a footnote. Writing the paragraph is Red Tier (plagiarism), and explaining concepts is Green Tier (no disclosure needed).'
@@ -101,7 +101,7 @@ var SLIDES_CRITICAL = {
       points: [
         { icon: '▸', label: 'Struggling is learning', text: 'Desirable difficulties are essential for memory encoding. Offloading summaries or writing to AI lowers comprehension.' },
         { icon: '▸', label: 'Know your tiers', text: 'Green (brainstorming), Amber (editing with disclosure), Red (AI authorship/plagiarism). Always check school guidelines.' },
-        { icon: '▸', label: 'Audio Overviews are previews', text: 'NotebookLM\'s podcasts are excellent for overview, but they skip details. Never write presentations or essays based solely on AI audio summaries.' }
+        { icon: '▸', label: 'Audio Overviews are previews', text: 'Gemini Notebook\'s podcasts are excellent for overview, but they skip details. Never write presentations or essays based solely on AI audio summaries.' }
       ]
     }
   ],
@@ -209,7 +209,7 @@ var SLIDES_CRITICAL = {
     {
       type: 'hook',
       title: 'Trust, But Verify',
-      body: 'In February 2023, Google unveiled its AI assistant — then called Bard, later rebranded as Gemini in February 2024 — in a live demo. Gemini was asked what new discoveries the James Webb Space Telescope had made. It answered confidently — including the claim that Webb had taken the "very first images" of a planet outside our solar system. Astronomers immediately pointed out this was wrong: the first exoplanet image was taken in 2004. The error wiped over $100 billion from Alphabet\'s market value in a single day. A week later, Air Canada\'s chatbot told a bereaved customer he could apply for bereavement fares retroactively — a policy that did not exist. A court ruled Air Canada was liable for its chatbot\'s false promise. More recently, in 2025, Air Canada\'s case became a landmark reference in AI liability law across multiple jurisdictions.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">$100B</span><span class="sl">lost by Alphabet after one AI factual error in a live demo</span></div><div class="hook-stat-mini"><span class="sv">38%</span><span class="sl">of AI-generated medical information contains a significant error (BMJ, 2024)</span></div><div class="hook-stat-mini"><span class="sv">Liable</span><span class="sl">Air Canada held legally responsible for its chatbot\'s false promise — a landmark 2024 ruling</span></div></div>AI systems produce errors with the same tone, fluency, and confidence as accurate information. The only defence is verification — and you need a system for it.'
+      body: 'In February 2023, Google unveiled its AI assistant Bard — later rebranded as Gemini — in a live demo. Bard was asked what new discoveries the James Webb Space Telescope had made. It answered confidently — including the claim that Webb had taken the "very first images" of a planet outside our solar system. Astronomers immediately pointed out this was wrong: the first exoplanet image was taken in 2004. The error wiped over $100 billion from Alphabet\'s market value in a single day. Meanwhile, Air Canada\'s chatbot had told a bereaved customer he could apply for bereavement fares retroactively — a policy that did not exist. In February 2024 a tribunal ruled Air Canada liable for its chatbot\'s false promise, in a case now cited across AI liability law.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">$100B</span><span class="sl">lost by Alphabet after one AI factual error in a live demo</span></div><div class="hook-stat-mini"><span class="sv">Fluent</span><span class="sl">AI answers to medical questions repeatedly show significant error rates in evaluations — fluency is not accuracy</span></div><div class="hook-stat-mini"><span class="sv">Liable</span><span class="sl">Air Canada held legally responsible for its chatbot\'s false promise — a landmark 2024 ruling</span></div></div>AI systems produce errors with the same tone, fluency, and confidence as accurate information. The only defence is verification — and you need a system for it.'
     },
     {
       type: 'concept',
@@ -275,7 +275,7 @@ var SLIDES_CRITICAL = {
       title: 'Who Is Responsible?',
       questions: [
         { num: 1, text: 'Air Canada was held legally liable for its chatbot\'s false promise. Should AI companies be liable when their systems produce harmful false information — or does responsibility always lie with the person who chose to act on it?' },
-        { num: 2, text: 'Medical AI tools are increasingly used by patients to self-diagnose. A BMJ study found 38% of AI-generated medical information contains a significant error. Who bears responsibility when a patient is harmed by acting on AI medical advice?' },
+        { num: 2, text: 'Medical AI tools are increasingly used by patients to self-diagnose — and evaluations of AI answers to medical questions repeatedly find significant error rates. Who bears responsibility when a patient is harmed by acting on AI medical advice?' },
         { num: 3, text: 'Professional fact-checkers take 15–20 minutes to verify a single claim thoroughly. In a world where AI produces thousands of claims per second, is systematic verification even scalable? What institutional solutions might work?' }
       ]
     },
@@ -307,7 +307,7 @@ var SLIDES_CRITICAL = {
     {
       type: 'hook',
       title: 'What Can You Trust?',
-      body: 'In May 2024, Google launched AI Overviews — an AI-generated summary appearing above all search results. Within days, users discovered it was recommending eating one small rock per day for minerals, suggesting you add glue to pizza to stop the cheese sliding off, and advising that a medical professional would tell you to run with scissors. Google had trained its AI on satirical articles and Reddit jokes — and presented them as factual health advice to millions of users. The AI was not lying. It simply had no concept of what truth is.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">Glue</span><span class="sl">Google AI Overviews told millions: add glue to pizza to stop cheese sliding off (May 2024)</span></div><div class="hook-stat-mini"><span class="sv">~20%</span><span class="sl">of AI-generated academic citations are fabricated — yet AI produces them with full confidence</span></div><div class="hook-stat-mini"><span class="sv">1 in 3</span><span class="sl">pupils cannot distinguish AI-generated text from real expert writing</span></div></div>If AI can produce confident, fluent, completely false information — how do you know what to trust? The answer starts with understanding how knowledge works.'
+      body: 'In May 2024, Google launched AI Overviews — an AI-generated summary appearing above all search results. Within days, users discovered it was recommending eating one small rock per day for minerals, suggesting you add glue to pizza to stop the cheese sliding off, and advising that a medical professional would tell you to run with scissors. Google had trained its AI on satirical articles and Reddit jokes — and presented them as factual health advice to millions of users. The AI was not lying. It simply had no concept of what truth is.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">Glue</span><span class="sl">Google AI Overviews told millions: add glue to pizza to stop cheese sliding off (May 2024)</span></div><div class="hook-stat-mini"><span class="sv">Invented</span><span class="sl">AI chatbots routinely fabricate plausible-looking academic citations — always click through to check they exist</span></div><div class="hook-stat-mini"><span class="sv">Hard</span><span class="sl">studies repeatedly show readers struggle to tell AI-generated text from expert writing</span></div></div>If AI can produce confident, fluent, completely false information — how do you know what to trust? The answer starts with understanding how knowledge works.'
     },
     {
       type: 'concept',
@@ -470,14 +470,14 @@ var SLIDES_CRITICAL = {
     {
       type: 'hook',
       title: 'AI and Democracy',
-      body: 'In the 2024 Slovak election, an AI-generated audio clip of opposition leader Michal Šimečka apparently discussing how to rig the vote went viral two days before polling — during the legally mandated silence period when candidates could not respond. Šimečka lost. In New Hampshire, an AI-cloned Biden voice told thousands of Democrats not to vote in the primary; the consultant was fined $6 million by the FCC and faces 26 criminal charges, and the FCC used the case to rule all AI-generated robocalls illegal under federal law. Across the 2024 global super-election year — when 40% of the world\'s population went to the polls — Recorded Future documented AI-generated interference in 38 countries. But here is the finding researchers did not expect: Harvard\'s Ash Center concluded that in the 2024 US election, cheap fakes (crudely edited real footage) were used seven times more often than sophisticated AI-generated content. The threat was real — but it looked different than predicted.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">38</span><span class="sl">countries with documented AI electoral interference (Recorded Future, 2024)</span></div><div class="hook-stat-mini"><span class="sv">$6M</span><span class="sl">FCC fine for Biden deepfake robocall — plus 26 criminal charges</span></div><div class="hook-stat-mini"><span class="sv">7×</span><span class="sl">cheap fakes used more than AI-generated content in 2024 US election (Harvard)</span></div><div class="hook-stat-mini"><span class="sv">40%</span><span class="sl">of world population voted in 2024 — the largest election year in history</span></div></div>Democracy depends on informed citizens making genuine choices. AI is now a direct threat to both conditions — but not always in the ways we expected.'
+      body: 'In the 2023 Slovak election, an AI-generated audio clip of opposition leader Michal Šimečka apparently discussing how to rig the vote went viral two days before polling — during the legally mandated silence period when candidates could not respond. Šimečka lost. In New Hampshire, an AI-cloned Biden voice told thousands of Democrats not to vote in the primary; the consultant was fined $6 million by the FCC and faces 26 criminal charges, and the FCC used the case to rule all AI-generated robocalls illegal under federal law. Across the 2024 global super-election year — when 40% of the world\'s population went to the polls — Recorded Future documented AI-generated interference in 38 countries. But here is the finding researchers did not expect: Harvard\'s Ash Center concluded that in the 2024 US election, cheap fakes (crudely edited real footage) were used seven times more often than sophisticated AI-generated content. The threat was real — but it looked different than predicted.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">38</span><span class="sl">countries with documented AI electoral interference (Recorded Future, 2024)</span></div><div class="hook-stat-mini"><span class="sv">$6M</span><span class="sl">FCC fine for Biden deepfake robocall — plus 26 criminal charges</span></div><div class="hook-stat-mini"><span class="sv">7×</span><span class="sl">cheap fakes used more than AI-generated content in 2024 US election (Harvard)</span></div><div class="hook-stat-mini"><span class="sv">40%</span><span class="sl">of world population voted in 2024 — the largest election year in history</span></div></div>Democracy depends on informed citizens making genuine choices. AI is now a direct threat to both conditions — but not always in the ways we expected.'
     },
     {
       type: 'concept',
       title: 'How AI Is Used in Electoral Influence',
       body: 'AI-driven electoral interference takes several distinct forms — some illegal, some legal but ethically contested, some simply new. Understanding the taxonomy helps you distinguish a coordinated influence operation from legitimate political communication. Critically, Harvard\'s Ash Center found that in the 2024 US election, cheap fakes (crudely edited real footage) were used seven times more often than sophisticated AI deepfakes — the threat is real, but it does not always look the way headlines suggest.',
       bullets: [
-        '<strong>Synthetic media:</strong> Deepfake audio and video of real candidates saying things they never said. The 2024 Slovak audio, a deepfake of Keir Starmer endorsing a private investment scheme, a fabricated video of a Bangladeshi opposition leader, and the Biden New Hampshire robocall were all generated with free or low-cost tools. The Biden case produced the first major enforcement action: a $6M FCC fine, $1M fine on carrier Lingo Telecom, and 26 criminal charges',
+        '<strong>Synthetic media:</strong> Deepfake audio and video of real candidates saying things they never said. The 2023 Slovak audio, a deepfake of Keir Starmer endorsing a private investment scheme, a fabricated video of a Bangladeshi opposition leader, and the Biden New Hampshire robocall were all generated with free or low-cost tools. The Biden case produced the first major enforcement action: a $6M FCC fine, $1M fine on carrier Lingo Telecom, and 26 criminal charges',
         '<strong>Cheap fakes at scale:</strong> Harvard\'s Ash Center documented that crude manipulations — slowed-down video, out-of-context clips, misleading captions on real footage — were seven times more prevalent than AI-generated content in 2024. These require no technical skill and are harder to flag as "AI-generated" because they technically are not',
         '<strong>AI-generated text at scale:</strong> Automated accounts generating thousands of politically themed posts per hour, seeding narratives across platforms. Stanford Internet Observatory documented networks of 800+ coordinated accounts during the 2024 Taiwan election. Recorded Future identified AI-generated interference content targeting 38 countries',
         '<strong>Micro-targeting 2.0:</strong> Psychographic profiling using AI to identify voter fears, insecurities and identity threats with unprecedented precision — then tailoring political messaging to exploit them. Over 900 AI-generated political ads ran on Facebook in a single week in US swing states in 2024',

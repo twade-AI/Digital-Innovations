@@ -1,6 +1,11 @@
 /* ── Digital Innovations — Removes (Year 9) Course Content ─────────
    Year 9 (ages 13–14) · 7 units · 40 lessons · aligned to the OECD/EU
    AI Literacy Framework (Engage · Create · Manage · Shape)
+   NOTE ON PITCH: study-skills examples and model prompts deliberately
+   reference GCSE work ("Year 11 pupil targeting grade 7", exam boards,
+   revision). Removes pupils choose GCSE options this year and start
+   those courses next year — the examples are written to be aspirational
+   now and directly reusable the moment they matter.
    ─────────────────────────────────────────────────────────────── */
 
 /* ── Unit order follows the OECD/EU AILit Framework learning arc:
@@ -433,7 +438,7 @@ SLIDES_GCSE[103] = [
       { term: 'What it does', def: 'Predicts the 3D shape of a protein from its sequence — accuracy comparable to lab experiments, in hours instead of years' },
       { term: 'The scale', def: 'By 2022 AlphaFold had predicted structures for over 200 million proteins — essentially every known protein on Earth — and made them free for researchers' },
       { term: 'Real impact', def: 'Used to design antimalarial vaccines, map plastic-eating enzymes, accelerate antibiotic discovery, and understand neglected tropical diseases. Over 2 million researchers in 190 countries have used it.' },
-      { term: '2024 Nobel Prize', def: 'Demis Hassabis and John Jumper shared the Nobel Prize in Chemistry for AlphaFold — the first Nobel given largely for an AI system' },
+      { term: '2024 Nobel Prize', def: 'Demis Hassabis and John Jumper took half the Nobel Prize in Chemistry for AlphaFold (David Baker took the other half for computational protein design) — the first Nobel given largely for an AI system' },
       { term: 'The lesson for you', def: 'Narrow AI is not a lesser form of AI. A system that does one thing extraordinarily well can change a field. Most real-world AI value comes from narrow, focused systems — not from chatbots aiming to do everything.' }
     ],
     sources: [
@@ -542,7 +547,7 @@ SLIDES_GCSE[104] = [
       { term: 'Why it matters', def: 'Every consumer AI product you use works this way — multiple narrow models stitched together. Calling it "an AI" hides the engineering reality.' }
     ],
     sources: [
-      { label: 'Spotify Engineering — "The Evolution of Spotify\'s ML Architecture"', url: 'https://engineering.atspotify.com/' }
+      { label: 'Spotify Engineering blog — machine-learning and recommendation articles', url: 'https://engineering.atspotify.com/' }
     ]
   },
   {
@@ -828,11 +833,11 @@ SLIDES_GCSE[106] = [
   {
     type: 'concept',
     title: "The School's Three-Tier AI Policy",
-    body: 'Your school Google account comes with two AI tools — <strong>Gemini</strong> (the chatbot you can ask anything) and <strong>NotebookLM</strong> (a notebook that answers only from notes you upload). Before you use either for school work, you need the rules. The whole school — including the Sixth Form — uses the same Three-Tier policy, and it decides whether a use of AI is encouraged, allowed-with-disclosure, or banned.',
+    body: 'Your school Google account comes with two AI tools — <strong>Gemini</strong> (the chatbot you can ask anything) and <strong>Gemini Notebook</strong> (a notebook that answers only from notes you upload). Before you use either for school work, you need the rules. The whole school — including the Sixth Form — uses the same Three-Tier policy, and it decides whether a use of AI is encouraged, allowed-with-disclosure, or banned.',
     bullets: [
-      '<strong>🟢 Green — AI-supported thinking (encouraged):</strong> asking Gemini to explain something you don\'t understand, getting NotebookLM to quiz you on your own notes, brainstorming ideas for an essay plan. This is active learning — no disclosure needed.',
+      '<strong>🟢 Green — AI-supported thinking (encouraged):</strong> asking Gemini to explain something you don\'t understand, getting Gemini Notebook to quiz you on your own notes, brainstorming ideas for an essay plan. This is active learning — no disclosure needed.',
       '<strong>🟡 Amber — AI-assisted editing (allowed, must be disclosed):</strong> showing Gemini a draft YOU wrote and asking for feedback on clarity or grammar. Fine for homework — but you must say so, e.g. "I used Gemini to check the flow of paragraph 2."',
-      '<strong>🔴 Red — AI-authored work (banned):</strong> getting Gemini to write your paragraphs, or copying a NotebookLM study guide and submitting it as your own. That\'s plagiarism — it earns a zero, and worse, you learn nothing.',
+      '<strong>🔴 Red — AI-authored work (banned):</strong> getting Gemini to write your paragraphs, or copying a Gemini Notebook study guide and submitting it as your own. That\'s plagiarism — it earns a zero, and worse, you learn nothing.',
       '<strong>The screen-off test:</strong> after using AI, could you explain the work to your teacher with the screen off? If yes, you\'re in Green or Amber territory. If no, you\'ve drifted into Red.'
     ],
     callout: 'One question decides the tier: did the thinking stay yours? AI that helps you think is encouraged. AI that thinks instead of you is banned.'
@@ -845,11 +850,11 @@ SLIDES_GCSE[106] = [
     categories: ['🟢 Green — encouraged', '🟡 Amber — allowed, must disclose', '🔴 Red — banned'],
     items: [
       { text: 'Asking Gemini to explain osmosis a different way after you got stuck on it', correct: 0, why: 'Green. You\'re using AI to understand something — the thinking stays yours. No disclosure needed; this is exactly what the policy encourages.' },
-      { text: 'Getting NotebookLM to make practice questions from your own class notes', correct: 0, why: 'Green. Retrieval practice on your own material is active learning — the single most evidence-backed study technique. Encouraged, no disclosure needed.' },
+      { text: 'Getting Gemini Notebook to make practice questions from your own class notes', correct: 0, why: 'Green. Retrieval practice on your own material is active learning — the single most evidence-backed study technique. Encouraged, no disclosure needed.' },
       { text: 'Brainstorming a list of points with Gemini, then planning and writing the essay yourself', correct: 0, why: 'Green. Using AI to spark ideas you then develop and write in your own words keeps the thinking yours. (If you lifted whole sentences straight into the final essay, it would tip into Amber or Red — so write it yourself.)' },
       { text: 'Writing a history essay yourself, then asking Gemini to check the grammar of paragraph 2', correct: 1, why: 'Amber. The work is yours; AI only polished it. Allowed for homework — but you must disclose it, e.g. "I used Gemini to check the grammar of paragraph 2."' },
       { text: 'Pasting the homework question into Gemini and copying its answer into your book', correct: 2, why: 'Red. The AI did the thinking and you submitted it as your own — malpractice under JCQ 2024, a likely zero, and you learned nothing the exam will reward.' },
-      { text: 'Copying a NotebookLM study guide and handing it in as your own summary', correct: 2, why: 'Red. Submitting AI-generated text as your own work is plagiarism, whatever tool produced it.' }
+      { text: 'Copying a Gemini Notebook study guide and handing it in as your own summary', correct: 2, why: 'Red. Submitting AI-generated text as your own work is plagiarism, whatever tool produced it.' }
     ],
     callout: 'Underneath every one of these is the screen-off test: after using AI, could you explain the work to your teacher with the screen off? Yes = Green or Amber. No = you\'ve drifted into Red.'
   },
@@ -965,7 +970,7 @@ SLIDES_GCSE[107] = [
       'Push back with sources: "My textbook says the First World War ended in November 1918 — you said October. Which is correct and how do you know?"',
       'Narrow it down: "Focus just on the economic causes, not the political ones — and for the economic ones, go deeper"',
       'Ask for self-critique: "What is the weakest point in this answer, and how could it be improved?" — this single move often produces the best version.',
-      'Request sources: "Cite two reputable sources for the main claim, with URLs" — then verify them (see lesson 108 on hallucinations).'
+      'Request sources: "Cite two reputable sources for the main claim, with URLs" — then verify them (see lesson 114 on hallucinations).'
     ],
     callout: 'Golden rule: if the first answer isn\'t good enough, keep talking. The second response is nearly always better. The fifth is usually excellent.'
   },
@@ -1045,7 +1050,7 @@ SLIDES_GCSE[108] = [
   {
     type: 'hook',
     title: 'Using AI to Summarise',
-    body: 'Your Chemistry textbook chapter is 18 pages. Your exam is tomorrow at 9am. AI can shrink it to a study sheet in 30 seconds — but whether you walk into that exam prepared or blindsided depends entirely on what you do with it. Google\'s NotebookLM, launched in 2023 and expanded globally in 2024, lets pupils upload textbooks and get instant summaries and audio "podcasts" of their notes — it passed a million users within roughly three months of launch and kept climbing. Schools across the UK are now building it into revision support — including ours: NotebookLM comes free with your school Google account. But a 2011 Purdue study by Karpicke and Blunt (Science journal) showed that passive re-reading — which is what reading an AI summary amounts to — is one of the <em>least</em> effective revision strategies ever studied. The same minutes spent actively recalling produce up to 50% better exam retention.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">50%</span><span class="sl">better retention from active recall vs re-reading (Karpicke &amp; Blunt, Science 2011)</span></div><div class="hook-stat-mini"><span class="sv">1M+</span><span class="sl">NotebookLM users within ~3 months of its 2024 launch</span></div><div class="hook-stat-mini"><span class="sv">10–20%+</span><span class="sl">hallucination rate on specialist-subject tasks like science &amp; medicine (Stanford HAI AI Index)</span></div></div>',
+    body: 'Your Chemistry textbook chapter is 18 pages. Your exam is tomorrow at 9am. AI can shrink it to a study sheet in 30 seconds — but whether you walk into that exam prepared or blindsided depends entirely on what you do with it. Google\'s Gemini Notebook, launched in 2023 and expanded globally in 2024, lets pupils upload textbooks and get instant summaries and audio "podcasts" of their notes — it passed a million users within roughly three months of launch and kept climbing. Schools across the UK are now building it into revision support — including ours: Gemini Notebook comes free with your school Google account. But a 2011 Purdue study by Karpicke and Blunt (Science journal) showed that passive re-reading — which is what reading an AI summary amounts to — is one of the <em>least</em> effective revision strategies ever studied. The same minutes spent actively recalling produce up to 50% better exam retention.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">50%</span><span class="sl">better retention from active recall vs re-reading (Karpicke &amp; Blunt, Science 2011)</span></div><div class="hook-stat-mini"><span class="sv">1M+</span><span class="sl">Gemini Notebook users within ~3 months of its 2024 launch</span></div><div class="hook-stat-mini"><span class="sv">10–20%+</span><span class="sl">hallucination rate on specialist-subject tasks like science &amp; medicine (Stanford HAI AI Index)</span></div></div>',
     callout: 'Passive summarising (paste, read, feel done) is almost useless. Active summarising (check, question, fill gaps) can double your retention for the same time spent. The OECD\'s 2026 review warns this is exactly where "metacognitive laziness" sets in — the AI fills the gap before you notice you didn\'t understand (Fan et al., 2025).',
     sources: [
       { label: 'Karpicke &amp; Blunt (2011) — Retrieval practice produces more learning than elaborative studying (Science)', url: 'https://www.science.org/doi/10.1126/science.1199327' },
@@ -1447,7 +1452,7 @@ SLIDES_GCSE[111] = [
   {
     type: 'hook',
     title: 'Avoiding the Traps',
-    body: 'In June 2023, New York lawyer Steven Schwartz submitted a 10-page court filing citing six judicial precedents. All six were fabricated by ChatGPT, complete with fake judges, fake case numbers and fake reasoning. Federal judge P. Kevin Castel fined Schwartz $5,000, and the case has since become the textbook example of AI hallucination. A year later, in 2024, JCQ (the UK Joint Council for Qualifications that oversees all major exam boards) issued updated guidance warning that undisclosed AI use in coursework is now classed as malpractice that can void a qualification. Turnitin\'s own 2024 technical report acknowledged its AI-detection model produces false-positive rates around 1% on human-written work — which, at the scale of UK GCSEs, means tens of thousands of innocent pupils could be flagged. And a peer-reviewed 2025 study by Dr Michael Gerlich (SBS Swiss Business School) found a statistically significant negative correlation between frequent AI tool use and performance on critical-thinking assessments, especially among 17–25 year-olds.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">6</span><span class="sl">fabricated case citations in the Schwartz v. Avianca ChatGPT filing (2023)</span></div><div class="hook-stat-mini"><span class="sv">~1%</span><span class="sl">Turnitin&#39;s own reported AI-detection false-positive rate (2024)</span></div><div class="hook-stat-mini"><span class="sv">↓</span><span class="sl">measurable decline in critical thinking linked to heavy AI use (Gerlich, 2025)</span></div><div class="hook-stat-mini"><span class="sv">≠</span><span class="sl">AI raises work quality but NOT durable learning (OECD, 2026)</span></div></div>',
+    body: 'In March 2023, New York lawyer Steven Schwartz submitted a 10-page court filing citing six judicial precedents. All six were fabricated by ChatGPT, complete with fake judges, fake case numbers and fake reasoning. That June, federal judge P. Kevin Castel fined Schwartz $5,000, and the case has since become the textbook example of AI hallucination. A year later, in 2024, JCQ (the UK Joint Council for Qualifications that oversees all major exam boards) issued updated guidance warning that undisclosed AI use in coursework is now classed as malpractice that can void a qualification. Turnitin\'s own 2024 technical report acknowledged its AI-detection model produces false-positive rates around 1% on human-written work — which, at the scale of UK GCSEs, means tens of thousands of innocent pupils could be flagged. And a peer-reviewed 2025 study by Dr Michael Gerlich (SBS Swiss Business School) found a statistically significant negative correlation between frequent AI tool use and performance on critical-thinking assessments, especially among 17–25 year-olds.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">6</span><span class="sl">fabricated case citations in the Schwartz v. Avianca ChatGPT filing (2023)</span></div><div class="hook-stat-mini"><span class="sv">~1%</span><span class="sl">Turnitin&#39;s own reported AI-detection false-positive rate (2024)</span></div><div class="hook-stat-mini"><span class="sv">↓</span><span class="sl">measurable decline in critical thinking linked to heavy AI use (Gerlich, 2025)</span></div><div class="hook-stat-mini"><span class="sv">≠</span><span class="sl">AI raises work quality but NOT durable learning (OECD, 2026)</span></div></div>',
     callout: 'Three named traps catch GCSE pupils out — plagiarism, hallucinations, and over-reliance. The OECD\'s 2026 review adds the sharpest warning of all: AI can make your work <em>look</em> better while leaving you underprepared for the closed-book exam where AI is taken away. Every trap is avoidable — but only if you know exactly what it looks like.',
     sources: [
       { label: 'JCQ (2024) — AI Use in Assessments: Protecting the Integrity of Qualifications', url: 'https://www.jcq.org.uk/exams-office/malpractice/artificial-intelligence/' },
@@ -1482,7 +1487,7 @@ SLIDES_GCSE[111] = [
       'Confident wrong dates: AI will state "1919" for something that happened in 1921 with zero hedging. Never trust a date or statistic without verification.',
       'Invented quotes: made-up lines attributed to real authors. Priestley, Dickens and Shakespeare are all frequently misquoted by LLMs.',
       'Wrong specification content: AI does NOT know whether "electron configuration" is in AQA GCSE Chemistry Paper 1 or Paper 2. It will guess confidently.',
-      'Safer tools, not safe tools: retrieval-augmented tools like NotebookLM (grounded in sources you upload) and Perplexity (cited answers) reduce hallucinations but do not eliminate them.',
+      'Safer tools, not safe tools: retrieval-augmented tools like Gemini Notebook (grounded in sources you upload) and Perplexity (cited answers) reduce hallucinations but do not eliminate them.',
       'The fix: for any fact, date, citation, quote or statistic, cross-check against your textbook, the exam board\'s specification PDF, or a named reputable source.'
     ],
     callout: 'Schwartz v. Avianca (2023): six fabricated cases, one $5,000 fine, global news coverage. The lawyer had asked ChatGPT "are you sure these cases are real?" — ChatGPT said yes. It was still completely wrong.',
@@ -1587,7 +1592,7 @@ SLIDES_GCSE[112] = [
   {
     type: 'hook',
     title: 'Your Revision Toolkit',
-    body: 'You now know how to prompt, summarise, quiz, plan essays and spot the traps. The final question is: how do you stitch it all into a weekly routine you can actually sustain through five months of GCSE revision? Retrieval practice, spacing and interleaving are three of the most robustly evidence-backed methods in all of education — the Education Endowment Foundation rates this kind of self-regulated study among the highest-impact, lowest-cost things a pupil can do, worth roughly <em>seven months\' extra progress</em> a year. Meanwhile around 80% of UK pupils aged 13–18 now use AI for their schoolwork (Oxford University Press, 2025) — but most use it wrong. This lesson gives you a complete weekly toolkit that combines the evidence-based methods WITH AI, in the right places.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">+7 mths</span><span class="sl">progress from self-regulated study — among EEF\'s highest-impact, lowest-cost strategies</span></div><div class="hook-stat-mini"><span class="sv">~80%</span><span class="sl">of UK 13–18s now use AI for schoolwork (Oxford University Press, 2025)</span></div><div class="hook-stat-mini"><span class="sv">~66 days</span><span class="sl">median time for a new habit to stick (Lally et al. 2010)</span></div></div>',
+    body: 'You now know how to prompt, summarise, quiz, plan essays and spot the traps. The final question is: how do you stitch it all into a weekly routine you can actually sustain — this year, and through GCSE revision when it arrives? Retrieval practice, spacing and interleaving are three of the most robustly evidence-backed methods in all of education — the Education Endowment Foundation rates this kind of self-regulated study among the highest-impact, lowest-cost things a pupil can do, worth roughly <em>seven months\' extra progress</em> a year. Meanwhile around 80% of UK pupils aged 13–18 now use AI for their schoolwork (Oxford University Press, 2025) — but most use it wrong. This lesson gives you a complete weekly toolkit that combines the evidence-based methods WITH AI, in the right places.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">+7 mths</span><span class="sl">progress from self-regulated study — among EEF\'s highest-impact, lowest-cost strategies</span></div><div class="hook-stat-mini"><span class="sv">~80%</span><span class="sl">of UK 13–18s now use AI for schoolwork (Oxford University Press, 2025)</span></div><div class="hook-stat-mini"><span class="sv">~66 days</span><span class="sl">median time for a new habit to stick (Lally et al. 2010)</span></div></div>',
     callout: 'The key rule: AI helps you BEFORE you try (to prepare) and AFTER you try (to feedback) — never INSTEAD of trying. The thinking is still yours.',
     sources: [
       { label: 'Education Endowment Foundation — Metacognition &amp; self-regulated learning (guidance report)', url: 'https://educationendowmentfoundation.org.uk/education-evidence/guidance-reports/metacognition' },
@@ -1630,7 +1635,7 @@ SLIDES_GCSE[112] = [
     body: 'AI is not one tool. The best routines use 2–3 complementary tools, each for what it\'s best at. Here is a recommended stack — all either free for pupils or have generous free tiers in 2024–2025.',
     bullets: [
       { term: 'ChatGPT / Claude / Gemini', def: 'Best for: prompted explanations, essay feedback, scenario walk-throughs. Free tiers all work well for GCSE-level study — just remember to verify any facts, dates or citations they produce.' },
-      { term: 'Google NotebookLM', def: 'Best for: uploading your textbook chapter or teacher\'s notes and generating a study guide, audio "podcast" summary and spec-aligned quiz. Comes free with your school Google account.' },
+      { term: 'Google Gemini Notebook', def: 'Best for: uploading your textbook chapter or teacher\'s notes and generating a study guide, audio "podcast" summary and spec-aligned quiz. Comes free with your school Google account.' },
       { term: 'Quizlet AI / Anki', def: 'Best for: spaced-repetition flashcards you type yourself (the typing is part of the learning). Anki is free and the most evidence-based flashcard app ever built — used by medical students worldwide.' },
       { term: 'Khan Academy Khanmigo', def: 'Best for: Maths / Sciences problem walk-throughs. Scaffolds rather than gives answers. Based on a 2024 Harvard RCT showing genuine learning gains when used this way.' },
       { term: 'BBC Bitesize + AI', def: 'Best combo: revise from Bitesize for the official UK-curriculum content, then use an AI chatbot to quiz yourself on what you just read. Human-verified content + AI drill.' }
@@ -1885,7 +1890,7 @@ SLIDES_GCSE[114] = [
   {
     type: 'hook',
     title: 'Evaluating AI Output',
-    body: 'May 2023, New York federal court: attorney Steven Schwartz files a legal brief in <em>Mata v. Avianca Airlines</em>. The brief cites six past cases that look perfect — judge names, court districts, year, paragraph numbers, all internally consistent. The problem: every single case was invented by ChatGPT. Judge Castel sanctions Schwartz and his firm $5,000 and publishes the saga globally. Two years on, citation and reference fabrication remains one of the most common and best-documented LLM error types — and every model, including the newest, still does it. AI can be wrong, outdated, overconfident and misleading — all while sounding perfectly authoritative. Knowing how to evaluate what it gives you is now one of the most important skills you can build for GCSE, A-level, university, work and adult life.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">6/6</span><span class="sl">fake cases in Mata v. Avianca — all fully hallucinated</span></div><div class="hook-stat-mini"><span class="sv">$5k</span><span class="sl">sanction imposed on Schwartz and his firm (S.D.N.Y., 22 Jun 2023)</span></div><div class="hook-stat-mini"><span class="sv">Common</span><span class="sl">citation/reference fabrication is among the most documented hallucination types</span></div></div>',
+    body: 'You met this story in Lesson 111 — it deserves a slow-motion replay, because it is the perfect specimen. March 2023, New York federal court: attorney Steven Schwartz files a legal brief in <em>Mata v. Avianca Airlines</em>. The brief cites six past cases that look perfect — judge names, court districts, year, paragraph numbers, all internally consistent. The problem: every single case was invented by ChatGPT. Judge Castel sanctions Schwartz and his firm $5,000 and publishes the saga globally. Two years on, citation and reference fabrication remains one of the most common and best-documented LLM error types — and every model, including the newest, still does it. AI can be wrong, outdated, overconfident and misleading — all while sounding perfectly authoritative. Knowing how to evaluate what it gives you is now one of the most important skills you can build for GCSE, A-level, university, work and adult life.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">6/6</span><span class="sl">fake cases in Mata v. Avianca — all fully hallucinated</span></div><div class="hook-stat-mini"><span class="sv">$5k</span><span class="sl">sanction imposed on Schwartz and his firm (S.D.N.Y., 22 Jun 2023)</span></div><div class="hook-stat-mini"><span class="sv">Common</span><span class="sl">citation/reference fabrication is among the most documented hallucination types</span></div></div>',
     callout: 'Confident language from an AI is not evidence of accuracy. These are completely separate things — and tens of thousands of pounds in sanctions have now been levied on people who forgot the distinction.',
     sources: [
       { label: 'Mata v. Avianca, Inc., No. 22-cv-1461 (S.D.N.Y. 22 Jun 2023) — Judge Castel\'s opinion and sanctions', url: 'https://www.nytimes.com/2023/06/22/nyregion/lawyers-chatgpt-schwartz-loduca.html' },
@@ -2033,7 +2038,7 @@ SLIDES_GCSE[115] = [
     ],
     sources: [
       { label: 'WGA 2023 tentative agreement — AI terms', url: 'https://www.wga.org/contracts/contracts/mba/summary-of-the-2023-wga-mba' },
-      { label: 'Action Fraud — deepfake scam losses 2023 (UK)', url: 'https://www.actionfraud.police.uk/' }
+      { label: 'Action Fraud — the UK\'s national fraud and cyber-crime reporting centre', url: 'https://www.actionfraud.police.uk/' }
     ]
   },
   {
@@ -2232,7 +2237,7 @@ SLIDES_GCSE[117] = [
     type: 'hook',
     title: 'Working with AI Tools',
     body: 'November 2022: OpenAI launches ChatGPT. Hits 100 million users in 60 days — the fastest-growing consumer app in history (UBS / Reuters, Feb 2023). By 2025 the "big four" consumer LLMs (ChatGPT, Claude, Gemini, Copilot) are used weekly by over a billion people combined. They all look similar — a chat box, a blinking cursor, full-sentence answers. But they were trained on different data, tuned for different strengths and behave differently in ways that genuinely affect the quality of your output. Reach for the wrong one and you can spend longer on a task and get a weaker result — so knowing which tool fits which job is a real, practical skill.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">60</span><span class="sl">days for ChatGPT to hit 100M users (UBS 2023)</span></div><div class="hook-stat-mini"><span class="sv">1B+</span><span class="sl">weekly users across the big four LLMs (2025)</span></div><div class="hook-stat-mini"><span class="sv">4</span><span class="sl">tools that look identical but behave very differently</span></div></div>',
-    callout: 'Knowing which tool to use for which task gets you better results, faster, and keeps your data safer. At school you already have two built in: Gemini and NotebookLM come free with your school Google account.',
+    callout: 'Knowing which tool to use for which task gets you better results, faster, and keeps your data safer. At school you already have two built in: Gemini and Gemini Notebook come free with your school Google account.',
     sources: [
       { label: 'Reuters / UBS — "ChatGPT sets record for fastest-growing user base" (Feb 2023)', url: 'https://www.reuters.com/technology/chatgpt-sets-record-fastest-growing-user-base-analyst-note-2023-02-01/' },
       { label: 'OpenAI — Weekly active users milestone (The Verge coverage, 2024)', url: 'https://www.theverge.com/2024/8/29/24231685/openai-chatgpt-200-million-weekly-users' }
@@ -2246,7 +2251,7 @@ SLIDES_GCSE[117] = [
       { term: 'ChatGPT (OpenAI)', def: 'Most widely used — currently on the latest GPT-5 family. Strong general reasoning, image understanding, voice mode, image generation. Built-in web search on paid tiers. The "Swiss army knife" choice.' },
       { term: 'Claude (Anthropic)', def: 'Made in San Francisco by ex-OpenAI researchers led by Dario and Daniela Amodei. Its current models (Sonnet and Opus) are strongest on long documents (200k-token context ≈ 500 pages) and nuanced writing/feedback. Consistently ranked near the top for safety and careful reasoning in independent benchmarks.' },
       { term: 'Gemini (Google)', def: 'Google\'s latest Gemini Pro model. Integrated with Google Search, Google Workspace (Docs, Gmail, Sheets) and YouTube transcripts. Best for current events, live web queries and tasks inside the Google ecosystem — and the version Haileybury pupils can reach via their school Google account.' },
-      { term: 'NotebookLM (Google)', def: 'Not a general chatbot — a research notebook. Upload YOUR sources (notes, textbook chapters, slides) and it answers only from them, citing the exact passage behind every claim. Comes with your school Google account; the go-to tool for revising from your own materials.' },
+      { term: 'Gemini Notebook (Google)', def: 'Not a general chatbot — a research notebook. Upload YOUR sources (notes, textbook chapters, slides) and it answers only from them, citing the exact passage behind every claim. Comes with your school Google account; the go-to tool for revising from your own materials.' },
       { term: 'Microsoft Copilot', def: 'Runs on OpenAI models but inside Windows 11, Edge, Word, Excel, PowerPoint and Teams. Strongest for productivity tasks embedded in documents you\'re already writing.' },
       { term: 'All of them share this', def: 'Can be wrong — the brand name doesn\'t guarantee accuracy. All four can and do hallucinate. The four-checks test from L114 applies to all of them, every time.' }
     ],
@@ -2258,7 +2263,7 @@ SLIDES_GCSE[117] = [
   {
     type: 'concept',
     title: 'Choosing the Right Tool',
-    body: 'Match the tool to the task. These are the fastest rules of thumb for 2025 GCSE use — based on independent benchmarks and real classroom testing. When in doubt, try the task in two tools and compare outputs directly. At school, start with Gemini (signed in with your school account) — and when the task is about YOUR notes or textbook, switch to NotebookLM, which answers only from sources you upload.',
+    body: 'Match the tool to the task. These are the fastest rules of thumb for 2025 GCSE use — based on independent benchmarks and real classroom testing. When in doubt, try the task in two tools and compare outputs directly. At school, start with Gemini (signed in with your school account) — and when the task is about YOUR notes or textbook, switch to Gemini Notebook, which answers only from sources you upload.',
     bullets: [
       { term: 'Current news / recent events', def: 'Gemini or ChatGPT with Search — live web access. Anything that happened after the model\'s training cut-off needs browsing.' },
       { term: 'Long documents / nuanced feedback', def: 'Claude — handles 200k-token inputs natively. Paste a whole chapter or past paper; the context stays coherent.' },
@@ -2297,12 +2302,12 @@ SLIDES_GCSE[117] = [
     question: 'Your teacher shares 30 pages of revision notes and you want a quiz generated from exactly that material — nothing pulled in from the wider internet. Which school tool fits best?',
     options: [
       'Gemini — it searches the live web',
-      'NotebookLM — it answers only from the sources you upload',
+      'Gemini Notebook — it answers only from the sources you upload',
       'Either — all AI tools work the same way',
       'Neither — AI can\'t generate quizzes'
     ],
     correct: 1,
-    explanation: 'NotebookLM is source-grounded: it builds summaries and quizzes only from documents you upload, citing where each answer came from. Gemini is the better pick for open questions and live information.'
+    explanation: 'Gemini Notebook is source-grounded: it builds summaries and quizzes only from documents you upload, citing where each answer came from. Gemini is the better pick for open questions and live information.'
   },
   {
     type: 'activity',
@@ -2343,7 +2348,7 @@ SLIDES_GCSE[117] = [
       { text: 'A private message a friend shared with you in confidence', correct: 1, why: 'Keep it out. It isn\'t yours to share, and your friend never consented to it being stored on a company\'s servers.' },
       { text: 'Your medical history, to ask for health advice', correct: 1, why: 'Keep it out. Health data is highly sensitive; a free tier may store and train on it. Talk to a real professional.' }
     ],
-    callout: 'The rule of thumb again: if you\'d be uncomfortable seeing it pinned to a public noticeboard, it doesn\'t belong in a free chatbot. School accounts (Gemini, NotebookLM) usually handle data more strictly — but the habit should travel with you everywhere.'
+    callout: 'The rule of thumb again: if you\'d be uncomfortable seeing it pinned to a public noticeboard, it doesn\'t belong in a free chatbot. School accounts (Gemini, Gemini Notebook) usually handle data more strictly — but the habit should travel with you everywhere.'
   },
   {
     type: 'summary',
@@ -2417,7 +2422,7 @@ SLIDES_GCSE[118] = [
     title: 'Prompt Engineering &amp; the Future of Work',
     questions: [
       { num: 1, text: 'Is prompt engineering a genuine new skill or a short-term workaround that will disappear as AI gets better at understanding vague questions? What\'s the evidence for each view?' },
-      { num: 2, text: '"Prompt engineer" was a £200k+ standalone job in 2023, but by 2026 it has largely faded into a skill expected of everyone. If AI keeps getting better at understanding vague questions, what skill remains valuable — and is that what schools should be teaching?' },
+      { num: 2, text: '"Prompt engineer" was advertised at up to $335k (≈£270k) as a standalone job in 2023, but by 2026 it has largely faded into a skill expected of everyone. If AI keeps getting better at understanding vague questions, what skill remains valuable — and is that what schools should be teaching?' },
       { num: 3, text: 'You\'ve now been taught a complete Unit 3 toolkit: prompting (L113), evaluation (L114), creativity boundaries (L115), automation judgement (L116), tool selection (L117) and professional-level prompting (this lesson). Which of these six skills do you think will matter most in the career you\'re heading toward — and why?' }
     ]
   },
@@ -2447,17 +2452,17 @@ SLIDES_GCSE[118] = [
   },
   {
     type: 'unit-test',
-    title: 'Unit 3 Recap',
-    body: 'Three questions covering prompting, evaluation and creativity.',
+    title: 'Unit 3 Checkpoint',
+    body: 'Three quick questions covering prompting, evaluation and creativity — a pulse check, not the unit test. Unit 3 finishes with the AI-agents lesson, and the Prompt-Engineering Portfolio task lives there.',
     questions: [
       { q: 'Which five levers make up the anatomy of a strong prompt?', options: ['Length, formality, speed, topic, audience', 'Role / Task / Context / Format / Constraint', 'Question, fact, example, image, reference', 'Input, output, model, prompt, reply'], correct: 1, explanation: 'Role, Task, Context, Format, Constraint — the five levers taught in L113. You don\'t need all five every time, but the more precise you are, the less room for unhelpful guesses.' },
       { q: 'Why did the 2023 "jagged frontier" study (Dell\'Acqua et al.) find that some AI users produced WORSE work than people with no AI at all?', options: ['The AI was broken', 'They used AI on tasks beyond its reliable range and trusted confident but wrong output', 'They used the wrong model', 'They typed too fast'], correct: 1, explanation: 'AI helped a lot on tasks inside its capability ("the frontier") but hurt performance on tasks outside it — where the model produced confident, plausible, wrong output that users trusted. Knowing where that edge lies is the real skill.' },
-      { q: 'Under current UK and US law, who owns the copyright on a purely AI-generated image?', options: ['The person who wrote the prompt', 'The AI company that made the model', 'Nobody — purely AI-generated images are generally not protected by copyright (per US Copyright Office guidance)', 'The first person to publish it online'], correct: 2, explanation: 'The US Copyright Office\'s March 2023 guidance and subsequent decisions are clear: human authorship is required. Minor prompt selection alone does not qualify.' }
+      { q: 'Under current US law, who owns the copyright on a purely AI-generated image?', options: ['The person who wrote the prompt', 'The AI company that made the model', 'Nobody — purely AI-generated images are generally not protected by copyright (per US Copyright Office guidance)', 'The first person to publish it online'], correct: 2, explanation: 'The US Copyright Office\'s March 2023 guidance and subsequent decisions are clear: human authorship is required. Minor prompt selection alone does not qualify. (UK law differs — s.9(3) CDPA 1988 protects computer-generated works, owned by whoever made the arrangements.)' }
     ]
   },
   {
     type: 'exit-ticket',
-    title: 'Unit 3 Exit Ticket',
+    title: 'Prompting Exit Ticket',
     prompt: 'Write one PTFC-structured prompt you plan to use this week for an actual task. Include all four parts.',
     body: 'Saved to this device only. Come back and edit it any time.'
   }
@@ -2469,7 +2474,7 @@ SLIDES_GCSE[119] = [
   {
     type: 'hook',
     title: 'Deepfakes & Synthetic Media',
-    body: 'In January 2024, thousands of US voters received robocalls from a fake AI-cloned voice of President Biden telling Democrats not to vote. The same month, a Hong Kong finance worker was tricked into transferring £20 million after a video call where every person on screen — including his CFO — was synthetic. Two days before Slovakia\'s 2023 election, an AI audio clip of an opposition leader "admitting" to rigging votes went viral during the legally mandated silence period when media couldn\'t respond. He lost.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">£20M</span><span class="sl">stolen via deepfake video call (Hong Kong, 2024)</span></div><div class="hook-stat-mini"><span class="sv">48hrs</span><span class="sl">before Slovakia\'s election — during legal media silence</span></div><div class="hook-stat-mini"><span class="sv">$6M</span><span class="sl">FCC fine for the Biden deepfake robocall</span></div><div class="hook-stat-mini"><span class="sv">Dozens</span><span class="sl">of countries saw election deepfakes during the 2024 votes</span></div></div>',
+    body: 'In January 2024, thousands of US voters received robocalls from a fake AI-cloned voice of President Biden telling Democrats not to vote. The same month, a Hong Kong finance worker was tricked into transferring £20 million (about US$25m) after a video call where every person on screen — including his CFO — was synthetic. Two days before Slovakia\'s 2023 election, an AI audio clip of an opposition leader "admitting" to rigging votes went viral during the legally mandated silence period when media couldn\'t respond. He lost.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">£20M</span><span class="sl">stolen via deepfake video call (Hong Kong, 2024)</span></div><div class="hook-stat-mini"><span class="sv">48hrs</span><span class="sl">before Slovakia\'s election — during legal media silence</span></div><div class="hook-stat-mini"><span class="sv">$6M</span><span class="sl">FCC fine for the Biden deepfake robocall</span></div><div class="hook-stat-mini"><span class="sv">Dozens</span><span class="sl">of countries saw election deepfakes during the 2024 votes</span></div></div>',
     callout: 'Deepfakes don\'t need to be believed by everyone — they just need to cause enough doubt, at the right moment, for the damage to be done.',
     sources: [
       { label: 'CNN — Hong Kong finance worker scammed out of $25M in deepfake video call (Feb 2024)', url: 'https://edition.cnn.com/2024/02/04/asia/deepfake-cfo-scam-hong-kong-intl-hnk/index.html' },
@@ -3139,7 +3144,7 @@ SLIDES_GCSE[124] = [
       { label: 'Scholarships for AI-ethics researchers from under-represented regions', desc: 'The people most affected by biased AI should be setting the research agenda, not just reviewing finished products' },
       { label: 'AI literacy for every UK secondary school', desc: 'Every student gets what you\'re doing now — so the next generation can tell when AI is helping them vs. manipulating them' },
       { label: 'A UK national compute cluster for academic researchers', desc: 'Right now only the big US labs can train frontier models. This would let universities actually do competitive research.' },
-      { label: 'Solar-powered micro data centres for off-grid communities', desc: 'Bring AI usefulness to the 2.6bn people currently offline — without waiting for them to come online' },
+      { label: 'Solar-powered micro data centres for off-grid communities', desc: 'Bring AI usefulness to the 2.2bn people currently offline — without waiting for them to come online' },
       { label: 'AI accessibility tools for disabled people', desc: 'Live captioning, navigation for blind users, communication tools for non-verbal people — where AI can change a life, not just a workflow' }
     ]
   },
@@ -3215,7 +3220,7 @@ SLIDES_GCSE[125] = [
     title: 'The Hidden Workers Behind "AI"',
     body: 'The word "AI" suggests a machine working alone. The reality: millions of low-paid workers label data, filter toxic content, and rate model outputs — often in countries where wages are lowest.',
     bullets: [
-      { term: 'Kenyan RLHF workers', def: 'In 2023, Time magazine revealed OpenAI paid Kenyan workers around $1.32 per hour to read disturbing content and label it — to make ChatGPT safer for users elsewhere.' },
+      { term: 'Kenyan RLHF workers', def: 'The TIME investigation you met in Lesson 124 ($1.32/hour to label disturbing content) matters here for a second reason: the people doing the labelling — and the conditions they work under — shape what the model learns to treat as acceptable.' },
       { term: 'Content moderation', def: 'Workers in the Philippines, Kenya and India view graphic content daily to keep AI outputs "clean" for Western users — often without adequate mental health support.' },
       { term: 'Data labelling', def: 'Training a self-driving car involves millions of images labelled by humans. Those humans are rarely the ones buying Teslas.' },
       { term: 'Why it matters', def: 'Bias doesn\'t only enter through datasets. Who labels the data, under what conditions, shapes what the AI treats as "normal" and "acceptable".' }
@@ -3477,7 +3482,7 @@ SLIDES_GCSE[127] = [
   {
     type: 'scenario',
     title: 'The Strava Heatmap Incident',
-    situation: 'In 2018, Strava (a running app) published an anonymised "heatmap" showing where its 27 million users exercised. It looked harmless — glowing lines across cities. Then a 20-year-old Australian analyst noticed faint loops in deserts in Syria, Afghanistan and the Sahel. They matched the footprints of classified military bases. Soldiers jogging with their phones had mapped secret facilities by accident. Multiple governments had to change security policy overnight.',
+    situation: 'In late 2017, Strava (a running app) published an anonymised "heatmap" showing where its 27 million users exercised. It looked harmless — glowing lines across cities. Then, in January 2018, a 20-year-old Australian analyst noticed faint loops in deserts in Syria, Afghanistan and the Sahel. They matched the footprints of classified military bases. Soldiers jogging with their phones had mapped secret facilities by accident. Multiple governments had to change security policy overnight.',
     question: 'The data was "anonymous" — no names, no faces. What made the leak possible anyway? What does that tell you about the phrase "anonymised data"?',
     choices: [
       { text: 'Strava deliberately published classified information', outcome: 'No — they published patterns they believed were harmless aggregate data. That\'s the point: no one had to do anything wrong for this to happen.' },
@@ -3515,7 +3520,7 @@ SLIDES_GCSE[128] = [
   {
     type: 'hook',
     title: 'Regulation & Control',
-    body: 'The EU AI Act became the world\'s first comprehensive AI law — banning the highest-risk uses from February 2025. The US took the opposite approach: President Trump revoked Biden\'s AI safety executive order on day one of his second term, January 2025. The UK announced £14 billion in AI investment but still had no specific AI law. Four major powers: four completely different approaches — and they\'re diverging, not converging.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">459</span><span class="sl">pages in the final EU AI Act text</span></div><div class="hook-stat-mini"><span class="sv">Day 1</span><span class="sl">Trump revoked Biden\'s AI safety order (Jan 2025)</span></div><div class="hook-stat-mini"><span class="sv">€35M</span><span class="sl">maximum fine for breaking EU AI Act rules</span></div><div class="hook-stat-mini"><span class="sv">£14bn</span><span class="sl">UK AI investment plan — with no specific AI law yet</span></div></div>',
+    body: 'The EU AI Act became the world\'s first comprehensive AI law — banning the highest-risk uses from February 2025. The US took the opposite approach: President Trump revoked Biden\'s AI safety executive order on day one of his second term, January 2025. The UK announced £14 billion in AI investment but, as of early 2026, still had no specific AI law. Four major powers: four completely different approaches — and they\'re diverging, not converging.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">459</span><span class="sl">pages in the final EU AI Act text</span></div><div class="hook-stat-mini"><span class="sv">Day 1</span><span class="sl">Trump revoked Biden\'s AI safety order (Jan 2025)</span></div><div class="hook-stat-mini"><span class="sv">€35M</span><span class="sl">maximum fine for breaking EU AI Act rules</span></div><div class="hook-stat-mini"><span class="sv">£14bn</span><span class="sl">UK AI investment plan — with no specific AI law yet</span></div></div>',
     callout: 'The EU regulates to protect citizens. The US deregulates to accelerate competition. The UK tries to balance both. China regulates to maintain state control.',
     sources: [
       { label: 'European Commission — AI Act (official text, in force Aug 2024)', url: 'https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai' },
@@ -3540,7 +3545,7 @@ SLIDES_GCSE[128] = [
     bullets: [
       { term: 'EU', def: 'Risk-based rules, serious fines, human rights focused. Slowest to adapt but most comprehensive protection.' },
       { term: 'USA (post-2025)', def: 'Deregulated approach under Trump — prioritise US AI competitiveness over consumer protection rules.' },
-      { term: 'UK', def: '£14bn investment plan, no comprehensive AI law yet — existing regulators (ICO, Ofcom, FCA) apply current law. A broader AI bill is expected after the 2026 King\'s Speech, following the government\'s Oct 2025 "Blueprint for AI regulation".' },
+      { term: 'UK', def: '£14bn investment plan, no comprehensive AI law yet — existing regulators (ICO, Ofcom, FCA) apply current law. A broader AI bill has been trailed following the government\'s 2025 "Blueprint for AI regulation" — this is the fastest-moving row in this table, so check the current position.' },
       { term: 'China', def: 'Deepfake labelling rules, generative AI measures — strict controls on content, but state deploys AI extensively for surveillance.' }
     ]
   },
@@ -3742,7 +3747,7 @@ SLIDES_GCSE[130] = [
       { label: 'Gerlich, M. (2025) — AI Tools and the Decline of Critical Thinking (Societies, MDPI)', url: 'https://www.mdpi.com/2075-4698/15/1/6' },
       { label: 'American Psychological Association (2025) — Health Advisory on AI and Adolescent Well-Being', url: 'https://www.apa.org/topics/artificial-intelligence-machine-learning/health-advisory-ai-adolescent-well-being.pdf' },
       { label: 'Wells, G., Horwitz, J. & Seetharaman, D. — "Facebook Knows Instagram Is Toxic for Teen Girls" (The Wall Street Journal, 14 Sep 2021, part of "The Facebook Files")', url: 'https://www.wsj.com/articles/facebook-knows-instagram-is-toxic-for-teen-girls-company-documents-show-11631620739' },
-      { label: 'US Senate Commerce Subcommittee — Frances Haugen testimony on Facebook harms (5 Oct 2021)', url: 'https://www.commerce.senate.gov/2021/10/protecting%20kids%20online:%20testimony%20from%20a%20facebook%20whistleblower' },
+      { label: 'US Senate Commerce Subcommittee — Frances Haugen testimony on Facebook harms (5 Oct 2021)', url: 'https://www.commerce.senate.gov/2021/10/protecting-kids-online-testimony-from-a-facebook-whistleblower' },
       { label: 'Meta Internal Research — "Teen Mental Health Deep Dive" (2019, released 29 Sep 2021)', url: 'https://about.fb.com/wp-content/uploads/2021/09/Instagram-Teen-Annotated-Research-Deck-1.pdf' },
       { label: 'Haidt, J. — "The Anxious Generation" (Penguin, 2024) — meta-analysis of teen mental health and social media', url: 'https://www.anxiousgeneration.com/book' }
     ]
@@ -3842,7 +3847,7 @@ SLIDES_GCSE[131] = [
   {
     type: 'hook',
     title: 'AI Relationships',
-    body: 'Over 100 million people worldwide now use AI companionship apps — Replika, Character.AI, Snapchat My AI, Meta AI personas. Character.AI users spend around 2 hours a day on the app (the platform\'s own 2024 figure — more daily time than the average TikTok user). Tens of thousands of users describe their chatbot as their "closest confidant"; several hundred Replika users on Reddit describe themselves as "married" to their AI. In October 2024 a 14-year-old in Florida died by suicide after an intense emotional relationship with a Character.AI chatbot — his mother has since filed a product-liability lawsuit. This is not a fringe behaviour: a 2025 Common Sense Media study found 72% of US teens have used an AI companion, and many had chosen a serious conversation with the AI over a human, or shared personal information with it. The American Psychological Association issued a 2025 health advisory warning that, because teenage brains are still developing, over-reliance on AI companions carries real social and emotional risks. Is this a problem, a symptom, or a valid way to meet a real human need?<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">72%</span><span class="sl">of US teens have used an AI companion (Common Sense Media, 2025)</span></div><div class="hook-stat-mini"><span class="sv">100M+</span><span class="sl">users of AI companion apps globally</span></div><div class="hook-stat-mini"><span class="sv">APA</span><span class="sl">2025 health advisory: real risks for developing teens</span></div></div>',
+    body: 'Over 100 million people worldwide now use AI companionship apps — Replika, Character.AI, Snapchat My AI, Meta AI personas. Character.AI users spend around 2 hours a day on the app (the platform\'s own 2024 figure — more daily time than the average TikTok user). Tens of thousands of users describe their chatbot as their "closest confidant"; several hundred Replika users on Reddit describe themselves as "married" to their AI. In February 2024 a 14-year-old in Florida died by suicide after an intense emotional relationship with a Character.AI chatbot; that October his mother filed a product-liability lawsuit. This is not a fringe behaviour: a 2025 Common Sense Media study found 72% of US teens have used an AI companion, and many had chosen a serious conversation with the AI over a human, or shared personal information with it. The American Psychological Association issued a 2025 health advisory warning that, because teenage brains are still developing, over-reliance on AI companions carries real social and emotional risks. Is this a problem, a symptom, or a valid way to meet a real human need?<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">72%</span><span class="sl">of US teens have used an AI companion (Common Sense Media, 2025)</span></div><div class="hook-stat-mini"><span class="sv">100M+</span><span class="sl">users of AI companion apps globally</span></div><div class="hook-stat-mini"><span class="sv">APA</span><span class="sl">2025 health advisory: real risks for developing teens</span></div></div>',
     callout: 'This is genuinely complicated. The emotional experience is real. The question is what it replaces, what it provides, and what the risks are — and who carries the moral duty of care.',
     sources: [
       { label: 'The New York Times — "Can A.I. Be Blamed for a Teen\'s Suicide?" (Oct 2024)', url: 'https://www.nytimes.com/2024/10/23/technology/characterai-lawsuit-teen-suicide.html' },
@@ -4137,7 +4142,7 @@ SLIDES_GCSE[133] = [
   {
     type: 'unit-test',
     title: 'Capstone Check — The Whole Course',
-    body: 'Five questions drawing across all six units. No pressure — this is about recalling what stuck, not passing a gate.',
+    body: 'Five questions drawing across all seven units. No pressure — this is about recalling what stuck, not passing a gate.',
     questions: [
       { q: 'In one phrase, what is modern AI actually doing when it answers you?', options: ['Thinking, like a person', 'Pattern-matching on training data to predict the next most likely answer', 'Looking things up in a database', 'Following rules a programmer wrote'], correct: 1, explanation: 'Prediction, not understanding. This is the Unit 1 foundation that makes everything else make sense — including why AI hallucinates.' },
       { q: 'The 2023 "jagged frontier" study found AI can make people perform WORSE. When?', options: ['When they ask AI too many questions', 'When they use it on tasks beyond its reliable range and trust the output', 'When they write long prompts', 'When they use more than one tool at once'], correct: 1, explanation: 'Dell\'Acqua et al. found AI boosted quality on tasks it suited, but on tasks beyond its "frontier" users who over-trusted it did worse than those with no AI at all. Knowing where that edge lies is the real skill.' },
@@ -4922,7 +4927,7 @@ SLIDES_GCSE[139] = [
     title: 'How I\'m Fighting Bias in Algorithms',
     videoId: 'UG_X_7g63rY',
     credit: 'Joy Buolamwini · TEDxBeaconStreet · 8 min',
-    intro: 'Joy Buolamwini, an MIT researcher, discovered that face-recognition systems couldn\'t detect her dark-skinned face until she put on a white mask. Her work (the "Gender Shades" study) measured exactly how unfairly these systems performed across demographics — and traced it back to the training data. As you watch, notice two Shape-AI ideas: (1) the failure came from <em>who was missing</em> in the data, and (2) she only proved it by <em>testing</em> across groups.',
+    intro: 'You watched this in Lesson 125 — rewatch even the first two minutes now through a different lens: not “is this biased?” but “how would you TEST for it?”. Joy Buolamwini, an MIT researcher, discovered that face-recognition systems couldn\'t detect her dark-skinned face until she put on a white mask. Her work (the "Gender Shades" study) measured exactly how unfairly these systems performed across demographics — and traced it back to the training data. As you watch, notice two Shape-AI ideas: (1) the failure came from <em>who was missing</em> in the data, and (2) she only proved it by <em>testing</em> across groups.',
     callout: 'This is the difference between "it works" and "it works for everyone" — and the whole reason fairness has to be tested, not assumed.'
   },
   {
@@ -5045,7 +5050,7 @@ SLIDES_GCSE[140] = [
     type: 'hook',
     title: 'Redesigning AI for Everyone',
     body: 'In 1972, a group of disabled activists in Berkeley, California were tired of being trapped on the pavement — every kerb was a wall to a wheelchair. So one night, the story goes, they took a bag of cement into the street and poured their own ramp where the kerb met the road. The city was furious. Then something unexpected happened: those "curb cuts" turned out to help almost everyone — parents with prams, delivery workers with trolleys, cyclists, travellers dragging suitcases. Designing for the people who had been shut out made the world better for all of them. That is the final, most empowering move in AI literacy: <em>improving</em> the systems you use. Most AI was built by a narrow slice of the world, for users a lot like its makers — which is exactly why the gaps exist, and exactly why your perspective, and your classmates\', is genuinely valuable.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">1972</span><span class="sl">activists poured their own kerb ramps in Berkeley — the "curb cut"</span></div><div class="hook-stat-mini"><span class="sv">everyone</span><span class="sl">designing for the excluded improved it for all</span></div><div class="hook-stat-mini"><span class="sv">Who\'s left out?</span><span class="sl">the question that drives better design</span></div></div>',
-    callout: 'You finish this course not as a consumer of AI, but as someone who can shape it. The last skill is the one that changes things: making AI work for the people it currently fails.',
+    callout: 'You finish this unit not as a consumer of AI, but as someone who can shape it — the skill that changes things: making AI work for the people it currently fails. One unit remains, and it turns the lens on you: your feed, your relationships, your future.',
     sources: [
       { label: 'AILit Framework (OECD/EU 2026) — Shape AI 4: "improve AI systems to promote human well-being and societal benefit"', url: 'https://doi.org/10.1787/65cd27d4-en' }
     ]
@@ -5165,8 +5170,8 @@ SLIDES_GCSE[140] = [
   {
     type: 'exit-ticket',
     title: 'Shape AI Exit Ticket',
-    prompt: 'Across this whole course you went from understanding AI to being able to shape it. Name one AI system you now feel genuinely able to improve — and the single change you would make first.',
-    body: 'Saved to this device only. Keep it — it is the proof that you ended this course as someone who shapes AI, not just someone shaped by it.'
+    prompt: 'Across this unit you learned to look inside AI systems, test them, and redesign them. Name one AI system you now feel genuinely able to improve — and the single change you would make first.',
+    body: 'Saved to this device only. Keep it — proof that you can shape AI, not just be shaped by it. The final unit is next: AI, wellbeing and your future.'
   },
   {
     type: 'assessment',
