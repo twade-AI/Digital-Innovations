@@ -12,19 +12,19 @@ var SLIDES_CRITICAL = {
     {
       type: 'concept',
       title: 'The Three-Tier AI Usage Policy',
-      body: 'To keep learning active and maintain academic integrity, our school uses a Three-Tier AI Usage Policy. Understanding these tiers is the precondition for using Gemini and NotebookLM on your devices.',
+      body: 'To keep learning active and maintain academic integrity, our school uses a Three-Tier AI Usage Policy. Understanding these tiers is the precondition for using Gemini and Gemini Notebook on your devices.',
       bullets: [
-        '<strong>🟢 Green Tier (AI-Supported Brainstorming):</strong> Brainstorming essay outlines, asking Gemini to explain difficult concepts, using NotebookLM to search your notes, and self-testing. This is active learning and is fully encouraged. No formal disclosure is required.',
+        '<strong>🟢 Green Tier (AI-Supported Brainstorming):</strong> Brainstorming essay outlines, asking Gemini to explain difficult concepts, using Gemini Notebook to search your notes, and self-testing. This is active learning and is fully encouraged. No formal disclosure is required.',
         '<strong>🟡 Amber Tier (AI-Assisted Editing):</strong> Uploading your written draft to Gemini to check for grammar, clarity, or logical flow. This is permitted for coursework but <em>must</em> be disclosed in a brief footnote (e.g., \'I used Gemini to improve the flow of paragraph 2\').',
-        '<strong>🔴 Red Tier (AI-Authored Output):</strong> Generating text paragraphs using Gemini, copying study guides or podcast scripts directly from NotebookLM, or submitting AI-generated ideas as your own work. This is plagiarism, and it will result in a zero grade.',
+        '<strong>🔴 Red Tier (AI-Authored Output):</strong> Generating text paragraphs using Gemini, copying study guides or podcast scripts directly from Gemini Notebook, or submitting AI-generated ideas as your own work. This is plagiarism, and it will result in a zero grade.',
         '<strong>The autocomplete trap:</strong> Letting AI complete your sentences might feel like a time-saver, but it prevents you from developing your own voice. Avoid using AI autocomplete features when drafting original work.'
       ],
       callout: 'Academic integrity is not about rules; it is about trust. If your teachers cannot trust that the work you submit reflects your understanding, they cannot assess your learning or help you improve.'
     },
     {
       type: 'scenario',
-      title: 'The NotebookLM Audio Overview Trap',
-      situation: 'You have been assigned to read three long research papers on renewable energy and deliver a 5-minute presentation to your science class. You upload the PDFs to NotebookLM and generate a 10-minute \'Audio Overview\'—a highly engaging, conversational podcast where two AI hosts banter about the papers. It makes the papers sound incredibly simple and you understand the big picture. The presentation is tomorrow morning. You have not opened the source PDFs.',
+      title: 'The Gemini Notebook Audio Overview Trap',
+      situation: 'You have been assigned to read three long research papers on renewable energy and deliver a 5-minute presentation to your science class. You upload the PDFs to Gemini Notebook and generate a 10-minute \'Audio Overview\'—a highly engaging, conversational podcast where two AI hosts banter about the papers. It makes the papers sound incredibly simple and you understand the big picture. The presentation is tomorrow morning. You have not opened the source PDFs.',
       question: 'How do you prepare your presentation?',
       choices: [
         {
@@ -36,7 +36,7 @@ var SLIDES_CRITICAL = {
           outcome: 'Your presentation is excellent. You use the AI podcast to help you structure the narrative, but you back it up with direct evidence from the papers. When asked about the solar cell efficiency limitations, you answer accurately using the data table you studied. You receive top marks.'
         },
         {
-          text: 'Ask NotebookLM to generate a presentation outline and speaker notes based on the papers, and read them during the presentation.',
+          text: 'Ask Gemini Notebook to generate a presentation outline and speaker notes based on the papers, and read them during the presentation.',
           outcome: 'The outline is logical, but because you didn\'t read the papers or write the notes, your delivery is stiff and you struggle to explain the slides. The teacher flags the presentation as lacking student voice and schedules a resubmission. The lesson: AI-generated speaker notes do not equal student comprehension.'
         }
       ]
@@ -68,10 +68,10 @@ var SLIDES_CRITICAL = {
       steps: [
         'Review your weekly study habits. Where do you spend the most time (reading, writing, memorising, problem-solving)?',
         'For each habit, assign an AI tier (Green, Amber, Red). Where is AI most helpful? Where is it most dangerous to your learning?',
-        'Write three rules for your personal protocol (e.g., \'Rule 1: I will never copy-paste AI-generated text. Rule 2: I will always read the source PDF before using NotebookLM summaries.\')',
+        'Write three rules for your personal protocol (e.g., \'Rule 1: I will never copy-paste AI-generated text. Rule 2: I will always read the source PDF before using Gemini Notebook summaries.\')',
         'Design an AI disclosure template that you can paste at the bottom of your assignments.',
         'Share your protocol with a partner and identify one area where you might be tempted to slip into cognitive offloading.',
-        'Write your final protocol in your notes—this will guide your use of Gemini and NotebookLM when they are deployed.'
+        'Write your final protocol in your notes—this will guide your use of Gemini and Gemini Notebook when they are deployed.'
       ]
     },
     {
@@ -90,7 +90,7 @@ var SLIDES_CRITICAL = {
         'Using Gemini to explain how a vector database works.',
         'Asking Gemini to write the introduction paragraph of your geography coursework.',
         'Uploading your essay draft to Gemini to check for logical flow and suggest sentence improvements.',
-        'Using NotebookLM to search your uploaded class notes for key terms.'
+        'Using Gemini Notebook to search your uploaded class notes for key terms.'
       ],
       correct: 2,
       explanation: 'Uploading your original draft to check for flow and grammar is an Amber Tier activity (AI-assisted editing). It is permitted, but it must be disclosed in a footnote. Writing the paragraph is Red Tier (plagiarism), and explaining concepts is Green Tier (no disclosure needed).'
@@ -101,7 +101,7 @@ var SLIDES_CRITICAL = {
       points: [
         { icon: '▸', label: 'Struggling is learning', text: 'Desirable difficulties are essential for memory encoding. Offloading summaries or writing to AI lowers comprehension.' },
         { icon: '▸', label: 'Know your tiers', text: 'Green (brainstorming), Amber (editing with disclosure), Red (AI authorship/plagiarism). Always check school guidelines.' },
-        { icon: '▸', label: 'Audio Overviews are previews', text: 'NotebookLM\'s podcasts are excellent for overview, but they skip details. Never write presentations or essays based solely on AI audio summaries.' }
+        { icon: '▸', label: 'Audio Overviews are previews', text: 'Gemini Notebook\'s podcasts are excellent for overview, but they skip details. Never write presentations or essays based solely on AI audio summaries.' }
       ]
     }
   ],

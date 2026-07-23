@@ -4033,9 +4033,9 @@ window.DI_LAB_SLIDES = {
   11: [
     { type: 'activity',
       title: 'Build a careers notebook that cites its sources',
-      instructions: 'A normal chatbot answers from everything it was trained on; NotebookLM answers only from sources you give it, with citations you can check. Build a grounded research notebook for your own future — it becomes a running resource, not a one-off task.',
+      instructions: 'A normal chatbot answers from everything it was trained on; Gemini Notebook answers only from sources you give it, with citations you can check. Build a grounded research notebook for your own future — it becomes a running resource, not a one-off task.',
       steps: [
-        'Open NotebookLM and create a notebook called <strong>My Careers</strong>.',
+        'Open Gemini Notebook and create a notebook called <strong>My Careers</strong>.',
         'Add at least <strong>three real sources</strong>: a university course page or apprenticeship listing, an industry or company page you admire, and your own notes on where you might be heading.',
         'Generate a <strong>briefing document</strong> — then check two of its claims against the original sources using the citations.',
         'Generate an <strong>Audio Overview</strong> and listen to the first minute: two AI hosts discussing <em>your</em> sources.',
@@ -4133,7 +4133,7 @@ window.DI_LAB_SLIDES = {
     { type: 'widget', widget: 'meaning-space',
       title: 'The meaning-space — real embeddings you can touch',
       intro: 'RAG works by finding "nearest neighbours in vector space". Here is that space — real GloVe vectors, not an illustration. Type sentences, see where words genuinely live, and click two stars to measure their similarity across 16 real dimensions.',
-      debrief: 'When NotebookLM retrieves the right passage from your sources, it did what you just did: turned the words into positions and measured which stored chunks sit at the smallest angle from your question.' },
+      debrief: 'When Gemini Notebook retrieves the right passage from your sources, it did what you just did: turned the words into positions and measured which stored chunks sit at the smallest angle from your question.' },
     { type: 'widget', widget: 'cosine-compass',
       title: 'Cosine similarity — the CAH in SOHCAHTOA',
       intro: 'The exact maths behind "semantic similarity" — and you already learned it at GCSE.',

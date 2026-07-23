@@ -833,11 +833,11 @@ SLIDES_GCSE[106] = [
   {
     type: 'concept',
     title: "The School's Three-Tier AI Policy",
-    body: 'Your school Google account comes with two AI tools — <strong>Gemini</strong> (the chatbot you can ask anything) and <strong>NotebookLM</strong> (a notebook that answers only from notes you upload). Before you use either for school work, you need the rules. The whole school — including the Sixth Form — uses the same Three-Tier policy, and it decides whether a use of AI is encouraged, allowed-with-disclosure, or banned.',
+    body: 'Your school Google account comes with two AI tools — <strong>Gemini</strong> (the chatbot you can ask anything) and <strong>Gemini Notebook</strong> (a notebook that answers only from notes you upload). Before you use either for school work, you need the rules. The whole school — including the Sixth Form — uses the same Three-Tier policy, and it decides whether a use of AI is encouraged, allowed-with-disclosure, or banned.',
     bullets: [
-      '<strong>🟢 Green — AI-supported thinking (encouraged):</strong> asking Gemini to explain something you don\'t understand, getting NotebookLM to quiz you on your own notes, brainstorming ideas for an essay plan. This is active learning — no disclosure needed.',
+      '<strong>🟢 Green — AI-supported thinking (encouraged):</strong> asking Gemini to explain something you don\'t understand, getting Gemini Notebook to quiz you on your own notes, brainstorming ideas for an essay plan. This is active learning — no disclosure needed.',
       '<strong>🟡 Amber — AI-assisted editing (allowed, must be disclosed):</strong> showing Gemini a draft YOU wrote and asking for feedback on clarity or grammar. Fine for homework — but you must say so, e.g. "I used Gemini to check the flow of paragraph 2."',
-      '<strong>🔴 Red — AI-authored work (banned):</strong> getting Gemini to write your paragraphs, or copying a NotebookLM study guide and submitting it as your own. That\'s plagiarism — it earns a zero, and worse, you learn nothing.',
+      '<strong>🔴 Red — AI-authored work (banned):</strong> getting Gemini to write your paragraphs, or copying a Gemini Notebook study guide and submitting it as your own. That\'s plagiarism — it earns a zero, and worse, you learn nothing.',
       '<strong>The screen-off test:</strong> after using AI, could you explain the work to your teacher with the screen off? If yes, you\'re in Green or Amber territory. If no, you\'ve drifted into Red.'
     ],
     callout: 'One question decides the tier: did the thinking stay yours? AI that helps you think is encouraged. AI that thinks instead of you is banned.'
@@ -850,11 +850,11 @@ SLIDES_GCSE[106] = [
     categories: ['🟢 Green — encouraged', '🟡 Amber — allowed, must disclose', '🔴 Red — banned'],
     items: [
       { text: 'Asking Gemini to explain osmosis a different way after you got stuck on it', correct: 0, why: 'Green. You\'re using AI to understand something — the thinking stays yours. No disclosure needed; this is exactly what the policy encourages.' },
-      { text: 'Getting NotebookLM to make practice questions from your own class notes', correct: 0, why: 'Green. Retrieval practice on your own material is active learning — the single most evidence-backed study technique. Encouraged, no disclosure needed.' },
+      { text: 'Getting Gemini Notebook to make practice questions from your own class notes', correct: 0, why: 'Green. Retrieval practice on your own material is active learning — the single most evidence-backed study technique. Encouraged, no disclosure needed.' },
       { text: 'Brainstorming a list of points with Gemini, then planning and writing the essay yourself', correct: 0, why: 'Green. Using AI to spark ideas you then develop and write in your own words keeps the thinking yours. (If you lifted whole sentences straight into the final essay, it would tip into Amber or Red — so write it yourself.)' },
       { text: 'Writing a history essay yourself, then asking Gemini to check the grammar of paragraph 2', correct: 1, why: 'Amber. The work is yours; AI only polished it. Allowed for homework — but you must disclose it, e.g. "I used Gemini to check the grammar of paragraph 2."' },
       { text: 'Pasting the homework question into Gemini and copying its answer into your book', correct: 2, why: 'Red. The AI did the thinking and you submitted it as your own — malpractice under JCQ 2024, a likely zero, and you learned nothing the exam will reward.' },
-      { text: 'Copying a NotebookLM study guide and handing it in as your own summary', correct: 2, why: 'Red. Submitting AI-generated text as your own work is plagiarism, whatever tool produced it.' }
+      { text: 'Copying a Gemini Notebook study guide and handing it in as your own summary', correct: 2, why: 'Red. Submitting AI-generated text as your own work is plagiarism, whatever tool produced it.' }
     ],
     callout: 'Underneath every one of these is the screen-off test: after using AI, could you explain the work to your teacher with the screen off? Yes = Green or Amber. No = you\'ve drifted into Red.'
   },
@@ -1050,7 +1050,7 @@ SLIDES_GCSE[108] = [
   {
     type: 'hook',
     title: 'Using AI to Summarise',
-    body: 'Your Chemistry textbook chapter is 18 pages. Your exam is tomorrow at 9am. AI can shrink it to a study sheet in 30 seconds — but whether you walk into that exam prepared or blindsided depends entirely on what you do with it. Google\'s NotebookLM, launched in 2023 and expanded globally in 2024, lets pupils upload textbooks and get instant summaries and audio "podcasts" of their notes — it passed a million users within roughly three months of launch and kept climbing. Schools across the UK are now building it into revision support — including ours: NotebookLM comes free with your school Google account. But a 2011 Purdue study by Karpicke and Blunt (Science journal) showed that passive re-reading — which is what reading an AI summary amounts to — is one of the <em>least</em> effective revision strategies ever studied. The same minutes spent actively recalling produce up to 50% better exam retention.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">50%</span><span class="sl">better retention from active recall vs re-reading (Karpicke &amp; Blunt, Science 2011)</span></div><div class="hook-stat-mini"><span class="sv">1M+</span><span class="sl">NotebookLM users within ~3 months of its 2024 launch</span></div><div class="hook-stat-mini"><span class="sv">10–20%+</span><span class="sl">hallucination rate on specialist-subject tasks like science &amp; medicine (Stanford HAI AI Index)</span></div></div>',
+    body: 'Your Chemistry textbook chapter is 18 pages. Your exam is tomorrow at 9am. AI can shrink it to a study sheet in 30 seconds — but whether you walk into that exam prepared or blindsided depends entirely on what you do with it. Google\'s Gemini Notebook, launched in 2023 and expanded globally in 2024, lets pupils upload textbooks and get instant summaries and audio "podcasts" of their notes — it passed a million users within roughly three months of launch and kept climbing. Schools across the UK are now building it into revision support — including ours: Gemini Notebook comes free with your school Google account. But a 2011 Purdue study by Karpicke and Blunt (Science journal) showed that passive re-reading — which is what reading an AI summary amounts to — is one of the <em>least</em> effective revision strategies ever studied. The same minutes spent actively recalling produce up to 50% better exam retention.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">50%</span><span class="sl">better retention from active recall vs re-reading (Karpicke &amp; Blunt, Science 2011)</span></div><div class="hook-stat-mini"><span class="sv">1M+</span><span class="sl">Gemini Notebook users within ~3 months of its 2024 launch</span></div><div class="hook-stat-mini"><span class="sv">10–20%+</span><span class="sl">hallucination rate on specialist-subject tasks like science &amp; medicine (Stanford HAI AI Index)</span></div></div>',
     callout: 'Passive summarising (paste, read, feel done) is almost useless. Active summarising (check, question, fill gaps) can double your retention for the same time spent. The OECD\'s 2026 review warns this is exactly where "metacognitive laziness" sets in — the AI fills the gap before you notice you didn\'t understand (Fan et al., 2025).',
     sources: [
       { label: 'Karpicke &amp; Blunt (2011) — Retrieval practice produces more learning than elaborative studying (Science)', url: 'https://www.science.org/doi/10.1126/science.1199327' },
@@ -1487,7 +1487,7 @@ SLIDES_GCSE[111] = [
       'Confident wrong dates: AI will state "1919" for something that happened in 1921 with zero hedging. Never trust a date or statistic without verification.',
       'Invented quotes: made-up lines attributed to real authors. Priestley, Dickens and Shakespeare are all frequently misquoted by LLMs.',
       'Wrong specification content: AI does NOT know whether "electron configuration" is in AQA GCSE Chemistry Paper 1 or Paper 2. It will guess confidently.',
-      'Safer tools, not safe tools: retrieval-augmented tools like NotebookLM (grounded in sources you upload) and Perplexity (cited answers) reduce hallucinations but do not eliminate them.',
+      'Safer tools, not safe tools: retrieval-augmented tools like Gemini Notebook (grounded in sources you upload) and Perplexity (cited answers) reduce hallucinations but do not eliminate them.',
       'The fix: for any fact, date, citation, quote or statistic, cross-check against your textbook, the exam board\'s specification PDF, or a named reputable source.'
     ],
     callout: 'Schwartz v. Avianca (2023): six fabricated cases, one $5,000 fine, global news coverage. The lawyer had asked ChatGPT "are you sure these cases are real?" — ChatGPT said yes. It was still completely wrong.',
@@ -1635,7 +1635,7 @@ SLIDES_GCSE[112] = [
     body: 'AI is not one tool. The best routines use 2–3 complementary tools, each for what it\'s best at. Here is a recommended stack — all either free for pupils or have generous free tiers in 2024–2025.',
     bullets: [
       { term: 'ChatGPT / Claude / Gemini', def: 'Best for: prompted explanations, essay feedback, scenario walk-throughs. Free tiers all work well for GCSE-level study — just remember to verify any facts, dates or citations they produce.' },
-      { term: 'Google NotebookLM', def: 'Best for: uploading your textbook chapter or teacher\'s notes and generating a study guide, audio "podcast" summary and spec-aligned quiz. Comes free with your school Google account.' },
+      { term: 'Google Gemini Notebook', def: 'Best for: uploading your textbook chapter or teacher\'s notes and generating a study guide, audio "podcast" summary and spec-aligned quiz. Comes free with your school Google account.' },
       { term: 'Quizlet AI / Anki', def: 'Best for: spaced-repetition flashcards you type yourself (the typing is part of the learning). Anki is free and the most evidence-based flashcard app ever built — used by medical students worldwide.' },
       { term: 'Khan Academy Khanmigo', def: 'Best for: Maths / Sciences problem walk-throughs. Scaffolds rather than gives answers. Based on a 2024 Harvard RCT showing genuine learning gains when used this way.' },
       { term: 'BBC Bitesize + AI', def: 'Best combo: revise from Bitesize for the official UK-curriculum content, then use an AI chatbot to quiz yourself on what you just read. Human-verified content + AI drill.' }
@@ -2237,7 +2237,7 @@ SLIDES_GCSE[117] = [
     type: 'hook',
     title: 'Working with AI Tools',
     body: 'November 2022: OpenAI launches ChatGPT. Hits 100 million users in 60 days — the fastest-growing consumer app in history (UBS / Reuters, Feb 2023). By 2025 the "big four" consumer LLMs (ChatGPT, Claude, Gemini, Copilot) are used weekly by over a billion people combined. They all look similar — a chat box, a blinking cursor, full-sentence answers. But they were trained on different data, tuned for different strengths and behave differently in ways that genuinely affect the quality of your output. Reach for the wrong one and you can spend longer on a task and get a weaker result — so knowing which tool fits which job is a real, practical skill.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">60</span><span class="sl">days for ChatGPT to hit 100M users (UBS 2023)</span></div><div class="hook-stat-mini"><span class="sv">1B+</span><span class="sl">weekly users across the big four LLMs (2025)</span></div><div class="hook-stat-mini"><span class="sv">4</span><span class="sl">tools that look identical but behave very differently</span></div></div>',
-    callout: 'Knowing which tool to use for which task gets you better results, faster, and keeps your data safer. At school you already have two built in: Gemini and NotebookLM come free with your school Google account.',
+    callout: 'Knowing which tool to use for which task gets you better results, faster, and keeps your data safer. At school you already have two built in: Gemini and Gemini Notebook come free with your school Google account.',
     sources: [
       { label: 'Reuters / UBS — "ChatGPT sets record for fastest-growing user base" (Feb 2023)', url: 'https://www.reuters.com/technology/chatgpt-sets-record-fastest-growing-user-base-analyst-note-2023-02-01/' },
       { label: 'OpenAI — Weekly active users milestone (The Verge coverage, 2024)', url: 'https://www.theverge.com/2024/8/29/24231685/openai-chatgpt-200-million-weekly-users' }
@@ -2251,7 +2251,7 @@ SLIDES_GCSE[117] = [
       { term: 'ChatGPT (OpenAI)', def: 'Most widely used — currently on the latest GPT-5 family. Strong general reasoning, image understanding, voice mode, image generation. Built-in web search on paid tiers. The "Swiss army knife" choice.' },
       { term: 'Claude (Anthropic)', def: 'Made in San Francisco by ex-OpenAI researchers led by Dario and Daniela Amodei. Its current models (Sonnet and Opus) are strongest on long documents (200k-token context ≈ 500 pages) and nuanced writing/feedback. Consistently ranked near the top for safety and careful reasoning in independent benchmarks.' },
       { term: 'Gemini (Google)', def: 'Google\'s latest Gemini Pro model. Integrated with Google Search, Google Workspace (Docs, Gmail, Sheets) and YouTube transcripts. Best for current events, live web queries and tasks inside the Google ecosystem — and the version Haileybury pupils can reach via their school Google account.' },
-      { term: 'NotebookLM (Google)', def: 'Not a general chatbot — a research notebook. Upload YOUR sources (notes, textbook chapters, slides) and it answers only from them, citing the exact passage behind every claim. Comes with your school Google account; the go-to tool for revising from your own materials.' },
+      { term: 'Gemini Notebook (Google)', def: 'Not a general chatbot — a research notebook. Upload YOUR sources (notes, textbook chapters, slides) and it answers only from them, citing the exact passage behind every claim. Comes with your school Google account; the go-to tool for revising from your own materials.' },
       { term: 'Microsoft Copilot', def: 'Runs on OpenAI models but inside Windows 11, Edge, Word, Excel, PowerPoint and Teams. Strongest for productivity tasks embedded in documents you\'re already writing.' },
       { term: 'All of them share this', def: 'Can be wrong — the brand name doesn\'t guarantee accuracy. All four can and do hallucinate. The four-checks test from L114 applies to all of them, every time.' }
     ],
@@ -2263,7 +2263,7 @@ SLIDES_GCSE[117] = [
   {
     type: 'concept',
     title: 'Choosing the Right Tool',
-    body: 'Match the tool to the task. These are the fastest rules of thumb for 2025 GCSE use — based on independent benchmarks and real classroom testing. When in doubt, try the task in two tools and compare outputs directly. At school, start with Gemini (signed in with your school account) — and when the task is about YOUR notes or textbook, switch to NotebookLM, which answers only from sources you upload.',
+    body: 'Match the tool to the task. These are the fastest rules of thumb for 2025 GCSE use — based on independent benchmarks and real classroom testing. When in doubt, try the task in two tools and compare outputs directly. At school, start with Gemini (signed in with your school account) — and when the task is about YOUR notes or textbook, switch to Gemini Notebook, which answers only from sources you upload.',
     bullets: [
       { term: 'Current news / recent events', def: 'Gemini or ChatGPT with Search — live web access. Anything that happened after the model\'s training cut-off needs browsing.' },
       { term: 'Long documents / nuanced feedback', def: 'Claude — handles 200k-token inputs natively. Paste a whole chapter or past paper; the context stays coherent.' },
@@ -2302,12 +2302,12 @@ SLIDES_GCSE[117] = [
     question: 'Your teacher shares 30 pages of revision notes and you want a quiz generated from exactly that material — nothing pulled in from the wider internet. Which school tool fits best?',
     options: [
       'Gemini — it searches the live web',
-      'NotebookLM — it answers only from the sources you upload',
+      'Gemini Notebook — it answers only from the sources you upload',
       'Either — all AI tools work the same way',
       'Neither — AI can\'t generate quizzes'
     ],
     correct: 1,
-    explanation: 'NotebookLM is source-grounded: it builds summaries and quizzes only from documents you upload, citing where each answer came from. Gemini is the better pick for open questions and live information.'
+    explanation: 'Gemini Notebook is source-grounded: it builds summaries and quizzes only from documents you upload, citing where each answer came from. Gemini is the better pick for open questions and live information.'
   },
   {
     type: 'activity',
@@ -2348,7 +2348,7 @@ SLIDES_GCSE[117] = [
       { text: 'A private message a friend shared with you in confidence', correct: 1, why: 'Keep it out. It isn\'t yours to share, and your friend never consented to it being stored on a company\'s servers.' },
       { text: 'Your medical history, to ask for health advice', correct: 1, why: 'Keep it out. Health data is highly sensitive; a free tier may store and train on it. Talk to a real professional.' }
     ],
-    callout: 'The rule of thumb again: if you\'d be uncomfortable seeing it pinned to a public noticeboard, it doesn\'t belong in a free chatbot. School accounts (Gemini, NotebookLM) usually handle data more strictly — but the habit should travel with you everywhere.'
+    callout: 'The rule of thumb again: if you\'d be uncomfortable seeing it pinned to a public noticeboard, it doesn\'t belong in a free chatbot. School accounts (Gemini, Gemini Notebook) usually handle data more strictly — but the habit should travel with you everywhere.'
   },
   {
     type: 'summary',

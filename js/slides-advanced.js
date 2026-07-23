@@ -182,24 +182,24 @@ var SLIDES_ADVANCED = {
     {
       type: 'hook',
       title: 'The Lawyers, the Ghost Cases, and the Rollout',
-      body: 'In May 2023, a New York lawyer used ChatGPT to draft a legal brief. The AI confidently created six fictitious legal precedents—complete with docket numbers and quoted judicial rulings. The lawyer filed the brief without checking, resulting in a public reprimand and a $5,000 fine. The lawyer admitted: <em>"I did not comprehend that ChatGPT could fabricate cases."</em><br><br>Before we deploy <strong>Gemini</strong> and <strong>NotebookLM</strong> to your devices, you must understand the technology that solves this: <strong>Retrieval-Augmented Generation (RAG)</strong>. Instead of asking a model to recall facts from its training data, RAG retrieves actual documents you provide (like your notes or articles) and injects them into the prompt so the AI can reason over real sources. But as we will discover, \'grounded in your documents\' is not the same as correct. If your sources have errors or gaps, your AI summaries will too.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">$5,000</span><span class="sl">fine for lawyers filing AI-hallucinated citations (Mata v. Avianca, 2023)</span></div><div class="hook-stat-mini"><span class="sv">RAG</span><span class="sl">Retrieval-Augmented Generation — the core technology behind NotebookLM</span></div><div class="hook-stat-mini"><span class="sv">GIGO</span><span class="sl">Garbage In, Garbage Out — the golden rule of source-grounded AI</span></div></div>'
+      body: 'In May 2023, a New York lawyer used ChatGPT to draft a legal brief. The AI confidently created six fictitious legal precedents—complete with docket numbers and quoted judicial rulings. The lawyer filed the brief without checking, resulting in a public reprimand and a $5,000 fine. The lawyer admitted: <em>"I did not comprehend that ChatGPT could fabricate cases."</em><br><br>Before we deploy <strong>Gemini</strong> and <strong>Gemini Notebook</strong> to your devices, you must understand the technology that solves this: <strong>Retrieval-Augmented Generation (RAG)</strong>. Instead of asking a model to recall facts from its training data, RAG retrieves actual documents you provide (like your notes or articles) and injects them into the prompt so the AI can reason over real sources. But as we will discover, \'grounded in your documents\' is not the same as correct. If your sources have errors or gaps, your AI summaries will too.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">$5,000</span><span class="sl">fine for lawyers filing AI-hallucinated citations (Mata v. Avianca, 2023)</span></div><div class="hook-stat-mini"><span class="sv">RAG</span><span class="sl">Retrieval-Augmented Generation — the core technology behind Gemini Notebook</span></div><div class="hook-stat-mini"><span class="sv">GIGO</span><span class="sl">Garbage In, Garbage Out — the golden rule of source-grounded AI</span></div></div>'
     },
     {
       type: 'concept',
-      title: 'How NotebookLM Uses RAG',
-      body: 'NotebookLM is a source-grounded AI. When you interact with it, it uses Retrieval-Augmented Generation (RAG) in three steps:',
+      title: 'How Gemini Notebook Uses RAG',
+      body: 'Gemini Notebook is a source-grounded AI. When you interact with it, it uses Retrieval-Augmented Generation (RAG) in three steps:',
       bullets: [
-        '<strong>1. The Indexing Phase:</strong> You upload your sources (PDFs, class slides, websites, or Google Docs). NotebookLM splits each document into small chunks (usually 200–500 words) and converts them into semantic vectors (mathematical representations of meaning).',
-        '<strong>2. The Retrieval Phase:</strong> When you ask a question (e.g., "Explain the causes of the English Civil War from my history slides"), NotebookLM searches its database for the chunks that are most semantically similar to your question.',
-        '<strong>3. The Generation Phase:</strong> NotebookLM feeds those retrieved chunks directly into Gemini\'s context window alongside your query. Gemini is instructed to answer using <em>only</em> the provided text, adding citation numbers that link back to the exact passage in your source.',
+        '<strong>1. The Indexing Phase:</strong> You upload your sources (PDFs, class slides, websites, or Google Docs). Gemini Notebook splits each document into small chunks (usually 200–500 words) and converts them into semantic vectors (mathematical representations of meaning).',
+        '<strong>2. The Retrieval Phase:</strong> When you ask a question (e.g., "Explain the causes of the English Civil War from my history slides"), Gemini Notebook searches its database for the chunks that are most semantically similar to your question.',
+        '<strong>3. The Generation Phase:</strong> Gemini Notebook feeds those retrieved chunks directly into Gemini\'s context window alongside your query. Gemini is instructed to answer using <em>only</em> the provided text, adding citation numbers that link back to the exact passage in your source.',
         '<strong>Where it fails:</strong> RAG matches on semantic similarity, not logical truth. If your notes contain a mistake or contradict each other, Gemini will confidently repeat the mistake. If information is missing entirely, Gemini may hallucinate a connection to bridge the gap.'
       ],
-      callout: 'RAG reduces general hallucinations but does not eliminate errors. If you feed NotebookLM incorrect or incomplete notes, it will confidently generate incorrect or incomplete study guides. Always check the source.'
+      callout: 'RAG reduces general hallucinations but does not eliminate errors. If you feed Gemini Notebook incorrect or incomplete notes, it will confidently generate incorrect or incomplete study guides. Always check the source.'
     },
     {
       type: 'concept',
       title: 'AI Agents: When Models Take Actions',
-      body: 'NotebookLM retrieves and synthesises notes. A full AI agent does something more: it decides what actions to take, executes them, observes the results, and repeats the loop. Gemini can act as an agent by executing code or browsing the web.',
+      body: 'Gemini Notebook retrieves and synthesises notes. A full AI agent does something more: it decides what actions to take, executes them, observes the results, and repeats the loop. Gemini can act as an agent by executing code or browsing the web.',
       bullets: [
         '<strong>The ReAct pattern (Reason + Act):</strong> The agent thinks about its goal, decides on a tool (like running a python script or searching Google), executes the action, observes the output, and reasons about the next step.',
         '<strong>Common tools:</strong> Web search, code execution in a sandbox, file management, and database queries.',
@@ -210,14 +210,14 @@ var SLIDES_ADVANCED = {
     },
     {
       type: 'activity',
-      title: 'NotebookLM Stress-Test Challenge',
+      title: 'Gemini Notebook Stress-Test Challenge',
       instructions: 'Stress-test a source-grounded AI by deliberately introducing errors and observing how it handles them.',
       steps: [
         'Write down a brief mock article about a fictional historical event. Include a clear contradiction (e.g., on page 1 say the treaty was signed in 1812, and on page 2 say the treaty was signed in 1842).',
-        'Upload this text as a source in a new NotebookLM notebook (or paste it as a text source).',
-        'Ask NotebookLM: "What year was the treaty signed?" Does it flag the contradiction, choose one date, or try to blend them together?',
+        'Upload this text as a source in a new Gemini Notebook notebook (or paste it as a text source).',
+        'Ask Gemini Notebook: "What year was the treaty signed?" Does it flag the contradiction, choose one date, or try to blend them together?',
         'Click on the citation numbers in the response. Does the cited passage actually support the claim the AI made?',
-        'Ask about a detail not mentioned in your document (e.g., "Who was the prime minister at the signing?"). Does NotebookLM correctly state the sources don\'t mention it, or does it look it up or guess?',
+        'Ask about a detail not mentioned in your document (e.g., "Who was the prime minister at the signing?"). Does Gemini Notebook correctly state the sources don\'t mention it, or does it look it up or guess?',
         'Write a 3-sentence summary of your findings: How reliable are the citations, and what is your protocol for verifying them?'
       ]
     },
@@ -225,14 +225,14 @@ var SLIDES_ADVANCED = {
       type: 'discussion',
       title: 'Trust, Autonomy, and the Speed Problem',
       questions: [
-        { num: 1, text: 'NotebookLM grounds its answers in the sources you upload, which makes it feel neutral. But who chose which sources to upload in the first place? How does selection bias affect the \'objectivity\' of your notebook?' },
+        { num: 1, text: 'Gemini Notebook grounds its answers in the sources you upload, which makes it feel neutral. But who chose which sources to upload in the first place? How does selection bias affect the \'objectivity\' of your notebook?' },
         { num: 2, text: 'If an AI agent can perform a 50-step research task in under a minute, is \'human-in-the-loop\' oversight realistic, or do we become rubber-stamps who only check the start and the end?' },
         { num: 3, text: 'What are the security and privacy risks of uploading your class notes, essays, or personal research to a cloud-based AI system? Who owns what you upload?' }
       ]
     },
     {
       type: 'quiz',
-      question: 'What is the primary benefit and primary limitation of source-grounded tools like NotebookLM?',
+      question: 'What is the primary benefit and primary limitation of source-grounded tools like Gemini Notebook?',
       options: [
         'They fine-tune the model\'s weights on your documents so it permanently memorises them. The limitation is that training is very slow.',
         'They retrieve relevant chunks from your uploads at query time to guide the AI\'s response. The limitation is that they can still hallucinate or repeat errors present in your uploaded sources.',
@@ -240,15 +240,15 @@ var SLIDES_ADVANCED = {
         'They transcribe your spoken notes in real-time. The limitation is they do not support text documents.'
       ],
       correct: 1,
-      explanation: 'NotebookLM uses Retrieval-Augmented Generation (RAG) to find relevant chunks in your sources and feed them to the model. This reduces hallucinations on your notes, but it does NOT eliminate them. If your notes are wrong, or if the model misreads the chunks, it will still generate incorrect answers.'
+      explanation: 'Gemini Notebook uses Retrieval-Augmented Generation (RAG) to find relevant chunks in your sources and feed them to the model. This reduces hallucinations on your notes, but it does NOT eliminate them. If your notes are wrong, or if the model misreads the chunks, it will still generate incorrect answers.'
     },
     {
       type: 'summary',
       title: 'Key Takeaways',
       points: [
-        { icon: '▸', label: 'RAG is retrieval, not recall', text: 'NotebookLM does not \'learn\' your documents permanently — it retrieves chunks at query time.' },
-        { icon: '▸', label: 'Grounded does not mean true', text: 'GIGO (Garbage In, Garbage Out) applies. If your uploaded source is wrong or has gaps, NotebookLM will synthesise errors.' },
-        { icon: '▸', label: 'Always click the citations', text: 'NotebookLM\'s citation numbers point directly to the source paragraphs. Use them to verify that the model hasn\'t misquoted or taken text out of context.' }
+        { icon: '▸', label: 'RAG is retrieval, not recall', text: 'Gemini Notebook does not \'learn\' your documents permanently — it retrieves chunks at query time.' },
+        { icon: '▸', label: 'Grounded does not mean true', text: 'GIGO (Garbage In, Garbage Out) applies. If your uploaded source is wrong or has gaps, Gemini Notebook will synthesise errors.' },
+        { icon: '▸', label: 'Always click the citations', text: 'Gemini Notebook\'s citation numbers point directly to the source paragraphs. Use them to verify that the model hasn\'t misquoted or taken text out of context.' }
       ]
     }
   ],

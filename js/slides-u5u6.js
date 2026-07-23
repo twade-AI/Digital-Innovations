@@ -233,16 +233,16 @@ var SLIDES_U5U6 = {
     {
       type: 'hook',
       title: 'The AI Manifesto',
-      body: 'In 1848, the Communist Manifesto reshaped global politics. In 1999, the Cluetrain Manifesto anticipated how the internet would transform business. In 2023, the Bletchley Declaration committed 28 nations to international AI safety. Manifestos are public declarations of principles. They define values that guide actions in times of rapid change.<br><br>As Gemini and NotebookLM are deployed to your school devices, you are no longer just consumers of AI—you are active users shaping how these tools are integrated into education. Today, you write your personal AI Manifesto: your code of conduct for living and learning in an AI-saturated world.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">28</span><span class="sl">nations signed the Bletchley AI Safety Declaration (2023)</span></div><div class="hook-stat-mini"><span class="sv">Manifesto</span><span class="sl">A public declaration of core values and ethical principles</span></div><div class="hook-stat-mini"><span class="sv">Your Code</span><span class="sl">5-7 personal commitments for using Gemini & NotebookLM ethically</span></div></div>'
+      body: 'In 1848, the Communist Manifesto reshaped global politics. In 1999, the Cluetrain Manifesto anticipated how the internet would transform business. In 2023, the Bletchley Declaration committed 28 nations to international AI safety. Manifestos are public declarations of principles. They define values that guide actions in times of rapid change.<br><br>As Gemini and Gemini Notebook are deployed to your school devices, you are no longer just consumers of AI—you are active users shaping how these tools are integrated into education. Today, you write your personal AI Manifesto: your code of conduct for living and learning in an AI-saturated world.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">28</span><span class="sl">nations signed the Bletchley AI Safety Declaration (2023)</span></div><div class="hook-stat-mini"><span class="sv">Manifesto</span><span class="sl">A public declaration of core values and ethical principles</span></div><div class="hook-stat-mini"><span class="sv">Your Code</span><span class="sl">5-7 personal commitments for using Gemini & Gemini Notebook ethically</span></div></div>'
     },
     {
       type: 'concept',
       title: 'Building Your AI Code of Conduct',
       body: 'A strong AI manifesto is not a list of abstract beliefs (e.g., \'I believe AI should be ethical\'). It is a set of specific, actionable commitments that you can explain and defend to your teachers and peers.',
       bullets: [
-        '<strong>1. Cognitive Independence:</strong> How will you ensure that you do the thinking, and that Gemini/NotebookLM remain study partners rather than crutches?',
+        '<strong>1. Cognitive Independence:</strong> How will you ensure that you do the thinking, and that Gemini/Gemini Notebook remain study partners rather than crutches?',
         '<strong>2. Academic Honesty:</strong> How will you disclose your AI use? What is your personal threshold for Amber Tier editing versus Red Tier plagiarism?',
-        '<strong>3. Fact Verification:</strong> What is your protocol for verifying claims made by Gemini or NotebookLM? How will you handle citations?',
+        '<strong>3. Fact Verification:</strong> What is your protocol for verifying claims made by Gemini or Gemini Notebook? How will you handle citations?',
         '<strong>4. Data Privacy & Safety:</strong> What information will you refuse to upload to AI systems? How will you protect your classmates\' intellectual property?',
         '<strong>5. Continuous Learning:</strong> How will you keep updating your understanding of AI capabilities, biases, and pitfalls?'
       ],
@@ -274,9 +274,9 @@ var SLIDES_U5U6 = {
       instructions: 'Draft your personal AI code of conduct. Write 5-7 clear, specific commitments.',
       steps: [
         'Reflect on what you have learned: what are the most important ethical lessons from this course (tokens, bias, hallucination, offloading)?',
-        'Write 5-7 commitments starting with \'I will...\' or \'I believe...\' (e.g., \'I will always click the citation in NotebookLM to verify the source text myself.\')',
+        'Write 5-7 commitments starting with \'I will...\' or \'I believe...\' (e.g., \'I will always click the citation in Gemini Notebook to verify the source text myself.\')',
         'For each commitment, write a brief sentence explaining WHY you hold this rule, referencing a specific lesson.',
-        'Write an introductory statement: Who are you, what tools do you use (Gemini, NotebookLM), and why does your integrity matter?',
+        'Write an introductory statement: Who are you, what tools do you use (Gemini, Gemini Notebook), and why does your integrity matter?',
         'Share your manifesto draft with your class. Receive feedback on whether your rules are specific enough to enforce.',
         'Sign and date your manifesto. Keep it on your device as a commitment when Gemini is rolled out.'
       ]
@@ -292,7 +292,7 @@ var SLIDES_U5U6 = {
     },
     {
       type: 'quiz',
-      question: 'What is the primary purpose of writing a personal AI manifesto before your school deploys Gemini and NotebookLM?',
+      question: 'What is the primary purpose of writing a personal AI manifesto before your school deploys Gemini and Gemini Notebook?',
       options: [
         'To show your teacher you completed the course.',
         'To establish a set of personal, actionable commitments that ensure you use AI to enhance your learning rather than bypass it.',
@@ -308,7 +308,7 @@ var SLIDES_U5U6 = {
       points: [
         { icon: '▸', label: 'Principles guide action', text: 'A manifesto translates abstract rules into personal commitments. It keeps you accountable when under pressure.' },
         { icon: '▸', label: 'Maintain cognitive ownership', text: 'Your core commitment: AI is a partner to think with, never a substitute to think for you.' },
-        { icon: '▸', label: 'This is just the beginning', text: 'Gemini and NotebookLM are powerful tools. Your manifesto ensures you deploy them to build genuine intelligence, not just pass tests.' }
+        { icon: '▸', label: 'This is just the beginning', text: 'Gemini and Gemini Notebook are powerful tools. Your manifesto ensures you deploy them to build genuine intelligence, not just pass tests.' }
       ]
     }
   ]

@@ -2131,7 +2131,7 @@ var SLIDE_VISUALS = {
     <text x="350" y="200" text-anchor="middle" class="v52" font-size="10" opacity=".6" font-style="italic">The model can't reliably tell "content to read" from "commands to follow"</text>
   </svg>`,
 
-  /* ── L53:1 — RAG pipeline (NotebookLM) ────────────────────────────── */
+  /* ── L53:1 — RAG pipeline (Gemini Notebook) ────────────────────────────── */
   '53:1': `<svg viewBox="0 0 560 180" xmlns="http://www.w3.org/2000/svg" aria-label="Retrieval-augmented generation pipeline">
     <defs><style>.v53{font-family:system-ui,sans-serif;fill:currentColor}</style>
       <marker id="arr53" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="currentColor" opacity=".45"/></marker>
