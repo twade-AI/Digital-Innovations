@@ -735,8 +735,25 @@ LABS['classifier-mirror'] = {
         '<div class="lab-cm-truth"><strong>The honest bit:</strong> none of that is real — it was picked at random. ' +
         'But a real classifier learns labels like these from <strong>biased human data</strong> and then states them ' +
         'with the same unearned confidence. A percentage is not proof. Remember the hiring tool that learned from a ' +
-        'decade of mostly-male CVs: skewed data in, skewed decisions out — delivered as a confident score.</div>';
-      labComplete('classifier-mirror');
+        'decade of mostly-male CVs: skewed data in, skewed decisions out — delivered as a confident score.</div>' +
+        '<div class="lab-pattern" style="margin-top:12px"><strong>One question before you go:</strong> what would a percentage like "93%" need behind it before you should trust it?' +
+          '<span class="lab-btn-row" style="margin-top:8px">' +
+          '<button class="lab-btn lab-btn-sm" data-cm="decimals">More decimal places</button>' +
+          '<button class="lab-btn lab-btn-sm" data-cm="evidence">Evidence, and a measured error rate</button>' +
+          '<button class="lab-btn lab-btn-sm" data-cm="tone">A more serious tone</button></span>' +
+          '<span class="lab-kb-hint" id="' + uid + '-cmfb" aria-live="polite"></span></div>';
+    });
+    el(uid).addEventListener('click', function (e) {
+      var b = e.target.closest('[data-cm]');
+      if (!b) return;
+      var fb = el(uid + '-cmfb');
+      if (b.getAttribute('data-cm') === 'evidence') {
+        fb.textContent = '✓ Exactly — a number is only as good as the data behind it and the error rate someone actually measured. Precision and tone are costumes.';
+        labComplete('classifier-mirror');
+      } else {
+        b.disabled = true;
+        fb.textContent = 'That changes how it LOOKS, not whether it\'s true — which is precisely the trick. Try again.';
+      }
     });
   }
 };
@@ -1732,11 +1749,28 @@ LABS['instruction-engine'] = {
           '</div>' +
         '</div>' +
         '<div class="lab-ie-transcript" id="' + uid + '-tr" aria-live="polite"></div>' +
+        '<div class="lab-btn-row">' +
+          '<button class="lab-btn lab-btn-sm" id="' + uid + '-roll">🎲 Re-roll the randomness</button>' +
+          '<button class="lab-btn lab-btn-sm" id="' + uid + '-copy">📋 Copy as prompt</button>' +
+          '<button class="lab-btn lab-btn-sm" id="' + uid + '-dl">⬇ Download PNG</button>' +
+        '</div>' +
       '</div>';
   },
   init: function (uid) {
     var cv = el(uid + '-cv'); if (!cv) return;
     var T = theme();
+    /* seeded randomness: changing one parameter PERTURBS the artwork
+       instead of replacing it — the layout only changes when you
+       deliberately re-roll. That is the "systematic logic" promise kept. */
+    var ieSeed = 12345;
+    function ieRand(s) {
+      return function () {
+        s |= 0; s = (s + 0x6D2B79F5) | 0;
+        var t = Math.imul(s ^ (s >>> 15), 1 | s);
+        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+      };
+    }
     function draw() {
       var f = fitCanvas(cv, 0.5, 200), ctx = f.ctx, W = f.W, H = f.H;
       var density = +el(uid + '-d').value;
@@ -1762,11 +1796,12 @@ LABS['instruction-engine'] = {
           ctx.lineTo(cx + Math.cos(ang) * len, cy + Math.sin(ang) * len); ctx.stroke();
         }
       } else if (struct === 'walk') {
+        var rnd = ieRand(ieSeed);
         for (var j = 0; j < density; j++) {
-          var x1 = Math.random() * W, y1 = Math.random() * H;
+          var x1 = rnd() * W, y1 = rnd() * H;
           stroke(j);
           ctx.beginPath(); ctx.moveTo(x1, y1);
-          ctx.lineTo(x1 + (Math.random() * 130 - 65), y1 + (Math.random() * 130 - 65)); ctx.stroke();
+          ctx.lineTo(x1 + (rnd() * 130 - 65), y1 + (rnd() * 130 - 65)); ctx.stroke();
         }
       } else {
         var cols = 5, rows = 3, bw = W / cols, bh = H / rows;
@@ -1791,11 +1826,34 @@ LABS['instruction-engine'] = {
         : pal === 'brand' ? 'alternating magenta and cyan on near-black'
         : 'cycling the full spectrum on near-black';
       el(uid + '-tr').textContent = '// the instruction, in prose: ' + structTxt + ', ' + density + ' times, at ' + lw + 'px, ' + palTxt + '.';
+      return 'An abstract artwork: ' + structTxt + ', ' + density + ' times, with ' + lw + 'px strokes, ' + palTxt + '.';
     }
-    var ieTouches = 0;
-    function ieTouch() { draw(); if (++ieTouches >= 3) labComplete('instruction-engine'); }
-    [uid + '-d', uid + '-w'].forEach(function (id) { el(id).addEventListener('input', ieTouch); });
-    [uid + '-p', uid + '-s'].forEach(function (id) { el(id).addEventListener('change', ieTouch); });
+    /* completion means exploring: three DIFFERENT parameters touched */
+    var ieTouched = {};
+    function ieTouch(id) {
+      return function () {
+        draw();
+        ieTouched[id] = true;
+        if (Object.keys(ieTouched).length >= 3) labComplete('instruction-engine');
+      };
+    }
+    [uid + '-d', uid + '-w'].forEach(function (id) { el(id).addEventListener('input', ieTouch(id)); });
+    [uid + '-p', uid + '-s'].forEach(function (id) { el(id).addEventListener('change', ieTouch(id)); });
+    el(uid + '-roll').addEventListener('click', function () {
+      ieSeed = Math.floor(Math.random() * 1e9) + 1;
+      ieTouched.roll = true;
+      draw();
+      if (Object.keys(ieTouched).length >= 3) labComplete('instruction-engine');
+    });
+    el(uid + '-copy').addEventListener('click', function () {
+      copyText(draw(), el(uid + '-copy'));
+    });
+    el(uid + '-dl').addEventListener('click', function () {
+      var a = document.createElement('a');
+      a.download = 'my-instruction-artwork.png';
+      a.href = cv.toDataURL('image/png');
+      a.click();
+    });
     draw();
   }
 };
@@ -1961,6 +2019,28 @@ var SEQ_DEFAULT = {
     { text: 'Home computers put programming on ordinary desks', reveal: '1980s' }
   ]
 };
+/* Extra decks selectable on the labs page (lessons can still pass their own). */
+var SEQ_DECKS = [
+  { key: 'history', label: '🕰 Computing history', deck: SEQ_DEFAULT },
+  { key: 'chatbot', label: '💬 How a chatbot answers', deck: {
+    prompt: 'A chatbot turns your prompt into an answer in five steps. Put them in the order they actually happen.',
+    items: [
+      { text: 'Your prompt is chopped into tokens — words and word-pieces', reveal: 'tokenise' },
+      { text: 'Each token becomes a vector: a position in the model\'s space of meaning', reveal: 'embed' },
+      { text: 'Using its learned weights, the model scores every token that could come next', reveal: 'predict' },
+      { text: 'The chosen token is added to the text — and the whole thing is fed back in', reveal: 'append & repeat' },
+      { text: 'The finished tokens are turned back into words on your screen', reveal: 'detokenise' }
+    ] } },
+  { key: 'verify', label: '🔍 A shocking post appears', deck: {
+    prompt: 'A shocking claim lands in your feed. Put the fact-checker\'s moves in the right order.',
+    items: [
+      { text: 'Stop — don\'t share, don\'t reply. Let the emotional spike pass', reveal: 'stop' },
+      { text: 'Check who actually posted it: account age, history, who they are', reveal: 'the source' },
+      { text: 'Search whether credible outlets are reporting the same thing', reveal: 'better coverage' },
+      { text: 'Trace the claim upstream to the original photo, paper or report', reveal: 'the origin' },
+      { text: 'Only now decide: share it, correct it, or let it die', reveal: 'decide last' }
+    ] } }
+];
 LABS['sequence'] = {
   title: 'Put it in order',
   tag: 'Activity',
@@ -1968,6 +2048,7 @@ LABS['sequence'] = {
   html: function (uid) {
     return '' +
       '<div class="lab" id="' + uid + '">' +
+        '<div class="lab-chip-row" id="' + uid + '-decks"></div>' +
         '<p class="lab-note" id="' + uid + '-prompt" style="margin-top:0"></p>' +
         '<p class="lab-note lab-kb-hint">⌨ Keyboard: focus a card, press <strong>Enter</strong> to pick it up, <strong>↑/↓</strong> to move it, <strong>Enter</strong> to drop, <strong>Esc</strong> to cancel.</p>' +
         '<div class="lab-seq-rows" id="' + uid + '-rows"></div>' +
@@ -1982,6 +2063,22 @@ LABS['sequence'] = {
   init: function (uid, data) {
     var D = (data && data.items) ? data : SEQ_DEFAULT;
     el(uid + '-prompt').textContent = D.prompt || SEQ_DEFAULT.prompt;
+    /* labs-page only: no lesson data → offer the deck picker */
+    var deckRow = el(uid + '-decks');
+    if (deckRow && !(data && data.items)) {
+      SEQ_DECKS.forEach(function (d, i) {
+        var b = document.createElement('button');
+        b.className = 'lab-chip' + (i === 0 ? ' active' : '');
+        b.textContent = d.label;
+        b.addEventListener('click', function () {
+          D = d.deck;
+          el(uid + '-prompt').textContent = D.prompt;
+          Array.prototype.forEach.call(deckRow.children, function (x) { x.classList.toggle('active', x === b); });
+          build();
+        });
+        deckRow.appendChild(b);
+      });
+    }
     var rows = el(uid + '-rows');
     var drag = null, from = null, ox = 0, oy = 0, grabbed = null;
     function announce(msg) { var l = el(uid + '-live'); if (l) l.textContent = msg; }
@@ -2128,6 +2225,7 @@ LABS['peril-promise'] = {
           '<span class="lab-pp-ax lab-pp-w">☠️ Peril</span><span class="lab-pp-ax lab-pp-e">✨ Promise</span>' +
           '<span class="lab-pp-ax lab-pp-n">already happening</span><span class="lab-pp-ax lab-pp-s">years away</span>' +
         '</div>' +
+        '<p class="lab-note" id="' + uid + '-ppread" aria-live="polite"></p>' +
         '<p class="lab-note">Protocol: read each card aloud → place it together → could any <em>promise</em> become a <em>peril</em>, depending on who controls it? Drag a card out of the field to send it back.</p>' +
         '<span class="lab-sr" id="' + uid + '-live" aria-live="assertive"></span>' +
       '</div>';
@@ -2146,7 +2244,27 @@ LABS['peril-promise'] = {
       return h + ', ' + v;
     }
     function checkPlacedCount() {
-      if (field.querySelectorAll('.lab-pp-card').length >= 4) labComplete('peril-promise');
+      var cards = field.querySelectorAll('.lab-pp-card');
+      /* the vertical axis earns its keep: read the quadrants back */
+      var read = el(uid + '-ppread');
+      if (read) {
+        if (!cards.length) { read.textContent = ''; }
+        else {
+          var W = field.clientWidth || 1, H = field.clientHeight || 1;
+          var peril = 0, promise = 0, nowPeril = 0, nowPromise = 0;
+          Array.prototype.forEach.call(cards, function (c) {
+            var x = (parseInt(c.style.left || '0', 10) + c.offsetWidth / 2) / W;
+            var y = (parseInt(c.style.top || '0', 10) + c.offsetHeight / 2) / H;
+            if (x < 0.5) { peril++; if (y < 0.5) nowPeril++; }
+            else { promise++; if (y < 0.5) nowPromise++; }
+          });
+          var msg = 'Your field so far: ' + peril + ' peril' + (peril === 1 ? '' : 's') + ', ' + promise + ' promise' + (promise === 1 ? '' : 's') + '.';
+          if (nowPeril) msg += ' You\'ve marked ' + nowPeril + ' peril' + (nowPeril === 1 ? '' : 's') + ' as already happening — which worries you most, and who could actually change it?';
+          else if (nowPromise) msg += ' Your nearest-term cards are all promises — what would have to go wrong for one of them to slide left?';
+          read.textContent = msg;
+        }
+      }
+      if (cards.length >= 4) labComplete('peril-promise');
     }
     el(uid + '-addbtn').addEventListener('click', function () {
       var inp = el(uid + '-add');
@@ -2192,6 +2310,7 @@ LABS['peril-promise'] = {
         bank.appendChild(card);
         card.focus();
         announce('Sent back to the bank.');
+        checkPlacedCount();
       }
     });
     function down(e) {
@@ -2242,6 +2361,7 @@ LABS['peril-promise'] = {
         drag.classList.remove('placed');
         drag.style.position = ''; drag.style.left = drag.style.top = '';
         bank.appendChild(drag);
+        checkPlacedCount();
       }
       drag.classList.remove('dragging');
       drag = null;
