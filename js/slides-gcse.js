@@ -2134,7 +2134,7 @@ SLIDES_GCSE[116] = [
       { term: 'Translating between languages', def: 'Modern frontier models (the latest ChatGPT, Claude and Gemini) match or exceed Google Translate on GCSE-level French, German and Spanish in independent benchmarks.' },
       { term: 'First-draft generation', def: 'Emails, cover-letter skeletons, meeting summaries, revision-plan outlines. The AI gives you a starting point — you edit it into something real.' },
       { term: 'Summarising long documents', def: 'Claude handles 200k-token inputs natively — roughly a 500-page textbook in one prompt. Use it to compress, then read the original for the bits that matter.' },
-      { term: 'Repetitive templates', def: 'Thank-you emails, revision-session plans, weekly schedules — anything where the pattern is fixed and only the details change.' },
+      { term: 'Repetitive templates', def: 'Revision-session plans, weekly schedules, meeting agendas — anything where the pattern is fixed and only the details change. (One exception: personal messages. An AI-written thank-you note isn\'t really a thank-you — if it\'s meant to mean something, it has to come from you.)' },
       { term: 'Reorganising ideas', def: 'You dump 40 scattered thoughts into chat; AI groups them into 5 coherent themes. The thinking is yours; the sorting is AI\'s.' }
     ],
     sources: [
@@ -2174,13 +2174,14 @@ SLIDES_GCSE[116] = [
     title: 'The Hidden Cost of Automation',
     body: 'Researchers call this "cognitive offloading" — moving mental work from your brain to a tool. Some offloading is fine and ancient (writing offloads memory; calculators offload arithmetic). Some quietly erodes skills you actually need. A 2025 Swiss study (Gerlich, Societies journal, 666 participants) found that the people with the highest frequency of ChatGPT use scored lowest on an independent critical-thinking measure (the Halpern Critical Thinking Assessment) — a strong negative correlation, most pronounced among younger participants.',
     bullets: [
+      { term: 'Offloading vs outsourcing', def: 'Offloading hands a tool the mechanical load so your limited working memory is free for the real thinking — jotting notes down, using a calculator mid-problem. Outsourcing hands over the thinking itself. One question tells them apart: "Do I want to get better at this?" If yes, do it yourself — the practice is the point.' },
       { term: 'Skills you don\'t practise, you lose', def: 'Writing, mental arithmetic, memory — regular use keeps them sharp. Brain imaging studies show taxi drivers\' hippocampi grow from navigation practice; the effect reverses when they stop (Maguire, UCL 2000).' },
       { term: 'Writing shapes thinking', def: 'Orwell\'s point in "Politics and the English Language": vague writing is vague thinking. Outsourcing writing often means outsourcing the thinking that writing forces you to do.' },
       { term: 'Productive struggle', def: 'Bjork\'s "desirable difficulties" research (UCLA) shows the tasks that feel hardest are the ones that build the deepest learning. AI that removes the struggle also removes the learning.' },
       { term: 'Dependence risk', def: 'If AI tools become unavailable — exams, interviews, power cuts, company changes policy — what can you still do without them? Every skill you\'ve fully delegated is at risk.' },
       { term: 'The GPS effect', def: 'Multiple studies show heavy GPS users lose navigation ability (Dahmani &amp; Bohbot, 2020). Heavy AI users risk the same with the thinking skills they delegate.' }
     ],
-    callout: 'Rule of thumb: if a task appears on an exam paper you will sit, do NOT automate it. If it doesn\'t, automating it saves your best hours for things that do.',
+    callout: 'Rule of thumb: ask "Do I want to get better at this?" If yes — and anything on an exam paper you will sit is an automatic yes — do NOT automate it. If no, automate it and reinvest the hours in the skills you do want to grow.',
     sources: [
       { label: 'Gerlich, M. (2025) — "AI Tools in Society: Impacts on Cognitive Offloading and the Future of Critical Thinking" (Societies, MDPI)', url: 'https://www.mdpi.com/2075-4698/15/1/6' },
       { label: 'Dahmani, L. &amp; Bohbot, V.D. (2020) — "Habitual use of GPS negatively impacts spatial memory during self-guided navigation" (Scientific Reports)', url: 'https://www.nature.com/articles/s41598-020-62877-0' }
@@ -2227,7 +2228,7 @@ SLIDES_GCSE[116] = [
       { icon: '⚠️', label: 'Cognitive offloading is real', text: 'Gerlich 2025 measured the effect — high AI use correlates strongly with lower critical thinking' },
       { icon: '📝', label: 'If it\'s on an exam, practise it', text: 'the room without wifi is closer than you think — every mock, every real paper' },
       { icon: '⏱️', label: 'Reinvest the saved time', text: 'the point isn\'t to work less; it\'s to spend your hours on harder, more valuable problems' },
-      { icon: '✅', label: 'Automate wisely', text: 'save time, not skills — this is the habit that will matter for the next 40 years of your working life' }
+      { icon: '✅', label: 'One question decides', text: '"do I want to get better at this?" — if yes, do it yourself; if no, automate it. The habit that will matter for the next 40 years of your working life' }
     ]
   }
 ];

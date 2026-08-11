@@ -785,7 +785,7 @@
     }
     var area = document.getElementById('gsSlideArea');
     area.innerHTML = gsRenderSlideHTML(slide);
-    area.scrollTop = 0;
+    if (window.diSlide && diSlide.resetScroll) diSlide.resetScroll(area); else area.scrollTop = 0;
     // Interactive lab widgets wire their events after DOM insertion
     if (slide && slide.type === 'widget' && typeof DI_LABS !== 'undefined' && DI_LABS[slide.widget]) {
       try { DI_LABS[slide.widget].init('gs-lab-' + slide.widget, slide.labData); }
@@ -799,11 +799,12 @@
       try { savedNote = localStorage.getItem(noteKey) || ''; } catch(e) {}
       var notesWrap = document.createElement('div');
       notesWrap.className = 'slide-notes';
-      notesWrap.innerHTML = '<div class="slide-notes-header"><span class="slide-notes-label">✏ My Notes</span><span class="slide-notes-saved" id="gsNotesSaved">Saved</span></div><textarea class="slide-notes-ta" id="gsNotesTa" placeholder="Jot your own thoughts, questions, or key points…" maxlength="2000"></textarea>';
+      notesWrap.innerHTML = '<div class="slide-notes-header"><span class="slide-notes-label">✏ My Notes</span><button class="slide-notes-bullet" type="button" title="Insert a bullet — or type - or 1. at a line start; Enter continues the list" onclick="if(window.diSlide&&diSlide.notesBullet)diSlide.notesBullet(document.getElementById(\'gsNotesTa\'))">• List</button><span class="slide-notes-saved" id="gsNotesSaved">Saved</span></div><textarea class="slide-notes-ta" id="gsNotesTa" placeholder="Jot your own thoughts, questions, or key points… (start a line with - or 1. for a list)" maxlength="2000"></textarea>';
       area.appendChild(notesWrap);
       var ta = document.getElementById('gsNotesTa');
       if (ta) {
         ta.value = savedNote;
+        if (window.diSlide && diSlide.notesListSupport) diSlide.notesListSupport(ta);
         var timer=null, ind=document.getElementById('gsNotesSaved');
         ta.addEventListener('input',function(){
           clearTimeout(timer);
@@ -846,7 +847,7 @@
       primaryLabel: nextId ? 'Next lesson &#8594;' : 'Back to course',
       secondaryLabel: nextId ? 'Back to course' : null
     });
-    area.scrollTop = 0;
+    if (window.diSlide && diSlide.resetScroll) diSlide.resetScroll(area); else area.scrollTop = 0;
     var primary = document.getElementById('diResultsPrimary');
     if (primary) primary.onclick = nextId
       ? function() { gsCloseLesson(); setTimeout(function() { gsOpenLesson(nextId); }, 150); }

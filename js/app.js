@@ -870,7 +870,7 @@ function renderSlide(index) {
   }
 
   area.innerHTML = html;
-  area.scrollTop = 0;
+  if (window.diSlide && diSlide.resetScroll) diSlide.resetScroll(area); else area.scrollTop = 0;
 
   // Interactive lab widgets wire their events after DOM insertion
   if (slide.type === 'widget' && typeof DI_LABS !== 'undefined' && DI_LABS[slide.widget]) {
@@ -914,13 +914,15 @@ function renderSlide(index) {
   notesWrap.innerHTML =
     '<div class="slide-notes-header">' +
       '<span class="slide-notes-label">✏ My Notes</span>' +
+      '<button class="slide-notes-bullet" type="button" title="Insert a bullet — or type - or 1. at a line start; Enter continues the list" onclick="if(window.diSlide&&diSlide.notesBullet)diSlide.notesBullet(document.getElementById(\'slideNotesTa\'))">• List</button>' +
       '<span class="slide-notes-saved" id="slideNotesSaved">Saved</span>' +
     '</div>' +
-    '<textarea class="slide-notes-ta" id="slideNotesTa" placeholder="Jot your own thoughts, questions, or key points for this slide…" maxlength="2000"></textarea>';
+    '<textarea class="slide-notes-ta" id="slideNotesTa" placeholder="Jot your own thoughts, questions, or key points for this slide… (start a line with - or 1. for a list)" maxlength="2000"></textarea>';
   area.appendChild(notesWrap);
   var notesTa = document.getElementById('slideNotesTa');
   if (notesTa) {
     notesTa.value = savedNote;
+    if (window.diSlide && diSlide.notesListSupport) diSlide.notesListSupport(notesTa);
     var noteTimer = null;
     var savedIndicator = document.getElementById('slideNotesSaved');
     notesTa.addEventListener('input', function() {
@@ -1054,7 +1056,7 @@ function showLessonResults() {
     primaryLabel: nextId ? 'Next lesson &#8594;' : 'Back to course',
     secondaryLabel: nextId ? 'Back to course' : null
   });
-  area.scrollTop = 0;
+  if (window.diSlide && diSlide.resetScroll) diSlide.resetScroll(area); else area.scrollTop = 0;
 
   var primary = document.getElementById('diResultsPrimary');
   if (primary) primary.onclick = nextId

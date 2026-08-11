@@ -207,8 +207,13 @@ LABS['pixel-classifier'] = {
     var photo = el(uid + '-photo'); if (!photo) return;
     function show() {
       stage = 0;
+      /* Blur must land in the same frame as the new photo — with the
+         filter transition active the image flashes sharp first. */
+      photo.style.transition = 'none';
       photo.textContent = PXC_CARDS[idx].e;
       photo.style.filter = 'blur(' + PXC_BLUR[0] + 'px)';
+      void photo.offsetWidth;
+      photo.style.transition = '';
       el(uid + '-count').textContent = 'Photo ' + (idx + 1) + ' of ' + PXC_CARDS.length +
         ' · guess now for ' + PXC_PTS[0] + ' pts';
       el(uid + '-more').disabled = false;

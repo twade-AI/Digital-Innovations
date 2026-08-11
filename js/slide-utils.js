@@ -218,9 +218,73 @@
     '</div>';
   }
 
+  /* ── Notes list formatting ─────────────────────────
+     Basic "formatting" for the plain-text notes textareas: a line
+     starting with "- ", "* ", "• " or "1. " becomes a list item —
+     Enter continues the list (numbers increment), Enter on an empty
+     item ends it. notesBullet() backs the "• List" header button.
+     Notes stay plain text, so saved notes and portfolio exports are
+     untouched. */
+  function notesListSupport(ta) {
+    if (!ta || ta._notesList) return;
+    ta._notesList = true;
+    ta.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter' || e.shiftKey || e.isComposing) return;
+      var start = ta.selectionStart;
+      if (start !== ta.selectionEnd) return;
+      var v = ta.value;
+      var lineStart = v.lastIndexOf('\n', start - 1) + 1;
+      var line = v.slice(lineStart, start);
+      var m = line.match(/^(\s*)(?:([-*•])|(\d+)([.)]))(\s+)/);
+      if (!m) return;
+      e.preventDefault();
+      if (line.length === m[0].length) {
+        // Enter on an empty item: remove the marker and end the list.
+        ta.value = v.slice(0, lineStart) + v.slice(start);
+        ta.selectionStart = ta.selectionEnd = lineStart;
+      } else {
+        var marker = m[3]
+          ? m[1] + (parseInt(m[3], 10) + 1) + m[4] + m[5]
+          : m[1] + m[2] + m[5];
+        ta.value = v.slice(0, start) + '\n' + marker + v.slice(start);
+        ta.selectionStart = ta.selectionEnd = start + 1 + marker.length;
+      }
+      ta.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+  }
+  function notesBullet(ta) {
+    if (!ta) return;
+    var pos = ta.selectionStart || 0, v = ta.value;
+    var lineStart = v.lastIndexOf('\n', pos - 1) + 1;
+    if (!/^\s*(?:[-*•]|\d+[.)])\s/.test(v.slice(lineStart, lineStart + 8))) {
+      ta.value = v.slice(0, lineStart) + '• ' + v.slice(lineStart);
+      ta.selectionStart = ta.selectionEnd = pos + 2;
+      ta.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+    ta.focus();
+  }
+
+  /* ── Scroll reset on slide swap ────────────────────
+     The scrollable element differs by engine: .lv-slide-area scrolls
+     itself in the AEP viewer, but the Removes/Fluency modals scroll
+     .modal-body — a PARENT of the slide area. Zeroing only the area's
+     own scrollTop leaves the next slide starting part-way down, so
+     walk up from the area and reset every scrolled ancestor inside
+     the overlay (stopping before body — page scroll stays put). */
+  function resetScroll(area) {
+    var el = area;
+    while (el && el !== document.body) {
+      if (el.scrollTop) el.scrollTop = 0;
+      el = el.parentElement;
+    }
+  }
+
   window.diSlide = {
     escape: escape,
     youtubeEmbed: youtubeEmbed,
+    resetScroll: resetScroll,
+    notesListSupport: notesListSupport,
+    notesBullet: notesBullet,
     revealHTML: revealHTML,
     sourcesHTML: sourcesHTML,
     toggleReveal: toggleReveal,
