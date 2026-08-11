@@ -12,7 +12,8 @@ Everything the track needs, gathered from across the site and inlined:
 | Bundled content | Source file(s) |
 |---|---|
 | Page markup, track UI, lesson viewer, certificate | `fluency.html` |
-| All styling (site, lesson slides, Haileybury brand) | `css/style.css`, `css/lesson.css`, `css/brand.css` |
+| All styling (site, lesson slides, labs, wow effects, Haileybury brand) | `css/style.css`, `css/lesson.css`, `css/labs.css`, `css/wow.css`, `css/brand.css` |
+| Interactive lab widgets | `js/labs.js` |
 | Lesson metadata for the 24 lessons | `js/data.js` (`UNITS`, filtered) |
 | All 24 slide decks | `js/slides-u1u2.js`, `js/slides-u3u4.js`, `js/slides-u5u6.js`, `js/slides-critical.js`, `js/slides-advanced.js`, `js/slides-gcse.js` (filtered) |
 | SVG slide diagrams | `js/visuals.js` (filtered) |

@@ -911,13 +911,7 @@ function renderSlide(index) {
   var savedNote = localStorage.getItem(noteKey) || '';
   var notesWrap = document.createElement('div');
   notesWrap.className = 'slide-notes';
-  notesWrap.innerHTML =
-    '<div class="slide-notes-header">' +
-      '<span class="slide-notes-label">✏ My Notes</span>' +
-      '<button class="slide-notes-bullet" type="button" title="Insert a bullet — or type - or 1. at a line start; Enter continues the list" onclick="if(window.diSlide&&diSlide.notesBullet)diSlide.notesBullet(document.getElementById(\'slideNotesTa\'))">• List</button>' +
-      '<span class="slide-notes-saved" id="slideNotesSaved">Saved</span>' +
-    '</div>' +
-    '<textarea class="slide-notes-ta" id="slideNotesTa" placeholder="Jot your own thoughts, questions, or key points for this slide… (start a line with - or 1. for a list)" maxlength="2000"></textarea>';
+  notesWrap.innerHTML = diSlide.notesHTML('slideNotesTa', 'slideNotesSaved');
   area.appendChild(notesWrap);
   var notesTa = document.getElementById('slideNotesTa');
   if (notesTa) {
@@ -4078,8 +4072,9 @@ document.addEventListener('keydown', e => {
     if (currentSlides.length === 0) window.location.href = 'fluency.html';
   }
   if (currentSlides.length > 0) {
-    if (e.key === 'ArrowRight') navigateSlide(1);
-    if (e.key === 'ArrowLeft') navigateSlide(-1);
+    // Arrow keys move the caret when typing in the notes box, not the deck
+    if (!inInput && e.key === 'ArrowRight') navigateSlide(1);
+    if (!inInput && e.key === 'ArrowLeft') navigateSlide(-1);
     if (!inInput) {
       if (e.key === 'M' || e.key === 'm') { if (currentLessonId) toggleLesson(currentLessonId); }
       if (e.key === 'B' || e.key === 'b') { if (currentLessonId) toggleBookmark(currentLessonId); }

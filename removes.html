@@ -799,7 +799,7 @@
       try { savedNote = localStorage.getItem(noteKey) || ''; } catch(e) {}
       var notesWrap = document.createElement('div');
       notesWrap.className = 'slide-notes';
-      notesWrap.innerHTML = '<div class="slide-notes-header"><span class="slide-notes-label">✏ My Notes</span><button class="slide-notes-bullet" type="button" title="Insert a bullet — or type - or 1. at a line start; Enter continues the list" onclick="if(window.diSlide&&diSlide.notesBullet)diSlide.notesBullet(document.getElementById(\'gsNotesTa\'))">• List</button><span class="slide-notes-saved" id="gsNotesSaved">Saved</span></div><textarea class="slide-notes-ta" id="gsNotesTa" placeholder="Jot your own thoughts, questions, or key points… (start a line with - or 1. for a list)" maxlength="2000"></textarea>';
+      notesWrap.innerHTML = window.diSlide.notesHTML('gsNotesTa', 'gsNotesSaved');
       area.appendChild(notesWrap);
       var ta = document.getElementById('gsNotesTa');
       if (ta) {
@@ -1407,8 +1407,11 @@
 
   document.addEventListener('keydown',function(e){
     if(!document.getElementById('gsModal').classList.contains('open'))return;
-    if(e.key==='ArrowRight'||e.key==='ArrowDown')gsNextSlide();
-    if(e.key==='ArrowLeft'||e.key==='ArrowUp')gsPrevSlide();
+    /* Arrow keys move the caret when typing in the notes box, not the deck */
+    var tag=(e.target.tagName||'').toLowerCase();
+    var inInput=(tag==='input'||tag==='textarea'||e.target.isContentEditable);
+    if(!inInput&&(e.key==='ArrowRight'||e.key==='ArrowDown'))gsNextSlide();
+    if(!inInput&&(e.key==='ArrowLeft'||e.key==='ArrowUp'))gsPrevSlide();
     if(e.key==='Escape'){
       if(window.diSlide&&window.diSlide.fullscreen.isActive())return;
       gsCloseLesson();

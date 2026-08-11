@@ -225,6 +225,21 @@
      item ends it. notesBullet() backs the "• List" header button.
      Notes stay plain text, so saved notes and portfolio exports are
      untouched. */
+  /* Route edits through execCommand where supported so the browser
+     keeps its undo stack; fall back to a manual splice (with our own
+     input event so autosave still fires). */
+  function notesEdit(ta, from, to, text) {
+    ta.focus();
+    ta.setSelectionRange(from, to);
+    var ok = false;
+    try { ok = document.execCommand(text ? 'insertText' : 'delete', false, text || undefined); } catch (err) {}
+    if (!ok) {
+      var v = ta.value;
+      ta.value = v.slice(0, from) + text + v.slice(to);
+      ta.selectionStart = ta.selectionEnd = from + text.length;
+      ta.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  }
   function notesListSupport(ta) {
     if (!ta || ta._notesList) return;
     ta._notesList = true;
@@ -237,31 +252,46 @@
       var line = v.slice(lineStart, start);
       var m = line.match(/^(\s*)(?:([-*•])|(\d+)([.)]))(\s+)/);
       if (!m) return;
-      e.preventDefault();
-      if (line.length === m[0].length) {
+      var atLineEnd = start >= v.length || v.charAt(start) === '\n';
+      if (line.length === m[0].length && atLineEnd) {
         // Enter on an empty item: remove the marker and end the list.
-        ta.value = v.slice(0, lineStart) + v.slice(start);
-        ta.selectionStart = ta.selectionEnd = lineStart;
+        // (Only when nothing follows on the line — Enter mid-line is a
+        // split, handled below.)
+        e.preventDefault();
+        notesEdit(ta, lineStart, start, '');
       } else {
         var marker = m[3]
           ? m[1] + (parseInt(m[3], 10) + 1) + m[4] + m[5]
           : m[1] + m[2] + m[5];
-        ta.value = v.slice(0, start) + '\n' + marker + v.slice(start);
-        ta.selectionStart = ta.selectionEnd = start + 1 + marker.length;
+        // At the maxlength cap, let the plain Enter through rather
+        // than splicing past the limit.
+        if (ta.maxLength > 0 && v.length + 1 + marker.length > ta.maxLength) return;
+        e.preventDefault();
+        notesEdit(ta, start, start, '\n' + marker);
       }
-      ta.dispatchEvent(new Event('input', { bubbles: true }));
     });
   }
   function notesBullet(ta) {
     if (!ta) return;
     var pos = ta.selectionStart || 0, v = ta.value;
     var lineStart = v.lastIndexOf('\n', pos - 1) + 1;
-    if (!/^\s*(?:[-*•]|\d+[.)])\s/.test(v.slice(lineStart, lineStart + 8))) {
-      ta.value = v.slice(0, lineStart) + '• ' + v.slice(lineStart);
-      ta.selectionStart = ta.selectionEnd = pos + 2;
-      ta.dispatchEvent(new Event('input', { bubbles: true }));
+    var lineEnd = v.indexOf('\n', lineStart);
+    if (lineEnd === -1) lineEnd = v.length;
+    var unmarked = !/^\s*(?:[-*•]|\d+[.)])\s/.test(v.slice(lineStart, lineEnd));
+    if (unmarked && !(ta.maxLength > 0 && v.length + 2 > ta.maxLength)) {
+      notesEdit(ta, lineStart, lineStart, '• ');
+      ta.setSelectionRange(pos + 2, pos + 2);
     }
     ta.focus();
+  }
+  /* One copy of the notes-box markup so the three viewers can't drift. */
+  function notesHTML(taId, savedId) {
+    return '<div class="slide-notes-header">' +
+        '<span class="slide-notes-label">✏ My Notes</span>' +
+        '<button class="slide-notes-bullet" type="button" title="Insert a bullet — or type - or 1. at a line start; Enter continues the list" onclick="if(window.diSlide&&diSlide.notesBullet)diSlide.notesBullet(document.getElementById(\'' + taId + '\'))">• List</button>' +
+        '<span class="slide-notes-saved" id="' + savedId + '">Saved</span>' +
+      '</div>' +
+      '<textarea class="slide-notes-ta" id="' + taId + '" placeholder="Jot your own thoughts, questions, or key points for this slide… (start a line with - or 1. for a list)" maxlength="2000"></textarea>';
   }
 
   /* ── Scroll reset on slide swap ────────────────────
@@ -285,6 +315,7 @@
     resetScroll: resetScroll,
     notesListSupport: notesListSupport,
     notesBullet: notesBullet,
+    notesHTML: notesHTML,
     revealHTML: revealHTML,
     sourcesHTML: sourcesHTML,
     toggleReveal: toggleReveal,
