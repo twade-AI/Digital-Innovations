@@ -966,7 +966,7 @@
       try { DI_LABS[slide.widget].init('fl-lab-' + slide.widget, slide.labData); }
       catch (e) { console.error('Lab init failed:', slide.widget, e); }
     }
-    area.scrollTop = 0;
+    if (window.diSlide && diSlide.resetScroll) diSlide.resetScroll(area); else area.scrollTop = 0;
 
     // Inject SVG visual if one exists
     if (typeof SLIDE_VISUALS !== 'undefined') {
@@ -989,16 +989,12 @@
     var flSavedNote = localStorage.getItem(flNoteKey) || '';
     var flNotesWrap = document.createElement('div');
     flNotesWrap.className = 'slide-notes';
-    flNotesWrap.innerHTML =
-      '<div class="slide-notes-header">' +
-        '<span class="slide-notes-label">✏ My Notes</span>' +
-        '<span class="slide-notes-saved" id="flNotesSaved">Saved</span>' +
-      '</div>' +
-      '<textarea class="slide-notes-ta" id="flNotesTa" placeholder="Jot your own thoughts, questions, or key points for this slide…" maxlength="2000"></textarea>';
+    flNotesWrap.innerHTML = diSlide.notesHTML('flNotesTa', 'flNotesSaved');
     area.appendChild(flNotesWrap);
     var flNotesTa = document.getElementById('flNotesTa');
     if (flNotesTa) {
       flNotesTa.value = flSavedNote;
+      if (window.diSlide && diSlide.notesListSupport) diSlide.notesListSupport(flNotesTa);
       var flNoteTimer = null;
       var flSavedInd = document.getElementById('flNotesSaved');
       flNotesTa.addEventListener('input', function() {
@@ -1243,7 +1239,7 @@
       primaryLabel: nextId ? 'Next lesson &#8594;' : 'Back to passport',
       secondaryLabel: nextId ? 'Back to passport' : null
     });
-    area.scrollTop = 0;
+    if (window.diSlide && diSlide.resetScroll) diSlide.resetScroll(area); else area.scrollTop = 0;
     var primary = document.getElementById('diResultsPrimary');
     if (primary) primary.onclick = nextId
       ? function() { flCloseLesson(); setTimeout(function() { flOpenLesson(nextId); }, 150); }
@@ -1305,8 +1301,11 @@
   // ── Keyboard nav ─────────────────────────────
   document.addEventListener('keydown', function(e) {
     if (!document.getElementById('lessonModal').classList.contains('open')) return;
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') flNextSlide();
-    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   flPrevSlide();
+    // Arrow keys move the caret when typing in the notes box, not the deck
+    var tag = (e.target.tagName || '').toLowerCase();
+    var inInput = (tag === 'input' || tag === 'textarea' || e.target.isContentEditable);
+    if (!inInput && (e.key === 'ArrowRight' || e.key === 'ArrowDown')) flNextSlide();
+    if (!inInput && (e.key === 'ArrowLeft'  || e.key === 'ArrowUp'))   flPrevSlide();
     if (e.key === 'Escape') {
       if (window.diSlide && window.diSlide.fullscreen.isActive()) return;
       flCloseLesson();

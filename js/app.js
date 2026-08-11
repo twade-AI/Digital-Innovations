@@ -870,7 +870,7 @@ function renderSlide(index) {
   }
 
   area.innerHTML = html;
-  area.scrollTop = 0;
+  if (window.diSlide && diSlide.resetScroll) diSlide.resetScroll(area); else area.scrollTop = 0;
 
   // Interactive lab widgets wire their events after DOM insertion
   if (slide.type === 'widget' && typeof DI_LABS !== 'undefined' && DI_LABS[slide.widget]) {
@@ -911,16 +911,12 @@ function renderSlide(index) {
   var savedNote = localStorage.getItem(noteKey) || '';
   var notesWrap = document.createElement('div');
   notesWrap.className = 'slide-notes';
-  notesWrap.innerHTML =
-    '<div class="slide-notes-header">' +
-      '<span class="slide-notes-label">✏ My Notes</span>' +
-      '<span class="slide-notes-saved" id="slideNotesSaved">Saved</span>' +
-    '</div>' +
-    '<textarea class="slide-notes-ta" id="slideNotesTa" placeholder="Jot your own thoughts, questions, or key points for this slide…" maxlength="2000"></textarea>';
+  notesWrap.innerHTML = diSlide.notesHTML('slideNotesTa', 'slideNotesSaved');
   area.appendChild(notesWrap);
   var notesTa = document.getElementById('slideNotesTa');
   if (notesTa) {
     notesTa.value = savedNote;
+    if (window.diSlide && diSlide.notesListSupport) diSlide.notesListSupport(notesTa);
     var noteTimer = null;
     var savedIndicator = document.getElementById('slideNotesSaved');
     notesTa.addEventListener('input', function() {
@@ -1054,7 +1050,7 @@ function showLessonResults() {
     primaryLabel: nextId ? 'Next lesson &#8594;' : 'Back to course',
     secondaryLabel: nextId ? 'Back to course' : null
   });
-  area.scrollTop = 0;
+  if (window.diSlide && diSlide.resetScroll) diSlide.resetScroll(area); else area.scrollTop = 0;
 
   var primary = document.getElementById('diResultsPrimary');
   if (primary) primary.onclick = nextId
@@ -4076,8 +4072,9 @@ document.addEventListener('keydown', e => {
     if (currentSlides.length === 0) window.location.href = 'fluency.html';
   }
   if (currentSlides.length > 0) {
-    if (e.key === 'ArrowRight') navigateSlide(1);
-    if (e.key === 'ArrowLeft') navigateSlide(-1);
+    // Arrow keys move the caret when typing in the notes box, not the deck
+    if (!inInput && e.key === 'ArrowRight') navigateSlide(1);
+    if (!inInput && e.key === 'ArrowLeft') navigateSlide(-1);
     if (!inInput) {
       if (e.key === 'M' || e.key === 'm') { if (currentLessonId) toggleLesson(currentLessonId); }
       if (e.key === 'B' || e.key === 'b') { if (currentLessonId) toggleBookmark(currentLessonId); }

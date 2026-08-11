@@ -12,16 +12,18 @@ Everything the track needs, gathered from across the site and inlined:
 | Bundled content | Source file(s) |
 |---|---|
 | Page markup, track UI, lesson viewer, certificate | `fluency.html` |
-| All styling (site, lesson slides, Haileybury brand) | `css/style.css`, `css/lesson.css`, `css/brand.css` |
-| Lesson metadata for the 20 lessons | `js/data.js` (`UNITS`, filtered) |
-| All 20 slide decks — 159 slides | `js/slides-u1u2.js`, `js/slides-u3u4.js`, `js/slides-u5u6.js`, `js/slides-critical.js`, `js/slides-advanced.js` (filtered) |
+| All styling (site, lesson slides, labs, wow effects, Haileybury brand) | `css/style.css`, `css/lesson.css`, `css/labs.css`, `css/wow.css`, `css/brand.css` |
+| Interactive lab widgets | `js/labs.js` |
+| Lesson metadata for the 24 lessons | `js/data.js` (`UNITS`, filtered) |
+| All 24 slide decks | `js/slides-u1u2.js`, `js/slides-u3u4.js`, `js/slides-u5u6.js`, `js/slides-critical.js`, `js/slides-advanced.js`, `js/slides-gcse.js` (filtered) |
 | SVG slide diagrams | `js/visuals.js` (filtered) |
 | Slide helpers (fullscreen, escaping, YouTube embeds) | `js/slide-utils.js` |
 | Read-aloud (text-to-speech) widget | `js/tts.js` |
 | Haileybury logo + favicon | `assets/brand/logo/haileybury-magenta.png`, `icon.svg` (base64) |
 
-The 20 lessons (ids from `FL_TRACK` in `fluency.html`):
-1, 2, 51, 5, 8, 9, 12, 52, 53, 45, 46, 47, 13, 15, 54, 55, 49, 48, 41, 44.
+The 24 lessons (ids from `FL_TRACK` in `fluency.html`):
+1, 2, 51, 5, 8, 9, 12, 52, 53, 45, 46, 47, 13, 15, 54, 55, 49, 48, 41, 44,
+136, 138, 139, 140 (the last four reused from the Removes deck, `js/slides-gcse.js`).
 
 Working features: lesson track with sections and progress, full slide viewer
 (keyboard, touch swipe, fullscreen, dots), quizzes with answer gating, per-slide
