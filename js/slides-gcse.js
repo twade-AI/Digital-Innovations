@@ -1054,7 +1054,7 @@ SLIDES_GCSE[108] = [
     callout: 'Passive summarising (paste, read, feel done) is almost useless. Active summarising (check, question, fill gaps) can double your retention for the same time spent. The OECD\'s 2026 review warns this is exactly where "metacognitive laziness" sets in — the AI fills the gap before you notice you didn\'t understand (Fan et al., 2025).',
     sources: [
       { label: 'Karpicke &amp; Blunt (2011) — Retrieval practice produces more learning than elaborative studying (Science)', url: 'https://www.science.org/doi/10.1126/science.1199327' },
-      { label: 'Google — NotebookLM launch &amp; audio overviews (2024)', url: 'https://blog.google/technology/ai/notebooklm-audio-overviews/' },
+      { label: 'Google — Gemini Notebook (then NotebookLM): launch &amp; audio overviews (2024)', url: 'https://blog.google/technology/ai/notebooklm-audio-overviews/' },
       { label: 'Fan et al. (2025) — Beware of Metacognitive Laziness (BJET); OECD/EU (2026) AILit Framework — AI work-quality gains ≠ durable learning', url: 'https://doi.org/10.1111/bjet.13544' }
     ]
   },
@@ -1643,7 +1643,7 @@ SLIDES_GCSE[112] = [
     callout: 'Pick TWO tools for now — not all five. Adding tools beyond that usually produces switching friction, not better revision.',
     sources: [
       { label: 'Kestin et al. (2024) — Harvard RCT on AI tutoring and learning gains', url: 'https://www.pnas.org/doi/10.1073/pnas.2422458121' },
-      { label: 'Google — NotebookLM launch and study-guide features', url: 'https://blog.google/technology/ai/notebooklm-audio-overviews/' }
+      { label: 'Google — Gemini Notebook (then NotebookLM): launch and study-guide features', url: 'https://blog.google/technology/ai/notebooklm-audio-overviews/' }
     ]
   },
   {
