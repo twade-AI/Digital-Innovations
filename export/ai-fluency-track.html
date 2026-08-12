@@ -5438,7 +5438,7 @@ html:not([data-theme="light"]) footer .hby-mark{
     if (!ta || ta._notesList) return;
     ta._notesList = true;
     ta.addEventListener('keydown', function (e) {
-      if (e.key !== 'Enter' || e.shiftKey || e.isComposing) return;
+      if (e.key !== 'Enter' || e.shiftKey || e.ctrlKey || e.metaKey || e.altKey || e.isComposing) return;
       var start = ta.selectionStart;
       if (start !== ta.selectionEnd) return;
       var v = ta.value;
@@ -10615,7 +10615,10 @@ window.DI_LAB_TEACH = {
       }
     }
 
-    // Per-slide pupil notes
+    // Per-slide pupil notes. Guarded as a unit: if a stale cached
+    // slide-utils.js lacks notesHTML, skip the notes box rather than
+    // throwing mid-render.
+    if (window.diSlide && diSlide.notesHTML) {
     var flNoteKey = 'di_note_' + flCurrentLessonId + '_' + idx;
     var flSavedNote = localStorage.getItem(flNoteKey) || '';
     var flNotesWrap = document.createElement('div');
@@ -10625,7 +10628,7 @@ window.DI_LAB_TEACH = {
     var flNotesTa = document.getElementById('flNotesTa');
     if (flNotesTa) {
       flNotesTa.value = flSavedNote;
-      if (window.diSlide && diSlide.notesListSupport) diSlide.notesListSupport(flNotesTa);
+      if (diSlide.notesListSupport) diSlide.notesListSupport(flNotesTa);
       var flNoteTimer = null;
       var flSavedInd = document.getElementById('flNotesSaved');
       flNotesTa.addEventListener('input', function() {
@@ -10638,6 +10641,7 @@ window.DI_LAB_TEACH = {
           }
         }, 500);
       });
+    }
     }
   }
 

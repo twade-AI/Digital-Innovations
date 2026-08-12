@@ -984,7 +984,10 @@
       }
     }
 
-    // Per-slide pupil notes
+    // Per-slide pupil notes. Guarded as a unit: if a stale cached
+    // slide-utils.js lacks notesHTML, skip the notes box rather than
+    // throwing mid-render.
+    if (window.diSlide && diSlide.notesHTML) {
     var flNoteKey = 'di_note_' + flCurrentLessonId + '_' + idx;
     var flSavedNote = localStorage.getItem(flNoteKey) || '';
     var flNotesWrap = document.createElement('div');
@@ -994,7 +997,7 @@
     var flNotesTa = document.getElementById('flNotesTa');
     if (flNotesTa) {
       flNotesTa.value = flSavedNote;
-      if (window.diSlide && diSlide.notesListSupport) diSlide.notesListSupport(flNotesTa);
+      if (diSlide.notesListSupport) diSlide.notesListSupport(flNotesTa);
       var flNoteTimer = null;
       var flSavedInd = document.getElementById('flNotesSaved');
       flNotesTa.addEventListener('input', function() {
@@ -1007,6 +1010,7 @@
           }
         }, 500);
       });
+    }
     }
   }
 

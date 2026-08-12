@@ -906,7 +906,10 @@ function renderSlide(index) {
   area.style.position = 'relative';
   area.appendChild(confBtn);
 
-  // Per-slide pupil notes
+  // Per-slide pupil notes. Guarded as a unit: if a stale cached
+  // slide-utils.js lacks notesHTML, skip the notes box rather than
+  // throwing and killing the rest of the slide wiring below.
+  if (window.diSlide && diSlide.notesHTML) {
   var noteKey = 'di_note_' + currentLessonId + '_' + index;
   var savedNote = localStorage.getItem(noteKey) || '';
   var notesWrap = document.createElement('div');
@@ -916,7 +919,7 @@ function renderSlide(index) {
   var notesTa = document.getElementById('slideNotesTa');
   if (notesTa) {
     notesTa.value = savedNote;
-    if (window.diSlide && diSlide.notesListSupport) diSlide.notesListSupport(notesTa);
+    if (diSlide.notesListSupport) diSlide.notesListSupport(notesTa);
     var noteTimer = null;
     var savedIndicator = document.getElementById('slideNotesSaved');
     notesTa.addEventListener('input', function() {
@@ -929,6 +932,7 @@ function renderSlide(index) {
         }
       }, 500);
     });
+  }
   }
 
   // Rating widget — only on last slide
