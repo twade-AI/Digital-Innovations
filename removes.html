@@ -794,17 +794,18 @@
     // Notes textarea — wrap in try so a notes failure doesn't nuke
     // the whole slide render.
     try {
+      if (!window.diSlide || !diSlide.notesHTML) throw new Error('diSlide.notesHTML unavailable (stale cache?)');
       var noteKey = 'di_note_' + gsCurrentId + '_' + gsSlideIdx;
       var savedNote = '';
       try { savedNote = localStorage.getItem(noteKey) || ''; } catch(e) {}
       var notesWrap = document.createElement('div');
       notesWrap.className = 'slide-notes';
-      notesWrap.innerHTML = window.diSlide.notesHTML('gsNotesTa', 'gsNotesSaved');
+      notesWrap.innerHTML = diSlide.notesHTML('gsNotesTa', 'gsNotesSaved');
       area.appendChild(notesWrap);
       var ta = document.getElementById('gsNotesTa');
       if (ta) {
         ta.value = savedNote;
-        if (window.diSlide && diSlide.notesListSupport) diSlide.notesListSupport(ta);
+        if (diSlide.notesListSupport) diSlide.notesListSupport(ta);
         var timer=null, ind=document.getElementById('gsNotesSaved');
         ta.addEventListener('input',function(){
           clearTimeout(timer);

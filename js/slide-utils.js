@@ -244,7 +244,7 @@
     if (!ta || ta._notesList) return;
     ta._notesList = true;
     ta.addEventListener('keydown', function (e) {
-      if (e.key !== 'Enter' || e.shiftKey || e.isComposing) return;
+      if (e.key !== 'Enter' || e.shiftKey || e.ctrlKey || e.metaKey || e.altKey || e.isComposing) return;
       var start = ta.selectionStart;
       if (start !== ta.selectionEnd) return;
       var v = ta.value;
