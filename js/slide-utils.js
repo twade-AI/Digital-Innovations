@@ -86,19 +86,34 @@
      variant so we keep working on Safari. Targets a single element
      (the modal shell) — the browser handles ESC to exit, and we wire
      up `change` so callers can keep button state in sync. */
+  var fsFallback = null;
   function fsElement() {
-    return document.fullscreenElement || document.webkitFullscreenElement || null;
+    return document.fullscreenElement || document.webkitFullscreenElement || fsFallback || null;
+  }
+  function fsUseFallback(el) {
+    if (!el || !el.classList.contains('open') || document.fullscreenElement) return;
+    fsFallback = el;
+    el.classList.add('di-presenting');
+    document.dispatchEvent(new Event('di-presentationchange'));
   }
   function fsRequest(el) {
     if (!el) return;
     var fn = el.requestFullscreen || el.webkitRequestFullscreen;
-    if (fn) {
-      try { fn.call(el); } catch (_) { /* user-gesture required, etc. */ }
-    }
+    if (!fn) { fsUseFallback(el); return; }
+    try {
+      var pending = fn.call(el);
+      if (pending && pending.then) pending.then(function () {
+        if (!document.fullscreenElement && !document.webkitFullscreenElement) fsUseFallback(el);
+      }, function () { fsUseFallback(el); });
+    } catch (_) { fsUseFallback(el); }
   }
   function fsExit() {
+    if (fsFallback) {
+      fsFallback.classList.remove('di-presenting'); fsFallback = null;
+      document.dispatchEvent(new Event('di-presentationchange')); return;
+    }
     var fn = document.exitFullscreen || document.webkitExitFullscreen;
-    if (fn) { try { fn.call(document); } catch (_) {} }
+    if (fn) { try { var pending = fn.call(document); if (pending && pending.catch) pending.catch(function () {}); } catch (_) {} }
   }
   function fsToggle(el) {
     if (fsElement()) { fsExit(); } else { fsRequest(el); }
@@ -107,6 +122,7 @@
   function fsOnChange(cb) {
     document.addEventListener('fullscreenchange', cb);
     document.addEventListener('webkitfullscreenchange', cb);
+    document.addEventListener('di-presentationchange', cb);
   }
 
   /* Mirror fullscreen state onto the element as an `is-fullscreen`
@@ -120,6 +136,84 @@
     fsLastEl = el;
   }
   fsOnChange(fsSyncClass);
+
+  /* Fit the complete rendered slide after layout, reveals and media loads.
+     Move existing nodes, rather than clone them, to retain widget listeners. */
+  var fitFrame = 0, fitModal = null, fitArea = null;
+  var fitMutation = null, fitResize = null;
+  function queueFit() {
+    if (fitFrame) return;
+    fitFrame = requestAnimationFrame(function () { fitFrame = 0; fitSlide(); });
+  }
+  function fitSlide() {
+    if (!fitModal || !fitArea || fsElement() !== fitModal) return;
+    var canvas = fitArea.querySelector(':scope > .di-slide-canvas');
+    if (!canvas) {
+      canvas = document.createElement('div');
+      canvas.className = 'di-slide-canvas';
+      while (fitArea.firstChild) canvas.appendChild(fitArea.firstChild);
+      fitArea.appendChild(canvas);
+    }
+    if (fitModal.classList.contains('di-reading')) return;
+    var width = fitArea.clientWidth, height = fitArea.clientHeight;
+    if (!width || !height) return;
+    var cw = Math.max(canvas.offsetWidth, canvas.scrollWidth);
+    var ch = Math.max(canvas.offsetHeight, canvas.scrollHeight);
+    var scale = Math.min(Math.max(1, width - 2) / cw, Math.max(1, height - 2) / ch);
+    canvas.style.transform = 'scale(' + scale + ')';
+    canvas.style.left = Math.max(0, (width - cw * scale) / 2) + 'px';
+    canvas.style.top = Math.max(0, (height - ch * scale) / 2) + 'px';
+  }
+  function stopFit() {
+    if (fitMutation) fitMutation.disconnect();
+    if (fitResize) fitResize.disconnect();
+    if (fitArea) {
+      fitArea.removeEventListener('load', queueFit, true);
+      var canvas = fitArea.querySelector(':scope > .di-slide-canvas');
+      if (canvas) { while (canvas.firstChild) fitArea.insertBefore(canvas.firstChild, canvas); canvas.remove(); }
+    }
+    if (fitModal) {
+      fitModal.classList.remove('di-reading');
+      var button = fitModal.querySelector('.di-reading-toggle');
+      if (button) button.remove();
+    }
+    fitModal = fitArea = null;
+  }
+  function startFit() {
+    stopFit();
+    var modal = fsElement();
+    if (!modal) return;
+    var area = modal.querySelector('.lv-slide-area, .slide-area');
+    if (!area) return;
+    fitModal = modal; fitArea = area;
+    var footer = modal.querySelector('.lv-footer, .modal-footer');
+    if (footer) {
+      var button = document.createElement('button');
+      button.type = 'button'; button.className = 'btn btn-secondary di-reading-toggle';
+      button.textContent = 'Reading view'; button.setAttribute('aria-pressed', 'false');
+      button.title = 'Switch between fitting the whole slide and reading with scrolling';
+      button.addEventListener('click', function () {
+        var reading = modal.classList.toggle('di-reading');
+        button.textContent = reading ? 'Fit whole slide' : 'Reading view';
+        button.setAttribute('aria-pressed', String(reading)); queueFit();
+      });
+      footer.appendChild(button);
+    }
+    fitMutation = new MutationObserver(function (records) {
+      if (records.some(function (r) { return !r.target.classList || !r.target.classList.contains('di-slide-canvas') || r.type !== 'attributes'; })) queueFit();
+    });
+    fitMutation.observe(area, { childList:true, subtree:true, characterData:true, attributes:true, attributeFilter:['style','class','hidden','open'] });
+    if (window.ResizeObserver) { fitResize = new ResizeObserver(queueFit); fitResize.observe(area); }
+    area.addEventListener('load', queueFit, true);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(queueFit);
+    queueFit();
+  }
+  fsOnChange(startFit);
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && fsFallback) { event.preventDefault(); event.stopImmediatePropagation(); fsExit(); }
+  }, true);
+  window.addEventListener('resize', queueFit);
+
 
   /* ── Micro-celebration ─────────────────────────────
      Emoji burst from an element (e.g. a correct quiz answer).

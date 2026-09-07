@@ -1214,118 +1214,72 @@
    can read it — and every slide type scales: quizzes, scenarios,
    discussions, summaries, activities, polls and matching tasks included,
    not just concept bodies. The browser handles ESC to exit. */
-.modal.is-fullscreen {
-  background: var(--bg);
-  padding: 0;
-  display: flex;
-}
+/* Presentation mode uses one measured canvas, fitted to BOTH dimensions.
+   Reading view keeps natural text size and scrolling for personal study. */
+.modal.is-fullscreen { background:var(--bg); padding:0; display:flex; }
 .modal.is-fullscreen .modal-content,
 .modal.is-fullscreen .modal-inner {
-  max-width: 100vw;
-  max-height: 100vh;
-  width: 100vw;
-  height: 100vh;
-  border-radius: 0;
-  border: none;
-  box-shadow: none;
+  width:100%; height:100%; max-width:none; max-height:none;
+  border:0; border-radius:0; padding:0; display:flex; flex-direction:column;
 }
-/* The slide canvas — generous gutters but capped reading width so
-   lines don't span the whole projector. The track pages nest
-   .slide-area inside .modal-body, so zero the outer padding to
-   avoid double gutters. */
-.modal.is-fullscreen .modal-body { padding: 0; }
+.modal.is-fullscreen .lv-modal-body { flex:1; min-height:0; overflow:hidden; }
+.modal.is-fullscreen #modalBody,
+.modal.is-fullscreen .modal-body { display:flex; flex-direction:column; flex:1; min-height:0; padding:0; overflow:hidden; }
+.modal.is-fullscreen .lv-header,
+.modal.is-fullscreen .lv-dots,
+.modal.is-fullscreen .modal-header,
+.modal.is-fullscreen .lv-footer,
+.modal.is-fullscreen .modal-footer { flex-shrink:0; }
+.modal.is-fullscreen .lv-footer,
+.modal.is-fullscreen .modal-footer { padding:10px 24px; }
 .modal.is-fullscreen .lv-slide-area,
 .modal.is-fullscreen .slide-area {
-  padding: 5vh 7vw;
-  max-width: 1500px;
-  margin: 0 auto;
-  width: 100%;
-  box-sizing: border-box;
+  position:relative; flex:1; min-height:0; width:100%; max-width:none;
+  margin:0; padding:0; overflow:hidden;
 }
-/* Headline tier */
-.modal.is-fullscreen .slide-title {
-  font-size: clamp(2.1rem, 4.4vw, 3.6rem);
-  margin-bottom: 28px;
-  line-height: 1.12;
+.modal.is-fullscreen .di-slide-canvas {
+  width:1120px; box-sizing:border-box; padding:24px 36px;
+  position:absolute; left:0; top:0; transform-origin:top left;
+  animation:none!important;
 }
-.modal.is-fullscreen .slide-badge {
-  font-size: clamp(.85rem, 1.1vw, 1rem);
-  padding: 7px 20px;
-  margin-bottom: 18px;
+.modal.is-fullscreen .di-slide-canvas > * { animation:none!important; }
+.modal.is-fullscreen .slide-title { font-size:2.5rem; line-height:1.12; margin-bottom:18px; }
+.modal.is-fullscreen :is(.hook-body,.slide-body,.concept-body,.scenario-situation,.disc-intro,.summary-intro,.example-box p) { font-size:1.375rem; line-height:1.4; }
+.modal.is-fullscreen :is(.concept-bullets li,.slide-bullets li,.slide-steps li,.act-step,.quiz-option,.scenario-choice,.disc-q-text,.slide-disc-q,.sp-text,.check-item,.poll-option,.match-term,.match-def,.scenario-question,.quiz-question,.poll-question,.reflection-prompt,.concept-col ul li) { font-size:1.25rem; line-height:1.4; }
+.modal.is-fullscreen :is(.concept-callout,.slide-callout) { font-size:1.15rem; padding:16px 20px; line-height:1.4; }
+.modal.is-fullscreen :is(.video-wrapper,.slide-video-wrap) { max-width:760px; margin-inline:auto; }
+.modal.is-fullscreen :is(.lv-print-btn,.lv-notes-toggle,.notes-panel) { display:none!important; }
+.di-reading-toggle { display:none; }
+.modal.is-fullscreen .di-reading-toggle { display:inline-flex; margin-left:auto; font-size:.9rem; padding:8px 14px; min-height:40px; }
+.modal.is-fullscreen.di-reading .lv-slide-area,
+.modal.is-fullscreen.di-reading .slide-area { overflow:auto; }
+.modal.is-fullscreen.di-reading .di-slide-canvas {
+  position:relative; width:100%; max-width:1120px; margin:auto;
+  transform:none!important; left:auto!important; top:auto!important;
 }
-/* Body tier — the main reading text on every slide type */
-.modal.is-fullscreen :is(.hook-body, .slide-body, .concept-body,
-  .scenario-situation, .disc-intro, .summary-intro, .example-box p,
-  .checklist-intro, .match-intro, .quiz-explanation, .scenario-outcome,
-  .resource-body p, .resource-body li) {
-  font-size: clamp(1.25rem, 1.9vw, 1.65rem);
-  line-height: 1.6;
+.modal.is-fullscreen.di-reading .slide-title { font-size:clamp(1.5rem,3vw,2.5rem); }
+.modal.is-fullscreen.di-reading .di-slide-canvas { padding:20px clamp(16px,3vw,36px); }
+/* Focus and navigation must remain usable independently of canvas scale. */
+
+.lv-dot:focus-visible,.di-reading-toggle:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
+@media (prefers-reduced-motion:reduce) {
+  .lv-slide-area > *, .slide-area-forward > *, .slide-area-back > * { animation:none!important; }
 }
-/* Interactive / list tier */
-.modal.is-fullscreen :is(.concept-bullets li, .slide-bullets li,
-  .slide-steps li, .act-step, .quiz-option, .scenario-choice,
-  .disc-q-text, .slide-disc-q, .sp-text, .check-item, .poll-option,
-  .match-term, .match-def, .scenario-question, .quiz-question,
-  .poll-question, .reflection-prompt, .quiz-feedback, .prereq-nudge,
-  .concept-col ul li, .debate-vote-btn, .chat-msg-bubble, .ptfc-output,
-  .slide-reveal, .checklist-result) {
-  font-size: clamp(1.15rem, 1.6vw, 1.5rem);
-  line-height: 1.55;
-}
-/* Callouts */
-.modal.is-fullscreen :is(.concept-callout, .slide-callout) {
-  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
-  padding: 22px 28px;
-  line-height: 1.55;
-}
-/* Hook stats */
-.modal.is-fullscreen :is(.hook-stat-value, .hook-stat-mini .sv) {
-  font-size: clamp(2.6rem, 4vw, 4rem);
-}
-.modal.is-fullscreen :is(.hook-stat-label, .hook-stat-mini .sl) {
-  font-size: clamp(.85rem, 1vw, 1rem);
-}
-/* Answer-letter and step-number chips grow with their rows */
-.modal.is-fullscreen :is(.qo-letter, .quiz-option-letter, .scenario-choice-letter) {
-  width: 38px; height: 38px; min-width: 38px; font-size: 1.05rem;
-}
-.modal.is-fullscreen :is(.act-step-num, .disc-q-num) {
-  min-width: 36px; height: 36px; font-size: .95rem;
-}
-/* Inputs pupils type into while projected — reflections, notes,
-   prompt-builder fields — scale with the body text around them */
-.modal.is-fullscreen :is(.reflection-textarea, .builder-field textarea,
-  .builder-field input, .slide-notes-ta, .ptfc-input) {
-  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
-  line-height: 1.55;
-}
-/* Activity furniture: labels, reveal buttons, builder chrome */
-.modal.is-fullscreen .interactive-label { font-size: 1.05rem; }
-.modal.is-fullscreen :is(.slide-notes-label, .builder-field label,
-  .builder-output-label, .poll-note, .lesson-rating-label) { font-size: .95rem; }
-.modal.is-fullscreen .builder-output-text { font-size: clamp(1rem, 1.3vw, 1.25rem); }
-.modal.is-fullscreen .slide-reveal-btn { font-size: 1.05rem; padding: 12px 22px; }
-.modal.is-fullscreen .ptfc-label { font-size: .9rem; }
-.modal.is-fullscreen .ptfc-label span { width: 36px; height: 36px; font-size: 1.1rem; }
-/* Video — let it grow, but keep the whole frame on screen */
-.modal.is-fullscreen .video-wrapper,
-.modal.is-fullscreen .slide-video-wrap {
-  max-height: 58vh;
-  max-width: calc(58vh * 16 / 9);
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-}
-.modal.is-fullscreen .video-next-btn { font-size: 1.05rem; padding: 14px 24px; }
-.modal.is-fullscreen .video-credit { font-size: .95rem; }
-/* Bigger nav footer + slide chrome */
-.modal.is-fullscreen .lv-footer,
-.modal.is-fullscreen .modal-footer { padding: 18px 36px; }
-.modal.is-fullscreen .lv-footer .btn,
-.modal.is-fullscreen .modal-footer .btn { font-size: 1.1rem; padding: 13px 28px; }
-.modal.is-fullscreen .lv-slide-count { font-size: .95rem; }
-.modal.is-fullscreen .lv-dot { width: 12px; height: 12px; }
-/* Chrome we don't need on a projector — including private notes */
-.modal.is-fullscreen .lv-print-btn,
-.modal.is-fullscreen .lv-notes-toggle,
-.modal.is-fullscreen .notes-panel { display: none !important; }
+
+.modal.di-presenting { position:fixed; inset:0; z-index:10000; width:100vw; height:100vh; height:100dvh; }
+.modal.is-fullscreen .di-slide-canvas .slide-hook { padding:24px; }
+.modal.is-fullscreen .di-slide-canvas .slide-notes { display:none; }
+.modal.is-fullscreen .di-slide-canvas .slide-hook .slide-title { font-size:2.5rem; }
+
+/* Override the narrower reading-modal rules in wow.css during projection. */
+#gsModal.is-fullscreen .modal-inner,
+#lessonModal.is-fullscreen .modal-inner { max-width:none; }
+#gsModal.is-fullscreen .modal-body,
+#lessonModal.is-fullscreen .modal-body { padding:0; }
+#gsDots .lv-dot { width:24px; height:24px; min-width:24px; padding:0; border:0; background:transparent; border-radius:6px; opacity:1; transform:none; cursor:pointer; }
+#gsDots .lv-dot::after { content:''; display:block; width:8px; height:8px; margin:auto; border-radius:50%; background:var(--text-dim); opacity:.5; }
+#gsDots .lv-dot.active::after { background:var(--track-primary); opacity:1; width:11px; height:11px; }
+#gsDots { gap:2px; }
+#gsModal .modal-footer { gap:12px; flex-wrap:wrap; }
+#gsModal .lv-slide-count { white-space:nowrap; }
+#gsDots { background:transparent; }

@@ -286,13 +286,14 @@
       for (var i = 0; i < localStorage.length; i++) {
         var k = localStorage.key(i);
         if (!k || k.indexOf(prefix) !== 0) continue;
-        var idx = parseInt(k.slice(prefix.length), 10);
-        if (isNaN(idx)) continue;
+        var match = /^(?:(r2)_)?(\d+)$/.exec(k.slice(prefix.length));
+        if (!match) continue;
+        var idx = Number(match[2]);
         var v = (localStorage.getItem(k) || '').trim();
-        if (v) parts.push({ idx: idx, text: v });
+        if (v) parts.push({ idx: idx, text: v, revision: match[1] || '' });
       }
       parts.sort(function (a, b) { return a.idx - b.idx; });
-      return parts.map(function (p) { return 'Slide ' + (p.idx + 1) + ': ' + p.text; }).join('\n\n');
+      return parts.map(function (p) { return (({115:1,120:1,128:1})[lessonId] ? (p.revision ? 'Revised lesson · ' : 'Earlier lesson version · ') : '') + 'Slide ' + (p.idx + 1) + ': ' + p.text; }).join('\n\n');
     }
   })();
   </script>

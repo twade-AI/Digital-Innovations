@@ -54,7 +54,7 @@ var GCSE_UNITS = [
     id: 'g4', title: 'Unit 4: AI, Truth & Media', color: '#ef4444', ailit: 'Engage with AI',
     lessons: [
       { id: 119, title: 'Deepfakes & Synthetic Media',     icon: '🎭', time: '~25 min', desc: 'What deepfakes are, how they\'re made and why they matter.' },
-      { id: 120, title: 'Spotting AI-Generated Content',   icon: '👁️', time: '~20 min', desc: 'Identifying AI-written text, images and audio in the wild.' },
+      { id: 120, title: 'Can You Trust This Content?',   icon: '👁️', time: '~20 min', desc: 'Check evidence and provenance without guessing authorship from style.' },
       { id: 121, title: 'Misinformation & AI',             icon: '📢', time: '~25 min', desc: 'Why false things spread faster — and how AI is making it worse.' },
       { id: 122, title: 'Fact-Checking in the AI Age',     icon: '✅', time: '~25 min', desc: 'Your 4-step verification toolkit for any claim.' },
       { id: 123, title: 'Filter Bubbles & Algorithms',     icon: '🔄', time: '~20 min', desc: 'The hidden curator shaping everything you see online.' }
@@ -97,266 +97,445 @@ var SLIDES_GCSE = {};
 
 SLIDES_GCSE[101] = [
   {
-    type: 'hook',
-    title: 'What Is AI?',
-    body: 'In October 2025, OpenAI revealed that ChatGPT had passed 800 million weekly users — roughly 1 in 10 adults on Earth, and up from just 300 million only ten months earlier. It is the fastest adoption curve of any consumer technology in history: faster than the smartphone, the internet, or electricity reached the same share of the planet. And yet a 2024 Ipsos poll across 31 countries found that while around 66% of 18-24-year-olds use AI tools at least weekly, only 23% could correctly describe what AI actually does. You\'re almost certainly already in that 66% who use it. This lesson pushes you into the far more valuable minority who can also explain it — because understanding how AI works is what gives you power over it, instead of the other way around.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">800M</span><span class="sl">weekly ChatGPT users (OpenAI, Oct 2025)</span></div><div class="hook-stat-mini"><span class="sv">66%</span><span class="sl">of 18-24s use AI weekly (Ipsos, 2024)</span></div><div class="hook-stat-mini"><span class="sv">23%</span><span class="sl">can explain how it works</span></div></div>',
-    callout: 'AI is not robots. It\'s not magic. It\'s not thinking. It\'s pattern recognition at massive scale — and once you understand that, everything else in this course makes sense.',
-    sources: [
-      { label: 'TechCrunch (Oct 2025) — Sam Altman: ChatGPT hits 800m weekly active users', url: 'https://techcrunch.com/2025/10/06/sam-altman-says-chatgpt-has-hit-800m-weekly-active-users/' },
-      { label: 'Reuters/DeepMind Ipsos (2024) — global public views on AI', url: 'https://www.ipsos.com/en/global-views-ai-2024' }
+    "type": "hook",
+    "title": "What Is AI?",
+    "body": "A spam filter, a music recommendation and a chatbot all make useful predictions. But do they work in the same way? Pick one system you have encountered and explain what goes in, what comes out and how you would check whether it works.",
+    "callout": "By the end, you should be able to explain a system, test an output and name a limitation."
+  },
+  {
+    "type": "video",
+    "title": "But what is a neural network?",
+    "videoId": "aircAruvnKk",
+    "credit": "3Blue1Brown · Deep Learning Series, Chapter 1 · 19 min",
+    "intro": "Grant Sanderson's beautifully animated explainer shows how a neural network learns to recognise handwritten digits. Focus on two things as you watch: (1) what \"learning\" actually means — adjusting weights to reduce error; and (2) how the network builds up its own internal \"features\" layer by layer. You don't need the maths. The pictures do the work.",
+    "callout": "You can pause any time. Watch the first 6 minutes if you're short on time — that covers the core idea."
+  },
+  {
+    "type": "concept",
+    "title": "What AI Really Is",
+    "body": "AI is a broad field concerned with systems performing tasks such as recognising patterns, generating language and planning. Machine learning is one approach: it learns patterns from data rather than requiring people to specify every decision rule.",
+    "bullets": [
+      {
+        "term": "Training",
+        "def": "A learning algorithm adjusts a model using examples and an objective."
+      },
+      {
+        "term": "Using a model",
+        "def": "A trained model processes new inputs. Its output may be useful, mistaken or biased."
+      },
+      {
+        "term": "More than one approach",
+        "def": "AI includes rule-based approaches as well as machine learning. Real products often combine models, ordinary software, search and other tools."
+      },
+      {
+        "term": "A careful explanation",
+        "def": "Describe what the system does and what evidence supports your claim. Fluent conversation alone does not establish human-like experience or understanding."
+      }
     ]
   },
   {
-    type: 'video',
-    title: 'But what is a neural network?',
-    videoId: 'aircAruvnKk',
-    credit: '3Blue1Brown · Deep Learning Series, Chapter 1 · 19 min',
-    intro: 'Grant Sanderson\'s beautifully animated explainer shows how a neural network learns to recognise handwritten digits. Focus on two things as you watch: (1) what "learning" actually means — adjusting weights to reduce error; and (2) how the network builds up its own internal "features" layer by layer. You don\'t need the maths. The pictures do the work.',
-    callout: 'You can pause any time. Watch the first 6 minutes if you\'re short on time — that covers the core idea.'
+    "type": "concept",
+    "title": "Machine Learning vs the Old Way",
+    "body": "Compare an explicit rule with a model learned from examples. Both approaches can be useful; real systems often combine them.",
+    "bullets": [
+      {
+        "term": "Traditional software",
+        "def": "A programmer writes every rule explicitly. Spam filter: IF email contains \"You've won £1 million\" THEN move to junk. Predictable, auditable, but brittle — spammers just change the wording."
+      },
+      {
+        "term": "Machine learning",
+        "def": "Show the system thousands of spam and non-spam examples and let it figure out the patterns itself. Now it catches spam it has never literally seen before — because it learned the underlying shape."
+      },
+      {
+        "term": "Deep learning",
+        "def": "Many layers of pattern recognition chained together — how modern chatbots, image AI and self-driving cars work. Breakthrough: 2012 ImageNet win by AlexNet (Krizhevsky, Sutskever, Hinton)."
+      },
+      {
+        "term": "Why it matters",
+        "def": "Machine learning can be useful when it is difficult to specify every decision rule. Whether it is the best approach depends on the task, data, costs and required reliability."
+      },
+      {
+        "term": "The cost",
+        "def": "Learned models can be difficult to interpret. Testing, documentation and interpretability methods can provide evidence, but do not make every internal decision transparent."
+      }
+    ]
   },
   {
-    type: 'concept',
-    title: 'What AI Really Is',
-    body: 'The core idea of AI is older than the pocket calculator but only recently became practical. Instead of a programmer writing rules that tell a computer what to do in every situation, the system is shown millions of examples and figures out its own rules — rules the programmer often couldn\'t write even if they wanted to. The result is pattern recognition at a scale no human can match.',
-    bullets: [
-      { term: 'No knowing', def: 'AI doesn\'t "know" anything — it predicts what comes next based on training. There is no memory, no belief, no understanding; only probabilities.' },
-      { term: 'More data usually helps', def: 'Models trained on more high-quality data generally perform better — the "scaling laws" mapped by Kaplan et al. (OpenAI 2020) showed predictable performance gains as data and compute scaled.' },
-      { term: 'No inner life', def: 'AI has no understanding, no curiosity, and no goals of its own. The goals it appears to have come from the humans who trained and deployed it.' },
-      { term: 'A fundamentally new paradigm', def: 'Traditional software: humans write every rule. AI: the system learns rules from examples. Both are code — but the second solves problems the first simply can\'t.' }
+    "type": "concept",
+    "title": "How a Machine Learns (Unplugged)",
+    "body": "Imagine you've never seen a cat. Someone shows you 10,000 photos labelled \"cat\" and 10,000 labelled \"not cat\". You start spotting patterns — pointed ears, whiskers, vertical pupils. Show you a new photo, and you guess \"cat\" correctly most of the time. That is exactly what supervised machine learning does.",
+    "bullets": [
+      {
+        "term": "Training set",
+        "def": "The labelled examples the system learns from — most of the data (around 80%)"
+      },
+      {
+        "term": "Test set",
+        "def": "Examples the system has never seen — used at the end to check if it really learned, or just memorised"
+      },
+      {
+        "term": "Golden rule",
+        "def": "Never test on training data — like marking your own homework. The score means nothing"
+      },
+      {
+        "term": "Overfitting",
+        "def": "When a system memorises the training examples but fails on new ones — it learned the wrong patterns"
+      }
     ],
-    sources: [
-      { label: 'Kaplan et al. (OpenAI 2020) — Scaling Laws for Neural Language Models', url: 'https://arxiv.org/abs/2001.08361' }
+    "callout": "A widely-told cautionary tale: a US military AI was said to be trained to spot tanks, scored 100% on training data, then failed on new images. The \"tank\" photos had been taken on sunny days; the \"no tank\" on cloudy days. It had learned to detect weather, not tanks. (The specific story is partly folklore — but the phenomenon it describes, \"shortcut learning\", is well-documented in peer-reviewed ML research.)",
+    "sources": [
+      {
+        "label": "Geirhos et al. (2020) — Shortcut Learning in Deep Neural Networks (Nature Machine Intelligence)",
+        "url": "https://www.nature.com/articles/s42256-020-00257-z"
+      }
     ]
   },
   {
-    type: 'concept',
-    title: 'Machine Learning vs the Old Way',
-    body: 'The difference between traditional software and machine learning is the difference between writing a recipe and training a chef. A recipe never improves; a chef gets better with practice. That distinction is why AI can now do things — language, vision, voice — that hand-written code could never handle, even after 50 years of trying.',
-    bullets: [
-      { term: 'Traditional software', def: 'A programmer writes every rule explicitly. Spam filter: IF email contains "You\'ve won £1 million" THEN move to junk. Predictable, auditable, but brittle — spammers just change the wording.' },
-      { term: 'Machine learning', def: 'Show the system thousands of spam and non-spam examples and let it figure out the patterns itself. Now it catches spam it has never literally seen before — because it learned the underlying shape.' },
-      { term: 'Deep learning', def: 'Many layers of pattern recognition chained together — how modern chatbots, image AI and self-driving cars work. Breakthrough: 2012 ImageNet win by AlexNet (Krizhevsky, Sutskever, Hinton).' },
-      { term: 'Why it matters', def: 'ML can handle tasks too complex to hand-code — understanding language, recognising faces, predicting protein structures. For the first time in computing history, we can solve problems we can\'t describe.' },
-      { term: 'The cost', def: 'ML models are harder to audit. You can read every line of traditional software; you cannot "read" what a trained neural network has learned — only test it from the outside.' }
-    ]
-  },
-  {
-    type: 'concept',
-    title: 'How a Machine Learns (Unplugged)',
-    body: 'Imagine you\'ve never seen a cat. Someone shows you 10,000 photos labelled "cat" and 10,000 labelled "not cat". You start spotting patterns — pointed ears, whiskers, vertical pupils. Show you a new photo, and you guess "cat" correctly most of the time. That is exactly what supervised machine learning does.',
-    bullets: [
-      { term: 'Training set', def: 'The labelled examples the system learns from — most of the data (around 80%)' },
-      { term: 'Test set', def: 'Examples the system has never seen — used at the end to check if it really learned, or just memorised' },
-      { term: 'Golden rule', def: 'Never test on training data — like marking your own homework. The score means nothing' },
-      { term: 'Overfitting', def: 'When a system memorises the training examples but fails on new ones — it learned the wrong patterns' }
+    "type": "widget",
+    "title": "Spot the AI",
+    "widget": "classify",
+    "intro": "Six everyday things your phone and apps do. The test isn't \"is it clever?\" — it's \"did it learn from data, or is it just following fixed rules a human wrote?\" Sort each one, then read why.",
+    "categories": [
+      "Uses AI (learned from data)",
+      "Just fixed rules"
     ],
-    callout: 'A widely-told cautionary tale: a US military AI was said to be trained to spot tanks, scored 100% on training data, then failed on new images. The "tank" photos had been taken on sunny days; the "no tank" on cloudy days. It had learned to detect weather, not tanks. (The specific story is partly folklore — but the phenomenon it describes, "shortcut learning", is well-documented in peer-reviewed ML research.)',
-    sources: [
-      { label: 'Geirhos et al. (2020) — Shortcut Learning in Deep Neural Networks (Nature Machine Intelligence)', url: 'https://www.nature.com/articles/s42256-020-00257-z' }
+    "items": [
+      {
+        "text": "TikTok deciding which video to show you next",
+        "correct": 0,
+        "why": "AI. A recommendation model learns from billions of watch-time signals what keeps people like you scrolling — nobody hand-wrote a rule for your feed. This is the most powerful AI most teenagers use every day."
+      },
+      {
+        "text": "A basic calculator adding 47 + 86",
+        "correct": 1,
+        "why": "Just rules. Addition is a fixed mathematical procedure coded in once and never changed. It doesn't learn, improve, or get anything \"wrong\" — and it never needed training data."
+      },
+      {
+        "text": "Netflix recommending a show it thinks you'll like",
+        "correct": 0,
+        "why": "AI. Like TikTok, it learns patterns from what millions of viewers watched and rated, then predicts what you'll enjoy. The more you watch, the more its picture of your taste updates."
+      },
+      {
+        "text": "An alarm clock going off at the time you set",
+        "correct": 1,
+        "why": "Just rules. IF the clock reaches 07:00 THEN ring. A human wrote that rule; the clock follows it exactly the same way every single day. No learning, no prediction."
+      },
+      {
+        "text": "A spam filter moving junk email to the junk folder",
+        "correct": 0,
+        "why": "AI (mostly). Modern filters learn the shape of spam from millions of labelled examples, so they catch new scams they've never literally seen before — exactly the \"learn the pattern\" idea from this lesson."
+      },
+      {
+        "text": "Face unlock recognising you in the dark or with a new haircut",
+        "correct": 0,
+        "why": "AI. A neural network learned the geometry of your face from training images, so it still recognises you when the lighting, angle or your hair changes — something a fixed rule could never handle."
+      }
+    ],
+    "callout": "Notice the pattern: the \"just rules\" cases (calculator, alarm) are predictable and auditable but brittle. The AI cases are powerful precisely because they learned — but that also means they can be confidently wrong, as the rest of this lesson shows."
+  },
+  {
+    "type": "activity",
+    "title": "Your AI Footprint — 24-Hour Audit",
+    "task": "In the notes box, map every AI interaction you've had in the last 24 hours. Be exhaustive — go hour by hour if you have to.",
+    "steps": [
+      "List every app, device or service you've used since yesterday",
+      "Next to each, note whether it uses AI (recommendation, prediction, recognition, generation)",
+      "Group them: Communication / Entertainment / Education / Health / Finance / Other",
+      "Mark your top 3 with a star — the AI systems that most shape what you see, hear or do",
+      "Write one sentence: what would today have looked like without those three?"
+    ],
+    "callout": "Counts vary by how broadly you define \"AI interaction\" — from a few dozen deliberate uses to several hundred when you include recommendation, autocomplete and spam filtering. What matters isn't the exact number; it's that AI decisions are shaping your day well beyond the chatbots you chose to open.",
+    "sources": [
+      {
+        "label": "Ofcom (2024) — Online Nation: UK adults' everyday encounters with AI",
+        "url": "https://www.ofcom.org.uk/research-and-data/online-research/online-nation"
+      }
     ]
   },
   {
-    type: 'widget',
-    title: 'Spot the AI',
-    widget: 'classify',
-    intro: 'Six everyday things your phone and apps do. The test isn\'t "is it clever?" — it\'s "did it learn from data, or is it just following fixed rules a human wrote?" Sort each one, then read why.',
-    categories: ['Uses AI (learned from data)', 'Just fixed rules'],
-    items: [
-      { text: 'TikTok deciding which video to show you next', correct: 0, why: 'AI. A recommendation model learns from billions of watch-time signals what keeps people like you scrolling — nobody hand-wrote a rule for your feed. This is the most powerful AI most teenagers use every day.' },
-      { text: 'A basic calculator adding 47 + 86', correct: 1, why: 'Just rules. Addition is a fixed mathematical procedure coded in once and never changed. It doesn\'t learn, improve, or get anything "wrong" — and it never needed training data.' },
-      { text: 'Netflix recommending a show it thinks you\'ll like', correct: 0, why: 'AI. Like TikTok, it learns patterns from what millions of viewers watched and rated, then predicts what you\'ll enjoy. The more you watch, the more its picture of your taste updates.' },
-      { text: 'An alarm clock going off at the time you set', correct: 1, why: 'Just rules. IF the clock reaches 07:00 THEN ring. A human wrote that rule; the clock follows it exactly the same way every single day. No learning, no prediction.' },
-      { text: 'A spam filter moving junk email to the junk folder', correct: 0, why: 'AI (mostly). Modern filters learn the shape of spam from millions of labelled examples, so they catch new scams they\'ve never literally seen before — exactly the "learn the pattern" idea from this lesson.' },
-      { text: 'Face unlock recognising you in the dark or with a new haircut', correct: 0, why: 'AI. A neural network learned the geometry of your face from training images, so it still recognises you when the lighting, angle or your hair changes — something a fixed rule could never handle.' }
-    ],
-    callout: 'Notice the pattern: the "just rules" cases (calculator, alarm) are predictable and auditable but brittle. The AI cases are powerful precisely because they learned — but that also means they can be confidently wrong, as the rest of this lesson shows.'
-  },
-  {
-    type: 'activity',
-    title: 'Your AI Footprint — 24-Hour Audit',
-    task: 'In the notes box, map every AI interaction you\'ve had in the last 24 hours. Be exhaustive — go hour by hour if you have to.',
-    steps: [
-      'List every app, device or service you\'ve used since yesterday',
-      'Next to each, note whether it uses AI (recommendation, prediction, recognition, generation)',
-      'Group them: Communication / Entertainment / Education / Health / Finance / Other',
-      'Mark your top 3 with a star — the AI systems that most shape what you see, hear or do',
-      'Write one sentence: what would today have looked like without those three?'
-    ],
-    callout: 'Counts vary by how broadly you define "AI interaction" — from a few dozen deliberate uses to several hundred when you include recommendation, autocomplete and spam filtering. What matters isn\'t the exact number; it\'s that AI decisions are shaping your day well beyond the chatbots you chose to open.',
-    sources: [
-      { label: 'Ofcom (2024) — Online Nation: UK adults\' everyday encounters with AI', url: 'https://www.ofcom.org.uk/research-and-data/online-research/online-nation' }
+    "type": "scenario",
+    "title": "The Picture That Broke the AI",
+    "situation": "In 2015, researchers at Google published a landmark paper on image recognition. Their state-of-the-art AI was the best in the world at classifying photos. Then someone showed it a photo of a panda, ran it through a process called \"adversarial perturbation\" — changing a tiny number of pixels invisibly — and the AI suddenly classified the exact same photo as a gibbon, with 99% confidence. The photo looked identical to any human eye. This experiment has since been repeated thousands of times; every production image AI is still vulnerable to it.",
+    "question": "What does this tell us about \"how AI sees\"?",
+    "choices": [
+      {
+        "text": "The AI was broken — one badly-programmed model being fooled doesn't mean much.",
+        "outcome": "Not broken — and not one model. This attack works on every major image classifier. The AI wasn't \"seeing\" a panda the way you do; it was computing a statistical pattern across pixels. Change the pattern by a tiny amount in the right way, and the statistics flip."
+      },
+      {
+        "text": "The AI doesn't see what we see — it responds to statistical patterns in pixels that can be manipulated in ways invisible to humans.",
+        "outcome": "Exactly the point. An AI that scores 99% on ImageNet still doesn't \"see\" objects the way a toddler does. It computes features; it doesn't understand. That's why self-driving cars still struggle with edge cases a 5-year-old would handle in a second — and why AI image recognition is used WITH human oversight in high-stakes settings."
+      },
+      {
+        "text": "Adversarial attacks mean AI is useless for real work.",
+        "outcome": "Too strong. AI image recognition is widely used, safely, in real products — medical imaging, manufacturing inspection, security cameras. But the lesson is: pattern-matching is powerful AND brittle. Deploy it where the benefit outweighs the failure modes, with human oversight for edge cases."
+      }
     ]
   },
   {
-    type: 'scenario',
-    title: 'The Picture That Broke the AI',
-    situation: 'In 2015, researchers at Google published a landmark paper on image recognition. Their state-of-the-art AI was the best in the world at classifying photos. Then someone showed it a photo of a panda, ran it through a process called "adversarial perturbation" — changing a tiny number of pixels invisibly — and the AI suddenly classified the exact same photo as a gibbon, with 99% confidence. The photo looked identical to any human eye. This experiment has since been repeated thousands of times; every production image AI is still vulnerable to it.',
-    question: 'What does this tell us about "how AI sees"?',
-    choices: [
-      { text: 'The AI was broken — one badly-programmed model being fooled doesn\'t mean much.', outcome: 'Not broken — and not one model. This attack works on every major image classifier. The AI wasn\'t "seeing" a panda the way you do; it was computing a statistical pattern across pixels. Change the pattern by a tiny amount in the right way, and the statistics flip.' },
-      { text: 'The AI doesn\'t see what we see — it responds to statistical patterns in pixels that can be manipulated in ways invisible to humans.', outcome: 'Exactly the point. An AI that scores 99% on ImageNet still doesn\'t "see" objects the way a toddler does. It computes features; it doesn\'t understand. That\'s why self-driving cars still struggle with edge cases a 5-year-old would handle in a second — and why AI image recognition is used WITH human oversight in high-stakes settings.' },
-      { text: 'Adversarial attacks mean AI is useless for real work.', outcome: 'Too strong. AI image recognition is widely used, safely, in real products — medical imaging, manufacturing inspection, security cameras. But the lesson is: pattern-matching is powerful AND brittle. Deploy it where the benefit outweighs the failure modes, with human oversight for edge cases.' }
-    ]
-  },
-  {
-    type: 'quiz',
-    question: 'Which of the following is the most accurate description of what AI does?',
-    options: [
-      'It thinks and reasons like a human brain',
-      'It finds patterns in large amounts of data and uses them to make predictions',
-      'It follows instructions programmed in by a human for every situation',
-      'It randomly generates responses based on chance'
+    "type": "quiz",
+    "question": "Which of the following is the most accurate description of what AI does?",
+    "options": [
+      "It thinks and reasons like a human brain",
+      "It finds patterns in large amounts of data and uses them to make predictions",
+      "It follows instructions programmed in by a human for every situation",
+      "It randomly generates responses based on chance"
     ],
-    correct: 1,
-    explanation: 'AI is fundamentally pattern recognition at scale — it learns statistical patterns from training data and uses them to predict outputs. It doesn\'t think, understand, or have consciousness. It doesn\'t follow pre-written rules for every case (that\'s traditional software). The 2015 adversarial panda/gibbon attack is a sharp reminder: those patterns can be genuinely different from what a human would use to recognise the same image.'
+    "correct": 1,
+    "explanation": "AI is fundamentally pattern recognition at scale — it learns statistical patterns from training data and uses them to predict outputs. It doesn't think, understand, or have consciousness. It doesn't follow pre-written rules for every case (that's traditional software). The 2015 adversarial panda/gibbon attack is a sharp reminder: those patterns can be genuinely different from what a human would use to recognise the same image."
   },
   {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
-      { icon: '🔑', label: 'AI = pattern recognition', text: 'not thinking, understanding, or consciousness — just statistics at scale' },
-      { icon: '📊', label: 'Learns from data', text: 'training set teaches, test set checks — never confuse them, or you get overfitting' },
-      { icon: '🛤️', label: 'Shortcut learning is real', text: 'an AI may learn the weather in the photo, not the tank in the photo (Geirhos 2020)' },
-      { icon: '📱', label: 'Already everywhere', text: 'most people interact with AI dozens to hundreds of times a day without noticing' },
-      { icon: '🏗️', label: 'Old way vs new way', text: 'traditional software = rules humans write; ML = rules the system learns from examples' },
-      { icon: '💡', label: 'Not magic', text: 'it can be understood — and that understanding is the first step to using it well' }
+    "type": "summary",
+    "title": "What You've Learned",
+    "points": [
+      {
+        "icon": "🔑",
+        "label": "AI = pattern recognition",
+        "text": "not thinking, understanding, or consciousness — just statistics at scale"
+      },
+      {
+        "icon": "📊",
+        "label": "Learns from data",
+        "text": "training set teaches, test set checks — never confuse them, or you get overfitting"
+      },
+      {
+        "icon": "🛤️",
+        "label": "Shortcut learning is real",
+        "text": "an AI may learn the weather in the photo, not the tank in the photo (Geirhos 2020)"
+      },
+      {
+        "icon": "📱",
+        "label": "Already everywhere",
+        "text": "most people interact with AI dozens to hundreds of times a day without noticing"
+      },
+      {
+        "icon": "🏗️",
+        "label": "Old way vs new way",
+        "text": "traditional software = rules humans write; ML = rules the system learns from examples"
+      },
+      {
+        "icon": "💡",
+        "label": "Not magic",
+        "text": "it can be understood — and that understanding is the first step to using it well"
+      }
     ]
   }
 ];
 
 SLIDES_GCSE[102] = [
   {
-    type: 'hook',
-    title: 'How Chatbots Work',
-    body: 'June 2017: eight researchers at Google publish a nine-page paper called "Attention Is All You Need". They propose a neural network architecture they call a "transformer". The paper is cited 140,000 times in seven years — the most influential AI paper of the 21st century. Every chatbot you have ever used — ChatGPT, Claude, Gemini, Copilot — is a transformer. Every one of them works by the same trick: predict the next word, over and over. When you type a message, the model doesn\'t "read" it and "think" about it — it predicts. Here\'s the weird truth about how that works, and why it matters for every single interaction you have with AI for the rest of your life.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">140k+</span><span class="sl">citations of the transformer paper (Vaswani et al. 2017)</span></div><div class="hook-stat-mini"><span class="sv">1 word</span><span class="sl">at a time — how every chatbot actually generates text</span></div><div class="hook-stat-mini"><span class="sv">0</span><span class="sl">understanding involved — just probability</span></div></div>',
-    callout: 'This is the most important thing to understand about AI: confident output does not mean correct output. They are completely separate properties of a language model.',
-    sources: [
-      { label: 'Vaswani et al. (Google Brain, 2017) — "Attention Is All You Need" (the transformer paper)', url: 'https://arxiv.org/abs/1706.03762' }
+    "type": "hook",
+    "title": "How Chatbots Work",
+    "body": "Finish this sentence: “At the end of the school day, I…” Several continuations could fit. A language model also generates continuations, using patterns learned during training and the context it is given. Today we will explore that process and test where a fluent answer can still go wrong.",
+    "callout": "Text generation is a useful starting model. A complete chatbot can also retrieve information, use tools and carry out additional computation.",
+    "sources": [
+      {
+        "label": "Vaswani et al. (2017): the transformer architecture",
+        "url": "https://arxiv.org/abs/1706.03762"
+      }
     ]
   },
   {
-    type: 'video',
-    title: 'But what is a GPT? A visual intro to transformers',
-    videoId: 'wjZofJX0v4M',
-    credit: '3Blue1Brown · Deep Learning Series, Chapter 5 · 27 min',
-    intro: 'Grant Sanderson unpacks what actually happens inside a chatbot. Watch the first 7 minutes minimum — that covers tokens and next-word prediction, which is the single most important mental model for this whole course. You don\'t need to follow every animation; the goal is to see that it\'s maths, not magic.',
-    callout: 'If you only remember one thing: a chatbot is autocomplete trained on almost everything humans have ever written — not a thinker, not a search engine, not a friend.'
+    "type": "video",
+    "title": "But what is a GPT? A visual intro to transformers",
+    "videoId": "wjZofJX0v4M",
+    "credit": "3Blue1Brown · Deep Learning Series, Chapter 5 · 27 min",
+    "intro": "Grant Sanderson unpacks what actually happens inside a chatbot. Watch the first 7 minutes minimum — that covers tokens and next-word prediction, which is the single most important mental model for this whole course. You don't need to follow every animation; the goal is to see that it's maths, not magic.",
+    "callout": "Look for the relationship between tokens, context and prediction. This animation explains a model; a complete chatbot product may add search, memory and tools."
   },
   {
-    type: 'concept',
-    title: 'Tokens and Prediction',
-    body: 'Your text is broken into chunks called tokens (roughly word-sized pieces — about 0.75 words per token on average for English). Each token is converted to a number. The model then predicts, from a vocabulary of around 50,000–200,000 tokens, which one is most likely to come next. It picks one (mostly the top option, sometimes sampled for variety), adds it to the sequence, and repeats. That\'s the whole trick. Every essay, every answer, every line of code — generated one token at a time.',
-    bullets: [
-      'No understanding happens — just very sophisticated probability over a fixed vocabulary',
-      '"The capital of France is ___" → "Paris" predicted with very high probability (>95% in current frontier models like GPT-5 and Claude Opus 4.x)',
-      '"The capital of Australia is ___" → sometimes "Sydney" (wrong) because it appears near similar phrases in training data more often than "Canberra" does',
-      'Fluently wrong: AI can be completely incorrect while sounding completely confident — and there is no flag in the output to tell you which is which',
-      'The "temperature" setting controls how often the model picks a less-likely next token — higher temperature = more creative, more likely to hallucinate'
+    "type": "concept",
+    "title": "Tokens and Prediction",
+    "body": "Your text is broken into chunks called tokens (roughly word-sized pieces — about 0.75 words per token on average for English). Each token is converted to a number. The model then predicts, from a vocabulary of around 50,000–200,000 tokens, which one is most likely to come next. It picks one (mostly the top option, sometimes sampled for variety), adds it to the sequence, and repeats. That's the whole trick. Every essay, every answer, every line of code — generated one token at a time.",
+    "bullets": [
+      "No understanding happens — just very sophisticated probability over a fixed vocabulary",
+      "\"The capital of France is ___\" → \"Paris\" predicted with very high probability (>95% in current frontier models like GPT-5 and Claude Opus 4.x)",
+      "\"The capital of Australia is ___\" → sometimes \"Sydney\" (wrong) because it appears near similar phrases in training data more often than \"Canberra\" does",
+      "Fluently wrong: AI can be completely incorrect while sounding completely confident — and there is no flag in the output to tell you which is which",
+      "The \"temperature\" setting controls how often the model picks a less-likely next token — higher temperature = more creative, more likely to hallucinate"
     ]
   },
   {
-    type: 'scenario',
-    title: 'The Strawberry Problem',
-    situation: 'For years, if you typed "How many letter r\'s are in the word strawberry?" into a chatbot, it would confidently answer "2". The real answer is 3 (s-t-r-a-w-b-e-r-r-y). Today\'s reasoning models (GPT-5, Claude with thinking) usually get this exact word right now — they\'ve been trained to spell the word out first. But the underlying weakness is still there: ask them to count a specific letter in a long or made-up word, or to reverse a string, and the same cracks reappear. A task a five-year-old can do — and the machine that passes medical exams still slips on.',
-    question: 'Why does such a simple task break the AI?',
-    choices: [
-      { text: 'The AI is deliberately sabotaged for this question', outcome: 'No — it\'s a structural limitation. The AI isn\'t "trying" to trick you. It simply cannot see letters the way you do.' },
-      { text: 'The AI never saw the word "strawberry" during training', outcome: 'Not the issue — "strawberry" is a common word. The problem is what the AI actually sees when it reads the word.' },
-      { text: 'The AI doesn\'t see individual letters — it sees tokens (chunks of letters)', outcome: 'Correct. The word "strawberry" gets split into chunks like /Str/aw/berry/. The AI never sees the letter "r" as a separate thing — so it can\'t count them directly. It\'s a bit like being asked to count the bricks in a photo of a wall when all you can see is the wall as a whole.' }
+    "type": "scenario",
+    "title": "Test the Strawberry Claim",
+    "situation": "A pupil claims that chatbots always count the letters in “strawberry” incorrectly. Another gets the right answer: three r’s. What would a useful investigation look like?",
+    "question": "Which method gives you the strongest evidence?",
+    "choices": [
+      {
+        "text": "Repeat the claim because it appears in an old screenshot.",
+        "outcome": "A screenshot records one result in one setting. It cannot establish how every current system behaves."
+      },
+      {
+        "text": "Test several strings with known answers; record the model, date, prompt and whether tools were used.",
+        "outcome": "This makes the observation reproducible and its limits visible. A small classroom sample still cannot establish a universal error rate."
+      },
+      {
+        "text": "Conclude that one correct response proves it never makes counting errors.",
+        "outcome": "One success does not establish reliability across inputs. Try a varied set and report both successes and failures."
+      }
     ]
   },
   {
-    type: 'concept',
-    title: 'How Tokens Actually Look',
-    body: 'Text → tokens → numbers. The AI never reads letters. Here\'s a rough visualisation of how "strawberry" gets broken up before the model sees it:',
-    bullets: [
-      'You type: strawberry',
-      'Tokeniser splits it: /Str/ /aw/ /berry/',
-      'Each chunk becomes a number: e.g. 1034, 564, 9912',
-      'The AI only ever sees numbers — never the individual letters'
+    "type": "concept",
+    "title": "How Tokens Actually Look",
+    "body": "Text is represented as tokens, then numerical IDs. Depending on the tokeniser and the text, a token may be a word, part of a word, punctuation or a character.",
+    "bullets": [
+      "Different models can split the same string differently.",
+      "Use a documented tokeniser if you want the exact split and token IDs.",
+      "A chunk-based representation can make some character tasks awkward, but it does not make correct counting impossible.",
+      "A chatbot may also use a tool or additional steps to solve the task."
     ],
-    callout: 'This is why AI can write a beautiful essay about strawberries but struggle with character-level tasks — counting specific letters, spelling backwards, exact letter positions. Fluent language, weak on the letters underneath. Knowing this helps you spot where AI is likely to slip up.'
+    "callout": "Do not invent a token split or treat one model’s result as a permanent property of every AI system."
   },
   {
-    type: 'concept',
-    title: 'Training Data — What It Learned From',
-    body: 'The secret ingredient of a modern chatbot is not the algorithm — it\'s the training data. Frontier models like GPT-5 and Claude Opus 4.x have each been trained on a substantial fraction of the entire public internet, hundreds of thousands of books, all of GitHub, all of Wikipedia, and large portions of academic literature. The model\'s "knowledge" is just patterns extracted from that corpus — which means its strengths, weaknesses and biases are inherited directly from what humans have written online.',
-    bullets: [
-      { term: 'Scale', def: 'Trained on hundreds of billions to trillions of tokens — the entire readable internet, books, and code. GPT-4\'s training corpus is estimated at ~13 trillion tokens (Epoch AI, 2024).' },
-      { term: 'No fact-checking', def: 'It learns the patterns of language — not which facts are true. Wikipedia and a made-up blog post get treated similarly if they sound equally plausible.' },
-      { term: 'Knowledge cut-off', def: 'Training stopped at a certain date (recent models sit roughly in 2025–2026). Anything after that date may be missing or wrong — and the model may still answer confidently.' },
-      { term: 'Bias inherited', def: 'The internet has biases — gender, race, language, geography. The model absorbs them from the training data. Every major lab has a team working to reduce these; none has eliminated them.' },
-      { term: 'The legal grey zone', def: 'Whether it was legal to train on copyrighted text is now being tested in court (NYT v. OpenAI 2023, Getty v. Stability AI 2023, Authors Guild v. OpenAI 2024). No final ruling yet.' }
+    "type": "concept",
+    "title": "Training Data — What It Learned From",
+    "body": "The secret ingredient of a modern chatbot is not the algorithm — it's the training data. Frontier models like GPT-5 and Claude Opus 4.x have each been trained on a substantial fraction of the entire public internet, hundreds of thousands of books, all of GitHub, all of Wikipedia, and large portions of academic literature. The model's \"knowledge\" is just patterns extracted from that corpus — which means its strengths, weaknesses and biases are inherited directly from what humans have written online.",
+    "bullets": [
+      {
+        "term": "Scale",
+        "def": "Trained on hundreds of billions to trillions of tokens — the entire readable internet, books, and code. GPT-4's training corpus is estimated at ~13 trillion tokens (Epoch AI, 2024)."
+      },
+      {
+        "term": "No fact-checking",
+        "def": "It learns the patterns of language — not which facts are true. Wikipedia and a made-up blog post get treated similarly if they sound equally plausible."
+      },
+      {
+        "term": "Knowledge cut-off",
+        "def": "Training stopped at a certain date (recent models sit roughly in 2025–2026). Anything after that date may be missing or wrong — and the model may still answer confidently."
+      },
+      {
+        "term": "Bias inherited",
+        "def": "The internet has biases — gender, race, language, geography. The model absorbs them from the training data. Every major lab has a team working to reduce these; none has eliminated them."
+      },
+      {
+        "term": "The legal grey zone",
+        "def": "Whether it was legal to train on copyrighted text is now being tested in court (NYT v. OpenAI 2023, Getty v. Stability AI 2023, Authors Guild v. OpenAI 2024). No final ruling yet."
+      }
     ],
-    callout: 'Think of a chatbot as the world\'s most sophisticated autocomplete — trained on almost everything humans have ever published online. Impressive, but not a source of truth. Verify anything that matters.'
+    "callout": "Think of a chatbot as the world's most sophisticated autocomplete — trained on almost everything humans have ever published online. Impressive, but not a source of truth. Verify anything that matters."
   },
   {
-    type: 'activity',
-    title: 'Test It Yourself — Break a Chatbot in 5 Minutes',
-    task: 'Open Gemini with your school Google account (gemini.google.com) — or any other chatbot you have at home (ChatGPT, Claude, Copilot) — and run these three tests. Record what happens in the notes box.',
-    steps: [
-      'Letter-counting: "How many t\'s are in the sentence: The quick brown fox jumps over the lazy dog?"',
-      'Maths with a twist: "What is 23 × 47? Show the steps." Then check with a calculator.',
-      'Recent news: "Who won the most recent FIFA World Cup?" — then compare to the real answer',
-      'Made-up reference: "Summarise the key findings of Patel et al. (2023) on teenage sleep patterns." (This paper may not exist — watch what happens.)',
-      'For each test, note: did it answer confidently? Was it right? What does that tell you about when to trust it?'
+    "type": "activity",
+    "title": "Test a Chatbot in 5 Minutes",
+    "task": "Try three questions whose answers you can independently check. Record successes as carefully as errors.",
+    "steps": [
+      "Choose a character-counting task, a factual question and a short summary task.",
+      "Write the correct answer or checking method before asking the chatbot.",
+      "Record the tool/model if shown, date, exact prompt and output.",
+      "Check the answer. Explain what this small sample does and does not show."
     ],
-    reveal: '<strong>What you\'ll usually see:</strong> Task 1 — often wrong (tokens, not letters). Task 2 — sometimes wrong in the middle step but with a confident final answer. Task 3 — depends on knowledge cut-off; may give an out-of-date winner. Task 4 — many chatbots will fabricate a convincing summary of a paper that doesn\'t exist. This is hallucination in action. The pattern to notice: fluent, confident, and wrong.'
+    "reveal": "An honest investigation can find no error. Report what happened rather than forcing a predetermined result."
   },
   {
-    type: 'concept',
-    title: 'Why Hallucinations Happen',
-    body: 'The model\'s job is to produce the most likely next token — not the most truthful one. When it has no reliable pattern to draw on, it still has to produce something, so it produces something plausible-sounding. That is a hallucination.',
-    bullets: [
-      { term: 'No "I don\'t know" default', def: 'The system is always predicting the next token — silence is not an option unless it\'s been explicitly trained to say so' },
-      { term: 'Plausibility ≠ truth', def: 'The output that sounds most like its training data wins, whether or not it matches reality' },
-      { term: 'Edges of knowledge', def: 'Hallucinations spike at the edges — recent events, niche topics, specific people, exact numbers' },
-      { term: 'The fix', def: 'Verify anything that matters. Treat AI like a very fast, very confident intern — useful, but you sign off the work' }
+    "type": "concept",
+    "title": "Why Hallucinations Happen",
+    "body": "The model's job is to produce the most likely next token — not the most truthful one. When it has no reliable pattern to draw on, it still has to produce something, so it produces something plausible-sounding. That is a hallucination.",
+    "bullets": [
+      {
+        "term": "No \"I don't know\" default",
+        "def": "The system is always predicting the next token — silence is not an option unless it's been explicitly trained to say so"
+      },
+      {
+        "term": "Plausibility ≠ truth",
+        "def": "The output that sounds most like its training data wins, whether or not it matches reality"
+      },
+      {
+        "term": "Edges of knowledge",
+        "def": "Hallucinations spike at the edges — recent events, niche topics, specific people, exact numbers"
+      },
+      {
+        "term": "The fix",
+        "def": "Verify anything that matters. Treat AI like a very fast, very confident intern — useful, but you sign off the work"
+      }
     ],
-    callout: 'A Stanford 2024 study of legal AI tools found hallucination rates of 17–33% even on legal-specific models. If specialists get this wrong one time in five, a general chatbot on a random question is not safer.',
-    sources: [
-      { label: 'Stanford HAI (2024) — Hallucination-Free? Legal AI benchmarks', url: 'https://hai.stanford.edu/news/ai-legal-research-tools-matter-hallucinations' }
+    "callout": "A Stanford 2024 study of legal AI tools found hallucination rates of 17–33% even on legal-specific models. If specialists get this wrong one time in five, a general chatbot on a random question is not safer.",
+    "sources": [
+      {
+        "label": "Stanford HAI (2024) — Hallucination-Free? Legal AI benchmarks",
+        "url": "https://hai.stanford.edu/news/ai-legal-research-tools-matter-hallucinations"
+      }
     ]
   },
   {
-    type: 'widget',
-    widget: 'classify',
-    title: 'When Does AI Break? Sort the Risk',
-    intro: 'You now know a chatbot predicts plausible text, not true text. So the real skill is judgement: knowing when you can take its answer at face value and when you must verify. Sort each task by how risky it is to trust the AI without checking, then read why.',
-    categories: ['Usually safe — quick check', 'High risk — always verify'],
-    items: [
-      { text: 'Rewriting your paragraph to sound more formal', correct: 0, why: 'Low risk. This is a pure language task — exactly what next-word prediction is built for. There\'s no single "true" answer it can get factually wrong, and you can read the result and judge it yourself.' },
-      { text: 'Asking for the exact population of your town', correct: 1, why: 'High risk. A precise number on a fairly niche topic is prime hallucination territory — the model can produce a confident, exact, wrong figure. Check an official source (census, council site).' },
-      { text: 'Summarising a long article you pasted into the chat', correct: 0, why: 'Lower risk. The text is right there in the prompt, so the model works from given material rather than fuzzy memory. Still skim-check it didn\'t drop or invent a key point — but the failure rate is far lower than recall from memory.' },
-      { text: 'Asking it to cite three studies that back up your essay', correct: 1, why: 'High risk. Models are notorious for fabricating realistic-looking citations — plausible authors, years and journals for papers that don\'t exist. Verify every reference is real before you use it.' },
-      { text: 'Counting how many times the letter "s" appears in a sentence', correct: 1, why: 'High risk. Character-level counting fights against tokenisation — the strawberry problem. The model sees chunks, not individual letters, so it can guess wrong with full confidence.' },
-      { text: 'Brainstorming ten ideas for a story opening', correct: 0, why: 'Low risk. Open-ended idea generation has no "correct" answer to get wrong — you\'re the judge, and variety is exactly the point. This plays to the model\'s strengths.' }
+    "type": "widget",
+    "widget": "classify",
+    "title": "When Does AI Break? Sort the Risk",
+    "intro": "You now know a chatbot predicts plausible text, not true text. So the real skill is judgement: knowing when you can take its answer at face value and when you must verify. Sort each task by how risky it is to trust the AI without checking, then read why.",
+    "categories": [
+      "Usually safe — quick check",
+      "High risk — always verify"
     ],
-    callout: 'The pattern: language and idea tasks (rewrite, brainstorm, summarise-what\'s-given) are low risk because there\'s no single truth to miss. Facts, exact numbers, citations and character-level tasks are high risk because the model fills the gaps with plausible guesses. When it matters, verify.'
+    "items": [
+      {
+        "text": "Rewriting your paragraph to sound more formal",
+        "correct": 0,
+        "why": "Low risk. This is a pure language task — exactly what next-word prediction is built for. There's no single \"true\" answer it can get factually wrong, and you can read the result and judge it yourself."
+      },
+      {
+        "text": "Asking for the exact population of your town",
+        "correct": 1,
+        "why": "High risk. A precise number on a fairly niche topic is prime hallucination territory — the model can produce a confident, exact, wrong figure. Check an official source (census, council site)."
+      },
+      {
+        "text": "Summarising a long article you pasted into the chat",
+        "correct": 0,
+        "why": "Lower risk. The text is right there in the prompt, so the model works from given material rather than fuzzy memory. Still skim-check it didn't drop or invent a key point — but the failure rate is far lower than recall from memory."
+      },
+      {
+        "text": "Asking it to cite three studies that back up your essay",
+        "correct": 1,
+        "why": "High risk. Models are notorious for fabricating realistic-looking citations — plausible authors, years and journals for papers that don't exist. Verify every reference is real before you use it."
+      },
+      {
+        "text": "Counting how many times the letter \"s\" appears in a sentence",
+        "correct": 1,
+        "why": "Verify an exact count with a reliable method. Performance varies with the model, input and tools; a fluent response alone is not evidence that the count is correct."
+      },
+      {
+        "text": "Brainstorming ten ideas for a story opening",
+        "correct": 0,
+        "why": "Low risk. Open-ended idea generation has no \"correct\" answer to get wrong — you're the judge, and variety is exactly the point. This plays to the model's strengths."
+      }
+    ],
+    "callout": "The pattern: language and idea tasks (rewrite, brainstorm, summarise-what's-given) are low risk because there's no single truth to miss. Facts, exact numbers, citations and character-level tasks are high risk because the model fills the gaps with plausible guesses. When it matters, verify."
   },
   {
-    type: 'quiz',
-    question: 'A chatbot tells you that London is the capital of Australia. What\'s the most likely reason?',
-    options: [
-      'It was deliberately programmed to make mistakes',
-      'It predicted a plausible-sounding sentence based on patterns in its training data',
-      'Australia recently changed its capital to London',
-      'The chatbot got confused and mixed up two questions'
+    "type": "quiz",
+    "question": "A chatbot tells you that London is the capital of Australia. What's the most likely reason?",
+    "options": [
+      "It was deliberately programmed to make mistakes",
+      "It predicted a plausible-sounding sentence based on patterns in its training data",
+      "Australia recently changed its capital to London",
+      "The chatbot got confused and mixed up two questions"
     ],
-    correct: 1,
-    explanation: 'Chatbots predict probable text, not factual text. If training data contained enough similar-sounding geography phrases where "London" and "capital" appeared close together (tourist writing, British news articles about Australia, historical commonwealth context), it might predict "London" as a plausible completion even when the correct answer is Canberra. There is no fact-checker in the pipeline — just probability over tokens. This is why confidence from a chatbot is never evidence of correctness.'
+    "correct": 1,
+    "explanation": "Chatbots predict probable text, not factual text. If training data contained enough similar-sounding geography phrases where \"London\" and \"capital\" appeared close together (tourist writing, British news articles about Australia, historical commonwealth context), it might predict \"London\" as a plausible completion even when the correct answer is Canberra. There is no fact-checker in the pipeline — just probability over tokens. This is why confidence from a chatbot is never evidence of correctness."
   },
   {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
-      { icon: '🔮', label: 'Prediction, not thinking', text: 'chatbots predict the next word/token, over and over — that is the entire trick' },
-      { icon: '🔤', label: 'Tokens, not letters', text: 'the AI sees chunks and numbers — never individual characters. Hence "strawberry" counts wrong.' },
-      { icon: '🔬', label: 'Transformers power everything', text: 'Vaswani et al. 2017 — the paper behind every modern chatbot, cited 140k+ times' },
-      { icon: '⚠️', label: 'Confident ≠ correct', text: 'always verify important facts from AI responses — Stanford 2024: 17-33% hallucination even on specialist legal AI' },
-      { icon: '🎭', label: 'Hallucinations are structural', text: 'a chatbot with nothing to say will still say something plausible — there\'s no "I don\'t know" default' },
-      { icon: '📅', label: 'Knowledge cut-off', text: 'recent events may be wrong or missing — check the model\'s cut-off date before asking' },
-      { icon: '🌐', label: 'Training data shapes output', text: 'biases in the internet end up in the model — and the legal status of that training is actively being tested in court' }
+    "type": "summary",
+    "title": "What You've Learned",
+    "points": [
+      {
+        "icon": "1",
+        "label": "Tokens and context",
+        "text": "Language models generate text using numerical representations and learned patterns."
+      },
+      {
+        "icon": "2",
+        "label": "Models and products",
+        "text": "A chatbot product may combine generation with retrieval, memory and tools."
+      },
+      {
+        "icon": "3",
+        "label": "Test a claim",
+        "text": "Record the system, date, input, output and checking method."
+      },
+      {
+        "icon": "4",
+        "label": "Keep the limits",
+        "text": "Neither one success nor one error establishes universal reliability."
+      }
     ]
   }
 ];
@@ -2013,103 +2192,196 @@ SLIDES_GCSE[114] = [
 
 SLIDES_GCSE[115] = [
   {
-    type: 'hook',
-    title: 'AI and Creativity',
-    body: 'September 2022: Jason Allen enters "Théâtre D\'opéra Spatial" into the Colorado State Fair\'s fine art competition. It wins first place. Allen had generated it with Midjourney — an AI image tool. Artists were furious: "we should put a red X over all AI art." Allen refused to apologise: "I\'m not going back on my art." Meanwhile Getty Images is suing Stability AI for scraping 12 million photos without permission. The New York Times is suing OpenAI. The creative industry is in open war with AI companies — and every ruling sets precedent.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">12M+</span><span class="sl">images scraped by Stability AI, per Getty lawsuit</span></div><div class="hook-stat-mini"><span class="sv">$0</span><span class="sl">paid to artists whose work trained Midjourney</span></div><div class="hook-stat-mini"><span class="sv">Ongoing</span><span class="sl">NYT v. OpenAI copyright suit (filed 2023) still in active litigation</span></div></div>',
-    callout: 'This lesson explores what AI can create, what human creativity adds, and why the distinction matters.',
-    sources: [
-      { label: 'Roose, K. — "An A.I.-Generated Picture Won an Art Prize. Artists Aren\'t Happy." (The New York Times, 2 Sep 2022)', url: 'https://www.nytimes.com/2022/09/02/technology/ai-artificial-intelligence-artists.html' },
-      { label: 'Getty Images (US), Inc. v. Stability AI, Inc. — Complaint filed Delaware District Court, Feb 2023', url: 'https://copyrightlately.com/wp-content/uploads/2023/02/Getty-Images-v.-Stability-AI-Complaint.pdf' },
-      { label: 'The New York Times Company v. Microsoft & OpenAI — Complaint filed S.D.N.Y., 27 Dec 2023', url: 'https://nytco-assets.nytimes.com/2023/12/NYT_Complaint_Dec2023.pdf' },
-      { label: 'US Copyright Office — "Copyright Registration Guidance: Works Containing Material Generated by AI" (March 2023)', url: 'https://www.copyright.gov/ai/ai_policy_guidance.pdf' }
+    "type": "hook",
+    "title": "AI and Creativity",
+    "body": "September 2022: Jason Allen enters \"Théâtre D'opéra Spatial\" into the Colorado State Fair's fine art competition. It wins first place. Allen had generated it with Midjourney — an AI image tool. Artists were furious: \"we should put a red X over all AI art.\" Allen refused to apologise: \"I'm not going back on my art.\" Meanwhile Getty Images is suing Stability AI for scraping 12 million photos without permission. The New York Times is suing OpenAI. The creative industry is in open war with AI companies — and every ruling sets precedent.<div class=\"hook-stats-row\"><div class=\"hook-stat-mini\"><span class=\"sv\">12M+</span><span class=\"sl\">images scraped by Stability AI, per Getty lawsuit</span></div><div class=\"hook-stat-mini\"><span class=\"sv\">$0</span><span class=\"sl\">paid to artists whose work trained Midjourney</span></div><div class=\"hook-stat-mini\"><span class=\"sv\">Ongoing</span><span class=\"sl\">NYT v. OpenAI copyright suit (filed 2023) still in active litigation</span></div></div>",
+    "callout": "This lesson explores what AI can create, what human creativity adds, and why the distinction matters.",
+    "sources": [
+      {
+        "label": "Roose, K. — \"An A.I.-Generated Picture Won an Art Prize. Artists Aren't Happy.\" (The New York Times, 2 Sep 2022)",
+        "url": "https://www.nytimes.com/2022/09/02/technology/ai-artificial-intelligence-artists.html"
+      },
+      {
+        "label": "Getty Images (US), Inc. v. Stability AI, Inc. — Complaint filed Delaware District Court, Feb 2023",
+        "url": "https://copyrightlately.com/wp-content/uploads/2023/02/Getty-Images-v.-Stability-AI-Complaint.pdf"
+      },
+      {
+        "label": "The New York Times Company v. Microsoft & OpenAI — Complaint filed S.D.N.Y., 27 Dec 2023",
+        "url": "https://nytco-assets.nytimes.com/2023/12/NYT_Complaint_Dec2023.pdf"
+      },
+      {
+        "label": "US Copyright Office — \"Copyright Registration Guidance: Works Containing Material Generated by AI\" (March 2023)",
+        "url": "https://www.copyright.gov/ai/ai_policy_guidance.pdf"
+      }
     ]
   },
   {
-    type: 'concept',
-    title: 'What AI Can Create',
-    body: 'In less than three years, generative AI has moved from producing surreal novelty images to winning (and losing) real creative prizes, scoring film roles, and headlining music streaming services. Here\'s the current landscape — and what each medium looks like in 2024–2025.',
-    bullets: [
-      { term: 'Text', def: 'Articles, stories, poetry, scripts, code, song lyrics — at high volume and speed. ChatGPT, Claude, Gemini all near-indistinguishable from human prose on short tasks. 2024 Authors Guild survey (2,400+ authors): 96% say a writer\'s consent should be required before their work trains AI; only 3% were okay with it.' },
-      { term: 'Images', def: 'Photorealistic, artistic, illustrated, in any style — from a text description. Midjourney v6 (2024), DALL-E 3, Stable Diffusion. Reverse-search tools like "Have I Been Trained" let artists check whether their work is in training data.' },
-      { term: 'Music', def: 'Original compositions in any genre, instruments, mood, tempo. Suno (2023) and Udio (2024) can produce full vocal tracks from one sentence. Universal Music sued Anthropic in 2023 over lyrics in training data.' },
-      { term: 'Video', def: 'Short films and animations. OpenAI\'s Sora (2024 preview), Runway Gen-3 and Google\'s Veo show 30-second coherent clips. Hollywood\'s 2023 WGA and SAG-AFTRA strikes won historic AI limits in film and TV contracts.' },
-      { term: 'Voice', def: 'Cloned voices and synthetic speech indistinguishable from real people. ElevenLabs and Respeecher used legitimately in film (e.g. Vader in Obi-Wan Kenobi). Also misused for fraud — a 2024 crypto deepfake scam cost 6,000+ UK and Canadian victims around £27m.' },
-      { term: 'Code', def: 'GitHub Copilot and Claude Code write working software from English descriptions. GitHub 2024: over 1.3M paying developers and $100m+ annual revenue, with developers reporting they complete tasks up to 55% faster using it.' }
+    "type": "concept",
+    "title": "What AI Can Create",
+    "body": "In less than three years, generative AI has moved from producing surreal novelty images to winning (and losing) real creative prizes, scoring film roles, and headlining music streaming services. Here's the current landscape — and what each medium looks like in 2024–2025.",
+    "bullets": [
+      {
+        "term": "Text",
+        "def": "Articles, stories, poetry, scripts, code, song lyrics — at high volume and speed. ChatGPT, Claude, Gemini all near-indistinguishable from human prose on short tasks. 2024 Authors Guild survey (2,400+ authors): 96% say a writer's consent should be required before their work trains AI; only 3% were okay with it."
+      },
+      {
+        "term": "Images",
+        "def": "Photorealistic, artistic, illustrated, in any style — from a text description. Midjourney v6 (2024), DALL-E 3, Stable Diffusion. Reverse-search tools like \"Have I Been Trained\" let artists check whether their work is in training data."
+      },
+      {
+        "term": "Music",
+        "def": "Original compositions in any genre, instruments, mood, tempo. Suno (2023) and Udio (2024) can produce full vocal tracks from one sentence. Universal Music sued Anthropic in 2023 over lyrics in training data."
+      },
+      {
+        "term": "Video",
+        "def": "Short films and animations. OpenAI's Sora (2024 preview), Runway Gen-3 and Google's Veo show 30-second coherent clips. Hollywood's 2023 WGA and SAG-AFTRA strikes won historic AI limits in film and TV contracts."
+      },
+      {
+        "term": "Voice",
+        "def": "Cloned voices and synthetic speech indistinguishable from real people. ElevenLabs and Respeecher used legitimately in film (e.g. Vader in Obi-Wan Kenobi). Also misused for fraud — a 2024 crypto deepfake scam cost 6,000+ UK and Canadian victims around £27m."
+      },
+      {
+        "term": "Code",
+        "def": "GitHub Copilot and Claude Code write working software from English descriptions. GitHub 2024: over 1.3M paying developers and $100m+ annual revenue, with developers reporting they complete tasks up to 55% faster using it."
+      }
     ],
-    sources: [
-      { label: 'WGA 2023 tentative agreement — AI terms', url: 'https://www.wga.org/contracts/contracts/mba/summary-of-the-2023-wga-mba' },
-      { label: 'Action Fraud — the UK\'s national fraud and cyber-crime reporting centre', url: 'https://www.actionfraud.police.uk/' }
+    "sources": [
+      {
+        "label": "WGA 2023 tentative agreement — AI terms",
+        "url": "https://www.wga.org/contracts/contracts/mba/summary-of-the-2023-wga-mba"
+      },
+      {
+        "label": "Action Fraud — the UK's national fraud and cyber-crime reporting centre",
+        "url": "https://www.actionfraud.police.uk/"
+      }
     ]
   },
   {
-    type: 'concept',
-    title: 'Collaboration vs Replacement',
-    body: 'Most professional creators now use AI as part of their workflow — for drafts, ideas, and reference. But the question of what AI adds versus what it replaces is genuinely contested, and the contest has real economic stakes. Illustrators, voice actors and stock photographers have all reported significant income drops in 2024.',
-    bullets: [
-      'AI is very good at: volume, variation, speed, remixing existing styles, matching a reference image or tone',
-      'Humans are better at: original vision, emotional resonance rooted in lived experience, cultural context, deliberate intention, moral responsibility for the work',
-      'Key question: is AI being creative, or statistically recombining patterns from millions of human creators whose work trained it (often without consent or compensation)?',
-      'Real risk: if AI produces "good enough" content at near-zero marginal cost, what happens to entry-level creative jobs that used to pay new graduates?',
-      'Emerging compromise: "human-in-the-loop" workflows where AI drafts and humans direct, edit, and take responsibility — now standard at most major ad agencies'
+    "type": "concept",
+    "title": "Collaboration vs Replacement",
+    "body": "Most professional creators now use AI as part of their workflow — for drafts, ideas, and reference. But the question of what AI adds versus what it replaces is genuinely contested, and the contest has real economic stakes. Illustrators, voice actors and stock photographers have all reported significant income drops in 2024.",
+    "bullets": [
+      "AI is very good at: volume, variation, speed, remixing existing styles, matching a reference image or tone",
+      "Humans are better at: original vision, emotional resonance rooted in lived experience, cultural context, deliberate intention, moral responsibility for the work",
+      "Key question: is AI being creative, or statistically recombining patterns from millions of human creators whose work trained it (often without consent or compensation)?",
+      "Real risk: if AI produces \"good enough\" content at near-zero marginal cost, what happens to entry-level creative jobs that used to pay new graduates?",
+      "Emerging compromise: \"human-in-the-loop\" workflows where AI drafts and humans direct, edit, and take responsibility — now standard at most major ad agencies"
     ],
-    callout: 'In 2023, Grimes offered a 50/50 royalty split on any song using her AI-cloned voice — a model for consent-based collaboration that others may follow.'
+    "callout": "In 2023, Grimes offered a 50/50 royalty split on any song using her AI-cloned voice — a model for consent-based collaboration that others may follow."
   },
   {
-    type: 'scenario',
-    title: 'Who Owns the Art?',
-    situation: 'You run the Instagram account for a small clothing brand. You use Midjourney to generate 12 campaign images for a new collection. The images look great — the brand owner loves them and wants to register them as the brand\'s copyrighted artwork so competitors can\'t copy them.',
-    question: 'What do you tell the owner?',
-    choices: [
-      { text: 'Go ahead — you wrote the prompts, so the copyright is yours to assign to the brand.', outcome: 'A few months later a competitor posts near-identical images generated from Midjourney. The brand tries to sue — but the UK IPO confirms purely AI-generated images aren\'t protected by copyright. The whole "brand IP" is worthless.' },
-      { text: 'Be honest: under current UK/US law, purely AI-generated images can\'t be copyrighted. Suggest paying an illustrator for the core hero images and using AI for secondary assets.', outcome: 'The brand gets legally-protected hero artwork and uses AI where protection doesn\'t matter. The owner respects your honesty. You become the person they ask about every AI decision going forward.' },
-      { text: 'Add significant human edits — recolouring, compositing, hand-drawn elements — to create a "human authorship" claim.', outcome: 'The US Copyright Office has granted partial copyright where humans made "sufficient creative contributions." You document your process carefully. The protection is partial but legitimate — a real-world workaround used by working illustrators.' }
+    "type": "scenario",
+    "title": "Who Owns the Art?",
+    "situation": "A UK clothing brand wants to use an AI-generated campaign image. You have also made substantial edits by hand. The owner asks what rights the brand can rely on.",
+    "question": "What do you need to establish before giving an answer?",
+    "choices": [
+      {
+        "text": "The person who typed the prompt always owns every right.",
+        "outcome": "That is too broad. The tool licence, the type of work, human contributions and the relevant jurisdiction all matter."
+      },
+      {
+        "text": "Pure AI output can never have protection anywhere.",
+        "outcome": "That is also too broad. UK law contains a provision for computer-generated works, but its application to modern generative AI is uncertain."
+      },
+      {
+        "text": "Record the human contributions, check the tool terms and distinguish UK law from US examples.",
+        "outcome": "This identifies the relevant evidence without promising a legal outcome. A commercial decision may require specialist advice."
+      }
+    ],
+    "sources": [
+      {
+        "label": "UK Government: copyright and AI report, March 2026",
+        "url": "https://www.gov.uk/government/publications/report-and-impact-assessment-on-copyright-and-artificial-intelligence/report-on-copyright-and-artificial-intelligence"
+      },
+      {
+        "label": "Copyright in the UK is automatic; there is no copyright register",
+        "url": "https://www.gov.uk/copyright"
+      }
     ]
   },
   {
-    type: 'widget',
-    widget: 'classify',
-    title: 'Copyright-Protected or Not?',
-    intro: 'Courts in the UK and US draw the line at human authorship: the more genuine creative choices a person makes (and can evidence), the more protection there is. Purely AI-generated work has no human author — and no copyright. Sort each one.',
-    categories: ['✅ Copyright can protect it', '❌ No copyright (purely AI-generated)'],
-    items: [
-      { text: 'A photo you took yourself on your phone', correct: 0, why: 'Protected. Straightforward human authorship — you made the creative choices, so copyright is yours.' },
-      { text: 'A song a human band wrote and recorded', correct: 0, why: 'Protected. Human creative authorship throughout the writing and recording.' },
-      { text: 'An AI-generated image you then significantly repainted, composited and altered by hand', correct: 0, why: 'Protected in part. The US Copyright Office grants protection for the human creative contributions you can document — the workaround working illustrators actually use.' },
-      { text: 'A comic where AI made the pictures, but you wrote the story, chose and arranged every panel and edited the text', correct: 0, why: 'Protected in part. This is the real "Zarya of the Dawn" case (2023): the human-authored text and the arrangement were protected; the raw AI images were not.' },
-      { text: 'An image generated from a single Midjourney prompt and used as-is', correct: 1, why: 'No copyright. The UK IPO and US Copyright Office agree: a pure prompt-to-output image has no human author, so a competitor could legally copy it.' },
-      { text: 'A full short story produced by ChatGPT from "write me a thriller"', correct: 1, why: 'No copyright. No human authored the actual expression, so there is nothing to protect — however good it reads.' }
+    "type": "activity",
+    "title": "Rights, Evidence and Uncertainty",
+    "task": "Compare a photograph you took, an image from a single AI prompt and an AI image you substantially edited. For each, identify what you know and what you still need to check.",
+    "steps": [
+      "Separate rights in an output from permission to use its training material.",
+      "Record your own creative decisions and the tool terms.",
+      "Label US copyright examples as US examples. UK section 9(3) needs separate consideration."
     ],
-    callout: 'The line the courts draw is human authorship. Pure prompt-to-output has no author and no protection; the more real creative choices you make and can evidence, the more copyright you hold.'
-  },
-  {
-    type: 'discussion',
-    title: 'Think & Discuss',
-    questions: [
-      { num: 1, text: 'If an AI image wins an art competition, who deserves the prize — the AI, the person who wrote the prompt, or no one?' },
-      { num: 2, text: 'Is there a difference between AI remixing human art and a human artist being "inspired" by other artists?' },
-      { num: 3, text: 'If AI can write a decent song in seconds, does that devalue the work of human musicians?' }
+    "reveal": "Do not sort every AI work into a universal yes/no box. Human creative contributions can matter, and UK computer-generated-work protection has unresolved questions. A proposed change to the law is not the same as a change already in force.",
+    "sources": [
+      {
+        "label": "UK Government: copyright and AI report, March 2026",
+        "url": "https://www.gov.uk/government/publications/report-and-impact-assessment-on-copyright-and-artificial-intelligence/report-on-copyright-and-artificial-intelligence"
+      }
     ]
   },
   {
-    type: 'quiz',
-    question: 'In 2022, an AI-generated image won a fine art competition. What does this most clearly demonstrate?',
-    options: [
-      'AI has genuine artistic feelings and intentional creativity',
-      'AI can produce outputs that humans judge as creative — without any understanding or intent behind them',
-      'Human artists are no longer needed in competitive art',
-      'The judges were wrong and should have disqualified the entry'
-    ],
-    correct: 1,
-    explanation: 'The key distinction is between producing creative-looking output and being creative. AI recombines patterns from millions of human-made works — it has no intent, emotion, or meaning behind what it makes. The output can look creative; the process is statistical prediction.'
+    "type": "discussion",
+    "title": "Think & Discuss",
+    "questions": [
+      {
+        "num": 1,
+        "text": "If an AI image wins an art competition, who deserves the prize — the AI, the person who wrote the prompt, or no one?"
+      },
+      {
+        "num": 2,
+        "text": "Is there a difference between AI remixing human art and a human artist being \"inspired\" by other artists?"
+      },
+      {
+        "num": 3,
+        "text": "If AI can write a decent song in seconds, does that devalue the work of human musicians?"
+      }
+    ]
   },
   {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
-      { icon: '🎨', label: 'AI creates in almost every medium', text: 'text, images, music, video, voice' },
-      { icon: '🔄', label: 'Recombination, not origination', text: 'AI remixes patterns from human-made content' },
-      { icon: '💡', label: 'Human creativity adds intent and meaning', text: 'experience, vision, emotion — what AI lacks' },
-      { icon: '⚡', label: 'Creative industries are changing', text: 'the question is how to adapt, not whether to' }
+    "type": "activity",
+    "title": "Creative Studio: One Brief, Three Decisions",
+    "task": "Design a 30-second advert for a real school event using approved tools. Begin with your own audience, message and storyboard.",
+    "steps": [
+      "Make one draft with AI assistance and one deliberately different alternative.",
+      "Show both to a partner. Ask what they understood and remembered.",
+      "Revise your work using their feedback. Record one AI suggestion you rejected and why.",
+      "Submit the final piece, your storyboard and a short account of your own creative decisions."
+    ],
+    "reveal": "Success means a clear message, purposeful choices and evidence of improvement. Generating more versions is useful only if you can explain what you changed and why."
+  },
+  {
+    "type": "quiz",
+    "question": "In 2022, an AI-generated image won a fine art competition. What does this most clearly demonstrate?",
+    "options": [
+      "AI has genuine artistic feelings and intentional creativity",
+      "AI can produce an output that judges value as creative.",
+      "Human artists are no longer needed in competitive art",
+      "The judges were wrong and should have disqualified the entry"
+    ],
+    "correct": 1,
+    "explanation": "A prize demonstrates how the output was judged. It does not settle whether the system has feelings, intentions or understanding. Those are separate philosophical questions."
+  },
+  {
+    "type": "summary",
+    "title": "What You've Learned",
+    "points": [
+      {
+        "icon": "🎨",
+        "label": "AI creates in almost every medium",
+        "text": "text, images, music, video, voice"
+      },
+      {
+        "icon": "🔄",
+        "label": "Recombination, not origination",
+        "text": "AI remixes patterns from human-made content"
+      },
+      {
+        "icon": "💡",
+        "label": "Human creativity adds intent and meaning",
+        "text": "experience, vision, emotion — what AI lacks"
+      },
+      {
+        "icon": "⚡",
+        "label": "Creative industries are changing",
+        "text": "the question is how to adapt, not whether to"
+      }
     ]
   }
 ];
@@ -2604,111 +2876,139 @@ SLIDES_GCSE[119] = [
 
 SLIDES_GCSE[120] = [
   {
-    type: 'hook',
-    title: 'Spotting AI-Generated Content',
-    body: 'NewsGuard\'s tracker of unreliable "AI-generated news sites" went from 49 to over 1,000 in roughly 18 months (May 2023 – Dec 2024) — many publishing at high volume with little or no human oversight, and most readers can\'t tell. Sports Illustrated was caught publishing articles under fake AI-generated "journalists" with AI-generated faces (Futurism, Nov 2023). Image AI has moved even faster: a 2024 University of Waterloo study found people correctly identified AI-generated photorealistic faces only 61% of the time, barely better than chance. The skill you need isn\'t running things through a detector (they\'re unreliable). It\'s developing critical reading and source-checking that works whether a tool exists or not.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">1,121</span><span class="sl">AI-generated news sites tracked by NewsGuard (Dec 2024)</span></div><div class="hook-stat-mini"><span class="sv">61%</span><span class="sl">of non-native-English students\' real essays wrongly flagged as AI by detectors (Stanford 2023)</span></div><div class="hook-stat-mini"><span class="sv">~chance</span><span class="sl">human accuracy at spotting AI faces — barely better than guessing (Waterloo 2024)</span></div></div>',
-    callout: 'The real skill isn\'t running things through a detector. It\'s developing critical reading that works whether a tool exists or not.',
-    sources: [
-      { label: 'NewsGuard — Tracking AI-enabled misinformation (site tracker)', url: 'https://www.newsguardtech.com/special-reports/ai-tracking-center/' },
-      { label: 'Futurism (Nov 2023) — Sports Illustrated published articles by fake AI authors', url: 'https://futurism.com/sports-illustrated-ai-generated-writers' },
-      { label: 'University of Waterloo (2024) — people identified AI-generated faces only 61% of the time', url: 'https://uwaterloo.ca/news/media/can-you-tell-difference-between-real-face-and-ai-generated-one' }
+    "type": "hook",
+    "title": "Can You Trust This Content?",
+    "body": "Two paragraphs sound convincing. One is formal and balanced; the other tells a vivid personal story. Either could have been written by a person or generated with AI. What evidence would help you decide whether their claims are trustworthy?",
+    "callout": "Style is something to critique. It is not proof of who wrote a text.",
+    "sources": [
+      {
+        "label": "Liang et al. (2023): detector bias and limitations; study-specific findings",
+        "url": "https://arxiv.org/abs/2304.02819"
+      }
     ]
   },
   {
-    type: 'concept',
-    title: 'Why Spotting AI Text Is Hard',
-    body: 'You might think running suspect content through an "AI detector" solves the problem. It doesn\'t — and relying on one can do more harm than good. Here\'s the state of play in 2024-2025.',
-    bullets: [
-      { term: 'AI detectors are unreliable', def: 'A 2023 Stanford study found detectors flagged non-native English speakers\' genuine writing as AI 61% of the time — a disastrous false-positive rate that gets innocent students wrongly accused.' },
-      { term: 'Prompt engineering defeats them', def: 'Asking the AI to "write like a slightly distracted Year 11 student, include one small grammar slip" produces output that passes GPTZero, Turnitin and Originality.ai regularly.' },
-      { term: 'Models update, detectors lag', def: 'Every major model release breaks existing detectors. The arms race favours the generators — they\'re better funded and move faster.' },
-      { term: 'The right question isn\'t "is this AI?"', def: 'It\'s "is this accurate and credible?" — content can be human-written and wrong, or AI-written and right. Origin is a weaker signal than verifiability.' },
-      { term: 'AI images have improved dramatically', def: 'The visible tells from 2022 (7 fingers, distorted eyes) are mostly gone by 2024. For photoreal faces, humans now detect AI images barely above chance — 61% accuracy in the Waterloo 2024 study.' }
+    "type": "concept",
+    "title": "Three Different Questions",
+    "bullets": [
+      {
+        "term": "Accuracy",
+        "def": "Is the claim supported by evidence? Find the original source and check what it actually says."
+      },
+      {
+        "term": "Provenance",
+        "def": "Where did this item come from? Trace its earliest available publication, author and context."
+      },
+      {
+        "term": "Authorship and disclosure",
+        "def": "Who contributed, and was AI use disclosed when required? Writing style alone cannot establish this."
+      }
+    ]
+  },
+  {
+    "type": "activity",
+    "title": "What Can the Writing Tell You?",
+    "task": "Read both invented examples. Identify what is missing, then write one question you would ask before trusting each.",
+    "steps": [
+      "Text A: “Many studies show that social media harms learning. Experts agree that pupils should use it less.”",
+      "Text B: “I deleted social media for three months and my revision improved. That proves everyone should do the same.”",
+      "Separate a criticism of the argument from a claim about who wrote it."
     ],
-    sources: [
-      { label: 'Liang et al. (Stanford 2023) — "GPT detectors are biased against non-native English writers" (Patterns)', url: 'https://www.cell.com/patterns/fulltext/S2666-3899(23)00130-7' }
-    ]
+    "reveal": "A needs named studies and a precise claim. B is an anecdote, even if the experience is genuine; it does not establish a universal effect. Neither passage provides enough evidence to determine authorship."
   },
   {
-    type: 'concept',
-    title: 'Signs of AI-Generated Text',
-    body: 'Over thousands of real classroom submissions, experienced teachers and moderators have converged on a reliable set of "tells" for AI text — not foolproof, but much better than the detectors. These are the patterns to train your eye on.',
-    bullets: [
-      { term: 'Overly formal and balanced', def: 'AI rarely takes a firm position on anything — it hedges. Human writers usually have a view, even on subtle issues.' },
-      { term: 'Generic examples', def: '"Many studies have shown..." / "Experts agree that..." — with no specific study, expert or year named. Real writers tend to name their sources.' },
-      { term: 'Filler phrases', def: '"It is important to note...", "In conclusion, it is clear that...", "In today\'s fast-paced world..." — these are LLM tics, not human phrasing.' },
-      { term: 'Over-structuring', def: 'Headers, bullet points, numbered lists for everything — even in a piece that was meant to be flowing prose. A clear sign of default ChatGPT output.' },
-      { term: 'No personal voice', def: 'No specific memories, no concrete classroom or personal examples, no idiosyncrasies. Real student writing has texture; AI text is smooth and generic.' },
-      { term: 'Comprehensively superficial', def: 'Covers every angle at surface level — the "Wikipedia article someone skim-read" feel. Depth in one area + gaps in others is a more human pattern.' },
-      { term: 'Em-dashes everywhere', def: 'ChatGPT and Claude both overuse em-dashes — often several per paragraph. A genuine human writer typically uses one or two per whole essay.' }
-    ]
-  },
-  {
-    type: 'activity',
-    title: 'AI or Human?',
-    task: 'Read each text below. In the notes box, decide: AI-written or human-written? Explain your reasoning.',
-    steps: [
-      'Text A: "The impact of social media on mental health is multifaceted and has been the subject of significant academic debate. While some studies suggest negative effects, others point to positive community-building aspects. It is important to consider the nuanced relationship between usage patterns and wellbeing outcomes."',
-      'Text B: "I deleted Instagram for three months last year. Honestly, I thought I\'d feel liberated, but mostly I just felt left out. Turns out the problem wasn\'t the app — it was that all my friends were still on it and stopped inviting me to things."'
+    "type": "concept",
+    "title": "Why Detection Is Not a Verdict",
+    "body": "Liang and colleagues found substantial false positives for non-native English writing in a 2023 study of selected detectors. That is evidence about those tools, samples and conditions, not one permanent accuracy rate for every detector.",
+    "bullets": [
+      {
+        "term": "Human guesses also need evidence",
+        "def": "Polished prose, unusual vocabulary, punctuation and personal anecdotes can all appear in both human and AI-assisted work."
+      },
+      {
+        "term": "Use process evidence",
+        "def": "Drafts, source notes, documented contributions and a conversation about the work are more informative than a style score."
+      },
+      {
+        "term": "Handle concerns fairly",
+        "def": "A suspicion should prompt a careful review under school policy. It should not become an accusation based on a detector or a writing habit."
+      }
     ],
-    reveal: '<strong>Text A:</strong> very likely AI — balanced, formal, hedged, vague, no personal voice.<br><strong>Text B:</strong> very likely human — personal, specific, contradicts its own expectations, has a real point of view.'
-  },
-  {
-    type: 'concept',
-    title: 'Case Study — Four Viral AI Images You Probably Saw',
-    body: 'These are real images that fooled real people at scale. Each teaches a different lesson about what to look for.',
-    bullets: [
-      { term: 'Balenciaga Pope (Mar 2023)', def: 'An AI image of Pope Francis in a white Balenciaga puffer jacket went viral on Reddit and Twitter with 20m+ views. Most viewers believed it was real for days. Tell: fingers blurred into the coffee cup, glasses distorted at the temple, crucifix chain dissolving into fabric.' },
-      { term: 'Pentagon "explosion" (May 2023)', def: 'A fake AI image of smoke rising near the Pentagon briefly knocked the S&P 500 down 0.3% (about $500bn in market cap) before being debunked. Tell: the building architecture didn\'t match real Pentagon imagery; fence posts merged into each other.' },
-      { term: 'Trump arrest images (Mar 2023)', def: 'Eliot Higgins of Bellingcat generated photorealistic images of Donald Trump being arrested — to demonstrate Midjourney\'s capability. The images were shared as genuine by millions. Tell: extra fingers, inconsistent police badges, warped faces of officers.' },
-      { term: 'Taylor Swift deepfakes (Jan 2024)', def: 'Non-consensual explicit AI images spread to 47m views on X before the platform blocked searches for her name for 24 hours. Led to bipartisan DEFIANCE Act in the US Senate and the UK adding deepfake-creation offences to the Online Safety Act in 2024.' },
-      { term: 'The pattern', def: 'Speed of virality beats speed of correction. By the time verification catches up, the belief is already formed. This is why pre-bunking (lesson 122) matters more than debunking.' }
-    ],
-    sources: [
-      { label: 'BBC (Jan 2024) — Taylor Swift deepfakes spur US and UK legal response', url: 'https://www.bbc.co.uk/news/technology-68110476' },
-      { label: 'AP News (May 2023) — Fake Pentagon explosion image causes brief stock dip', url: 'https://apnews.com/article/pentagon-explosion-misinformation-stock-market-ai-96f534c790872fde67012ee81b5ed6a4' },
-      { label: 'UK Online Safety Act 2023 / 2024 amendments — deepfake offences', url: 'https://www.gov.uk/government/news/government-cracks-down-on-deepfakes-creation' }
+    "sources": [
+      {
+        "label": "Liang et al. (2023): detector bias and limitations; study-specific findings",
+        "url": "https://arxiv.org/abs/2304.02819"
+      }
     ]
   },
   {
-    type: 'scenario',
-    title: 'The "Expert Review" Blog',
-    situation: 'You\'re researching the best revision apps for GCSE. You find a blog that tops Google\'s results: "TOP 10 REVISION APPS REVIEWED BY STUDENTS." Every app gets between 4.5 and 4.8 stars. Each review is exactly 180 words. Every entry has the same structure: "Overview, Key Features, Pros, Cons, Verdict." There\'s an affiliate link on every app.',
-    question: 'Do you trust this blog\'s recommendations?',
-    choices: [
-      { text: 'Yes — it\'s ranked #1 on Google and covers everything in depth.', outcome: 'You download the top app. It\'s full of intrusive ads. You realise the "reviews" are identical-structure AI content optimised for Google, not for you. The affiliate link paid the blog a commission for your download.' },
-      { text: 'No — the signs are all there: suspiciously uniform length and structure, no personal voice, no specific memory of using the app, affiliate links on every entry. Find actual student reviews on Reddit or TikTok.', outcome: 'You find three genuine student reviews on r/GCSE — each is different length, with specific complaints ("crashes on Samsung tablets") and specific praise. You pick an app that genuinely suits you. You also start noticing AI-generated "review" blogs everywhere.' },
-      { text: 'Maybe — but rely on the star ratings since those summarise everyone\'s view.', outcome: 'Those ratings aren\'t from real users — the blog made them up. Star ratings from a source you don\'t trust are meaningless. Origin of the ratings matters as much as the ratings themselves.' }
+    "type": "scenario",
+    "title": "The Revision-App Review",
+    "situation": "A blog rates every revision app highly, uses the same headings for every review and earns money from affiliate links. You cannot find its testing method.",
+    "question": "What is the strongest next step?",
+    "choices": [
+      {
+        "text": "Conclude that it was written by AI.",
+        "outcome": "The layout and financial incentive justify scrutiny, but do not establish authorship. A person could produce the same page."
+      },
+      {
+        "text": "Look for the testing method, check specific claims and compare independent sources.",
+        "outcome": "This tests the recommendation itself. Reviews on social platforms also need checking; a personal tone does not make an account genuine."
+      },
+      {
+        "text": "Accept it because the examples sound personal.",
+        "outcome": "Personal stories can be invented. Check evidence and incentives before relying on the recommendation."
+      }
     ]
   },
   {
-    type: 'quiz',
-    question: 'Which is the most reliable way to deal with a piece of content you suspect is AI-generated?',
-    options: [
-      'Run it through an AI detection tool — they\'re highly accurate',
-      'Look for spelling mistakes — AI always makes them',
-      'Evaluate the accuracy and source regardless of origin — the key question is whether it\'s correct and credible',
-      'Reject it entirely — AI content is always unreliable'
+    "type": "activity",
+    "title": "Build a Verification Record",
+    "task": "Use a teacher-provided article. Record one claim, its original source and what you can actually conclude.",
+    "steps": [
+      "Write the precise claim and your initial confidence.",
+      "Trace one supporting source and check its date, method and limitations.",
+      "Find independent corroboration, or record that you could not find it.",
+      "Revise your conclusion. Use “not enough evidence” where appropriate."
     ],
-    correct: 2,
-    explanation: 'AI detection tools have accuracy rates of 39–76% — not reliable enough to use as evidence. AI doesn\'t reliably make spelling mistakes. The most useful question is always: is this accurate, and what is the source? Origin matters less than accuracy and credibility.'
+    "reveal": "A strong record shows the claim, evidence, limits and a justified confidence level. It does not need to guess whether the author used AI."
   },
   {
-    type: 'widget',
-    widget: 'misuse-detector',
-    title: 'AI-prose signal checker',
-    intro: 'Paste any paragraph below. The checker scores it against the three specific signals this lesson has taught you: em-dash density, sentence-length uniformity, and AI-favoured vocabulary. It is a <strong>heuristic</strong>, not a verdict — every signal here can appear in good human writing. Use it to train your ear, not to accuse a classmate. Try the "Load AI-like sample" button first to see what a high-signal passage looks like, then paste something you wrote yourself.',
-    callout: 'The best detectors of AI prose are you and your teacher, knowing your own voice. This tool puts rough numbers on the signals that literacy already tells you to notice.'
+    "type": "quiz",
+    "question": "Which conclusion is justified by a paragraph containing many formal phrases and long dashes?",
+    "options": [
+      "It was definitely generated by AI.",
+      "Its author has broken school rules.",
+      "Its style may need editing; its authorship remains uncertain.",
+      "Its claims must be false."
+    ],
+    "correct": 2,
+    "explanation": "Style can help you discuss writing quality. It cannot, on its own, prove authorship, misconduct or factual accuracy."
   },
   {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
-      { icon: '📝', label: 'AI text is structured but lacks personal voice', text: 'vague, balanced, filler-heavy' },
-      { icon: '🔍', label: 'Detection tools are unreliable', text: 'develop your own critical reading instead' },
-      { icon: '❓', label: 'Accuracy matters more than origin', text: 'the real question is: is it correct?' },
-      { icon: '👁️', label: 'Strong source evaluation', text: 'matters more than AI-spotting alone' },
-      { icon: '🧪', label: 'Signal-checkers help, not decide', text: 'useful for training your ear — never as accusation evidence' }
+    "type": "summary",
+    "title": "What You Can Now Do",
+    "points": [
+      {
+        "icon": "1",
+        "label": "Separate the questions",
+        "text": "Accuracy, provenance and authorship require different evidence."
+      },
+      {
+        "icon": "2",
+        "label": "Verify a claim",
+        "text": "Trace the source, check its limits and seek independent support."
+      },
+      {
+        "icon": "3",
+        "label": "Be fair about authorship",
+        "text": "Review process evidence; avoid accusations based on style."
+      },
+      {
+        "icon": "4",
+        "label": "Keep uncertainty visible",
+        "text": "“Not enough evidence” is a valid conclusion."
+      }
     ]
   }
 ];
@@ -3519,98 +3819,211 @@ SLIDES_GCSE[127] = [
 
 SLIDES_GCSE[128] = [
   {
-    type: 'hook',
-    title: 'Regulation & Control',
-    body: 'The EU AI Act became the world\'s first comprehensive AI law — banning the highest-risk uses from February 2025. The US took the opposite approach: President Trump revoked Biden\'s AI safety executive order on day one of his second term, January 2025. The UK announced £14 billion in AI investment but, as of early 2026, still had no specific AI law. Four major powers: four completely different approaches — and they\'re diverging, not converging.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">459</span><span class="sl">pages in the final EU AI Act text</span></div><div class="hook-stat-mini"><span class="sv">Day 1</span><span class="sl">Trump revoked Biden\'s AI safety order (Jan 2025)</span></div><div class="hook-stat-mini"><span class="sv">€35M</span><span class="sl">maximum fine for breaking EU AI Act rules</span></div><div class="hook-stat-mini"><span class="sv">£14bn</span><span class="sl">UK AI investment plan — with no specific AI law yet</span></div></div>',
-    callout: 'The EU regulates to protect citizens. The US deregulates to accelerate competition. The UK tries to balance both. China regulates to maintain state control.',
-    sources: [
-      { label: 'European Commission — AI Act (official text, in force Aug 2024)', url: 'https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai' },
-      { label: 'The White House — Removing Barriers to American Leadership in AI (Executive Order, Jan 23 2025)', url: 'https://www.whitehouse.gov/presidential-actions/2025/01/removing-barriers-to-american-leadership-in-artificial-intelligence/' },
-      { label: 'UK Government — AI Opportunities Action Plan (Jan 2025)', url: 'https://www.gov.uk/government/publications/ai-opportunities-action-plan' }
+    "type": "hook",
+    "title": "Regulation & Control",
+    "body": "An AI system recommends a video. Another ranks job applicants. A third identifies people in public. Should they face the same rules? Begin with the purpose, who is affected and the consequences of error.",
+    "callout": "Rules depend on the use, jurisdiction and date. This lesson is a learning model, not a legal compliance decision.",
+    "sources": [
+      {
+        "label": "European Commission: AI Act and current application timetable; checked September 2026",
+        "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+      }
     ]
   },
   {
-    type: 'concept',
-    title: 'The EU AI Act — Four Risk Tiers',
-    bullets: [
-      { term: 'Banned (unacceptable risk)', def: 'Government social scoring, real-time biometric surveillance in public spaces, emotion recognition at work' },
-      { term: 'High-risk', def: 'AI in hiring, lending, criminal justice, education — must meet safety, transparency and audit standards before use' },
-      { term: 'Limited risk', def: 'Chatbots, deepfake generators — must be labelled so users know they\'re interacting with AI' },
-      { term: 'Minimal risk', def: 'Spam filters, video game AI — no specific rules beyond general law' }
+    "type": "concept",
+    "title": "The EU AI Act — Four Risk Tiers",
+    "bullets": [
+      {
+        "term": "Banned (unacceptable risk)",
+        "def": "Specified harmful practices, including certain social scoring and real-time remote biometric identification for law enforcement in publicly accessible spaces, with defined exceptions."
+      },
+      {
+        "term": "High-risk",
+        "def": "Specified uses in areas such as hiring, education and creditworthiness. Their obligations have phased application dates."
+      },
+      {
+        "term": "Limited risk",
+        "def": "Transparency duties can apply to chatbots and synthetic media; the precise duty depends on the role and use."
+      },
+      {
+        "term": "Minimal risk",
+        "def": "Spam filters, video game AI — no specific rules beyond general law"
+      }
     ],
-    callout: 'The Act applies to any AI used in the EU — even if the company making it is based in the US or UK. This gives the EU enormous global reach over AI products.'
-  },
-  {
-    type: 'concept',
-    title: 'Four Countries, Four Philosophies',
-    bullets: [
-      { term: 'EU', def: 'Risk-based rules, serious fines, human rights focused. Slowest to adapt but most comprehensive protection.' },
-      { term: 'USA (post-2025)', def: 'Deregulated approach under Trump — prioritise US AI competitiveness over consumer protection rules.' },
-      { term: 'UK', def: '£14bn investment plan, no comprehensive AI law yet — existing regulators (ICO, Ofcom, FCA) apply current law. A broader AI bill has been trailed following the government\'s 2025 "Blueprint for AI regulation" — this is the fastest-moving row in this table, so check the current position.' },
-      { term: 'China', def: 'Deepfake labelling rules, generative AI measures — strict controls on content, but state deploys AI extensively for surveillance.' }
+    "callout": "Scope and exceptions matter. Do not classify a system by its marketing label alone.",
+    "sources": [
+      {
+        "label": "European Commission: AI Act and current application timetable; checked September 2026",
+        "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+      }
     ]
   },
   {
-    type: 'widget',
-    title: 'Tier-Sort — Six Real AI Systems Under the EU AI Act',
-    widget: 'classify',
-    intro: 'The EU AI Act sorts every AI system into one of four risk tiers. Your job: decide where each of these real systems belongs. Some are deliberately on the border — read the explanation for each.',
-    categories: ['Banned (unacceptable)', 'High-risk', 'Limited risk', 'Minimal risk'],
-    items: [
-      { text: 'A live facial-recognition system deployed at a shopping centre that flags shoppers matching a private "suspicious persons" list.', correct: 0, why: 'Real-time remote biometric identification in public spaces is banned by Article 5 of the EU AI Act, with only narrow exceptions for serious crime. Commercial use by a shopping centre is the clearest possible case of unacceptable risk.' },
-      { text: 'An AI system used by a bank to decide which customers qualify for mortgages.', correct: 1, why: 'Creditworthiness assessment is explicitly listed in Annex III of the AI Act as high-risk because it materially affects people\'s access to essential services. It must meet transparency, audit and human-oversight requirements.' },
-      { text: 'A university using an AI to automatically grade students\' A-level mock exams.', correct: 1, why: 'AI for determining educational access or assessment outcomes is high-risk under Annex III. Remember the 2020 UK A-level algorithm scandal — exactly the kind of harm this classification is designed to prevent.' },
-      { text: 'A customer-service chatbot on a retail website that answers questions about delivery times.', correct: 2, why: 'Chatbots that interact with humans fall into the limited-risk tier. The only obligation: the user must be informed they\'re talking to an AI, not a human (Article 50).' },
-      { text: 'A deepfake generator that produces realistic videos of real people.', correct: 2, why: 'Deepfake generation is limited-risk, but content produced must be clearly labelled as AI-generated when used publicly. The tool itself isn\'t banned; deceptive deployment may still break other laws.' },
-      { text: 'The spam filter that decides whether an email goes to your Gmail inbox or junk folder.', correct: 3, why: 'Spam filters are the classic minimal-risk example. No AI-Act-specific obligations beyond existing data-protection law apply — the risk of harm to the user is low.' },
-      { text: 'An "emotion recognition" system used by an employer to monitor call-centre staff for signs of stress or dishonesty.', correct: 0, why: 'Article 5 specifically prohibits emotion recognition in workplaces and educational settings (outside narrow medical or safety uses). The power imbalance between employer and employee makes consent impossible in practice.' },
-      { text: 'An AI credit-scoring tool that a government uses to calculate a "social score" affecting access to jobs, loans and travel.', correct: 0, why: 'General-purpose social scoring by public authorities is banned outright — this is the Act\'s clearest line, drawn partly in response to the direction of travel in some other countries.' }
+    "type": "concept",
+    "title": "A Phased Timetable",
+    "body": "Checked September 2026: the Commission reports that the AI Act entered into force in August 2024, with obligations becoming applicable in stages.",
+    "bullets": [
+      {
+        "term": "2025",
+        "def": "Prohibited practices and AI literacy duties began in February; general-purpose AI obligations followed in August."
+      },
+      {
+        "term": "2026",
+        "def": "General application and transparency rules began in August, with exceptions."
+      },
+      {
+        "term": "Later dates",
+        "def": "The Commission’s current timetable places specified Annex III high-risk rules in December 2027 and product-linked high-risk rules in August 2028. Check the source before using this in a real decision."
+      }
     ],
-    sources: [
-      { label: 'European Parliament (2024) — EU AI Act Article 5 (prohibited practices)', url: 'https://artificialintelligenceact.eu/article/5/' },
-      { label: 'European Parliament (2024) — EU AI Act Annex III (high-risk systems)', url: 'https://artificialintelligenceact.eu/annex/3/' }
+    "sources": [
+      {
+        "label": "European Commission: AI Act and current application timetable; checked September 2026",
+        "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+      }
     ]
   },
   {
-    type: 'scenario',
-    title: 'The AI Recruitment Startup',
-    situation: 'You\'ve co-founded an AI tool that screens CVs and ranks job candidates. An internal test reveals it ranks women 12% lower than men with equal qualifications — probably because the training data reflects past hiring discrimination. Your Series A funding pitch is next week. You need to decide your launch strategy.',
-    question: 'What do you do?',
-    choices: [
-      { text: 'Launch in the US first — no AI-specific law, fastest route to market, lower compliance cost', outcome: 'You grow fast. Eighteen months later an investigation exposes the gender bias. Three class-action lawsuits are filed. Legal fees exceed your Series A funding. Two board members resign. You\'re fixing a problem you knew about before launch.' },
-      { text: 'Pause, fix the gender bias, then pursue EU compliance certification — slower but legally clean from day one', outcome: 'The 4-month delay costs you one deal. But your compliance documentation becomes your strongest sales pitch to HR teams worried about legal liability. You close a significant NHS contract specifically because you can demonstrate algorithmic fairness audits.' },
-      { text: 'Disclose the bias in your terms of service — transparency, not paternalism', outcome: 'The ICO investigates after a journalist reads your terms. They rule that disclosing discrimination does not make it lawful under the Equality Act 2010. You are fined and ordered to withdraw from the UK market pending a full audit.' }
-    ]
-  },
-  {
-    type: 'discussion',
-    title: 'Think & Discuss',
-    questions: [
-      { num: 1, text: 'Who should set the rules for AI — elected governments, tech companies, independent experts, or international bodies?' },
-      { num: 2, text: 'If an AI system makes a decision that harms you (rejects your job application, flags you incorrectly), who should be legally responsible?' },
-      { num: 3, text: 'Should the UK have stricter or looser AI rules than the EU? What are the real trade-offs either way?' }
-    ]
-  },
-  {
-    type: 'quiz',
-    question: 'What is the EU AI Act\'s approach to facial recognition in public spaces?',
-    options: [
-      'It is permitted if police obtain a warrant first',
-      'It is banned entirely in all circumstances',
-      'It is permitted for commercial use but not by governments',
-      'Real-time facial recognition in public is banned, with narrow exceptions for serious crime'
+    "type": "activity",
+    "title": "Compare the Rules",
+    "task": "Using current official sources, compare one AI use in two jurisdictions. Record when each source was checked.",
+    "steps": [
+      "Name the use and the people affected.",
+      "Identify the relevant rules and regulator. Distinguish existing law from a proposal.",
+      "Explain one difference and the strongest argument for each approach."
     ],
-    correct: 3,
-    explanation: 'The EU AI Act places real-time biometric surveillance in public spaces in its "unacceptable risk" category — banned by default. Narrow exceptions exist for serious threats like terrorism. This represents one of the strongest stances on facial recognition anywhere in the world.'
+    "reveal": "“No single comprehensive AI Act” does not mean “no law”. Data protection, equality, consumer protection and sector rules can still apply."
   },
   {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
-      { icon: '📜', label: 'EU AI Act is the world\'s first comprehensive AI law', text: 'banning highest-risk uses, regulating the rest — fully active from 2025' },
-      { icon: '🌍', label: 'Four approaches diverging, not converging', text: 'EU, US, UK, China all taking fundamentally different paths' },
-      { icon: '⏱️', label: 'Technology moves faster than legislation', text: 'ChatGPT launched while the EU Act was still being drafted' },
-      { icon: '⚖️', label: 'The debate is how to regulate well', text: 'not whether regulation is needed — everyone agrees it is' }
+    "type": "widget",
+    "title": "Classify the Use, Then Check the Detail",
+    "widget": "classify",
+    "intro": "Use this simplified risk model to discuss the examples, then check the official source. A category alone is not a full legal assessment.",
+    "categories": [
+      "Banned (unacceptable)",
+      "High-risk",
+      "Limited risk",
+      "Minimal risk"
+    ],
+    "items": [
+      {
+        "text": "Police use real-time remote biometric identification in a publicly accessible space without meeting any of the Act’s defined exceptions.",
+        "correct": 0,
+        "why": "The prohibition is specifically framed around law-enforcement use, with defined exceptions. It is not a blanket statement that every commercial facial-recognition use falls under that same prohibition."
+      },
+      {
+        "text": "An AI system used by a bank to decide which customers qualify for mortgages.",
+        "correct": 1,
+        "why": "Creditworthiness assessment is explicitly listed in Annex III of the AI Act as high-risk because it materially affects people's access to essential services. It must meet transparency, audit and human-oversight requirements."
+      },
+      {
+        "text": "A university using an AI to automatically grade students' A-level mock exams.",
+        "correct": 1,
+        "why": "AI for determining educational access or assessment outcomes is high-risk under Annex III. Remember the 2020 UK A-level algorithm scandal — exactly the kind of harm this classification is designed to prevent."
+      },
+      {
+        "text": "A customer-service chatbot on a retail website that answers questions about delivery times.",
+        "correct": 2,
+        "why": "Transparency duties can require disclosure that a person is interacting with AI. Other laws and obligations may also apply."
+      },
+      {
+        "text": "A deepfake generator that produces realistic videos of real people.",
+        "correct": 2,
+        "why": "Deepfake generation is limited-risk, but content produced must be clearly labelled as AI-generated when used publicly. The tool itself isn't banned; deceptive deployment may still break other laws."
+      },
+      {
+        "text": "The spam filter that decides whether an email goes to your Gmail inbox or junk folder.",
+        "correct": 3,
+        "why": "Spam filters are the classic minimal-risk example. No AI-Act-specific obligations beyond existing data-protection law apply — the risk of harm to the user is low."
+      },
+      {
+        "text": "An \"emotion recognition\" system used by an employer to monitor call-centre staff for signs of stress or dishonesty.",
+        "correct": 0,
+        "why": "Article 5 specifically prohibits emotion recognition in workplaces and educational settings (outside narrow medical or safety uses). The power imbalance between employer and employee makes consent impossible in practice."
+      },
+      {
+        "text": "An AI credit-scoring tool that a government uses to calculate a \"social score\" affecting access to jobs, loans and travel.",
+        "correct": 0,
+        "why": "General-purpose social scoring by public authorities is banned outright — this is the Act's clearest line, drawn partly in response to the direction of travel in some other countries."
+      }
+    ],
+    "sources": [
+      {
+        "label": "European Commission: AI Act and current application timetable; checked September 2026",
+        "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+      }
+    ]
+  },
+  {
+    "type": "scenario",
+    "title": "The AI Recruitment Startup",
+    "situation": "You've co-founded an AI tool that screens CVs and ranks job candidates. An internal test reveals it ranks women 12% lower than men with equal qualifications — probably because the training data reflects past hiring discrimination. Your Series A funding pitch is next week. You need to decide your launch strategy.",
+    "question": "What do you do?",
+    "choices": [
+      {
+        "text": "Launch immediately and treat the observed bias as someone else’s problem.",
+        "outcome": "You would be deploying a known problem. Identify the affected people and applicable duties before proceeding."
+      },
+      {
+        "text": "Pause the affected function, test the cause and compare mitigations with affected users.",
+        "outcome": "This creates evidence for a better decision. Explain the costs of delay, the remaining risks and who may authorise a release."
+      },
+      {
+        "text": "Put the bias in the terms and assume that disclosure solves it.",
+        "outcome": "Disclosure alone does not remove harm or establish that a practice is lawful. Evaluate whether the design and use must change."
+      }
+    ]
+  },
+  {
+    "type": "discussion",
+    "title": "Think & Discuss",
+    "questions": [
+      {
+        "num": 1,
+        "text": "Who should set the rules for AI — elected governments, tech companies, independent experts, or international bodies?"
+      },
+      {
+        "num": 2,
+        "text": "If an AI system makes a decision that harms you (rejects your job application, flags you incorrectly), who should be legally responsible?"
+      },
+      {
+        "num": 3,
+        "text": "Should the UK have stricter or looser AI rules than the EU? What are the real trade-offs either way?"
+      }
+    ]
+  },
+  {
+    "type": "quiz",
+    "question": "What must you check before claiming that an AI use is banned?",
+    "options": [
+      "Only whether it uses a neural network.",
+      "The precise use, jurisdiction, applicable rule, exceptions and date.",
+      "Whether the tool is popular.",
+      "Whether its supplier calls it safe."
+    ],
+    "correct": 1,
+    "explanation": "Legal categories depend on the use and the actual rule. Avoid blanket claims about all facial recognition or all AI-generated content."
+  },
+  {
+    "type": "summary",
+    "title": "What You've Learned",
+    "points": [
+      {
+        "icon": "1",
+        "label": "Start with the use",
+        "text": "Who is affected, and what could go wrong?"
+      },
+      {
+        "icon": "2",
+        "label": "Check current rules",
+        "text": "Distinguish law in force, later application dates and proposals."
+      },
+      {
+        "icon": "3",
+        "label": "Compare alternatives",
+        "text": "Explain benefits, costs and who bears the risks."
+      }
     ]
   }
 ];
@@ -4667,114 +5080,222 @@ SLIDES_GCSE[136] = [
    energy and natural resources; ask "is there a greener alternative?" */
 SLIDES_GCSE[137] = [
   {
-    type: 'hook',
-    title: 'The Environmental Cost of AI',
-    body: 'Every time you send a prompt, something physical happens in a data centre: chips draw power, and water evaporates to cool them. None of it shows up on your screen. Training a single large model can emit hundreds of tonnes of CO₂, and Microsoft\'s global water use rose 34% in the year it scaled up generative AI — often drawn from water-scarce regions. AI is also used to <em>fight</em> climate change. Both things are true. The AILit framework turns this into one practical habit: before you reach for AI, ask — is there a greener alternative?<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">+34%</span><span class="sl">rise in Microsoft\'s water use in one GenAI scale-up year</span></div><div class="hook-stat-mini"><span class="sv">100s</span><span class="sl">of tonnes of CO₂ to train one large model (Bashir et al., MIT 2024)</span></div><div class="hook-stat-mini"><span class="sv">e-waste</span><span class="sl">chip production → disposal is part of the footprint too</span></div></div>',
-    callout: 'This isn\'t about guilt-tripping you out of using AI. It\'s about using it <em>consciously</em> — knowing there is a real-world resource cost behind the magic, and weighing it like you would any other cost.',
-    sources: [
-      { label: 'United Nations Environment Programme (2024) — AI has an environmental problem', url: 'https://www.unep.org/news-and-stories/story/ai-has-environmental-problem' },
-      { label: 'Bashir et al. (2024) — The Climate and Sustainability Implications of Generative AI, MIT', url: 'https://doi.org/10.21428/e4baedd9.9070dfe7' },
-      { label: 'Microsoft (2024) — Environmental Sustainability Report (34% water increase)', url: 'https://www.microsoft.com/en-us/corporate-responsibility/sustainability/report' }
+    "type": "hook",
+    "title": "The Environmental Cost of AI",
+    "body": "AI runs on physical infrastructure: chips, electricity, cooling and networks. The footprint depends on the system, task and location. How could you compare two ways of completing the same task without inventing a precise cost per prompt?",
+    "callout": "Separate measured figures from estimates, and all data centres from the portion serving AI.",
+    "sources": [
+      {
+        "label": "IEA (2026): Key Questions on Energy and AI",
+        "url": "https://www.iea.org/reports/key-questions-on-energy-and-ai/executive-summary"
+      }
     ]
   },
   {
-    type: 'concept',
-    title: 'Where the Cost Comes From',
-    body: 'AI\'s footprint is not one thing — it is spread across the whole life of the hardware and the model (UNEP, 2024). Knowing the stages helps you see why "just one prompt" still adds up across billions of users.',
-    bullets: [
-      { term: 'Making the hardware', def: 'Mining minerals and manufacturing chips (GPUs) is energy- and water-intensive before a single model is trained.' },
-      { term: 'Training the model', def: 'Months of computation across thousands of chips. The largest training runs use tens of gigawatt-hours of electricity — comparable to the yearly use of thousands of homes.' },
-      { term: 'Every query (inference)', def: 'Each prompt costs a small amount of energy. Tiny alone — but multiplied by hundreds of millions of daily users, it becomes the largest ongoing cost.' },
-      { term: 'Cooling with water', def: 'Data centres use evaporative cooling, consuming millions of litres a year — sometimes in regions already short of water.' },
-      { term: 'E-waste', def: 'Hardware is replaced fast as models grow. Discarded chips and servers are a growing electronic-waste stream.' }
-    ]
-  },
-  {
-    type: 'concept',
-    title: 'The Other Side: AI for the Planet',
-    body: 'A balanced view matters. The same technology that has a footprint is also a serious tool for sustainability — and AILit insists learners weigh both sides rather than pick a slogan.',
-    bullets: [
-      { term: 'Smarter energy grids', def: 'AI helps balance renewable supply and demand, reducing waste in electricity networks.' },
-      { term: 'Climate modelling', def: 'AI spots patterns in vast climate datasets, improving forecasts of extreme weather and emissions.' },
-      { term: 'Efficiency gains', def: 'AI optimises logistics, building heating and materials use — cutting energy in other industries.' },
-      { term: 'The honest verdict', def: 'Whether AI is net-positive or net-negative for the environment depends on how it is built and used (Luccioni et al., 2025). It is a choice, not a fixed fact.' }
+    "type": "concept",
+    "title": "Where the Cost Comes From",
+    "body": "AI's footprint is not one thing — it is spread across the whole life of the hardware and the model (UNEP, 2024). Knowing the stages helps you see why \"just one prompt\" still adds up across billions of users.",
+    "bullets": [
+      {
+        "term": "Making the hardware",
+        "def": "Mining minerals and manufacturing chips (GPUs) is energy- and water-intensive before a single model is trained."
+      },
+      {
+        "term": "Training the model",
+        "def": "Training uses computation and electricity. The footprint varies with the model, hardware, training process and electricity supply."
+      },
+      {
+        "term": "Every query (inference)",
+        "def": "Generating an answer also uses resources. Workload, model, response length and tool use matter; costs are not identical for every prompt."
+      },
+      {
+        "term": "Cooling with water",
+        "def": "Cooling methods vary. Water consumption and local water stress depend on the facility and electricity supply; not every prompt has one fixed water cost."
+      },
+      {
+        "term": "E-waste",
+        "def": "Hardware is replaced fast as models grow. Discarded chips and servers are a growing electronic-waste stream."
+      }
     ],
-    sources: [
-      { label: 'Luccioni, Gamazaychikov, da Costa & Strubell (2025) — Misinformation by Omission: the need for environmental transparency in AI', url: 'https://arxiv.org/abs/2506.06790' }
+    "sources": [
+      {
+        "label": "IEA (2026): Key Questions on Energy and AI",
+        "url": "https://www.iea.org/reports/key-questions-on-energy-and-ai/executive-summary"
+      }
     ]
   },
   {
-    type: 'widget',
-    widget: 'classify',
-    title: 'Is There a Greener Alternative?',
-    intro: 'A large AI model is not free — every prompt has a real energy and water cost. For each task, decide whether a "greener alternative" (a calculator, a search, your own brain, a lighter tool) would do the job, or whether a large model is genuinely a reasonable fit.',
-    categories: ['🌱 Greener alternative exists', '🤖 AI is a reasonable fit'],
-    items: [
-      { text: 'Working out 17 × 23', correct: 0, why: 'Greener. A calculator is instant and near-zero cost — firing up a large model for arithmetic is wild overkill.' },
-      { text: 'Looking up the capital of Peru', correct: 0, why: 'Greener. A standard search, or your own memory, does it — a generative model is unnecessary here.' },
-      { text: 'Checking the spelling of a word you\'re unsure about', correct: 0, why: 'Greener. A spell-checker or dictionary does the job for a fraction of the cost.' },
-      { text: 'Generating a photorealistic image "just to see if you can"', correct: 0, why: 'Greener — i.e. don\'t. Image generation is among the most energy-hungry AI tasks, and the "just to see" case is exactly the avoidable cost.' },
-      { text: 'Brainstorming ten title ideas for a creative-writing piece', correct: 1, why: 'AI is a reasonable fit. Open-ended ideation is genuinely what large models are good at — a fair use of the resource.' },
-      { text: 'Summarising a 30-page report you actually need to act on', correct: 1, why: 'AI is a reasonable fit — a real time-saver on a substantial task. Just verify the summary before you rely on it.' }
+    "type": "concept",
+    "title": "The Other Side: AI for the Planet",
+    "body": "A balanced view matters. The same technology that has a footprint is also a serious tool for sustainability — and AILit insists learners weigh both sides rather than pick a slogan.",
+    "bullets": [
+      {
+        "term": "Smarter energy grids",
+        "def": "AI helps balance renewable supply and demand, reducing waste in electricity networks."
+      },
+      {
+        "term": "Climate modelling",
+        "def": "AI spots patterns in vast climate datasets, improving forecasts of extreme weather and emissions."
+      },
+      {
+        "term": "Efficiency gains",
+        "def": "AI optimises logistics, building heating and materials use — cutting energy in other industries."
+      },
+      {
+        "term": "The honest verdict",
+        "def": "Whether AI is net-positive or net-negative for the environment depends on how it is built and used (Luccioni et al., 2025). It is a choice, not a fixed fact."
+      }
     ],
-    callout: 'The habit AILit asks for: AI is not free, so reach for the lightest tool that does the job. Save the big models for the tasks where they genuinely earn their footprint.'
-  },
-  {
-    type: 'scenario',
-    title: 'The Data Centre Next Door',
-    situation: 'A tech company wants to build a large AI data centre near a town. It promises 200 jobs and faster local internet. But the centre will draw millions of litres of water a year for cooling — from a river the town already relies on during dry summers — and will significantly raise local electricity demand. The town council asks students to weigh in.',
-    question: 'What is the most AI-literate way to think about this?',
-    choices: [
-      { text: 'Approve it — jobs and faster internet are obviously worth it.', outcome: 'Too quick. The benefits are real, but so are the water and energy costs, which fall on the same community during shortages. AI literacy means weighing both sides with the actual numbers, not just the headline jobs figure.' },
-      { text: 'Reject it — AI data centres are bad for the environment, full stop.', outcome: 'Also too quick, in the other direction. A blanket "AI is bad" ignores genuine benefits and the fact that impact depends on design — is the centre water-cooled or air-cooled? Powered by renewables? Located somewhere water-rich?' },
-      { text: 'Ask for the specifics — water source and cooling method, energy source, who bears the costs and who gets the benefits — and weigh trade-offs before deciding.', outcome: 'This is the literate response. The right answer depends on details: a renewable-powered, efficiently-cooled centre in a water-rich area is very different from a fossil-powered one draining a stressed river. You ask who benefits and who is disadvantaged — exactly AILit\'s framing.' }
+    "sources": [
+      {
+        "label": "Luccioni, Gamazaychikov, da Costa & Strubell (2025) — Misinformation by Omission: the need for environmental transparency in AI",
+        "url": "https://arxiv.org/abs/2506.06790"
+      }
     ]
   },
   {
-    type: 'concept',
-    title: 'What You Can Actually Do',
-    body: 'Individual choices won\'t solve AI\'s footprint — that needs decisions by the companies and governments building the data centres. But your habits matter at the margin, and they build the mindset that drives bigger change.',
-    bullets: [
-      { term: 'Reach for the lightest tool', def: 'Calculator, search or your own memory before a large model. Don\'t fire up image generation "just to see".' },
-      { term: 'Be deliberate, not idle', def: 'Endless regenerating and aimless chatting all cost energy. Use AI with a purpose, then stop.' },
-      { term: 'Prefer efficient options', def: 'Smaller models are often good enough and far cheaper to run than the largest frontier models.' },
-      { term: 'Push for transparency', def: 'Support companies that report their energy and water use. You can\'t improve what nobody measures (Luccioni et al., 2025).' },
-      { term: 'Keep perspective', def: 'A streaming binge or a long flight may dwarf your AI use. The goal is conscious choices, not guilt.' }
+    "type": "widget",
+    "widget": "classify",
+    "title": "Is There a Greener Alternative?",
+    "intro": "Choose a proportionate tool for the task. These are discussion judgements about avoiding unnecessary computation, not measured carbon comparisons.",
+    "categories": [
+      "🌱 Greener alternative exists",
+      "🤖 AI is a reasonable fit"
+    ],
+    "items": [
+      {
+        "text": "Working out 17 × 23",
+        "correct": 0,
+        "why": "Greener. A calculator is instant and near-zero cost — firing up a large model for arithmetic is wild overkill."
+      },
+      {
+        "text": "Looking up the capital of Peru",
+        "correct": 0,
+        "why": "A trusted reference may be sufficient. A search service can itself use AI, so this is not a measured emissions comparison."
+      },
+      {
+        "text": "Checking the spelling of a word you're unsure about",
+        "correct": 0,
+        "why": "Greener. A spell-checker or dictionary does the job for a fraction of the cost."
+      },
+      {
+        "text": "Generating fifty near-identical images without reviewing any of them",
+        "correct": 0,
+        "why": "Review a small set before generating more. Creative experimentation has value; a clear brief and deliberate iteration can avoid waste."
+      },
+      {
+        "text": "Brainstorming ten title ideas for a creative-writing piece",
+        "correct": 1,
+        "why": "AI is a reasonable fit. Open-ended ideation is genuinely what large models are good at — a fair use of the resource."
+      },
+      {
+        "text": "Summarising a 30-page report you actually need to act on",
+        "correct": 1,
+        "why": "AI is a reasonable fit — a real time-saver on a substantial task. Just verify the summary before you rely on it."
+      }
+    ],
+    "callout": "The habit AILit asks for: AI is not free, so reach for the lightest tool that does the job. Save the big models for the tasks where they genuinely earn their footprint."
+  },
+  {
+    "type": "scenario",
+    "title": "The Data Centre Next Door",
+    "situation": "A tech company wants to build a large AI data centre near a town. It promises 200 jobs and faster local internet. But the centre will draw millions of litres of water a year for cooling — from a river the town already relies on during dry summers — and will significantly raise local electricity demand. The town council asks students to weigh in.",
+    "question": "What is the most AI-literate way to think about this?",
+    "choices": [
+      {
+        "text": "Approve it — jobs and faster internet are obviously worth it.",
+        "outcome": "Too quick. The benefits are real, but so are the water and energy costs, which fall on the same community during shortages. AI literacy means weighing both sides with the actual numbers, not just the headline jobs figure."
+      },
+      {
+        "text": "Reject it — AI data centres are bad for the environment, full stop.",
+        "outcome": "Also too quick, in the other direction. A blanket \"AI is bad\" ignores genuine benefits and the fact that impact depends on design — is the centre water-cooled or air-cooled? Powered by renewables? Located somewhere water-rich?"
+      },
+      {
+        "text": "Ask for the specifics — water source and cooling method, energy source, who bears the costs and who gets the benefits — and weigh trade-offs before deciding.",
+        "outcome": "This is the literate response. The right answer depends on details: a renewable-powered, efficiently-cooled centre in a water-rich area is very different from a fossil-powered one draining a stressed river. You ask who benefits and who is disadvantaged — exactly AILit's framing."
+      }
     ]
   },
   {
-    type: 'quiz',
-    question: 'Which statement best reflects an AI-literate view of AI and the environment?',
-    options: [
-      'AI is destroying the planet and should never be used',
-      'AI has no real environmental impact — it\'s just software',
-      'AI has a genuine resource footprint AND can help fight climate change; whether it\'s net-positive depends on how it\'s built and used',
-      'Only the people who build AI need to think about this'
-    ],
-    correct: 2,
-    explanation: 'AILit asks learners to hold both truths at once: AI consumes energy, water and minerals, and AI is a powerful tool for sustainability. The outcome is not fixed — it depends on design and usage choices, including your own habit of asking whether a greener alternative exists.'
+    "type": "concept",
+    "title": "What You Can Actually Do",
+    "body": "Individual choices won't solve AI's footprint — that needs decisions by the companies and governments building the data centres. But your habits matter at the margin, and they build the mindset that drives bigger change.",
+    "bullets": [
+      {
+        "term": "Reach for the lightest tool",
+        "def": "Calculator, search or your own memory before a large model. Don't fire up image generation \"just to see\"."
+      },
+      {
+        "term": "Be deliberate, not idle",
+        "def": "Endless regenerating and aimless chatting all cost energy. Use AI with a purpose, then stop."
+      },
+      {
+        "term": "Prefer efficient options",
+        "def": "Smaller models are often good enough and far cheaper to run than the largest frontier models."
+      },
+      {
+        "term": "Push for transparency",
+        "def": "Support companies that report their energy and water use. You can't improve what nobody measures (Luccioni et al., 2025)."
+      },
+      {
+        "term": "Keep perspective",
+        "def": "A streaming binge or a long flight may dwarf your AI use. The goal is conscious choices, not guilt."
+      }
+    ]
   },
   {
-    type: 'activity',
-    title: '🚀 Stretch — Follow the Footprint',
-    task: 'Advanced extension. Investigate the real environmental footprint of one AI system or data centre, and trace who carries the cost.',
-    steps: [
-      'Pick one AI company or data centre and find what it publicly reports about its energy or water use (many publish sustainability reports).',
-      'Find one number you can actually cite, and note what it leaves out (transparency gaps are common — Luccioni et al., 2025).',
-      'Map who benefits from the AI versus who bears the local environmental cost — this links directly to "Who Benefits from AI?" (Lesson 124).',
-      'Propose one policy or design change that would make the trade-off fairer.'
+    "type": "quiz",
+    "question": "Which statement best reflects an AI-literate view of AI and the environment?",
+    "options": [
+      "AI is destroying the planet and should never be used",
+      "AI has no real environmental impact — it's just software",
+      "AI has a genuine resource footprint AND can help fight climate change; whether it's net-positive depends on how it's built and used",
+      "Only the people who build AI need to think about this"
     ],
-    reveal: '<strong>What you\'ll discover:</strong> reporting is patchy and often omits inconvenient figures, the benefits and burdens frequently fall on different communities, and "it depends how it\'s built and used" turns out to be literally true. Connecting the footprint to who benefits and who pays (Lesson 124) is the heart of thinking about AI and society fairly.'
+    "correct": 2,
+    "explanation": "AILit asks learners to hold both truths at once: AI consumes energy, water and minerals, and AI is a powerful tool for sustainability. The outcome is not fixed — it depends on design and usage choices, including your own habit of asking whether a greener alternative exists."
   },
   {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
-      { icon: '💧', label: 'Invisible costs are real', text: 'energy, water and minerals sit behind every prompt — Microsoft +34% water in one year' },
-      { icon: '🏭', label: 'Whole life-cycle', text: 'hardware → training → every query → cooling → e-waste' },
-      { icon: '🌱', label: 'AI helps too', text: 'grids, climate models and efficiency gains — both sides are true' },
-      { icon: '⚖️', label: 'Net impact is a choice', text: 'how AI is built and used decides whether it helps or harms (Luccioni, 2025)' },
-      { icon: '❓', label: 'The habit', text: 'before using AI, ask: is there a greener alternative?' }
+    "type": "activity",
+    "title": "🚀 Stretch — Follow the Footprint",
+    "task": "Advanced extension. Investigate the real environmental footprint of one AI system or data centre, and trace who carries the cost.",
+    "steps": [
+      "Pick one AI company or data centre and find what it publicly reports about its energy or water use (many publish sustainability reports).",
+      "Find one number you can actually cite, and note what it leaves out (transparency gaps are common — Luccioni et al., 2025).",
+      "Map who benefits from the AI versus who bears the local environmental cost — this links directly to \"Who Benefits from AI?\" (Lesson 124).",
+      "Propose one policy or design change that would make the trade-off fairer."
+    ],
+    "reveal": "<strong>What you'll discover:</strong> reporting is patchy and often omits inconvenient figures, the benefits and burdens frequently fall on different communities, and \"it depends how it's built and used\" turns out to be literally true. Connecting the footprint to who benefits and who pays (Lesson 124) is the heart of thinking about AI and society fairly."
+  },
+  {
+    "type": "summary",
+    "title": "What You've Learned",
+    "points": [
+      {
+        "icon": "💧",
+        "label": "Invisible costs are real",
+        "text": "energy, water and minerals sit behind every prompt — Microsoft +34% water in one year"
+      },
+      {
+        "icon": "🏭",
+        "label": "Whole life-cycle",
+        "text": "hardware → training → every query → cooling → e-waste"
+      },
+      {
+        "icon": "🌱",
+        "label": "AI helps too",
+        "text": "grids, climate models and efficiency gains — both sides are true"
+      },
+      {
+        "icon": "⚖️",
+        "label": "Net impact is a choice",
+        "text": "how AI is built and used decides whether it helps or harms (Luccioni, 2025)"
+      },
+      {
+        "icon": "❓",
+        "label": "The habit",
+        "text": "before using AI, ask: is there a greener alternative?"
+      }
     ]
   }
 ];
@@ -4914,133 +5435,240 @@ SLIDES_GCSE[138] = [
 /* ── 139 · Does It Actually Work? Testing & Data (Shape AI) ── */
 SLIDES_GCSE[139] = [
   {
-    type: 'hook',
-    title: 'Does It Actually Work?',
-    body: 'As a graduate student at MIT, Joy Buolamwini sat in front of a face-tracking camera for a class project — and it could not find her face. She is a dark-skinned Black woman. On a whim she pulled a plain white Halloween mask over her face, and the camera locked on instantly. A blank white mask was more "human" to the system than she was. That moment became <em>Gender Shades</em>, a 2018 study that measured the gap: leading face-recognition systems were over 30 percentage points worse at identifying darker-skinned women than lighter-skinned men. The technology "worked" — in the demo, for the people who built it. The harder question, the one this whole lesson is about, is the one almost nobody asks before shipping: how would you <em>prove</em> an AI works fairly, for everyone, before you let it loose on real people? Nearly every AI disaster traces back to the same two failures — the wrong data going in, and no real testing before it went out.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">34pp</span><span class="sl">accuracy gap across demographics in face recognition (Gender Shades, 2018)</span></div><div class="hook-stat-mini"><span class="sv">white mask</span><span class="sl">read as a face when a real one wasn\'t</span></div><div class="hook-stat-mini"><span class="sv">Test</span><span class="sl">or you\'re just guessing</span></div></div>',
-    callout: 'Two Shape-AI skills meet here: defining clear criteria for "does it work?", and understanding that the data you train on decides what the system can and can\'t do.',
-    sources: [
-      { label: 'Buolamwini & Gebru (2018) — Gender Shades: intersectional accuracy disparities in commercial gender classification', url: 'https://proceedings.mlr.press/v81/buolamwini18a.html' },
-      { label: 'AILit Framework (OECD/EU 2026) — Shape AI 2 & 3', url: 'https://doi.org/10.1787/65cd27d4-en' }
+    "type": "hook",
+    "title": "Does It Actually Work?",
+    "body": "As a graduate student at MIT, Joy Buolamwini sat in front of a face-tracking camera for a class project — and it could not find her face. She is a dark-skinned Black woman. On a whim she pulled a plain white Halloween mask over her face, and the camera locked on instantly. A blank white mask was more \"human\" to the system than she was. That moment became <em>Gender Shades</em>, a 2018 study that measured the gap: leading face-recognition systems were over 30 percentage points worse at identifying darker-skinned women than lighter-skinned men. The technology \"worked\" — in the demo, for the people who built it. The harder question, the one this whole lesson is about, is the one almost nobody asks before shipping: how would you <em>prove</em> an AI works fairly, for everyone, before you let it loose on real people? Nearly every AI disaster traces back to the same two failures — the wrong data going in, and no real testing before it went out.<div class=\"hook-stats-row\"><div class=\"hook-stat-mini\"><span class=\"sv\">34pp</span><span class=\"sl\">accuracy gap across demographics in face recognition (Gender Shades, 2018)</span></div><div class=\"hook-stat-mini\"><span class=\"sv\">white mask</span><span class=\"sl\">read as a face when a real one wasn't</span></div><div class=\"hook-stat-mini\"><span class=\"sv\">Test</span><span class=\"sl\">or you're just guessing</span></div></div>",
+    "callout": "Two Shape-AI skills meet here: defining clear criteria for \"does it work?\", and understanding that the data you train on decides what the system can and can't do.",
+    "sources": [
+      {
+        "label": "Buolamwini & Gebru (2018) — Gender Shades: intersectional accuracy disparities in commercial gender classification",
+        "url": "https://proceedings.mlr.press/v81/buolamwini18a.html"
+      },
+      {
+        "label": "AILit Framework (OECD/EU 2026) — Shape AI 2 & 3",
+        "url": "https://doi.org/10.1787/65cd27d4-en"
+      }
     ]
   },
   {
-    type: 'video',
-    title: 'How I\'m Fighting Bias in Algorithms',
-    videoId: 'UG_X_7g63rY',
-    credit: 'Joy Buolamwini · TEDxBeaconStreet · 8 min',
-    intro: 'You watched this in Lesson 125 — rewatch even the first two minutes now through a different lens: not “is this biased?” but “how would you TEST for it?”. Joy Buolamwini, an MIT researcher, discovered that face-recognition systems couldn\'t detect her dark-skinned face until she put on a white mask. Her work (the "Gender Shades" study) measured exactly how unfairly these systems performed across demographics — and traced it back to the training data. As you watch, notice two Shape-AI ideas: (1) the failure came from <em>who was missing</em> in the data, and (2) she only proved it by <em>testing</em> across groups.',
-    callout: 'This is the difference between "it works" and "it works for everyone" — and the whole reason fairness has to be tested, not assumed.'
+    "type": "video",
+    "title": "How I'm Fighting Bias in Algorithms",
+    "videoId": "UG_X_7g63rY",
+    "credit": "Joy Buolamwini · TEDxBeaconStreet · 8 min",
+    "intro": "You watched this in Lesson 125 — rewatch even the first two minutes now through a different lens: not “is this biased?” but “how would you TEST for it?”. Joy Buolamwini, an MIT researcher, discovered that face-recognition systems couldn't detect her dark-skinned face until she put on a white mask. Her work (the \"Gender Shades\" study) measured exactly how unfairly these systems performed across demographics — and traced it back to the training data. As you watch, notice two Shape-AI ideas: (1) the failure came from <em>who was missing</em> in the data, and (2) she only proved it by <em>testing</em> across groups.",
+    "callout": "This is the difference between \"it works\" and \"it works for everyone\" — and the whole reason fairness has to be tested, not assumed."
   },
   {
-    type: 'concept',
-    title: 'Defining "Success" Before You Test',
-    body: 'A system only "works" against criteria you set in advance. Vague hopes ("make it good") can\'t be tested; clear criteria can. This is exactly how AI is benchmarked in industry.',
-    bullets: [
-      { term: 'Accuracy', def: 'How often is it right? And right for <em>whom</em> — does accuracy hold across different groups, or only the majority case?' },
-      { term: 'Consistency', def: 'Does it give the same quality of answer to the same question, or does it wobble?' },
-      { term: 'Fairness', def: 'Does it perform equally well for different users? Gender Shades exists because nobody checked this.' },
-      { term: 'Edge cases', def: 'What happens with the unusual input — the rare animal, the rainy-day photo, the dialect it rarely saw? Good testing hunts for these on purpose.' },
-      { term: 'Benchmarks', def: 'Real AI is tested against standardised tests (benchmarks) and human review before release. Some systems even "alignment-fake" — behaving well only when they think they\'re being watched — which is why independent testing matters.' }
+    "type": "concept",
+    "title": "Defining \"Success\" Before You Test",
+    "body": "A system only \"works\" against criteria you set in advance. Vague hopes (\"make it good\") can't be tested; clear criteria can. This is exactly how AI is benchmarked in industry.",
+    "bullets": [
+      {
+        "term": "Accuracy",
+        "def": "How often is it right? And right for <em>whom</em> — does accuracy hold across different groups, or only the majority case?"
+      },
+      {
+        "term": "Consistency",
+        "def": "Does it give the same quality of answer to the same question, or does it wobble?"
+      },
+      {
+        "term": "Fairness",
+        "def": "Does it perform equally well for different users? Gender Shades exists because nobody checked this."
+      },
+      {
+        "term": "Edge cases",
+        "def": "What happens with the unusual input — the rare animal, the rainy-day photo, the dialect it rarely saw? Good testing hunts for these on purpose."
+      },
+      {
+        "term": "Benchmarks",
+        "def": "Real AI is tested against standardised tests (benchmarks) and human review before release. Some systems even \"alignment-fake\" — behaving well only when they think they're being watched — which is why independent testing matters."
+      }
     ]
   },
   {
-    type: 'concept',
-    title: 'Data Decides Behaviour',
-    body: 'An AI can only learn patterns that are present in its data. Change the data and you change the system — this is the lever a "shaper" of AI reaches for first.',
-    bullets: [
-      { term: 'Size', def: 'Too little data and the system overfits — it memorises examples instead of learning the general pattern.' },
-      { term: 'Diversity', def: 'If a group is missing or rare in the data, the system works worse for them. The fix for Gender Shades was more balanced training data.' },
-      { term: 'Quality & labels', def: 'Wrong or biased labels teach the wrong lesson — "garbage in, garbage out" is literally true for AI.' },
-      { term: 'Representation', def: 'The data is a sample of the world. If the sample is tilted (e.g. mostly English, mostly Western), the model inherits that tilt as its default.' }
+    "type": "concept",
+    "title": "Data Decides Behaviour",
+    "body": "An AI can only learn patterns that are present in its data. Change the data and you change the system — this is the lever a \"shaper\" of AI reaches for first.",
+    "bullets": [
+      {
+        "term": "Size",
+        "def": "Too little data and the system overfits — it memorises examples instead of learning the general pattern."
+      },
+      {
+        "term": "Diversity",
+        "def": "If a group is missing or rare in the data, the system works worse for them. The fix for Gender Shades was more balanced training data."
+      },
+      {
+        "term": "Quality & labels",
+        "def": "Wrong or biased labels teach the wrong lesson — \"garbage in, garbage out\" is literally true for AI."
+      },
+      {
+        "term": "Representation",
+        "def": "The data is a sample of the world. If the sample is tilted (e.g. mostly English, mostly Western), the model inherits that tilt as its default."
+      }
     ]
   },
   {
-    type: 'activity',
-    title: 'Set the Test (Write First, Then Reveal)',
-    task: 'A team has built an AI that recommends library books to students. Before you let it loose on the whole school, write down in the notes box: three criteria you would use to decide if it "works", and one test you would run to check it is fair to everyone. Then reveal.',
-    steps: [
-      'Think about accuracy: how would you measure a "good" recommendation?',
-      'Think about diversity: could it just keep recommending the same popular books?',
-      'Think about fairness: would it work as well for a reluctant reader as a keen one?',
-      'Design one concrete test you could actually run with real students.'
+    "type": "activity",
+    "title": "Set the Test (Write First, Then Reveal)",
+    "task": "A team has built an AI that recommends library books to students. Before you let it loose on the whole school, write down in the notes box: three criteria you would use to decide if it \"works\", and one test you would run to check it is fair to everyone. Then reveal.",
+    "steps": [
+      "Think about accuracy: how would you measure a \"good\" recommendation?",
+      "Think about diversity: could it just keep recommending the same popular books?",
+      "Think about fairness: would it work as well for a reluctant reader as a keen one?",
+      "Design one concrete test you could actually run with real students."
     ],
-    reveal: '<strong>A strong answer:</strong> Criteria — (1) relevance: students actually borrow and finish the books; (2) range: it introduces new genres, not just bestsellers; (3) fairness: it gives useful recommendations to reluctant readers and EAL students, not only to confident ones. Fairness test — give the system the reading history of very different students (a keen sci-fi reader, a reluctant reader, a student new to English) and check whether each gets recommendations that are genuinely useful for <em>them</em>. If it only works for the keen reader, it doesn\'t "work" — it works for some.',
-    sources: [
-      { label: 'AILit Framework (OECD/EU 2026) — Shape AI 2: "learners define criteria for whether an AI system has accomplished a task"', url: 'https://doi.org/10.1787/65cd27d4-en' }
+    "reveal": "<strong>A strong answer:</strong> Criteria — (1) relevance: students actually borrow and finish the books; (2) range: it introduces new genres, not just bestsellers; (3) fairness: it gives useful recommendations to reluctant readers and EAL students, not only to confident ones. Fairness test — give the system the reading history of very different students (a keen sci-fi reader, a reluctant reader, a student new to English) and check whether each gets recommendations that are genuinely useful for <em>them</em>. If it only works for the keen reader, it doesn't \"work\" — it works for some.",
+    "sources": [
+      {
+        "label": "AILit Framework (OECD/EU 2026) — Shape AI 2: \"learners define criteria for whether an AI system has accomplished a task\"",
+        "url": "https://doi.org/10.1787/65cd27d4-en"
+      }
     ]
   },
   {
-    type: 'scenario',
-    title: 'The Demo That Lied',
-    situation: 'A startup demonstrates a hiring AI that screens CVs. In the demo it works flawlessly. A journalist later finds it was trained mostly on the CVs of people the company already hired — who were overwhelmingly from one background — and it quietly scores CVs from other backgrounds lower.',
-    question: 'Where did this go wrong, in Shape-AI terms?',
-    choices: [
-      { text: 'Nowhere — the demo worked, so the AI works.', outcome: 'A demo is not a test. "Works in the demo" only tells you it works on the cases the company chose to show. Real evaluation means defining fairness criteria in advance and testing across different groups — exactly what was skipped here.' },
-      { text: 'Two failures: the training data was biased (it learned "good CV = looks like our existing staff"), and nobody tested for fairness across groups before deploying.', outcome: 'Exactly right. This is the Gender Shades pattern in a new setting: biased data in, no fairness testing, harm out. A shaper of AI catches both — by asking what the data represented and by setting fairness criteria <em>before</em> release.' },
-      { text: 'The AI became prejudiced on its own.', outcome: 'Close, but the framing matters. The AI didn\'t "decide" to be prejudiced — it faithfully learned the bias in the data humans gave it. That\'s why the fix is human: better data and real testing. Naming it accurately keeps responsibility where it belongs.' }
+    "type": "scenario",
+    "title": "The Demo That Lied",
+    "situation": "A startup demonstrates a hiring AI that screens CVs. In the demo it works flawlessly. A journalist later finds it was trained mostly on the CVs of people the company already hired — who were overwhelmingly from one background — and it quietly scores CVs from other backgrounds lower.",
+    "question": "Where did this go wrong, in Shape-AI terms?",
+    "choices": [
+      {
+        "text": "Nowhere — the demo worked, so the AI works.",
+        "outcome": "A demo is not a test. \"Works in the demo\" only tells you it works on the cases the company chose to show. Real evaluation means defining fairness criteria in advance and testing across different groups — exactly what was skipped here."
+      },
+      {
+        "text": "Two failures: the training data was biased (it learned \"good CV = looks like our existing staff\"), and nobody tested for fairness across groups before deploying.",
+        "outcome": "Exactly right. This is the Gender Shades pattern in a new setting: biased data in, no fairness testing, harm out. A shaper of AI catches both — by asking what the data represented and by setting fairness criteria <em>before</em> release."
+      },
+      {
+        "text": "The AI became prejudiced on its own.",
+        "outcome": "Close, but the framing matters. The AI didn't \"decide\" to be prejudiced — it faithfully learned the bias in the data humans gave it. That's why the fix is human: better data and real testing. Naming it accurately keeps responsibility where it belongs."
+      }
     ]
   },
   {
-    type: 'concept',
-    title: 'What Good Testing Actually Looks Like',
-    body: 'Real evaluation is deliberately adversarial — you go hunting for failure instead of admiring success. Here is the difference between a demo and a test.',
-    bullets: [
-      { term: 'Test on data it has never seen', def: 'Checking a system on its own training examples is like marking your own homework. Hold back fresh examples for the real test.' },
-      { term: 'Break it down by group', def: 'Don\'t report one overall score. Report it for different groups — that\'s the only way the Gender Shades gap shows up.' },
-      { term: 'Hunt the edge cases', def: 'Feed it the rare, the unusual, the dialect, the rainy-day photo. Systems fail at the edges, and the edges are real people.' },
-      { term: 'Use independent reviewers', def: 'The team that built it is the worst-placed to spot its blind spots. Outside testing and benchmarks catch what insiders miss.' },
-      { term: 'Watch for "looks good when watched"', def: 'Some systems behave differently when they sense they\'re being tested ("alignment faking") — another reason for independent, ongoing checks.' }
+    "type": "concept",
+    "title": "What Good Testing Actually Looks Like",
+    "body": "Good evaluation combines representative examples, relevant group comparisons and deliberate stress tests. Each answers a different question.",
+    "bullets": [
+      {
+        "term": "Test on data it has never seen",
+        "def": "Checking a system on its own training examples is like marking your own homework. Hold back fresh examples for the real test."
+      },
+      {
+        "term": "Break it down by group",
+        "def": "Don't report one overall score. Report it for different groups — that's the only way the Gender Shades gap shows up."
+      },
+      {
+        "term": "Hunt the edge cases",
+        "def": "Feed it the rare, the unusual, the dialect, the rainy-day photo. Systems fail at the edges, and the edges are real people."
+      },
+      {
+        "term": "Use independent reviewers",
+        "def": "The team that built it is the worst-placed to spot its blind spots. Outside testing and benchmarks catch what insiders miss."
+      },
+      {
+        "term": "Watch for \"looks good when watched\"",
+        "def": "Some systems behave differently when they sense they're being tested (\"alignment faking\") — another reason for independent, ongoing checks."
+      }
     ],
-    callout: 'A demo shows you the best case on purpose. A test goes looking for the worst case on purpose. Only one tells you the truth.'
+    "callout": "Report the sample, method and limitations. Overall accuracy can be useful, but it does not tell the whole story."
   },
   {
-    type: 'widget',
-    widget: 'classify',
-    title: 'Good Test or Just a Demo?',
-    intro: 'A team says their AI "works". For each thing they did, tap whether it counts as a <strong>real test</strong> of the system or is <strong>just a demo</strong> that proves very little. Real evaluation goes hunting for failure.',
-    categories: ['Real test', 'Just a demo'],
-    items: [
-      { text: 'They showed it answering five questions they had picked in advance.', correct: 1, why: 'Just a demo — a curated highlight reel. It only proves the system works on the cases they chose to show.' },
-      { text: 'They ran it on 1,000 new examples it had never seen during training.', correct: 0, why: 'Real test. Fresh, unseen data is the whole point — anything else is marking your own homework.' },
-      { text: 'They reported one overall accuracy score: "94%".', correct: 1, why: 'Just a demo, really. A single headline number hides whether it works for everyone — "accurate for whom?" is unanswered.' },
-      { text: 'They broke the results down by age, gender and first language.', correct: 0, why: 'Real test. Reporting performance by group is exactly how unfairness (like the Gender Shades gap) gets caught.' },
-      { text: 'They deliberately fed it tricky edge cases and unusual inputs.', correct: 0, why: 'Real test. Hunting the edge cases on purpose is what separates evaluation from a sales pitch.' },
-      { text: 'They asked their own developers if they were happy with it.', correct: 1, why: 'Just a demo. The team that built it is the worst-placed to spot its blind spots — you need independent review.' }
+    "type": "widget",
+    "widget": "classify",
+    "title": "Good Test or Just a Demo?",
+    "intro": "Which examples provide useful evaluation evidence? Even a real test can be incomplete: explain what further evidence you would need.",
+    "categories": [
+      "Real test",
+      "Just a demo"
+    ],
+    "items": [
+      {
+        "text": "They showed it answering five questions they had picked in advance.",
+        "correct": 1,
+        "why": "Just a demo — a curated highlight reel. It only proves the system works on the cases they chose to show."
+      },
+      {
+        "text": "They ran it on 1,000 new examples it had never seen during training.",
+        "correct": 0,
+        "why": "Real test. Fresh, unseen data is the whole point — anything else is marking your own homework."
+      },
+      {
+        "text": "They measured 94% accuracy on a documented, representative test set, but did not report results by group.",
+        "correct": 0,
+        "why": "This is real but incomplete evaluation. The aggregate score is useful; it may conceal differences between groups. Ask for breakdowns and sample sizes."
+      },
+      {
+        "text": "They broke the results down by age, gender and first language.",
+        "correct": 0,
+        "why": "Real test. Reporting performance by group is exactly how unfairness (like the Gender Shades gap) gets caught."
+      },
+      {
+        "text": "They deliberately fed it tricky edge cases and unusual inputs.",
+        "correct": 0,
+        "why": "Real test. Hunting the edge cases on purpose is what separates evaluation from a sales pitch."
+      },
+      {
+        "text": "They asked their own developers if they were happy with it.",
+        "correct": 1,
+        "why": "Just a demo. The team that built it is the worst-placed to spot its blind spots — you need independent review."
+      }
     ]
   },
   {
-    type: 'quiz',
-    question: 'Why does "it worked in the demo" not prove an AI system is fair?',
-    options: [
-      'Demos are always faked',
-      'A demo only shows chosen cases; fairness requires testing across different groups against criteria set in advance',
-      'Fairness can\'t be measured at all',
-      'Because AI can never be fair'
+    "type": "quiz",
+    "question": "Why does \"it worked in the demo\" not prove an AI system is fair?",
+    "options": [
+      "Demos are always faked",
+      "A demo only shows chosen cases; fairness requires testing across different groups against criteria set in advance",
+      "Fairness can't be measured at all",
+      "Because AI can never be fair"
     ],
-    correct: 1,
-    explanation: 'Evaluation means defining success criteria up front — including fairness across different users — and testing against them, especially on edge cases and under-represented groups. A demo is a curated highlight reel, not a test. Biased data plus no testing is the recipe behind most documented AI harms.'
+    "correct": 1,
+    "explanation": "Evaluation means defining success criteria up front — including fairness across different users — and testing against them, especially on edge cases and under-represented groups. A demo is a curated highlight reel, not a test. Biased data plus no testing is the recipe behind most documented AI harms."
   },
   {
-    type: 'activity',
-    title: '🚀 Stretch — Design a Fairness Test',
-    task: 'Advanced extension. Pick a real AI system that makes decisions about people — a CV screener, a face-unlock, a content moderator, an exam-marking tool. Design a test that would expose unfairness if it existed.',
-    steps: [
-      'Name the system and the groups it could treat unequally.',
-      'Write your success criteria: what would "works fairly" actually mean, measured how?',
-      'Describe the test data you would need — and why diversity in that data matters.',
-      'Identify one edge case you would deliberately throw at it, and what a failure there would reveal.'
+    "type": "activity",
+    "title": "🚀 Stretch — Design a Fairness Test",
+    "task": "Advanced extension. Pick a real AI system that makes decisions about people — a CV screener, a face-unlock, a content moderator, an exam-marking tool. Design a test that would expose unfairness if it existed.",
+    "steps": [
+      "Name the system and the groups it could treat unequally.",
+      "Write your success criteria: what would \"works fairly\" actually mean, measured how?",
+      "Describe the test data you would need — and why diversity in that data matters.",
+      "Identify one edge case you would deliberately throw at it, and what a failure there would reveal."
     ],
-    reveal: '<strong>Marks of a strong design:</strong> you measured performance separately for different groups (not one overall score), you sourced deliberately diverse and representative test data, and you went looking for failure on the edges instead of admiring the average. That is the difference between an evaluation and a sales demo — and it is exactly the work that would have caught the Gender Shades gap before it shipped (see Lesson 125 for the bias this connects to).'
+    "reveal": "<strong>Marks of a strong design:</strong> you measured performance separately for different groups (not one overall score), you sourced deliberately diverse and representative test data, and you went looking for failure on the edges instead of admiring the average. That is the difference between an evaluation and a sales demo — and it is exactly the work that would have caught the Gender Shades gap before it shipped (see Lesson 125 for the bias this connects to)."
   },
   {
-    type: 'summary',
-    title: 'What You\'ve Learned',
-    points: [
-      { icon: '🎯', label: 'Define success first', text: 'accuracy, consistency, fairness, edge cases — set criteria before testing' },
-      { icon: '📊', label: 'Data decides behaviour', text: 'size, diversity, quality and representation shape what an AI can do' },
-      { icon: '⚖️', label: 'Fairness must be tested', text: 'Gender Shades: a 34pp gap nobody checked for (see L125)' },
-      { icon: '🧪', label: 'Demo ≠ test', text: 'real evaluation runs across different groups, not a highlight reel' },
-      { icon: '🔧', label: 'The shaper\'s lever', text: 'to change behaviour, change the data and re-test' }
+    "type": "summary",
+    "title": "What You've Learned",
+    "points": [
+      {
+        "icon": "🎯",
+        "label": "Define success first",
+        "text": "accuracy, consistency, fairness, edge cases — set criteria before testing"
+      },
+      {
+        "icon": "📊",
+        "label": "Data decides behaviour",
+        "text": "size, diversity, quality and representation shape what an AI can do"
+      },
+      {
+        "icon": "⚖️",
+        "label": "Fairness must be tested",
+        "text": "Gender Shades: a 34pp gap nobody checked for (see L125)"
+      },
+      {
+        "icon": "🧪",
+        "label": "Demo ≠ test",
+        "text": "real evaluation runs across different groups, not a highlight reel"
+      },
+      {
+        "icon": "🔧",
+        "label": "The shaper's lever",
+        "text": "to change behaviour, change the data and re-test"
+      }
     ]
   }
 ];
