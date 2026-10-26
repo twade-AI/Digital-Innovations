@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digital Innovations — Removes</title>
+  <title>AI and Digital Innovation — Removes</title>
   <link rel="manifest" href="manifest.json">
-  <meta name="description" content="Digital Innovations — the Removes AI course: 40 self-paced lessons aligned to the OECD/EU AI Literacy Framework — how AI works, revision skills, deepfakes, bias, ethics, and shaping AI — for Year 9 pupils.">
+  <meta name="description" content="AI and Digital Innovation — the Removes AI course: 40 self-paced lessons aligned to the OECD/EU AI Literacy Framework — how AI works, revision skills, deepfakes, bias, ethics, and shaping AI — for Year 9 pupils.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Removes AI Course — Digital Innovations">
+  <meta property="og:title" content="Removes AI Course — AI and Digital Innovation">
   <meta property="og:image" content="assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
@@ -301,6 +301,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/wow.css">
   <link rel="stylesheet" href="css/labs.css">
+  <link rel="stylesheet" href="css/editorial.css">
 </head>
 <body data-track="removes">
   <div id="offlineBanner" class="offline-banner" style="display:none" role="status">You are offline — all 40 lessons are available from cache</div>
@@ -309,7 +310,7 @@
     <div class="gs-header">
       <button class="gs-back" onclick="window.location.href='index.html'">← Back</button>
       <img class="hby-mark hby-mark--header" src="assets/brand/logo/haileybury-magenta.png" alt="Haileybury" width="22" height="16">
-      <span class="gs-brand">Digital Innovations</span>
+      <span class="gs-brand">AI and Digital Innovation</span>
       <span class="gs-header-title">Removes 🌱</span>
       <a class="btn btn-ghost btn-sm" href="portfolio.html?t=removes" style="margin-left:10px" title="Your notes, exit tickets and progress — save as PDF">📄 Portfolio</a>
     </div>
@@ -340,13 +341,13 @@
             <path d="M12 14l4 8 4-6 3 4" stroke="var(--track-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             <circle cx="25" cy="11" r="2.5" fill="var(--track-primary-dark)"/>
           </svg>
-          <span class="gs-cert-issuer">Digital Innovations</span>
+          <span class="gs-cert-issuer">AI and Digital Innovation</span>
         </div>
         <div class="gs-cert-label">Certificate of Completion</div>
         <div class="gs-cert-presented">This certifies that</div>
         <div class="gs-cert-recipient" id="gsCertRecipient">—</div>
         <div class="gs-cert-course">has successfully completed the</div>
-        <div class="gs-cert-title-main">Digital Innovations — Removes</div>
+        <div class="gs-cert-title-main">AI and Digital Innovation — Removes</div>
         <div class="gs-cert-detail">40 lessons · 7 units · Aligned to the OECD/EU AI Literacy Framework (Engage · Create · Manage · Shape)</div>
         <div class="gs-cert-divider"></div>
         <div class="gs-cert-footer">
@@ -360,7 +361,7 @@
 
     <div class="gs-hero" id="gsHero">
       <div class="gs-hero-badge">Removes · Works Offline</div>
-      <h1>Digital Innovations</h1>
+      <h1>AI and Digital Innovation</h1>
       <p class="gs-hero-sub">40 lessons across 7 units, aligned to the OECD/EU AI Literacy Framework. Build genuine AI literacy — from understanding how AI works, to creating and managing it wisely, to shaping it for the better.</p>
       <div class="gs-hero-stats">
         <div class="gs-stat"><span class="gs-stat-num">40</span><span class="gs-stat-label">Lessons</span></div>
@@ -417,9 +418,10 @@
   <script src="js/slide-utils.js"></script>
   <script src="js/slides-gcse.js"></script>
   <script src="js/labs.js"></script>
+  <script src="js/learning-updates.js"></script>
   <script src="js/tts.js" defer></script>
   <script>
-  /* ── Digital Innovations Removes — track engine ── */
+  /* ── AI and Digital Innovation Removes — track engine ── */
   var GS_KEY = 'di_gcse_v1';
   var GS_XP_AWARDED_KEY = 'di_gcse_xp_awarded_v1';
   var gsDone = new Set();
@@ -732,6 +734,7 @@
     document.getElementById('gsLessonTitle').textContent = found.lesson.title;
     gsRenderSlide();
     document.getElementById('gsModal').classList.add('open');
+    if (window.diSlide) window.diSlide.fullscreen.request(document.getElementById('gsModal'));
     document.body.style.overflow = 'hidden';
     var sa = document.getElementById('gsSlideArea');
     if (sa && !sa._swipeInit) {

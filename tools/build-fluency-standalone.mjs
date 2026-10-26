@@ -107,7 +107,7 @@ html = replaceOnce(html, '<link rel="icon" href="icon.svg" type="image/svg+xml">
   '<link rel="icon" href="' + iconURI + '" type="image/svg+xml">', 'favicon');
 
 // Stylesheets → inline <style> blocks (same order)
-for (const css of ['css/style.css', 'css/lesson.css', 'css/brand.css', 'css/labs.css', 'css/wow.css']) {
+for (const css of ['css/style.css', 'css/lesson.css', 'css/brand.css', 'css/labs.css', 'css/wow.css', 'css/editorial.css']) {
   html = replaceOnce(html, '<link rel="stylesheet" href="' + css + '">',
     '<style>\n/* ── inlined: ' + css + ' ── */\n' + read(css) + '\n</style>', css);
 }
@@ -152,6 +152,8 @@ html = replaceOnce(html,
   '  ' + dataScript + '\n' +
   '  <script>\n/* ── inlined: js/labs.js ── */\n' + read('js/labs.js') + '\n</script>',
   'script block');
+
+html = replaceOnce(html, '<script src="js/learning-updates.js"></script>', '<script>\n' + read('js/learning-updates.js') + '\n</script>', 'learning updates');
 
 // No service worker in the standalone bundle
 html = replaceOnce(html,

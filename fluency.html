@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Digital Passport — Digital Innovations</title>
+  <title>AI Digital Passport — AI and Digital Innovation</title>
   <meta name="description" content="A self-directed 24-lesson AI Digital Passport, aligned to the OECD/EU AI Literacy Framework (Engage · Create · Manage · Shape). No login needed. Works offline.">
   <link rel="manifest" href="manifest.json">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="AI Digital Passport — Digital Innovations">
+  <meta property="og:title" content="AI Digital Passport — AI and Digital Innovation">
   <meta property="og:image" content="assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
@@ -324,6 +324,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/wow.css">
+  <link rel="stylesheet" href="css/editorial.css">
 </head>
 <body data-track="fluency">
   <div id="offlineBanner" class="offline-banner" style="display:none" role="status" aria-live="polite">
@@ -336,7 +337,7 @@
     <div class="fl-header">
       <button class="fl-back" onclick="window.location.href='index.html'">← Back</button>
       <img class="hby-mark hby-mark--header" src="assets/brand/logo/haileybury-magenta.png" alt="Haileybury" width="22" height="16">
-      <span class="fl-header-brand">Digital Innovations</span>
+      <span class="fl-header-brand">AI and Digital Innovation</span>
       <span class="fl-header-title">AI Digital Passport ⚡</span>
       <a class="btn btn-ghost btn-sm" href="portfolio.html?t=fluency" style="margin-left:10px" title="Your notes, exit tickets and progress — save as PDF">📄 Portfolio</a>
     </div>
@@ -376,7 +377,7 @@
               <linearGradient id="clg2" x1="12" y1="14" x2="25" y2="22" gradientUnits="userSpaceOnUse"><stop stop-color="var(--track-primary)"/><stop offset="1" stop-color="var(--track-primary-dark)"/></linearGradient>
             </defs>
           </svg>
-          <span class="fl-cert-issuer">Digital Innovations</span>
+          <span class="fl-cert-issuer">AI and Digital Innovation</span>
         </div>
         <div class="fl-cert-label">Certificate of Completion</div>
         <div class="fl-cert-presented">This certifies that</div>
@@ -506,6 +507,7 @@
   <script src="js/quiz-bank.js"></script>
   <script src="js/visuals.js"></script>
   <script src="js/labs.js"></script>
+  <script src="js/learning-updates.js"></script>
   <script>
   /* ── AI Digital Passport — standalone app ── */
 
@@ -823,7 +825,7 @@
     if (teacherEmail) localStorage.setItem('fl_teacher_email', teacherEmail);
 
     var body = 'Hi,\n\n' +
-      'I have completed the Digital Innovations AI Digital Passport.\n\n' +
+      'I have completed the AI and Digital Innovation AI Digital Passport.\n\n' +
       'Certificate details:\n' +
       '- Name: ' + name + '\n' +
       '- Certificate ID: ' + id + '\n' +
@@ -869,6 +871,7 @@
 
     flRenderSlide();
     document.getElementById('lessonModal').classList.add('open');
+    if (window.diSlide) window.diSlide.fullscreen.request(document.getElementById('lessonModal'));
     document.body.style.overflow = 'hidden';
     // Touch swipe
     var sa = document.getElementById('slideArea');

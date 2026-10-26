@@ -159,7 +159,7 @@
     if (!width || !height) return;
     var cw = Math.max(canvas.offsetWidth, canvas.scrollWidth);
     var ch = Math.max(canvas.offsetHeight, canvas.scrollHeight);
-    var scale = Math.min(Math.max(1, width - 2) / cw, Math.max(1, height - 2) / ch);
+    var scale = Math.min(1, Math.max(1, width - 2) / cw, Math.max(1, height - 2) / ch);
     canvas.style.transform = 'scale(' + scale + ')';
     canvas.style.left = Math.max(0, (width - cw * scale) / 2) + 'px';
     canvas.style.top = Math.max(0, (height - ch * scale) / 2) + 'px';
@@ -186,11 +186,12 @@
     var area = modal.querySelector('.lv-slide-area, .slide-area');
     if (!area) return;
     fitModal = modal; fitArea = area;
+    modal.classList.add("di-reading");
     var footer = modal.querySelector('.lv-footer, .modal-footer');
     if (footer) {
       var button = document.createElement('button');
       button.type = 'button'; button.className = 'btn btn-secondary di-reading-toggle';
-      button.textContent = 'Reading view'; button.setAttribute('aria-pressed', 'false');
+      button.textContent = 'Fit whole slide'; button.setAttribute('aria-pressed', 'true');
       button.title = 'Switch between fitting the whole slide and reading with scrolling';
       button.addEventListener('click', function () {
         var reading = modal.classList.toggle('di-reading');
@@ -417,6 +418,7 @@
     countUp: countUp,
     resultsHTML: resultsHTML,
     fullscreen: {
+      request: fsRequest,
       toggle: fsToggle,
       exit: fsExit,
       isActive: fsIsActive,

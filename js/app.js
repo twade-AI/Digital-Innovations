@@ -1,4 +1,4 @@
-/* ── App Logic ── Digital Innovations Course Portal ─────── */
+/* ── App Logic ── AI and Digital Innovation Course Portal ─────── */
 
 const STORAGE_KEY      = 'di_progress';
 const STREAK_KEY       = 'di_streak';
@@ -574,6 +574,7 @@ function openLesson(id) {
 
   renderSlide(0);
   modal.classList.add('open');
+    if (window.diSlide) window.diSlide.fullscreen.request(modal);
   initSlideSwipe('lvSlideArea', function(dir) { navigateSlide(dir); });
 }
 
@@ -1222,7 +1223,7 @@ function downloadResource(id, title) {
     lines.push(field.value || '(blank)');
     lines.push('');
   });
-  lines.push('Digital Innovations — ' + new Date().toLocaleDateString('en-GB'));
+  lines.push('AI and Digital Innovation — ' + new Date().toLocaleDateString('en-GB'));
   var blob = new Blob([lines.join('\n')], { type: 'text/plain' });
   var a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
@@ -1638,7 +1639,7 @@ function initFloatContinue() {
 
 /* ── Reflection Export (text) ─────────────────── */
 function exportReflections() {
-  var lines = ['Digital Innovations — My Reflections', '='.repeat(45), ''];
+  var lines = ['AI and Digital Innovation — My Reflections', '='.repeat(45), ''];
   var count = 0;
   UNITS.forEach(function(u) {
     u.lessons.forEach(function(l) {
@@ -1807,17 +1808,17 @@ function exportFullProgressPDF() {
   ].join('');
 
   var html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">' +
-    '<title>Digital Innovations — Progress Report</title>' +
+    '<title>AI and Digital Innovation — Progress Report</title>' +
     '<style>' + css + '</style></head><body>' +
     /* Print bar */
     '<div class="pbar">' +
-      '<span class="pbar-title">Digital Innovations — Progress Report &bull; ' + exportDate + '</span>' +
+      '<span class="pbar-title">AI and Digital Innovation — Progress Report &bull; ' + exportDate + '</span>' +
       '<button class="pbtn" onclick="window.print()">🖨&nbsp; Save as PDF / Print</button>' +
     '</div>' +
     '<div class="page">' +
     /* Header */
     '<div class="rh">' +
-      '<div class="rh-brand">Digital Innovations &bull; KS5 AI Course</div>' +
+      '<div class="rh-brand">AI and Digital Innovation &bull; KS5 AI Course</div>' +
       '<div class="rh-title">📊 Progress Report</div>' +
       '<div class="rh-sub">Exported ' + exportDate + '</div>' +
       (studentName ? '<div class="rh-name">Pupil: ' + studentName + '</div>' : '') +
@@ -1849,7 +1850,7 @@ function exportFullProgressPDF() {
       '</tr></thead><tbody>' + lessonTableHtml + '</tbody></table>' +
     '</div>' +
     /* Footer */
-    '<div class="rfooter">Digital Innovations &bull; KS5 AI &amp; Society Course &bull; Report generated ' + exportDate + '</div>' +
+    '<div class="rfooter">AI and Digital Innovation &bull; KS5 AI &amp; Society Course &bull; Report generated ' + exportDate + '</div>' +
     '</div></body></html>';
 
   var win = window.open('', '_blank');
@@ -1928,12 +1929,12 @@ function printUnitCertificate(badge) {
     '.date{font-size:.8rem;color:#94a3b8}.footer{font-size:.75rem;color:#94a3b8;margin-top:32px}' +
     '@media print{button{display:none}}</style></head><body>' +
     '<div class="border"><div class="icon">' + badge.icon + '</div>' +
-    '<h1>Digital Innovations</h1><p class="subtitle">KS5 Course Certificate of Achievement</p>' +
+    '<h1>AI and Digital Innovation</h1><p class="subtitle">KS5 Course Certificate of Achievement</p>' +
     '<p>This certifies that</p><div class="name-line">Student</div>' +
     '<p>has earned the badge</p><div class="badge-name">' + badge.name + '</div>' +
     '<p class="desc">' + badge.desc + '</p>' +
     '<p class="date">Awarded: ' + dateStr + '</p>' +
-    '<div class="footer">Digital Innovations &bull; KS5 Curriculum</div></div>' +
+    '<div class="footer">AI and Digital Innovation &bull; KS5 Curriculum</div></div>' +
     '<br><button onclick="window.print()" style="margin-top:16px;padding:10px 24px;background:#9b1844;color:#fff;border:none;border-radius:8px;font-size:1rem;cursor:pointer">Print Certificate</button>' +
     '</body></html>';
   var win = window.open('', '_blank');
@@ -2256,7 +2257,7 @@ function pmGenerateFamilyLink() {
 
   var snap = {
     name: name,
-    trackLabel: 'Digital Innovations AEP',
+    trackLabel: 'AI and Digital Innovation AEP',
     thisWeekTitles: thisWeekTitles,
     streak: getStreak(),
     pct: pct,
@@ -3099,7 +3100,7 @@ var UNIT_BADGES = [
   { id: 'u5', unitIdx: 4, icon: '🚀', name: 'Innovator',         desc: 'Completed all Capstone Project lessons' },
   { id: 'u6', unitIdx: 5, icon: '🎤', name: 'Communicator',      desc: 'Completed all Presentations & Reflection lessons' },
   { id: 'labs10', unitIdx: -1, icon: '🧪', name: 'Lab Scientist', desc: 'Completed 10 interactive labs' },
-  { id: 'champion', unitIdx: -1, icon: '⭐', name: 'Course Champion', desc: 'Completed the entire Digital Innovations course!' }
+  { id: 'champion', unitIdx: -1, icon: '⭐', name: 'Course Champion', desc: 'Completed the entire AI and Digital Innovation course!' }
 ];
 
 function loadBadges() {
@@ -3455,7 +3456,7 @@ function renderNewsStaleness() {
 
 /* ── Onboarding Tour ──────────────────────────────── */
 var OB_STEPS = [
-  { title: 'Welcome to Digital Innovations! 👋', text: 'Explore AI, ethics, prompt engineering and more across 59 lessons. Let\'s take a 60-second tour.' },
+  { title: 'Welcome to AI and Digital Innovation! 👋', text: 'Explore AI, ethics, prompt engineering and more across 59 lessons. Let\'s take a 60-second tour.' },
   { title: 'Pick a lesson 📚', text: 'Go to <strong>Units</strong> to browse all 6 units. Click any lesson to open the slide viewer — slides, quizzes and activities are all inside.' },
   { title: 'Test yourself ⚡', text: 'The <strong>⚡ Quiz Me</strong> button gives you a quick quiz on lessons you\'ve completed. Great for spaced revision.' },
   { title: 'Track your progress 📊', text: 'Head to <strong>My Progress</strong> to see your streak calendar, XP level, badges, and quiz scores — all saved locally.' },
@@ -3644,7 +3645,7 @@ function printCapstone() {
     '<h2>Self-Reflection</h2><p>' + ((d.capstone_reflection || '—').replace(/\n/g,'<br>')) + '</p>' +
     '<h1>📓 Sprint Diary & Build Notes</h1>' +
     notesHtml +
-    '<p style="margin-top:40px;color:#999;font-size:.78rem">Digital Innovations AEP — Printed ' + new Date().toLocaleDateString('en-GB') + '</p>' +
+    '<p style="margin-top:40px;color:#999;font-size:.78rem">AI and Digital Innovation AEP — Printed ' + new Date().toLocaleDateString('en-GB') + '</p>' +
     '<br><button onclick="window.print()" style="padding:10px 24px;background:#9b1844;color:#fff;border:none;border-radius:6px;cursor:pointer">Print</button>' +
     '</body></html>');
   w.document.close(); w.print();
@@ -3720,7 +3721,7 @@ function downloadPortfolio() {
   if (!hasAny) lines.push('No sprint diary notes recorded yet.');
   lines.push('');
   lines.push('---');
-  lines.push('Digital Innovations AEP — ' + date);
+  lines.push('AI and Digital Innovation AEP — ' + date);
 
   var blob = new Blob([lines.join('\n')], { type: 'text/plain' });
   var a = document.createElement('a');
