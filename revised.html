@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI and Digital Innovation — Revised lessons</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="description" content="AI and Digital Innovation — the Removes AI course: 37 revised lessons and project sessions covering AI foundations, study skills, climate innovation and digital productivity for Year 9 pupils.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Removes AI Course — AI and Digital Innovation">
+  <meta property="og:image" content="assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <script>try{var _t=localStorage.getItem('di_theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/lesson.css">
+  <link rel="stylesheet" href="css/brand.css">
+  <style>
+    .gs-shell{max-width:820px;margin:0 auto;padding:0 16px 80px}
+    .gs-header{display:flex;align-items:center;gap:12px;padding:18px 0 0;border-bottom:1px solid var(--border);margin-bottom:24px}
+    .gs-back{background:none;border:none;color:var(--text-dim);font-size:.85rem;cursor:pointer;padding:6px 0;display:flex;align-items:center;gap:4px}
+    .gs-back:hover{color:var(--text)}
+    .gs-brand{font-size:.8rem;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em}
+    .gs-header-title{font-weight:800;font-size:1.05rem;color:var(--text);margin-left:auto}
+    .gs-progress-wrap{margin-bottom:28px}
+    .gs-progress-label{display:flex;justify-content:space-between;font-size:.78rem;color:var(--text-dim);margin-bottom:6px;font-weight:600}
+    .gs-progress-track{height:6px;background:var(--border);border-radius:999px;overflow:hidden}
+    .gs-progress-fill{height:100%;background:linear-gradient(90deg,var(--track-primary),var(--track-primary-dark));border-radius:999px;transition:width .5s}
+    .gs-hero{text-align:center;padding:8px 0 32px}
+    .gs-hero-badge{display:inline-block;background:rgba(var(--track-primary-rgb),.15);color:var(--track-primary);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:999px;margin-bottom:14px}
+    .gs-hero h1{font-size:clamp(1.6rem,4vw,2.2rem);font-weight:800;margin:0 0 10px}
+    .gs-hero-sub{color:var(--text-dim);font-size:.95rem;line-height:1.6;max-width:540px;margin:0 auto 20px}
+    .gs-hero-stats{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+    .gs-hero-domains{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:8px}
+    .gs-hero-domain{font-size:.72rem;font-weight:700;color:var(--track-primary);background:rgba(var(--track-primary-rgb),.1);border:1px solid rgba(var(--track-primary-rgb),.3);border-radius:999px;padding:4px 12px}
+    .gs-stat{text-align:center}
+    .gs-stat-num{display:block;font-size:1.5rem;font-weight:800;color:var(--track-primary)}
+    .gs-stat-label{font-size:.75rem;color:var(--text-dim)}
+    .gs-track{display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
+    /* ── Spaced-review panel (interleaving) ─── */
+    .gs-review-panel{background:var(--bg-card);border:1.5px dashed rgba(var(--track-primary-rgb),.4);border-radius:var(--radius);padding:18px 20px;margin-bottom:24px}
+    .gs-review-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+    .gs-review-title{font-weight:800;font-size:.95rem;color:var(--text);display:flex;align-items:center;gap:8px}
+    .gs-review-sub{font-size:.78rem;color:var(--text-dim);margin-top:2px}
+    .gs-review-dismiss{background:none;border:none;color:var(--text-dim);font-size:.78rem;cursor:pointer;padding:4px 8px;border-radius:6px}
+    .gs-review-dismiss:hover{color:var(--text);background:var(--bg-card-hover)}
+    .gs-review-q{font-size:.88rem;font-weight:600;color:var(--text);line-height:1.5;margin:10px 0}
+    .gs-review-meta{font-size:.72rem;color:var(--text-dim);margin-bottom:8px}
+    .gs-review-options{display:flex;flex-direction:column;gap:6px}
+    .gs-review-option{text-align:left;padding:10px 14px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-size:.84rem;cursor:pointer;transition:border-color .15s;font-family:inherit;line-height:1.4}
+    .gs-review-option:hover:not(:disabled){border-color:var(--track-primary)}
+    .gs-review-option.rv-correct{border-color:var(--track-primary);background:rgba(var(--track-primary-rgb),.08)}
+    .gs-review-option.rv-wrong{border-color:#ef4444;background:rgba(239,68,68,.06)}
+    .gs-review-fb{margin-top:10px;padding:10px 14px;border-radius:8px;background:rgba(var(--track-primary-rgb),.06);border-left:3px solid var(--track-primary);font-size:.83rem;line-height:1.55;color:var(--text)}
+    .gs-review-fb.wrong{background:rgba(239,68,68,.06);border-left-color:#ef4444}
+    .gs-review-progress{font-size:.72rem;color:var(--text-dim);margin-top:10px;text-align:right}
+    .gs-unit-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--track-primary);margin:20px 0 8px 4px;padding-bottom:4px;border-bottom:1px solid rgba(var(--track-primary-rgb),.2);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .gs-unit-domain{font-size:.6rem;font-weight:700;letter-spacing:.04em;text-transform:none;color:var(--track-primary);background:rgba(var(--track-primary-rgb),.12);border:1px solid rgba(var(--track-primary-rgb),.3);border-radius:999px;padding:2px 9px}
+    .gs-lesson{display:flex;align-items:center;gap:14px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:var(--radius);padding:14px 16px;cursor:pointer;transition:all .15s;position:relative}
+    .gs-lesson:hover{border-color:var(--track-primary);transform:translateX(3px)}
+    .gs-lesson.gs-done{border-color:rgba(var(--track-primary-rgb),.4);background:rgba(var(--track-primary-rgb),.04)}
+    .gs-lesson.gs-active{border-color:var(--track-primary);box-shadow:0 0 0 1px rgba(var(--track-primary-rgb),.3)}
+    .gs-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;flex-shrink:0;background:var(--border);color:var(--text-dim)}
+    .gs-done .gs-num{background:rgba(var(--track-primary-rgb),.2);color:var(--track-primary)}
+    .gs-active .gs-num{background:rgba(var(--track-primary-rgb),.2);color:var(--track-primary)}
+    .gs-lesson-info{flex:1;min-width:0}
+    .gs-lesson-title{font-size:.9rem;font-weight:700;color:var(--text)}
+    .gs-lesson-meta{font-size:.75rem;color:var(--text-dim);margin-top:2px}
+    .gs-lesson-check{font-size:1.1rem;flex-shrink:0}
+    .gs-lesson-arrow{font-size:.9rem;color:var(--text-dim);flex-shrink:0}
+    .gs-connector{width:2px;height:10px;background:var(--border);margin-left:30px;border-radius:1px}
+    .gs-connector.gs-done-conn{background:rgba(var(--track-primary-rgb),.4)}
+    .gs-complete{display:none;text-align:center;padding:40px 20px;background:var(--bg-card);border:1.5px solid rgba(var(--track-primary-rgb),.4);border-radius:var(--radius);margin-bottom:24px}
+    .gs-complete.visible{display:block}
+    .gs-complete-icon{font-size:3rem;margin-bottom:16px}
+    .gs-complete h2{font-size:1.5rem;font-weight:800;margin:0 0 8px}
+    .gs-complete p{color:var(--text-dim);font-size:.9rem;margin:0 0 20px}
+    .gs-cert-name-row{margin:0 auto 20px;max-width:400px;text-align:left}
+    .gs-cert-name-label{display:block;font-size:.78rem;font-weight:600;color:var(--text-dim);margin-bottom:6px}
+    .gs-cert-name-input{width:100%;padding:10px 14px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-size:.95rem;font-family:var(--font);outline:none;transition:border-color .15s}
+    .gs-cert-name-input:focus{border-color:var(--track-primary)}
+    .gs-cert-card{position:relative;overflow:hidden;background:linear-gradient(145deg,rgba(var(--track-primary-rgb),.1),rgba(var(--track-primary-rgb),.04));border:2px solid rgba(var(--track-primary-rgb),.35);border-radius:16px;padding:36px 36px 28px;margin:0 auto 20px;max-width:560px;text-align:center}
+    .gs-cert-watermark{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:16rem;font-weight:900;color:rgba(var(--track-primary-rgb),.04);pointer-events:none;line-height:1}
+    .gs-cert-header{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px}
+    .gs-cert-issuer{font-size:.9rem;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:.08em}
+    .gs-cert-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--track-primary);margin-bottom:16px}
+    .gs-cert-presented{font-size:.85rem;color:var(--text-dim);margin-bottom:8px}
+    .gs-cert-recipient{font-size:2rem;font-weight:800;color:var(--text);margin:0 0 8px;font-style:italic;min-height:2.5rem}
+    .gs-cert-course{font-size:.85rem;color:var(--text-dim);margin-bottom:6px}
+    .gs-cert-title-main{font-size:1.3rem;font-weight:800;color:var(--track-primary);margin-bottom:6px}
+    .gs-cert-detail{font-size:.75rem;color:var(--text-dim);margin-bottom:20px}
+    .gs-cert-divider{height:1px;background:rgba(var(--track-primary-rgb),.2);margin:0 0 16px}
+    .gs-cert-footer{display:flex;justify-content:space-around}
+    .gs-cert-date,.gs-cert-id{font-size:.85rem;font-weight:700;color:var(--text)}
+    .gs-cert-date-label{font-size:.68rem;color:var(--text-dim);margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
+    .gs-print-btn{background:linear-gradient(135deg,var(--track-primary),var(--track-primary-dark));color:#fff;border:none;border-radius:var(--radius);padding:10px 24px;font-weight:700;cursor:pointer;margin-top:8px;font-size:.9rem}
+    .gs-print-btn:hover{background:linear-gradient(135deg,var(--track-primary-dark),var(--track-primary-dark))}
+    .modal-inner{position:relative;background:var(--bg-card);border-radius:18px;border:1px solid var(--border);box-shadow:0 32px 80px rgba(0,0,0,.55);width:100%;max-width:860px;max-height:90vh;display:flex;flex-direction:column;overflow:hidden}
+    .modal-header{display:flex;align-items:center;justify-content:space-between;padding:14px 24px 10px;border-bottom:1px solid var(--border);flex-shrink:0;background:linear-gradient(180deg,rgba(var(--track-primary-rgb),.04) 0%,transparent 100%)}
+    .lv-progress{padding:10px 24px 0;flex-shrink:0}
+    .modal-body{flex:1;overflow-y:auto;padding:28px 32px;background:var(--bg-card)}
+    .modal-footer{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;border-top:1px solid var(--border);flex-shrink:0;background:var(--bg-card)}
+    [data-theme="light"] .modal-inner{border-color:rgba(var(--track-primary-rgb),.15)}
+    [data-theme="light"] .modal-body{background:#f8fafc}
+    [data-theme="light"] .modal-footer{background:#f8fafc}
+    .slide-body{font-size:.97rem;color:var(--text-muted,#475569);line-height:1.75;margin-top:8px;margin-bottom:14px}
+    .slide-callout{background:rgba(var(--track-primary-rgb),.08);border-left:3px solid var(--track-primary);border-radius:0 8px 8px 0;padding:14px 18px;margin-top:16px;font-size:.92rem;color:var(--text-muted,#475569);line-height:1.6}
+    [data-theme="light"] .slide-callout{background:rgba(var(--track-primary-rgb),.07);color:#1e3a4a}
+    /* Term/definition bullets render as a two-column grid so every term and
+       every definition line up across rows (a clean table-style layout). */
+    .slide-bullets{list-style:none;display:grid;grid-template-columns:minmax(104px,200px) 1fr;column-gap:18px;row-gap:11px;margin-top:12px;padding:0;font-size:.93rem;line-height:1.55;color:var(--text-muted,#475569)}
+    .slide-bullets li{display:contents}
+    .slide-bullets .b-term{font-weight:700;color:var(--text);position:relative;padding-left:14px}
+    .slide-bullets .b-term::before{content:'▸';position:absolute;left:0;color:var(--track-primary);font-size:.85rem}
+    .slide-bullets .b-def{color:inherit}
+    .slide-bullets .b-span2{grid-column:1 / -1}
+    .slide-bullets .b-term.b-span2{padding-left:14px}
+    [data-theme="light"] .slide-bullets{color:#334155}
+    @media (max-width:560px){.slide-bullets{grid-template-columns:1fr;row-gap:3px}.slide-bullets .b-def{padding-left:14px;margin-bottom:6px}}
+    .slide-steps{list-style:none;counter-reset:step;display:flex;flex-direction:column;gap:10px;margin-top:14px;padding:0}
+    .slide-steps li{counter-increment:step;display:flex;align-items:flex-start;gap:12px;font-size:.93rem;color:var(--text-muted,#475569);line-height:1.5}
+    .slide-steps li::before{content:counter(step);min-width:24px;height:24px;background:var(--track-primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;flex-shrink:0}
+    .slide-disc-qs{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+    .slide-disc-q{display:flex;align-items:flex-start;gap:12px;background:rgba(var(--track-primary-rgb),.06);border:1px solid var(--border);border-radius:8px;padding:12px 14px}
+    .sdq-num{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;border-radius:50%;background:var(--track-primary);color:#fff;font-size:.75rem;font-weight:700;flex-shrink:0}
+    .sdq-text{font-size:.9rem;color:var(--text-muted,var(--text));line-height:1.5;flex:1}
+    .hook-stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin:18px 0}
+    .hook-stat-mini{background:linear-gradient(135deg,rgba(var(--track-primary-rgb),.12),rgba(0,159,227,.08));border:1px solid rgba(var(--track-primary-rgb),.25);border-radius:8px;padding:14px 10px;text-align:center}
+    .hook-stat-mini .sv{font-size:1.6rem;font-weight:900;color:var(--track-primary);display:block;line-height:1}
+    .hook-stat-mini .sl{font-size:.67rem;color:var(--text-muted,#64748b);margin-top:5px;display:block;line-height:1.35}
+    [data-theme="light"] .hook-stat-mini .sv{color:var(--track-primary-dark)}
+    .scenario-choices{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+    .scenario-choice{display:flex;align-items:flex-start;gap:12px;padding:14px 18px;border-radius:10px;border:2px solid var(--border,#1e2d3d);background:var(--bg-card,#0f1923);cursor:pointer;transition:all .2s;text-align:left;font-size:.92rem;color:var(--text-muted,#94a3b8);line-height:1.45;width:100%}
+    .scenario-choice:hover:not(:disabled){border-color:var(--track-primary);color:var(--text,#e2e8f0)}
+    .scenario-choice-letter{min-width:30px;height:30px;border-radius:50%;background:rgba(var(--track-primary-rgb),.12);color:var(--track-primary);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;flex-shrink:0;margin-top:1px}
+    .scenario-choices.scenario-answered .scenario-choice{pointer-events:none;opacity:.5}
+    .scenario-choices.scenario-answered .scenario-choice.scenario-chosen{opacity:1;border-color:var(--track-primary);background:rgba(var(--track-primary-rgb),.08)}
+    .scenario-choices.scenario-answered .scenario-choice.scenario-chosen .scenario-choice-letter{background:var(--track-primary);color:#fff}
+    .scenario-outcome{padding:16px 18px;border-radius:10px;background:rgba(var(--track-primary-rgb),.06);border-left:4px solid var(--track-primary);font-size:.9rem;color:var(--text-muted,#94a3b8);line-height:1.6;margin-top:14px}
+    .scenario-outcome strong{color:var(--track-primary)}
+    .slide-reveal-btn{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:10px 18px;border-radius:8px;border:1.5px dashed rgba(var(--track-primary-rgb),.45);background:rgba(var(--track-primary-rgb),.04);color:var(--track-primary);font-size:.88rem;font-weight:700;cursor:pointer;transition:all .15s;font-family:var(--font)}
+    .slide-reveal-btn:hover{background:rgba(var(--track-primary-rgb),.1);border-style:solid}
+    .slide-reveal-btn.revealed{display:none}
+    .slide-reveal{margin-top:14px;padding:14px 18px;border-radius:8px;background:rgba(var(--track-primary-rgb),.1);border-left:3px solid var(--track-primary);font-size:.92rem;color:var(--text-muted,#475569);line-height:1.6;animation:revealFade .25s ease-out}
+    .slide-reveal strong{color:var(--track-primary)}
+    @keyframes revealFade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+    .slide-sources{margin-top:18px;padding-top:12px;border-top:1px dashed var(--border);font-size:.75rem;color:var(--text-dim)}
+    .slide-sources-label{display:block;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim);margin-bottom:6px;font-size:.68rem}
+    .slide-sources ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px}
+    .slide-sources li{line-height:1.45;padding-left:12px;position:relative}
+    .slide-sources li::before{content:'↪';position:absolute;left:0;color:var(--track-primary);opacity:.6}
+    .slide-sources a{color:var(--track-primary);text-decoration:none}
+    .slide-sources a:hover{text-decoration:underline}
+    .slide-video{margin-top:10px}
+    .slide-video-intro{margin:0 0 14px;line-height:1.55;color:var(--text-muted,#475569)}
+    .slide-video-frame{position:relative;width:100%;padding-top:56.25%;border-radius:10px;overflow:hidden;background:#000;border:1px solid var(--border);box-shadow:0 6px 24px rgba(0,0,0,.15)}
+    .slide-video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+    .slide-video-credit{margin-top:10px;font-size:.78rem;color:var(--text-dim);font-style:italic}
+    /* ── Widget shared styles ── */
+    .widget{margin-top:14px;padding:18px;border-radius:12px;background:var(--bg-card,#0f1923);border:1px solid var(--border)}
+    .widget-row{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px}
+    .widget-label{flex-shrink:0;width:104px;display:flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;color:var(--text-muted);padding-top:9px}
+    .widget-label span{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;color:#fff;font-size:.78rem;font-weight:800}
+    .widget-input{flex:1;min-height:54px;padding:10px 12px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--font);font-size:.88rem;line-height:1.5;resize:vertical;transition:border-color .15s}
+    .widget-input:focus{outline:none;border-color:var(--track-primary)}
+    .widget-output{margin-top:14px;padding:14px 16px;border-radius:8px;background:rgba(var(--track-primary-rgb),.06);border-left:3px solid var(--track-primary);font-size:.86rem;color:var(--text);line-height:1.65;white-space:pre-wrap;min-height:60px}
+    .widget-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .widget-btn{padding:8px 14px;border-radius:6px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-size:.82rem;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .15s}
+    .widget-btn:hover{border-color:var(--track-primary);color:var(--track-primary)}
+    .widget-btn-primary{background:var(--track-primary);color:#fff;border-color:var(--track-primary)}
+    .widget-btn-primary:hover{background:var(--track-primary-dark);color:#fff;border-color:var(--track-primary-dark)}
+    .ptfc-p span{background:#009fe3}
+    .ptfc-t span{background:#9b1844}
+    .ptfc-f span{background:#22c55e}
+    .ptfc-c span{background:#f59e0b}
+    /* ── Hallucination picker ── */
+    .hp-snippets{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+    .hp-snippet{padding:14px 16px;border:1.5px solid var(--border);border-radius:10px;background:var(--bg);cursor:pointer;font-size:.88rem;color:var(--text);line-height:1.55;transition:all .15s;text-align:left;font-family:var(--font);width:100%}
+    .hp-snippet:hover:not(:disabled){border-color:var(--track-primary)}
+    .hp-snippet.hp-correct{border-color:var(--track-primary);background:rgba(var(--track-primary-rgb),.08)}
+    .hp-snippet.hp-wrong{border-color:#ef4444;background:rgba(239,68,68,.06);opacity:.7}
+    .hp-snippet:disabled{cursor:default}
+    .hp-feedback{margin-top:14px;padding:14px 16px;border-radius:8px;background:rgba(var(--track-primary-rgb),.08);border-left:3px solid var(--track-primary);font-size:.85rem;line-height:1.6;color:var(--text)}
+    .hp-feedback strong{color:var(--track-primary)}
+    /* ── Fact-check simulator ── */
+    .fc-step{margin-top:12px;padding:14px 16px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg)}
+    .fc-step-num{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--track-primary);color:#fff;font-size:.78rem;font-weight:800;margin-right:8px}
+    .fc-step-q{font-weight:700;color:var(--text);font-size:.92rem;margin-bottom:8px}
+    .fc-step-input{width:100%;min-height:48px;padding:10px 12px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg-card,#0f1923);color:var(--text);font-family:var(--font);font-size:.86rem;resize:vertical}
+    .fc-step-input:focus{outline:none;border-color:var(--track-primary)}
+    .fc-hint{margin-top:8px;font-size:.78rem;color:var(--text-dim);font-style:italic}
+    .fc-verdict{margin-top:14px;padding:14px 16px;border-radius:8px;background:rgba(var(--track-primary-rgb),.08);border-left:3px solid var(--track-primary);font-size:.86rem;line-height:1.6;color:var(--text);display:none}
+    .fc-verdict.fc-shown{display:block;animation:revealFade .25s ease-out}
+    .fc-verdict strong{color:var(--track-primary)}
+    /* ── Feed audit ── */
+    .fa-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:14px}
+    .fa-item{padding:12px 14px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);cursor:pointer;text-align:left;font-family:var(--font);transition:all .15s}
+    .fa-item:hover{border-color:var(--track-primary)}
+    .fa-item.fa-on{border-color:var(--track-primary);background:rgba(var(--track-primary-rgb),.06)}
+    .fa-item-title{font-weight:700;color:var(--text);font-size:.86rem;display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .fa-item-toggle{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#fff}
+    .fa-item.fa-on .fa-item-toggle{background:var(--track-primary);border-color:var(--track-primary)}
+    .fa-item-desc{font-size:.76rem;color:var(--text-muted);margin-top:6px;line-height:1.45}
+    .fa-summary{margin-top:14px;padding:14px 16px;border-radius:8px;background:rgba(var(--track-primary-rgb),.06);border-left:3px solid var(--track-primary);font-size:.85rem;color:var(--text);line-height:1.6;display:none}
+    .fa-summary.fa-shown{display:block;animation:revealFade .25s ease-out}
+    .fa-summary strong{color:var(--track-primary)}
+    /* ── Classify widget ── */
+    .cl-intro{margin:0 0 10px;font-size:.86rem;color:var(--text-muted);line-height:1.55}
+    .cl-item{margin-top:10px;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;background:var(--bg)}
+    .cl-item-text{font-size:.9rem;color:var(--text);line-height:1.5;margin-bottom:10px}
+    .cl-options{display:flex;flex-wrap:wrap;gap:6px}
+    .cl-opt{padding:7px 12px;border-radius:6px;border:1.5px solid var(--border);background:var(--bg-card,#0f1923);color:var(--text);font-size:.8rem;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .15s}
+    .cl-opt:hover:not(:disabled){border-color:var(--track-primary);color:var(--track-primary)}
+    .cl-opt.cl-correct{border-color:var(--track-primary);background:rgba(var(--track-primary-rgb),.1);color:var(--track-primary)}
+    .cl-opt.cl-wrong{border-color:#ef4444;background:rgba(239,68,68,.06);opacity:.7;color:#ef4444}
+    .cl-opt:disabled{cursor:default}
+    .cl-explain{margin-top:8px;padding:9px 12px;border-radius:6px;background:rgba(var(--track-primary-rgb),.06);border-left:3px solid var(--track-primary);font-size:.78rem;color:var(--text);line-height:1.5;display:none}
+    .cl-explain.cl-shown{display:block}
+    .cl-score{margin-top:14px;padding:12px 14px;border-radius:8px;background:rgba(var(--track-primary-rgb),.08);border-left:3px solid var(--track-primary);font-size:.86rem;color:var(--text);font-weight:600;display:none}
+    .cl-score.cl-final{display:block}
+    /* ── Exit ticket ── */
+    .exit-ticket{margin-top:14px;padding:18px;border-radius:12px;background:linear-gradient(135deg,rgba(139,92,246,.06),rgba(var(--track-primary-rgb),.04));border:1.5px dashed rgba(139,92,246,.35)}
+    .exit-ticket-label{display:block;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#8b5cf6;margin-bottom:6px;font-size:.7rem}
+    .exit-ticket-prompt{font-size:.95rem;color:var(--text);line-height:1.55;margin-bottom:10px;font-weight:600}
+    .exit-ticket-input{width:100%;min-height:90px;padding:12px 14px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--font);font-size:.9rem;line-height:1.55;resize:vertical}
+    .exit-ticket-input:focus{outline:none;border-color:#8b5cf6}
+    .exit-ticket-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center}
+    .exit-ticket-status{font-size:.8rem;color:var(--text-dim);font-style:italic}
+    .exit-ticket-status.et-saved{color:var(--track-primary);font-style:normal;font-weight:600}
+    /* ── Assessed performance task ── */
+    .slide-assessment{margin-top:6px}
+    .badge-assessment{background:linear-gradient(135deg,#9b1844,#c64b74)!important;color:#fff!important}
+    .as-meta{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 4px}
+    .as-domain{font-size:.72rem;font-weight:700;color:var(--track-primary);background:rgba(var(--track-primary-rgb),.1);border:1px solid rgba(var(--track-primary-rgb),.3);border-radius:999px;padding:3px 11px}
+    .as-time{font-size:.72rem;font-weight:600;color:var(--text-dim);padding:3px 4px}
+    .as-criteria{margin-top:12px;font-size:.86rem;color:var(--text-muted,#475569);line-height:1.55;background:rgba(var(--track-primary-rgb),.05);border-radius:8px;padding:10px 14px}
+    .as-rubric{margin-top:14px;border:1.5px solid var(--border);border-radius:10px;overflow:hidden}
+    .as-rubric-head{font-size:.74rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--text-dim);padding:9px 14px;background:var(--bg-card);border-bottom:1px solid var(--border)}
+    .as-rubric-row{display:flex;gap:0;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid var(--border);font:inherit;color:inherit;cursor:pointer;padding:0;transition:background .12s}
+    .as-rubric-row:last-child{border-bottom:none}
+    .as-rubric-row:hover{background:rgba(var(--track-primary-rgb),.04)}
+    .as-rubric-row.as-selected{background:rgba(var(--track-primary-rgb),.12)}
+    .as-rubric-level{flex-shrink:0;width:112px;padding:11px 14px;font-size:.82rem;font-weight:700;color:var(--track-primary);background:rgba(var(--track-primary-rgb),.05);display:flex;align-items:center;gap:5px}
+    .as-rubric-row.as-selected .as-rubric-level::before{content:'✓';font-weight:900}
+    .as-rubric-text{flex:1;padding:11px 14px;font-size:.85rem;line-height:1.5;color:var(--text-muted,#475569)}
+    .as-selfmark-status{font-size:.78rem;color:var(--text-dim);font-style:italic;padding:9px 14px;border-top:1px solid var(--border)}
+    .as-selfmark-status.as-marked{color:var(--track-primary);font-style:normal;font-weight:600}
+    @media (max-width:560px){.as-rubric-row{flex-direction:column}.as-rubric-level{width:auto;padding-bottom:2px}}
+    /* ── Unit test ── */
+    .unit-test{margin-top:14px}
+    .ut-q{padding:14px 16px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);margin-bottom:12px}
+    .ut-q-title{font-weight:700;color:var(--text);font-size:.92rem;margin-bottom:10px;line-height:1.45}
+    .ut-q-title .ut-q-num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--track-primary);color:#fff;font-size:.72rem;font-weight:800;margin-right:8px;vertical-align:middle}
+    .ut-options{display:flex;flex-direction:column;gap:6px}
+    .ut-option{text-align:left;padding:10px 14px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg-card,#0f1923);color:var(--text);font-size:.86rem;cursor:pointer;font-family:var(--font);line-height:1.45;transition:all .15s}
+    .ut-option:hover:not(:disabled){border-color:var(--track-primary)}
+    .ut-option.ut-correct{border-color:var(--track-primary);background:rgba(var(--track-primary-rgb),.1);color:var(--text)}
+    .ut-option.ut-wrong{border-color:#ef4444;background:rgba(239,68,68,.06);opacity:.7}
+    .ut-option:disabled{cursor:default}
+    .ut-explain{margin-top:8px;padding:10px 12px;border-radius:6px;background:rgba(var(--track-primary-rgb),.06);border-left:3px solid var(--track-primary);font-size:.8rem;color:var(--text-muted);line-height:1.5;display:none}
+    .ut-explain.ut-shown{display:block}
+    .ut-score{margin-top:14px;padding:14px 16px;border-radius:8px;background:rgba(var(--track-primary-rgb),.08);border-left:3px solid var(--track-primary);font-size:.9rem;color:var(--text);font-weight:600;display:none}
+    .ut-score.ut-final{display:block}
+    @media (max-width:640px){
+      .widget{padding:14px}
+      .widget-row{flex-direction:column;gap:6px;margin-bottom:14px}
+      .widget-label{width:auto;padding-top:0}
+      .widget-input{width:100%;box-sizing:border-box}
+      .widget-actions{flex-direction:column;align-items:stretch}
+      .widget-btn{width:100%}
+      .fa-grid{grid-template-columns:1fr}
+      .slide-video-frame{border-radius:8px}
+      .exit-ticket{padding:14px}
+      .exit-ticket-actions{flex-direction:column;align-items:stretch}
+      .exit-ticket-actions .widget-btn{width:100%}
+      .ut-q{padding:12px 14px}
+    }
+    @media print{
+      *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      body{background:#fff !important}
+      .gs-shell{max-width:100%;padding:0}
+      .gs-header,.gs-back,.gs-progress-wrap,.gs-track,.gs-review-panel,.gs-hero,.gs-unit-label,.gs-complete-icon,.gs-complete h2,.gs-complete>p,.gs-cert-name-row,.gs-print-btn,#gsShareBtn,#gsModal,.offline-banner{display:none !important}
+      .gs-complete{display:block !important;border:none;padding:0;background:#fff}
+      .gs-cert-card{max-width:100%;margin:0;border:3px solid var(--track-primary-dark) !important;background:linear-gradient(145deg,rgba(var(--track-primary-rgb),.08),rgba(255,255,255,1)) !important;padding:60px}
+    }
+    .gs-course-tools{margin:24px 0;padding:22px;background:var(--bg-card);border:1px solid var(--border);border-radius:16px}
+    .gs-tools-top{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+    .gs-tools-top p{color:var(--text-dim);font-size:.95rem;line-height:1.5;margin:6px 0}
+    .gs-unit-nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+    .gs-unit-nav a{padding:10px 12px;border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.9rem;text-decoration:none}
+    .gs-unit-nav a:hover{border-color:var(--track-primary);background:rgba(var(--track-primary-rgb),.06)}
+    .gs-practical-resources{margin-top:18px;font-size:.9rem;line-height:1.6}
+    .gs-practical-resources summary{cursor:pointer;color:var(--track-primary);padding:6px 0}
+    .gs-practical-resources a{display:inline-block;margin:0 20px 8px 0;color:var(--track-primary)}
+    .gs-lesson:focus-visible,.gs-unit-nav a:focus-visible{outline:3px solid var(--track-primary);outline-offset:3px}
+    .gs-unit-label{scroll-margin-top:20px;font-size:.8rem}
+    @media print{.gs-course-tools{display:none!important}}
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/wow.css">
+  <link rel="stylesheet" href="css/labs.css">
+  <link rel="stylesheet" href="css/editorial.css">
+</head>
+<body data-track="removes">
+  <div id="offlineBanner" class="offline-banner" style="display:none" role="status">You are offline — previously cached lessons remain available; external tools need a connection</div>
+
+  <div class="gs-shell">
+    <div class="gs-header">
+      <button class="gs-back" onclick="window.location.href='index.html'">← Back</button>
+      <img class="hby-mark hby-mark--header" src="assets/brand/logo/haileybury-magenta.png" alt="Haileybury" width="22" height="16">
+      <span class="gs-brand">AI and Digital Innovation</span>
+      <span class="gs-header-title">Removes 🌱</span>
+      <button class="btn btn-ghost btn-sm" onclick="exportRevisedWork()">Save my work</button>
+    </div>
+
+    <div class="gs-progress-wrap">
+      <div class="gs-progress-label">
+        <span>Your progress</span>
+        <span id="gsProgressLabel">0 / 37 lessons</span>
+      </div>
+      <div class="gs-progress-track">
+        <div class="gs-progress-fill" id="gsProgressFill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <div class="gs-complete" id="gsComplete">
+      <div class="gs-complete-icon">🏆</div>
+      <h2>Course Complete!</h2>
+      <p>You've completed all 37 lessons. Keep your portfolio as evidence of what you can explain and do independently. This records completion, not an externally verified qualification.</p>
+      <div class="gs-cert-name-row">
+        <label class="gs-cert-name-label" for="gsCertNameInput">Your name (for the certificate)</label>
+        <input id="gsCertNameInput" class="gs-cert-name-input" type="text" placeholder="Enter your full name…" oninput="gsUpdateCertName(this.value)" maxlength="60">
+      </div>
+      <div class="gs-cert-card" id="gsCertCard">
+        <div class="gs-cert-watermark" aria-hidden="true">AI</div>
+        <div class="gs-cert-header">
+          <svg width="32" height="32" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="18" cy="18" r="17" stroke="var(--track-primary)" stroke-width="1.5"/>
+            <path d="M12 14l4 8 4-6 3 4" stroke="var(--track-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="25" cy="11" r="2.5" fill="var(--track-primary-dark)"/>
+          </svg>
+          <span class="gs-cert-issuer">AI and Digital Innovation</span>
+        </div>
+        <div class="gs-cert-label">Certificate of Completion</div>
+        <div class="gs-cert-presented">This certifies that</div>
+        <div class="gs-cert-recipient" id="gsCertRecipient">—</div>
+        <div class="gs-cert-course">has successfully completed the</div>
+        <div class="gs-cert-title-main">AI and Digital Innovation — Revised lessons</div>
+        <div class="gs-cert-detail">37 lessons and project sessions · Revised teaching programme</div>
+        <div class="gs-cert-divider"></div>
+        <div class="gs-cert-footer">
+          <div><div class="gs-cert-date" id="gsCertDate"></div><div class="gs-cert-date-label">Date of completion</div></div>
+          <div><div class="gs-cert-id" id="gsCertId"></div><div class="gs-cert-date-label">Certificate ID</div></div>
+        </div>
+      </div>
+      <button class="gs-print-btn" onclick="window.print()">🖨 Print Certificate</button>
+    </div>
+
+    <div class="gs-hero" id="gsHero">
+      <div class="gs-hero-badge">Removes · Revised lessons and projects</div>
+      <h1>AI and Digital Innovation</h1>
+      <p class="gs-hero-sub">The lessons we are developing in class: investigate how AI works, test it as a study partner, build a climate proposal and practise useful digital skills. Choose the sequence you need. <a href="removes.html">Browse the existing 40-lesson course</a>.</p>
+      <div class="gs-hero-stats">
+        <div class="gs-stat"><span class="gs-stat-num">37</span><span class="gs-stat-label">Lessons</span></div>
+        <div class="gs-stat"><span class="gs-stat-num">6</span><span class="gs-stat-label">Units</span></div>
+        <div class="gs-stat"><span class="gs-stat-num">Self-paced</span><span class="gs-stat-label">Total time</span></div>
+      </div>
+      <div class="gs-hero-domains" aria-label="AILit Framework domains covered">
+        <span class="gs-hero-domain">Engage with AI</span>
+        <span class="gs-hero-domain">Create with AI</span>
+        <span class="gs-hero-domain">Manage AI</span>
+        <span class="gs-hero-domain">Shape AI</span>
+      </div>
+    </div>
+
+    <div id="gsReviewPanel" class="gs-review-panel" style="display:none"></div>
+
+    <section class="gs-course-tools" aria-label="Course navigation">
+      <div class="gs-tools-top"><div><strong>Your next step</strong><p>Explore an idea. Test it. Keep evidence of what you learn.</p></div><button class="btn btn-primary" onclick="gsContinueCourse()">Continue learning →</button></div>
+      <nav class="gs-unit-nav" aria-label="Jump to a unit">
+        <a href="#gs-unit-1">1 · Foundations</a><a href="#gs-unit-2">2 · Learning</a><a href="#gs-unit-3">3 · Creating</a><a href="#gs-unit-4">4 · Trust</a><a href="#gs-unit-5">5 · Responsibility</a><a href="#gs-unit-6">6 · Shaping AI</a><a href="#gs-unit-7">7 · Your future</a>
+      </nav>
+      <details class="gs-practical-resources"><summary>Put it into practice: tools and the science project</summary><p>Use these supporting materials when your teacher sets a practical task.</p><a href="https://drive.google.com/drive/folders/1lJhS0YzC_CPSBw-jZCNugcDXvnWrsz8t" target="_blank" rel="noopener">Digital productivity materials ↗</a><a href="https://drive.google.com/drive/folders/1Q7QOyunTflICAwjQ0s9PwuHrEzbCIcPm" target="_blank" rel="noopener">Science project materials ↗</a></details>
+    </section>
+    <div class="gs-track" id="gsTrack"></div>
+  </div>
+
+  <div id="gsModal" class="modal" role="dialog" aria-modal="true" aria-label="Lesson viewer">
+    <div class="modal-inner">
+      <div class="modal-header">
+        <div>
+          <div class="lv-unit-label" id="gsUnitLabel"></div>
+          <div class="lv-lesson-title" id="gsLessonTitle"></div>
+        </div>
+        <div class="lv-header-actions">
+          <button class="lv-fs-btn" id="gsFsBtn" onclick="gsToggleFullscreen()" aria-pressed="false" title="Fullscreen (for projecting in class)">&#9974;</button>
+          <button class="modal-close" onclick="gsCloseLesson()" aria-label="Close">✕</button>
+        </div>
+      </div>
+      <div class="lv-progress">
+        <div class="lv-progress-track"><div class="lv-progress-fill" id="gsLvFill" style="width:0%"></div></div>
+        <div class="lv-dots" id="gsDots"></div>
+      </div>
+      <div class="modal-body">
+        <div class="slide-area" id="gsSlideArea"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="gsPrevBtn" onclick="gsPrevSlide()">← Back</button>
+        <span class="lv-slide-count" id="gsSlideCount"></span>
+        <button class="btn btn-primary" id="gsNextBtn" onclick="gsNextSlide()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/slide-utils.js"></script>
+  <script src="js/slides-gcse.js"></script>
+  <script src="js/revised-curriculum.js"></script>
+  <script src="js/labs.js"></script>
+  <script src="js/learning-updates.js"></script>
+  <script src="js/tts.js" defer></script>
+  <script>
+  /* ── AI and Digital Innovation Removes — track engine ── */
+  var GS_KEY = 'di_revised_v1';
+  var GS_XP_AWARDED_KEY = 'di_revised_xp_awarded_v1';
+  var gsDone = new Set();
+  var gsCurrentId = null;
+  var gsSlideIdx = 0;
+  var gsSlides = [];
+
+  /* ── Shared XP system (mirrors js/app.js so lessons here count too) ── */
+  var GS_XP_KEY = 'di_revised_xp';
+  function gsLoadXP(){ try { return JSON.parse(localStorage.getItem(GS_XP_KEY)) || { total: 0 }; } catch(e){ return { total: 0 }; } }
+  function gsSaveXP(d){ try { localStorage.setItem(GS_XP_KEY, JSON.stringify(d)); } catch(e){} }
+  function gsAddXP(amount, reason){
+    var d = gsLoadXP();
+    d.total = (d.total || 0) + amount;
+    gsSaveXP(d);
+    gsShowXPToast('+' + amount + ' XP — ' + reason);
+  }
+  function gsShowXPToast(msg){
+    var el = document.createElement('div');
+    el.className = 'xp-toast';
+    el.setAttribute('role', 'status');
+    el.setAttribute('aria-live', 'polite');
+    el.textContent = msg;
+    document.body.appendChild(el);
+    requestAnimationFrame(function(){ el.classList.add('show'); });
+    setTimeout(function(){ el.classList.remove('show'); setTimeout(function(){ el.remove(); }, 400); }, 2200);
+  }
+  function gsLoadAwarded(){ try { return new Set(JSON.parse(localStorage.getItem(GS_XP_AWARDED_KEY)) || []); } catch(e){ return new Set(); } }
+  function gsSaveAwarded(s){ try { localStorage.setItem(GS_XP_AWARDED_KEY, JSON.stringify([].concat.apply([], [Array.from(s)]))); } catch(e){} }
+  var gsAwarded = gsLoadAwarded();
+  function gsAwardOnce(key, amount, reason){
+    if (gsAwarded.has(key)) return;
+    gsAwarded.add(key);
+    gsSaveAwarded(gsAwarded);
+    gsAddXP(amount, reason);
+  }
+
+  function gsLoadProgress() {
+    try { gsDone = new Set(JSON.parse(localStorage.getItem(GS_KEY)) || []); } catch(e) { gsDone = new Set(); }
+  }
+  function gsSaveProgress() {
+    localStorage.setItem(GS_KEY, JSON.stringify([...gsDone]));
+  }
+  /* Per-lesson completion dates — used by the spaced-review panel.
+     Keyed id → ISO date string. Set on first completion only. */
+  var GS_DATES_KEY = 'di_revised_completed_at';
+  function gsLoadDates() { try { return JSON.parse(localStorage.getItem(GS_DATES_KEY)) || {}; } catch(e) { return {}; } }
+  function gsSaveDates(d) { try { localStorage.setItem(GS_DATES_KEY, JSON.stringify(d)); } catch(e){} }
+  function gsMarkDone(id) {
+    var wasDone = gsDone.has(id);
+    gsDone.add(id);
+    gsSaveProgress();
+    if (!wasDone) {
+      var dates = gsLoadDates();
+      if (!dates[id]) { dates[id] = new Date().toISOString().slice(0,10); gsSaveDates(dates); }
+    }
+    gsRenderTrack();
+    gsUpdateProgress();
+    gsRenderReviewPanel();
+    if (!wasDone) gsAwardOnce('lesson:'+id, 20, 'Lesson completed');
+    var total = GCSE_UNITS.reduce(function(s,u){return s+u.lessons.length;},0);
+    if (gsDone.size === total) gsShowComplete();
+  }
+
+  function gsGetLesson(id) {
+    for (var i=0;i<GCSE_UNITS.length;i++) {
+      for (var j=0;j<GCSE_UNITS[i].lessons.length;j++) {
+        if (GCSE_UNITS[i].lessons[j].id===id) return {lesson:GCSE_UNITS[i].lessons[j],unit:GCSE_UNITS[i]};
+      }
+    }
+    return null;
+  }
+
+  /* ── Spaced-review panel ────────────────────────────────
+     Pulls 3 quiz-type slides from lessons the pupil finished
+     at least 3 days ago, presents them sequentially, and
+     rewards 5 XP per correct answer. Resets once per UTC day
+     so a pupil only sees the panel once per day. */
+  var GS_REVIEW_DAY_KEY = 'di_revised_review_shown_at';
+  var gsReviewQueue = [];
+  var gsReviewIdx = 0;
+  var gsReviewScore = 0;
+
+  function gsTodayStr() { return new Date().toISOString().slice(0,10); }
+
+  function gsFindQuizSlide(lessonId) {
+    var slides = (typeof SLIDES_GCSE !== 'undefined' && SLIDES_GCSE[lessonId]) || [];
+    var quizzes = [];
+    for (var i = 0; i < slides.length; i++) {
+      if (slides[i] && slides[i].type === 'quiz' && Array.isArray(slides[i].options)) quizzes.push(slides[i]);
+    }
+    if (!quizzes.length) return null;
+    return quizzes[Math.floor(Math.random() * quizzes.length)];
+  }
+
+  function gsBuildReviewQueue() {
+    var dates = gsLoadDates();
+    var eligible = [];
+    var now = Date.now();
+    Object.keys(dates).forEach(function(id) {
+      var ageDays = (now - new Date(dates[id]).getTime()) / 86400000;
+      if (ageDays >= 3 && gsDone.has(parseInt(id, 10))) {
+        var q = gsFindQuizSlide(parseInt(id, 10));
+        if (q) eligible.push({ lessonId: parseInt(id, 10), slide: q });
+      }
+    });
+    // Shuffle and take the first 3
+    for (var i = eligible.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = eligible[i]; eligible[i] = eligible[j]; eligible[j] = tmp;
+    }
+    return eligible.slice(0, 3);
+  }
+
+  function gsRenderReviewPanel() {
+    var panel = document.getElementById('gsReviewPanel');
+    if (!panel) return;
+    // Only show once per day
+    var shownAt = null; try { shownAt = localStorage.getItem(GS_REVIEW_DAY_KEY); } catch(e){}
+    if (shownAt === gsTodayStr()) { panel.style.display = 'none'; return; }
+    gsReviewQueue = gsBuildReviewQueue();
+    if (gsReviewQueue.length < 3) { panel.style.display = 'none'; return; }
+    gsReviewIdx = 0;
+    gsReviewScore = 0;
+    panel.style.display = 'block';
+    gsPaintReview();
+  }
+
+  function gsPaintReview() {
+    var panel = document.getElementById('gsReviewPanel');
+    if (!panel) return;
+    if (gsReviewIdx >= gsReviewQueue.length) {
+      // Finished — mark today's review done
+      try { localStorage.setItem(GS_REVIEW_DAY_KEY, gsTodayStr()); } catch(e){}
+      var pct = Math.round((gsReviewScore / gsReviewQueue.length) * 100);
+      panel.innerHTML =
+        '<div class="gs-review-head">' +
+          '<div><div class="gs-review-title">🧠 Review complete</div>' +
+            '<div class="gs-review-sub">You scored ' + gsReviewScore + ' / ' + gsReviewQueue.length + ' (' + pct + '%). Come back tomorrow for a new set.</div>' +
+          '</div>' +
+          '<button class="gs-review-dismiss" onclick="gsHideReview()">Close</button>' +
+        '</div>';
+      return;
+    }
+    var item = gsReviewQueue[gsReviewIdx];
+    var slide = item.slide;
+    var found = gsGetLesson(item.lessonId);
+    var meta = (found && found.lesson) ? found.lesson.title : 'Earlier lesson';
+    var opts = (slide.options || []).map(function(opt, i) {
+      return '<button class="gs-review-option" data-i="' + i + '" onclick="gsReviewAnswer(' + i + ',' + slide.correct + ')">' + gsEscape(opt) + '</button>';
+    }).join('');
+    panel.innerHTML =
+      '<div class="gs-review-head">' +
+        '<div><div class="gs-review-title">🧠 Quick review · ' + (gsReviewIdx + 1) + ' of ' + gsReviewQueue.length + '</div>' +
+          '<div class="gs-review-sub">Interleaved questions from lessons you finished earlier. Retrieval practice — proven to stick.</div>' +
+        '</div>' +
+        '<button class="gs-review-dismiss" onclick="gsHideReview()">Skip today</button>' +
+      '</div>' +
+      '<div class="gs-review-meta">From: ' + gsEscape(meta) + '</div>' +
+      '<div class="gs-review-q">' + gsEscape(slide.question || '') + '</div>' +
+      '<div class="gs-review-options" id="gsReviewOpts">' + opts + '</div>';
+  }
+
+  function gsReviewAnswer(chosen, correct) {
+    var opts = document.querySelectorAll('#gsReviewOpts .gs-review-option');
+    opts.forEach(function(b, i) {
+      b.disabled = true;
+      if (i === correct) b.classList.add('rv-correct');
+      else if (i === chosen) b.classList.add('rv-wrong');
+    });
+    var slide = gsReviewQueue[gsReviewIdx].slide;
+    var wasCorrect = chosen === correct;
+    if (wasCorrect) { gsReviewScore += 1; gsAwardOnce('rev:' + gsTodayStr() + ':' + gsReviewIdx, 5, 'Review answered correctly'); }
+    var fb = document.createElement('div');
+    fb.className = 'gs-review-fb' + (wasCorrect ? '' : ' wrong');
+    fb.innerHTML = (wasCorrect ? '✅ Correct. ' : '❌ Not quite. ') + (slide.explanation || '');
+    document.getElementById('gsReviewOpts').after(fb);
+    setTimeout(function() { gsReviewIdx += 1; gsPaintReview(); }, 1400);
+  }
+
+  function gsHideReview() {
+    try { localStorage.setItem(GS_REVIEW_DAY_KEY, gsTodayStr()); } catch(e){}
+    var panel = document.getElementById('gsReviewPanel');
+    if (panel) panel.style.display = 'none';
+  }
+
+  function gsContinueCourse() {
+    for (var u = 0; u < GCSE_UNITS.length; u++) {
+      for (var l = 0; l < GCSE_UNITS[u].lessons.length; l++) {
+        var lesson = GCSE_UNITS[u].lessons[l];
+        if (!gsDone.has(lesson.id)) { gsOpenLesson(lesson.id); return; }
+      }
+    }
+    exportRevisedWork();
+  }
+
+  function gsRenderTrack() {
+    var container = document.getElementById('gsTrack');
+    var html = '';
+    var overall = 0;
+    GCSE_UNITS.forEach(function(unit, unitIndex) {
+      html += '<div id="gs-unit-' + (unitIndex + 1) + '" class="gs-unit-label">' + unit.title +
+        (unit.ailit ? '<span class="gs-unit-domain" title="OECD/EU AILit Framework domain">' + unit.ailit + '</span>' : '') +
+        '</div>';
+      unit.lessons.forEach(function(lesson, li) {
+        overall++;
+        var done = gsDone.has(lesson.id);
+        var isNext = !done && overall === (function(){
+          var n=0;
+          for(var i=0;i<GCSE_UNITS.length;i++){
+            for(var j=0;j<GCSE_UNITS[i].lessons.length;j++){
+              n++;
+              if(!gsDone.has(GCSE_UNITS[i].lessons[j].id)) return n;
+            }
+          }
+          return -1;
+        })();
+        if (li > 0) {
+          html += '<div class="gs-connector' + (done ? ' gs-done-conn' : '') + '"></div>';
+        }
+        html += '<div class="gs-lesson' + (done?' gs-done':'') + (isNext?' gs-active':'') + '" role="button" tabindex="0" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;){event.preventDefault();gsOpenLesson(' + lesson.id + ')}" onclick="gsOpenLesson(' + lesson.id + ')">' +
+          '<div class="gs-num">' + (done ? '✓' : overall) + '</div>' +
+          '<div class="gs-lesson-info">' +
+            '<div class="gs-lesson-title">' + lesson.icon + ' ' + lesson.title + '</div>' +
+            '<div class="gs-lesson-meta">' + lesson.time + (done?' · Completed':isNext?' · Up next':'') + '</div>' +
+          '</div>' +
+          (done ? '<span class="gs-lesson-check">✅</span>' : '<span class="gs-lesson-arrow">→</span>') +
+        '</div>';
+      });
+    });
+    container.innerHTML = html;
+    if (gsDone.size > 0) { var h=document.getElementById('gsHero'); if(h) h.style.display='none'; }
+  }
+
+  function gsUpdateProgress() {
+    var total = GCSE_UNITS.reduce(function(s,u){return s+u.lessons.length;},0);
+    var done = gsDone.size;
+    var pct = Math.round(done/total*100);
+    var fill = document.getElementById('gsProgressFill');
+    var label = document.getElementById('gsProgressLabel');
+    if (fill) fill.style.width = pct + '%';
+    if (label) label.textContent = done + ' / ' + total + ' lessons';
+  }
+
+  function gsShowComplete() {
+    var el = document.getElementById('gsComplete');
+    if (el) el.classList.add('visible');
+    var completedDate = localStorage.getItem('revised_completed_date') || new Date().toISOString().slice(0,10);
+    var dateEl = document.getElementById('gsCertDate');
+    if (dateEl) dateEl.textContent = new Date(completedDate).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+    var certId = localStorage.getItem('revised_cert_id');
+    if (!certId) {
+      certId = 'DI-REVISED-' + completedDate.replace(/-/g,'') + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
+      localStorage.setItem('revised_cert_id', certId);
+    }
+    var idEl = document.getElementById('gsCertId');
+    if (idEl) idEl.textContent = certId;
+    var savedName = localStorage.getItem('revised_cert_name') || '';
+    var inp = document.getElementById('gsCertNameInput');
+    if (inp && savedName) inp.value = savedName;
+    gsUpdateCertName(savedName);
+    localStorage.setItem('revised_completed_date', completedDate);
+  }
+
+  function gsUpdateCertName(val) {
+    var el = document.getElementById('gsCertRecipient');
+    if (el) el.textContent = val && val.trim() ? val.trim() : '—';
+    if (val && val.trim()) localStorage.setItem('revised_cert_name', val.trim());
+  }
+
+  function gsOpenLesson(id) {
+    var found = gsGetLesson(id);
+    if (!found) return;
+    gsCurrentId = id;
+    gsSlides = SLIDES_GCSE[id] || [];
+    // Interactive-lab slides (js/labs.js) splice in without mutating the deck
+    if (typeof DI_LABS_INJECT === 'function') gsSlides = DI_LABS_INJECT(id, gsSlides);
+    if (!gsSlides.length) return;
+    gsSlideIdx = 0;
+    gsSession = { quizRight: 0, quizTotal: 0, streak: 0 };
+    document.getElementById('gsUnitLabel').textContent = found.unit.title;
+    document.getElementById('gsLessonTitle').textContent = found.lesson.title;
+    gsRenderSlide();
+    document.getElementById('gsModal').classList.add('open');
+    if (window.diSlide) window.diSlide.fullscreen.request(document.getElementById('gsModal'));
+    document.body.style.overflow = 'hidden';
+    var sa = document.getElementById('gsSlideArea');
+    if (sa && !sa._swipeInit) {
+      sa._swipeInit = true;
+      var sx=0,sy=0;
+      sa.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
+      sa.addEventListener('touchend',function(e){
+        var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+        if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){if(dx<0)gsNextSlide();else gsPrevSlide();}
+      },{passive:true});
+    }
+  }
+
+  function gsCloseLesson() {
+    if (window.diSlide && window.diSlide.fullscreen.isActive()) {
+      window.diSlide.fullscreen.exit();
+    }
+    document.getElementById('gsModal').classList.remove('open');
+    document.body.style.overflow = '';
+    gsCurrentId = null;
+  }
+
+  function gsToggleFullscreen() {
+    if (!window.diSlide) return;
+    var modal = document.getElementById('gsModal');
+    if (modal) window.diSlide.fullscreen.toggle(modal);
+  }
+
+  if (window.diSlide && window.diSlide.fullscreen) {
+    window.diSlide.fullscreen.onChange(function () {
+      var btn = document.getElementById('gsFsBtn');
+      if (!btn) return;
+      var active = window.diSlide.fullscreen.isActive();
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      btn.title = active ? 'Exit fullscreen' : 'Fullscreen (for projecting in class)';
+    });
+  }
+
+  function gsRenderSlide() {
+    var nb = document.getElementById('gsNextBtn');
+    if (nb) nb.style.visibility = 'visible';
+    try {
+      gsRenderSlideInner();
+    } catch (err) {
+      console.error('[Removes] gsRenderSlide failed on slide', gsSlideIdx, 'of lesson', gsCurrentId, err);
+      var area = document.getElementById('gsSlideArea');
+      if (area) {
+        area.innerHTML = '<div class="slide-concept" style="padding:20px"><div class="slide-title">Slide failed to render</div><div class="slide-body" style="color:var(--text-dim)">Something went wrong rendering this slide. Open DevTools → Console and share the red error message — it will point at the exact cause.<br><br><code style="font-size:.82rem">' + (err && err.message ? String(err.message).replace(/</g,'&lt;') : 'unknown error') + '</code></div></div>';
+      }
+    }
+  }
+  function gsRenderSlideInner() {
+    var slide = gsSlides[gsSlideIdx];
+    var total = gsSlides.length;
+    var fill = document.getElementById('gsLvFill');
+    if (fill) fill.style.width = ((gsSlideIdx+1)/total*100)+'%';
+    var dotsEl = document.getElementById('gsDots');
+    if (dotsEl) dotsEl.innerHTML = gsSlides.map(function(s,i){
+      return '<button class="lv-dot'+(i===gsSlideIdx?' active':'')+'" onclick="gsJumpSlide('+i+')" title="Slide '+(i+1)+'" aria-label="Go to slide '+(i+1)+'" '+(i===gsSlideIdx?'aria-current="step"':'')+'></button>';
+    }).join('');
+    var countEl = document.getElementById('gsSlideCount');
+    if (countEl) countEl.textContent = (gsSlideIdx+1)+' / '+total;
+    var prev = document.getElementById('gsPrevBtn');
+    var next = document.getElementById('gsNextBtn');
+    if (prev) prev.disabled = gsSlideIdx === 0;
+    var isLast = gsSlideIdx === total-1;
+    var isDone = gsDone.has(gsCurrentId);
+    if (next) {
+      if (isLast) { next.textContent = isDone ? 'Close ✕' : '✓ Mark Complete'; next.className = isDone ? 'btn btn-secondary' : 'btn btn-primary'; }
+      else { next.textContent = 'Next →'; next.className = 'btn btn-primary'; }
+      // Quiz slides gate progression: pupils must choose an answer
+      // before Next unlocks. gsAnswerQuiz() flips this off.
+      if (slide && slide.type === 'quiz') {
+        next.disabled = true;
+        next.title = 'Choose an answer to continue';
+      } else {
+        next.disabled = false;
+        next.removeAttribute('title');
+      }
+    }
+    var area = document.getElementById('gsSlideArea');
+    area.innerHTML = gsRenderSlideHTML(slide);
+    if (window.diSlide && diSlide.resetScroll) diSlide.resetScroll(area); else area.scrollTop = 0;
+    // Interactive lab widgets wire their events after DOM insertion
+    if (slide && slide.type === 'widget' && typeof DI_LABS !== 'undefined' && DI_LABS[slide.widget]) {
+      try { DI_LABS[slide.widget].init('gs-lab-' + slide.widget, slide.labData); }
+      catch (e) { console.error('Lab init failed:', slide.widget, e); }
+    }
+    // Notes textarea — wrap in try so a notes failure doesn't nuke
+    // the whole slide render.
+    try {
+      if (!window.diSlide || !diSlide.notesHTML) throw new Error('diSlide.notesHTML unavailable (stale cache?)');
+      var revision = ({115:'r2',120:'r2',128:'r2'})[gsCurrentId];
+      var noteKey = 'di_note_' + gsCurrentId + '_' + (revision ? revision + '_' : '') + gsSlideIdx;
+      var savedNote = '';
+      try { savedNote = localStorage.getItem(noteKey) || ''; } catch(e) {}
+      var notesWrap = document.createElement('div');
+      notesWrap.className = 'slide-notes';
+      notesWrap.innerHTML = diSlide.notesHTML('gsNotesTa', 'gsNotesSaved');
+      area.appendChild(notesWrap);
+      var ta = document.getElementById('gsNotesTa');
+      if (ta) {
+        ta.value = savedNote;
+        if (diSlide.notesListSupport) diSlide.notesListSupport(ta);
+        var timer=null, ind=document.getElementById('gsNotesSaved');
+        ta.addEventListener('input',function(){
+          clearTimeout(timer);
+          timer=setTimeout(function(){
+            try { localStorage.setItem(noteKey, ta.value); } catch(e) {}
+            if(ind){ind.classList.add('visible');setTimeout(function(){ind.classList.remove('visible');},1500);}
+          },500);
+        });
+      }
+    } catch (notesErr) {
+      console.warn('[Removes] notes init failed:', notesErr);
+    }
+  }
+
+  /* Per-lesson session stats for the results screen */
+  var gsSession = { quizRight: 0, quizTotal: 0, streak: 0 };
+
+  function gsNextLessonId(id) {
+    var flat = [];
+    GCSE_UNITS.forEach(function(u){ u.lessons.forEach(function(l){ flat.push(l.id); }); });
+    var i = flat.indexOf(id);
+    return (i > -1 && i < flat.length - 1) ? flat[i + 1] : null;
+  }
+
+  function gsShowResults(wasDone) {
+    var area = document.getElementById('gsSlideArea');
+    var found = gsGetLesson(gsCurrentId);
+    var total = GCSE_UNITS.reduce(function(s,u){return s+u.lessons.length;},0);
+    var stats = [{ num: gsSlides.length, label: 'slides' }];
+    if (gsSession.quizTotal > 0) stats.push({ num: gsSession.quizRight + '/' + gsSession.quizTotal, label: 'quiz correct' });
+    var xp = (wasDone ? 0 : 20) + gsSession.quizRight * 10;
+    if (xp > 0) stats.push({ num: '+' + xp, label: 'XP earned' });
+    stats.push({ num: gsDone.size + '/' + total, label: 'lessons done' });
+    var nextId = gsNextLessonId(gsCurrentId);
+    area.innerHTML = diSlide.resultsHTML({
+      emoji: wasDone ? '✅' : '🎉',
+      title: wasDone ? 'Lesson revisited!' : 'Lesson complete!',
+      sub: found ? found.lesson.title : '',
+      stats: stats,
+      primaryLabel: nextId ? 'Next lesson &#8594;' : 'Back to course',
+      secondaryLabel: nextId ? 'Back to course' : null
+    });
+    if (window.diSlide && diSlide.resetScroll) diSlide.resetScroll(area); else area.scrollTop = 0;
+    var primary = document.getElementById('diResultsPrimary');
+    if (primary) primary.onclick = nextId
+      ? function() { gsCloseLesson(); setTimeout(function() { gsOpenLesson(nextId); }, 150); }
+      : function() { gsCloseLesson(); };
+    var secondary = document.getElementById('diResultsSecondary');
+    if (secondary) secondary.onclick = function() { gsCloseLesson(); };
+    var nextBtn = document.getElementById('gsNextBtn');
+    if (nextBtn) nextBtn.style.visibility = 'hidden';
+    var prevBtn = document.getElementById('gsPrevBtn');
+    if (prevBtn) prevBtn.onclick = function() {
+      prevBtn.onclick = function() { gsPrevSlide(); };
+      if (nextBtn) nextBtn.style.visibility = 'visible';
+      gsRenderSlide();
+    };
+    var card = area.querySelector('.di-results');
+    if (card && window.diSlide && diSlide.celebrate) {
+      setTimeout(function() { diSlide.celebrate(card, 0); }, 250);
+    }
+  }
+
+  function gsNextSlide() {
+    // Block forward progression on an unanswered quiz.
+    var cur = gsSlides[gsSlideIdx];
+    if (cur && cur.type === 'quiz') {
+      var answered = document.querySelector('#gsSlideArea .quiz-option[disabled]');
+      if (!answered) return;
+    }
+    // Final-slide path wraps the mark-complete flow in a try/catch so
+    // any runtime error in gsMarkDone (track re-render, XP toast,
+    // spaced-review rebuild…) surfaces in console + a toast rather
+    // than silently leaving the modal open with no way forward.
+    if (gsSlideIdx === gsSlides.length-1) {
+      try {
+        var wasDone = gsDone.has(gsCurrentId);
+        if (!wasDone) gsMarkDone(gsCurrentId);
+        gsShowResults(wasDone);
+      } catch (err) {
+        console.error('[Removes] Failed to mark lesson complete:', err);
+        gsShowXPToast('⚠ Could not save completion — please reload and try again.');
+        // Still close the modal so the user isn't stuck.
+        try { gsCloseLesson(); } catch (e) {}
+      }
+      return;
+    }
+    gsSlideIdx++;
+    gsRenderSlide();
+  }
+  function gsPrevSlide() { if(gsSlideIdx>0){gsSlideIdx--;gsRenderSlide();} }
+  function gsJumpSlide(i) { gsSlideIdx=i; gsRenderSlide(); }
+
+  /* These four used to be per-engine copies — now delegate to the
+     shared helpers in js/slide-utils.js so Removes, Fluency (and
+     eventually AEP) stop drifting on the same logic. */
+  function gsRevealHTML(slide) {
+    var rid = 'gsRev_' + gsCurrentId + '_' + gsSlideIdx;
+    return window.diSlide.revealHTML(slide, rid, 'gsToggleReveal');
+  }
+  function gsSourcesHTML(slide) { return window.diSlide.sourcesHTML(slide); }
+  function gsToggleReveal(id)   { return window.diSlide.toggleReveal(id); }
+  function gsEscape(s)          { return window.diSlide.escape(s); }
+
+  function gsWidgetHTML(slide){
+    var w = slide.widget;
+    // Interactive labs (js/labs.js) take precedence; init runs post-render
+    if (typeof DI_LABS !== 'undefined' && DI_LABS[w]) {
+      return DI_LABS[w].html('gs-lab-' + w, slide.labData);
+    }
+    if (w==='ptfc') {
+      return '<div class="widget">'+
+        '<div class="widget-row"><label class="widget-label ptfc-p"><span>P</span>Persona</label><textarea class="widget-input" id="gsPtfc_p" placeholder="You are an experienced GCSE Biology tutor who explains things step-by-step." oninput="gsPtfcAssemble()"></textarea></div>'+
+        '<div class="widget-row"><label class="widget-label ptfc-t"><span>T</span>Task</label><textarea class="widget-input" id="gsPtfc_t" placeholder="Explain the light-dependent reactions of photosynthesis." oninput="gsPtfcAssemble()"></textarea></div>'+
+        '<div class="widget-row"><label class="widget-label ptfc-f"><span>F</span>Format</label><textarea class="widget-input" id="gsPtfc_f" placeholder="2-sentence overview, then numbered steps, then 3 self-test questions with answers." oninput="gsPtfcAssemble()"></textarea></div>'+
+        '<div class="widget-row"><label class="widget-label ptfc-c"><span>C</span>Context</label><textarea class="widget-input" id="gsPtfc_c" placeholder="Year 11 AQA student. I confuse Photosystem I and II. Need understanding, not memorisation." oninput="gsPtfcAssemble()"></textarea></div>'+
+        '<div class="widget-output" id="gsPtfcOut"><span style="color:var(--text-dim);font-style:italic">Fill in the fields above to see your assembled prompt…</span></div>'+
+        '<div class="widget-actions"><button class="widget-btn widget-btn-primary" id="gsPtfcCopyBtn" onclick="gsPtfcCopy()">Copy to clipboard</button><button class="widget-btn" onclick="gsPtfcExample()">Load example</button><button class="widget-btn" onclick="gsPtfcClear()">Clear</button></div>'+
+      '</div>';
+    }
+    if (w==='hallucination') {
+      var snippets = (slide.snippets||[]).map(function(s,i){
+        return '<button class="hp-snippet" id="gsHp_'+i+'" data-correct="'+(s.correct?'1':'0')+'" data-why="'+gsEscape(s.why||'')+'" onclick="gsHpPick(this,'+i+')">'+gsEscape(s.text)+'</button>';
+      }).join('');
+      return '<div class="widget"><p style="margin:0 0 8px;font-size:.86rem;color:var(--text-muted)">Click the response you think contains a hallucination.</p><div class="hp-snippets">'+snippets+'</div><div id="gsHpFb" class="hp-feedback" style="display:none"></div></div>';
+    }
+    if (w==='factcheck') {
+      var steps = (slide.steps||[]).map(function(st,i){
+        return '<div class="fc-step"><div class="fc-step-q"><span class="fc-step-num">'+(i+1)+'</span>'+gsEscape(st.question)+'</div><textarea class="fc-step-input" id="gsFc_'+i+'" rows="2" placeholder="Your answer…"></textarea>'+(st.hint?'<div class="fc-hint">'+gsEscape(st.hint)+'</div>':'')+'</div>';
+      }).join('');
+      return '<div class="widget">'+(slide.claim?'<div class="slide-callout" style="margin-bottom:12px"><strong>Claim to check:</strong> '+gsEscape(slide.claim)+'</div>':'')+steps+'<div class="widget-actions"><button class="widget-btn widget-btn-primary" onclick="gsFcReveal()">Reveal expert verdict</button></div><div id="gsFcVerdict" class="fc-verdict"><strong>Expert verdict:</strong> '+(slide.verdict||'')+'</div></div>';
+    }
+    if (w==='feed-audit') {
+      var items = (slide.items||[]).map(function(it,i){
+        return '<button class="fa-item" id="gsFa_'+i+'" onclick="gsFaToggle(this)"><div class="fa-item-title"><span>'+gsEscape(it.label)+'</span><span class="fa-item-toggle">✓</span></div>'+(it.desc?'<div class="fa-item-desc">'+gsEscape(it.desc)+'</div>':'')+'</button>';
+      }).join('');
+      return '<div class="widget"><div class="fa-grid">'+items+'</div><div class="widget-actions"><button class="widget-btn widget-btn-primary" onclick="gsFaSummarise()">See what your feed is optimising for</button></div><div id="gsFaOut" class="fa-summary"></div></div>';
+    }
+    if (w==='classify') {
+      var catsArr = slide.categories||[];
+      var cats = catsArr.map(function(c){ return gsEscape(c); });
+      var itemsHtml = (slide.items||[]).map(function(it,i){
+        var opts = cats.map(function(c,ci){
+          return '<button class="cl-opt" data-ci="'+ci+'" onclick="gsClPick(this,'+i+','+ci+','+(it.correct||0)+')">'+c+'</button>';
+        }).join('');
+        return '<div class="cl-item" data-i="'+i+'">'+
+          '<div class="cl-item-text">'+gsEscape(it.text)+'</div>'+
+          '<div class="cl-options">'+opts+'</div>'+
+          '<div class="cl-explain" id="gsClEx_'+i+'"><strong>'+gsEscape(catsArr[it.correct||0])+'.</strong> '+gsEscape(it.why||'')+'</div>'+
+        '</div>';
+      }).join('');
+      var total = (slide.items||[]).length;
+      // slide.intro is author-authored HTML — don't escape it, and
+      // skip the inner copy anyway since the outer widget wrapper
+      // already renders it in .slide-body above the items.
+      return '<div class="widget" data-total="'+total+'" data-got="0">'+
+        itemsHtml+
+        '<div id="gsClScore" class="cl-score"></div>'+
+      '</div>';
+    }
+    if (w==='prompt-clinic') {
+      // intro is already shown by the outer widget wrapper (as HTML);
+      // don't re-render / double-escape it here.
+      return '<div class="widget">'+
+        '<textarea class="widget-input" id="gsPcIn" rows="6" placeholder="Paste a prompt here — the clinic checks it against PTFC (Persona / Task / Format / Context) and gives three specific critiques."></textarea>'+
+        '<div class="widget-actions"><button class="widget-btn widget-btn-primary" onclick="gsPcRun()">Get critique</button><button class="widget-btn" onclick="gsPcLoadWeak()">Load weak prompt</button><button class="widget-btn" onclick="gsPcClear()">Clear</button></div>'+
+        '<div id="gsPcOut" class="widget-output" style="display:none;margin-top:14px"></div>'+
+      '</div>';
+    }
+    if (w==='misuse-detector') {
+      // intro is already shown by the outer widget wrapper (as HTML).
+      return '<div class="widget">'+
+        '<textarea class="widget-input" id="gsMisuseIn" rows="8" placeholder="Paste a paragraph of text here…" style="width:100%;min-height:160px;resize:vertical"></textarea>'+
+        '<div class="widget-actions"><button class="widget-btn widget-btn-primary" onclick="gsMisuseAnalyze()">Analyse</button><button class="widget-btn" onclick="gsMisuseSample()">Load AI-like sample</button><button class="widget-btn" onclick="gsMisuseClear()">Clear</button></div>'+
+        '<div id="gsMisuseOut" class="widget-output" style="display:none;margin-top:14px"></div>'+
+      '</div>';
+    }
+    return '';
+  }
+
+  /* ── Misuse-detector analyser ─────────────────────────
+     Heuristic only — mirrors the signals the course itself
+     teaches pupils to look for. Explicitly not a fraud tool;
+     the output frames the signals as probabilities, not verdicts. */
+  var GS_AI_WORDS = ['delve','delving','intricate','tapestry','navigate','navigating','landscape','revolutionize','revolutionise','facet','multifaceted','nuanced','crucial','pivotal','underscore','underscores','testament','symphony','realm','in summary','in conclusion','it is important to note','leverage','furthermore','moreover'];
+  function gsMisuseAnalyze() {
+    var text = (document.getElementById('gsMisuseIn') || {}).value || '';
+    var out = document.getElementById('gsMisuseOut');
+    if (!out) return;
+    if (!text.trim() || text.length < 80) {
+      out.style.display = 'block';
+      out.innerHTML = '<strong>Too short to analyse.</strong> Paste at least 80 characters — ideally a full paragraph or two.';
+      return;
+    }
+    var emDashes = (text.match(/—/g) || []).length;
+    var sentences = text.split(/[.!?]+\s+/).filter(function(s){return s.trim().length > 8;});
+    var wordCounts = sentences.map(function(s){ return s.trim().split(/\s+/).length; });
+    var mean = wordCounts.reduce(function(a,b){return a+b;},0) / (wordCounts.length || 1);
+    var variance = wordCounts.reduce(function(a,b){return a+(b-mean)*(b-mean);},0) / (wordCounts.length || 1);
+    var stdev = Math.sqrt(variance);
+    var cv = mean > 0 ? (stdev / mean) : 0;
+    var lower = text.toLowerCase();
+    var overusedHits = GS_AI_WORDS.filter(function(w){ return lower.indexOf(w) !== -1; });
+    var score = 0;
+    var flags = [];
+    if (emDashes >= 3) { score += 2; flags.push('<strong>Em-dashes:</strong> ' + emDashes + ' in this passage. AI writers lean on — heavily; a human usually uses one or two per page.'); }
+    else if (emDashes === 0 && text.length > 400) { flags.push('<strong>Em-dashes:</strong> none — that\'s fine, but human writing often has at least one in a long passage.'); }
+    if (sentences.length >= 4 && cv < 0.35) { score += 2; flags.push('<strong>Sentence length:</strong> very uniform (coefficient of variation ≈ ' + cv.toFixed(2) + '). AI often produces sentences of roughly the same length; human writing varies more.'); }
+    else if (sentences.length >= 4) { flags.push('<strong>Sentence length:</strong> varied (CV ≈ ' + cv.toFixed(2) + ') — that\'s a <em>human</em> signal.'); }
+    if (overusedHits.length >= 3) { score += 2; flags.push('<strong>Overused words:</strong> ' + overusedHits.slice(0, 6).map(function(w){return '"'+w+'"';}).join(', ') + (overusedHits.length > 6 ? ' and ' + (overusedHits.length - 6) + ' more' : '') + '. These cluster strongly in AI output.'); }
+    else if (overusedHits.length > 0) { flags.push('<strong>Overused words:</strong> ' + overusedHits.map(function(w){return '"'+w+'"';}).join(', ') + ' — one or two of these is fine in human writing.'); }
+    var verdict, verdictColour;
+    if (score >= 5) { verdict = 'Strong AI signals.'; verdictColour = '#ef4444'; }
+    else if (score >= 3) { verdict = 'Some AI signals.'; verdictColour = '#f59e0b'; }
+    else { verdict = 'Low AI signals.'; verdictColour = 'var(--track-primary)'; }
+    out.style.display = 'block';
+    out.innerHTML =
+      '<div style="font-weight:800;color:' + verdictColour + ';font-size:1.05rem;margin-bottom:8px">' + verdict + ' (signal score ' + score + '/6)</div>' +
+      (flags.length ? '<ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px">' + flags.map(function(f){return '<li style="font-size:.85rem;line-height:1.5">' + f + '</li>';}).join('') + '</ul>' : '<div style="font-size:.85rem;color:var(--text-dim)">No individual flags triggered.</div>') +
+      '<div style="margin-top:12px;padding:10px 12px;background:rgba(var(--track-primary-rgb),.06);border-left:3px solid var(--track-primary);border-radius:0 6px 6px 0;font-size:.8rem;line-height:1.5"><strong>What this is, and isn\'t.</strong> This is a heuristic check on the specific signals this course teaches — not a verdict. Every signal here can appear in perfectly good human writing. Use it to build your <em>ear</em> for AI-written prose, not to accuse a classmate.</div>';
+  }
+  function gsMisuseSample() {
+    var el = document.getElementById('gsMisuseIn');
+    if (el) el.value = 'In today\'s rapidly changing landscape, it is crucial to delve into the intricate tapestry of artificial intelligence — a truly multifaceted and nuanced phenomenon. Furthermore, we must navigate the complex ethical considerations — which, in turn, underscore the pivotal role of responsible deployment. Moreover, this testament to human ingenuity revolutionises our understanding — and serves as a symphony of innovation that reshapes every realm of modern life. In conclusion, we should leverage these tools thoughtfully.';
+    gsMisuseAnalyze();
+  }
+  function gsMisuseClear() {
+    var el = document.getElementById('gsMisuseIn');
+    if (el) el.value = '';
+    var out = document.getElementById('gsMisuseOut');
+    if (out) { out.style.display = 'none'; out.innerHTML = ''; }
+  }
+
+  /* ── Prompt clinic — heuristic PTFC scorer ────────────
+     Grades a pasted prompt 0/1/2 on each of Persona, Task,
+     Format, Context and returns three specific critiques
+     focused on the weakest slots, plus an improved example. */
+  function gsPcScore(prompt) {
+    var text = (prompt || '').trim();
+    var lower = text.toLowerCase();
+    var score = { persona: 0, task: 0, format: 0, context: 0 };
+
+    // Persona — role assignment
+    if (/\b(act as|you are|pretend to be|imagine you are|take the role of|behave as)\b/i.test(text)) score.persona = 1;
+    if (/\b(act as|you are).{1,50}(teacher|tutor|examiner|expert|coach|editor|historian|scientist|developer|researcher|student|journalist|author|engineer|lawyer|doctor|designer|specialist|marker)\b/i.test(text)) score.persona = 2;
+
+    // Task — imperative verb
+    var taskVerbs = /\b(explain|summarise|summarize|list|write|outline|describe|compare|contrast|analyse|analyze|plan|draft|create|generate|design|critique|evaluate|rewrite|translate|solve|calculate|teach|help me|show me|give me)\b/i;
+    if (taskVerbs.test(text)) score.task = 1;
+    // Specific task = imperative + a noun object
+    if (taskVerbs.test(text) && text.length > 30) score.task = 2;
+
+    // Format — explicit output format
+    var formatSignals = /\b(bullet(s)?|numbered list|steps|table|paragraphs?|words?|sentences?|heading(s)?|section(s)?|markdown|json|essay|outline|in no more than|in at most|in \d+ (words?|sentences?|paragraphs?|bullets?)|as a list|in a table|q\/a|mark scheme|mark-scheme|rubric)\b/i;
+    if (formatSignals.test(lower)) score.format = 1;
+    if (/\bin \d+ (words?|sentences?|paragraphs?|bullets?|steps?|headings?)/i.test(lower) || /\btable with \d+/.test(lower)) score.format = 2;
+
+    // Context — subject / level / topic / constraints
+    var contextSignals = /\b(year 7|year 8|year 9|year 10|year 11|year 12|year 13|removes|ks3|ks4|ks5|gcse|a ?level|a-?level|aqa|edexcel|ocr|btec|for (a|an) (\d+-year|year \d|ks)|specification|spec|exam board|my student|my pupil|my class|the topic is|the context is|with an audience of|audience:|audience is|for a|in the context of)\b/i;
+    if (contextSignals.test(lower)) score.context = 1;
+    if (/\b(year \d+\s+(aqa|edexcel|ocr|wjec|btec|qcf|gcse|a-?level|gcse|alevel))|(year \d+.*(aqa|edexcel|ocr|wjec)).{0,60}\b/i.test(lower)) score.context = 2;
+    if (score.context === 1 && /\b(topic|revision|homework|essay|coursework|bdsm|history|biology|chemistry|physics|maths|english|geography|ict|computing|french|spanish|latin|mfl|psychology|business)\b/i.test(lower)) score.context = 2;
+
+    return score;
+  }
+
+  function gsPcRun() {
+    var text = ((document.getElementById('gsPcIn') || {}).value || '').trim();
+    var out = document.getElementById('gsPcOut');
+    if (!out) return;
+    if (!text || text.length < 10) {
+      out.style.display = 'block';
+      out.innerHTML = '<strong>Paste a prompt first.</strong> The clinic grades at least a short sentence — a single word won\'t tell us anything useful.';
+      return;
+    }
+    var s = gsPcScore(text);
+    var total = s.persona + s.task + s.format + s.context;
+    var pct = Math.round(total / 8 * 100);
+
+    var weaknesses = [
+      { key: 'persona', label: 'Persona', score: s.persona, tip: s.persona === 0 ? 'No role is assigned. Try opening with <em>"Act as an experienced AQA GCSE [subject] examiner…"</em> — this alone typically improves output quality because the model shifts into the right vocabulary.' : 'Role is named but vague. Add a specific variant: "Act as a friendly GCSE Biology tutor who explains step by step" rather than "be helpful".' },
+      { key: 'task',    label: 'Task',    score: s.task,    tip: s.task === 0 ? 'There is no clear instruction verb. Start with an imperative: <em>"Summarise…"</em>, <em>"Explain…"</em>, <em>"Write…"</em>. Without this, the model guesses what you want.' : 'Task is present but could be more specific — say <em>what</em> to summarise and <em>how deeply</em>.' },
+      { key: 'format',  label: 'Format',  score: s.format,  tip: s.format === 0 ? 'No output format is specified. Add one: <em>"as a 5-bullet list"</em>, <em>"in 3 numbered steps with one sentence each"</em>, <em>"as a 50-word paragraph"</em>. This alone usually cuts waffle in half.' : 'Format is mentioned. Be a bit more concrete — actual numbers ("in 5 bullets", "in 120 words") beat vague cues ("a list").' },
+      { key: 'context', label: 'Context', score: s.context, tip: s.context === 0 ? 'No context is given. Tell the model who you are and what exam: <em>"I\'m a Year 10 AQA GCSE History student revising the Norman Conquest."</em> This unlocks the right level of vocabulary and depth.' : 'Context is there but sparse. Add the exam board, specification reference or the specific topic — not just "GCSE".' }
+    ];
+    var weakSorted = weaknesses.slice().sort(function(a, b) { return a.score - b.score; });
+    var topThree = weakSorted.slice(0, 3);
+
+    var improved = gsPcImprove(text, s);
+
+    out.style.display = 'block';
+    out.innerHTML =
+      '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px">' +
+        ['persona','task','format','context'].map(function(k) {
+          var v = s[k];
+          var colour = v === 2 ? 'var(--track-primary)' : v === 1 ? '#f59e0b' : '#ef4444';
+          var label = v === 2 ? 'Strong' : v === 1 ? 'Vague' : 'Missing';
+          return '<div style="text-align:center;padding:10px 4px;background:rgba(var(--track-primary-rgb),.04);border-radius:8px;border-top:3px solid ' + colour + '">' +
+            '<div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim)">' + k.charAt(0).toUpperCase() + k.slice(1) + '</div>' +
+            '<div style="font-weight:800;color:' + colour + ';margin-top:4px">' + label + '</div>' +
+          '</div>';
+        }).join('') +
+      '</div>' +
+      '<div style="font-weight:700;margin-bottom:8px">Overall: ' + total + ' / 8 (' + pct + '%)</div>' +
+      '<div style="font-size:.85rem;font-weight:700;color:var(--text);margin:14px 0 6px">Three things to change</div>' +
+      '<ol style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px">' +
+        topThree.map(function(w) { return '<li style="font-size:.87rem;line-height:1.55"><strong>' + w.label + '.</strong> ' + w.tip + '</li>'; }).join('') +
+      '</ol>' +
+      '<div style="font-size:.85rem;font-weight:700;color:var(--text);margin:16px 0 6px">A stronger version might read:</div>' +
+      '<div style="padding:12px 14px;background:rgba(var(--track-primary-rgb),.06);border-left:3px solid var(--track-primary);border-radius:0 6px 6px 0;font-size:.85rem;line-height:1.6;white-space:pre-wrap">' + gsEscape(improved) + '</div>' +
+      '<div style="margin-top:12px;font-size:.75rem;color:var(--text-dim);line-height:1.5">This clinic runs on-device — no prompt leaves your browser. It\'s a heuristic check against the PTFC framework, not a rewrite by an AI.</div>';
+  }
+
+  function gsPcImprove(text, s) {
+    // Build a scaffolded version by filling in missing slots with
+    // placeholders. We don't invent content — we show the skeleton.
+    var lines = [];
+    if (s.persona < 2) lines.push('[Persona] Act as an experienced AQA GCSE [your subject] examiner who explains things step-by-step.');
+    if (s.task < 2)    lines.push('[Task] ' + (s.task === 0 ? 'Explain / Summarise / Write / Plan …' : text.replace(/\n/g, ' ').slice(0, 120)));
+    if (s.format < 2)  lines.push('[Format] Give me a 2-sentence overview, then 4 numbered steps (1 sentence each), then 3 self-test questions with answers.');
+    if (s.context < 2) lines.push('[Context] I\'m a Year 9 Removes pupil revising [topic]. I already understand [what you know]; the specific thing I keep getting wrong is [what confuses you].');
+    // If all were strong, praise:
+    if (!lines.length) return 'Your prompt already covers all four PTFC parts strongly. Well done — this is publication-quality prompting. The only thing left is to try variations and see which produces the best response.';
+    lines.push('[Original prompt]: ' + text);
+    return lines.join('\n');
+  }
+
+  function gsPcLoadWeak() {
+    var el = document.getElementById('gsPcIn');
+    if (el) el.value = 'explain photosynthesis';
+    gsPcRun();
+  }
+  function gsPcClear() {
+    var el = document.getElementById('gsPcIn');
+    if (el) el.value = '';
+    var out = document.getElementById('gsPcOut');
+    if (out) { out.style.display = 'none'; out.innerHTML = ''; }
+  }
+
+  function gsPtfcAssemble(){
+    var p=(document.getElementById('gsPtfc_p')||{}).value||'';
+    var t=(document.getElementById('gsPtfc_t')||{}).value||'';
+    var f=(document.getElementById('gsPtfc_f')||{}).value||'';
+    var c=(document.getElementById('gsPtfc_c')||{}).value||'';
+    var out=document.getElementById('gsPtfcOut'); if(!out)return;
+    if(!p.trim()&&!t.trim()&&!f.trim()&&!c.trim()){ out.innerHTML='<span style="color:var(--text-dim);font-style:italic">Fill in the fields above to see your assembled prompt…</span>'; return; }
+    var parts=[];
+    if(p.trim())parts.push('<strong style="color:#009fe3">[Persona]</strong> '+gsEscape(p.trim()).replace(/\n/g,'<br>'));
+    if(t.trim())parts.push('<strong style="color:#9b1844">[Task]</strong> '+gsEscape(t.trim()).replace(/\n/g,'<br>'));
+    if(f.trim())parts.push('<strong style="color:#22c55e">[Format]</strong> '+gsEscape(f.trim()).replace(/\n/g,'<br>'));
+    if(c.trim())parts.push('<strong style="color:#f59e0b">[Context]</strong> '+gsEscape(c.trim()).replace(/\n/g,'<br>'));
+    out.innerHTML=parts.join('<br><br>');
+  }
+  function gsPtfcCopy(){
+    var ids=['gsPtfc_p','gsPtfc_t','gsPtfc_f','gsPtfc_c'];
+    var lbls=['[Persona] ','[Task] ','[Format] ','[Context] '];
+    var text=ids.map(function(id,i){var v=((document.getElementById(id)||{}).value||'').trim();return v?(lbls[i]+v):'';}).filter(Boolean).join('\n\n');
+    if(!text)return;
+    var btn=document.getElementById('gsPtfcCopyBtn');
+    var done=function(){if(btn){btn.textContent='✓ Copied!';setTimeout(function(){btn.textContent='Copy to clipboard';},2000);}};
+    if(navigator.clipboard){navigator.clipboard.writeText(text).then(done).catch(done);}
+    else{var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}
+  }
+  function gsPtfcExample(){
+    var vals={gsPtfc_p:'You are a patient GCSE Biology tutor who explains things step-by-step.',
+      gsPtfc_t:'Explain the light-dependent reactions of photosynthesis — specifically what happens to electrons in the thylakoid membrane.',
+      gsPtfc_f:'Brief 2-sentence overview, then numbered steps (max 2 sentences each), then 3 self-test questions with answers.',
+      gsPtfc_c:'Year 11 AQA student. I always confuse Photosystem I and II. I need to understand, not just memorise.'};
+    Object.keys(vals).forEach(function(k){var el=document.getElementById(k);if(el)el.value=vals[k];});
+    gsPtfcAssemble();
+  }
+  function gsPtfcClear(){
+    ['gsPtfc_p','gsPtfc_t','gsPtfc_f','gsPtfc_c'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+    gsPtfcAssemble();
+  }
+  function gsHpPick(btn,i){
+    var parent=btn.parentElement;
+    var chosenCorrect=btn.getAttribute('data-correct')==='1';
+    Array.prototype.forEach.call(parent.querySelectorAll('.hp-snippet'),function(b){
+      b.disabled=true;
+      if(b.getAttribute('data-correct')==='1')b.classList.add('hp-correct');
+      else if(b===btn)b.classList.add('hp-wrong');
+    });
+    var fb=document.getElementById('gsHpFb'); if(!fb)return;
+    var why=btn.getAttribute('data-why')||'';
+    fb.style.display='block';
+    fb.innerHTML=(chosenCorrect?'✅ <strong>Correct.</strong> ':'❌ <strong>Not this one.</strong> The highlighted snippet is the hallucination. ')+why;
+  }
+  function gsFcReveal(){
+    var v=document.getElementById('gsFcVerdict'); if(v)v.classList.add('fc-shown');
+  }
+  function gsFaToggle(btn){
+    btn.classList.toggle('fa-on');
+  }
+  function gsClPick(btn, qi, ci, correct){
+    var item=btn.closest('.cl-item'); if(!item||item.dataset.answered==='1')return;
+    item.dataset.answered='1';
+    Array.prototype.forEach.call(item.querySelectorAll('.cl-opt'),function(b){
+      b.disabled=true;
+      var j=parseInt(b.getAttribute('data-ci'),10);
+      if(j===correct)b.classList.add('cl-correct');
+      else if(j===ci)b.classList.add('cl-wrong');
+    });
+    var ex=document.getElementById('gsClEx_'+qi); if(ex)ex.classList.add('cl-shown');
+    var widget=btn.closest('.widget'); if(!widget)return;
+    var total=parseInt(widget.dataset.total,10)||0;
+    var got=parseInt(widget.dataset.got,10)||0;
+    if(ci===correct){ got+=1; gsAwardOnce('cl:'+gsCurrentId+':'+gsSlideIdx+':'+qi, 5, 'Classified correctly'); }
+    widget.dataset.got=got;
+    var answered=widget.querySelectorAll('.cl-item[data-answered="1"]').length;
+    if(answered===total){
+      var score=document.getElementById('gsClScore');
+      if(score){
+        var pct=Math.round((got/total)*100);
+        var msg=pct>=80?'Strong read on the categories — you\'ve internalised the thresholds.':pct>=60?'A solid grasp. Re-check the ones you missed — the boundaries between tiers are often the most interesting cases.':'The boundaries are genuinely tricky. Scroll back up, read each explanation, and try the next classify slide with the rules fresh in your head.';
+        score.textContent='Score: '+got+' / '+total+' ('+pct+'%) — '+msg;
+        score.classList.add('cl-final');
+      }
+    }
+  }
+  function gsExitSave(key){
+    var el=document.getElementById('gsExitInput'); if(!el)return;
+    var v=(el.value||'').trim();
+    try{ if(v)localStorage.setItem(key,v); else localStorage.removeItem(key); }catch(e){}
+    var s=document.getElementById('gsExitStatus');
+    if(s){ s.textContent=v?'✓ Saved — you can edit and save again':'Cleared'; s.classList.toggle('et-saved',!!v); }
+  }
+  function gsAssessSave(key){
+    var el=document.getElementById('gsAssessInput'); if(!el)return;
+    var v=(el.value||'').trim();
+    try{ if(v)localStorage.setItem(key,v); else localStorage.removeItem(key); }catch(e){}
+    var s=document.getElementById('gsAssessStatus');
+    if(s){ s.textContent=v?'✓ Saved — appears in your Portfolio':'Cleared'; s.classList.toggle('et-saved',!!v); }
+  }
+  function gsAssessLevel(key, level, btn){
+    try{ localStorage.setItem(key, level); }catch(e){}
+    var rubric = btn.closest('.as-rubric');
+    if(rubric){ Array.prototype.forEach.call(rubric.querySelectorAll('.as-rubric-row'), function(r){ r.classList.toggle('as-selected', r===btn); }); }
+    var s=document.getElementById('gsAssessLvlStatus');
+    if(s){ s.textContent='✓ You rated this: '+level; s.classList.add('as-marked'); }
+    gsAwardOnce('assess-mark:'+key, 10, 'Self-assessed a task');
+  }
+  function gsUtAnswer(btn, qi, oi, correct){
+    var q=btn.closest('.ut-q'); if(!q||q.dataset.answered==='1')return;
+    q.dataset.answered='1';
+    Array.prototype.forEach.call(q.querySelectorAll('.ut-option'),function(b){
+      b.disabled=true;
+      var j=parseInt(b.getAttribute('data-oi'),10);
+      if(j===correct)b.classList.add('ut-correct');
+      else if(j===oi)b.classList.add('ut-wrong');
+    });
+    var ex=document.getElementById('gsUtEx_'+qi); if(ex)ex.classList.add('ut-shown');
+    var test=btn.closest('.unit-test'); if(!test)return;
+    var total=parseInt(test.dataset.total,10)||0;
+    var got=parseInt(test.dataset.got,10)||0;
+    if(oi===correct){ got+=1; gsAwardOnce('ut:'+gsCurrentId+':'+gsSlideIdx+':'+qi, 10, 'Unit test answered correctly'); }
+    test.dataset.got=got;
+    var answered=test.querySelectorAll('.ut-q[data-answered="1"]').length;
+    if(answered===total){
+      var score=document.getElementById('gsUtScore');
+      if(score){
+        var pct=Math.round((got/total)*100);
+        var msg=pct>=80?'Strong recall — you\'ve locked in the core ideas of this unit.':pct>=60?'Solid grasp — a second pass on the slides you hesitated on will push this higher.':'Worth going back through this unit\'s summary slides before moving on — the concepts build on each other.';
+        score.textContent='Score: '+got+' / '+total+' ('+pct+'%) — '+msg;
+        score.classList.add('ut-final');
+      }
+    }
+  }
+  function gsFaSummarise(){
+    var on=document.querySelectorAll('.fa-item.fa-on').length;
+    var total=document.querySelectorAll('.fa-item').length;
+    var out=document.getElementById('gsFaOut'); if(!out)return;
+    var msg;
+    if(on===0) msg='You didn\'t tick anything — but the algorithm is still optimising. If you\'re passive, it optimises for whatever keeps <em>most</em> users watching, which skews to outrage and insecurity by default. The remedy is to give it deliberate signals.';
+    else if(on<=2) msg='You ticked '+on+'/'+total+'. A lean signal set — the algorithm still has room to fill the gaps with whatever maximises watch time. Consider actively un-following or muting accounts that make you feel worse.';
+    else if(on<=4) msg='You ticked '+on+'/'+total+'. That\'s a fairly active curation habit — you\'re nudging the feed rather than drifting with it. Keep doing it: every "not interested" tap is training data.';
+    else msg='You ticked '+on+'/'+total+'. You\'re curating deliberately — the algorithm is responding to a clear signal of what you want. This is the behaviour that most blunts the feed\'s ability to hijack your mood.';
+    out.innerHTML='<strong>Your audit:</strong> '+msg;
+    out.classList.add('fa-shown');
+  }
+
+  function gsRenderSlideHTML(slide) {
+    if (!slide) return '';
+    var type = slide.type || 'concept';
+    var reveal = gsRevealHTML(slide);
+    var sources = gsSourcesHTML(slide);
+    if (type==='video') {
+      var vid=(slide.videoId||'').replace(/[^A-Za-z0-9_-]/g,'');
+      var src='https://www.youtube-nocookie.com/embed/'+vid+'?rel=0&modestbranding=1';
+      var frame=vid?'<div class="slide-video-frame"><iframe src="'+src+'" title="'+(slide.title||'Video').replace(/"/g,'&quot;')+'" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>':'';
+      return '<div class="slide-concept slide-video"><span class="slide-badge badge-concept">Video</span><div class="slide-title">'+(slide.title||'')+'</div>'+(slide.intro?'<div class="slide-body slide-video-intro">'+slide.intro+'</div>':'')+frame+(slide.credit?'<div class="slide-video-credit">'+slide.credit+'</div>':'')+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
+    }
+    if (type==='widget') {
+      return '<div class="slide-activity"><span class="slide-badge badge-activity">Interactive</span><div class="slide-title">'+(slide.title||'Interactive')+'</div>'+(slide.intro?'<div class="slide-body">'+slide.intro+'</div>':'')+gsWidgetHTML(slide)+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
+    }
+    if (type==='exit-ticket') {
+      var key='di_revised_exit_'+gsCurrentId;
+      var saved='';
+      try{saved=localStorage.getItem(key)||'';}catch(e){}
+      return '<div class="slide-activity"><span class="slide-badge badge-activity">Exit Ticket</span><div class="slide-title">'+(slide.title||'Before you go…')+'</div>'+(slide.body?'<div class="slide-body">'+slide.body+'</div>':'')+'<div class="exit-ticket"><span class="exit-ticket-label">Your independent response</span><div class="exit-ticket-prompt">'+(slide.prompt||'What is one thing you will do differently after this lesson?')+'</div><textarea class="exit-ticket-input" id="gsExitInput" placeholder="Write your response and reasoning here…">'+gsEscape(saved)+'</textarea><div class="exit-ticket-actions"><button class="widget-btn widget-btn-primary" onclick="gsExitSave(\''+key+'\')">Save for later</button><span class="exit-ticket-status'+(saved?' et-saved':'')+'" id="gsExitStatus">'+(saved?'✓ Saved — you can edit and save again':'Saves to this device only')+'</span></div></div>'+sources+'</div>';
+    }
+    if (type==='assessment') {
+      var aKey='di_revised_assess_'+gsCurrentId;
+      var aLvlKey='di_revised_assess_level_'+gsCurrentId;
+      var aSaved='', aLvl='';
+      try{aSaved=localStorage.getItem(aKey)||'';}catch(e){}
+      try{aLvl=localStorage.getItem(aLvlKey)||'';}catch(e){}
+      var rubric=(slide.rubric||[]).map(function(r){
+        var sel=(r.level===aLvl)?' as-selected':'';
+        return '<button type="button" class="as-rubric-row'+sel+'" data-level="'+gsEscape(r.level)+'" onclick="gsAssessLevel(\''+aLvlKey+'\',\''+gsEscape(r.level).replace(/'/g,"\\'")+'\',this)"><div class="as-rubric-level">'+gsEscape(r.level)+'</div><div class="as-rubric-text">'+(r.text||'')+'</div></button>';
+      }).join('');
+      var aSteps=(slide.steps?'<ol class="slide-steps">'+slide.steps.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ol>':'');
+      return '<div class="slide-assessment">'+
+        '<span class="slide-badge badge-assessment">Assessed Task</span>'+
+        '<div class="slide-title">'+(slide.title||'Performance Task')+'</div>'+
+        '<div class="as-meta">'+(slide.domain?'<span class="as-domain">'+gsEscape(slide.domain)+'</span>':'')+(slide.time?'<span class="as-time">⏱ '+gsEscape(slide.time)+'</span>':'')+'</div>'+
+        (slide.brief?'<div class="slide-body">'+slide.brief+'</div>':'')+
+        aSteps+
+        (slide.criteria?'<div class="as-criteria"><strong>What\'s being assessed:</strong> '+slide.criteria+'</div>':'')+
+        (rubric?'<div class="as-rubric"><div class="as-rubric-head">Mark your own work honestly — tap the level you reached</div>'+rubric+'<div class="as-selfmark-status'+(aLvl?' as-marked':'')+'" id="gsAssessLvlStatus">'+(aLvl?'✓ You rated this: '+gsEscape(aLvl):'No self-assessment yet — be honest, this is for your own progress')+'</div></div>':'')+
+        '<div class="exit-ticket"><span class="exit-ticket-label">Your response (or a link to it)</span><div class="exit-ticket-prompt">'+(slide.prompt||'Write your response, or paste a link to your document, here.')+'</div><textarea class="exit-ticket-input" id="gsAssessInput" rows="6" placeholder="Your work, or a link to it…">'+gsEscape(aSaved)+'</textarea><div class="exit-ticket-actions"><button class="widget-btn widget-btn-primary" onclick="gsAssessSave(\''+aKey+'\')">Save to my Portfolio</button><span class="exit-ticket-status'+(aSaved?' et-saved':'')+'" id="gsAssessStatus">'+(aSaved?'✓ Saved — appears in your Portfolio':'Saves to this device &amp; your Portfolio')+'</span></div></div>'+
+        sources+'</div>';
+    }
+    if (type==='unit-test') {
+      var qs=(slide.questions||[]).map(function(q,i){
+        var opts=(q.options||[]).map(function(o,j){ return '<button class="ut-option" data-qi="'+i+'" data-oi="'+j+'" onclick="gsUtAnswer(this,'+i+','+j+','+q.correct+')">'+gsEscape(o)+'</button>'; }).join('');
+        return '<div class="ut-q"><div class="ut-q-title"><span class="ut-q-num">'+(i+1)+'</span>'+gsEscape(q.q||q.question||'')+'</div><div class="ut-options">'+opts+'</div><div class="ut-explain" id="gsUtEx_'+i+'">'+gsEscape(q.explanation||'')+'</div></div>';
+      }).join('');
+      var total=(slide.questions||[]).length;
+      return '<div class="slide-quiz"><span class="slide-badge badge-quiz">Unit Check</span><div class="slide-title">'+(slide.title||'Unit Recap')+'</div>'+(slide.body?'<div class="slide-body">'+slide.body+'</div>':'')+'<div class="unit-test" data-total="'+total+'" data-got="0">'+qs+'<div class="ut-score" id="gsUtScore"></div></div>'+sources+'</div>';
+    }
+    if (type==='hook') return '<div class="slide-hook"><span class="slide-badge badge-hook">Hook</span><div class="slide-title">'+(slide.title||'')+'</div><div class="slide-body">'+(slide.body||'')+'</div>'+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
+    if (type==='concept') {
+      var bHtml='';
+      if(slide.bullets&&slide.bullets.length){bHtml='<ul class="slide-bullets">'+slide.bullets.map(function(b){
+        if(typeof b==='string')return '<li><span class="b-def b-span2">'+b+'</span></li>';
+        var term=(b.term||b.label||''), def=(b.def||b.text||'');
+        if(term&&def)return '<li><span class="b-term">'+term+'</span><span class="b-def">'+def+'</span></li>';
+        if(term)return '<li><span class="b-term b-span2">'+term+'</span></li>';
+        return '<li><span class="b-def b-span2">'+def+'</span></li>';
+      }).join('')+'</ul>';}
+      return '<div class="slide-concept"><span class="slide-badge badge-concept">Concept</span><div class="slide-title">'+(slide.title||'')+'</div>'+(slide.body?'<div class="slide-body">'+slide.body+'</div>':'')+bHtml+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
+    }
+    if (type==='scenario') {
+      var choicesHtml='';
+      if(slide.choices&&slide.choices.length){
+        var letters=['A','B','C','D'];
+        choicesHtml='<div class="scenario-choices" id="gsScChoices">'+(slide.question?'<div class="slide-callout" style="margin-bottom:10px"><strong>Choose:</strong> '+slide.question+'</div>':'')+slide.choices.map(function(c,i){return '<button class="scenario-choice" onclick="gsRevealOutcome(this,'+i+')" data-outcome="'+encodeURIComponent(c.outcome||'')+'"><span class="scenario-choice-letter">'+letters[i]+'</span>'+c.text+'</button>';}).join('')+'<div id="gsScOutcome" style="display:none" class="scenario-outcome"></div></div>';
+      }
+      return '<div class="slide-scenario"><span class="slide-badge badge-scenario">Scenario</span><div class="slide-title">'+(slide.title||'Scenario')+'</div><div class="slide-body">'+(slide.situation||'')+'</div>'+choicesHtml+((!slide.choices||!slide.choices.length)&&slide.question?'<div class="slide-callout"><strong>Consider:</strong> '+slide.question+'</div>':'')+reveal+sources+'</div>';
+    }
+    if (type==='activity') return '<div class="slide-activity"><span class="slide-badge badge-activity">Activity</span><div class="slide-title">'+(slide.title||'')+'</div>'+((slide.instructions||slide.task)?'<div class="slide-body">'+(slide.instructions||slide.task)+'</div>':'')+(slide.steps?'<ol class="slide-steps">'+slide.steps.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ol>':'')+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
+    if (type==='discussion') {
+      var qHtml=(slide.questions||[]).map(function(q){return '<div class="slide-disc-q"><span class="sdq-num">'+(q.num||'')+'</span><span class="sdq-text">'+(q.text||q)+'</span></div>';}).join('');
+      return '<div class="slide-concept"><span class="slide-badge badge-concept">Discussion</span><div class="slide-title">'+(slide.title||'Discussion')+'</div>'+(slide.body?'<div class="slide-body">'+slide.body+'</div>':'')+'<div class="slide-disc-qs">'+qHtml+'</div>'+reveal+sources+'</div>';
+    }
+    if (type==='quiz') {
+      var opts=(slide.options||[]).map(function(opt,i){return '<button class="quiz-option" data-idx="'+i+'" onclick="gsAnswerQuiz(this,'+slide.correct+','+i+')">'+opt+'</button>';}).join('');
+      return '<div class="slide-quiz"><span class="slide-badge badge-quiz">Quiz</span><div class="slide-title">'+(slide.question||'')+'</div><div class="quiz-options">'+opts+'</div><div id="gsQuizFb" style="display:none;margin-top:12px" class="slide-callout"></div>'+sources+'</div>';
+    }
+    if (type==='summary') {
+      var pts=(slide.points||[]).map(function(p){return '<div class="summary-point"><span class="sp-icon">'+(p.icon||'•')+'</span><div><strong>'+(p.label||'')+'</strong>'+(p.text?' — '+p.text:'')+'</div></div>';}).join('');
+      return '<div class="slide-summary"><span class="slide-badge badge-summary">Summary</span><div class="slide-title">'+(slide.title||'Key Takeaways')+'</div><div class="summary-points">'+pts+'</div>'+sources+'</div>';
+    }
+    return '<div class="slide-concept"><div class="slide-title">'+(slide.title||'')+'</div><div class="slide-body">'+(slide.body||'')+'</div>'+reveal+sources+'</div>';
+  }
+
+  function gsAnswerQuiz(btn, correct, chosen) {
+    var area = document.getElementById('gsSlideArea');
+    area.querySelectorAll('.quiz-option').forEach(function(b,i){
+      b.disabled=true;
+      if(i===correct)b.classList.add('correct');
+      else if(i===chosen&&chosen!==correct)b.classList.add('incorrect');
+    });
+    var fb=document.getElementById('gsQuizFb');
+    if(fb){var s=gsSlides[gsSlideIdx];fb.style.display='block';fb.innerHTML=(chosen===correct?'✅ Correct! ':'❌ Not quite. ')+(s.explanation||'');}
+    gsSession.quizTotal++;
+    if (chosen === correct) {
+      gsSession.quizRight++;
+      gsSession.streak++;
+      gsAwardOnce('quiz:'+gsCurrentId+':'+gsSlideIdx, 10, 'Quiz answered correctly');
+      if (window.diSlide && diSlide.celebrate) diSlide.celebrate(btn, gsSession.streak);
+    } else {
+      gsSession.streak = 0;
+    }
+    // Unlock the Next button — the pupil has engaged with the question.
+    var next = document.getElementById('gsNextBtn');
+    if (next) { next.disabled = false; next.removeAttribute('title'); }
+  }
+
+  function gsRevealOutcome(btn, idx) {
+    var container = btn.closest('.scenario-choices');
+    if (!container) return;
+    container.classList.add('scenario-answered');
+    btn.classList.add('scenario-chosen');
+    var outcome = decodeURIComponent(btn.getAttribute('data-outcome')||'');
+    var ob = document.getElementById('gsScOutcome');
+    if (ob && outcome) { ob.style.display='block'; ob.innerHTML='<strong>Outcome:</strong> '+outcome; }
+  }
+
+  document.addEventListener('keydown',function(e){
+    if(!document.getElementById('gsModal').classList.contains('open'))return;
+    /* Arrow keys move the caret when typing in the notes box, not the deck */
+    var tag=(e.target.tagName||'').toLowerCase();
+    var inInput=(tag==='input'||tag==='textarea'||e.target.isContentEditable);
+    if(!inInput&&(e.key==='ArrowRight'||e.key==='ArrowDown'))gsNextSlide();
+    if(!inInput&&(e.key==='ArrowLeft'||e.key==='ArrowUp'))gsPrevSlide();
+    if(e.key==='Escape'){
+      if(window.diSlide&&window.diSlide.fullscreen.isActive())return;
+      gsCloseLesson();
+    }
+  });
+
+  (function(){var s=localStorage.getItem('di_theme');if(s)document.documentElement.setAttribute('data-theme',s);})();
+
+  function initOffline(){
+    var b=document.getElementById('offlineBanner');
+    function u(){if(b)b.style.display=navigator.onLine?'none':'flex';}
+    window.addEventListener('online',u);window.addEventListener('offline',u);u();
+  }
+
+  gsLoadProgress();
+  gsRenderTrack();
+  gsUpdateProgress();
+  gsRenderReviewPanel();
+  var gsTotal=GCSE_UNITS.reduce(function(s,u){return s+u.lessons.length;},0);
+  if(gsDone.size===gsTotal)gsShowComplete();
+  initOffline();
+  if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function(){});
+</script>
+<script>
+function exportRevisedWork(){
+  var work={course:'AI and Digital Innovation — revised lessons',exportedAt:new Date().toISOString(),data:{}};
+  for(var i=0;i<localStorage.length;i++){var key=localStorage.key(i);if(key.startsWith('di_revised')||/^di_note_2[0-9]{2}_/.test(key))work.data[key]=localStorage.getItem(key);}
+  var url=URL.createObjectURL(new Blob([JSON.stringify(work,null,2)],{type:'application/json'}));var a=document.createElement('a');a.href=url;a.download='my-ai-digital-innovation-work.json';a.click();setTimeout(function(){URL.revokeObjectURL(url)},1000);
+}
+</script></body>
+</html>

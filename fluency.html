@@ -1061,7 +1061,7 @@
       '</div>';
     }
     if (type === 'activity') {
-      var bodyText = slide.task || slide.instructions || '';
+      var bodyText = slide.instructions || slide.task || '';
       return '<div class="slide-activity">' +
         '<span class="slide-badge badge-activity">Activity</span>' +
         '<div class="slide-title">' + (slide.title || '') + '</div>' +

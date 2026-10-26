@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-26",
+  "revisedLessons": 37,
+  "revisedSlides": 328,
+  "viewports": [
+    1440,
+    768,
+    390
+  ],
+  "allSlidesRenderedAtEachWidth": true,
+  "pageErrors": [],
+  "deniedFullscreenFallback": true,
+  "nativeChromiumFullscreen": true,
+  "revisedOfflineReading": true,
+  "exitResponsePersists": true,
+  "exportContainsRevisedWorkOnly": true,
+  "originalProgressPreserved": true,
+  "passportOfflineAndStandalone": true,
+  "limits": [
+    "School-managed accounts and external app features not end-to-end tested",
+    "Safari/iPad hardware not tested",
+    "JSON archive does not include an import/restore flow"
+  ]
+}

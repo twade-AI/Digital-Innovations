@@ -44,7 +44,7 @@
     var slides=all[id];
     slides.forEach(function(s){
       if(s.type==='activity') {
-        s.instructions=(s.instructions||'')+route('Read the task, then write down what you will produce. If it asks for a partner or group, complete a first response yourself, write the strongest alternative, and compare the two. For a peer review, test your work against the stated criteria and record one revision. Use your notes or a separate document to keep your evidence.');
+        s.instructions=(s.instructions||s.task||'')+route('Read the task, then write down what you will produce. If it asks for a partner or group, complete a first response yourself, write the strongest alternative, and compare the two. For a peer review, test your work against the stated criteria and record one revision. Use your notes or a separate document to keep your evidence.');
         if(/AI|chatbot|Claude|ChatGPT|Gemini|prompt/i.test(JSON.stringify(s))) s.instructions+='<p class="independent-route">Use only tools approved for your age and school. Do not upload personal or confidential information. If a tool is unavailable, draft the input and describe the output you would expect, then test the example provided in the lesson.</p>';
       }
       if(s.type==='discussion') s.title=(s.title||'Consider the question').replace(/^Discussion: /,'');

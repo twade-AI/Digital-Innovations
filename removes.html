@@ -362,6 +362,7 @@
     <div class="gs-hero" id="gsHero">
       <div class="gs-hero-badge">Removes · Works Offline</div>
       <h1>AI and Digital Innovation</h1>
+      <p><a class="btn btn-secondary" href="revised.html">Open the revised lessons and projects →</a></p>
       <p class="gs-hero-sub">40 lessons across 7 units, aligned to the OECD/EU AI Literacy Framework. Build genuine AI literacy — from understanding how AI works, to creating and managing it wisely, to shaping it for the better.</p>
       <div class="gs-hero-stats">
         <div class="gs-stat"><span class="gs-stat-num">40</span><span class="gs-stat-label">Lessons</span></div>
@@ -1390,7 +1391,7 @@
       }
       return '<div class="slide-scenario"><span class="slide-badge badge-scenario">Scenario</span><div class="slide-title">'+(slide.title||'Scenario')+'</div><div class="slide-body">'+(slide.situation||'')+'</div>'+choicesHtml+((!slide.choices||!slide.choices.length)&&slide.question?'<div class="slide-callout"><strong>Consider:</strong> '+slide.question+'</div>':'')+reveal+sources+'</div>';
     }
-    if (type==='activity') return '<div class="slide-activity"><span class="slide-badge badge-activity">Activity</span><div class="slide-title">'+(slide.title||'')+'</div>'+(slide.task?'<div class="slide-body">'+slide.task+'</div>':'')+(slide.steps?'<ol class="slide-steps">'+slide.steps.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ol>':'')+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
+    if (type==='activity') return '<div class="slide-activity"><span class="slide-badge badge-activity">Activity</span><div class="slide-title">'+(slide.title||'')+'</div>'+((slide.instructions||slide.task)?'<div class="slide-body">'+(slide.instructions||slide.task)+'</div>':'')+(slide.steps?'<ol class="slide-steps">'+slide.steps.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ol>':'')+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
     if (type==='discussion') {
       var qHtml=(slide.questions||[]).map(function(q){return '<div class="slide-disc-q"><span class="sdq-num">'+(q.num||'')+'</span><span class="sdq-text">'+(q.text||q)+'</span></div>';}).join('');
       return '<div class="slide-concept"><span class="slide-badge badge-concept">Discussion</span><div class="slide-title">'+(slide.title||'Discussion')+'</div>'+(slide.body?'<div class="slide-body">'+slide.body+'</div>':'')+'<div class="slide-disc-qs">'+qHtml+'</div>'+reveal+sources+'</div>';
