@@ -11,7 +11,8 @@
   function link(url,label) { return '<a href="'+url+'" target="_blank" rel="noopener">'+label+'</a>'; }
   function concept(title,body,bullets,url) { return {type:'concept',title:title,body:body,bullets:bullets,callout:url ? 'Read the source: '+link(url,'Evidence and context')+' · Reviewed 26 October 2026' : ''}; }
   function quiz(question,options,correct,explanation) { return {type:'quiz',question:question,options:options,correct:correct,explanation:explanation}; }
-  if (typeof SLIDES_U3U4 !== 'undefined') {
+  var reviewedAEP = typeof AEP_REVIEWED !== 'undefined' && AEP_REVIEWED;
+  if (!reviewedAEP && typeof SLIDES_U3U4 !== 'undefined') {
     if (SLIDES_U3U4[15]) SLIDES_U3U4[15] = [
       {type:'hook',title:'What does an AI answer cost?',body:'A school wants every pupil to generate ten images for a poster. Another teacher suggests sketching first and generating only the strongest idea. Which approach would you recommend? Identify what you would need to know before putting a number on the environmental difference.'},
       concept('Measure the right thing','AI uses electricity during training and use. Data centres also support many services other than AI. A number about all data centres is not a measurement of one chatbot.', ['Separate training from inference: building a model and running it are different activities.','Electricity is not the same as emissions: location, timing and energy supply matter.','Water estimates depend on cooling, local conditions and whether electricity-generation water is included.','Per-query estimates vary with model, hardware, output length and task. State assumptions and uncertainty.'],sources.energy),
@@ -38,6 +39,7 @@
   if (typeof SLIDE_VISUALS !== "undefined") Object.keys(SLIDE_VISUALS).forEach(function(key){ if (/^(15|16):/.test(key)) delete SLIDE_VISUALS[key]; });
   if (typeof QUIZ_BANK !== "undefined" && typeof SLIDES_U3U4 !== "undefined") [15,16].forEach(function(id){ if(SLIDES_U3U4[id]) QUIZ_BANK[id]=[SLIDES_U3U4[id][6]]; });
   var decks = [typeof SLIDES_U1U2!=='undefined'?SLIDES_U1U2:{},typeof SLIDES_U3U4!=='undefined'?SLIDES_U3U4:{},typeof SLIDES_U5U6!=='undefined'?SLIDES_U5U6:{},typeof SLIDES_CRITICAL!=='undefined'?SLIDES_CRITICAL:{},typeof SLIDES_ADVANCED!=='undefined'?SLIDES_ADVANCED:{},typeof SLIDES_COMPANIONS!=='undefined'?SLIDES_COMPANIONS:{},typeof SLIDES_GCSE!=='undefined'?SLIDES_GCSE:{}];
+  if (reviewedAEP) decks = [typeof SLIDES_GCSE!=='undefined'?SLIDES_GCSE:{}];
   var all=Object.assign.apply(Object,[{}].concat(decks));
   function route(text) { return '<details class="independent-route"><summary>Working independently</summary><p>'+text+'</p></details>'; }
   Object.keys(all).forEach(function(id){

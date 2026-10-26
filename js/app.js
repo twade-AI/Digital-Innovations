@@ -236,7 +236,7 @@ function loadQuizScores() {
   catch(e) { return {}; }
 }
 function saveQuizScore(lessonId, correct) {
-  quizScores[lessonId] = { correct: correct, date: new Date().toISOString().slice(0, 10) };
+  quizScores[lessonId] = { correct: correct, date: new Date().toISOString().slice(0, 10), revision: 'aep-2026-10' };
   localStorage.setItem('di_quiz_scores', JSON.stringify(quizScores));
   if (typeof scheduleSync === 'function') scheduleSync();
 }
@@ -334,7 +334,7 @@ function lessonRow(lesson, unit) {
     <div class="lesson-item${hidden ? ' tag-hidden' : ''}" data-id="${lesson.id}" data-tags="${lesson.tags.join(' ')}">
       <button type="button" class="lesson-check ${done ? 'done' : ''}" aria-pressed="${done}" aria-label="${done ? 'Completed — click to mark incomplete' : 'Mark as complete'}" onclick="event.stopPropagation();toggleLesson(${lesson.id})">✓</button>
       <div class="lesson-info" onclick="openLesson(${lesson.id})">
-        <div class="lesson-num">Lesson ${lessonNum(lesson.id)} <span class="lesson-time">~${mins} min</span>${diffBadge(lesson.difficulty)}${quizScores[lesson.id] ? '<span class="lesson-quiz-score ' + (quizScores[lesson.id].correct ? 'lqs-pass' : 'lqs-fail') + '" title="Quiz: ' + (quizScores[lesson.id].correct ? 'Passed' : 'Attempted') + '">' + (quizScores[lesson.id].correct ? '✓ Quiz' : '✗ Quiz') + '</span>' : ''}</div>
+        <div class="lesson-num">Lesson ${lessonNum(lesson.id)} <span class="lesson-time">~${mins} min</span>${diffBadge(lesson.difficulty)}${quizScores[lesson.id] ? '<span class="lesson-quiz-score ' + (quizScores[lesson.id].correct ? 'lqs-pass' : 'lqs-fail') + '" title="Quiz: ' + (quizScores[lesson.id].correct ? 'Passed' : 'Attempted') + '">' + (quizScores[lesson.id].revision !== 'aep-2026-10' ? 'Earlier quiz' : quizScores[lesson.id].correct ? '✓ Quiz' : '✗ Quiz') + '</span>' : ''}</div>
         <div class="lesson-title">${lesson.title}</div>
         ${lesson.desc ? `<div class="lesson-desc">${lesson.desc}</div>` : ''}
         ${lesson.objectives && lesson.objectives.length ? `<div class="lesson-objectives"><span class="lo-label">You'll learn:</span>${lesson.objectives.slice(0,2).map(o => `<span class="lo-item">▸ ${o}</span>`).join('')}${lesson.objectives.length > 2 ? `<span class="lo-more">+${lesson.objectives.length - 2} more</span>` : ''}</div>` : ''}
@@ -551,28 +551,31 @@ function openLesson(id) {
 
   // Build slide-type dots
   var dotsHtml = slides.map(function(s, i) {
-    return '<span class="lv-dot lv-dot-' + s.type + (i === 0 ? ' active' : '') + '" data-idx="' + i + '" onclick="jumpToSlide(' + i + ')" title="' + (s.title || s.question || s.type) + '"></span>';
+    var label = ('Slide ' + (i + 1) + ': ' + (s.title || s.question || s.type)).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+    return '<button type="button" class="lv-dot lv-dot-' + s.type + (i === 0 ? ' active' : '') + '" data-idx="' + i + '" onclick="jumpToSlide(' + i + ')" aria-current="' + (i === 0 ? 'step' : 'false') + '" aria-label="' + label + '" title="' + label + '"></button>';
   }).join('');
 
   document.getElementById('modalBody').innerHTML =
     '<div class="lv-header' + doneClass + '" data-colour="' + unitColour + '" style="--unit-colour:' + unitColour + '">' +
+      '<div class="lv-current-lesson" id="aepLessonTitle">' + lesson.title + '</div>' +
       '<div class="lv-meta">' +
         '<span class="lv-unit-label">Unit ' + (unit.id + 1) + ': ' + unit.title + '</span>' +
         '<span class="lv-slide-count">Slide <span id="lvSlideNum">1</span> of ' + slides.length + '</span>' +
-        '<button class="lv-fs-btn" id="lvFsBtn" onclick="toggleLessonFullscreen()" aria-pressed="false" title="Fullscreen (for projecting in class)">&#9974;</button>' +
+        '<button class="lv-fs-btn" id="lvFsBtn" onclick="toggleLessonFullscreen()" aria-pressed="false" aria-label="Toggle fullscreen" title="Toggle fullscreen">&#9974;</button>' +
         '<button class="lv-print-btn" onclick="window.print()" title="Print lesson">&#128424;</button>' +
       '</div>' +
       '<div class="lv-progress-track">' +
         '<div class="lv-progress-fill" id="lvProgressFill" style="width:' + (100/slides.length) + '%"></div>' +
       '</div>' +
     '</div>' +
-    '<div class="lv-dots" id="lvDots">' + dotsHtml + '</div>' +
+    '<div class="lv-dots" id="lvDots" role="navigation" aria-label="Lesson slides">' + dotsHtml + '</div>' +
     '<div class="lv-slide-area" id="lvSlideArea"></div>' +
     '<div class="lv-footer">' +
       '<button class="btn btn-secondary" id="lvPrev" onclick="navigateSlide(-1)">&#8592; Back</button>' +
       '<button class="btn btn-primary" id="lvNext" onclick="navigateSlide(1)">Next &#8594;</button>' +
     '</div>';
 
+  modal.setAttribute('aria-labelledby', 'aepLessonTitle');
   renderSlide(0);
   modal.classList.add('open');
     if (window.diSlide) window.diSlide.fullscreen.request(modal);
@@ -632,8 +635,6 @@ function renderSlide(index) {
     var calloutHtml = '';
     if (slide.callout) {
       calloutHtml = '<div class="concept-callout"><strong>Key insight:</strong> ' + slide.callout + '</div>';
-    } else if (slide.title) {
-      calloutHtml = '<div class="concept-callout"><strong>Learning focus:</strong> ' + slide.title + '</div>';
     }
     var indexLabel = slide.index ? 'Concept ' + slide.index + '/' + slide.total : 'Concept';
     html = '<div class="slide-concept">' +
@@ -703,7 +704,7 @@ function renderSlide(index) {
     html = '<div class="slide-discussion">' +
       '<span class="slide-badge badge-discussion">Discussion</span>' +
       '<div class="slide-title">' + slide.title + '</div>' +
-      '<div class="disc-intro">Discuss these questions with a partner or reflect on them individually.</div>' +
+      '<div class="disc-intro">Write your own response first. Challenge it with another reasonable view, then explain whether your judgement changes.</div>' +
       voteHtml +
       '<div class="disc-questions">' + qHtml + '</div>' +
       '<div class="interactive-wrapper" style="margin-top:24px">' +
@@ -873,6 +874,10 @@ function renderSlide(index) {
     '</div>';
   }
 
+  if (window.diSlide) {
+    html += diSlide.revealHTML(slide, 'aepReveal_' + currentLessonId + '_' + index, 'diSlide.toggleReveal');
+    html += diSlide.sourcesHTML(slide);
+  }
   area.innerHTML = html;
   if (window.diSlide && diSlide.resetScroll) diSlide.resetScroll(area); else area.scrollTop = 0;
 
@@ -960,7 +965,7 @@ function renderSlide(index) {
 
   // Update dot active state
   var dots = document.querySelectorAll('.lv-dot');
-  dots.forEach(function(d, i) { d.classList.toggle('active', parseInt(d.dataset.idx) === index); });
+  dots.forEach(function(d) { var active = parseInt(d.dataset.idx) === index; d.classList.toggle('active', active); d.setAttribute('aria-current', active ? 'step' : 'false'); });
 
   // Wire up reflection auto-save
   var reflField = document.getElementById('reflectionText');
@@ -1091,6 +1096,7 @@ function closeModal() {
   }
   modal.classList.remove('open');
   modal.classList.remove('modal--lesson');
+  modal.removeAttribute('aria-labelledby');
   currentSlides = [];
   currentLessonId = null;
   currentSlideIndex = 0;
@@ -1411,10 +1417,10 @@ function renderQuizScoreSection() {
     var found = findLesson(parseInt(k));
     var title = found ? 'L' + lessonNum(parseInt(k)) + ': ' + found.lesson.title : 'Lesson ' + k;
     var cls = quizScores[k].correct ? '' : ' wrong';
-    var label = quizScores[k].correct ? '✓ Correct' : '✗ Wrong';
+    var label = (quizScores[k].revision !== 'aep-2026-10' ? 'Earlier quiz · ' : '') + (quizScores[k].correct ? '✓ Correct' : '✗ Wrong');
     return '<div class="qs-card"><span class="qs-card-label">' + title + '</span><span class="qs-card-score' + cls + '">' + label + '</span></div>';
   }).join('');
-  el.innerHTML = '<h3>Quiz Scores — ' + correctCount + '/' + keys.length + ' correct</h3><div class="qs-grid">' + cards + '</div>';
+  el.innerHTML = '<h3>Quiz History — ' + correctCount + '/' + keys.length + ' correct</h3><div class="qs-grid">' + cards + '</div>';
 }
 
 function renderBookmarkedSection() {
@@ -1727,7 +1733,7 @@ function exportFullProgressPDF() {
       var noteList = [];
       slides.forEach(function(s, i) {
         var t = loadReflection(l.id, i);
-        if (t && t.trim()) noteList.push(t.trim().replace(/\n/g,'<br>'));
+        if (t && t.trim()) noteList.push(t.trim().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'));
       });
       var isDone    = completedLessons.has(l.id);
       var quizEntry = quizScores[l.id];
@@ -1743,7 +1749,7 @@ function exportFullProgressPDF() {
         '<td class="lesson-num">L' + lessonNum(l.id) + '</td>' +
         '<td class="lesson-title">' + l.title + '</td>' +
         '<td>' + (isDone ? '<span class="s-done">&#10003; Done</span>' : '<span class="s-pend">Not started</span>') + '</td>' +
-        '<td>' + quizCell + '</td>' +
+        '<td>' + (quizEntry && quizEntry.revision !== 'aep-2026-10' ? 'Earlier quiz · ' : '') + quizCell + '</td>' +
         '<td class="notes-col">' + notesCell + '</td>' +
       '</tr>';
     }).join('');
@@ -3584,6 +3590,13 @@ function saveCapstoneData() {
   var ind = document.getElementById('capstoneSavedInd');
   if (ind) { ind.style.display = 'inline'; setTimeout(function() { ind.style.display = 'none'; }, 2000); }
 }
+function aepSavedNotes(id) {
+  var prefix = 'di_note_' + id + '_';
+  return Object.keys(localStorage).filter(function(key) {
+    return key.indexOf(prefix) === 0 && /^\d+$/.test(key.slice(prefix.length));
+  }).sort(function(a,b) { return Number(a.slice(prefix.length)) - Number(b.slice(prefix.length)); })
+    .map(function(key) { return localStorage.getItem(key); }).filter(function(note) { return note && note.trim(); });
+}
 function printCapstone() {
   saveCapstoneData();
   var d;
@@ -3605,12 +3618,9 @@ function printCapstone() {
     var phaseHtml = '';
     ph.lessons.forEach(function(l) {
       var lessonHtml = '';
-      for (var si = 0; si < 9; si++) {
-        var note = localStorage.getItem('di_note_' + l.id + '_' + si);
-        if (note && note.trim()) {
-          lessonHtml += '<p>' + note.trim().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</p>';
-        }
-      }
+      aepSavedNotes(l.id).forEach(function(note) {
+        lessonHtml += '<p>' + note.trim().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</p>';
+      });
       if (lessonHtml) {
         phaseHtml += '<div class="lesson-notes"><h3>' + l.label + '</h3>' + lessonHtml + '</div>';
       }
@@ -3703,10 +3713,7 @@ function downloadPortfolio() {
     var phaseLines = [];
     ph.lessons.forEach(function(l) {
       var lessonLines = [];
-      for (var si = 0; si < 9; si++) {
-        var note = localStorage.getItem('di_note_' + l.id + '_' + si);
-        if (note && note.trim()) lessonLines.push(note.trim());
-      }
+      aepSavedNotes(l.id).forEach(function(note) { lessonLines.push(note.trim()); });
       if (lessonLines.length) {
         phaseLines.push('  ' + l.label);
         phaseLines.push('  ' + '-'.repeat(30));
@@ -3936,7 +3943,7 @@ function renderTimelineEvents() {
     html += '<div class="tl-event' + (hidden ? ' hidden' : '') + '" data-category="' + ev.category + '" data-idx="' + idx + '">' +
       '<div class="tl-year">' + ev.year + '</div>' +
       '<div class="tl-dot-col"><div class="tl-dot dot-' + ev.category + '"></div></div>' +
-      '<div class="tl-card" onclick="toggleTlCard(this)" role="button" aria-expanded="false">' +
+      '<div class="tl-card" onclick="if(!event.target.closest(\'a\'))toggleTlCard(this)" onkeydown="if(event.target===this &amp;&amp; (event.key===\'Enter\'||event.key===\' \')){event.preventDefault();toggleTlCard(this)}" tabindex="0" role="button" aria-expanded="false">' +
         '<div class="tl-card-header">' +
           '<span class="tl-icon">' + ev.icon + '</span>' +
           '<span class="tl-card-title">' + ev.title + '</span>' +
@@ -3946,6 +3953,7 @@ function renderTimelineEvents() {
         '<div class="tl-summary">' + ev.summary + '</div>' +
         '<div class="tl-detail">' +
           '<p class="tl-detail-text">' + ev.detail + '</p>' +
+          (window.diSlide ? diSlide.sourcesHTML(ev) : '') +
           peopleHtml +
         '</div>' +
       '</div>' +
@@ -3988,6 +3996,11 @@ document.addEventListener('DOMContentLoaded', () => {
   updateFirstLessonBanner();
   renderSpacedReviewQueue();
   initOfflineBanner();
+  var requestedLesson = Number(new URLSearchParams(location.search).get('lesson'));
+  if (findLesson(requestedLesson)) {
+    openLesson(requestedLesson);
+    if (new URLSearchParams(location.search).get('evidence') === '1') jumpToSlide(currentSlides.length - 1);
+  }
   // Restore avatar on chip
   var savedAvatar = localStorage.getItem('di_avatar');
   if (savedAvatar) {

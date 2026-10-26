@@ -1,93 +1,919 @@
-/* ── Curated Slide Content: Units 3 & 4 (Lessons 13-20) ── */
-
+/* AEP editorial review: 26 October 2026. Lesson IDs and base slide counts retained. */
 var SLIDES_U3U4 = {
-
-  13: [
-    { type: 'hook', title: 'Deepfakes and Disinformation', body: 'Two days before Slovakia\'s September 2023 election, an AI-generated audio clip went viral: opposition leader Michal Šimečka apparently discussing how to rig the vote with a journalist. It was released during the legally mandated "silence period" — when media cannot discuss election developments, making rebuttal almost impossible. Šimečka lost, despite leading in polls. Whether the deepfake caused the defeat is debated; that it shaped the information environment is not. In January 2024, thousands of New Hampshire voters received robocalls from an AI-cloned voice of President Biden telling Democrats not to vote in the primary. The consultant who commissioned it was fined $6 million by the FCC and faces 26 criminal charges in New Hampshire. In India\'s 2024 elections, candidates used AI-generated avatars to deliver personalised multilingual campaign messages at scale — not as deception, but as an accepted campaign tool. In early 2024, a Hong Kong finance worker was defrauded of HK$200 million (£20M) after a deepfake video call impersonating his company\'s CFO and colleagues — every face on the call was synthetic.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">$6M</span><span class="sl">FCC fine for the Biden deepfake robocall (2024)</span></div><div class="hook-stat-mini"><span class="sv">48 hrs</span><span class="sl">before Slovakia\'s election — during legally mandated media silence</span></div><div class="hook-stat-mini"><span class="sv">£20M</span><span class="sl">stolen via deepfake video call impersonating a CFO (Hong Kong, 2024)</span></div><div class="hook-stat-mini"><span class="sv">38</span><span class="sl">countries targeted by documented election deepfakes (Recorded Future, 2024)</span></div></div>' },
-    { type: 'concept', title: 'How Deepfakes Work', body: 'Deepfakes use deep learning — specifically generative adversarial networks (GANs) and diffusion models — to create synthetic media that is increasingly indistinguishable from authentic content. The Hong Kong deepfake video call is particularly instructive: every person on the call was synthetic, generated in real time, yet convincing enough to authorise a £20 million transfer. This is no longer a futuristic threat.', bullets: ['GANs pit two neural networks against each other: a generator creates fakes, a discriminator tries to detect them — each iteration sharpens both', 'Face-swapping: Maps one person\'s facial expressions onto another\'s face in video, frame by frame. The Hong Kong fraud used this in a live video call', 'Voice cloning: ElevenLabs and similar tools can clone a voice from as little as 3 seconds of audio. The Biden robocall and Slovakia deepfake were both audio-only — easier to produce and harder to detect than video', 'Text-to-video: Models now generate photorealistic video from text descriptions alone', 'Accessibility collapse: In 2019, deepfakes required expensive GPUs and hours of footage — today, free apps work from a single photo in minutes. A Recorded Future report documented 82 pieces of deepfake content targeting 38 countries in 2024 alone'], callout: 'The Slovakia case reveals the most dangerous feature: timing. The audio was released during a legally mandated silence period when media could not respond. By the time fact-checkers confirmed it was fake, the election was over. The technology does not need to be perfect — it needs to be fast and well-timed.' },
-    { type: 'concept', title: 'Detection and Defence', body: 'As deepfakes improve, detection methods struggle to keep pace. The C2PA (Coalition for Content Provenance and Authenticity) standard — backed by Adobe, Microsoft, and Google — offers a promising technical solution, but requires industry-wide adoption to work.', bullets: ['Technical detection: AI models trained to spot artefacts — unnatural blinking rates, skin texture inconsistencies, lighting discontinuities', 'C2PA provenance: Embeds cryptographic metadata proving where and when content was originally captured — like a tamper-evident seal', 'Google SynthID: Invisible watermarks embedded into AI-generated content that survive compression and cropping', 'Media literacy: Teaching SIFT (Stop, Investigate, Find better coverage, Trace claims) before sharing', 'The liar\'s dividend: Even real videos can now be dismissed as deepfakes — undermining all visual evidence'], callout: 'Current deepfake detectors manage roughly 65-85% accuracy on the latest generation of fakes in lab conditions — and worse in the wild: nowhere near reliable enough for a court, a newsroom, or your own feed on the most sophisticated fakes.' },
-    { type: 'activity', title: 'Spot the Fake', instructions: 'Use the Deepfake Detection Checklist from Resources to analyse a set of real and synthetic media samples.', steps: ['Your teacher will provide 6 media samples — some real, some AI-generated', 'For each sample, work through the Deepfake Detection Checklist systematically', 'Look for: unnatural blinking, inconsistent lighting, warped edges, audio-lip sync issues', 'Record your verdict for each: Real, Fake, or Unsure', 'Compare results with the class — what was your accuracy rate?', 'Discuss: Which fakes were hardest to detect and why?'] },
-    { type: 'discussion', title: 'Truth in a Post-Truth World', questions: [{ num: 1, text: 'The Slovakia deepfake was released during a legal media silence period — 48 hours before the vote, when traditional media could not respond. The US Biden robocall targeted primary voters with a fabricated instruction not to vote. Both exploited specific features of their electoral systems. Is this a technology problem, a regulatory problem, or an information literacy problem — and which of the three is most fixable?' }, { num: 2, text: 'In India, candidates used AI-generated avatars to deliver campaign messages in dozens of languages — openly and without pretending they were real. Is this a legitimate use of AI in democracy, or does it cross a line? What specifically distinguishes it from the Slovakia case?' }, { num: 3, text: 'The Hong Kong finance worker lost £20 million to a deepfake video call. He was on a call with what appeared to be his CFO and several colleagues — all synthetic. If you were designing a company\'s security protocol, what specific verification steps would you require before authorising a large transfer? How many of those steps could themselves be deepfaked?' }] },
-    { type: 'scenario', title: 'The Viral Video', situation: 'You have 22,000 Twitter/X followers interested in politics. At 11pm, a video appears showing a senior government minister "admitting" to accepting bribes. It already has 800,000 views. Your phone is buzzing with friends telling you to share it. The video looks convincing — right lighting, realistic voice, natural mannerisms. But you notice the source account was created three days ago.', question: 'What do you do?', choices: [ { text: 'Share immediately — 800K people can\'t all be wrong, and this is too important to ignore', outcome: 'By morning, the video is confirmed as a deepfake created by a foreign influence operation. Your name appears in news articles listing accounts that amplified disinformation. You\'ve lost 3,000 followers and your credibility on political topics is permanently damaged.' }, { text: 'Reverse image search the source account, check BBC/Reuters for coverage, and wait 30 minutes before deciding', outcome: 'You find no credible outlet has covered the story. A Reuters fact-check appears 20 minutes later confirming it\'s synthetic. You share the fact-check instead. Your followers thank you for responsible sourcing — three journalists follow you the next day.' }, { text: 'Share with a warning: "Unverified — may be a deepfake. Sharing for discussion"', outcome: 'Your caveat gets stripped as others screenshot and reshare the original video without your warning. You still contributed to the spread. Platform analytics show your share drove 12,000 additional views before the video was taken down.' } ] },
-    { type: 'quiz', question: 'A 30-second audio clip of a local MP surfaces on WhatsApp two days before an election, apparently admitting to financial misconduct. The account that posted it was created yesterday. You know from this lesson that audio-only deepfakes are easier to produce and harder to detect than video. What is the most reliable verification step?', options: ['Check if the audio "sounds real" — your ears can usually detect AI-generated speech', 'Share it with the caption "unverified" so others can judge for themselves', 'Check whether any established news outlet (BBC, Reuters) has independently verified the audio — and wait if none has', 'Run it through a free online deepfake detector, which will confirm whether it is real'], correct: 2, explanation: 'Audio deepfakes — like the Slovakia election audio and the Biden robocall — can be created from as little as 3 seconds of source material, making human detection unreliable. Free online detectors achieve only 65-85% accuracy. Sharing "unverified" content still amplifies it. Lateral reading — checking whether credible outlets have independently verified the claim — is the most reliable step, especially during an election period when the speed of spread outpaces fact-checking.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Technology is advancing fast', text: 'Deepfakes now require minimal source material and can be created with free tools in minutes' }, { icon: '▸', label: 'Detection is struggling', text: 'AI detectors achieve 65-85% accuracy — provenance standards (C2PA) and SIFT media literacy are essential' }, { icon: '▸', label: 'The liar\'s dividend', text: 'Deepfakes don\'t just spread lies — they allow real evidence to be dismissed as fake, undermining all trust in visual media' }] }
+  "13": [
+    {
+      "type": "hook",
+      "title": "Deepfakes and Disinformation",
+      "body": "A fictional clip claims a local sports centre will close tomorrow. It has no original source or recording date. A convincing face and voice are visible. What can you establish before sharing it?"
+    },
+    {
+      "type": "concept",
+      "title": "Authenticity and truth are different questions",
+      "body": "A real recording can be cropped, old or miscaptioned. A synthetic reconstruction can illustrate a true event while still needing a clear label. Ask separately where the file came from and whether its claim is supported.",
+      "bullets": [
+        "Trace the earliest available version and its context.",
+        "Check a relevant original authority through a known channel.",
+        "Do not treat visual oddities, fluent speech or a detector score as a verdict."
+      ],
+      "sources": [
+        {
+          "label": "C2PA: Content Credentials explained",
+          "url": "https://c2pa.org/specifications/specifications/2.2/explainer/Explainer.html"
+        },
+        {
+          "label": "NIST: Synthetic content transparency",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-4.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "What provenance can and cannot do",
+      "body": "Content Credentials can provide information about a file’s history. They do not by themselves prove the claim is true. A missing credential does not prove a file is fake.",
+      "bullets": [
+        "Look for evidence of source, editing and publication context.",
+        "Compare independent reporting rather than repeated copies.",
+        "If the evidence is insufficient, report that limit instead of guessing authorship."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "Build the newsroom verification board",
+      "instructions": "Working independently. Use the fictional sports-centre claim; do not create an impersonation.",
+      "steps": [
+        "Write the exact claim and the consequence of getting it wrong.",
+        "List the original authority and two contextual checks.",
+        "Draft a holding message that does not amplify the unverified allegation.",
+        "Create a correction template explaining what was checked and what remains unknown."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "Would proving that a clip is AI-generated settle whether its caption describes a real event?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. Would proving that a clip is AI-generated settle whether its caption describes a real event?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What is the strongest verification move?",
+      "options": [
+        "Count blinking errors.",
+        "Check the closure claim with the centre through a known official channel.",
+        "Trust the most widely shared copy."
+      ],
+      "correct": 1,
+      "explanation": "Check the substantive claim against relevant evidence, not appearance alone."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Authenticity and truth are different questions",
+          "text": "A real recording can be cropped, old or miscaptioned."
+        },
+        {
+          "icon": "2",
+          "label": "What provenance can and cannot do",
+          "text": "Content Credentials can provide information about a file’s history."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Produce a verification storyboard for a fictional viral clip with no source or date. Explain what provenance and corroboration could establish without generating an impersonation."
+        }
+      ]
+    }
   ],
-
-  14: [
-    { type: 'hook', title: 'Surveillance and Facial Recognition', body: 'In January 2020, Robert Williams was arrested in front of his two young daughters on his front lawn in Detroit. He spent 30 hours in a cell. The evidence: a facial recognition match on blurry CCTV footage from a shoplifting case. Williams is Black. The algorithm was wrong. In June 2024, the ACLU reached a landmark settlement — Detroit police are now banned from arresting anyone based solely on a facial recognition match. But three more people had been wrongfully arrested in the same city before the settlement was reached, including Porcha Woodruff — eight months pregnant, held for carjacking, while the actual suspect was visibly not pregnant. Separately, in December 2023, the FTC banned Rite Aid from using facial recognition for five years after its system generated thousands of false matches, disproportionately in stores serving Black and Latino communities. And in Scotland, North Ayrshire schools deployed facial recognition to verify pupils\' identities at the lunch till — scanning children\'s biometric data to buy a school meal — until the ICO intervened.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">100×</span><span class="sl">higher error rate for dark-skinned women vs. white men (NIST)</span></div><div class="hook-stat-mini"><span class="sv">£7.5M</span><span class="sl">ICO fine on Clearview AI for scraping UK faces without consent</span></div><div class="hook-stat-mini"><span class="sv">5 yrs</span><span class="sl">FTC banned Rite Aid from using facial recognition (Dec 2023)</span></div><div class="hook-stat-mini"><span class="sv">3+</span><span class="sl">wrongful arrests in Detroit alone before the 2024 settlement</span></div></div>' },
-    { type: 'concept', title: 'How Facial Recognition Works', body: 'Facial recognition systems convert faces into mathematical representations (faceprints) and compare them against databases. The NIST (National Institute of Standards and Technology) 2019 Face Recognition Vendor Test evaluated 189 algorithms and found staggering disparities in accuracy across demographic groups.', bullets: ['Detection: Identifies that a face exists in an image or video frame', 'Alignment: Normalises the face to a standard orientation and scale', 'Feature extraction: Maps facial geometry — inter-eye distance, jaw contour, nose bridge — into a numeric vector (faceprint)', 'Matching: Compares the faceprint against enrolled database entries using cosine similarity scores', 'Accuracy gap: the earlier Gender Shades study of commercial systems found 99%+ accuracy for light-skinned men but as low as ~65% for dark-skinned women — not a glitch, a structural flaw in biased training data'], callout: 'The performance gap is not a bug — it reflects training data that is overwhelmingly composed of lighter-skinned faces. Bias is baked into the technology.' },
-    { type: 'concept', title: 'The Surveillance Debate', body: 'Facial recognition in public spaces creates a fundamental tension between collective security and individual privacy. Clearview AI scraped over 30 billion photos from social media without consent and sold access to police forces worldwide. The ICO fined them £7.5 million in 2022 and ordered deletion of UK data. France fined them €20 million. Australia and Italy issued similar orders. Yet Clearview continues operating for US law enforcement. Meanwhile in London, a property developer secretly ran facial recognition on 250,000 pedestrians at Kings Cross — and South Wales Police and the Met continue live deployments at events and high streets despite ongoing legal challenges from Liberty and Big Brother Watch.', bullets: ['For surveillance: Identifies wanted criminals in crowds, locates missing persons, deters terrorism, speeds up airport security', 'Against surveillance: Creates chilling effects — people modify behaviour, avoid protests, self-censor when watched. The mere presence of cameras in Xinjiang is used to control the movement of Uyghur communities', 'Function creep: North Ayrshire deployed facial recognition to verify school lunch purchases — scanning children\'s biometric data for a meal. Technology deployed for one purpose expands to others with no public consultation', 'Disproportionate impact: Rite Aid\'s system generated thousands of false matches predominantly in communities of colour. Robert Williams, Porcha Woodruff, and at least a dozen others have been wrongfully arrested in the US', 'Accountability gap: In July 2025, the UK Home Secretary acknowledged the need for a "proper, clear governance framework" for facial recognition — but the UK still has no equivalent to the EU\'s ban on real-time biometric surveillance in public spaces'], callout: 'The EU AI Act bans real-time biometric surveillance in public spaces. The FTC has banned a US retailer from using it. Multiple countries have fined Clearview AI. Yet the UK Metropolitan Police continues live facial recognition deployments with no specific legislation governing its use.' },
-    { type: 'activity', title: 'Surveillance Policy Design', instructions: 'Your group represents a city council deciding whether to deploy facial recognition cameras in your city centre. Use the Surveillance Debate Pack from Resources.', steps: ['Split into three teams: Security advocates, Civil liberties advocates, and the Council', 'Security team: Prepare a 3-minute case for deploying facial recognition with specific safeguards', 'Civil liberties team: Prepare a 3-minute case against deployment with alternative safety proposals', 'Both teams present to the Council', 'Council asks questions and deliberates', 'Council votes and announces their decision with reasoning'] },
-    { type: 'discussion', title: 'Drawing the Line', questions: [{ num: 1, text: 'North Ayrshire scanned children\'s faces to verify school lunch purchases. The ICO intervened. But the school argued it was faster and more hygienic than fingerprint scanners. At what point does a genuine operational benefit stop justifying biometric data collection from children — and who should make that call?' }, { num: 2, text: 'The ACLU\'s Detroit settlement bans arrests based solely on facial recognition — but still allows it as one piece of evidence. Robert Williams spent 30 hours in a cell; Porcha Woodruff was held while eight months pregnant. Is "not the sole basis" a strong enough safeguard, or should facial recognition evidence be inadmissible entirely?' }, { num: 3, text: 'Clearview AI was fined by the UK, France, Italy, and Australia — yet continues operating for US law enforcement. What does this tell you about the limits of national regulation for a technology that operates across borders?' }] },
-    { type: 'scenario', title: 'The School Safety Proposal', situation: 'Your school\'s headteacher has proposed installing facial recognition cameras at all entrances. The stated purpose: to identify banned visitors and protect pupils from safeguarding threats. The system will match faces against a database of individuals with court-issued exclusion orders. A local newspaper has already reported on it, and parents are divided. You are a pupil governor with a vote on the proposal.', question: 'How do you vote — and what conditions, if any, would you require?', choices: [ { text: 'Vote yes — safeguarding is paramount and the benefits to pupil safety outweigh privacy concerns', outcome: 'The system is installed. Six months later, a Year 9 pupil of Somali heritage is incorrectly flagged as a known offender and held at the entrance for 25 minutes. Their parents file a formal complaint. The reputational damage forces a review.' }, { text: 'Vote no — the safeguarding risk can be addressed through other means (visitor ID checks, entry codes, trained staff)', outcome: 'The proposal is rejected. You propose a human-led visitor verification protocol instead. It costs less, requires no data retention, and a staff review 12 months later finds it has prevented three safeguarding incidents — the same figure the facial recognition supplier had projected.' }, { text: 'Vote yes, but only with strict conditions: independent audit, demographic accuracy testing, data deleted within 24 hours, annual review', outcome: 'The conditions are accepted but the supplier cannot meet the accuracy testing requirement. The system is never deployed. The headteacher credits your conditions with exposing a vendor making overclaims about performance.' } ] },
-    { type: 'quiz', question: 'A city council proposes deploying facial recognition cameras in a high-crime area. NIST data shows the system\'s false positive rate is 0.1% for white men but 10% for dark-skinned women — 100× higher. The area\'s population is predominantly Black. Applying the evidence from this lesson, what is the most likely outcome?', options: ['The system will work equally well for all residents because 0.1% is very low', 'Predominantly Black residents will experience disproportionate false matches, leading to wrongful stops or arrests — replicating the Detroit and Rite Aid patterns', 'The 100× gap only applies to older systems and modern AI has eliminated it', 'The false positive rate is irrelevant because police officers verify matches before acting'], correct: 1, explanation: 'The NIST 100× accuracy gap means that in a predominantly Black area, the system will generate vastly more false matches for dark-skinned residents. This is exactly what happened at Rite Aid — the FTC banned them for 5 years after their system generated disproportionate false matches in stores serving Black and Latino communities. The Detroit cases (Robert Williams, Porcha Woodruff) show that police verification does not reliably prevent wrongful arrests based on false matches.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Unequal accuracy', text: 'Facial recognition error rates are up to 100x higher for dark-skinned women than light-skinned men — bias baked into training data' }, { icon: '▸', label: 'Security vs. liberty', text: 'Genuine safety benefits must be weighed against chilling effects on protest, expression, and movement' }, { icon: '▸', label: 'Regulation gap', text: 'The EU bans real-time biometric surveillance in public; the UK has no equivalent law — leaving deployment largely unchecked' }] }
+  "14": [
+    {
+      "type": "hook",
+      "title": "Surveillance and Facial Recognition",
+      "body": "A fictional venue proposes face recognition to identify banned visitors. Its test reports 99% accuracy but gives no false-positive rate, threshold or test population. Is that enough to judge the proposal?"
+    },
+    {
+      "type": "concept",
+      "title": "Specify the task and the error",
+      "body": "Verification asks whether two images belong to the same person. Identification searches for a person among candidates. Performance depends on the system, threshold, images and evaluation conditions.",
+      "bullets": [
+        "A false positive wrongly matches different people; a false negative misses a genuine match.",
+        "An overall accuracy figure can hide the error most important to a deployment.",
+        "NIST evaluations are evidence about particular tests, not a universal rate for all products."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Face recognition evaluation",
+          "url": "https://pages.nist.gov/frvt/html/frvt11.html"
+        },
+        {
+          "label": "DfE: Generative AI and data protection in schools",
+          "url": "https://www.gov.uk/guidance/data-protection-in-schools/generative-artificial-intelligence-ai-and-data-protection-in-schools"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Use a base-rate example",
+      "body": "Fictional illustration: 10,000 non-matching checks at a 1% false-positive rate would produce about 100 false alerts on average. This is a calculation, not a measurement of a real system.",
+      "bullets": [
+        "Reducing the rate changes the burden of review.",
+        "The number of true matches matters when interpreting an alert.",
+        "Accuracy is one issue; necessity, alternatives, data retention and appeal also matter."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "Run a written town hall",
+      "instructions": "Working independently. Write short testimony from an organiser, a visitor wrongly flagged and a privacy advocate.",
+      "steps": [
+        "Request the missing evaluation details.",
+        "Compare the proposal with a non-biometric alternative.",
+        "Set conditions for a limited test or explain why you would reject it.",
+        "Include a correction, review and appeal route."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "What would make a technically accurate system inappropriate for this venue?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. What would make a technically accurate system inappropriate for this venue?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "Why does the 99% headline leave important questions unanswered?",
+      "options": [
+        "Every system with that score is unsafe.",
+        "The relevant error, denominator and deployment conditions are unclear.",
+        "No numerical evidence is useful."
+      ],
+      "correct": 1,
+      "explanation": "A meaningful evaluation needs the task and consequences as well as a headline score."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Specify the task and the error",
+          "text": "Verification asks whether two images belong to the same person."
+        },
+        {
+          "icon": "2",
+          "label": "Use a base-rate example",
+          "text": "Fictional illustration: 10,000 non-matching checks at a 1% false-positive rate would produce about 100 false alerts on average."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Write three short stakeholder testimonies about a fictional face-recognition proposal, then issue a decision with conditions, an alternative and an appeal route."
+        }
+      ]
+    }
   ],
-
-  15: [
-    { type: 'hook', title: 'The Environmental Cost', body: 'In September 2024, Microsoft signed a 20-year deal to restart the Three Mile Island nuclear reactor — the site of America\'s worst nuclear accident — to power its AI data centres. Amazon acquired a nuclear-powered data centre campus near Pennsylvania\'s Susquehanna plant. Google signed agreements for small modular reactors. Why? Because AI is devouring electricity at a rate that renewables alone cannot meet. Ireland\'s data centres now consume 21% of the country\'s entire national electricity supply — projected to reach 32% by 2026. A single ChatGPT query consumes roughly 3–10 times the energy of a Google search, depending on the model and length. Microsoft\'s carbon emissions rose 30% between 2020 and 2024 — and its water consumption rose 34% — due to AI infrastructure. Google\'s emissions rose 48% over the same period. Both had pledged to be carbon neutral or negative by 2030. At the same time, DeepMind\'s AI discovered 2.2 million new crystal structures for better batteries and solar cells, and its weather model forecasts 100× faster than physics-based methods. AI is simultaneously the problem and one of the most powerful tools for solving it.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">21%</span><span class="sl">of Ireland\'s national electricity consumed by data centres</span></div><div class="hook-stat-mini"><span class="sv">34%</span><span class="sl">rise in Microsoft\'s water consumption due to AI (2021–2023)</span></div><div class="hook-stat-mini"><span class="sv">48%</span><span class="sl">rise in Google\'s carbon emissions (2019–2023)</span></div><div class="hook-stat-mini"><span class="sv">TMI</span><span class="sl">Three Mile Island nuclear reactor restarted for AI (Microsoft, 2024)</span></div></div>' },
-    { type: 'concept', title: 'The Carbon Cost of AI', body: 'AI\'s environmental footprint comes from three sources: training models, running inference, and the hardware lifecycle. The total carbon footprint of AI systems was estimated at 32–80 million tonnes of CO₂ in 2025 — and global data centre electricity consumption is projected to reach 1,050 TWh by 2026, roughly equivalent to Japan\'s entire electricity demand.', bullets: ['Training: GPT-3 training emitted ~552 tonnes of CO₂. GPT-4 is estimated at 10× larger. DeepSeek R1 (Jan 2025) achieved comparable performance at a fraction of the training cost — but Jevons\' paradox suggests cheaper AI may simply be used more, increasing total energy', 'Inference: A short GPT-4o query uses ~0.4 Wh; a complex one uses 1–3 Wh. With 300+ million weekly ChatGPT users by early 2025, inference now consumes more energy than training across the industry', 'Water: The global AI water footprint was estimated at 312–765 billion litres in 2025. Much of this evaporates during cooling — it is consumed, not returned. In drought-prone regions like The Dalles, Oregon, data centre expansion has triggered community opposition over competition for scarce water', 'Hardware: NVIDIA H100 and Blackwell GPUs require cobalt, lithium, and energy-intensive fabrication. US data centre energy demand is predicted to nearly double from 80 to 150 GW between 2025 and 2028', 'The nuclear pivot: Microsoft restarted Three Mile Island; Amazon acquired a nuclear campus; Google signed small modular reactor deals. The AI industry is reshaping national energy infrastructure to feed its demand — a fact that would have seemed absurd five years ago'], callout: 'Ireland\'s data centres consume 21% of national electricity — projected to reach 32% by 2026. One country\'s entire electrical grid is being reshaped by an industry that barely existed a decade ago.' },
-    { type: 'concept', title: 'AI as Climate Solution', body: 'Despite its footprint, AI offers transformative potential for environmental sustainability. DeepMind\'s 2023 GNoME model discovered 2.2 million new crystal structures — including 380,000 stable materials that could unlock better batteries and solar cells — in days rather than the centuries traditional research would require.', bullets: ['Energy grid optimisation: DeepMind\'s AI reduced Google data centre cooling energy by 40% — equivalent to removing a power plant from the grid', 'Climate modelling: GraphCast (DeepMind, 2023) produces 10-day weather forecasts in under a minute — 100x faster than traditional physics models', 'Materials science: GNoME discovered more stable inorganic materials in one run than scientists found in all of recorded history', 'Precision agriculture: Satellite-AI systems reduce water use by 30% and pesticide application by 50% on monitored farms', 'Deforestation: Global Forest Watch uses AI satellite analysis to detect illegal logging within 24 hours across 70 countries'], callout: 'The net equation: If AI\'s climate solutions save more emissions than AI itself produces, the technology is net-positive. But this is not guaranteed — it depends entirely on deployment choices.' },
-    { type: 'activity', title: 'Your AI Footprint — By the Numbers', instructions: 'Calculate the real environmental cost of your personal AI use using the reference data below, then design a response.', steps: ['List every AI tool you use regularly. For each, estimate how many queries you make per week. Be honest — check your chat history if you can', 'Use these energy estimates to calculate: a short ChatGPT/Claude text query ≈ 0.3–0.4 Wh; a long or complex query ≈ 1–3 Wh; an image generation (Midjourney/DALL-E) ≈ 3–5 Wh; a Google search ≈ 0.3 Wh. Multiply queries × energy × 52 weeks for your annual AI energy use in kWh', 'Now calculate water: each text query uses roughly 1–3 mL of water for data centre cooling. Each image generation uses roughly 5–10 mL. Multiply by your annual query count. Convert to litres', 'Context check: the average UK household uses ~2,900 kWh of electricity per year. How does your AI use compare? A UK household uses ~150 litres of water per day', 'Research one claim: visit your main AI provider\'s sustainability page (e.g. Google Environmental Report, Microsoft Sustainability Report). Find one specific number. Does it match the data in this lesson?', 'Write a 5-sentence brief for your headteacher: "Here is what our school\'s AI use probably costs environmentally, and here are two things we could do about it." Include at least one specific number.'] },
-    { type: 'discussion', title: 'The Green AI Dilemma', questions: [{ num: 1, text: 'Ireland\'s data centres consume 21% of national electricity. Microsoft restarted a nuclear reactor for AI. Google\'s emissions rose 48% in four years. Yet none of these companies disclose per-query energy costs to users. If your ChatGPT interface showed "This query used 0.4 Wh and 1.5 mL of water" after every response, would it change your behaviour — and should companies be required to show it?' }, { num: 2, text: 'In the activity, you calculated your personal AI energy footprint. DeepSeek R1 matched GPT-4\'s performance at a fraction of the training cost — but Jevons\' paradox suggests cheaper AI will be used more, not less. Using your own usage data: if AI became 10× cheaper, would you use it 10× more? What does your honest answer reveal about the efficiency argument?' }, { num: 3, text: 'The Model Choice scenario showed that a smaller model at 95% accuracy saved 228,000 kWh per year. But in healthcare, that 5% gap might mean missed diagnoses. Where specifically should the line fall — and who should draw it: the engineer, the customer, the regulator, or the patient?' }] },
-    { type: 'scenario', title: 'The Model Choice', situation: 'You are a product manager at a health startup building an AI tool that helps patients understand their test results. You have two options. Option A: frontier model (e.g. GPT-5.4) — state-of-the-art accuracy, runs on cloud servers consuming roughly 0.01 kWh per query. Option B: A smaller, fine-tuned open-source model running on your own green-energy servers — 95% as accurate, consumes 0.0005 kWh per query. Your product will handle 2 million queries per month.', question: 'Which model do you choose — and how do you justify it to stakeholders?', choices: [ { text: 'Option A — patients deserve the most accurate medical AI possible. The energy difference is marginal at our scale', outcome: 'At 2M queries/month, Option A uses 20,000 kWh/month vs. 1,000 kWh for Option B. Over a year, you\'ve emitted roughly 11 additional tonnes of CO₂. A competitor launches with Option B, markets their green credentials, and wins a hospital contract you were shortlisted for.' }, { text: 'Option B — 95% accuracy is clinically sufficient, the energy savings are enormous, and our green data helps with NHS procurement criteria', outcome: 'You save 228,000 kWh per year — equivalent to taking 12 cars off the road. The accuracy gap proves negligible in real-world use (the 5% gap was on edge cases not typical of your patient queries). Your sustainability story helps close three enterprise deals.' }, { text: 'Run a 3-month clinical trial comparing both models on real patient queries before committing', outcome: 'The trial confirms the 5% gap is real but concentrated in rare diagnostic edge cases. You deploy Option B for routine queries and Option A for flagged high-risk results — a hybrid approach that balances accuracy and sustainability better than either option alone.' } ] },
-    { type: 'quiz', question: 'DeepSeek R1 (Jan 2025) matched GPT-4 performance at a fraction of the training cost. Why might this actually increase AI\'s total environmental impact rather than reduce it?', options: ['Because DeepSeek uses dirtier energy sources than OpenAI', 'Because cheaper AI lowers the barrier to use — Jevons\' paradox predicts more total consumption when unit cost falls', 'Because DeepSeek\'s model is physically larger and uses more hardware', 'Because training is the only significant source of AI energy consumption'], correct: 1, explanation: 'Jevons\' paradox (1865) observed that making steam engines more efficient increased total coal consumption because cheaper energy expanded use. The same principle applies: if training AI becomes 10× cheaper, far more models will be trained and deployed, potentially increasing total environmental impact even as per-model efficiency improves.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Massive energy footprint', text: 'Training GPT-3 emitted 552 tonnes of CO₂ — Google\'s emissions rose 48% in four years due to AI expansion' }, { icon: '▸', label: 'Transformative climate potential', text: 'DeepMind\'s GNoME found more stable materials in one run than all of scientific history — AI can accelerate climate solutions' }, { icon: '▸', label: 'Deployment is the decision', text: 'Whether AI is net-positive for the climate depends on the choices engineers and product managers make' }] }
+  "15": [
+    {
+      "type": "hook",
+      "title": "What does an AI answer cost?",
+      "body": "A school wants every pupil to generate ten images for a poster. Another teacher suggests sketching first and generating only the strongest idea. Which approach would you recommend? Identify what you would need to know before putting a number on the environmental difference."
+    },
+    {
+      "type": "concept",
+      "title": "Measure the right thing",
+      "body": "AI uses electricity during training and use. Data centres also support many services other than AI. A number about all data centres is not a measurement of one chatbot.",
+      "bullets": [
+        "Separate training from inference: building a model and running it are different activities.",
+        "Electricity is not the same as emissions: location, timing and energy supply matter.",
+        "Water estimates depend on cooling, local conditions and whether electricity-generation water is included.",
+        "Per-query estimates vary with model, hardware, output length and task. State assumptions and uncertainty."
+      ],
+      "sources": [
+        {
+          "label": "IEA: Key Questions on Energy and AI, 2026",
+          "url": "https://www.iea.org/reports/key-questions-on-energy-and-ai/executive-summary"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "A useful result can still have a cost",
+      "body": "AI may help optimise systems, but a claimed benefit needs a comparison. Ask what would have happened without it.",
+      "bullets": [
+        "Define the task and a non-AI alternative.",
+        "Compare useful outputs, not just the number of requests.",
+        "Consider rebound: cheaper or easier generation may increase total use.",
+        "Do not turn a provider-wide average into a measurement of your own prompt."
+      ],
+      "callout": "Read the source: <a href=\"https://www.iea.org/reports/key-questions-on-energy-and-ai/executive-summary\" target=\"_blank\" rel=\"noopener\">Evidence and context</a> · Reviewed 26 October 2026"
+    },
+    {
+      "type": "activity",
+      "title": "Build an honest estimate",
+      "instructions": "Working independently for 12 minutes. These are fictional teaching assumptions, not measurements of a particular product.",
+      "steps": [
+        "Assume 200 pupils each generate 10 images. Calculate the number of images.",
+        "Compare two hypothetical estimates: 1 Wh and 5 Wh per image. Convert each total to kWh by dividing by 1,000.",
+        "Now assume pupils sketch first and generate 2 images each. Calculate both totals again.",
+        "Explain why you have a range. Name three measurements needed before reporting the school’s actual footprint.",
+        "Write a recommendation that considers learning quality as well as energy."
+      ],
+      "reveal": "First approach: 2,000 images, giving 2–10 kWh under these assumptions. Sketch-first: 400 images, giving 0.4–2 kWh. The reduction is 80% in this simplified example; it is not a measured saving for a real school."
+    },
+    {
+      "type": "discussion",
+      "title": "Make the trade-off explicit",
+      "questions": [
+        {
+          "num": 1,
+          "text": "When is generating another version worth the cost? Give a concrete example."
+        },
+        {
+          "num": 2,
+          "text": "Could a smaller model complete the task equally well? How would you test that?"
+        },
+        {
+          "num": 3,
+          "text": "What might your estimate leave out, and could that change your decision?"
+        }
+      ]
+    },
+    {
+      "type": "scenario",
+      "title": "The poster brief",
+      "situation": "You have a strong hand-drawn idea and three usable generated images. A classmate proposes generating 100 more because “one might be better”.",
+      "question": "What would you do next?",
+      "choices": [
+        {
+          "text": "Generate all 100.",
+          "outcome": "You might improve the design, but you have not identified what needs improving. Set a quality criterion before spending more resources."
+        },
+        {
+          "text": "Choose a specific weakness and test one revision.",
+          "outcome": "This creates a meaningful comparison. Keep the revision only if it meets the criterion better."
+        },
+        {
+          "text": "Ban all image generation.",
+          "outcome": "That reduces this use, but does not explain when the tool adds educational value. A justified boundary is more useful than a blanket response."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "Why should an environmental estimate state a range?",
+      "options": [
+        "AI never uses electricity.",
+        "Every prompt has the same footprint.",
+        "Task, hardware and system boundaries affect the estimate.",
+        "A range guarantees accuracy."
+      ],
+      "correct": 2,
+      "explanation": "A range makes assumptions visible. It still needs a credible method and does not establish a measured footprint."
+    },
+    {
+      "type": "summary",
+      "title": "What you should now be able to explain",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Separate measures",
+          "text": "Electricity, emissions and water describe different things."
+        },
+        {
+          "icon": "2",
+          "label": "Show your working",
+          "text": "State the task, assumptions, source date and uncertainty."
+        },
+        {
+          "icon": "3",
+          "label": "Make a proportionate choice",
+          "text": "Use the evidence to improve the task, not to invent precision."
+        },
+        {
+          "icon": "✓",
+          "label": "Check your understanding",
+          "text": "Close the lesson. Explain its main idea with a new example. Reopen it, correct anything you missed, and record one question you still have."
+        }
+      ]
+    }
   ],
-
-  16: [
-    { type: 'hook', title: 'Global Regulation', body: 'The EU AI Act is now fully in force — with banned practices active from February 2025 and rules for frontier AI models like GPT-5.4 and Claude 4.6 from August 2025. The US reversed course: Trump revoked Biden\'s AI Executive Order on day one of his second term and pivoted to deregulation. The UK launched a £14bn AI investment plan in January 2025 but still has no AI-specific law. China has layered deepfake labelling rules on top of earlier algorithmic regulations. Four major powers, four fundamentally different approaches — and they are diverging, not converging.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">459</span><span class="sl">pages in the final EU AI Act text</span></div><div class="hook-stat-mini"><span class="sv">Feb 2025</span><span class="sl">EU\'s banned AI practices took effect</span></div><div class="hook-stat-mini"><span class="sv">Day 1</span><span class="sl">Trump revoked Biden\'s AI Executive Order (January 2025)</span></div><div class="hook-stat-mini"><span class="sv">€35M</span><span class="sl">max fine for breaching EU AI Act rules</span></div></div>' },
-    { type: 'concept', title: 'Four Regulatory Models', body: 'Understanding the major global approaches reveals fundamentally different philosophies about the role of government in technology governance. The EU AI Act — in force since August 2024, with prohibited practices banned from February 2025 and GPAI model rules active from August 2025 — is the world\'s first comprehensive AI law. But it sat in draft for three years while ChatGPT, Midjourney, and Sora all launched without it.', bullets: ['EU AI Act (fully active 2025): Risk tiers — unacceptable (banned: social scoring, real-time biometric surveillance in public), high-risk (transparency, human oversight, audit trails required), limited-risk, and minimal-risk. GPAI models like GPT-5.4 and Gemini 3.1 Pro now face systemic risk obligations under the Act’s GPAI rules', 'US approach: Biden\'s 2023 Executive Order on AI was revoked by President Trump on day one of his second term (January 2025), replaced by an EO prioritising AI "freedom" and competitiveness. No comprehensive federal AI law exists; sector agencies (FDA, SEC) regulate AI in their domains only', 'UK approach: The 2025 AI Opportunities Action Plan committed £14bn in AI investment and expanded the AI Safety Institute\'s mandate. Still no AI-specific legislation — existing regulators (ICO, Ofcom, FCA) apply current law, but a proposed AI bill is under consultation', 'China approach: Algorithmic Recommendation Regulation (2022), Generative AI Measures (2023), and new deepfake labelling rules (2025) layer up controls. State deploys AI extensively for internal security and surveillance'], callout: 'The EU regulates to protect citizens. The US (under Trump) deregulates to accelerate competitiveness. The UK tries to balance both. China regulates to maintain state control.' },
-    { type: 'concept', title: 'The Regulation Dilemma', body: 'Every regulatory approach involves trade-offs. Too little regulation risks harm; too much risks stifling innovation and falling behind competitors. The Brussels Effect — where EU standards become global defaults — is the most powerful dynamic in technology governance today. But the US pivot to deregulation under Trump in 2025 is now testing whether that effect still holds.', bullets: ['The Brussels Effect: Companies find it easier to comply everywhere with EU standards than to build separate systems per jurisdiction. GDPR became a global privacy benchmark the same way — AI Act may follow, or the US deregulatory push may fracture this', 'Speed mismatch: The EU AI Act took 3 years to pass. In that period: ChatGPT launched (Nov 2022), DALL-E 2 went public, Sora was demonstrated, GPT-4 was released — and DeepSeek R1 (Jan 2025) upended assumptions about AI development costs', 'Audit challenge: Auditing an AI system requires access to training data, model weights, and evaluation results — most companies treat these as trade secrets. The EU is now demanding this access from GPAI providers', 'Regulatory arbitrage: The US deregulatory pivot in 2025 has intensified competition — EU companies are lobbying for delays in enforcement while US rivals face fewer constraints', 'Enforcement gap: The EU has 27 member states but the AI Office in Brussels is only now building its enforcement capacity — first major GPAI investigations began in 2025'], callout: 'The EU AI Act is the first law in force, but the US-EU regulatory divergence in 2025 may become the defining tension in global AI governance. Whether European rules become the global standard — or an isolated outlier — will be decided in the next few years.' },
-    { type: 'activity', title: 'Regulation Jigsaw', instructions: 'Using the Regulation Jigsaw Cards from Resources, become an expert on one regulatory approach and teach it to your group.', steps: ['Form groups of 4. Each person takes one jurisdiction: EU, US, UK, or China', 'Using the Jigsaw Cards, become an expert on your jurisdiction (10 minutes)', 'Return to your group and teach the others about your approach (3 minutes each)', 'As a group, create a comparison table: Strengths, Weaknesses, and Key Differences', 'Vote: Which approach would you adopt for a new country? Justify your choice', 'Present your group\'s recommendation to the class'] },
-    { type: 'discussion', title: 'Governing the Ungovernable?', questions: [{ num: 1, text: 'Should there be a single global AI regulatory framework, similar to international aviation rules? In 2025, the US and EU diverged sharply — does this make global standards more or less realistic?' }, { num: 2, text: 'The UK\'s AI Opportunities Action Plan (2025) committed £14bn in investment while still having no AI-specific law. Is this a good balance — or a race to the bottom?' }, { num: 3, text: 'Trump revoked Biden\'s AI Executive Order on day one of his second term. What does it say about AI policy that a major country\'s entire regulatory approach can change overnight with a new government?' }] },
-    { type: 'scenario', title: 'The Startup Decision', situation: 'You\'ve co-founded an AI recruitment tool that screens CVs and ranks candidates. Your tool is trained on 10 years of hiring data from 200 UK companies. It works well — but an internal audit reveals it ranks women 12% lower than men with equivalent qualifications, likely because historical hiring data reflects past discrimination. You need to decide your market strategy before your Series A pitch next week.', question: 'How do you proceed?', choices: [ { text: 'Launch in the US first — no AI-specific law, fastest route to market, lower compliance cost', outcome: 'You launch, grow fast. Eighteen months later a ProPublica-style investigation identifies the gender bias. Three class action lawsuits are filed in California. The legal fees exceed your Series A raise. Two board members resign. You\'re now fixing a problem that was identified before launch.' }, { text: 'Pause launch, fix the gender bias, then pursue EU certification — slower but you\'ll be compliant from day one', outcome: 'The 4-month delay costs you one competitor deal. But your EU compliance documentation becomes your strongest selling point to HR teams worried about legal liability. You close a £2M NHS contract specifically because you can demonstrate algorithmic fairness audits.' }, { text: 'Disclose the bias in your terms of service and let customers decide — transparency, not paternalism', outcome: 'The ICO investigates after a journalist reads your T&Cs. They rule that disclosing discrimination does not make it lawful under the Equality Act 2010. You are fined and ordered to withdraw the tool from the UK market pending a full audit.' } ] },
-    { type: 'quiz', question: 'A startup has built an AI system that analyses CV photos to generate personality assessments for job applicants. Under the EU AI Act\'s risk framework, how would this most likely be classified — and what does that require?', options: ['Minimal-risk — it speeds up hiring so no regulation needed', 'High-risk — AI used in employment selection requires transparency, human oversight, bias auditing, and conformity assessment', 'Unacceptable risk — banned outright because it analyses photographs', 'Limited-risk — only a transparency notice to applicants is needed'], correct: 1, explanation: 'The EU AI Act explicitly classifies AI systems used in employment selection as high-risk, recognising the significant impact on individuals\' livelihoods. High-risk systems must provide transparency about how they work, allow human oversight and override, maintain audit trails, and undergo conformity assessment before deployment. The startup would need to meet all of these requirements — and using photo analysis to infer personality traits may additionally trigger concerns about prohibited emotion-recognition uses under Article 5.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Four diverging philosophies', text: 'EU (protect citizens, fully active 2025), US (deregulate under Trump 2025), UK (invest and wait), China (layer controls) — diverging, not converging' }, { icon: '▸', label: 'Regulation always lags', text: 'The EU AI Act took 3 years — and even now, models like DeepSeek R1 are forcing regulators to rethink assumptions built into the text' }, { icon: '▸', label: 'The Brussels Effect under pressure', text: 'EU standards have become global defaults before — but the US deregulatory pivot in 2025 is the biggest challenge yet to that pattern' }] }
+  "16": [
+    {
+      "type": "hook",
+      "title": "Who should set the rules?",
+      "body": "A school is offered an AI system that shortlists pupils for a scholarship. The supplier promises efficiency but will not explain how it checks for unfair outcomes. What would you need before recommending a trial?"
+    },
+    {
+      "type": "concept",
+      "title": "A law is not a single start date",
+      "body": "The EU AI Act applies in stages. “Fully active in 2025” is incorrect. The official implementation timetable includes later deadlines, so check the provision relevant to the system.",
+      "bullets": [
+        "Distinguish a law entering into force from obligations becoming applicable.",
+        "Identify the jurisdiction, the use of the system and who is responsible.",
+        "General-purpose model obligations and rules for particular applications are different.",
+        "Record the source and date. A policy announcement is not necessarily an enforceable duty."
+      ],
+      "sources": [
+        {
+          "label": "European Commission: AI Act implementation timeline",
+          "url": "https://ai-act-service-desk.ec.europa.eu/en/ai-act/eu-ai-act-implementation-timeline"
+        },
+        {
+          "label": "DfE: Generative AI and data protection in schools",
+          "url": "https://www.gov.uk/guidance/data-protection-in-schools/generative-artificial-intelligence-ai-and-data-protection-in-schools"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Several rules can apply at once",
+      "body": "An AI-specific law does not replace privacy, equality, consumer or safeguarding rules. A system can be problematic even where there is no single comprehensive AI act.",
+      "bullets": [
+        "Describe the decision and who could be harmed.",
+        "Ask what data is used and whether that use is justified.",
+        "Look for meaningful human review and a route to challenge mistakes.",
+        "Separate legal requirements from the additional standards you think the school should set."
+      ],
+      "callout": "Read the source: <a href=\"https://www.gov.uk/guidance/data-protection-in-schools/generative-artificial-intelligence-ai-and-data-protection-in-schools\" target=\"_blank\" rel=\"noopener\">Evidence and context</a> · Reviewed 26 October 2026"
+    },
+    {
+      "type": "activity",
+      "title": "Write a one-page recommendation",
+      "instructions": "Working independently for 15 minutes. Use the scholarship example. This is an educational policy exercise, not legal advice.",
+      "steps": [
+        "List three questions for the supplier: evidence of accuracy, fairness across relevant groups, and human review.",
+        "Read the linked official timetable. Record one applicable date and exactly which obligation it concerns. If offline, write “date needs checking” and continue the policy analysis.",
+        "Set out a benefit, a risk, and one condition for a limited trial.",
+        "Write a rule specifying who makes the final decision and how a pupil can challenge it.",
+        "Test your rule with a pupil incorrectly rejected. Can they find out what happened and obtain a meaningful review?"
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your recommendation",
+      "questions": [
+        {
+          "num": 1,
+          "text": "Could a human decision also be biased? What comparison would be fair?"
+        },
+        {
+          "num": 2,
+          "text": "What evidence would change your recommendation?"
+        },
+        {
+          "num": 3,
+          "text": "If the supplier refuses an audit, who should carry the risk?"
+        }
+      ]
+    },
+    {
+      "type": "scenario",
+      "title": "The supplier’s response",
+      "situation": "The supplier offers a discount if the school signs today. It gives only an overall accuracy figure, with no explanation of the test population.",
+      "question": "What is the strongest next step?",
+      "choices": [
+        {
+          "text": "Sign because the overall accuracy is high.",
+          "outcome": "An average may conceal unequal errors. You also need evidence relevant to the school’s pupils and purpose."
+        },
+        {
+          "text": "Request relevant evaluation evidence and a review process before a decision.",
+          "outcome": "This addresses a missing condition. Approval still depends on the evidence and the school’s responsibilities."
+        },
+        {
+          "text": "Put a disclaimer in the prospectus.",
+          "outcome": "A disclaimer does not resolve discrimination, privacy or accountability problems."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What is the safest way to report an AI law’s status?",
+      "options": [
+        "Say the whole law began on its announcement date.",
+        "Give the jurisdiction, relevant obligation, application date and official source.",
+        "Copy a chatbot’s confident summary.",
+        "Assume all countries follow the same rules."
+      ],
+      "correct": 1,
+      "explanation": "Laws have different scopes and implementation stages. Check the relevant provision and record when you checked it."
+    },
+    {
+      "type": "summary",
+      "title": "What you should now be able to explain",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Scope",
+          "text": "Identify the jurisdiction and actual use."
+        },
+        {
+          "icon": "2",
+          "label": "Timing",
+          "text": "Check which obligations apply and when."
+        },
+        {
+          "icon": "3",
+          "label": "Accountability",
+          "text": "Name a responsible decision-maker and a route to challenge harm."
+        },
+        {
+          "icon": "✓",
+          "label": "Check your understanding",
+          "text": "Close the lesson. Explain its main idea with a new example. Reopen it, correct anything you missed, and record one question you still have."
+        }
+      ]
+    }
   ],
-
-  17: [
-    { type: 'hook', title: 'Analysing the Status Quo', body: 'Most UK universities now have an AI policy — but surveys repeatedly find only a small minority of students have actually read the one that applies to them, while a clear majority use AI tools regularly for coursework. The gap between policy and practice is enormous. Before you can write better policy, you need to understand what already exists, what works, and what fails. Today, you become policy auditors.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">89%</span><span class="sl">of UK universities have an AI policy</span></div><div class="hook-stat-mini"><span class="sv">23%</span><span class="sl">of pupils had actually read it</span></div><div class="hook-stat-mini"><span class="sv">67%</span><span class="sl">of pupils use AI tools for coursework regularly</span></div><div class="hook-stat-mini"><span class="sv">Nov 22</span><span class="sl">ChatGPT launched — most policies were written after this</span></div></div>' },
-    { type: 'concept', title: 'Policy Audit Framework', body: 'Evaluating AI policies requires a structured approach. A good audit examines not just what a policy says, but how practical, enforceable, and fair it is. The Russell Group universities published a joint AI principles statement in 2023 — but each institution still interprets these principles differently. In June 2025, the UK DfE released its most definitive guidance yet on AI in education — requiring schools to conduct Data Protection Impact Assessments for any AI tool by early 2026.', bullets: ['Scope: What does the policy cover? Does it address generative AI specifically, or only plagiarism generally?', 'Clarity: Can a typical pupil understand the rules without reading a glossary? Test it on a Year 12 pupil', 'Enforceability: How are violations detected? A 2023 study testing 14 AI detection tools found accuracy ranged from 39–76% (Weber-Wulff et al.). An NPR investigation in December 2025 found teachers continue using these tools despite known unreliability — with false positive rates of 10–20% in real-world use', 'Fairness: Research confirms non-native English speakers and neurodivergent pupils are flagged at significantly higher rates by AI detection tools. About 10% of all teenagers report their work has been inaccurately identified as AI-generated — but Black pupils are disproportionately affected', 'Currency: When was it last reviewed? The DfE\'s June 2025 guidance is the current benchmark for UK schools — anything before that date should be reviewed against it'], callout: 'In November 2024, a pupil named Ailsa Ostovitz was accused of using AI on multiple assignments based on a detection tool showing 30.76% probability. She had written every word herself. False accusations carry real consequences: withheld grades, damaged trust, and emotional harm — especially when the burden of proof falls on the accused pupil.' },
-    { type: 'concept', title: 'Common Policy Gaps', body: 'Research reveals recurring weaknesses in existing AI policies across education. A 2024 review by Jisc (the UK higher education technology body) found these five failure patterns repeated across 60 institutions.', bullets: ['Binary thinking: "AI is banned" or "AI is allowed" — no nuance for brainstorming vs. writing vs. proofreading vs. generating', 'Tool-specific rules: "ChatGPT is prohibited" — but what about Copilot, Grammarly, Gemini, or AI embedded in Word?', 'No disclosure mechanism: Pupils do not know when, how, or in what format to declare AI use', 'Assessment gap: Policies do not explain how AI use affects grades — does using AI for structure reduce your mark?', 'One-way policies: Rules for pupils but no equivalent guidance for teachers using AI to generate worksheets and feedback'], callout: 'The best policies focus on principles (transparency, academic integrity, critical thinking) rather than specific tools — because tools change faster than policies can be updated.' },
-    { type: 'activity', title: 'Policy Audit Workshop', instructions: 'Audit a real university or school AI policy using the University AI Policy Comparison resource and the audit framework above.', steps: ['Your teacher will provide 2-3 real AI policies from UK universities or schools', 'Using the audit framework, score each policy on: Scope, Clarity, Enforceability, Fairness, and Currency', 'Rate each criterion from 1 (poor) to 5 (excellent) with written justification', 'Identify the top 3 strengths and top 3 weaknesses across all policies', 'Write 3 specific recommendations for improvement', 'Compare findings with another pair — did you identify the same issues?'] },
-    { type: 'discussion', title: 'Policy in Practice', questions: [{ num: 1, text: 'Weber-Wulff found AI detection tools have 39-76% accuracy, and NPR\'s December 2025 investigation documented false positive rates of 10-20% in real-world use. Ailsa Ostovitz was accused based on a 30.76% AI probability score. If you were designing an appeals process for a UK school, what specific evidence standard would need to be met before a formal misconduct investigation could be opened against a pupil?' }, { num: 2, text: 'The DfE\'s June 2025 guidance requires schools to conduct Data Protection Impact Assessments for any AI tool by early 2026. Research confirms Black pupils and non-native English speakers are flagged at significantly higher rates by AI detection tools. Should equality impact assessments be legally required before a school deploys AI detection — and who should conduct them?' }, { num: 3, text: 'The Jisc review identified five recurring policy failures: binary thinking, tool-specific rules, no disclosure mechanism, assessment gap, and one-way policies. Take any one of these five and draft a single replacement rule in plain English, under 25 words, using "must" not "should" — then test it against the Marcus/Amara scenario from this lesson.' }] },
-    { type: 'scenario', title: 'The Flagged Essay', situation: 'Mr Chen is a sixth-form English teacher. His AI detection tool (Turnitin) has flagged a pupil\'s essay as "87% likely AI-generated." The pupil — Amara, a hardworking pupil who moved from Nigeria two years ago — says she used Grammarly to fix grammar and asked ChatGPT one question about essay structure, but wrote every word herself. Her previous essays show a similar style. Turnitin\'s false positive rate for non-native speakers is estimated at 15-20%.', question: 'What should Mr Chen do?', choices: [ { text: 'Trust the tool — an 87% confidence rating is compelling evidence. Refer Amara for academic misconduct investigation', outcome: 'The misconduct panel reviews Amara\'s draft history (she has timestamped Google Docs going back 6 weeks) and her previous essays. They find no evidence of AI authorship. The false accusation has damaged trust, caused Amara significant distress, and prompted three parents to write to the headteacher about the reliability of AI detection.' }, { text: 'Disregard the flag — Amara is a trustworthy pupil. Give her the mark she earned', outcome: 'The essay is graded normally. However, you have no documented process for how you reached this decision. If another teacher makes the opposite call on a similar case, the inconsistency opens the school to an equality challenge.' }, { text: 'Have a private conversation with Amara, review her Google Docs draft history and browser history, and make a holistic judgment based on all available evidence — not the tool alone', outcome: 'The draft history shows 14 revision sessions over 3 weeks, with clear human editing patterns. You note in her file that the AI detection flag was investigated and not substantiated. You also report the false positive to your head of department, which triggers a school-wide review of the Turnitin policy.' } ] },
-    { type: 'quiz', question: 'What is the most common weakness found when auditing existing school AI policies?', options: ['They are too long and detailed', 'They focus on principles rather than tools', 'They use binary thinking — blanket bans or no rules at all', 'They update too frequently'], correct: 2, explanation: 'Many school AI policies fall into binary thinking — either banning AI entirely or having no restrictions. Effective policies address the spectrum of AI use and focus on transferable principles rather than specific tool names.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Audit before you build', text: 'Understanding what exists — and what fails — is essential before writing new policy' }, { icon: '▸', label: 'Five recurring gaps', text: 'Binary thinking, tool-specific bans, no disclosure mechanism, assessment disconnect, and one-way rules' }, { icon: '▸', label: 'Principles over tools', text: 'Tool names become obsolete; principles like transparency and integrity remain relevant as AI evolves' }] }
+  "17": [
+    {
+      "type": "hook",
+      "title": "Audit an AI Policy",
+      "body": "A fictional policy says: “Use AI responsibly. Do not cheat. Staff may check your work.” A pupil wants feedback on an essay plan. Another challenges an accusation. Can either work out what happens next?"
+    },
+    {
+      "type": "concept",
+      "title": "Read a policy through a decision",
+      "body": "A useful policy connects purpose, permitted actions, disclosure and responsibility. Test the wording against situations rather than judging how official it sounds.",
+      "bullets": [
+        "Underline an explicit rule; circle an assumption; mark an unanswered question.",
+        "Distinguish practice from assessed work and a tool’s availability from permission to use it.",
+        "Check who owns the policy and when it will be reviewed."
+      ],
+      "sources": [
+        {
+          "label": "Ofqual: AI malpractice and assessment, 2026",
+          "url": "https://www.gov.uk/government/publications/artificial-intelligence-malpractice-and-assessment-advice-note/artificial-intelligence-malpractice-and-assessment-advice-note-accessible"
+        },
+        {
+          "label": "DfE: Generative AI and data protection in schools",
+          "url": "https://www.gov.uk/guidance/data-protection-in-schools/generative-artificial-intelligence-ai-and-data-protection-in-schools"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Fairness needs a process",
+      "body": "A school policy should be read alongside current assessment, data-protection and safeguarding requirements. A detector score alone does not establish misconduct.",
+      "bullets": [
+        "Ask what evidence a concern rests on and how a pupil can respond.",
+        "Define proportionate record-keeping and access to records.",
+        "Identify support for pupils who cannot access a tool.",
+        "A classroom draft is a proposal, not adopted school policy."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "The policy archaeology board",
+      "instructions": "Working independently. Analyse a policy excerpt from the lesson or a clearly fictional one. Colour-code explicit rules, assumptions and missing decisions, then identify the first clarification a pupil would need.",
+      "steps": [
+        "Annotate the three-sentence policy in the opening.",
+        "Apply it to planning, feedback and submitting generated prose.",
+        "Write the first clarification each pupil needs.",
+        "Rewrite one vague sentence and test it with a difficult case."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "Could a rule be perfectly clear but still unfair? Give an example."
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. Could a rule be perfectly clear but still unfair? Give an example.",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "Which is a meaningful policy test?",
+      "options": [
+        "Count how many times it says responsible.",
+        "Check whether two readers can apply it consistently to a concrete case.",
+        "Assume any published document is current."
+      ],
+      "correct": 1,
+      "explanation": "An operational test reveals ambiguity and missing procedures."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Read a policy through a decision",
+          "text": "A useful policy connects purpose, permitted actions, disclosure and responsibility."
+        },
+        {
+          "icon": "2",
+          "label": "Fairness needs a process",
+          "text": "A school policy should be read alongside current assessment, data-protection and safeguarding requirements."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Analyse a policy excerpt from the lesson or a clearly fictional one. Colour-code explicit rules, assumptions and missing decisions, then identify the first clarification a pupil would need."
+        }
+      ]
+    }
   ],
-
-  18: [
-    { type: 'hook', title: 'Defining Acceptable Use', body: 'A pupil uses ChatGPT to brainstorm essay ideas. Acceptable? Most say yes. A pupil uses ChatGPT to write their entire essay. Unacceptable? Most say yes. But what about using AI to improve grammar? To restructure paragraphs? To generate a first draft that they then rewrite? The line between acceptable and unacceptable AI use is not a line at all — it is a spectrum. Today, your class will collaboratively define where the boundaries should be.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">5</span><span class="sl">levels of AI use in education — from inspiration to authorship</span></div><div class="hook-stat-mini"><span class="sv">IB</span><span class="sl">now allows AI use with disclosure — a landmark policy shift</span></div><div class="hook-stat-mini"><span class="sv">Level 3</span><span class="sl">is where most educators disagree — AI drafts you rewrite</span></div><div class="hook-stat-mini"><span class="sv">100%</span><span class="sl">of policies that work require disclosure, whatever the rules</span></div></div>' },
-    { type: 'concept', title: 'The Spectrum of AI Use', body: 'AI use in education exists on a spectrum from fully independent work to fully AI-generated work. The International Baccalaureate\'s 2023 policy shift — treating AI like a calculator, allowed with disclosure — marked a turning point in how educational institutions worldwide think about this spectrum.', bullets: ['Level 0: No AI used — entirely human work, as assessed in traditional exams', 'Level 1: AI as inspiration — brainstorming essay angles, checking understanding, generating reading lists', 'Level 2: AI as editor — Grammarly-style grammar fixing, structural suggestions, vocabulary improvement', 'Level 3: AI as collaborator — generating a first draft the pupil substantially rewrites and critiques (the contested zone)', 'Level 4: AI as author — submitting AI-generated work with minimal editing (universally considered academic misconduct)'], callout: 'Most educators agree Level 0-2 is acceptable and Level 4 is not. The real debate is Level 3 — and a policy that does not address it leaves pupils and staff guessing. Mapped onto the school\'s Three-Tier policy: Levels 0-1 are Green, Level 2 is Amber (disclose it), Level 3 is Amber at best — only with substantial rewriting and full disclosure — and Level 4 is Red.' },
-    { type: 'concept', title: 'Balancing Innovation and Integrity', body: 'An effective acceptable use policy must balance two competing goals: encouraging pupils to develop AI skills they will need professionally, while maintaining academic integrity and equity. The World Economic Forum\'s 2023 Future of Jobs report found AI literacy is now the number one skill gap in graduate recruitment.', bullets: ['The skills argument: Pupils who cannot use AI effectively will be disadvantaged vs. peers at institutions with pro-AI policies', 'The integrity argument: If AI does the critical thinking, pupils don\'t build the analytical skills that education is for', 'The equity argument: ChatGPT Plus and Gemini Advanced cost around £16–£20/month — policies must account for pupils who cannot afford these. Haileybury pupils can access Gemini 3.1 Pro free through their school accounts', 'The transparency principle: Whatever the rules, pupils must always disclose AI use — this is non-negotiable across all major policy frameworks', 'Assessment redesign: Instead of banning AI, build assessments that are AI-proof by design — oral presentations, process portfolios, in-class analysis'], callout: 'The International Baccalaureate now treats AI like a calculator — permitted with disclosure, banned in unsupported assessments. Cambridge, Oxford, and UK universities are watching this experiment closely.' },
-    { type: 'activity', title: 'Acceptable Use Workshop', instructions: 'Collaboratively define acceptable use criteria for your school. Work through specific scenarios to build consensus.', steps: ['In groups of 4, discuss: What should pupils be allowed to use AI for?', 'Work through 8 scenarios your teacher provides — classify each as Acceptable, Unacceptable, or Depends', 'For each "Depends" scenario, define what conditions would make it acceptable', 'Draft 5 core principles of acceptable AI use in education', 'Share your principles with another group and negotiate any disagreements', 'As a class, vote on the final set of principles'] },
-    { type: 'discussion', title: 'Drawing the Line', questions: [{ num: 1, text: 'This lesson defines Level 1 AI use (inspiration: brainstorming ideas, generating reading lists) as the lowest level. The IB treats AI like a calculator — allowed with disclosure in non-exam work. If Level 1 requires disclosure, does every Google search also need disclosing? Construct a one-sentence rule that draws the line clearly enough to apply consistently — and test it against three examples from the lesson.' }, { num: 2, text: 'ChatGPT Plus costs around £16–£20/month; Haileybury pupils can access Gemini 3.1 Pro free through school accounts, but this does not fully resolve the gap with ChatGPT. Free-tier tools are less capable, and their data-retention policies raise consent issues for minors under GDPR. If your school permits AI use in coursework but some pupils can still access premium tools and others cannot, is this an accessibility issue under the Equality Act 2010 — and what specific practical response should the school take?' }, { num: 3, text: 'The Jisc review found AI policies are one-way — rules for pupils but no guidance for teachers using AI to generate worksheets and feedback. If a teacher uses Claude to generate personalised feedback on 30 essays without disclosing this to pupils, is that ethically different from a pupil using Claude to help write the essay being assessed? Where does accountability lie differently for teachers and pupils — and why?' }] },
-    { type: 'scenario', title: 'The Disclosure Decision', situation: 'You\'re in Year 13. You have a 2,000-word history essay due in three days on the causes of World War One. You\'ve read all the sources and formed your own argument. You used ChatGPT to help outline your three main sections (you rejected two of its suggested headings), and you used Grammarly to fix grammar in your final draft. Your essay is entirely your own argument, your own analysis, your own words — but the structure and grammar had AI assistance. Your school\'s policy says "disclose AI use" but doesn\'t explain how.', question: 'What do you write in your AI disclosure statement?', choices: [ { text: 'Disclose nothing — you wrote every word yourself, so it\'s not really AI use', outcome: 'Your teacher queries the unusually polished structure in a pupil who typically struggles with essay organisation. You can\'t explain your structuring process in a follow-up conversation. The ambiguity damages trust more than the original disclosure would have.' }, { text: 'Write a brief statement: "I used ChatGPT to help brainstorm an essay structure (I rejected most suggestions) and Grammarly for grammar checking. All analysis and writing is my own."', outcome: 'Your teacher marks your essay normally. In feedback, she notes your essay structure is particularly clear and asks if she can share your disclosure statement as a model for the class. You\'ve established yourself as a pupil who uses AI thoughtfully and transparently.' }, { text: 'Don\'t submit the essay — if the policy is unclear, you can\'t risk being accused of misconduct', outcome: 'You miss the deadline. When you explain your reasoning to your teacher, she points out that the policy\'s intent is transparency, not catch-and-punish. A brief disclosure would have been fine. You learn that when policy is unclear, asking your teacher is always better than self-imposing a late penalty.' } ] },
-    { type: 'quiz', question: 'Why is transparency (disclosure of AI use) considered a "non-negotiable" principle across most AI policies?', options: ['It makes AI tools easier to use', 'It ensures AI tools are more accurate', 'It allows honest assessment of human vs. AI contribution', 'It prevents all forms of academic misconduct'], correct: 2, explanation: 'Regardless of where an institution draws the line on acceptable AI use, disclosure is essential because it allows fair assessment of what a pupil actually contributed versus what AI produced.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'A spectrum, not a line', text: 'AI use ranges from inspiration (Level 1) to authorship (Level 4) — policy must address the contested middle ground' }, { icon: '▸', label: 'Skills vs. integrity', text: 'The IB\'s 2023 shift treats AI like a calculator — permitted with disclosure, banned in unsupported exams' }, { icon: '▸', label: 'Transparency is non-negotiable', text: 'Every major policy framework agrees: whatever the rules, disclosure of AI use must always be required' }] }
+  "18": [
+    {
+      "type": "hook",
+      "title": "Draw the Boundaries",
+      "body": "For this fictional practice task, AI may suggest questions but may not draft the answer. A pupil asks it for a model paragraph and then copies its structure. Where is the boundary, and what needs clarification?"
+    },
+    {
+      "type": "concept",
+      "title": "Start with the learning purpose",
+      "body": "Permission depends on the actual task and current rules. A traffic-light label is a teaching aid, not universal permission across subjects, assessments or institutions.",
+      "bullets": [
+        "Separate brainstorming, explanation, feedback, generation and submission.",
+        "Ask which thinking the pupil is expected to demonstrate unaided.",
+        "Distinguish declaring assistance from being permitted to use it."
+      ],
+      "sources": [
+        {
+          "label": "Ofqual: AI malpractice and assessment, 2026",
+          "url": "https://www.gov.uk/government/publications/artificial-intelligence-malpractice-and-assessment-advice-note/artificial-intelligence-malpractice-and-assessment-advice-note-accessible"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Test the awkward middle",
+      "body": "A useful boundary includes examples, a way to ask questions and an accessible alternative. It should not rely on guessing what a tool did.",
+      "bullets": [
+        "A grammar suggestion can be small, or it can restructure an argument. Examine its effect.",
+        "Keep drafts and decisions when the task requires process evidence.",
+        "Use fictional work for the policy exercise; do not upload someone else’s assignment."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "The acceptable-use card game",
+      "instructions": "Working independently. Create six fictional schoolwork scenarios and sort them into permitted, prohibited or needs clarification under a rule you state. Repair the rule when a boundary case exposes ambiguity.",
+      "steps": [
+        "State the fictional practice rule from the opening.",
+        "Write six cards: a hint, a question, an explanation, feedback, a model paragraph and a full answer.",
+        "Sort each with a reason; leave genuinely ambiguous cases in needs clarification.",
+        "Revise the rule to settle one ambiguity without banning useful learning support."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "How would your rule change for a closed-book assessment of unaided writing?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. How would your rule change for a closed-book assessment of unaided writing?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "Does acknowledging AI assistance automatically make it permitted?",
+      "options": [
+        "Yes, disclosure is always sufficient.",
+        "No; the actual task and assessment rules still apply.",
+        "Only if the tool is free."
+      ],
+      "correct": 1,
+      "explanation": "Permission and acknowledgement answer different questions."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Start with the learning purpose",
+          "text": "Permission depends on the actual task and current rules."
+        },
+        {
+          "icon": "2",
+          "label": "Test the awkward middle",
+          "text": "A useful boundary includes examples, a way to ask questions and an accessible alternative."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Create six fictional schoolwork scenarios and sort them into permitted, prohibited or needs clarification under a rule you state. Repair the rule when a boundary case exposes ambiguity."
+        }
+      ]
+    }
   ],
-
-  19: [
-    { type: 'hook', title: 'Drafting the Document', body: 'The UK Government\'s AI Safety Institute was established in November 2023 with a 12-page founding document. The EU AI Act runs to 459 pages. OpenAI\'s usage policy is 3 pages. The length, language, and structure of a policy document directly affects whether people actually read and follow it. Today, you will learn professional drafting techniques and write a formal AI acceptable use policy that is clear enough to follow and rigorous enough to enforce.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">12 pg</span><span class="sl">UK AI Safety Institute founding document</span></div><div class="hook-stat-mini"><span class="sv">459 pg</span><span class="sl">EU AI Act — the world\'s most comprehensive AI law</span></div><div class="hook-stat-mini"><span class="sv">3 pg</span><span class="sl">OpenAI\'s usage policy — brevity vs. comprehensiveness</span></div><div class="hook-stat-mini"><span class="sv">&lt;25</span><span class="sl">words per sentence — the plain English standard</span></div></div>' },
-    { type: 'concept', title: 'Policy Document Structure', body: 'Professional policy documents follow established conventions that make them clear, authoritative, and enforceable. The UK Government\'s plain language guidance (GOV.UK style guide) requires all public-sector documents to pass a readability test — a standard that many school AI policies currently fail.', bullets: ['Title and version number: e.g. "AI Acceptable Use Policy v2.1 — Updated January 2025" tracks changes and signals currency', 'Purpose statement: One paragraph explaining why the policy exists and what problem it solves', 'Scope: Who does this apply to? Pupils only? Staff? Governors? In coursework, exams, or both?', 'Definitions: Define "generative AI", "AI-assisted work", "disclosure statement" — ambiguous terms create loopholes', 'Rules and principles: Numbered, unambiguous requirements — each rule should be independently testable', 'Enforcement: What happens at first, second, and third violation? Who decides? Is there an appeals process?', 'Review date: Commit to reviewing annually — AI changes faster than any other technology'], callout: 'The golden rule of policy writing: If a reasonable person could interpret a rule two different ways, the rule is not clear enough. Ambiguity is a loophole.' },
-    { type: 'concept', title: 'Writing Effective Policy Language', body: 'Policy language must be precise without being impenetrable. The UK Civil Service\'s drafting standard is: "Write for a 16-year-old reading under time pressure." If your policy cannot pass that test, it will not be followed.', bullets: ['"Must" vs "should": Must = mandatory requirement; Should = recommendation. Never use "should" when you mean "must"', 'Ban vague terms: "Appropriate use", "excessive reliance", "responsible AI" are meaningless without definitions', 'Concrete examples: "For example, using Grammarly to check grammar is permitted at Level 2; using ChatGPT to write paragraphs is not"', 'Numbered sections: 3.1, 3.2, 3.3 makes specific rules quotable and referenceable in enforcement cases', 'Active voice: "Pupils must disclose AI use" not "AI use should be disclosed by pupils" — passive voice obscures responsibility'], callout: 'Bad: "Pupils should use AI responsibly." Good: "Pupils must disclose all AI tool use by appending an AI Use Statement to submitted work, specifying which tool was used and for what specific purpose."' },
-    { type: 'activity', title: 'Draft Your Policy', instructions: 'Using the AI Policy Drafting Template from Resources, write a formal AI acceptable use policy for your school.', steps: ['Open the AI Policy Drafting Template resource', 'Write the Purpose statement (2-3 sentences)', 'Define the Scope (who, what, when)', 'Write Definitions for at least 5 key terms', 'Draft at least 8 numbered rules covering the spectrum of AI use', 'Write an Enforcement section with at least 3 levels of consequence', 'Set a Review Date and explain the review process', 'Peer review: Swap with a partner and identify any ambiguous language'] },
-    { type: 'discussion', title: 'Language and Power', questions: [{ num: 1, text: 'Why is precise language so important in policy documents? What happens when rules are ambiguous?' }, { num: 2, text: 'Should policies be written in formal or informal language? What are the trade-offs of each?' }, { num: 3, text: 'How can you make a policy document that people actually read, rather than one that sits in a drawer?' }] },
-    { type: 'scenario', title: 'The Ambiguous Rule', situation: 'Your school\'s AI policy contains this rule: "Pupils should not rely excessively on AI tools when completing assessed work." A pupil, Marcus, has submitted a business studies report. His teacher suspects the structure was AI-generated. Marcus says he "didn\'t rely excessively" — he used AI for headings but wrote all the content. The policy has no definition of "excessively" and no examples. The school now needs to decide whether Marcus has violated the policy.', question: 'What does this situation reveal about policy language — and how would you fix the rule?', choices: [ { text: 'Marcus has clearly broken the spirit of the rule. Refer him for misconduct — the intention of "no excessive reliance" is obvious', outcome: 'Marcus appeals. The appeals panel notes the word "excessively" is undefined and the policy uses "should" (recommendation) not "must" (requirement). The panel finds in Marcus\'s favour. The school rewrites the policy — but the damage to pupil-staff trust takes months to repair.' }, { text: 'No violation — the rule is too vague to enforce against any specific behaviour. Let it go and improve the policy for future', outcome: 'Marcus receives his mark. However, three other pupils in the same class now believe AI structure generation is permitted. The inconsistency spreads. The department head escalates to the head, who convenes an emergency policy review.' }, { text: 'Pause the grading, convene a policy review, rewrite the rule with a concrete definition before adjudicating Marcus\'s case', outcome: 'The review produces this replacement rule: "Pupils must not use AI to generate headers, section structures, or skeleton text for submitted work. Using AI to check grammar after completion is permitted." Marcus\'s case is reassessed under the new rule. The transparent process earns credibility across the pupil body.' } ] },
-    { type: 'quiz', question: 'In professional policy drafting, what is the difference between "must" and "should"?', options: ['They mean the same thing', '"Must" is mandatory; "should" is recommended but not required', '"Should" is stronger than "must"', '"Must" is only used in legal documents'], correct: 1, explanation: 'In policy language, "must" creates a mandatory obligation, while "should" indicates a recommendation. This distinction is critical — ambiguity in policy language leads to inconsistent enforcement and successful appeals.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Structure matters', text: 'Professional policies follow: title/version, purpose, scope, definitions, numbered rules, enforcement, review date' }, { icon: '▸', label: 'Every word counts', text: '"Must" vs. "should", no vague terms, concrete examples, numbered sections, active voice' }, { icon: '▸', label: 'Ambiguity is a loophole', text: 'If a reasonable person can interpret a rule two ways, it will be interpreted the convenient way — and appeals will succeed' }] }
+  "19": [
+    {
+      "type": "hook",
+      "title": "Write a Policy People Can Use",
+      "body": "A fictional school permits “appropriate assistance”. One reader thinks this includes generating an essay; another thinks even a spelling suggestion is banned. Your job is to make the next decision easier."
+    },
+    {
+      "type": "concept",
+      "title": "Build a usable document",
+      "body": "A short policy needs enough structure to answer who, what, when and why. Clear wording does not remove the need for careful judgement.",
+      "bullets": [
+        "Purpose and scope: which learners, tasks and services?",
+        "Permissions and limits: concrete actions and examples.",
+        "Disclosure and records: what to say and where to keep it.",
+        "Responsibility, questions, review and appeal: who does what next?"
+      ],
+      "sources": [
+        {
+          "label": "Ofqual: AI malpractice and assessment, 2026",
+          "url": "https://www.gov.uk/government/publications/artificial-intelligence-malpractice-and-assessment-advice-note/artificial-intelligence-malpractice-and-assessment-advice-note-accessible"
+        },
+        {
+          "label": "DfE: Generative AI and data protection in schools",
+          "url": "https://www.gov.uk/guidance/data-protection-in-schools/generative-artificial-intelligence-ai-and-data-protection-in-schools"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Choose words that can be applied",
+      "body": "Separate must, may and should. Avoid undefined terms such as excessive or inappropriate when a concrete example would reveal the intended boundary.",
+      "bullets": [
+        "Write one requirement per sentence.",
+        "Name the actor: “Pupils record…” is clearer than “It should be recorded…”.",
+        "Test exceptions against fairness, access and the learning purpose.",
+        "Label your draft as a proposal; check it against actual school and assessment rules before use."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "The one-page policy prototype",
+      "instructions": "Working independently. Draft a policy pupils can act on: purpose, permissions, examples, responsibility and appeal. Annotate two places where plain wording prevents a real misunderstanding.",
+      "steps": [
+        "Draft five short sections using the structure above.",
+        "Include an allowed example and a prohibited example.",
+        "Test with a pupil who needs an accessible alternative.",
+        "Annotate two revisions that prevent misunderstandings."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "Which part of your policy would need review when the assessment task changes?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. Which part of your policy would need review when the assessment task changes?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "Which wording is most actionable?",
+      "options": [
+        "Use AI sensibly.",
+        "For this practice task, record any generated suggestions you used and explain one change you made.",
+        "Avoid excessive AI."
+      ],
+      "correct": 1,
+      "explanation": "The second instruction specifies the task, evidence and action."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Build a usable document",
+          "text": "A short policy needs enough structure to answer who, what, when and why."
+        },
+        {
+          "icon": "2",
+          "label": "Choose words that can be applied",
+          "text": "Separate must, may and should."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Draft a policy pupils can act on: purpose, permissions, examples, responsibility and appeal. Annotate two places where plain wording prevents a real misunderstanding."
+        }
+      ]
+    }
   ],
-
-  20: [
-    { type: 'hook', title: 'Ratification', body: 'In 2024, the European Parliament voted 523 to 46 to adopt the AI Act — the world\'s first comprehensive AI law. But before that vote, the act went through 18 months of committee debates, 3,000 proposed amendments, and intense lobbying from tech companies. Democracy is messy, slow, and full of compromise. Today, your class will experience that process firsthand as you present, debate, and vote on your AI policies in a simulated governance process.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">523–46</span><span class="sl">European Parliament vote to adopt the AI Act</span></div><div class="hook-stat-mini"><span class="sv">3,000</span><span class="sl">proposed amendments before the final text</span></div><div class="hook-stat-mini"><span class="sv">18 mo</span><span class="sl">of committee debate after the Act was first drafted</span></div><div class="hook-stat-mini"><span class="sv">+40%</span><span class="sl">compliance when people helped write the rules</span></div></div>' },
-    { type: 'concept', title: 'The Democratic Process', body: 'Policy ratification in democratic systems involves structured debate, amendment, and voting. The EU AI Act\'s journey — from a 2021 proposal to the 2024 vote — shows how democratic governance of technology works at scale. It also shows its limitations: by the time of the vote, the original draft did not mention ChatGPT, which launched three years after the proposal.', bullets: ['Presentation: Policy authors present their proposal with evidence, data, and worked examples', 'Committee stage: A smaller group examines specific clauses — the EU\'s IMCO committee proposed 450 of the 3,000 amendments alone', 'Debate: Open discussion — supporters and opponents both make their strongest case publicly', 'Amendment: Formal modification of specific clauses before final vote — this is where lobbying happens and compromises are struck', 'Vote: Simple majority (schools), qualified majority (EU Council), or supermajority depending on the rules', 'Implementation: Published, communicated to all stakeholders, with clear effective dates and review cycles'], callout: 'Real policy is rarely adopted as first drafted. The EU AI Act went through three complete rewrites. The amendment process is where policies become practical, balanced, and politically viable.' },
-    { type: 'concept', title: 'Effective Persuasion', body: 'Presenting a policy proposal requires combining logical argument, evidence, and rhetorical skill. Cicero\'s three-part model — Ethos (credibility), Pathos (emotion), Logos (logic) — remains the foundation of effective public persuasion, including policy advocacy.', bullets: ['Lead with the problem: Anchor your case in a concrete harm — "Last year, three pupils were penalised under an unclear policy"', 'Present evidence: Cite the Jisc 2024 survey, the NIST accuracy report, or your own class audit findings', 'Acknowledge the strongest objection: "Critics argue this will restrict innovation — here is why that concern is addressed in clause 4.2..."', 'Make the ask specific: "We propose adding one sentence to Rule 3 to define \'excessive\' as more than 40% of submitted text"', 'Concede gracefully: Accepting a reasonable amendment in public builds far more credibility than defending a flawed clause'], callout: 'The most persuasive speakers acknowledge the strongest argument against their position and explain why, on balance, their proposal is still the right choice. This is called "steelmanning" your opposition.' },
-    { type: 'activity', title: 'The Ratification Session', instructions: 'Present your group\'s AI policy to the class, debate amendments, and vote to ratify.', steps: ['Each group has 5 minutes to present their AI policy draft', 'After each presentation, the class has 5 minutes for questions and proposed amendments', 'Amendments are written on the board — each requires a seconder', 'The presenting group can accept or reject each amendment (with reasoning)', 'After all presentations, the class votes on which policy to adopt (or combines the best elements)', 'The ratified policy is finalised and the class signs it as a collective agreement'] },
-    { type: 'discussion', title: 'Democracy and Technology', questions: [{ num: 1, text: 'Is democratic policy-making too slow for fast-moving technology? Should we give experts more power to decide?' }, { num: 2, text: 'How did the debate and amendment process change your original policy? Was it improved?' }, { num: 3, text: 'Should pupils have a genuine say in their school\'s AI policy, or should this be decided by leadership?' }] },
-    { type: 'scenario', title: 'The Amendment Standoff', situation: 'Your group\'s AI policy is being debated. You have a clear rule (Rule 7): "Pupils must not use AI to generate section headings or essay structures for assessed work." Another group proposes an amendment: "Replace \'must not\' with \'should avoid where possible\' — it\'s too strict and will disadvantage struggling pupils." Five people have their hands up to speak. You have 90 seconds to decide whether to accept the amendment before the chair calls the vote.', question: 'What do you do?', choices: [ { text: 'Reject the amendment — "must not" is clear and enforceable. Weakening it creates ambiguity and loopholes', outcome: 'The vote is 14-9 to keep your original wording. Three pupils who voted against later tell you they felt their accessibility concerns were dismissed. Your policy passes but with lingering resentment. A teacher later notes that the "struggling pupils" argument deserved a more considered response.' }, { text: 'Accept the amendment in full — building consensus is more important than one clause', outcome: 'The policy passes unanimously. But two months later, a pupil successfully argues that submitting a fully AI-structured essay was covered by "should avoid where possible." The enforcement gap vindicates those who wanted clearer language.' }, { text: 'Counter-propose a middle ground: "Pupils must disclose AI-generated structure. Struggling pupils may request an approved AI-assisted drafting session with a teacher"', outcome: 'The counter-proposal wins 21-2. The dissenting votes were from pupils who thought the support session idea was too complicated to implement. Your amendment shows that debate is not always binary — a creative third option can command consensus that neither original position could achieve.' } ] },
-    { type: 'quiz', question: 'Why is democratic involvement in policy creation important, beyond fairness?', options: ['It makes the process faster', 'People follow policies they helped create — it builds compliance', 'It eliminates the need for enforcement', 'It guarantees the best policy outcome'], correct: 1, explanation: 'Research shows that people are significantly more likely to follow policies they had a voice in creating. Democratic involvement builds ownership, understanding, and buy-in — not just legitimacy.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Democracy is messy but vital', text: 'The EU AI Act needed 3,000 amendments and an 18-month committee stage — messy, but the process built legitimacy' }, { icon: '▸', label: 'Steelman your opposition', text: 'Acknowledge the strongest argument against you and explain why your proposal is still better — this builds credibility' }, { icon: '▸', label: 'Ownership drives compliance', text: 'Studies show 40% higher compliance when people helped write the rules — democratic involvement isn\'t just fair, it\'s effective' }] }
+  "20": [
+    {
+      "type": "hook",
+      "title": "Test and Ratify Your Policy",
+      "body": "Three fictional stakeholders read your proposal: a pupil concerned about access, a teacher concerned about authorship, and a parent concerned about privacy. They each identify a weakness. Must you accept all three amendments?"
+    },
+    {
+      "type": "concept",
+      "title": "A hearing tests reasons",
+      "body": "Ratification is a decision to adopt a proposal through an agreed process. A classroom simulation can test that process without claiming to set real school policy.",
+      "bullets": [
+        "Give each stakeholder a specific concern rather than a caricature.",
+        "Separate evidence, values and practical consequences.",
+        "Record the decision rule before hearing arguments.",
+        "Majority support does not remove legal duties or minority rights."
+      ],
+      "sources": [
+        {
+          "label": "Ofqual: AI malpractice and assessment, 2026",
+          "url": "https://www.gov.uk/government/publications/artificial-intelligence-malpractice-and-assessment-advice-note/artificial-intelligence-malpractice-and-assessment-advice-note-accessible"
+        },
+        {
+          "label": "DfE: Generative AI and data protection in schools",
+          "url": "https://www.gov.uk/guidance/data-protection-in-schools/generative-artificial-intelligence-ai-and-data-protection-in-schools"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Keep an amendment trail",
+      "body": "A decision log makes revision visible. Each entry should include the proposed change, the reason, the decision and what happens next.",
+      "bullets": [
+        "Accept an amendment that resolves a documented problem.",
+        "Reject one with a reason connected to purpose or requirements.",
+        "Defer a question that needs authoritative information.",
+        "Name a review trigger, such as a change in assessment rules."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "The ratification simulation",
+      "instructions": "Working independently. Stage a written hearing with three fictional stakeholders challenging your policy. Publish a decision log showing an accepted amendment, a rejected amendment and the reasons.",
+      "steps": [
+        "Write a short challenge from each stakeholder in the opening.",
+        "Answer each using a clause from your draft and relevant evidence.",
+        "Accept one amendment, reject one and defer one question.",
+        "Publish the revised clause and decision log."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "What would justify reopening a policy that had overwhelming support?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. What would justify reopening a policy that had overwhelming support?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What should a ratification decision log contain?",
+      "options": [
+        "Only the final vote.",
+        "The proposed changes, decisions and reasons, including unresolved questions.",
+        "Only supportive comments."
+      ],
+      "correct": 1,
+      "explanation": "The record should make the reasoning and remaining uncertainty inspectable."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "A hearing tests reasons",
+          "text": "Ratification is a decision to adopt a proposal through an agreed process."
+        },
+        {
+          "icon": "2",
+          "label": "Keep an amendment trail",
+          "text": "A decision log makes revision visible."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Stage a written hearing with three fictional stakeholders challenging your policy. Publish a decision log showing an accepted amendment, a rejected amendment and the reasons."
+        }
+      ]
+    }
   ]
-
 };

@@ -1,316 +1,2284 @@
-/* ── Curated Slide Content: Units 5 & 6 (Lessons 21-44) ── */
-
+/* AEP editorial review: 26 October 2026. Lesson IDs and base slide counts retained. */
 var SLIDES_U5U6 = {
-
-  21: [
-    { type: 'hook', title: 'From Consumer to Co-Creator', body: 'Until now, you have been consumers of AI — using ChatGPT, generating images, running searches. From today, you become co-creators. Your capstone project is your opportunity to build something original with AI: a tool, a system, or a solution that addresses a real problem. The best capstone projects from previous cohorts have included AI-powered revision tools, ethical audit frameworks, community information systems, and mental health signposting tools. What will you create?<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">16</span><span class="sl">build sessions across the capstone unit</span></div><div class="hook-stat-mini"><span class="sv">Process</span><span class="sl">is assessed as heavily as the final product</span></div><div class="hook-stat-mini"><span class="sv">Real</span><span class="sl">problems only — your project must matter to someone</span></div><div class="hook-stat-mini"><span class="sv">No code</span><span class="sl">required — prompt design and ethics are creation skills</span></div></div>' },
-    { type: 'concept', title: 'The Capstone Brief', body: 'Your capstone project is the centrepiece of this course. Understanding the full requirements now will set you up for success. The most common reason pupils underperform is not lack of technical skill — it is failing to document their process throughout the build phase.', bullets: ['Choose a real problem that AI can genuinely help solve — "I want to build a chatbot" is not a problem statement', 'Build a working prototype or detailed design that demonstrates your solution in action', 'Apply ethical considerations from day one — the Ethics Audit Checklist is your companion throughout', 'Document your process in a Sprint Diary — every session, record decisions, blockers, and reflections', 'Present in a pitch-style format with a live Q&A panel — 5-7 minutes presenting, 3-5 minutes questions', 'Complete a 1,000-word reflective essay connecting your project to at least three course themes'], callout: 'The capstone is assessed on process as much as product. A well-documented failed experiment — where you explain what went wrong and what you learned — can score higher than an undocumented success.' },
-    { type: 'concept', title: 'Shifting Your Mindset', body: 'Moving from consumer to creator requires a fundamental shift in how you think about AI. Garry Kasparov — the chess grandmaster who lost to Deep Blue in 1997 — later became an advocate for human-AI collaboration, arguing that "weak human + AI + better process beats strong AI alone." Your capstone is your chance to prove that.', bullets: ['Consumer mindset: "What can AI do for me?" Creator mindset: "What can I build with AI that wouldn\'t exist without me?"', 'Consumers accept default outputs. Creators design prompt systems that reliably produce specific, useful results', 'Consumers use one tool for isolated tasks. Creators chain tools into workflows — prompts feeding APIs feeding outputs', 'Creators think about failure modes: What happens when the AI gets it wrong? Who is harmed? How do you catch it?', 'You do not need to be a programmer: Prompt engineering, workflow design, and ethical analysis are all legitimate creation skills'], callout: 'Every professional field increasingly needs people who can design AI-enhanced workflows. This capstone is the first item in your portfolio of those skills.' },
-    { type: 'activity', title: 'Project Brainstorm', instructions: 'Generate at least 10 potential capstone project ideas using structured brainstorming techniques.', steps: ['Solo brainstorm (5 min): Write down every problem you encounter in daily life that AI could help solve', 'Category scan: Consider problems in education, health, environment, accessibility, community, and creative arts', 'Pair share: Discuss your ideas with a partner — add to each other\'s lists', 'Feasibility filter: For each idea, rate Feasibility (1-5) and Impact (1-5)', 'Shortlist your top 3 ideas based on combined feasibility and impact scores', 'Share your top idea with the class for initial feedback'] },
-    { type: 'discussion', title: 'What Makes a Great Project?', questions: [{ num: 1, text: 'What is the difference between a project that uses AI and a project that needs AI? Which should your capstone be?' }, { num: 2, text: 'Should you choose a project you are passionate about or one that is technically impressive? Can you have both?' }, { num: 3, text: 'How will you balance ambition with feasibility given the time constraints?' }] },
-    { type: 'quiz', question: 'What is the key mindset shift the capstone project requires?', options: ['From theory to memorisation', 'From consumer of AI to co-creator with AI', 'From individual work to group work', 'From using computers to avoiding them'], correct: 1, explanation: 'The capstone requires shifting from passively using AI tools to actively building with them — defining problems, designing solutions, and making deliberate technical and ethical choices.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Creator mindset', text: 'Shift from what AI can do for you to what you can build with AI — Kasparov\'s centaur beats deep blue alone' }, { icon: '▸', label: 'Process is half the grade', text: 'A well-documented failed experiment can outscore an undocumented success — Sprint Diary is essential' }, { icon: '▸', label: 'Problem first, always', text: 'The best projects solve real problems for real people — the AI implementation comes second' }] }
-  ],
-
-  22: [
-    { type: 'hook', title: 'Defining the Problem Statement', body: 'Einstein allegedly said: "If I had an hour to solve a problem, I would spend 55 minutes thinking about the problem and 5 minutes thinking about solutions." Most failed projects do not fail because of bad solutions — they fail because they solved the wrong problem. A clear problem statement is the foundation of everything that follows. Get this right and the rest flows naturally. Get it wrong and no amount of brilliant coding will save you.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">55 min</span><span class="sl">Einstein\'s ratio: thinking about the problem vs. the solution</span></div><div class="hook-stat-mini"><span class="sv">Wrong</span><span class="sl">problem is the #1 reason projects fail — not bad code</span></div><div class="hook-stat-mini"><span class="sv">3 hrs</span><span class="sl">average weekly time Year 12s spend searching for revision resources</span></div><div class="hook-stat-mini"><span class="sv">5 min</span><span class="sl">minimum primary research: survey or interview 5 people affected</span></div></div>' },
-    { type: 'concept', title: 'Anatomy of a Problem Statement', body: 'A strong problem statement is specific, measurable, and focused on the problem — not the solution. It answers who is affected, what the problem is, and why it matters. In 2022, Google announced the shutdown of Stadia — a project whose post-mortems kept noting that the framing had been "how do we compete with consoles" rather than "what do gamers actually need."', bullets: ['Who: Identify the specific group affected — "Year 12 biology pupils at UK state schools" not "pupils"', 'What: Describe the problem precisely — "spend 3 hours/week searching for spec-matched resources" not "have trouble revising"', 'Why it matters: Quantify the impact — "60% report they cannot find materials matched to their exam board specification"', 'Scope boundary: What is included and excluded — "AQA Biology A-Level only, not Chemistry or Physics"', 'Do NOT include the solution: "Pupils need an AI tutor" is a solution, not a problem statement'], callout: 'Weak: "Pupils need better AI tools." Strong: "Year 12 biology pupils at UK state schools spend 3 hours/week searching for revision resources, with 60% unable to find content matched to their specific exam board."' },
-    { type: 'concept', title: 'Validating Your Problem', body: 'A problem statement is only as good as the evidence behind it. The lean startup methodology — used by companies from Dropbox to Slack — requires validating your problem assumption before writing a single line of code. Many pupil projects fail because they skipped validation and built a solution to a problem that turned out not to exist.', bullets: ['Primary research: Survey or interview at least 5 people who experience the problem — 10 minutes of their time', 'Secondary research: Find statistics, studies, or reports that confirm the problem exists at scale', 'Competitor analysis: What solutions already exist? Google, app stores, academic tools — why are they insufficient?', 'Feasibility check: Can you realistically address this problem within the build phase with available tools?', 'The "so what" test: If you solved this completely, would anyone\'s life be meaningfully better?'], callout: 'If you cannot find anyone who cares about your problem, the problem is probably not real — or not important enough. Validation saves weeks of wasted build time.' },
-    { type: 'activity', title: 'Write Your Problem Statement', instructions: 'Craft your capstone problem statement using the Capstone Project Brief Template from Resources.', steps: ['Open the Capstone Project Brief Template', 'Write a first draft of your problem statement using the Who-What-Why framework', 'Apply the "so what" test — does your problem matter enough to spend 16 lessons on?', 'Identify 3 pieces of evidence that validate your problem (survey your classmates if needed)', 'Revise your problem statement based on the evidence', 'Read it to a partner — can they explain the problem back to you clearly?'] },
-    { type: 'discussion', title: 'Problem Framing', questions: [{ num: 1, text: 'How does the way you frame a problem influence the solutions you consider? Can framing introduce bias?' }, { num: 2, text: 'What is the risk of falling in love with a solution before properly defining the problem?' }, { num: 3, text: 'How would you validate a problem that affects a group you do not personally belong to?' }] },
-    { type: 'scenario', title: 'The Solution in Search of a Problem', situation: 'Jamie is excited about AI image generation. He wants to build a capstone project using Midjourney or DALL-E to create something impressive. He\'s written this problem statement: "Pupils need better visual learning tools because education is too text-heavy." He\'s spent two hours designing a prototype that generates custom diagrams from text descriptions. His teacher asks him to validate the problem before the next session.', question: 'What should Jamie do?', choices: [ { text: 'The problem statement is good enough — start building. Validation is just bureaucracy that slows you down', outcome: 'Jamie builds for 3 sessions before presenting his prototype to 5 classmates. None of them had experienced the problem he described. Two pointed out that better versions already exist as free tools. He has to restart, losing 3 sessions. His teacher notes his sprint diary reflects a solution-first mindset.' }, { text: 'Survey 10 pupils about their visual learning needs. Ask specifically what problems they face, NOT what tools they want', outcome: 'The survey reveals the real problem: 8/10 struggle to find concise summary diagrams for specific AQA Biology topics. The problem is much narrower but much more real. Jamie rewrites his problem statement and builds something genuinely useful — and his Sprint Diary shows the pivot, which assessors find compelling.' }, { text: 'Rewrite the problem statement to better justify the solution he already wants to build', outcome: 'The problem statement looks better on paper but is still backwards. During the viva, the examiner asks "how did you validate this problem?" Jamie cannot give a convincing answer. The disconnect between the stated problem and the actual user need becomes the weakest point in his assessment.' } ] },
-    { type: 'quiz', question: 'What is the most important characteristic of a good problem statement?', options: ['It should be as broad as possible', 'It should mention specific AI tools to use', 'It should be clear, focused, and define who is affected', 'It should guarantee a successful outcome'], correct: 2, explanation: 'A strong problem statement is specific about what problem exists, who experiences it, and what impact it has. Vague or overly broad statements lead to unfocused projects.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Problem not solution', text: 'Spend 55 minutes on the problem. Do NOT include your solution in your problem statement' }, { icon: '▸', label: 'Validate ruthlessly', text: 'Survey 5+ real users. If nobody confirms the problem, the problem statement needs rethinking' }, { icon: '▸', label: 'Who-What-Why', text: 'Specific audience, precise problem, measurable impact, clearly defined scope boundary' }] }
-  ],
-
-  23: [
-    { type: 'hook', title: 'Ethics by Design', body: 'In 2023, a university pupil built an AI study companion for their capstone. It worked brilliantly — until they realised it was storing every question pupils asked, including personal struggles with mental health, without any consent mechanism. The pupil had not considered ethics until after building the tool. Rebuilding the data layer took longer than the original build. Ethics by design means building ethical considerations into your project from day one — not bolting them on as an afterthought.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">100×</span><span class="sl">cheaper to build ethics in from the start vs. retrofitting</span></div><div class="hook-stat-mini"><span class="sv">5</span><span class="sl">harm types to consider: direct, indirect, exclusion, dependency, environmental</span></div><div class="hook-stat-mini"><span class="sv">7</span><span class="sl">ethical dimensions in the Ethics Audit Checklist</span></div><div class="hook-stat-mini"><span class="sv">Day 1</span><span class="sl">is when your ethical decisions are easiest — and cheapest — to make</span></div></div>' },
-    { type: 'concept', title: 'Ethics by Design Principles', body: 'Ethics by design is a proactive approach that embeds ethical thinking into every stage of project development. The UK\'s Information Commissioner\'s Office (ICO) mandates "privacy by design" for all data-processing systems under UK GDPR — a legal requirement, not a best practice, for anything handling personal data.', bullets: ['Privacy by default: Collect the minimum data necessary. If you do not need it, do not collect it — and never collect sensitive data (health, beliefs, identity) without explicit justification', 'Transparency: Users must understand what your system does, how it works, and what happens with their data', 'Fairness: Test with diverse users and inputs — bias you do not look for is bias you will not find', 'Accountability: Define who is responsible when things go wrong. Document every design decision in your Sprint Diary', 'Consent: Active opt-in, not passive opt-out. Pre-ticked boxes are not consent under UK GDPR', 'Reversibility: Can users undo actions and delete their data? "Right to erasure" is a legal right, not a courtesy'], callout: 'It is 100x cheaper to build ethics in from day one than to retrofit it after launch. The pupil with the study companion had to rebuild their entire data layer and delay their submission by four weeks.' },
-    { type: 'concept', title: 'Identifying Potential Harms', body: 'Every AI project carries potential for unintended harm. The EU AI Act requires a mandatory fundamental rights impact assessment for high-risk AI systems. For your capstone, a pre-build harm analysis is not just good practice — it is part of your assessment.', bullets: ['Direct harm: Could your system give wrong advice, make discriminatory decisions, or expose private data?', 'Indirect harm: Could your system be misused for purposes you did not intend — e.g. an essay-structuring tool used to write entire essays?', 'Exclusion harm: Does your system work equally well for users from different backgrounds, abilities, or language levels?', 'Dependency harm: Could users become unhealthily reliant on your system — e.g. a mental health app that users stop seeing real counsellors for?', 'Environmental harm: How many AI queries does your system make? What is the approximate energy cost at scale?'], callout: 'The Ethics Audit Checklist from Resources provides a structured framework for identifying harms systematically. Use it before you write a single prompt, not at the end of the build.' },
-    { type: 'concept', title: 'Model Cards — Documenting Your AI', body: 'A model card is a one-page transparency document that describes what an AI system does, who it is designed for, how well it performs across different groups, and what its known limitations are. Introduced by Google researchers Mitchell et al. (2019), model cards are now standard practice across the industry — Google, Hugging Face, Meta, and OpenAI all publish them for their systems. For your capstone, completing a model card is a required deliverable.', bullets: ['Model details: What does your system do? What AI tools and APIs does it use? When was it last updated?', 'Intended use: Who is the primary user? What tasks is the system designed for? What is it explicitly NOT for?', 'Performance: How accurate or effective is your system? On what types of inputs does it perform best and worst?', 'Bias and fairness: Have you tested the system with diverse inputs? Does it perform differently for different users or demographics?', 'Limitations: What can your system not do? What inputs cause it to fail or produce poor results?', 'Ethical considerations: What harms could arise? What safeguards are in place? What should users know before relying on it?'], callout: 'A model card forces you to think about your system from the user\'s perspective, not just the builder\'s. If you cannot fill in the "limitations" section, you have not tested your system thoroughly enough. The process of completing a model card often reveals problems you did not know existed.' },
-    { type: 'activity', title: 'Ethical Impact Assessment + Model Card', instructions: 'Conduct a pre-build ethical impact assessment and draft the first version of your model card.', steps: ['Open the Ethics Audit Checklist from Resources', 'For your capstone project, work through each section: Data Privacy, Bias, Transparency, Accountability, Environment, Accessibility, Misinformation', 'For each potential harm identified, write: The risk, the likelihood (High/Medium/Low), and your mitigation strategy', 'Identify the single biggest ethical risk in your project and design at least one built-in safeguard', 'Open the Model Card Template from Resources — complete all six sections to the best of your current knowledge', 'Mark any section you cannot complete yet — these are your testing and documentation priorities for Sprint 2 and Sprint 3', 'Share both documents with a partner: can they identify risks you missed?'] },
-    { type: 'discussion', title: 'Ethics and Innovation', questions: [{ num: 1, text: 'Does embedding ethics slow down innovation? Is that an acceptable trade-off?' }, { num: 2, text: 'Who should be responsible for the ethical impact of a pupil project — the pupil, the teacher, or the school?' }, { num: 3, text: 'Can you think of a product you use daily that clearly did NOT consider ethics by design? What went wrong?' }] },
-    { type: 'scenario', title: 'The Unintended Data Collection', situation: 'Priya is building an AI revision assistant that analyses pupils\' practice questions and identifies their weakest topics. The tool works brilliantly. In her enthusiasm, she adds a feature where the AI also tracks the time of day pupils study and flags if they\'re studying past midnight (to promote wellbeing). She\'s collected two weeks of data before her teacher asks: "Did you tell users you were tracking their study times and sharing that with their wellbeing score?"', question: 'What should Priya do?', choices: [ { text: 'The wellbeing feature is beneficial — users should be grateful. Keep it and explain it in the final presentation', outcome: 'The teacher escalates to the Data Protection Officer. Tracking pupils\' overnight behaviour without consent is a potential GDPR violation. The feature must be removed and the collected data deleted. Priya loses the feature and two weeks of data, and her Sprint Diary has no record of the consent decision — which impacts her ethics assessment score.' }, { text: 'Immediately delete the collected data, disable the feature, and redesign it with explicit opt-in consent before reintroducing it', outcome: 'Priya documents the decision in her Sprint Diary: "I discovered I was collecting time-of-day data without consent. I deleted all records, disabled the feature, and redesigned with an explicit opt-in checkbox and clear explanation." Her ethics assessment scores highly precisely because she identified, acknowledged, and corrected a real problem transparently.' }, { text: 'Add a vague note to the privacy section saying "we collect usage data to improve your experience" and continue', outcome: 'The vague disclosure does not satisfy UK GDPR consent requirements. During the ethical audit, the auditor flags this as a consent failure. "Usage data to improve experience" does not constitute informed consent for tracking sleep patterns. The feature is flagged as a Critical finding.' } ] },
-    { type: 'quiz', question: 'What does "ethics by design" mean in the context of AI projects?', options: ['Adding an ethics section to your report at the end', 'Building ethical considerations into the project from the very beginning', 'Only using AI tools that have been ethically certified', 'Avoiding any AI use in sensitive areas'], correct: 1, explanation: 'Ethics by design means integrating ethical thinking from the start — identifying potential harms, building in safeguards, and designing for transparency — not bolting on ethics as an afterthought.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Build it in', text: 'Ethics by design is 100x cheaper than retrofitting — UK GDPR requires privacy by design as a legal obligation' }, { icon: '▸', label: 'Five harm types', text: 'Direct, indirect, exclusion, dependency, and environmental harms — all must be considered before building' }, { icon: '▸', label: 'Model cards = transparency', text: 'A one-page model card forces you to document what your system does, who it is for, and what its limitations are — standard practice at Google, OpenAI, and Hugging Face' }] }
-  ],
-
-  24: [
-    { type: 'hook', title: 'Project Planning & Architecture', body: 'Software projects that skip planning are 3x more likely to fail, take 2x longer, and cost 4x more to fix. Yet most pupil projects jump straight to building. Today you will create a structured project plan with sprints, milestones, and a technical architecture that will keep you on track across the build phase — Sprint 0, then five deep-work sessions. The plan is not a bureaucratic exercise — it is your map through the wilderness.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">3×</span><span class="sl">more likely to fail without a plan</span></div><div class="hook-stat-mini"><span class="sv">MVP</span><span class="sl">minimum viable product — the simplest version that works</span></div><div class="hook-stat-mini"><span class="sv">4</span><span class="sl">sprints: Foundation → Core → Refinement → Polish</span></div><div class="hook-stat-mini"><span class="sv">2 min</span><span class="sl">if you can\'t draw your architecture in 2 minutes, simplify it</span></div></div>' },
-    { type: 'concept', title: 'The AI Project Lifecycle', body: 'Professional AI projects — from Google DeepMind\'s climate models to NHS diagnostic tools — all follow the same five-stage lifecycle. Understanding this framework gives you a mental map for your capstone: where you are at any point, what comes next, and what decisions are irreversible. The most expensive mistakes in AI development happen when teams skip a stage or try to do them out of order.', bullets: ['Stage 1 — Define: Frame the problem precisely. Who is affected? What does success look like? What data or AI capability is needed? (Lessons 21–22)', 'Stage 2 — Design: Plan the solution architecture, ethical framework, and model card. What gets built? How do the pieces connect? (Lessons 23–24)', 'Stage 3 — Build: Implement the core system through iterative sprints — prompt engineering, tool integration, testing. (Lessons 25–33)', 'Stage 4 — Evaluate: Rigorous testing across edge cases, bias checks, peer review, and ethical audit. Does it actually work for real users? (Lessons 28 & 34)', 'Stage 5 — Communicate: Present, pitch, reflect, and publish your model card. Can you explain what you built, why it works, and what it cannot do? (Lessons 35–40)'], callout: 'The lifecycle is not strictly linear — professional teams iterate between stages constantly. But you cannot skip Define to get to Build faster. Every project that tries this discovers it has been building the wrong thing. Stage 1 makes Stage 3 possible.' },
-    { type: 'concept', title: 'Sprint-Based Planning', body: 'Agile sprint methodology — used by Spotify, Amazon, and NASA — breaks large projects into small, manageable cycles with clear goals. The capstone runs as sprints across the build phase: Sprint 0 (Lesson 27) lays the foundation, then five deep-work sessions (Lessons 29–33) do the building. The methodology was designed after teams noticed that long waterfall projects almost always delivered the wrong thing, late.', bullets: ['Sprint 0 — Foundation (Sessions 1-2): Set up infrastructure, implement absolute core functionality, establish testing approach', 'Sprint 1 — Core Features (Sessions 3-5): Build your minimum viable product — one complete user journey that works end to end', 'Sprint 2 — Refinement (Sessions 6-8): Integrate peer feedback, fix issues, add secondary features based on what you learned', 'Sprint 3 — Polish (Sessions 9-10): UI polish, ethical audit prep, documentation, demo preparation', 'Sprint review: After each sprint, answer: What was completed? What blocked progress? What changes for next sprint?', 'Sprint Diary: Record every session using the template — this documentation is directly assessed'], callout: 'The most common pupil mistake: trying to build everything in Sprint 0. An MVP that works and teaches you something is worth more than an ambitious plan that crashes.' },
-    { type: 'concept', title: 'Technical Architecture', body: 'Before writing a line of code or crafting a single prompt, map how the pieces of your project fit together. Jeff Bezos required Amazon engineers to write a "working backwards" document — describing the finished product — before writing a line of code. Your technical architecture is the pupil equivalent.', bullets: ['Inputs: What goes into your system? User-typed text, uploaded files, API data, form submissions?', 'Processing: What does your system do? Prompt chain to an LLM, classification, data transformation, retrieval?', 'Outputs: What does the user receive? A generated text response, a structured report, a recommendation, a visualisation?', 'Data flow: Draw the path from input to output — every transformation is a step in your architecture', 'Dependencies: What external services does your project require? OpenAI API, Google Sheets, a database? What happens if they go down?', 'Complexity test: If you cannot draw your system on a whiteboard in 2 minutes, it is too complex — simplify'], callout: 'Amazon\'s "working backwards" documents are written in the form of a press release for the finished product. Try writing a one-paragraph "press release" for your capstone — it forces you to think clearly about what you are building.' },
-    { type: 'activity', title: 'Build Your Project Plan', instructions: 'Create a sprint-based project plan and technical architecture diagram for your capstone.', steps: ['Open the Capstone Project Brief Template and Sprint Diary Template from Resources', 'Define your MVP — the simplest version of your project that demonstrates the core idea', 'Break the MVP into tasks and assign them to Sprint 0 (Foundation) and Sprint 1 (Core)', 'List Sprint 2 and Sprint 3 goals (these may change as you learn more)', 'Draw your technical architecture: Inputs, Processing, Outputs, Dependencies', 'Set 3 measurable milestones with dates — how will you know if you are on track?'] },
-    { type: 'discussion', title: 'Planning and Reality', questions: [{ num: 1, text: 'Why do so many projects skip the planning phase? What makes jumping to building so tempting?' }, { num: 2, text: 'How detailed should a plan be? At what point does planning become procrastination?' }, { num: 3, text: 'What will you do when your plan inevitably meets reality and something does not work as expected?' }] },
-    { type: 'quiz', question: 'In sprint-based project planning, what is a "milestone"?', options: ['A daily task to complete', 'A measurable checkpoint that indicates meaningful progress', 'The final deadline for the project', 'A meeting with the teacher'], correct: 1, explanation: 'Milestones are significant checkpoints that mark the completion of a key phase or deliverable. They help you track whether you are on schedule and provide natural points for review and reflection.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Five-stage lifecycle', text: 'Define → Design → Build → Evaluate → Communicate — the same framework used by Google DeepMind and NHS AI teams. Skipping Define to get to Build faster always costs more time later' }, { icon: '▸', label: 'Four sprints', text: 'Foundation → Core → Refinement → Polish — each with a clear goal, defined tasks, and a review' }, { icon: '▸', label: 'MVP mindset', text: 'Build the simplest working version first, then iterate — an MVP that teaches you beats an ambitious plan that crashes' }] }
-  ],
-
-  25: [
-    { type: 'hook', title: 'Applying Prompt Architecture', body: 'A single well-designed prompt can transform a chatbot from a generic question-answerer into a specialised expert tutor, medical triage assistant, or legal research tool. The PTFC framework you learned in Lesson 9 was training wheels. Today, you apply it at production scale — designing prompt systems that are reliable, consistent, and robust enough for real users to depend on.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">System</span><span class="sl">prompt is the hidden architecture that shapes every interaction</span></div><div class="hook-stat-mini"><span class="sv">5</span><span class="sl">test types: happy path, edge case, adversarial, consistency, regression</span></div><div class="hook-stat-mini"><span class="sv">Chain</span><span class="sl">output of one prompt becomes input to the next</span></div><div class="hook-stat-mini"><span class="sv">Log</span><span class="sl">every prompt version, what changed, and why — this is your viva evidence</span></div></div>' },
-    { type: 'concept', title: 'From Single Prompts to Prompt Systems', body: 'Production AI systems rarely rely on a single prompt. They use chains, templates, and guardrails that work together as a system. When Klarna (the fintech company) deployed an AI assistant handling two-thirds of customer service queries, they were not using a single "be helpful" prompt — they had a layered system with role definition, constraints, escalation rules, and output formatting. (The same rollout later became a partial cautionary tale — Lesson 11 covers the 2025 re-hiring reversal — but the engineering lesson stands: production AI is a layered system, never one clever prompt.)', bullets: ['System prompts: Define the AI\'s role, personality, constraints, and output format — persist across the entire conversation', 'User prompt templates: Structured templates that insert user input into a carefully designed prompt at the right place', 'Prompt chains: Multiple prompts in sequence — the output of summarising a document becomes the input to a quiz generator', 'Guardrails: Instructions that prevent the AI from going off-topic, hallucinating facts, or generating harmful content', 'Few-shot examples: Include 2-3 example input/output pairs in the prompt to demonstrate exactly the format and quality you expect'], callout: 'ChatGPT\'s custom instructions are a system prompt. Creating a Custom GPT is designing a prompt system. Every company using AI at scale is doing exactly this — this is the skill employers pay for.' },
-    { type: 'concept', title: 'Testing Prompts Systematically', body: 'Production prompts must be tested like software. A prompt that works brilliantly for one input can fail catastrophically for another. GitHub\'s Copilot team runs thousands of automated tests against every prompt change before release — your project needs a human equivalent.', bullets: ['Happy path testing: Does the prompt work with typical, expected inputs? (The easy test most people do and stop there)', 'Edge case testing: What happens with very short, very long, ambiguous, or off-topic inputs?', 'Adversarial testing: Can a user deliberately jailbreak, mislead, or extract unintended output from your system?', 'Consistency testing: Does the same input produce similar quality output across 5 separate runs? LLMs are stochastic', 'Regression testing: When you change one prompt to fix a problem, do other prompts in the chain still work correctly?'], callout: 'Maintain a Prompt Iteration Log for every prompt in your system: version number, what changed, what test results looked like before and after. This is your single most valuable piece of viva evidence.' },
-    { type: 'activity', title: 'Design Your Prompt System', instructions: 'Design the prompt architecture for your capstone project. Create, test, and document at least 3 prompts.', steps: ['Identify every point in your project where AI is used — list each as a "prompt slot"', 'For each slot, write a PTFC prompt including system-level instructions', 'Design at least one prompt chain where output feeds into the next prompt', 'Test each prompt with 3 different inputs: typical, edge case, and adversarial', 'Record all prompts and test results in your Prompt Iteration Log', 'Refine any prompt that fails edge case or adversarial testing'] },
-    { type: 'discussion', title: 'Prompt Engineering as a Profession', questions: [{ num: 1, text: 'Is prompt engineering a genuine professional skill or a temporary novelty that will disappear as AI improves?' }, { num: 2, text: 'How do you ensure prompt-based systems are reliable enough for real users to depend on?' }, { num: 3, text: 'What ethical responsibilities come with designing prompts that shape how AI interacts with people?' }] },
-    { type: 'quiz', question: 'What distinguishes "production-quality" prompts from casual prompts?', options: ['They use more technical jargon', 'They are longer than 500 words', 'They are systematically tested, documented, and produce consistent results', 'They only work with specific models like GPT-5.4 or Claude 4.6'], correct: 2, explanation: 'Production-quality prompts are tested across edge cases, documented so others can use them, and refined to produce consistent, reliable outputs — not just a good result once.' },
-    { type: 'quiz', question: 'Why should testing happen throughout the build, not just at the end?', options: ['Because teachers check your testing log', 'Testing at the end always passes', 'Bugs found early are cheaper and easier to fix than bugs found late', 'Testing only works during the build phase'], correct: 2, explanation: 'Bugs discovered early in development are significantly easier and cheaper to fix. Late-stage testing often reveals fundamental issues when there is no time to address them properly.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Systems, not prompts', text: 'Production AI uses layered chains, system prompts, templates, and guardrails — Klarna handles 2/3 of customer service this way' }, { icon: '▸', label: 'Five test types', text: 'Happy path, edge case, adversarial, consistency, and regression — test all five for every production prompt' }, { icon: '▸', label: 'Log is your evidence', text: 'Your Prompt Iteration Log is your most valuable viva document — record every version, change, and result' }] }
-  ],
-
-  26: [
-    { type: 'hook', title: 'Logic Flows & Edge Cases', body: 'In 2014, a self-driving car encountered a cyclist balancing on one wheel at an intersection. The car\'s logic had no rule for this — it froze, unable to decide if the cyclist was moving or stationary. Edge cases like this are not rare exceptions; they are the reason most AI projects fail in the real world. Today, you will map the logic flows of your capstone and hunt for the edge cases that could break it.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">40%</span><span class="sl">of professional developer time goes on edge cases</span></div><div class="hook-stat-mini"><span class="sv">5%</span><span class="sl">typical pupil time on edge cases — the quality gap</span></div><div class="hook-stat-mini"><span class="sv">15</span><span class="sl">steps maximum in a logic flow — if more, simplify</span></div><div class="hook-stat-mini"><span class="sv">6</span><span class="sl">edge case categories: empty, extreme, ambiguous, adversarial, mismatch, cascade</span></div></div>' },
-    { type: 'concept', title: 'Logic Flow Design', body: 'A logic flow diagram maps every decision point in your system. In 1999, NASA\'s Mars Climate Orbiter was lost because a logic error — one team used metric units, another used imperial — caused a navigation calculation to fail. No logic flow review caught it before launch. Your capstone doesn\'t need to reach Mars, but the principle holds: map it before you build it.', bullets: ['Entry point: Start with the first thing a user does — opens the tool, enters text, clicks a button', 'Decision nodes: Every "if X then Y, else Z" is a diamond on your diagram — every branching path needs an arrow', 'Error paths: What happens when something goes wrong? A missing error path is a guaranteed crash', 'Loops: Can the user get stuck cycling between two states with no escape? Map exit conditions explicitly', 'Exit points: How does the user finish, cancel, restart, or leave? Every journey needs an end', 'Review: If your diagram has more than 15 decision nodes, the system is too complex — simplify'], callout: 'If your logic flow has more than 15 steps, your system is too complex for the build phase. Simplify until each path is clear, testable, and deliverable.' },
-    { type: 'concept', title: 'Hunting Edge Cases', body: 'Edge cases are unusual inputs that your system was not explicitly designed to handle. They are where most AI systems fail in real use. When Microsoft deployed an AI chatbot called Tay in 2016, they did not adequately test adversarial inputs — within 16 hours, users had manipulated it into generating offensive content. It was taken offline within a day.', bullets: ['Empty input: What happens if the user submits a blank query or clicks next without typing?', 'Extreme input: 5,000-character text when you designed for 200, emojis, special characters, non-English input', 'Ambiguous input: "Tell me about Python" — the programming language or the snake?', 'Adversarial input: Users deliberately trying to bypass your guardrails, extract your system prompt, or abuse the tool', 'Context mismatch: A revision tool being used to write entire essays, or a children\'s tool being used by adults', 'Failure cascades: The OpenAI API goes down. Your prompt times out. The user loses their session mid-way.'], callout: 'Professional developers spend 40% of build time on edge cases. Pupils spend ~5%. This single gap explains most of the quality difference between amateur and professional work.' },
-    { type: 'activity', title: 'Map and Break', instructions: 'Draw the logic flow of your capstone project, then systematically try to break it by finding edge cases.', steps: ['Draw the complete logic flow of your project on paper or a whiteboard', 'Trace through 3 typical user journeys — does the flow work for each?', 'List 10 edge cases specific to your project (use the categories above)', 'For each edge case, determine: Does your system handle it? How?', 'Identify the 3 most critical edge cases — the ones most likely to occur', 'Design a handling strategy for each: graceful error message, default behaviour, or prevention'] },
-    { type: 'discussion', title: 'Designing for Failure', questions: [{ num: 1, text: 'Is it better to have a system that handles edge cases gracefully or one that prevents them from occurring? Can you do both?' }, { num: 2, text: 'How do you decide which edge cases are worth handling and which are too unlikely to worry about?' }, { num: 3, text: 'What is the difference between a system that fails silently and one that fails loudly? Which is more dangerous?' }] },
-    { type: 'quiz', question: 'Why is identifying edge cases important before building?', options: ['Edge cases are the most common user scenarios', 'They help you write longer code', 'Unexpected inputs cause most real-world failures if not handled', 'They are required for a passing grade'], correct: 2, explanation: 'Edge cases — unusual, extreme, or unexpected inputs — are responsible for most real-world software failures. Identifying them before building lets you design graceful error handling rather than discovering crashes later.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Map every path', text: 'Logic flow diagrams reveal decision points, error paths, and loops before you build — NASA\'s Mars Orbiter had no logic review' }, { icon: '▸', label: 'Break it before users do', text: 'Tay was taken down in 16 hours because adversarial inputs weren\'t tested — hunt edge cases before launch' }, { icon: '▸', label: 'Fail gracefully', text: 'Every system fails — the question is whether it fails in a way the user understands and can recover from' }] }
-  ],
-
-  27: [
-    { type: 'hook', title: 'Sprint 0 — The Foundation', body: 'Every skyscraper starts with foundations invisible from the street — they determine whether the building stands or falls. The Leaning Tower of Pisa leans because its foundation was too shallow for the soft ground. Sprint 0 is your foundation: the infrastructure, core functionality, and testing approach that everything else depends on. Today you start building. The goal is not a finished product — it is a solid base you can build on confidently.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">1 thing</span><span class="sl">Sprint 0 success: your project must do one thing by end of today</span></div><div class="hook-stat-mini"><span class="sv">25 min</span><span class="sl">focused blocks (Pomodoro) + 5-min break = best build rhythm</span></div><div class="hook-stat-mini"><span class="sv">10 min</span><span class="sl">maximum to be stuck before asking for help</span></div><div class="hook-stat-mini"><span class="sv">Diary</span><span class="sl">end every session with a Sprint Diary entry — no exceptions</span></div></div>' },
-    { type: 'concept', title: 'Sprint 0 Goals', body: 'Sprint 0 is about establishing foundations — not building features. When SpaceX first tested Starship, they didn\'t attempt an orbital launch — they tried to hover 12 metres off the ground and land. That\'s Sprint 0 thinking. Prove the concept works at the smallest possible scale before expanding.', bullets: ['Set up your development environment: tools, accounts, API keys, file structure — do this once, correctly', 'Implement the absolute core functionality — the single thing your project must do, in the simplest possible form', 'Establish testing: How will you know if something works? Define your success criteria before you build', 'Create file organisation: A clear structure now prevents hours of confusion in Sprint 2', 'Set up backup: Google Drive, GitHub, or USB — losing work to a computer crash is avoidable', 'Begin Sprint Diary: Document every decision and the reasoning behind it, starting today'], callout: 'Sprint 0 success metric: By the end of today, your project must do one thing — however simple — and you can demonstrate it. If you cannot demo it, Sprint 0 is not done.' },
-    { type: 'concept', title: 'Working Effectively', body: 'Build sessions are most productive with structure and discipline. The Pomodoro Technique — 25 minutes focused work, 5 minutes break — was developed by Francesco Cirillo in the 1980s and is now used by developers at Atlassian, Basecamp, and thousands of independent makers. It works because it makes the time commitment feel manageable while protecting deep focus.', bullets: ['5-minute start: Write exactly 3 goals for this session before touching any tools', '25-minute blocks: No phone, no other tabs, full focus on one task — set a timer', '5-minute breaks: Step away completely — do not "quickly check" anything', 'Stuck rule: If you cannot make progress for 10 minutes, ask for help. Do not waste 40 minutes stuck alone', 'Test every 20 minutes: It takes 30 seconds to confirm something works. This catches regressions immediately', '5-minute close: Sprint Diary entry before you leave — what did you do? What\'s next? What blocked you?'], callout: 'Future-you writing the reflective essay and viva preparation will be completely dependent on the Sprint Diary entries that present-you writes today. This habit is worth building from session one.' },
-    { type: 'activity', title: 'Sprint 0 Build Session', instructions: 'Your first structured build session. Set up your project foundations and implement core functionality.', steps: ['5-min plan: Write down your 3 goals for this session', 'Set up your project environment (files, tools, accounts)', 'Implement your core functionality — the simplest possible version', 'Test it: Does it work? Document the result', 'If it works: Push further. If not: Debug, document the issue, ask for help if stuck', 'End-of-session review: Update your Sprint Diary with what you did, learned, and plan next'] },
-    { type: 'discussion', title: 'Building Habits', questions: [{ num: 1, text: 'What was the hardest part of today\'s build session? How could you make it easier next time?' }, { num: 2, text: 'Did you write in your Sprint Diary? If not, what stopped you? How will you build this habit?' }, { num: 3, text: 'What is the current biggest risk to your project succeeding?' }] },
-    { type: 'quiz', question: 'What is the primary goal of Sprint 0 in a project?', options: ['To complete the entire project', 'To write the final presentation', 'To build the foundational infrastructure and core functionality', 'To conduct user testing'], correct: 2, explanation: 'Sprint 0 establishes the project foundation — setting up infrastructure, implementing core functionality, and establishing your testing approach. Everything that follows builds on this base.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'One thing, working', text: 'Sprint 0 success = your project does one thing you can demonstrate. Not ten things that sort-of work' }, { icon: '▸', label: 'Sprint Diary is non-negotiable', text: 'Present-you writing diary entries is the only way future-you can write the reflective essay and viva' }, { icon: '▸', label: 'Pomodoro structure', text: '5-min plan → 25-min focus → 5-min break → test → 5-min diary. Every session, every time' }] }
-  ],
-
-  28: [
-    { type: 'hook', title: 'Initial Peer Review', body: 'The most effective teams at Google, Pixar, and SpaceX have one thing in common: a culture of candid feedback. Pixar\'s "Braintrust" meetings — where directors receive blunt feedback from peers, not executives — produced every Pixar hit from Toy Story to Soul. Research shows projects receiving structured peer feedback in early stages are 60% more likely to succeed. Today, you will give and receive honest feedback on your Sprint 0 work. This is not about being nice — it is about making each other\'s projects better.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">60%</span><span class="sl">more likely to succeed with early structured peer feedback</span></div><div class="hook-stat-mini"><span class="sv">Pixar</span><span class="sl">Braintrust meetings: candid peer feedback produced every major hit</span></div><div class="hook-stat-mini"><span class="sv">3</span><span class="sl">priority actions to take from feedback — no more, no less</span></div><div class="hook-stat-mini"><span class="sv">Why</span><span class="sl">you must be able to explain why you rejected specific feedback</span></div></div>' },
-    { type: 'concept', title: 'Giving Effective Feedback', body: 'Good feedback is specific, actionable, and focused on the work. Pixar\'s Braintrust rules: feedback must come with a suggestion, there are no "notes" from executives, and the director does not have to take any suggestion — but they must genuinely consider it. These principles work in any creative or technical review.', bullets: ['Specific over vague: "The input validation crashes on empty text" not "it needs more work"', 'Impact before suggestion: Explain why the issue matters — "This could confuse users who don\'t know what to type"', 'Ask questions first: "Have you considered what happens if the user types nothing?" opens dialogue without prescribing a fix', 'Balance: Open with one genuine strength (with evidence), then address the issues', 'Avoid "sandwich" feedback — burying the real issue between compliments is not kindness, it is obscuring important information', 'Use the Peer Review Feedback Form structure — it forces specificity'], callout: '"This is great" is pleasant but useless. "Your error handling doesn\'t cover empty inputs — submitting blank text crashes the system" is uncomfortable but invaluable. The Braintrust succeeds because it prioritises truth over comfort.' },
-    { type: 'concept', title: 'Receiving and Processing Feedback', body: 'How you receive feedback determines whether it improves your project. Every professional who has had their work reviewed describes the same initial reaction: defensiveness. Managing that reaction is a learnable skill.', bullets: ['Listen fully first: Do not formulate rebuttals while the reviewer is still talking. You will miss information', 'Take verbatim notes: You will not remember specific feedback accurately after 20 minutes', 'Ask for examples: "Can you show me where you noticed that?" turns vague feedback into actionable specifics', 'Separate ego from work: "My error handling is missing" is not the same as "I am incompetent"', 'Triage ruthlessly: Critical (affects core functionality) → Important (affects usability) → Nice to have (polish)', 'Document your reasoning: For feedback you do not act on, write one sentence explaining why — viva gold'], callout: 'You do not have to implement every suggestion. But you must be able to explain why you chose not to. "I considered this but decided..." demonstrates critical thinking far more than blindly implementing everything.' },
-    { type: 'activity', title: 'Peer Review Session', instructions: 'Give and receive structured feedback on Sprint 0 deliverables using the Peer Review Feedback Form.', steps: ['Pair up with someone working on a different project', 'Demo your project (5 minutes): Show what you built, explain your architecture, and identify known issues', 'Your reviewer completes the Peer Review Feedback Form (10 minutes)', 'Discuss the feedback together (5 minutes) — ask clarifying questions', 'Swap roles and repeat', 'Write an action plan: Top 3 changes based on feedback, with priority order'] },
-    { type: 'discussion', title: 'Feedback Culture', questions: [{ num: 1, text: 'Was it harder to give honest feedback or receive it? Why?' }, { num: 2, text: 'Did any feedback surprise you — something you had not noticed about your own project?' }, { num: 3, text: 'How can you build a habit of seeking feedback regularly rather than waiting for formal review sessions?' }] },
-    { type: 'quiz', question: 'What makes peer feedback most useful?', options: ['Saying "it was good" to be encouraging', 'Focusing only on what is wrong', 'Being specific, concrete, and framing improvements constructively', 'Giving a numerical score out of 10'], correct: 2, explanation: 'Effective feedback identifies specific strengths (with evidence) and frames improvements constructively — "Have you considered...?" is far more useful than vague praise or blunt criticism.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Specific and impact-led', text: 'Name the issue, explain its impact, ask a question before prescribing a fix — the Braintrust method' }, { icon: '▸', label: 'Listen, notes, triage', text: 'Listen fully, take verbatim notes, then classify feedback into Critical / Important / Nice to have' }, { icon: '▸', label: 'Document your decisions', text: 'Explaining why you rejected feedback is as valuable as acting on it — your viva assessor will ask' }] }
-  ],
-
-  29: [
-    { type: 'hook', title: 'Deep Work Session 1', body: 'In October 2013, Healthcare.gov — the $840 million website for the US Affordable Care Act — crashed within two hours of launch. Only six people completed enrolment on day one. The code worked in small tests; nobody had tested it under real load. The core problem was not bad engineering — it was too many teams building features in isolation without integrating and testing the whole system together. Cal Newport defines deep work as "professional activities performed in a state of distraction-free concentration that push your cognitive capabilities to their limit." Research shows it takes 23 minutes to regain focus after a single distraction. Your build sessions are short — protect them.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">$840M</span><span class="sl">Healthcare.gov cost — crashed on launch day, 6 enrolments</span></div><div class="hook-stat-mini"><span class="sv">23 min</span><span class="sl">average time to regain focus after a single distraction</span></div><div class="hook-stat-mini"><span class="sv">Goals</span><span class="sl">write 2-3 specific session goals before touching any tools</span></div><div class="hook-stat-mini"><span class="sv">Diary</span><span class="sl">update Sprint Diary before the session ends — every time</span></div></div>' },
-    { type: 'concept', title: 'Session Focus: Building Core Features', body: 'This is your first extended build session. The focus is making meaningful progress on your capstone while maintaining documentation discipline.', bullets: ['Review your Sprint Diary from last session — what did you plan to do today?', 'Set 2-3 specific, achievable goals for this session', 'Integrate the top priority feedback from your peer review', 'Test as you build — do not wait until the end to discover something is broken', 'If you hit a blocker, document it and move to a different task — do not lose momentum', 'Update your Sprint Diary before the session ends'], callout: 'Progress is rarely linear. Some sessions you will accomplish twice what you planned. Others you will spend the entire time debugging one issue. Both are normal.' },
-    { type: 'activity', title: 'Deep Work Build', instructions: 'Extended build session with structured check-ins.', steps: ['5-min plan: Review Sprint Diary, set today\'s goals, identify potential blockers', '20-min build block 1: Work on your highest priority task', 'Quick check-in: Are you on track? Need help? Adjust if needed', '20-min build block 2: Continue building or move to next task', 'Quick check-in: Test what you have built so far', '10-min close: Update Sprint Diary with progress, blockers, and next steps'] },
-    { type: 'discussion', title: 'Progress Check', questions: [{ num: 1, text: 'What did you accomplish today that you are most proud of?' }, { num: 2, text: 'What was your biggest blocker and how did you handle it?' }, { num: 3, text: 'On a scale of 1-10, how confident are you that your project will be ready on time?' }] },
-    { type: 'scenario', title: 'The Tempting Shortcut', situation: 'Forty minutes into the session, Jamie is behind schedule. He asks an AI assistant for help with one broken feature — and it responds with a complete, working-looking block that would replace a third of his project. He does not understand most of it. The clock is ticking.', question: 'What should Jamie do?', choices: [ { text: 'Paste it all in — a working project is a working project', outcome: 'It works today. In Lesson 34\'s audit and the viva, Jamie is asked to explain his own system and cannot. The course rule exists for exactly this moment: you must be able to read every line you ship. What he saved in minutes he pays back with interest, under questioning.' }, { text: 'Take only the part that fixes the broken feature, and ask the AI to explain it line by line until he could rebuild it', outcome: 'Correct. This is Amber-tier assistance done properly: the AI accelerates him, he stays the author. The explain-it-back step turns borrowed code into understood code — and gives him something genuine to say in the viva.' }, { text: 'Refuse all AI help and rebuild the feature from scratch', outcome: 'Principled, but this is an AI-augmented build course — the skill being assessed is steering the tool with judgement, not avoiding it. He burns the session proving a point nobody asked him to prove.' } ] },
-    { type: 'quiz', question: 'What should a sprint diary entry always include?', options: ['Only a list of completed tasks', 'The sprint goal, tasks completed, blockers, and reflections', 'Just the hours worked each day', 'A summary of what other people did'], correct: 1, explanation: 'A complete sprint diary captures the goal (what you aimed for), tasks completed, blockers encountered, and reflections on what you learned — documenting both progress and process.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Goals and focus', text: 'Set specific goals, work in focused blocks, and eliminate distractions' }, { icon: '▸', label: 'Document as you go', text: 'Sprint Diary entries are evidence for your reflective essay and viva' }, { icon: '▸', label: 'Adapt and continue', text: 'Hit a blocker? Document it, move to another task, and come back later' }] }
-  ],
-
-  30: [
-    { type: 'hook', title: 'Deep Work Session 2', body: 'On 1 August 2012, Knight Capital Group deployed a software update to its trading servers. Within 45 minutes, a bug in the untested code had executed 4 million erroneous trades, losing $440 million. The company was bankrupt within days. Internal reviews later revealed that warnings from test environments had been noted but not acted on before the deployment went live. Feedback is only valuable if you act on it. Studies show that teams who integrate feedback within 48 hours see 3× the improvement compared to those who wait a week. Today\'s focus: integrate the feedback from your peer review. Your project should visibly improve by the end of this session.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">$440M</span><span class="sl">lost in 45 minutes — Knight Capital ignored test warnings before deploy</span></div><div class="hook-stat-mini"><span class="sv">3×</span><span class="sl">improvement when feedback is acted on within 48 hours</span></div><div class="hook-stat-mini"><span class="sv">Top 3</span><span class="sl">priority changes from your peer review action plan — start here</span></div><div class="hook-stat-mini"><span class="sv">Reason</span><span class="sl">document why you accepted or rejected each piece of feedback</span></div></div>' },
-    { type: 'concept', title: 'Session Focus: Integrating Feedback', body: 'Today\'s priority is acting on the peer review feedback and resolving identified issues. This is where good projects become great.', bullets: ['Review your peer review action plan — what were your top 3 priorities?', 'Start with the highest-impact change that is achievable in this session', 'Test each change after implementing it — does it actually solve the issue?', 'If a suggested change conflicts with your design, document why you chose not to implement it', 'Look for patterns in the feedback — if multiple reviewers flagged the same issue, prioritise it', 'Update your Sprint Diary with what you changed and why'], callout: 'Being able to explain why you accepted or rejected specific feedback demonstrates critical thinking — this is exactly what your viva will assess.' },
-    { type: 'activity', title: 'Feedback Integration Build', instructions: 'Focused build session on integrating peer review feedback and advancing core features.', steps: ['5-min plan: Review peer review action plan and prioritise changes', '20-min build block 1: Implement highest priority feedback change', 'Quick test: Does the change work? Does it break anything else?', '20-min build block 2: Continue with next priority or advance core features', 'Quick test: Run through your main user journey — does everything still work?', '10-min close: Update Sprint Diary — note what feedback was implemented and any decisions made'] },
-    { type: 'discussion', title: 'Feedback in Action', questions: [{ num: 1, text: 'Which piece of feedback had the biggest positive impact on your project?' }, { num: 2, text: 'Did you choose not to implement any feedback? What was your reasoning?' }, { num: 3, text: 'What would you ask your next reviewer to focus on?' }] },
-    { type: 'scenario', title: 'The Conflicting Feedback', situation: 'Amara\'s two peer reviewers disagree completely. One says her revision tool asks too many questions before giving help ("annoying — just answer"). The other says the questions are the best part ("it makes you think first"). She has one session to act on feedback and cannot do both.', question: 'What should Amara do?', choices: [ { text: 'Implement both by adding a settings page with a toggle', outcome: 'A settings page is a new feature, mid-build, for an audience of two reviewers. It doubles the paths she must test and documents nothing about what she believes her tool is for. Feature-toggles are how projects enter the messy middle and never leave.' }, { text: 'Decide which behaviour serves her stated problem statement, implement that, and record in her Sprint Diary why she rejected the other', outcome: 'Correct. Feedback is evidence, not instructions. Her problem statement — help pupils think, not just get answers — decides the conflict, and the documented reasoning is exactly what the viva rewards.' }, { text: 'Ignore both reviews — they cancel each other out', outcome: 'Conflicting feedback is not noise; it is a signal that her design has a real tension worth understanding. Ignoring it wastes the only outside evidence she has, and her Sprint Diary now shows feedback received and nothing done with it.' } ] },
-    { type: 'quiz', question: 'What is the most effective way to integrate peer review feedback?', options: ['Ignore feedback you disagree with', 'Make all suggested changes without evaluation', 'Evaluate each piece of feedback, prioritise, and implement the most impactful changes', 'Wait until the final week to address feedback'], correct: 2, explanation: 'Effective feedback integration means critically evaluating suggestions, prioritising the most impactful changes, and implementing them promptly — not blindly accepting or ignoring everything.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Act on feedback quickly', text: 'Teams who integrate feedback within 48 hours see 3x the improvement' }, { icon: '▸', label: 'Think critically', text: 'Accept, reject, or adapt feedback — but always document your reasoning' }, { icon: '▸', label: 'Test after every change', text: 'Every modification should be tested to ensure it solves the issue without creating new ones' }] }
-  ],
-
-  31: [
-    { type: 'hook', title: 'Deep Work Session 3', body: 'In December 2020, CD Projekt Red released Cyberpunk 2077 after eight years of development and $316 million in costs. It was so buggy on PlayStation 4 that Sony pulled it from the PlayStation Store entirely — the first time a major game had been delisted for quality. The studio had tried to do everything: a massive open world, branching storylines, hundreds of side quests. The result was that nothing worked properly. Three working features beat ten broken ones every time. You are now past the halfway point of your build. This is where the "messy middle" hits — the initial excitement has faded, the finish line feels far away, and bugs multiply. Research shows most abandoned projects die in this phase. Push through — but focus on polish, not new features.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">$316M</span><span class="sl">Cyberpunk 2077 budget — pulled from PlayStation Store for bugs</span></div><div class="hook-stat-mini"><span class="sv">70%</span><span class="sl">of abandoned projects fail in the messy middle third</span></div><div class="hook-stat-mini"><span class="sv">Triage</span><span class="sl">classify bugs as Critical / Major / Minor — fix in that order</span></div><div class="hook-stat-mini"><span class="sv">UX</span><span class="sl">could someone use your project without being told how?</span></div></div>' },
-    { type: 'concept', title: 'Session Focus: Testing and Refinement', body: 'Mid-project is the time to shift from building new features to testing and refining what you have. A polished MVP beats a broken full-feature prototype every time.', bullets: ['Systematic testing: Work through every user path in your system methodically', 'Bug triage: List every issue, classify as Critical, Major, or Minor, fix in that order', 'User experience review: Is your system intuitive? Could someone use it without instruction?', 'Performance check: Is your system responsive? Do prompts return results in reasonable time?', 'Edge case sweep: Test the 10 edge cases you identified in Lesson 26', 'Document: Update your Sprint Diary with test results and decisions'], callout: 'A project with 3 features that all work perfectly will always score higher than a project with 10 features where 4 are broken.' },
-    { type: 'activity', title: 'Test and Refine Build', instructions: 'Focused session on systematic testing and refinement of your capstone project.', steps: ['5-min plan: List everything you need to test', '15-min testing: Work through every user path. Note every bug and issue', '5-min triage: Classify bugs as Critical, Major, or Minor', '20-min fix: Address critical and major bugs', 'Quick retest: Verify your fixes work and have not broken anything else', '10-min close: Update Sprint Diary with test results and remaining issues'] },
-    { type: 'discussion', title: 'The Messy Middle', questions: [{ num: 1, text: 'How are you feeling about your project right now? What would help you push through any frustration?' }, { num: 2, text: 'What feature or aspect of your project are you most proud of so far?' }, { num: 3, text: 'If you could restart your project with what you know now, what would you do differently?' }] },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Test systematically', text: 'Work through every path, classify bugs by severity, fix critical issues first' }, { icon: '▸', label: 'Push through the middle', text: 'most abandoned projects die in the middle third — persistence is a skill' }, { icon: '▸', label: 'Polish over features', text: '3 working features beat 10 broken ones every time' }] }
-  ],
-
-  32: [
-    { type: 'hook', title: 'Deep Work Session 4', body: 'Boeing\'s 737 MAX MCAS system — designed to automatically push the nose down in certain flight conditions — was approved with minimal pilot training and no mention in the flight manual. Two crashes killed 346 people. Internal documents later revealed engineers had flagged the single-sensor design as a risk, but no systematic self-audit process existed to escalate those concerns before certification. Finding your own issues before someone else does is not just best practice — it can be the difference between success and catastrophe. Your formal ethical audit comes in Lesson 34 — one build session away. Today, run your own pre-audit: review your work against the audit criteria and fix issues before the formal assessment.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">346</span><span class="sl">lives lost — Boeing 737 MAX had no systematic self-audit for flagged risks</span></div><div class="hook-stat-mini"><span class="sv">7</span><span class="sl">ethical dimensions in the checklist: privacy, bias, transparency, accountability, environment, accessibility, misinformation</span></div><div class="hook-stat-mini"><span class="sv">Must</span><span class="sl">fix any "Must Fix" ethical issues before session ends</span></div><div class="hook-stat-mini"><span class="sv">Mature</span><span class="sl">finding your own gaps before audit day shows self-awareness assessors value</span></div></div>' },
-    { type: 'concept', title: 'Session Focus: Polish and Audit Prep', body: 'Today has two priorities: completing core functionality and conducting a self-audit against the Ethics Audit Checklist before the formal audit next session.', bullets: ['Complete any remaining core features — focus on what is achievable today', 'User interface polish: Clear labels, consistent design, helpful error messages', 'Pre-audit: Work through the Ethics Audit Checklist yourself', 'Data handling: Are you collecting only what you need? Is consent clear? Can data be deleted?', 'Transparency: Can users understand what your system does and how it works?', 'Bias check: Have you tested with diverse inputs and users?'], callout: 'Finding your own ethical gaps before the formal audit demonstrates maturity and self-awareness — qualities assessors value highly.' },
-    { type: 'activity', title: 'Polish and Pre-Audit Build', instructions: 'Complete core features and conduct a self-audit using the Ethics Audit Checklist.', steps: ['5-min plan: What must be finished today? What can be cut?', '20-min build: Complete and polish core functionality', '15-min self-audit: Work through the Ethics Audit Checklist for your project', 'Note every issue found — classify as Must Fix, Should Fix, or Acknowledged Risk', '10-min fix: Address any Must Fix ethical issues', '5-min close: Update Sprint Diary. Note what you found in your self-audit'] },
-    { type: 'discussion', title: 'Audit Readiness', questions: [{ num: 1, text: 'Did your self-audit reveal any ethical issues you had not previously considered?' }, { num: 2, text: 'How confident are you that your project handles user data ethically?' }, { num: 3, text: 'What is the single biggest ethical risk remaining in your project?' }] },
-    { type: 'quiz', question: 'What is the purpose of a pre-audit ethical review of your own project?', options: ['To write the ethics section of your report', 'To identify and address ethical risks before the formal audit', 'To prove your project has no ethical issues', 'To satisfy a checkbox requirement'], correct: 1, explanation: 'Self-auditing before the formal ethical audit lets you identify and address risks proactively. It is much better to find and fix problems yourself than to have them pointed out by an examiner.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Self-audit first', text: 'Finding your own issues before formal audit shows maturity and self-awareness' }, { icon: '▸', label: 'Complete over perfect', text: 'A complete, working project with known limitations beats an incomplete ambitious one' }, { icon: '▸', label: 'Prepare for scrutiny', text: 'The ethical audit is next — know your project\'s strengths and weaknesses inside out' }] }
-  ],
-
-  33: [
-    { type: 'hook', title: 'Deep Work Session 5', body: 'On 19 July 2024, CrowdStrike pushed a routine configuration update to 8.5 million Windows machines worldwide. The update had not been tested on the specific OS version it was deployed to. Within hours, airline check-in systems, hospital networks, banking platforms, and emergency 911 services went down globally. Estimated cost: over $5 billion. The lesson: the final update is the most dangerous one, because confidence is highest and caution is lowest. This is your final build session. After today, your project must be ready to present and defend. Code freeze — stop adding features and focus entirely on stability, documentation, and testing what you already have.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">$5B+</span><span class="sl">CrowdStrike outage cost — one untested update crashed 8.5M machines</span></div><div class="hook-stat-mini"><span class="sv">Freeze</span><span class="sl">no new features after today — only fixes and documentation</span></div><div class="hook-stat-mini"><span class="sv">2 min</span><span class="sl">demo plan: what will you show, in what order?</span></div><div class="hook-stat-mini"><span class="sv">Final</span><span class="sl">run the complete user journey one last time before you stop</span></div></div>' },
-    { type: 'concept', title: 'Session Focus: Finalise and Document', body: 'Your final session priorities: fix what your Lesson 32 self-audit surfaced, finalise deliverables, and complete documentation — so you walk into Lesson 34\'s formal ethical audit clean.', bullets: ['Fix the issues your Lesson 32 self-audit surfaced — the formal ethical audit comes next lesson (Lesson 34)', 'Feature freeze: No new features. Fix bugs, polish UI, improve error handling only', 'Complete your Sprint Diary — ensure every session is documented', 'Write your project README or user guide: What does it do? How do you use it?', 'Prepare a 2-minute demo: What will you show? In what order?', 'Final test: Run through the complete user journey one last time'], callout: 'Your documentation is as important as your code. Assessors who cannot understand your project cannot give it the marks it deserves.' },
-    { type: 'activity', title: 'Final Build Session', instructions: 'Finalise your capstone project. No new features — focus on stability, documentation, and presentation readiness.', steps: ['5-min plan: List only critical final tasks (no new features!)', '15-min fixes: Address self-audit findings and remaining bugs', '15-min documentation: Complete Sprint Diary, write user guide', '10-min demo prep: Plan your 2-minute demonstration', '10-min final test: Complete user journey test', '5-min close: Final Sprint Diary entry — reflect on the entire build process'] },
-    { type: 'discussion', title: 'Looking Back', questions: [{ num: 1, text: 'What was the most valuable lesson you learned during the build process?' }, { num: 2, text: 'If you had one more week, what would you add or change?' }, { num: 3, text: 'How has building a project changed your perspective on AI compared to just using AI?' }] },
-    { type: 'quiz', question: 'What does "feature freeze" mean in the final build phase?', options: ['Removing all features from the project', 'Stopping new feature development to focus on polish and documentation', 'Freezing your computer to prevent changes', 'Locking the project so nobody else can edit it'], correct: 1, explanation: 'Feature freeze means no new features are added — all effort shifts to polishing existing functionality, fixing bugs, improving documentation, and preparing deliverables for submission.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Feature freeze', text: 'Stop adding features. Focus on stability, documentation, and presentation readiness' }, { icon: '▸', label: 'Documentation is essential', text: 'Assessors who cannot understand your project cannot give it the marks it deserves' }, { icon: '▸', label: 'Demo readiness', text: 'Prepare a clear 2-minute demonstration that showcases your core functionality' }] }
-  ],
-
-  34: [
-    { type: 'hook', title: 'The Ethical Audit', body: 'In 2023, the UK Government launched the AI Safety Institute — the world\'s first state-backed body dedicated to testing advanced AI for safety risks. Their audits examine fairness, transparency, security, and potential for misuse. Today, you will conduct a formal ethical audit of a classmate\'s project using the same principles. This is not a rubber stamp exercise — it is genuine scrutiny that will strengthen both the project and the auditor\'s ethical reasoning.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">7</span><span class="sl">ethical dimensions to assess: privacy, bias, transparency, accountability, environment, accessibility, misinformation</span></div><div class="hook-stat-mini"><span class="sv">4</span><span class="sl">severity levels: Critical, Major, Minor, Observation</span></div><div class="hook-stat-mini"><span class="sv">Evidence</span><span class="sl">every finding needs a specific observation — not opinion</span></div><div class="hook-stat-mini"><span class="sv">Goal</span><span class="sl">improvement, not punishment — the best audits propose practical solutions</span></div></div>' },
-    { type: 'concept', title: 'The Audit Process', body: 'A formal ethical audit is a structured assessment of a system\'s alignment with ethical principles. The UK AI Safety Institute\'s 2023 framework — used to evaluate frontier AI models — follows the same four-stage structure you will use today: scope, evidence, findings, response.', bullets: ['Scope: Define what you are auditing — the complete system, or specific components like data handling or output quality?', 'Evidence gathering: Test the system yourself, review documentation, interview the developer to understand design intent', 'Assessment: Score each ethical dimension against defined criteria with specific evidence — scores without evidence are opinions', 'Findings: Document issues by severity — Critical (system should not deploy), Major (must fix before use), Minor (should improve), Observation (worth noting)', 'Recommendations: Actionable steps — not "improve privacy" but "add a consent checkbox before data is collected"', 'Response: The developer responds to each finding — accept, mitigate, or acknowledge as known limitation with reasoning'], callout: 'A good auditor is thorough but fair. The goal is improvement, not punishment. An audit that identifies real risks and proposes practical solutions is worth more than a perfect score.' },
-    { type: 'concept', title: 'Ethical Dimensions', body: 'The Ethics Audit Checklist examines seven dimensions. Each requires evidence-based assessment — scores without evidence are worthless. Use the standard: "I observed [X] when I tested [Y], which indicates [Z] risk."', bullets: ['Data Privacy: What data is collected? Is GDPR-compliant consent obtained? Can users delete their data?', 'Bias & Fairness: Test with diverse inputs — does the system perform equally well for different user groups, languages, backgrounds?', 'Transparency: Can users understand what the system does, how it decides things, and what to do when it\'s wrong?', 'Accountability: When the system makes an error — and it will — who is responsible and what is the redress process?', 'Environmental Impact: How many AI queries does a typical session generate? Estimate the approximate energy cost at scale', 'Accessibility: Can users with visual, motor, or cognitive differences access and use the system effectively?', 'Misinformation Risk: Could the system confidently generate false information? Has it been tested for hallucination?'], callout: 'An ethical system is not one with zero risks — it is one where risks are identified, honestly assessed, and managed transparently. Zero-risk claims are usually evidence of shallow auditing.' },
-    { type: 'activity', title: 'Conduct the Ethical Audit', instructions: 'Audit a classmate\'s capstone project using the Ethics Audit Checklist from Resources.', steps: ['Pair up with someone whose project you have not reviewed before', 'The developer gives a 5-minute demo and overview of their project', 'Using the Ethics Audit Checklist, work through each of the 7 dimensions', 'For each dimension, record: Evidence observed, Score (1-5), and Specific findings', 'Write 3 key recommendations with severity ratings', 'Present your findings to the developer. Developer responds to each finding'] },
-    { type: 'discussion', title: 'Ethics in Practice', questions: [{ num: 1, text: 'Was conducting an ethical audit harder or easier than you expected? What surprised you?' }, { num: 2, text: 'How did it feel to have your own project audited? Did you agree with the findings?' }, { num: 3, text: 'Should ethical audits be mandatory for all AI products before they launch? Who should conduct them?' }] },
-    { type: 'quiz', question: 'In the ethics audit, what is a "trade-off" in the context of AI ethics?', options: ['Exchanging one project feature for another', 'A situation where improving one ethical dimension may worsen another', 'Choosing between two programming languages', 'A negotiation between team members'], correct: 1, explanation: 'Ethical trade-offs occur when addressing one concern creates tension with another — e.g., improving privacy may reduce transparency, or increasing accuracy may require more personal data. Acknowledging these honestly strengthens your analysis.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Evidence, not opinion', text: 'Every finding needs a specific observation: "I observed X when testing Y, which indicates Z risk"' }, { icon: '▸', label: 'Seven dimensions', text: 'Privacy, bias, transparency, accountability, environment, accessibility, misinformation — all seven must be assessed' }, { icon: '▸', label: 'Improvement, not punishment', text: 'Zero-risk scores are evidence of shallow auditing — honest identification of managed risks is the gold standard' }] }
-  ],
-
-  35: [
-    { type: 'hook', title: 'The Pitch Deck', body: 'In 2008, Airbnb\'s original pitch deck was rejected by investor after investor. But the deck itself was brilliantly structured: Problem, Solution, Market, Business Model, Team. Today, that deck is studied in business schools as a masterclass. Your capstone pitch is not just a school presentation — it is a professional skill that will serve you in university applications, job interviews, and startup pitches throughout your career.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">7 slides</span><span class="sl">Hook, Problem, Solution, Demo, Ethics, Reflection, Ask</span></div><div class="hook-stat-mini"><span class="sv">7 words</span><span class="sl">Steve Jobs averaged 7 words per slide in product launches</span></div><div class="hook-stat-mini"><span class="sv">5-7 min</span><span class="sl">presentation time + 3-5 min Q&A — time yourself</span></div><div class="hook-stat-mini"><span class="sv">Backup</span><span class="sl">prepare screenshots in case live demo tech fails</span></div></div>' },
-    { type: 'concept', title: 'Pitch Deck Structure', body: 'An effective pitch follows a proven narrative arc that takes the audience from problem to solution to impact. Airbnb\'s 2008 seed pitch — now publicly available — follows this exact structure and closed a $600K round. The narrative logic has not changed because human attention and persuasion have not changed.', bullets: ['Slide 1 — Hook: A specific statistic, provocative question, or vivid scenario. "800 million pupils worldwide have no personalised revision support." Make the problem feel real immediately.', 'Slide 2 — Problem: Who is affected? What exactly happens? Why haven\'t existing solutions fixed it?', 'Slide 3 — Solution: Your project. One sentence explaining what it does and for whom.', 'Slide 4 — Demo: Live demonstration of your key user journey — the most important 90 seconds of your pitch', 'Slide 5 — Ethics: How have you addressed ethical considerations? Show self-awareness, not box-ticking.', 'Slide 6 — Reflection: What would you do differently? What surprised you? This shows maturity.', 'Slide 7 — Ask: Invite specific questions. "I\'d particularly welcome questions about my prompt architecture."'], callout: 'The best pitches are stories, not feature lists. Your audience needs to care about the problem before they can appreciate your solution.' },
-    { type: 'concept', title: 'Presentation Design Principles', body: 'Your slides should support your speaking, not replace it. Steve Jobs\' famous product launches averaged 7 words per slide. Nancy Duarte — who coached Al Gore\'s Inconvenient Truth presentation — says: "Slides are support, not a substitute." If you removed your slides, could you still deliver your presentation?', bullets: ['One idea per slide: If a slide makes two points, split it — your audience reads at a different speed than you speak', 'Minimal text: Maximum 6 words per bullet, 6 bullets per slide. If you need more, you are writing an essay not making a slide', 'High contrast: Dark background with light text, or vice versa — low-contrast slides are inaccessible and look unprofessional', 'Show, do not tell: A screenshot of your tool working is worth more than three slides describing it', 'Consistent design: Same font, same colour palette, same layout. Inconsistency reads as unfinished', 'No reading from slides: If you are reading, you do not know your material. Trust yourself.'], callout: 'Steve Jobs rehearsed for weeks. TED speakers practice 200 times. Confidence in delivery comes from preparation, not from having more text on the slide.' },
-    { type: 'activity', title: 'Build Your Pitch Deck', instructions: 'Create your capstone pitch deck using the Pitch Deck Structure Guide from Resources.', steps: ['Open the Pitch Deck Structure Guide resource', 'Create slides 1-7 following the structure: Hook, Problem, Solution, Demo, Ethics, Reflection, Ask', 'Apply design principles: One idea per slide, minimal text, high contrast', 'Plan your demo: What will you show? Prepare a backup (screenshots) in case of tech failure', 'Time yourself: Your pitch should be 5-7 minutes with 3-5 minutes for Q&A', 'Practice once: Deliver your pitch to yourself or a partner'] },
-    { type: 'discussion', title: 'Communicating Technical Ideas', questions: [{ num: 1, text: 'What is the hardest part of explaining a technical project to a non-technical audience?' }, { num: 2, text: 'How do you balance showing technical depth with keeping the audience engaged?' }, { num: 3, text: 'What makes you trust a presenter? What makes you switch off?' }] },
-    { type: 'quiz', question: 'What should the opening slide of a pitch deck do?', options: ['List all your project features', 'Show your project architecture diagram', 'Present a striking hook that makes the problem feel real and urgent', 'Thank the audience for coming'], correct: 2, explanation: 'Your opening slide should hook the audience with a striking statistic, question, or story that makes the problem feel real. If the audience does not care about the problem, they will not care about your solution.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Proven structure', text: 'Hook → Problem → Solution → Demo → Ethics → Reflection → Ask — Airbnb\'s structure, now your structure' }, { icon: '▸', label: 'Slides support, not replace', text: '7 words per slide. Show don\'t tell. High contrast. If you removed the slides, could you still present?' }, { icon: '▸', label: 'Story, not features', text: 'Make the audience care about the problem before you explain your solution' }] }
-  ],
-
-  36: [
-    { type: 'hook', title: 'Dress Rehearsal', body: 'Research shows that presenters who rehearse at least 3 times deliver presentations rated 20% higher than those who rehearse once. Elite speakers like Steve Jobs rehearsed for weeks. TED Talk speakers practice an average of 200 times. You probably will not manage 200 rehearsals, but today\'s dress rehearsal is your chance to deliver your full presentation, get real feedback, and refine before the final showcase.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">20%</span><span class="sl">higher ratings for presenters who rehearse 3+ times</span></div><div class="hook-stat-mini"><span class="sv">200</span><span class="sl">average TED rehearsals before the talk — the benchmark</span></div><div class="hook-stat-mini"><span class="sv">130-150</span><span class="sl">words per minute — most nervous speakers go too fast</span></div><div class="hook-stat-mini"><span class="sv">Top 3</span><span class="sl">write your top 3 improvements after feedback — act on them today</span></div></div>' },
-    { type: 'concept', title: 'Presentation Skills', body: 'Great presentations combine content, delivery, and audience awareness. Today, focus on delivery — the content is done.', bullets: ['Pacing: Aim for 130-150 words per minute. Most nervous speakers go too fast', 'Eye contact: Look at individuals in the audience, not the screen or the floor', 'Pausing: Silence is powerful. Pause after key points to let them land', 'Body language: Open stance, purposeful movement, natural gestures', 'Voice modulation: Vary pitch, speed, and volume to maintain interest', 'Handling questions: Repeat the question, answer concisely, admit when you do not know'], callout: 'The single most common presentation mistake: reading from slides. If you catch yourself doing it, stop, look at the audience, and say what you mean in your own words.' },
-    { type: 'activity', title: 'Full Dress Rehearsal', instructions: 'Deliver your complete presentation to a small group. Receive structured feedback using the Presentation Assessment Rubric.', steps: ['Form groups of 3-4 pupils', 'Each person delivers their full presentation (5-7 minutes + Q&A)', 'Audience members complete the Presentation Assessment Rubric for each presenter', 'Focus feedback on: timing, clarity, demo quality, audience engagement, and Q&A handling', 'After all presentations, share feedback with each presenter', 'Each person writes down their top 3 improvements for the final presentation'] },
-    { type: 'discussion', title: 'Performance and Nerves', questions: [{ num: 1, text: 'What was the most useful feedback you received? How will you act on it?' }, { num: 2, text: 'What strategies do you use to manage presentation anxiety?' }, { num: 3, text: 'Did watching others present teach you anything about your own presentation style?' }] },
-    { type: 'quiz', question: 'What is the main purpose of a dress rehearsal?', options: ['To memorise your script word-for-word', 'To practise with real conditions, receive feedback, and refine delivery', 'To show the teacher your finished slides', 'To time how fast you can present'], correct: 1, explanation: 'A dress rehearsal simulates real presentation conditions — timing, delivery, audience questions — and provides structured feedback you can act on before the actual presentation.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Practice matters', text: 'Presenters who rehearse 3+ times score 20% higher — there is no substitute for practice' }, { icon: '▸', label: 'Delivery over content', text: 'Eye contact, pacing, pausing, and body language are as important as what you say' }, { icon: '▸', label: 'Act on feedback', text: 'Identify your top 3 improvements and implement them before the final showcase' }] }
-  ],
-
-  37: [
-    { type: 'hook', title: 'Presentations — Group 1', body: 'This is it. Months of work come down to these minutes. You have identified a problem, designed a solution, built a prototype, conducted an ethical audit, and prepared a pitch. Now you present to a panel and your peers. Remember: the panel is not looking for perfection — they are looking for understanding, critical thinking, and the ability to communicate your work clearly.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">6</span><span class="sl">assessment dimensions: problem, solution, technical depth, ethics, delivery, Q&A</span></div><div class="hook-stat-mini"><span class="sv">Honest</span><span class="sl">acknowledging limitations shows more understanding than pretending perfection</span></div><div class="hook-stat-mini"><span class="sv">5-7 min</span><span class="sl">presentation + 2-3 panel questions — know your material cold</span></div><div class="hook-stat-mini"><span class="sv">Why?</span><span class="sl">be ready to explain every design decision and ethical choice</span></div></div>' },
-    { type: 'concept', title: 'What the Panel Assesses', body: 'Understanding the assessment criteria helps you focus your presentation on what matters most. Research on oral assessment shows that panels weight Q&A performance disproportionately — a strong answer to a probing question can compensate for a weak slide, but a weak Q&A undermines even a polished presentation.', bullets: ['Problem understanding: Do you articulate the problem specifically, with evidence, and explain why existing solutions are inadequate?', 'Solution quality: Does your project meaningfully address the problem? Can you demonstrate it working?', 'Technical depth: Can you explain your system architecture, prompt design choices, and how you handled edge cases?', 'Ethical awareness: Have you conducted a real audit, not box-ticking? Can you name specific risks and your mitigations?', 'Presentation skills: Clear structure, confident delivery, appropriate pace — does the audience follow your narrative?', 'Q&A performance: Panels ask about your reasoning, not your project spec. "Why did you choose X over Y?" is the typical question'], callout: 'The best presentations are honest about limitations. "This does not handle X perfectly — here is why and what I would do with more time" demonstrates deeper understanding than presenting a polished fiction.' },
-    { type: 'activity', title: 'Present and Assess', instructions: 'Group 1 delivers capstone presentations. All pupils assess using the rubric.', steps: ['Group 1 presenters deliver their presentations (5-7 minutes each)', 'Panel asks 2-3 questions after each presentation', 'All audience members complete the Presentation Assessment Rubric', 'Audience members prepare one constructive question for each presenter', 'After all presentations, brief feedback is shared', 'Non-presenting pupils: Take notes on techniques you want to adopt for your own presentation'] },
-    { type: 'discussion', title: 'Presentation Reflections', questions: [{ num: 1, text: 'Which presentation stood out to you and why?' }, { num: 2, text: 'What technique did you see that you want to adopt for your own presentation?' }, { num: 3, text: 'How did the Q&A sections go? What makes someone good at answering unexpected questions?' }] },
-    { type: 'quiz', question: 'When responding to panel questions during a presentation, what is most important?', options: ['Speaking as quickly as possible', 'Using as much technical jargon as you can', 'Being honest when you do not know something and explaining your reasoning clearly', 'Redirecting every question back to your slides'], correct: 2, explanation: 'Panels value honesty and clear reasoning over bluffing. Saying "I am not sure, but my reasoning would be..." demonstrates intellectual maturity and genuine understanding far more than a fabricated answer.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Clarity over complexity', text: 'The best presentations communicate complex ideas simply and honestly' }, { icon: '▸', label: 'Honesty about limitations', text: 'Acknowledging weaknesses demonstrates deeper understanding than pretending perfection' }, { icon: '▸', label: 'Learn from each other', text: 'Every presentation teaches you something about your own communication style' }] }
-  ],
-
-  38: [
-    { type: 'hook', title: 'Presentations — Group 2', body: 'Group 2 — you have had the advantage of watching Group 1 present. Use what you observed. Notice what worked: clear structure, honest reflection, confident Q&A handling. Notice what did not: rushing, reading from slides, avoiding hard questions. Your presentation starts now.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">Observe</span><span class="sl">what techniques engaged you? Which lost your attention?</span></div><div class="hook-stat-mini"><span class="sv">Q&A</span><span class="sl">panel asks similar questions across all presentations — prepare for them</span></div><div class="hook-stat-mini"><span class="sv">Trust</span><span class="sl">you know your project better than anyone in the room</span></div><div class="hook-stat-mini"><span class="sv">Honest</span><span class="sl">presenters who acknowledged limitations were more convincing, not less</span></div></div>' },
-    { type: 'concept', title: 'Learning from Group 1', body: 'Having observed Group 1, you can refine your approach in the final moments before presenting.', bullets: ['Timing: Did Group 1 presenters run over or under? Adjust your pacing accordingly', 'Q&A patterns: What questions did the panel ask? Prepare answers to similar questions', 'Demo issues: Did anyone have technical problems? Prepare your backup plan', 'Engagement: What kept the audience\'s attention? What lost it?', 'Honesty: Presenters who acknowledged limitations were more convincing, not less', 'Confidence: You know your project better than anyone in the room — trust your preparation'], callout: 'The panel asks similar question types across presentations: "Why did you choose this approach?", "What would you do differently?", "How did you address ethics?". Prepare for these.' },
-    { type: 'activity', title: 'Present and Assess', instructions: 'Group 2 delivers capstone presentations. All pupils assess using the rubric.', steps: ['Group 2 presenters deliver their presentations (5-7 minutes each)', 'Panel asks 2-3 questions after each presentation', 'All audience members complete the Presentation Assessment Rubric', 'Audience members prepare one constructive question for each presenter', 'After all presentations, brief feedback is shared', 'Class discussion: Compare overall themes and quality between Group 1 and Group 2'] },
-    { type: 'discussion', title: 'Collective Reflection', questions: [{ num: 1, text: 'Having now seen all presentations, what common strengths and weaknesses do you notice across the class?' }, { num: 2, text: 'Which project do you think has the most potential for real-world impact? Why?' }, { num: 3, text: 'How has presenting your own work changed your relationship with your project?' }] },
-    { type: 'quiz', question: 'How can you learn most effectively from watching other groups present?', options: ['Only focus on their mistakes', 'Take notes on what works well and what you would do differently', 'Wait for the teacher to give you feedback', 'Plan your own presentation during their time'], correct: 1, explanation: 'Active observation — noting specific techniques that engage the audience, explanations that clarify complex ideas, and areas where delivery could improve — builds your own presentation skills and helps you give better peer feedback.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Observe and adapt', text: 'Watching others present teaches you as much as presenting yourself' }, { icon: '▸', label: 'Trust your preparation', text: 'You know your project better than anyone — confidence comes from understanding' }, { icon: '▸', label: 'Celebrate the work', text: 'Every presentation represents months of learning, building, and critical thinking' }] }
-  ],
-
-  39: [
-    { type: 'hook', title: 'Viva Voce — Session 1', body: 'The viva voce (Latin for "living voice") is an oral examination tradition dating back to medieval universities. Unlike a written exam, a viva tests your ability to think, articulate, and defend your ideas in real time. There is no hiding behind rehearsed scripts — the examiner will follow your answers with probing follow-up questions. This is where deep understanding separates from surface-level knowledge.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">Why?</span><span class="sl">not "what did you build?" — every question is about your reasoning</span></div><div class="hook-stat-mini"><span class="sv">3 sec</span><span class="sl">pause before answering — shows thoughtfulness, not uncertainty</span></div><div class="hook-stat-mini"><span class="sv">Connect</span><span class="sl">link your project to course themes: ethics, bias, regulation, oversight</span></div><div class="hook-stat-mini"><span class="sv">Ask</span><span class="sl">"Can you clarify what you mean?" is always acceptable in a viva</span></div></div>' },
-    { type: 'concept', title: 'Preparing for the Viva', body: 'A viva voce tests depth of understanding, critical reflection, and the ability to articulate your thinking under pressure. The most common pattern in vivas: examiners start with "walk me through your project" (easy), then probe with "why did you choose X over Y?" (harder), then challenge with "what if you were wrong about Y?" (the real test).', bullets: ['Know every decision: Every design choice, ethical call, and trade-off in your project — with reasons', 'Why, not what: "I chose this because..." is more valuable than any description of features', '"What would you do differently?": Self-awareness and honest reflection score highly — have a genuine answer ready', 'Connect to course themes: Bias from Unit 1, regulation from Unit 4, prompt architecture from Unit 2 — link your project explicitly', 'Think aloud: The examiner wants to see your reasoning process. "Let me think through this..." is a strength, not a weakness', 'Clarify before answering: "Could you clarify what you mean by X?" shows precision, not uncertainty'], callout: 'The viva is a conversation, not an interrogation. The examiner wants you to succeed. Probing questions are an invitation to show the depth of your thinking — not a trap.' },
-    { type: 'activity', title: 'Viva Practice', instructions: 'Practice viva-style questioning with a partner using the Viva Voce Question Bank.', steps: ['Pair up with a partner', 'Take turns asking questions from the Viva Voce Question Bank (5 minutes each)', 'Focus on follow-up questions: "Why?", "What if?", "How do you know?"', 'Give feedback: Was the answer clear? Did they demonstrate depth? Did they connect to course themes?', 'Identify your 3 weakest areas and prepare stronger answers', 'If time permits, repeat with a different partner'] },
-    { type: 'discussion', title: 'Articulating Understanding', questions: [{ num: 1, text: 'What is the difference between knowing something and being able to explain it clearly to someone else?' }, { num: 2, text: 'Which course theme do you feel most confident discussing? Which feels weakest?' }, { num: 3, text: 'How can you demonstrate depth of understanding rather than surface-level knowledge?' }] },
-    { type: 'quiz', question: 'In a viva voce, what matters more than having the "right" answer?', options: ['Speaking for as long as possible', 'Demonstrating your reasoning process and depth of understanding', 'Quoting textbooks and statistics from memory', 'Agreeing with whatever the examiner suggests'], correct: 1, explanation: 'Viva voce examiners are testing understanding, not memory. Showing your working — how you think through a problem, weigh trade-offs, and reason from evidence — demonstrates deeper learning than reciting facts.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Think aloud', text: 'The viva tests your reasoning process, not just your conclusions — show your thinking' }, { icon: '▸', label: 'Connect the dots', text: 'Link your project to course themes: ethics, bias, regulation, human oversight' }, { icon: '▸', label: 'Why, not what', text: 'Be ready to explain every decision — the reasoning matters more than the choice itself' }] }
-  ],
-
-  40: [
-    { type: 'hook', title: 'Viva Voce — Session 2', body: 'Continuation of the viva voce examinations. If you have not yet been examined, use this time to prepare. If you have, reflect on your performance and support your classmates.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">Position</span><span class="sl">state your view, give evidence, acknowledge counter-argument</span></div><div class="hook-stat-mini"><span class="sv">Honest</span><span class="sl">genuine reflection on mistakes scores higher than bluffing</span></div><div class="hook-stat-mini"><span class="sv">Breath</span><span class="sl">a 3-second pause before answering reads as thoughtful, not uncertain</span></div><div class="hook-stat-mini"><span class="sv">Trail</span><span class="sl">never end an answer with "so yeah..." — finish with a confident statement</span></div></div>' },
-    { type: 'concept', title: 'Viva Tips from Session 1', body: 'Based on common patterns from the first viva session, here are refined tips for remaining candidates.', bullets: ['Take a breath before answering — a 3-second pause shows thoughtfulness, not uncertainty', 'Structure your answers: State your position, give evidence, acknowledge counter-arguments', 'If you do not understand a question, ask for clarification — this is expected and normal', 'Connect to specific course content: Reference specific lessons, case studies, or frameworks', 'Be honest about what you do not know — genuine reflection scores higher than bluffing', 'End answers confidently — do not trail off with "so yeah..." or "I think..."'], callout: 'The strongest viva candidates are not the ones with perfect projects — they are the ones who can articulate what they learned, including from their mistakes.' },
-    { type: 'activity', title: 'Viva Examinations Continue', instructions: 'Remaining pupils complete their viva voce examinations.', steps: ['If waiting: Review the Viva Voce Question Bank one more time', 'During your viva: Listen carefully, think before answering, connect to course themes', 'After your viva: Write a brief reflection — What went well? What would you improve?', 'If already examined: Support classmates by being a quiet, supportive audience', 'Complete any outstanding course documentation', 'Begin thinking about your reflective essay'] },
-    { type: 'discussion', title: 'Post-Viva Reflection', questions: [{ num: 1, text: 'How did the viva compare to your expectations? Was it harder or easier than you thought?' }, { num: 2, text: 'What question challenged you the most? How would you answer it now?' }, { num: 3, text: 'How has the viva experience changed how you think about oral communication as a skill?' }] },
-    { type: 'quiz', question: 'Why might an examiner ask you to argue against your own project?', options: ['To make you feel bad about your work', 'To test whether you can think critically and honestly about limitations', 'To check if you memorised your project brief', 'To see if you will change your project'], correct: 1, explanation: 'Asking you to critique your own work tests critical thinking, self-awareness, and intellectual honesty. Acknowledging limitations and trade-offs shows maturity and genuine understanding — far more impressive than defensiveness.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Reflection over perfection', text: 'The strongest candidates articulate what they learned, including from mistakes' }, { icon: '▸', label: 'Structure your answers', text: 'Position, evidence, counter-argument — give the examiner a clear framework' }, { icon: '▸', label: 'Oral skills matter', text: 'The ability to defend your ideas verbally is a lifelong professional skill' }] }
-  ],
-
-  41: [
-    { type: 'hook', title: 'The Automated Graduate', body: 'Surveys of graduate employers consistently find a large majority now use AI somewhere in their recruitment process — from CV screening to automated interviews. At the same time, universities increasingly use AI-powered tools for marking and feedback. The generation entering higher education this year will be taught by AI, assessed by AI, and hired by AI. The question is not whether AI will shape your future — it is how you will shape AI\'s role in it.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">78%</span><span class="sl">of graduate employers now use AI in recruitment</span></div><div class="hook-stat-mini"><span class="sv">#1</span><span class="sl">AI literacy is the top graduate skills gap (WEF Future of Jobs 2023)</span></div><div class="hook-stat-mini"><span class="sv">Centaur</span><span class="sl">human + AI beats AI alone in chess, diagnosis, and most creative fields</span></div><div class="hook-stat-mini"><span class="sv">You</span><span class="sl">this course built exactly the skills employers and universities value most</span></div></div>' },
-    { type: 'video', title: 'Humans Need Not Apply', videoId: '7Pq-S557XQU', credit: 'CGP Grey · 2014 · 15 min', intro: 'Made in 2014, this landmark video argued that automation would eliminate not just factory jobs but white-collar and creative work too — using the analogy of how the car made the horse economically obsolete. Watch it critically: which predictions have come true in the years since? Which have not? What does Grey get right that still applies to your generation?' },
-    { type: 'concept', title: 'AI in Higher Education', body: 'Universities are being transformed by AI across teaching, research, and administration. Trials of AI tutoring systems have reported learning gains rivalling human tutoring in a fraction of the contact time. Oxford and Cambridge are piloting AI-generated first drafts of exam feedback. The University of Melbourne has AI teaching assistants answering 80% of pupil queries.', bullets: ['AI tutoring: Khanmigo (Khan Academy\'s AI tutor) provides Socratic dialogue 24/7, adapting to each pupil\'s level', 'Automated marking: AI systems can assess and provide detailed feedback on written work in seconds — with accuracy comparable to human markers on structured tasks', 'Research acceleration: AI literature reviews compress weeks of work into hours — but require critical validation', 'Integrity arms race: Universities deploy AI detection alongside plagiarism checkers, while pupils use AI to avoid detection', 'Skills shift: The fastest-growing university modules are prompt engineering, AI ethics, and AI product design'], callout: 'The universities that will thrive are not those that ban AI but those that teach pupils to use it critically, ethically, and creatively — exactly what this course has done.' },
-    { type: 'concept', title: 'Graduate Employability in an AI World', body: 'The World Economic Forum\'s 2023 Future of Jobs report identified AI literacy as the single biggest skills gap in graduate recruitment — ahead of data analysis, leadership, and communication. Technical skills alone are insufficient because AI increasingly handles routine technical tasks.', bullets: ['AI literacy: Understanding AI capabilities and limits — when to trust it, when to challenge it, when not to use it', 'Critical thinking: Evaluating AI outputs for errors, biases, and hallucinations — the skill AI cannot replace itself', 'Ethical reasoning: Navigating AI\'s moral implications in real professional decisions — not just abstract theory', 'Communication: Translating AI outputs and limitations to non-technical colleagues and clients', 'Adaptability: The specific tools you use in 5 years don\'t exist yet — your ability to learn new tools is what matters', 'The centaur model: After Deep Blue beat Kasparov in 1997, "centaur chess" (human + AI pairs) proved superior to both. The same applies to medicine, law, and creative fields.'], callout: 'You already have these skills. This course has given you AI literacy, critical thinking, ethical reasoning, and communication practice — and a portfolio project to prove it.' },
-    { type: 'activity', title: 'Your AI-Ready Skills Audit', instructions: 'Audit your AI readiness using the Skills Audit Template and create a personal development plan.', steps: ['Open the Skills Audit Template from Resources', 'Rate yourself (1-5) on: AI literacy, Critical thinking, Ethical reasoning, Communication, Adaptability, Technical skills', 'For each skill, list specific evidence from this course (e.g. "Conducted ethical audit in Lesson 34")', 'Identify your top 2 strengths and top 2 areas for development', 'Research: What AI skills does your target university or career value most?', 'Write a 3-point personal development plan for the next 12 months'] },
-    { type: 'discussion', title: 'Your AI Future', questions: [{ num: 1, text: 'How has this course changed how you think about your future career and AI\'s role in it?' }, { num: 2, text: 'What AI skill or knowledge from this course do you think will be most valuable in 5 years?' }, { num: 3, text: 'If you were advising a younger pupil about preparing for an AI-shaped world, what would you tell them?' }] },
-    { type: 'quiz', question: 'What is the "centaur advantage" in the context of AI and employment?', options: ['Robots that can run faster than humans', 'The idea that humans who combine their judgement with AI capability are most valuable', 'A type of AI that has two processing cores', 'The advantage of replacing all human workers with AI'], correct: 1, explanation: 'The centaur advantage (named after human-AI chess teams) describes how graduates who combine human judgement, creativity, and ethics with AI capability are significantly more valuable than either humans or AI alone.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Education is transforming fast', text: 'MIT AI tutors produce learning gains comparable to humans in 30% of the time — your university will look very different' }, { icon: '▸', label: 'AI literacy is #1', text: 'WEF 2023: AI literacy is the top graduate skills gap — ahead of data, leadership, and communication' }, { icon: '▸', label: 'Centaur beats AI alone', text: 'Kasparov + AI > Deep Blue. You + AI > AI. This is the employment advantage to build' }] }
-  ],
-
-  42: [
-    { type: 'hook', title: 'The Personal Statement Audit', body: 'UCAS receives over 700,000 applications each year — and from 2026 entry, the old free-text personal statement was replaced by three structured questions. The game has not changed: admissions tutors still spend only minutes per applicant, and many applicants now use AI to help write their answers — but the most common result was generic, formulaic writing that admissions tutors could spot immediately. Today, you will learn to use AI as a critical revision partner for your personal statement while maintaining your authentic voice.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">700K</span><span class="sl">personal statements received by UCAS each year</span></div><div class="hook-stat-mini"><span class="sv">3-5 min</span><span class="sl">average time an admissions tutor spends on each statement</span></div><div class="hook-stat-mini"><span class="sv">17%</span><span class="sl">of 2024 applicants used AI to help write their statement</span></div><div class="hook-stat-mini"><span class="sv">Specific</span><span class="sl">specificity is the difference between sounding like you and sounding like everyone</span></div></div>' },
-    { type: 'concept', title: 'AI as Writing Partner, Not Ghostwriter', body: 'AI can dramatically improve your personal statement — but only if you use it correctly. The key is using AI to strengthen your writing, not replace your voice.', bullets: ['DO use AI for: Structural feedback, identifying weak arguments, checking grammar and flow', 'DO use AI for: Generating alternative phrasings when you are stuck', 'DO NOT use AI for: Writing paragraphs from scratch — admissions tutors can tell', 'DO NOT use AI for: Generic openings like "From a young age, I have been passionate about..."', 'The litmus test: Read your statement aloud. Does it sound like you? Would you say these words in an interview?', 'Use the PTFC framework: "You are a UCAS admissions expert. Critique this paragraph for specificity and authenticity."'], callout: 'Admissions tutors have read thousands of statements. They can spot AI-generated writing not because of grammar but because of its lack of specificity and genuine personal experience.' },
-    { type: 'concept', title: 'Maintaining Authentic Voice', body: 'Your personal statement must sound like you — a specific individual with unique experiences, insights, and motivations. AI tends to flatten voice into generic competence.', bullets: ['Specificity: "I spent 6 weeks volunteering at a food bank" beats "I have volunteered extensively"', 'Reflection over description: What you LEARNED matters more than what you DID', 'Connecting experiences: Show how different experiences built toward your chosen course', 'Your unique perspective: What do YOU think about your subject? AI cannot answer this', 'Read it to someone who knows you: Would they recognise you in this writing?'], callout: 'The best personal statements are ones that could only have been written by that specific person. If you could swap your name for anyone else\'s, it needs more you.' },
-    { type: 'activity', title: 'Personal Statement Workshop', instructions: 'Use AI critically to audit and improve a personal statement draft while preserving authentic voice.', steps: ['Bring a draft personal statement (or write a key paragraph for this activity)', 'Round 1: Ask AI to identify the 3 weakest sentences and explain why', 'Rewrite those sentences yourself — do not accept AI\'s rewrites', 'Round 2: Ask AI "What is missing from this statement that an admissions tutor would want to see?"', 'Add the missing elements in your own words', 'Round 3: Read the final version aloud. Circle any phrase that does not sound like you. Rewrite those.'] },
-    { type: 'discussion', title: 'Authenticity in an AI Age', questions: [{ num: 1, text: 'Should universities care whether applicants used AI in their personal statements, as long as the content is genuine?' }, { num: 2, text: 'How do you balance using AI to improve your writing with maintaining your authentic voice?' }, { num: 3, text: 'Will personal statements become obsolete as AI makes them easier to produce? What should replace them?' }] },
-    { type: 'quiz', question: 'When using AI to review a personal statement, what is the biggest risk?', options: ['The AI will make your statement too short', 'Your authentic voice gets replaced by generic AI-polished prose', 'The AI will refuse to help with personal statements', 'The statement will contain spelling errors'], correct: 1, explanation: 'AI tools can smooth language to the point where every personal statement sounds the same — polished but generic. The goal is to use AI to strengthen your authentic voice, not replace it.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Partner, not ghostwriter', text: 'Use AI for feedback and critique, not for generating content — admissions tutors can tell' }, { icon: '▸', label: 'Voice is everything', text: 'Your statement must sound like you — specific, reflective, and impossible to attribute to anyone else' }, { icon: '▸', label: 'Critique, rewrite, read aloud', text: 'Three rounds of AI-assisted revision with your own rewriting produces the strongest results' }] }
-  ],
-
-  43: [
-    { type: 'hook', title: 'Course Retrospective', body: 'Agile software teams end every sprint with a retrospective — a structured reflection on what went well, what could be improved, and what to do differently next time. NASA does it after every mission. Medical teams do it after every surgery. The best learners do it after every course. Today, you will conduct a structured retrospective on your entire AI and Digital Innovation learning journey.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">23%</span><span class="sl">more knowledge retained after structured reflection</span></div><div class="hook-stat-mini"><span class="sv">3</span><span class="sl">retrospective frameworks: Start/Stop/Continue, 4Ls, Rose/Thorn/Bud</span></div><div class="hook-stat-mini"><span class="sv">Thread</span><span class="sl">the connection between all six units is the real understanding</span></div><div class="hook-stat-mini"><span class="sv">Action</span><span class="sl">the goal is actionable insight — not just nice memories</span></div></div>' },
-    { type: 'concept', title: 'Retrospective Frameworks', body: 'Structured retrospection is more powerful than unstructured reflection because it forces you to examine both successes and failures systematically. NASA\'s formal After Action Reviews after every mission — including the Apollo 13 near-disaster — are credited with making it the safest high-risk organisation in history.', bullets: ['Start, Stop, Continue: What should you start doing? Stop doing? Continue doing? (Best for action planning)', '4 L\'s: Loved (highlights), Learned (knowledge gains), Lacked (what was missing), Longed for (what you wished existed)', 'Rose, Thorn, Bud: Rose = what went well; Thorn = what was painful or difficult; Bud = what has potential for future growth', 'Timeline: Map your emotional journey across the course — mark high points, low points, and turning moments', 'Choose one framework and go deep: Surface insights are usually obvious. The valuable insights come from probing further', 'Actionable output: Every framework should produce specific intentions — "I will continue X", "I will stop Y"'], callout: 'Research shows that people who conduct structured reflections after learning experiences retain 23% more knowledge and apply it more effectively in new contexts.' },
-    { type: 'concept', title: 'Connecting the Threads', body: 'This course covered a huge range of topics. The retrospective is your chance to see how they connect into a coherent understanding of AI in society.', bullets: ['Unit 1 Foundations: How AI works, bias, data, ethics, human oversight', 'Unit 2 Skills: Prompt engineering, research, iteration', 'Unit 3 Society: Deepfakes, surveillance, environment, regulation', 'Unit 4 Governance: Policy analysis, drafting, ratification', 'Unit 5 Creation: Building, testing, auditing, presenting', 'Unit 6 Reflection: Presentation, viva, future-readiness, personal manifesto', 'The thread connecting everything: Technology is not neutral — it reflects the values of those who build and govern it'], callout: 'If you can explain how prompt engineering connects to bias which connects to regulation which connects to your capstone project, you understand the course at a deep level.' },
-    { type: 'activity', title: 'Course Retrospective', instructions: 'Conduct a structured retrospective on your entire AI and Digital Innovation learning journey using the Reflective Essay Guide.', steps: ['Choose a retrospective framework: Start/Stop/Continue, 4 L\'s, or Rose/Thorn/Bud', 'Solo reflection (10 minutes): Work through your chosen framework for the entire course', 'Identify your single biggest takeaway from the course', 'Identify the lesson or moment that most changed your thinking about AI', 'Share your retrospective highlights with a small group', 'Write a 200-word reflection connecting at least 3 course themes to your personal growth'] },
-    { type: 'discussion', title: 'Looking Back and Forward', questions: [{ num: 1, text: 'What is the single most important thing you learned on this course that you will carry forward?' }, { num: 2, text: 'How has your view of AI changed since Lesson 1? What specifically changed it?' }, { num: 3, text: 'If you could add one lesson to this course, what would it cover and why?' }] },
-    { type: 'quiz', question: 'What makes a retrospective different from a simple review?', options: ['It only focuses on what went wrong', 'It uses structured frameworks to identify patterns and extract actionable lessons', 'It is always done individually', 'It only looks at the final product'], correct: 1, explanation: 'Retrospectives use structured techniques (like Start/Stop/Continue, 4Ls, or timeline mapping) to go beyond surface-level review. They identify patterns, extract lessons, and generate specific actions for future improvement.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Structured reflection', text: 'Retrospective frameworks ensure you learn from both successes and failures systematically' }, { icon: '▸', label: 'Connect the threads', text: 'The power of this course is in seeing how AI technology, ethics, policy, and creation are interconnected' }, { icon: '▸', label: 'Growth is the point', text: 'The knowledge and skills you have built are exactly what universities and employers value most' }] }
-  ],
-
-  44: [
+  "21": [
     {
-      type: 'hook',
-      title: 'The AI Manifesto',
-      body: 'In 1848, the Communist Manifesto reshaped global politics. In 1999, the Cluetrain Manifesto anticipated how the internet would transform business. In 2023, the Bletchley Declaration committed 28 nations to international AI safety. Manifestos are public declarations of principles. They define values that guide actions in times of rapid change.<br><br>As Gemini and Gemini Notebook are deployed to your school devices, you are no longer just consumers of AI—you are active users shaping how these tools are integrated into education. Today, you write your personal AI Manifesto: your code of conduct for living and learning in an AI-saturated world.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">28</span><span class="sl">nations signed the Bletchley AI Safety Declaration (2023)</span></div><div class="hook-stat-mini"><span class="sv">Manifesto</span><span class="sl">A public declaration of core values and ethical principles</span></div><div class="hook-stat-mini"><span class="sv">Your Code</span><span class="sl">5-7 personal commitments for using Gemini & Gemini Notebook ethically</span></div></div>'
+      "type": "hook",
+      "title": "From User to Co-Creator",
+      "body": "A fictional project looks impressive, but its creator cannot explain the audience, the choices or what was tested. Another is a rough paper prototype with a clear problem and honest evidence. Which is ready for its next useful test?"
     },
     {
-      type: 'concept',
-      title: 'Building Your AI Code of Conduct',
-      body: 'A strong AI manifesto is not a list of abstract beliefs (e.g., \'I believe AI should be ethical\'). It is a set of specific, actionable commitments that you can explain and defend to your teachers and peers.',
-      bullets: [
-        '<strong>1. Cognitive Independence:</strong> How will you ensure that you do the thinking, and that Gemini/Gemini Notebook remain study partners rather than crutches?',
-        '<strong>2. Academic Honesty:</strong> How will you disclose your AI use? What is your personal threshold for Amber Tier editing versus Red Tier plagiarism?',
-        '<strong>3. Fact Verification:</strong> What is your protocol for verifying claims made by Gemini or Gemini Notebook? How will you handle citations?',
-        '<strong>4. Data Privacy & Safety:</strong> What information will you refuse to upload to AI systems? How will you protect your classmates\' intellectual property?',
-        '<strong>5. Continuous Learning:</strong> How will you keep updating your understanding of AI capabilities, biases, and pitfalls?'
+      "type": "concept",
+      "title": "Make a claim you can demonstrate",
+      "body": "Your capstone should address a defined need, produce a prototype, test it and explain its limits. A paper simulation is a valid way to investigate design, but cannot establish software reliability.",
+      "bullets": [
+        "Keep a brief, contribution record, prototype, test log and reflection.",
+        "Choose a scope that allows a complete small journey.",
+        "Use the actual assessment rubric where one has been provided; this course does not invent marking weights."
       ],
-      callout: 'A manifesto is a living document. It should represent your current principles, earned through these 20 lessons, but it should evolve as the technology changes and your experience grows.'
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
     },
     {
-      type: 'scenario',
-      title: 'The Peer Pressure',
-      situation: 'Your classmate Leo shows you a method he uses to bypass the school\'s essay check: he has Gemini write the essay, then prompts it to \'rephrase using natural human errors and a Year 12 writing style.\' It passes the detector easily, and he gets an A. He tells you: \'You\'re wasting your time writing this history essay yourself. We have exams in three weeks, use the AI so we can study maths together instead.\'',
-      question: 'What is the right decision?',
-      choices: [
+      "type": "concept",
+      "title": "Show the judgement behind the output",
+      "body": "Co-creation involves choosing goals, assessing alternatives and revising for a reason. More generated material is not itself evidence of learning.",
+      "bullets": [
+        "Record what you created, borrowed, generated, selected and changed.",
+        "Keep a non-AI alternative for comparison.",
+        "Make rights, data and accessibility part of the brief."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "The co-creator contribution map",
+      "instructions": "Working independently. Take a small creative idea through human brief, optional AI variation, selection and edit. Show exactly where your judgement changed the outcome and how you would acknowledge contributions.",
+      "steps": [
+        "Sketch a small idea for a useful school resource.",
+        "Produce two variations yourself or with an approved tool.",
+        "Select and edit using stated criteria.",
+        "Label the contributions and explain one decision the tool could not make for you."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
         {
-          text: 'Follow Leo\'s advice—the AI is just a tool to free up time for subjects that matter more to you.',
-          outcome: 'You submit the AI essay. It passes the detector, but during the history class debate two days later, the teacher calls on you to defend your thesis. Because you didn\'t write the essay or read the background, you cannot formulate an argument. The teacher notices the contradiction. Worse, when exams arrive, you struggle with the essay section, costing you two grades.'
+          "num": 1,
+          "text": "If the same polished output could be generated instantly, what would your portfolio still demonstrate?"
         },
         {
-          text: 'Refuse Leo\'s advice, write the history essay yourself, and use Gemini to test your understanding of the maths topics afterward.',
-          outcome: 'The history essay takes you four hours. Your grade is a B+, but you understand the topic deeply. In the maths exam, you score highly because you did the active practice. Your commitment to your principles pays off. You feel genuine pride in your work.'
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
         },
         {
-          text: 'Report Leo\'s bypass technique to the IT and academic lead so they can update the school\'s AI policy and detection systems.',
-          outcome: 'The school updates its policy, introducing oral vivas for essays flagged as suspicious. Leo is caught on his next submission. You\'ve protected the academic integrity of the school, but Leo is angry. This highlights the ethical weight of maintaining standards in a community.'
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
         }
       ]
     },
     {
-      type: 'activity',
-      title: 'Draft Your Personal AI Manifesto',
-      instructions: 'Draft your personal AI code of conduct. Write 5-7 clear, specific commitments.',
-      steps: [
-        'Reflect on what you have learned: what are the most important ethical lessons from this course (tokens, bias, hallucination, offloading)?',
-        'Write 5-7 commitments starting with \'I will...\' or \'I believe...\' (e.g., \'I will always click the citation in Gemini Notebook to verify the source text myself.\')',
-        'For each commitment, write a brief sentence explaining WHY you hold this rule, referencing a specific lesson.',
-        'Write an introductory statement: Who are you, what tools do you use (Gemini, Gemini Notebook), and why does your integrity matter?',
-        'Share your manifesto draft with your class. Receive feedback on whether your rules are specific enough to enforce.',
-        'Sign and date your manifesto. Keep it on your device as a commitment when Gemini is rolled out.'
-      ]
-    },
-    {
-      type: 'discussion',
-      title: 'Living Your Principles',
-      questions: [
-        { num: 1, text: 'Which of your manifesto principles will be hardest to keep when deadlines are tight and you are under stress? How will you hold yourself accountable?' },
-        { num: 2, text: 'If a company uses AI to automate customer service and fires half its staff, is that different from a student using AI to write an essay? What values are in conflict in each case?' },
-        { num: 3, text: 'Your manifesto is personal, but AI affects society globally. How can we move from individual manifestos to global, democratic rules for AI safety and fairness?' }
-      ]
-    },
-    {
-      type: 'quiz',
-      question: 'What is the primary purpose of writing a personal AI manifesto before your school deploys Gemini and Gemini Notebook?',
-      options: [
-        'To show your teacher you completed the course.',
-        'To establish a set of personal, actionable commitments that ensure you use AI to enhance your learning rather than bypass it.',
-        'To write a legal contract that protects you from plagiarism charges.',
-        'To list the specific prompts you will use during the school year.'
+      "type": "quiz",
+      "question": "Which is the strongest evidence of your contribution?",
+      "options": [
+        "The number of generated drafts.",
+        "An explained choice and revision supported by the brief and testing.",
+        "The most polished screenshot."
       ],
-      correct: 1,
-      explanation: 'A manifesto is a statement of values and actionable commitments. It helps you set personal boundaries before you get access to powerful tools, ensuring you maintain cognitive ownership and academic integrity.'
+      "correct": 1,
+      "explanation": "A contribution record connects human judgement to an inspectable result."
     },
     {
-      type: 'summary',
-      title: 'Key Takeaways',
-      points: [
-        { icon: '▸', label: 'Principles guide action', text: 'A manifesto translates abstract rules into personal commitments. It keeps you accountable when under pressure.' },
-        { icon: '▸', label: 'Maintain cognitive ownership', text: 'Your core commitment: AI is a partner to think with, never a substitute to think for you.' },
-        { icon: '▸', label: 'This is just the beginning', text: 'Gemini and Gemini Notebook are powerful tools. Your manifesto ensures you deploy them to build genuine intelligence, not just pass tests.' }
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Make a claim you can demonstrate",
+          "text": "Your capstone should address a defined need, produce a prototype, test it and explain its limits."
+        },
+        {
+          "icon": "2",
+          "label": "Show the judgement behind the output",
+          "text": "Co-creation involves choosing goals, assessing alternatives and revising for a reason."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Take a small creative idea through human brief, optional AI variation, selection and edit. Show exactly where your judgement changed the outcome and how you would acknowledge contributions."
+        }
+      ]
+    }
+  ],
+  "22": [
+    {
+      "type": "hook",
+      "title": "Find a Problem Worth Solving",
+      "body": "“Build an AI revision app” names a solution. “A fictional learner cannot tell which mistakes to revisit” names a possible need. What observation would help you decide whether that is the right problem?"
+    },
+    {
+      "type": "concept",
+      "title": "Zoom from topic to need",
+      "body": "A focused problem statement identifies a user, a task, a difficulty and a consequence. Avoid claiming everyone has the same need.",
+      "bullets": [
+        "Topic: revision.",
+        "Need: deciding which previously missed ideas to practise next.",
+        "Possible criterion: identify a useful next question from a short fictional error log.",
+        "An interview or observation can inform a need, but a tiny sample does not prove prevalence."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Try to disprove your assumption",
+      "body": "A good brief allows the possibility that AI is unnecessary or the proposed problem is wrong.",
+      "bullets": [
+        "Write an AI-assisted approach and a simpler alternative.",
+        "Identify the assumption most likely to change your plan.",
+        "Use fictional cases or authorised, minimal information.",
+        "Define one useful outcome and one unacceptable failure."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "The problem-statement zoom lens",
+      "instructions": "Working independently. Show three successive versions of a project problem, narrowing from a vague topic to an observable need. Add one stakeholder question that could reveal you chose the wrong problem.",
+      "steps": [
+        "Write a broad topic, a narrower task and a specific need.",
+        "Create a fictional example showing the difficulty.",
+        "Compare a paper checklist with an AI-assisted approach.",
+        "Write the stakeholder question most likely to challenge your choice."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "What finding would make you abandon the AI part of your idea?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. What finding would make you abandon the AI part of your idea?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "Which problem statement is strongest?",
+      "options": [
+        "AI is the future of education.",
+        "Build a chatbot.",
+        "A learner needs to choose which previously missed concept to practise next; test whether a short error log supports that choice."
+      ],
+      "correct": 2,
+      "explanation": "The statement names a task and a testable need without assuming the solution."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Zoom from topic to need",
+          "text": "A focused problem statement identifies a user, a task, a difficulty and a consequence."
+        },
+        {
+          "icon": "2",
+          "label": "Try to disprove your assumption",
+          "text": "A good brief allows the possibility that AI is unnecessary or the proposed problem is wrong."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Show three successive versions of a project problem, narrowing from a vague topic to an observable need. Add one stakeholder question that could reveal you chose the wrong problem."
+        }
+      ]
+    }
+  ],
+  "23": [
+    {
+      "type": "hook",
+      "title": "Design the Safeguards In",
+      "body": "A fictional study planner asks for full names, marks and personal messages when it only needs a list of topics. Removing fields makes the prototype simpler. What else improves, and what useful information might be lost?"
+    },
+    {
+      "type": "concept",
+      "title": "Turn values into design decisions",
+      "body": "Ethics by design means making foreseeable effects part of the brief, architecture and tests. An audit at the end cannot undo every earlier decision.",
+      "bullets": [
+        "Minimise data and justify each remaining field.",
+        "Offer accessible input, clear feedback and a way to recover from mistakes.",
+        "Identify people who may receive worse outcomes.",
+        "Test misuse and uncertainty, not just the happy path."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        },
+        {
+          "label": "DfE: Generative AI and data protection in schools",
+          "url": "https://www.gov.uk/guidance/data-protection-in-schools/generative-artificial-intelligence-ai-and-data-protection-in-schools"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Document what the system is for",
+      "body": "A model or system card can record intended use, data, evaluation and limitations. Documentation supports judgement; it does not certify fitness for every purpose.",
+      "bullets": [
+        "State what the prototype does and does not do.",
+        "Record the population and conditions represented by tests.",
+        "Separate measured behaviour from intended safeguards."
+      ]
+    },
+    {
+      "type": "concept",
+      "title": "Make responsibility concrete",
+      "body": "For each risk, name an affected person, an owner, a safeguard, a test and a residual risk. Legal duties depend on jurisdiction, role and use; do not assume every project has identical requirements.",
+      "bullets": [
+        "A fictional prototype must still be labelled clearly.",
+        "A real deployment needs the appropriate school review and current requirements checked.",
+        "Set a stop condition for failures that should prevent a trial."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "The ethics-by-design blueprint",
+      "instructions": "Working independently. Annotate a project sketch with data minimisation, access, consent and failure recovery. Explain a tradeoff where making one value stronger can make another harder to achieve.",
+      "steps": [
+        "Annotate the data flow for your project.",
+        "Remove one unnecessary input and explain the effect.",
+        "Design a recovery route for a wrong output.",
+        "Test one trade-off: less data, more privacy, but perhaps less personalisation."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "Which safeguard would be hardest for an affected person to use, and how could you improve it?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. Which safeguard would be hardest for an affected person to use, and how could you improve it?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What does a completed system card establish?",
+      "options": [
+        "That the system is safe for every user.",
+        "An inspectable account of intended use, evidence and limits.",
+        "That further testing is unnecessary."
+      ],
+      "correct": 1,
+      "explanation": "Documentation must be read critically and matched to the proposed setting."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Turn values into design decisions",
+          "text": "Ethics by design means making foreseeable effects part of the brief, architecture and tests."
+        },
+        {
+          "icon": "2",
+          "label": "Document what the system is for",
+          "text": "A model or system card can record intended use, data, evaluation and limitations."
+        },
+        {
+          "icon": "3",
+          "label": "Make responsibility concrete",
+          "text": "For each risk, name an affected person, an owner, a safeguard, a test and a residual risk."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Annotate a project sketch with data minimisation, access, consent and failure recovery. Explain a tradeoff where making one value stronger can make another harder to achieve."
+        }
+      ]
+    }
+  ],
+  "24": [
+    {
+      "type": "hook",
+      "title": "Plan the Smallest Working Version",
+      "body": "Your fictional assistant needs a form, a model call, a source check and a result screen. The model is unavailable. Which part can you still test today?"
+    },
+    {
+      "type": "concept",
+      "title": "Draw the architecture as a journey",
+      "body": "Show the path from input to output, including storage, external services and human decisions. An arrow should describe what travels across it.",
+      "bullets": [
+        "Separate the interface from processing and storage.",
+        "Mark external dependencies and permissions.",
+        "Show where sensitive data could cross a boundary.",
+        "Include a failure response when a component is unavailable."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Plan experiments, not just a wish list",
+      "body": "A sprint is a limited period of work with a concrete outcome. Use the term to organise your project, not as a promise that one method fits every team.",
+      "bullets": [
+        "Choose the most uncertain assumption first.",
+        "Define a small demonstration and a test before building.",
+        "Keep optional features separate from the core journey."
+      ]
+    },
+    {
+      "type": "concept",
+      "title": "Label the simulation honestly",
+      "body": "A mocked response can test navigation and clarity. It cannot show model accuracy, speed, cost or resistance to real failures.",
+      "bullets": [
+        "Use a sample input and a labelled sample output.",
+        "Record which component is real, mocked or missing.",
+        "Choose the next test that would reduce the greatest uncertainty."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "The architecture travel map",
+      "instructions": "Working independently. Draw how input travels through your proposed project to an output. Label components, dependencies, storage and failure points, then identify the smallest testable version.",
+      "steps": [
+        "Draw four to six components and label each data flow.",
+        "Mark external services and any storage.",
+        "Circle the smallest complete route.",
+        "Remove one dependency and simulate the route on paper. Record what this test cannot establish."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "If one external service disappeared tomorrow, what would still be useful?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What can a paper prototype establish most directly?",
+      "options": [
+        "Production uptime.",
+        "How clearly a proposed sequence communicates a task.",
+        "Actual model accuracy."
+      ],
+      "correct": 1,
+      "explanation": "A simulation is useful evidence about a limited question, not proof of all system behaviour."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Draw the architecture as a journey",
+          "text": "Show the path from input to output, including storage, external services and human decisions."
+        },
+        {
+          "icon": "2",
+          "label": "Plan experiments, not just a wish list",
+          "text": "A sprint is a limited period of work with a concrete outcome."
+        },
+        {
+          "icon": "3",
+          "label": "Label the simulation honestly",
+          "text": "A mocked response can test navigation and clarity."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Draw how input travels through your proposed project to an output. Label components, dependencies, storage and failure points, then identify the smallest testable version."
+        }
+      ]
+    }
+  ],
+  "25": [
+    {
+      "type": "hook",
+      "title": "Build a Prompt Test Kitchen",
+      "body": "A fictional event assistant must use the supplied date and location and ask when a price is missing. It writes a persuasive invitation with an invented price. Which test would have exposed that before the demonstration?"
+    },
+    {
+      "type": "concept",
+      "title": "Treat a prompt as a testable specification",
+      "body": "State the task, supplied evidence, constraints, output format and success criteria. PTFC can help organise a prompt, but no mnemonic guarantees reliable output.",
+      "bullets": [
+        "Keep instructions distinct from quoted user or source material.",
+        "Specify what to do when information is missing.",
+        "Request checkable outputs rather than assurances of accuracy."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        },
+        {
+          "label": "OWASP: Prompt injection",
+          "url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Compare controlled revisions",
+      "body": "Change one important variable at a time when practical. Record tool, version or date, input and output so a comparison has context.",
+      "bullets": [
+        "Use a normal case, missing information and contradictory information.",
+        "Write expected behaviour before seeing the answer.",
+        "Repeat relevant tests after a change; stochastic outputs can vary.",
+        "Use fictional sample outputs when a tool is unavailable, labelled as simulations."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "The prompt test kitchen",
+      "instructions": "Working independently. Write a project prompt, three test inputs and expected behaviours before running or simulating them. Change one instruction, compare results and explain the remaining uncertainty.",
+      "steps": [
+        "Write the event prompt using fictional details.",
+        "Prepare three inputs and expected behaviours.",
+        "Run or simulate them, recording failures honestly.",
+        "Change one instruction and explain which result would count as improvement."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "Could the revision fix missing prices while making another kind of error worse?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What makes a prompt comparison informative?",
+      "options": [
+        "Changing every instruction and using a different task.",
+        "Stating criteria and comparing controlled changes on relevant test cases.",
+        "Picking the answer that sounds most confident."
+      ],
+      "correct": 1,
+      "explanation": "A controlled comparison helps connect a change with observed behaviour, while retaining uncertainty."
+    },
+    {
+      "type": "quiz",
+      "question": "What makes a prompt comparison informative?",
+      "options": [
+        "Changing every instruction and using a different task.",
+        "Stating criteria and comparing controlled changes on relevant test cases.",
+        "Picking the answer that sounds most confident."
+      ],
+      "correct": 1,
+      "explanation": "A controlled comparison helps connect a change with observed behaviour, while retaining uncertainty."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Treat a prompt as a testable specification",
+          "text": "State the task, supplied evidence, constraints, output format and success criteria."
+        },
+        {
+          "icon": "2",
+          "label": "Compare controlled revisions",
+          "text": "Change one important variable at a time when practical."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Write a project prompt, three test inputs and expected behaviours before running or simulating them. Change one instruction, compare results and explain the remaining uncertainty."
+        }
+      ]
+    }
+  ],
+  "26": [
+    {
+      "type": "hook",
+      "title": "Draw the Awkward Branches",
+      "body": "A fictional room-booking assistant receives no date, two conflicting dates, or a request while the booking service is down. What should it do in each case without inventing a booking?"
+    },
+    {
+      "type": "concept",
+      "title": "Make the decision path explicit",
+      "body": "A flow diagram uses steps and conditions to show what happens next. Each branch should lead to a useful outcome or a clear stop.",
+      "bullets": [
+        "Validate required inputs before acting.",
+        "Ask a targeted clarification when information conflicts.",
+        "Separate drafting a suggestion from executing a booking.",
+        "Provide a recovery path and preserve useful work when a service fails."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "An edge case can be ordinary to a user",
+      "body": "Missing input, unusual spelling, keyboard use and interrupted connections are foreseeable conditions. Prioritise cases by consequence as well as frequency.",
+      "bullets": [
+        "Test empty, ambiguous and contradictory inputs.",
+        "Do not silently replace a user’s choice with a guessed default.",
+        "Make error messages explain the problem and next action."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "The edge-case comic",
+      "instructions": "Working independently. Draw your project's normal path and three awkward branches: missing input, contradictory input and unavailable service. Give each a useful recovery response rather than a silent failure.",
+      "steps": [
+        "Draw the normal journey in three frames.",
+        "Add branches for missing input, contradiction and unavailable service.",
+        "Write the exact feedback the user sees.",
+        "Trace each route to a safe stop or useful recovery."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "Which of your error messages would leave a new user unsure what to do?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What should an assistant do with two conflicting booking dates?",
+      "options": [
+        "Choose one silently.",
+        "Ask a targeted clarification before making the booking.",
+        "Invent a third date."
+      ],
+      "correct": 1,
+      "explanation": "A consequential action needs the conflict resolved, not concealed."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Make the decision path explicit",
+          "text": "A flow diagram uses steps and conditions to show what happens next."
+        },
+        {
+          "icon": "2",
+          "label": "An edge case can be ordinary to a user",
+          "text": "Missing input, unusual spelling, keyboard use and interrupted connections are foreseeable conditions."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Draw your project's normal path and three awkward branches: missing input, contradictory input and unavailable service. Give each a useful recovery response rather than a silent failure."
+        }
+      ]
+    }
+  ],
+  "27": [
+    {
+      "type": "hook",
+      "title": "Build the First Thin Slice",
+      "body": "Your project has ten planned features. None connects input to output yet. What is the smallest useful journey you can complete and inspect today?"
+    },
+    {
+      "type": "concept",
+      "title": "Finish one narrow path",
+      "body": "A thin slice connects the essential stages of a task. Keep its scope small enough to see whether the parts work together.",
+      "bullets": [
+        "Use fictional data and a single clear case.",
+        "Keep one record of the version and changes.",
+        "Distinguish working features from mock-ups.",
+        "Avoid storing credentials or private information in a public prototype."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Define done with evidence",
+      "body": "A feature is not done merely because code or a screen exists. State the observable behaviour that would demonstrate it.",
+      "bullets": [
+        "Record input, expected result, actual result and next action.",
+        "Keep a screenshot, drawing or short transcript.",
+        "Capture failures before changing the system."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "The foundation proof",
+      "instructions": "Working independently. Create one thin working slice or paper simulation of the project. Record what genuinely works, what is mocked and what evidence would justify the next stage.",
+      "steps": [
+        "Select one complete input-to-output route.",
+        "Build it or make a labelled paper simulation.",
+        "Run a normal case and one failure case.",
+        "Record what works, what is mocked and the next uncertainty to test."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "What would another person need to reproduce your result?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "Which is a useful thin slice?",
+      "options": [
+        "Ten disconnected screens.",
+        "One narrow journey with an input, output and recorded test.",
+        "A list of features with no demonstration."
+      ],
+      "correct": 1,
+      "explanation": "A connected slice reveals integration problems and supports an evidence-based next step."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Finish one narrow path",
+          "text": "A thin slice connects the essential stages of a task."
+        },
+        {
+          "icon": "2",
+          "label": "Define done with evidence",
+          "text": "A feature is not done merely because code or a screen exists."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Create one thin working slice or paper simulation of the project. Record what genuinely works, what is mocked and what evidence would justify the next stage."
+        }
+      ]
+    }
+  ],
+  "28": [
+    {
+      "type": "hook",
+      "title": "Give Your Prototype a Hard Review",
+      "body": "You like your prototype’s design. Your own test shows that a first-time user cannot tell whether an answer is verified. How do you critique the work without defending every choice?"
+    },
+    {
+      "type": "concept",
+      "title": "Make critique specific",
+      "body": "Useful feedback identifies an observation, its consequence and the criterion it affects. A reviewer can identify a problem without knowing the best solution.",
+      "bullets": [
+        "Separate “I dislike it” from “I cannot find the source”.",
+        "Prioritise consequential failures over cosmetic preferences.",
+        "Label self-review as self-review; it is not evidence of independent user testing."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Decide what to change",
+      "body": "You do not need to accept every suggestion. Connect the response to the brief and evidence.",
+      "bullets": [
+        "Accept a change that addresses a demonstrated problem.",
+        "Reject a suggestion with a reason, not because it is inconvenient.",
+        "Defer questions that require a real user or more evidence.",
+        "Retest after the change and look for regressions."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "The critique worth keeping",
+      "instructions": "Working independently. Use the project criteria to write the strongest possible critique of your own prototype, or invite an authorised reviewer. Keep the feedback, your response and one visible change; label self-review honestly.",
+      "steps": [
+        "Run a normal, ambiguous and missing-information case.",
+        "Write the strongest critique of the most consequential failure.",
+        "Choose one change and preserve before-and-after evidence.",
+        "Retest and record a limitation that remains."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "Which assumption in your self-review most needs an independent user to test it?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "Which feedback is most useful?",
+      "options": [
+        "Make it better.",
+        "The answer has no source link, so I cannot check the factual claim.",
+        "I prefer blue."
+      ],
+      "correct": 1,
+      "explanation": "The observation explains a consequence relevant to the task."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Make critique specific",
+          "text": "Useful feedback identifies an observation, its consequence and the criterion it affects."
+        },
+        {
+          "icon": "2",
+          "label": "Decide what to change",
+          "text": "You do not need to accept every suggestion."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Use the project criteria to write the strongest possible critique of your own prototype, or invite an authorised reviewer. Keep the feedback, your response and one visible change; label self-review honestly."
+        }
+      ]
+    }
+  ],
+  "29": [
+    {
+      "type": "hook",
+      "title": "Sprint 1: Test the Riskiest Assumption",
+      "body": "Your project depends on an assistant extracting dates from notices. It works on one tidy example. Will building the rest of the interface help you find out whether that assumption holds?"
+    },
+    {
+      "type": "concept",
+      "title": "Choose an experiment before a feature",
+      "body": "List the assumptions your project depends on. Prioritise one that is both uncertain and consequential.",
+      "bullets": [
+        "State the prediction before testing.",
+        "Use a small set of relevant fictional cases, including a difficult case.",
+        "Record actual results separately from hopes and simulations.",
+        "A failed test can justify narrowing the scope or choosing a simpler method."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "activity",
+      "title": "The first experiment log",
+      "instructions": "Working independently. Choose the riskiest technical or design assumption in your project. Define a small test, predict the result and record what happened or what a paper simulation cannot establish.",
+      "steps": [
+        "Name the assumption and why it matters.",
+        "Write a prediction and pass criterion.",
+        "Run a small test or a labelled paper simulation.",
+        "Record the result and a concrete next decision."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "What result would make you change the project’s scope?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. What result would make you change the project’s scope?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "Which experiment should usually come first?",
+      "options": [
+        "The easiest cosmetic change.",
+        "A small test of an uncertain assumption the project depends on.",
+        "A demonstration with only the best example."
+      ],
+      "correct": 1,
+      "explanation": "Testing a consequential uncertainty early can prevent building on a weak foundation."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Choose an experiment before a feature",
+          "text": "List the assumptions your project depends on."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Choose the riskiest technical or design assumption in your project. Define a small test, predict the result and record what happened or what a paper simulation cannot establish."
+        }
+      ]
+    }
+  ],
+  "30": [
+    {
+      "type": "hook",
+      "title": "Sprint 2: Repair the User Journey",
+      "body": "A fictional user finishes your form but cannot tell whether the result has been saved. Your interface has a save icon. Why is the journey still incomplete?"
+    },
+    {
+      "type": "concept",
+      "title": "Follow the task from the user’s position",
+      "body": "A journey includes intention, input, feedback, result and recovery. Inspect what a new user can infer at each stage.",
+      "bullets": [
+        "State the task without telling the user where to click.",
+        "Walk through the route with a fresh fictional case.",
+        "Look for missing feedback, unclear labels and dead ends.",
+        "A self-walkthrough can find problems but cannot substitute for independent user evidence."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "activity",
+      "title": "The user-path repair",
+      "instructions": "Working independently. Walk through one complete user journey. Find the first confusing step, capture it before and after a repair, and explain how you would check the change with a user.",
+      "steps": [
+        "Write one concrete user goal.",
+        "Trace the complete journey and identify its first confusing step.",
+        "Capture the step before and after a repair.",
+        "Repeat the route and explain what an authorised user test would still need to check."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "How would the journey work for someone who cannot use a mouse?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. How would the journey work for someone who cannot use a mouse?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What is the strongest sign that a save interaction is understandable?",
+      "options": [
+        "A fashionable icon.",
+        "Clear feedback that communicates what happened and what to do next.",
+        "The designer knows where the file went."
+      ],
+      "correct": 1,
+      "explanation": "The user needs an observable outcome, not just a control."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Follow the task from the user’s position",
+          "text": "A journey includes intention, input, feedback, result and recovery."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Walk through one complete user journey. Find the first confusing step, capture it before and after a repair, and explain how you would check the change with a user."
+        }
+      ]
+    }
+  ],
+  "31": [
+    {
+      "type": "hook",
+      "title": "Sprint 3: Test Reliability",
+      "body": "A fictional assistant passes your demonstration once, then gives a different answer to the same input. Is one successful run enough to claim reliability?"
+    },
+    {
+      "type": "concept",
+      "title": "Make tests repeatable",
+      "body": "A test record names the input, expected behaviour, observed behaviour and conditions. Repeat relevant cases when outputs can vary.<h3>Keep failure visible</h3><p>Do not remove a difficult case simply because it spoils the score. Investigate whether it represents an intended use.</p>",
+      "bullets": [
+        "Include normal, ambiguous and unacceptable inputs.",
+        "Record the tool or prototype version and date.",
+        "Separate correctness, usability and safety criteria.",
+        "Report a denominator: three successes out of five says more than “several successes”.",
+        "Retest earlier cases after a fix.",
+        "Record unresolved failures and their consequences.",
+        "A small classroom sample is evidence about those cases, not a deployment guarantee."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "activity",
+      "title": "The reliability challenge",
+      "instructions": "Working independently. Design three repeatable tests for your project's main function. Record pass criteria, observed results and an unresolved failure, keeping simulated and real results separate.",
+      "steps": [
+        "Write three tests and pass criteria before running them.",
+        "Record each observed result; label simulations.",
+        "Repeat an important case and compare outputs.",
+        "Keep one unresolved failure and explain whether it blocks a trial."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "How would your reliability claim change if the test population changed?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Make tests repeatable",
+          "text": "A test record names the input, expected behaviour, observed behaviour and conditions."
+        },
+        {
+          "icon": "2",
+          "label": "Keep failure visible",
+          "text": "Do not remove a difficult case simply because it spoils the score."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Design three repeatable tests for your project's main function. Record pass criteria, observed results and an unresolved failure, keeping simulated and real results separate."
+        }
+      ]
+    }
+  ],
+  "32": [
+    {
+      "type": "hook",
+      "title": "Sprint 4: Make It Accessible",
+      "body": "Your fictional prototype looks clear on a large screen. At 200% zoom the action button disappears, and keyboard focus is invisible. What does “finished” mean now?"
+    },
+    {
+      "type": "concept",
+      "title": "Polish the interaction, not just the surface",
+      "body": "Accessibility and clarity affect whether people can complete the task. A short checklist can identify problems but is not a complete compliance audit.",
+      "bullets": [
+        "Try the core route using only the keyboard; ensure focus is visible.",
+        "Zoom the page and use a narrow viewport; content and controls should remain available.",
+        "Use text as well as colour to explain state or errors.",
+        "Check labels, reading order and understandable recovery messages."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "activity",
+      "title": "The accessibility redesign",
+      "instructions": "Working independently. Inspect one project interaction for keyboard access, readability and understandable feedback. Make a specific improvement and document a check that could reveal it still fails.",
+      "steps": [
+        "Inspect one interaction with keyboard, zoom and a narrow screen, or annotate the equivalent paper design.",
+        "Record a concrete barrier and who it could affect.",
+        "Make one improvement and repeat the check.",
+        "Name a further test, including assistive-technology or user testing, that your check does not replace."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "Could a visually simpler screen still be harder to understand? Explain how you would test that."
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "Which claim is justified by a successful keyboard check?",
+      "options": [
+        "The entire product is fully accessible.",
+        "The tested route could be completed with the keyboard under those conditions.",
+        "No user testing is needed."
+      ],
+      "correct": 1,
+      "explanation": "Report the scope of the evidence without turning one check into a universal claim."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Polish the interaction, not just the surface",
+          "text": "Accessibility and clarity affect whether people can complete the task."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Inspect one project interaction for keyboard access, readability and understandable feedback. Make a specific improvement and document a check that could reveal it still fails."
+        }
+      ]
+    }
+  ],
+  "33": [
+    {
+      "type": "hook",
+      "title": "Sprint 5: Prepare a Reviewable Release",
+      "body": "A fictional release note says “accurate, safe and ready”. The test log shows one working route and an unresolved failure. What should the release note actually say?"
+    },
+    {
+      "type": "concept",
+      "title": "Publish the evidence with the claim",
+      "body": "A release candidate is a version proposed for review. It needs a defined scope, known limitations and a recovery plan. It does not automatically deserve real-world deployment.<h3>Keep the handover usable</h3><p>Another person should be able to understand what is included, reproduce a check and identify who owns the next decision.</p>",
+      "bullets": [
+        "Name the version and demonstrated capability.",
+        "Link the tests supporting each important claim.",
+        "Explain known failures and intended users.",
+        "State how to stop, roll back or use a simpler alternative.",
+        "Include setup or use instructions without credentials.",
+        "Separate completed work from proposed improvements.",
+        "State which review is still required before a real trial."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "activity",
+      "title": "The release-candidate receipt",
+      "instructions": "Working independently. Prepare a project release note with one demonstrated capability, one known limitation, a test record and a recovery plan. Resist promising anything you have not checked.",
+      "steps": [
+        "Write a four-part release note: capability, evidence, limitation and recovery.",
+        "Attach one repeatable test record.",
+        "Replace an unsupported promise with a bounded claim.",
+        "Make a recommendation: limited trial, revise or stop, with reasons."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "Which known limitation would a user most need to see before starting?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "Which release claim is strongest?",
+      "options": [
+        "This is completely safe.",
+        "The prototype passed the three listed fictional cases; the ambiguous-date failure remains unresolved.",
+        "It worked once, so it is ready for everyone."
+      ],
+      "correct": 1,
+      "explanation": "A bounded statement helps a reviewer judge what the evidence supports."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Publish the evidence with the claim",
+          "text": "A release candidate is a version proposed for review."
+        },
+        {
+          "icon": "2",
+          "label": "Keep the handover usable",
+          "text": "Another person should be able to understand what is included, reproduce a check and identify who owns the next decision."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Prepare a project release note with one demonstrated capability, one known limitation, a test record and a recovery plan. Resist promising anything you have not checked."
+        }
+      ]
+    }
+  ],
+  "34": [
+    {
+      "type": "hook",
+      "title": "Audit the Project’s Consequences",
+      "body": "Your fictional planner works for a pupil with reliable internet and flexible time. It fails for someone sharing a device. Is that just a usability issue, or should it change the release decision?"
+    },
+    {
+      "type": "concept",
+      "title": "Follow a difficult case through the system",
+      "body": "An ethical audit examines effects, evidence and responsibility. It is more than a list of good intentions.",
+      "bullets": [
+        "Name the affected person and the potential harm.",
+        "Trace data, decisions and opportunities to intervene.",
+        "Check whether safeguards work in the difficult case.",
+        "Record residual risk: what remains after the safeguard."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        },
+        {
+          "label": "DfE: Generative AI and data protection in schools",
+          "url": "https://www.gov.uk/guidance/data-protection-in-schools/generative-artificial-intelligence-ai-and-data-protection-in-schools"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Make a proportionate decision",
+      "body": "A classroom audit supports learning and a reviewable recommendation. It is not certification or a substitute for the school’s processes.",
+      "bullets": [
+        "Compare a limited trial with redesign or stopping.",
+        "Name the owner of an unresolved issue.",
+        "Set a stop condition and review date.",
+        "Distinguish legal obligations from additional ethical standards."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "The ethical audit case file",
+      "instructions": "Working independently. Audit your project through a fictional user's difficult case. Map the risk, affected person, safeguard, residual risk and who is responsible for the next decision.",
+      "steps": [
+        "Choose a fictional user whose needs challenge the design.",
+        "Map risk, safeguard, test and remaining risk.",
+        "Remove unnecessary personal data from the proposed workflow.",
+        "Write a release recommendation supported by the actual test record."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "When should a residual risk stop a trial even if the average benefit is attractive?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What is residual risk?",
+      "options": [
+        "A risk that disappears when a policy is written.",
+        "Risk remaining after safeguards have been applied.",
+        "Only a risk caused by a user."
+      ],
+      "correct": 1,
+      "explanation": "A safeguard can reduce a risk without eliminating it."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Follow a difficult case through the system",
+          "text": "An ethical audit examines effects, evidence and responsibility."
+        },
+        {
+          "icon": "2",
+          "label": "Make a proportionate decision",
+          "text": "A classroom audit supports learning and a reviewable recommendation."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Audit your project through a fictional user's difficult case. Map the risk, affected person, safeguard, residual risk and who is responsible for the next decision."
+        }
+      ]
+    }
+  ],
+  "35": [
+    {
+      "type": "hook",
+      "title": "Pitch with Evidence",
+      "body": "Two fictional pitches promise the same benefit. One shows a test and a limitation; the other shows a perfect mock-up labelled “proven”. Which gives an audience a basis for a decision?"
+    },
+    {
+      "type": "concept",
+      "title": "Build an argument the audience can inspect",
+      "body": "A short pitch should connect a need, a proposed response, evidence, limitations and a next-step request. The exact number of slides matters less than that reasoning.",
+      "bullets": [
+        "Frame the user and problem.",
+        "Demonstrate one narrow capability.",
+        "Explain how it was tested.",
+        "Acknowledge a consequential limitation.",
+        "Ask for a specific next decision."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Tag the status of every claim",
+      "body": "Measured, sourced and assumed claims have different evidential status. A simulated result must remain labelled.",
+      "bullets": [
+        "Use a readable chart or example rather than decorative statistics.",
+        "Explain technical terms only when needed for the decision.",
+        "Preserve uncertainty when compressing the message."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "The pitch with evidence tags",
+      "instructions": "Working independently. Build a five-frame pitch and tag each factual claim as measured, sourced or assumed. Rewrite the weakest claim and finish with a precise next-step request.",
+      "steps": [
+        "Make five frames using the argument structure.",
+        "Tag each factual claim measured, sourced or assumed.",
+        "Rewrite the least supported claim.",
+        "Finish with a request that matches the evidence, such as permission for a limited test."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "Which single piece of evidence would most strengthen your request?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What should happen to uncertainty in a short pitch?",
+      "options": [
+        "Remove it to sound confident.",
+        "Keep the important limits clear while simplifying the explanation.",
+        "Hide it in unreadable small print."
+      ],
+      "correct": 1,
+      "explanation": "Concise communication should preserve the limits relevant to the audience’s decision."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Build an argument the audience can inspect",
+          "text": "A short pitch should connect a need, a proposed response, evidence, limitations and a next-step request."
+        },
+        {
+          "icon": "2",
+          "label": "Tag the status of every claim",
+          "text": "Measured, sourced and assumed claims have different evidential status."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Build a five-frame pitch and tag each factual claim as measured, sourced or assumed. Rewrite the weakest claim and finish with a precise next-step request."
+        }
+      ]
+    }
+  ],
+  "36": [
+    {
+      "type": "hook",
+      "title": "Rehearse for a Sceptical Audience",
+      "body": "A fictional presenter can explain every feature but runs out of time before showing the test results. What should the next rehearsal change?"
+    },
+    {
+      "type": "concept",
+      "title": "Rehearse the argument",
+      "body": "Practise the route from problem to evidence to request. A script, audio recording, live delivery or annotated slides can all support the rehearsal. Follow any actual assessment requirements.",
+      "bullets": [
+        "Set a time target and record what fits.",
+        "Make the core claim understandable without specialist vocabulary.",
+        "Use pauses and signposting where they help; eye contact is not a universal measure of understanding.",
+        "Prepare an accessible alternative if a demo or recording fails."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "activity",
+      "title": "The difficult-audience rehearsal",
+      "instructions": "Working independently. Deliver or script a three-minute rehearsal, then answer three sceptical questions. Compare the result against your criteria and record a substantive revision rather than only a visual polish.",
+      "steps": [
+        "Deliver or script a three-minute version.",
+        "Answer: What did you test? What failed? Why use AI?",
+        "Cut one feature description to make room for evidence.",
+        "Repeat and record a substantive improvement."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "How would you communicate the same argument if the live demonstration failed?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What is the most useful rehearsal revision?",
+      "options": [
+        "Add more decorative animation.",
+        "Make the main claim, evidence and limitation easier to follow within the time.",
+        "Speak faster until every feature fits."
+      ],
+      "correct": 1,
+      "explanation": "The audience needs a clear argument, not a compressed feature list."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Rehearse the argument",
+          "text": "Practise the route from problem to evidence to request."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Deliver or script a three-minute rehearsal, then answer three sceptical questions. Compare the result against your criteria and record a substantive revision rather than only a visual polish."
+        }
+      ]
+    }
+  ],
+  "37": [
+    {
+      "type": "hook",
+      "title": "Present Your Project",
+      "body": "It is time to show what you made. Your audience has not followed the project. What do they need to understand, inspect and challenge?"
+    },
+    {
+      "type": "concept",
+      "title": "Make the evidence available",
+      "body": "Present the problem, prototype, tests and next decision. If working alone, record, script or annotate the presentation and pose a challenge yourself. Label that route honestly.",
+      "bullets": [
+        "Follow any provided assessment rubric; do not invent panel weightings.",
+        "Keep a clear distinction between working features and simulations.",
+        "Name a limitation before the audience has to discover it.",
+        "Answer with reasons and evidence; say when a question remains open."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "activity",
+      "title": "The first premiere",
+      "instructions": "Working independently. Present or record the project for a defined audience. Keep the argument, strongest evidence and response to one challenge, marking untested claims as open questions.",
+      "steps": [
+        "Choose and describe the audience.",
+        "Present the core argument in a format you can keep.",
+        "Pose one demanding challenge and answer it using the evidence.",
+        "Record an unanswered question and the next step to resolve it."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "Which claim did your presentation make easier to assess, and which still needs work?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What should you do when asked a question your tests cannot answer?",
+      "options": [
+        "Invent a confident answer.",
+        "State the limit and describe the evidence needed.",
+        "Change the subject."
+      ],
+      "correct": 1,
+      "explanation": "Recognising an evidential limit is part of responsible presentation."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Make the evidence available",
+          "text": "Present the problem, prototype, tests and next decision."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Present or record the project for a defined audience. Keep the argument, strongest evidence and response to one challenge, marking untested claims as open questions."
+        }
+      ]
+    }
+  ],
+  "38": [
+    {
+      "type": "hook",
+      "title": "Remix for a Second Audience",
+      "body": "Your first audience cared about how the prototype worked. A fictional school leader now cares about access, cost and responsibility. What changes in the explanation, and what must stay true?"
+    },
+    {
+      "type": "concept",
+      "title": "Change emphasis without changing the evidence",
+      "body": "Audience adaptation means choosing relevant language, examples and order. It does not justify increasing a claim or hiding a limit.",
+      "bullets": [
+        "Identify the decision the new audience must make.",
+        "Translate technical detail into consequences for that decision.",
+        "Keep the same evidence and distinguish any new assumptions.",
+        "Address an objection that did not matter as much to the first audience."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "activity",
+      "title": "The second audience remix",
+      "instructions": "Working independently. Adapt the same project for a different audience with different needs. Show what changed in the explanation, what evidence stayed constant and one new objection you addressed.",
+      "steps": [
+        "Choose an audience with a different concern.",
+        "Rewrite the opening and next-step request.",
+        "Keep one evidence slide unchanged and explain why.",
+        "Answer a new objection, then compare the two versions."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "Where could simplifying for this audience accidentally mislead them?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What should remain stable when adapting a pitch?",
+      "options": [
+        "Every word.",
+        "The underlying facts and limits of the evidence.",
+        "The audience’s priorities."
+      ],
+      "correct": 1,
+      "explanation": "The presentation changes; the evidential standard does not."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Change emphasis without changing the evidence",
+          "text": "Audience adaptation means choosing relevant language, examples and order."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Adapt the same project for a different audience with different needs. Show what changed in the explanation, what evidence stayed constant and one new objection you addressed."
+        }
+      ]
+    }
+  ],
+  "39": [
+    {
+      "type": "hook",
+      "title": "Defend Your Decisions",
+      "body": "Close the project files. Can you explain why you chose this approach, what a test showed and what you would change? Now reopen the evidence. Which part of your explanation needs correction?"
+    },
+    {
+      "type": "concept",
+      "title": "A viva tests understanding",
+      "body": "A viva is an oral examination or discussion of work. For independent practice, use written or recorded answers and compare them with your evidence. Follow the actual assessment arrangements where supplied.",
+      "bullets": [
+        "Answer why, how do you know, and what if.",
+        "Connect the project to relevant course ideas.",
+        "Distinguish memory, inference and documented result.",
+        "Correct an inaccurate answer explicitly rather than quietly replacing it."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "activity",
+      "title": "The viva evidence drawer",
+      "instructions": "Working independently. Write five probing questions about your project, choose three without preparation and answer them with the artefacts closed. Reopen the evidence and correct one answer explicitly.",
+      "steps": [
+        "Write five probing questions about design, testing and ethics.",
+        "Choose three and answer with the artefacts closed.",
+        "Reopen the files and check each factual claim.",
+        "Correct one answer and explain the source of the error."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "Which decision could you explain clearly but still have weak evidence for?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "Which answer demonstrates understanding?",
+      "options": [
+        "A memorised slogan.",
+        "A reasoned decision linked to evidence and a limitation.",
+        "The longest possible response."
+      ],
+      "correct": 1,
+      "explanation": "Depth comes from the relationship between reasons, evidence and alternatives."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "A viva tests understanding",
+          "text": "A viva is an oral examination or discussion of work."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Write five probing questions about your project, choose three without preparation and answer them with the artefacts closed. Reopen the evidence and correct one answer explicitly."
+        }
+      ]
+    }
+  ],
+  "40": [
+    {
+      "type": "hook",
+      "title": "Defend It Under a New Constraint",
+      "body": "Your project now has half the time, no access to its AI service, or a user who cannot use the original interface. Which decisions survive, and which must change?"
+    },
+    {
+      "type": "concept",
+      "title": "Use a counterfactual to test the design",
+      "body": "A counterfactual changes one condition so you can examine what depends on it. Keep the changed assumption explicit.",
+      "bullets": [
+        "Separate the user’s underlying need from your chosen technology.",
+        "Identify what becomes impossible and what remains useful.",
+        "Compare a smaller, simpler alternative.",
+        "State the new tests required; old evidence may no longer apply."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "activity",
+      "title": "The counterfactual viva",
+      "instructions": "Working independently. Defend your project under a changed constraint: half the budget, no AI tool or a new user need. Explain which decisions survive and which you would redesign.",
+      "steps": [
+        "Choose one changed constraint from the opening.",
+        "List two decisions that survive and two that need revision.",
+        "Defend a redesigned route using the original purpose.",
+        "Name a fresh test and a limitation of transferring the old evidence."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "What is the smallest version that still meets the user’s underlying need?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What is the purpose of a counterfactual challenge?",
+      "options": [
+        "To prove the original project was pointless.",
+        "To reveal dependencies and test whether reasoning transfers to a changed situation.",
+        "To keep every feature unchanged."
+      ],
+      "correct": 1,
+      "explanation": "A changed constraint exposes which decisions are essential and which are contingent."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Use a counterfactual to test the design",
+          "text": "A counterfactual changes one condition so you can examine what depends on it."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Defend your project under a changed constraint: half the budget, no AI tool or a new user need. Explain which decisions survive and which you would redesign."
+        }
+      ]
+    }
+  ],
+  "41": [
+    {
+      "type": "hook",
+      "title": "The Graduate Skill Stress Test",
+      "body": "A fictional employer receives two polished AI-assisted reports. One applicant can defend the sources and repair a flawed assumption; the other cannot explain the figures. What should the selection task reveal?"
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. Which parts of your audition might unfairly reward access to expensive tools?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "concept",
+      "title": "Look at the work within the role",
+      "body": "A job contains multiple tasks. Generative-AI exposure does not settle adoption, employment or the skills a particular organisation will need.",
+      "bullets": [
+        "Separate drafting, analysis, judgement and accountability.",
+        "Ask which errors a novice might miss.",
+        "Compare performance with an appropriate unaided baseline."
+      ],
+      "sources": [
+        {
+          "label": "ILO: Occupational exposure to generative AI, 2025",
+          "url": "https://www.ilo.org/publications/generative-ai-and-jobs-refined-global-index-occupational-exposure"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Make capability observable",
+      "body": "A finished artefact can conceal whether the person understands the problem. Add a task that requires explanation, adaptation and checking.",
+      "bullets": [
+        "Show a source trail and a justified decision.",
+        "Change a constraint and ask for a revision.",
+        "Admit a limitation and propose the next useful test."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "Design the graduate audition",
+      "instructions": "Working independently. Invent a role and a non-sensitive work task.",
+      "steps": [
+        "Write the brief and an AI-assisted first pass.",
+        "Plant one numerical or evidential error.",
+        "Design a human verification step and a follow-up question.",
+        "Choose a capability to practise and define evidence of improvement."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "Which parts of your audition might unfairly reward access to expensive tools?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "Which best demonstrates a capability beyond producing polished text?",
+      "options": [
+        "Naming the newest model.",
+        "Explaining and repairing a consequential error using evidence.",
+        "Submitting the longest report."
+      ],
+      "correct": 1,
+      "explanation": "Make the relevant skill observable through reasoning and adaptation."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Look at the work within the role",
+          "text": "A job contains multiple tasks."
+        },
+        {
+          "icon": "2",
+          "label": "Make capability observable",
+          "text": "A finished artefact can conceal whether the person understands the problem."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Invent a graduate task with an AI-assisted first pass and a human verification step. Explain which capabilities an employer could actually observe and which the polished output would conceal."
+        }
+      ]
+    }
+  ],
+  "42": [
+    {
+      "type": "hook",
+      "title": "The Personal Statement Audit",
+      "body": "A fictional applicant writes “I have always been passionate about engineering” but gives no example. Another describes testing a bridge design and revising it after failure. Which statement gives an admissions reader something to assess?"
+    },
+    {
+      "type": "concept",
+      "title": "Use the current UCAS structure",
+      "body": "For 2026 entry onwards, UCAS uses three questions covering motivation, preparation through studies, and preparation outside formal education. The overall limit is 4,000 characters including spaces, with at least 350 characters for each answer.",
+      "bullets": [
+        "Distribute relevant evidence across the answers without needless repetition.",
+        "Explain what an experience taught you and why it matters to the subject.",
+        "Check the current UCAS guidance before submitting an actual application."
+      ],
+      "sources": [
+        {
+          "label": "UCAS: Personal statement format",
+          "url": "https://www.ucas.com/applying/applying-to-university/writing-your-personal-statement/how-to-write-your-personal-statement"
+        },
+        {
+          "label": "UCAS: AI and your personal statement",
+          "url": "https://www.ucas.com/applying/applying-to-university/writing-your-personal-statement/a-guide-to-using-ai-and-chatgpt-with-your-personal-statement"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Preserve authorship and truth",
+      "body": "Use fictional material in this exercise. AI can help you notice vagueness or generate questions to consider, but it must not invent experience or replace the applicant’s own account.",
+      "bullets": [
+        "Keep a first draft and explain changes.",
+        "Check UCAS and individual provider guidance on assistance.",
+        "Similarity checking and AI-authorship detection are not the same claim; do not promise that a detector can establish authorship."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "Audit an authentic-sounding paragraph",
+      "instructions": "Working independently. Fictional facts: the applicant tested a paper bridge, recorded its load and changed the fold pattern. They have not completed an internship.",
+      "steps": [
+        "Write a paragraph using only those facts.",
+        "Ask or write two feedback questions that would make it more specific.",
+        "Reject the suggestion “describe your engineering internship”.",
+        "Revise and explain what the evidence shows about learning rather than merely asserting passion."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "How can a polished rewrite make an application less informative?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What is the strongest revision?",
+      "options": [
+        "Invent a prestigious experience.",
+        "Explain a specific action, observation and lesson supported by the facts.",
+        "Replace every sentence with more impressive vocabulary."
+      ],
+      "correct": 1,
+      "explanation": "Specific, truthful evidence makes a claim assessable."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Use the current UCAS structure",
+          "text": "For 2026 entry onwards, UCAS uses three questions covering motivation, preparation through studies, and preparation outside formal education."
+        },
+        {
+          "icon": "2",
+          "label": "Preserve authorship and truth",
+          "text": "Use fictional material in this exercise."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Write a fictional application paragraph, then annotate which claims require personal evidence and which phrases sound generic. Revise for specific, supportable experience without inventing achievements."
+        }
+      ]
+    }
+  ],
+  "43": [
+    {
+      "type": "hook",
+      "title": "Build a Learning Time Capsule",
+      "body": "Find an early claim you made about AI. Choose a current view that differs. Can you show the evidence that changed your mind, rather than simply saying you know more now?"
+    },
+    {
+      "type": "concept",
+      "title": "Reflect using artefacts",
+      "body": "A retrospective looks for patterns and turns them into next actions. A framework helps organise the work; it does not guarantee a fixed improvement in learning.",
+      "bullets": [
+        "Start, stop, continue: identify specific practices.",
+        "Four Ls: loved, learned, lacked and longed for.",
+        "Timeline: mark a change in thinking and the evidence behind it.",
+        "Choose the framework that helps explain your work, not the one with the most headings."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Connect the course through one decision",
+      "body": "Follow a project choice through technical, ethical and social questions. This is stronger than listing every topic covered.",
+      "bullets": [
+        "How did model limitations affect your design?",
+        "How did data or bias affect the test?",
+        "How did evidence change the proposed use?",
+        "Which question remains unresolved, and how will you investigate it?"
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "The learning time capsule",
+      "instructions": "Working independently. Choose an early idea and a current view. Build a three-part exhibit showing the change, the evidence that caused it and a question you still cannot answer.",
+      "steps": [
+        "Choose an early artefact and a later one.",
+        "Annotate a specific change in your thinking.",
+        "Connect that change to three course ideas.",
+        "Write one future action with a trigger and a way to check progress."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "What evidence would show that your planned change actually improved your learning?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What makes a retrospective useful?",
+      "options": [
+        "A list of everything covered.",
+        "A specific pattern supported by artefacts and a next action.",
+        "Only celebrating success."
+      ],
+      "correct": 1,
+      "explanation": "Reflection becomes actionable when it connects evidence with a future decision."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Reflect using artefacts",
+          "text": "A retrospective looks for patterns and turns them into next actions."
+        },
+        {
+          "icon": "2",
+          "label": "Connect the course through one decision",
+          "text": "Follow a project choice through technical, ethical and social questions."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Choose an early idea and a current view. Build a three-part exhibit showing the change, the evidence that caused it and a question you still cannot answer."
+        }
+      ]
+    }
+  ],
+  "44": [
+    {
+      "type": "hook",
+      "title": "The AI Manifesto",
+      "body": "A fictional pupil promises “I will always use AI responsibly”. The next day they face an unsupported citation, a no-AI assessment and a request to upload a friend’s work. Does the promise help them choose?"
+    },
+    {
+      "type": "concept",
+      "title": "Make a principle usable",
+      "body": "A practical commitment names a trigger, an action and a reason. It should survive an inconvenient case, not just a comfortable one.<h3>Give your rules a review process</h3><p>No personal code anticipates every situation. Record what you would do when rules conflict or information is missing.</p>",
+      "bullets": [
+        "Learning: preserve the effort the task is meant to develop.",
+        "Truth: check consequential claims and acknowledge uncertainty.",
+        "Privacy: minimise data and respect permissions.",
+        "Creativity: record contributions and check rights.",
+        "Responsibility: retain meaningful control over actions.",
+        "Ask for clarification when permission is unclear.",
+        "Choose a reversible step while checking a consequential claim.",
+        "Set a review date and identify evidence that would justify changing a rule."
+      ],
+      "sources": [
+        {
+          "label": "Ofqual: AI malpractice and assessment, 2026",
+          "url": "https://www.gov.uk/government/publications/artificial-intelligence-malpractice-and-assessment-advice-note/artificial-intelligence-malpractice-and-assessment-advice-note-accessible"
+        },
+        {
+          "label": "DfE: Generative AI and data protection in schools",
+          "url": "https://www.gov.uk/guidance/data-protection-in-schools/generative-artificial-intelligence-ai-and-data-protection-in-schools"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. When should a personal preference give way to the actual rules of an assessment or service?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "Write the personal AI constitution",
+      "instructions": "Working independently. Work from the three fictional dilemmas in the opening.",
+      "steps": [
+        "Write five commitments with concrete actions.",
+        "Test each against a difficult example.",
+        "Revise the weakest rule and explain the change.",
+        "Choose one commitment you can demonstrate through work already in your portfolio."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "When should a personal preference give way to the actual rules of an assessment or service?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What makes a manifesto useful?",
+      "options": [
+        "Broad promises that cannot be tested.",
+        "Specific decisions with reasons, limits and a way to revise them.",
+        "A permanent ban on changing your mind."
+      ],
+      "correct": 1,
+      "explanation": "A useful code supports judgement and remains accountable to evidence."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Make a principle usable",
+          "text": "A practical commitment names a trigger, an action and a reason."
+        },
+        {
+          "icon": "2",
+          "label": "Give your rules a review process",
+          "text": "No personal code anticipates every situation."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Write five practical commitments about learning, truth, privacy, creativity and responsibility. Test each against a difficult fictional example and revise the weakest rule."
+        }
       ]
     }
   ]
-
 };

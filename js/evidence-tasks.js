@@ -1,653 +1,1066 @@
-/* Lesson-specific evidence briefs. Pupils can sketch, write or record; no external tool is required. */
+/* Lesson-specific evidence briefs. Earlier check wording is retained only for saved-work archives. */
 var DI_EVIDENCE_TASKS = {
   "1": {
     "title": "The invisible infrastructure atlas",
     "format": "Studio challenge",
     "brief": "Map a fictional day's AI encounters as a transport map. Label data entering each station, decisions leaving it and one place the traveller can intervene.",
     "checks": [
+      "Classify the job, then investigate the system: show this in your work.",
+      "Draw the decision, not just the app: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Where could your map be wrong? Describe evidence that would change one classification.",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the invisible infrastructure atlas. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Identify AI systems in everyday life",
       "Map personal AI usage",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the invisible infrastructure atlas. What change in the situation would make you revise it?"
+    ]
   },
   "2": {
     "title": "The parrot and librarian exhibition",
     "format": "Studio challenge",
     "brief": "Create two contrasting museum labels for a fictional chatbot's convincing but false answer. Explain what each analogy illuminates and where it breaks down.",
     "checks": [
+      "A model is not the whole product: show this in your work.",
+      "Put the metaphors on trial: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Design a test that distinguishes retrieval from a plausible guess. What would it leave unresolved?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the parrot and librarian exhibition. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Distinguish stochastic parrots from knowledge retrieval",
       "Analyse LLM capabilities and limits",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the parrot and librarian exhibition. What change in the situation would make you revise it?"
+    ]
   },
   "3": {
     "title": "Train a paper classifier",
     "format": "Studio challenge",
     "brief": "Invent a rule for sorting twelve drawn creatures. Reserve four unseen creatures, test the rule once, and explain one failure without quietly changing the test set.",
     "checks": [
+      "Three different jobs for data: show this in your work.",
+      "A good score has a boundary: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "If your classifier gets four out of four right, what can you still not conclude?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your train a paper classifier. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Explain training, validation & test sets",
       "Demonstrate overfitting vs. generalisation",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your train a paper classifier. What change in the situation would make you revise it?"
+    ]
   },
   "4": {
     "title": "The black-box inspection hatch",
     "format": "Studio challenge",
     "brief": "Design a decision receipt for a fictional loan model. Distinguish information that helps a user challenge a decision from information that merely looks technical.",
     "checks": [
+      "An explanation has a purpose: show this in your work.",
+      "Turn explanation into a decision receipt: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Could a faithful explanation reveal that the underlying rule is unacceptable? Defend your answer.",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the black-box inspection hatch. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Define model interpretability",
       "Evaluate trade-offs between accuracy and explainability",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the black-box inspection hatch. What change in the situation would make you revise it?"
+    ]
   },
   "5": {
     "title": "The bias repair workshop",
     "format": "Studio challenge",
     "brief": "Build a tiny fictional dataset with a deliberate representation gap. Explain how the gap could affect outcomes, propose a repair and name a new problem the repair might create.",
     "checks": [
+      "Different questions need different measures: show this in your work.",
+      "Keep historical evidence in its proper scope: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Could improving one fairness measure worsen another? Give a clearly hypothetical example.",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the bias repair workshop. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Identify sources of data bias",
       "Analyse biased AI outcomes",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the bias repair workshop. What change in the situation would make you revise it?"
+    ]
   },
   "6": {
     "title": "The data supply-chain receipt",
     "format": "Studio challenge",
     "brief": "Trace an invented photo from upload to possible model use. Mark collection, permission, transformation and deletion questions; do not assume a service uses every upload for training.",
     "checks": [
+      "Follow the data through distinct purposes: show this in your work.",
+      "Permission is more than a tick box: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "What evidence would justify a claim that an upload is excluded from training? What would remain unknown?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the data supply-chain receipt. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Trace data supply chains",
       "Evaluate privacy implications",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the data supply-chain receipt. What change in the situation would make you revise it?"
+    ]
   },
   "7": {
     "title": "Two ethics, one decision",
     "format": "Studio challenge",
     "brief": "Storyboard an autonomous-system dilemma twice, once from a consequences-first view and once from a duties-first view. Defend a choice and its cost.",
     "checks": [
+      "Use ethical lenses without pretending they are code: show this in your work.",
+      "Draw the responsibility chain: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Would your rule change if the delivery were urgent medicine? Which facts would matter?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your two ethics, one decision. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Apply utilitarian and deontological frameworks to AI",
       "Debate autonomous vehicle ethics",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your two ethics, one decision. What change in the situation would make you revise it?"
+    ]
   },
   "8": {
     "title": "Design the human handover",
     "format": "Studio challenge",
     "brief": "Draw a three-stage oversight dashboard for a fictional medical scheduling assistant. Show who can inspect, stop and appeal an action, without pretending the exercise is medical advice.",
     "checks": [
+      "Put oversight where it can change the outcome: show this in your work.",
+      "Match control to consequence: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "What should happen when the person responsible for review is unavailable?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your design the human handover. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Define human-in-the-loop, on-the-loop, out-of-the-loop",
       "Evaluate oversight requirements by domain",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your design the human handover. What change in the situation would make you revise it?"
+    ]
   },
   "9": {
     "title": "The prompt architect's blueprint",
     "format": "Studio challenge",
     "brief": "Draw a prompt as a building plan with purpose, context, constraints and checking. Test its weakest room with an ambiguous user request and redesign it.",
     "checks": [
+      "Specify the task and the evidence: show this in your work.",
+      "Keep the comparison fair: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "When would a form or fixed template outperform a generative tool for this task?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the prompt architect's blueprint. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Apply the PTFC framework to Gemini",
       "Build effective prompts utilising Google Workspace extensions",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the prompt architect's blueprint. What change in the situation would make you revise it?"
+    ]
   },
   "10": {
     "title": "The creativity provenance label",
     "format": "Studio challenge",
     "brief": "Curate a tiny poem or poster with a complete contribution label: your choices, borrowed sources and any generated material. Identify a rights question you cannot settle from the output alone.",
     "checks": [
+      "Separate contribution, permission and protection: show this in your work.",
+      "Name the jurisdiction before making the claim: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Could an output be lawful to use but difficult to protect exclusively? Explain the distinction.",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the creativity provenance label. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Analyse copyright law and AI-generated works",
       "Debate ownership of AI outputs",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the creativity provenance label. What change in the situation would make you revise it?"
+    ]
   },
   "11": {
     "title": "A career headline under scrutiny",
     "format": "Studio challenge",
     "brief": "Choose a claim about AI changing work from the lesson. Turn it into a newsroom brief separating measured task exposure, predicted job change and evidence still needed.",
     "checks": [
+      "Tasks are not jobs: show this in your work.",
+      "Build a claim-to-source chain: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "What evidence would distinguish useful assistance from replacement of an entire role?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your a career headline under scrutiny. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Conduct AI-assisted deep research",
       "Triangulate AI research claims against primary sources",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your a career headline under scrutiny. What change in the situation would make you revise it?"
+    ]
   },
   "12": {
     "title": "The revision autopsy",
     "format": "Studio challenge",
     "brief": "Keep a first draft, two competing feedback comments and a revised draft. Annotate one accepted suggestion and one rejected suggestion with reasons connected to the writing's purpose.",
     "checks": [
+      "Protect the thinking you are meant to practise: show this in your work.",
+      "Work from a source you can inspect: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "How would the task change if its instructions prohibited AI entirely?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the revision autopsy. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Implement systematic prompt iteration",
       "Use Gemini as a Socratic feedback critic",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the revision autopsy. What change in the situation would make you revise it?"
+    ]
   },
   "13": {
     "title": "The synthetic-media newsroom",
     "format": "Studio challenge",
     "brief": "Produce a verification storyboard for a fictional viral clip with no source or date. Explain what provenance and corroboration could establish without generating an impersonation.",
     "checks": [
+      "Authenticity and truth are different questions: show this in your work.",
+      "What provenance can and cannot do: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Would proving that a clip is AI-generated settle whether its caption describes a real event?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the synthetic-media newsroom. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Identify deepfake techniques",
       "Apply detection strategies",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the synthetic-media newsroom. What change in the situation would make you revise it?"
+    ]
   },
   "14": {
     "title": "The surveillance town hall",
     "format": "Studio challenge",
     "brief": "Write three short stakeholder testimonies about a fictional face-recognition proposal, then issue a decision with conditions, an alternative and an appeal route.",
     "checks": [
+      "Specify the task and the error: show this in your work.",
+      "Use a base-rate example: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "What would make a technically accurate system inappropriate for this venue?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the surveillance town hall. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Analyse facial recognition technology",
       "Debate surveillance vs. safety",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the surveillance town hall. What change in the situation would make you revise it?"
+    ]
   },
   "15": {
     "title": "The environmental uncertainty receipt",
     "format": "Studio challenge",
     "brief": "Make an annotated receipt separating hardware, training and inference costs. Mark missing measurements and compare a simpler alternative without inventing a universal cost per prompt.",
     "checks": [
+      "Separate electricity, emissions and water.",
+      "State the boundary, assumptions and units in a comparison.",
+      "Explain a limitation and a proportionate next action."
+    ],
+    "transfer": "Could a more efficient tool increase total use? Explain the mechanism.",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the environmental uncertainty receipt. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Quantify AI energy consumption",
       "Compare environmental costs across model sizes",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the environmental uncertainty receipt. What change in the situation would make you revise it?"
+    ]
   },
   "16": {
     "title": "A regulation comparison lens",
     "format": "Studio challenge",
     "brief": "Compare two approaches described in the lesson using the same use-case. Date your notes, distinguish law from proposals and specify which authoritative source needs checking before relying on the comparison.",
     "checks": [
+      "State the jurisdiction, use and relevant obligation.",
+      "Distinguish law, proposals and school policy.",
+      "Date the source and explain what needs checking."
+    ],
+    "transfer": "How would a different jurisdiction change the questions you need to check?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your a regulation comparison lens. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Map global regulatory landscape",
       "Compare regulatory philosophies",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your a regulation comparison lens. What change in the situation would make you revise it?"
+    ]
   },
   "17": {
     "title": "The policy archaeology board",
     "format": "Studio challenge",
     "brief": "Analyse a policy excerpt from the lesson or a clearly fictional one. Colour-code explicit rules, assumptions and missing decisions, then identify the first clarification a pupil would need.",
     "checks": [
+      "Read a policy through a decision: show this in your work.",
+      "Fairness needs a process: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Could a rule be perfectly clear but still unfair? Give an example.",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the policy archaeology board. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Analyse existing AI policies",
       "Identify policy gaps",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the policy archaeology board. What change in the situation would make you revise it?"
+    ]
   },
   "18": {
     "title": "The acceptable-use card game",
     "format": "Studio challenge",
     "brief": "Create six fictional schoolwork scenarios and sort them into permitted, prohibited or needs clarification under a rule you state. Repair the rule when a boundary case exposes ambiguity.",
     "checks": [
+      "Start with the learning purpose: show this in your work.",
+      "Test the awkward middle: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "How would your rule change for a closed-book assessment of unaided writing?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the acceptable-use card game. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Define acceptable use criteria",
       "Balance innovation with safeguarding",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the acceptable-use card game. What change in the situation would make you revise it?"
+    ]
   },
   "19": {
     "title": "The one-page policy prototype",
     "format": "Studio challenge",
     "brief": "Draft a policy pupils can act on: purpose, permissions, examples, responsibility and appeal. Annotate two places where plain wording prevents a real misunderstanding.",
     "checks": [
+      "Build a usable document: show this in your work.",
+      "Choose words that can be applied: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Which part of your policy would need review when the assessment task changes?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the one-page policy prototype. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Structure a formal policy document",
       "Use precise policy language",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the one-page policy prototype. What change in the situation would make you revise it?"
+    ]
   },
   "20": {
     "title": "The ratification simulation",
     "format": "Studio challenge",
     "brief": "Stage a written hearing with three fictional stakeholders challenging your policy. Publish a decision log showing an accepted amendment, a rejected amendment and the reasons.",
     "checks": [
+      "A hearing tests reasons: show this in your work.",
+      "Keep an amendment trail: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "What would justify reopening a policy that had overwhelming support?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the ratification simulation. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Present policy proposals",
       "Engage in democratic debate",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the ratification simulation. What change in the situation would make you revise it?"
+    ]
   },
   "21": {
     "title": "The co-creator contribution map",
     "format": "Studio challenge",
     "brief": "Take a small creative idea through human brief, optional AI variation, selection and edit. Show exactly where your judgement changed the outcome and how you would acknowledge contributions.",
     "checks": [
+      "Make a claim you can demonstrate: show this in your work.",
+      "Show the judgement behind the output: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "If the same polished output could be generated instantly, what would your portfolio still demonstrate?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the co-creator contribution map. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Understand capstone requirements",
       "Shift from consumer to creator mindset",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the co-creator contribution map. What change in the situation would make you revise it?"
+    ]
   },
   "22": {
     "title": "The problem-statement zoom lens",
     "format": "Studio challenge",
     "brief": "Show three successive versions of a project problem, narrowing from a vague topic to an observable need. Add one stakeholder question that could reveal you chose the wrong problem.",
     "checks": [
+      "Zoom from topic to need: show this in your work.",
+      "Try to disprove your assumption: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "What finding would make you abandon the AI part of your idea?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the problem-statement zoom lens. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Write a focused problem statement",
       "Validate problem significance",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the problem-statement zoom lens. What change in the situation would make you revise it?"
+    ]
   },
   "23": {
     "title": "The ethics-by-design blueprint",
     "format": "Studio challenge",
     "brief": "Annotate a project sketch with data minimisation, access, consent and failure recovery. Explain a tradeoff where making one value stronger can make another harder to achieve.",
     "checks": [
+      "Turn values into design decisions: show this in your work.",
+      "Make responsibility concrete: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Which safeguard would be hardest for an affected person to use, and how could you improve it?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the ethics-by-design blueprint. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Apply ethics-by-design principles",
       "Identify potential harms",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the ethics-by-design blueprint. What change in the situation would make you revise it?"
+    ]
   },
   "24": {
     "title": "The architecture travel map",
     "format": "Studio challenge",
     "brief": "Draw how input travels through your proposed project to an output. Label components, dependencies, storage and failure points, then identify the smallest testable version.",
     "checks": [
+      "Draw the architecture as a journey: show this in your work.",
+      "Label the simulation honestly: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "If one external service disappeared tomorrow, what would still be useful?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the architecture travel map. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Create a sprint-based project plan",
       "Design technical architecture",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the architecture travel map. What change in the situation would make you revise it?"
+    ]
   },
   "25": {
     "title": "The prompt test kitchen",
     "format": "Studio challenge",
     "brief": "Write a project prompt, three test inputs and expected behaviours before running or simulating them. Change one instruction, compare results and explain the remaining uncertainty.",
     "checks": [
+      "Treat a prompt as a testable specification: show this in your work.",
+      "Compare controlled revisions: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Could the revision fix missing prices while making another kind of error worse?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the prompt test kitchen. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Design production-quality prompts",
       "Create prompt libraries",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the prompt test kitchen. What change in the situation would make you revise it?"
+    ]
   },
   "26": {
     "title": "The edge-case comic",
     "format": "Studio challenge",
     "brief": "Draw your project's normal path and three awkward branches: missing input, contradictory input and unavailable service. Give each a useful recovery response rather than a silent failure.",
     "checks": [
+      "Make the decision path explicit: show this in your work.",
+      "An edge case can be ordinary to a user: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Which of your error messages would leave a new user unsure what to do?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the edge-case comic. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Create logic flow diagrams",
       "Identify and handle edge cases",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the edge-case comic. What change in the situation would make you revise it?"
+    ]
   },
   "27": {
     "title": "The foundation proof",
     "format": "Studio challenge",
     "brief": "Create one thin working slice or paper simulation of the project. Record what genuinely works, what is mocked and what evidence would justify the next stage.",
     "checks": [
+      "Finish one narrow path: show this in your work.",
+      "Define done with evidence: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "What would another person need to reproduce your result?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the foundation proof. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Set up project infrastructure",
       "Implement core functionality",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the foundation proof. What change in the situation would make you revise it?"
+    ]
   },
   "28": {
     "title": "The critique worth keeping",
     "format": "Studio challenge",
     "brief": "Use the project criteria to write the strongest possible critique of your own prototype, or invite an authorised reviewer. Keep the feedback, your response and one visible change; label self-review honestly.",
     "checks": [
+      "Make critique specific: show this in your work.",
+      "Decide what to change: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Which assumption in your self-review most needs an independent user to test it?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the critique worth keeping. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Give constructive peer feedback",
       "Receive and process criticism",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the critique worth keeping. What change in the situation would make you revise it?"
+    ]
   },
   "29": {
     "title": "The first experiment log",
     "format": "Studio challenge",
     "brief": "Choose the riskiest technical or design assumption in your project. Define a small test, predict the result and record what happened or what a paper simulation cannot establish.",
     "checks": [
+      "Choose an experiment before a feature: show this in your work.",
+      "Choose an experiment before a feature: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "What result would make you change the project’s scope?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the first experiment log. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Make meaningful progress on capstone",
       "Document decisions and blockers",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the first experiment log. What change in the situation would make you revise it?"
+    ]
   },
   "30": {
     "title": "The user-path repair",
     "format": "Studio challenge",
     "brief": "Walk through one complete user journey. Find the first confusing step, capture it before and after a repair, and explain how you would check the change with a user.",
     "checks": [
+      "Follow the task from the user’s position: show this in your work.",
+      "Follow the task from the user’s position: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "How would the journey work for someone who cannot use a mouse?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the user-path repair. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Integrate peer feedback",
       "Resolve identified issues",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the user-path repair. What change in the situation would make you revise it?"
+    ]
   },
   "31": {
     "title": "The reliability challenge",
     "format": "Studio challenge",
     "brief": "Design three repeatable tests for your project's main function. Record pass criteria, observed results and an unresolved failure, keeping simulated and real results separate.",
     "checks": [
+      "Make tests repeatable: show this in your work.",
+      "Keep failure visible: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "How would your reliability claim change if the test population changed?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the reliability challenge. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Conduct systematic testing",
       "Refine user experience",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the reliability challenge. What change in the situation would make you revise it?"
+    ]
   },
   "32": {
     "title": "The accessibility redesign",
     "format": "Studio challenge",
     "brief": "Inspect one project interaction for keyboard access, readability and understandable feedback. Make a specific improvement and document a check that could reveal it still fails.",
     "checks": [
+      "Polish the interaction, not just the surface: show this in your work.",
+      "Polish the interaction, not just the surface: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Could a visually simpler screen still be harder to understand? Explain how you would test that.",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the accessibility redesign. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Complete core functionality",
       "Polish user interface",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the accessibility redesign. What change in the situation would make you revise it?"
+    ]
   },
   "33": {
     "title": "The release-candidate receipt",
     "format": "Studio challenge",
     "brief": "Prepare a project release note with one demonstrated capability, one known limitation, a test record and a recovery plan. Resist promising anything you have not checked.",
     "checks": [
+      "Publish the evidence with the claim: show this in your work.",
+      "Keep the handover usable: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Which known limitation would a user most need to see before starting?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the release-candidate receipt. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Address audit findings",
       "Finalise all deliverables",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the release-candidate receipt. What change in the situation would make you revise it?"
+    ]
   },
   "34": {
     "title": "The ethical audit case file",
     "format": "Studio challenge",
     "brief": "Audit your project through a fictional user's difficult case. Map the risk, affected person, safeguard, residual risk and who is responsible for the next decision.",
     "checks": [
+      "Follow a difficult case through the system: show this in your work.",
+      "Make a proportionate decision: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "When should a residual risk stop a trial even if the average benefit is attractive?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the ethical audit case file. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Apply ethical audit checklist",
       "Identify ethical risks",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the ethical audit case file. What change in the situation would make you revise it?"
+    ]
   },
   "35": {
     "title": "The pitch with evidence tags",
     "format": "Studio challenge",
     "brief": "Build a five-frame pitch and tag each factual claim as measured, sourced or assumed. Rewrite the weakest claim and finish with a precise next-step request.",
     "checks": [
+      "Build an argument the audience can inspect: show this in your work.",
+      "Tag the status of every claim: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Which single piece of evidence would most strengthen your request?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the pitch with evidence tags. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Structure a pitch deck",
       "Communicate technical concepts clearly",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the pitch with evidence tags. What change in the situation would make you revise it?"
+    ]
   },
   "36": {
     "title": "The difficult-audience rehearsal",
     "format": "Studio challenge",
     "brief": "Deliver or script a three-minute rehearsal, then answer three sceptical questions. Compare the result against your criteria and record a substantive revision rather than only a visual polish.",
     "checks": [
+      "Rehearse the argument: show this in your work.",
+      "Rehearse the argument: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "How would you communicate the same argument if the live demonstration failed?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the difficult-audience rehearsal. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Deliver a timed presentation",
       "Receive presentation feedback",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the difficult-audience rehearsal. What change in the situation would make you revise it?"
+    ]
   },
   "37": {
     "title": "The first premiere",
     "format": "Studio challenge",
     "brief": "Present or record the project for a defined audience. Keep the argument, strongest evidence and response to one challenge, marking untested claims as open questions.",
     "checks": [
+      "Make the evidence available: show this in your work.",
+      "Make the evidence available: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Which claim did your presentation make easier to assess, and which still needs work?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the first premiere. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Deliver capstone presentation",
       "Respond to panel questions",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the first premiere. What change in the situation would make you revise it?"
+    ]
   },
   "38": {
     "title": "The second audience remix",
     "format": "Studio challenge",
     "brief": "Adapt the same project for a different audience with different needs. Show what changed in the explanation, what evidence stayed constant and one new objection you addressed.",
     "checks": [
+      "Change emphasis without changing the evidence: show this in your work.",
+      "Change emphasis without changing the evidence: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Where could simplifying for this audience accidentally mislead them?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the second audience remix. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Deliver capstone presentation",
       "Respond to panel questions",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the second audience remix. What change in the situation would make you revise it?"
+    ]
   },
   "39": {
     "title": "The viva evidence drawer",
     "format": "Studio challenge",
     "brief": "Write five probing questions about your project, choose three without preparation and answer them with the artefacts closed. Reopen the evidence and correct one answer explicitly.",
     "checks": [
+      "A viva tests understanding: show this in your work.",
+      "A viva tests understanding: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Which decision could you explain clearly but still have weak evidence for?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the viva evidence drawer. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Articulate design decisions",
       "Defend ethical choices",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the viva evidence drawer. What change in the situation would make you revise it?"
+    ]
   },
   "40": {
     "title": "The counterfactual viva",
     "format": "Studio challenge",
     "brief": "Defend your project under a changed constraint: half the budget, no AI tool or a new user need. Explain which decisions survive and which you would redesign.",
     "checks": [
+      "Use a counterfactual to test the design: show this in your work.",
+      "Use a counterfactual to test the design: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "What is the smallest version that still meets the user’s underlying need?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the counterfactual viva. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Articulate design decisions",
       "Defend ethical choices",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the counterfactual viva. What change in the situation would make you revise it?"
+    ]
   },
   "41": {
     "title": "The graduate skill stress test",
     "format": "Studio challenge",
     "brief": "Invent a graduate task with an AI-assisted first pass and a human verification step. Explain which capabilities an employer could actually observe and which the polished output would conceal.",
     "checks": [
+      "Look at the work within the role: show this in your work.",
+      "Make capability observable: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Which parts of your audition might unfairly reward access to expensive tools?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the graduate skill stress test. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Analyse AI in higher education",
       "Evaluate graduate employability",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the graduate skill stress test. What change in the situation would make you revise it?"
+    ]
   },
   "42": {
     "title": "The authentic-voice audit",
     "format": "Studio challenge",
     "brief": "Write a fictional application paragraph, then annotate which claims require personal evidence and which phrases sound generic. Revise for specific, supportable experience without inventing achievements.",
     "checks": [
+      "Use the current UCAS structure: show this in your work.",
+      "Preserve authorship and truth: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "How can a polished rewrite make an application less informative?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the authentic-voice audit. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Critically use AI writing tools",
       "Identify and reject AI suggestions that dilute your authentic voice",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the authentic-voice audit. What change in the situation would make you revise it?"
+    ]
   },
   "43": {
     "title": "The learning time capsule",
     "format": "Studio challenge",
     "brief": "Choose an early idea and a current view. Build a three-part exhibit showing the change, the evidence that caused it and a question you still cannot answer.",
     "checks": [
+      "Reflect using artefacts: show this in your work.",
+      "Connect the course through one decision: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "What evidence would show that your planned change actually improved your learning?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the learning time capsule. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Apply retrospective frameworks",
       "Identify how your critical thinking about AI has evolved",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the learning time capsule. What change in the situation would make you revise it?"
+    ]
   },
   "44": {
     "title": "The personal AI constitution",
     "format": "Studio challenge",
     "brief": "Write five practical commitments about learning, truth, privacy, creativity and responsibility. Test each against a difficult fictional example and revise the weakest rule.",
     "checks": [
+      "Make a principle usable: show this in your work.",
+      "Give your rules a review process: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "When should a personal preference give way to the actual rules of an assessment or service?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the personal ai constitution. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Synthesise course learning into a coherent personal code of conduct",
       "Articulate specific commitments on data privacy and citation validation",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the personal ai constitution. What change in the situation would make you revise it?"
+    ]
   },
   "45": {
     "title": "The confidence weather map",
     "format": "Studio challenge",
     "brief": "Make a forecast-style map of five lesson claims: well supported, uncertain or contested. Explain what evidence would change the forecast for two claims.",
     "checks": [
+      "A claim needs a reason to believe it: show this in your work.",
+      "Build a source map: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Can a source be credible on one question and weak on another? Give an example.",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the confidence weather map. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Define epistemic concepts: truth, evidence, justified belief",
       "Analyse how AI undermines traditional sources of knowledge",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the confidence weather map. What change in the situation would make you revise it?"
+    ]
   },
   "46": {
     "title": "The citation detective's case",
     "format": "Studio challenge",
     "brief": "Build a claim-to-source chain for one lesson statement. Record the original wording, the supporting passage and a limit; label inaccessible evidence rather than inventing verification.",
     "checks": [
+      "Check the chain one link at a time: show this in your work.",
+      "A real source can still be misused: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "When would you reject the whole answer rather than repair individual sentences?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the citation detective's case. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Identify and classify the four main types of AI hallucination",
       "Apply the VERIFY workflow to any AI-generated research",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the citation detective's case. What change in the situation would make you revise it?"
+    ]
   },
   "47": {
     "title": "The information flood defence kit",
     "format": "Studio challenge",
     "brief": "Design a three-step browsing routine for a fast-moving claim. Add an example where polished writing and several copied reports would still fail your evidence test.",
     "checks": [
+      "Style is not proof of authorship: show this in your work.",
+      "Spend your attention on the claim: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "How can a verification routine remain practical without turning uncertainty into suspicion of everyone?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the information flood defence kit. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Identify linguistic and visual markers of AI-generated content",
       "Apply SIFT methodology and detection tools to real examples",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the information flood defence kit. What change in the situation would make you revise it?"
+    ]
   },
   "48": {
     "title": "The thinking handover audit",
     "format": "Studio challenge",
     "brief": "Map a learning task into steps you did, AI did and you checked. Repeat a small part unaided and use the comparison to decide where assistance helped or displaced learning.",
     "checks": [
+      "An output is not evidence of learning: show this in your work.",
+      "Apply the real rules for the task: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "What part of a learning task would you deliberately make slower? Why?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the thinking handover audit. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Define the Green, Amber, and Red tiers of school AI usage",
       "Analyse the risks of cognitive offloading using the Gemini Notebook audio overview scenario",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the thinking handover audit. What change in the situation would make you revise it?"
+    ]
   },
   "49": {
     "title": "The election information desk",
     "format": "Studio challenge",
     "brief": "Create a neutral response plan for a fictional fabricated election announcement. Specify the original authority to check, a proportionate correction and a free-expression tradeoff.",
     "checks": [
+      "Separate persuasive speech from false procedure: show this in your work.",
+      "Compare safeguards and their costs: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "When might a well-intended correction amplify a falsehood? How would you reduce that risk?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the election information desk. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Analyse documented cases of AI-driven electoral interference",
       "Evaluate the effectiveness of platform policies and electoral AI laws",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the election information desk. What change in the situation would make you revise it?"
+    ]
   },
   "50": {
     "title": "The smallest useful invention",
     "format": "Studio challenge",
     "brief": "Build or sketch a tiny tool for one specific need. Keep the brief, a working example, a failure case and a revision; do not equate an attractive screen with a useful result.",
     "checks": [
+      "Use a complete small cycle: show this in your work.",
+      "Use a complete small cycle: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Which difficulty in this build should influence the scope of your capstone?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the smallest useful invention. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Apply the PTFC framework to a real build task",
       "Identify and address one ethical consideration in your design",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the smallest useful invention. What change in the situation would make you revise it?"
+    ]
   },
   "51": {
     "title": "Token detective notebook",
     "format": "Studio challenge",
     "brief": "Invent a simple tokenisation of two phrases. Show how different segmentation changes the number of chunks, then explain why your toy model is not an actual tokenizer.",
     "checks": [
+      "Tokens are units of representation: show this in your work.",
+      "Test capability rather than repeating a famous failure: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "How could adding a calculator or code tool change your evaluation of the product without changing its base model?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your token detective notebook. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Explain how LLMs convert text to tokens and tokens to probabilities",
       "Demonstrate why LLMs fail at character-level tasks like the Strawberry Problem",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your token detective notebook. What change in the situation would make you revise it?"
+    ]
   },
   "52": {
     "title": "The prompt-injection firewall sketch",
     "format": "Studio challenge",
     "brief": "Storyboard an assistant reading a fictional document containing an irrelevant instruction. Design the trust boundary and approval rule on paper; do not target a real system.",
     "checks": [
+      "Source material is not authority: show this in your work.",
+      "Reduce what a failure can do: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Could a system preserve the instruction boundary yet still produce an inaccurate summary?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the prompt-injection firewall sketch. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Distinguish direct from indirect prompt injection and explain why both work",
       "Evaluate the limits of common defensive techniques against prompt injection",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the prompt-injection firewall sketch. What change in the situation would make you revise it?"
+    ]
   },
   "53": {
     "title": "The retrieval map with a missing bridge",
     "format": "Studio challenge",
     "brief": "Draw a source-to-answer pipeline with retrieval, generation and citation checking. Add a plausible failure at each stage and show the user how to detect or handle it.",
     "checks": [
+      "Map the retrieval pipeline: show this in your work.",
+      "Use a small source collection you can inspect: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Which failure would you investigate first if citations were real but consistently irrelevant?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the retrieval map with a missing bridge. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Explain the RAG pipeline from document indexing to grounded generation",
       "Analyse how Gemini Notebook generates source-based citations and where RAG fails",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the retrieval map with a missing bridge. What change in the situation would make you revise it?"
+    ]
   },
   "54": {
     "title": "The hidden-costs exhibition",
     "format": "Studio challenge",
     "brief": "Create three exhibition labels showing energy, hardware and human labour behind an AI service. For each, distinguish a documented example from an industry-wide claim.",
     "checks": [
+      "Define the boundary of the estimate: show this in your work.",
+      "Make human work visible: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Could a more efficient system still increase total resource use? Describe a plausible mechanism.",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the hidden-costs exhibition. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Quantify the energy and water consumption of AI training and inference",
       "Explain how RLHF works and identify the human labour supply chain that underpins it",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the hidden-costs exhibition. What change in the situation would make you revise it?"
+    ]
   },
   "55": {
     "title": "The training-data rights ledger",
     "format": "Studio challenge",
     "brief": "Make a ledger for three hypothetical sources: your own notes, a licensed collection and an unlicensed article. Identify the questions raised by training, reproduction and attribution without inventing a legal ruling.",
     "checks": [
+      "Separate the legal questions: show this in your work.",
+      "Read arguments without inventing a verdict: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "Why might a decision about one training dataset fail to settle a dispute about another?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the training-data rights ledger. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Explain how modern LLMs are trained and the role of large-scale text corpora",
       "Analyse the four fair-use factors and apply them to AI training data cases",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the training-data rights ledger. What change in the situation would make you revise it?"
+    ]
   },
   "56": {
     "title": "The agent permission passport",
     "format": "Studio challenge",
     "brief": "Make a permission card for an agent organising a fictional event. Separate read, draft and execute permissions; test what happens when a source requests an unauthorised purchase.",
     "checks": [
+      "A tool call is a proposed action: show this in your work.",
+      "Connection is not permission: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "What should happen if the tool result is uncertain but the next action is irreversible?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the agent permission passport. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Explain function calling and how an LLM decides when to invoke a tool",
       "Describe the Model Context Protocol (MCP) and why a shared standard matters for agent ecosystems",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the agent permission passport. What change in the situation would make you revise it?"
+    ]
   },
   "57": {
     "title": "The reasoning budget audition",
     "format": "Studio challenge",
     "brief": "Compare two imagined assistant workflows for a factual lookup and a multi-step puzzle. Design a test balancing correctness, latency and cost rather than assuming longer reasoning is better.",
     "checks": [
+      "Evaluate the workflow, not the label: show this in your work.",
+      "Ask for a useful result: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "What would you do if a slower model produced a more persuasive but incorrect explanation?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the reasoning budget audition. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Explain what a reasoning model is and how it differs architecturally from a standard chat model",
       "Evaluate when extended reasoning improves accuracy and when it wastes cost, latency, or produces overthinking",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the reasoning budget audition. What change in the situation would make you revise it?"
+    ]
   },
   "58": {
     "title": "The companion boundary redesign",
     "format": "Studio challenge",
     "brief": "Redesign a fictional companion interface to support meaningful limits and human connection. Explain why reassurance, engagement and wellbeing are different design goals.",
     "checks": [
+      "Feeling supported and being understood are different claims: show this in your work.",
+      "Analyse a fictional change: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "How should a company weigh a profitable feature against credible evidence of harm?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your the companion boundary redesign. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Explain how AI companion apps create emotional dependency by design",
       "Analyse the competing duties of companies, users and regulators when a product designed to be loved is changed",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your the companion boundary redesign. What change in the situation would make you revise it?"
+    ]
   },
   "59": {
     "title": "A companion policy stress test",
     "format": "Studio challenge",
     "brief": "Write a short proposed policy for fictional AI companions, with age-appropriate access, data handling, escalation and review. Test it against a plausible loophole and revise it.",
     "checks": [
+      "Turn a concern into a testable duty: show this in your work.",
+      "Evaluate evidence carefully: explain a decision using this idea.",
+      "Keep a specific revision and justify it with evidence."
+    ],
+    "transfer": "How would you identify a safeguard that merely shifts risk to a less visible group?",
+    "revision": "aep-2026-10",
+    "previousTransfer": "Close your notes. Explain the most important decision in your a companion policy stress test. What change in the situation would make you revise it?",
+    "previousChecks": [
       "Extract structural patterns common to multiple AI-companion harm cases",
       "Synthesise a generalised principle from specific examples",
       "Show a specific revision and explain what evidence justified it."
-    ],
-    "transfer": "Close your notes. Explain the most important decision in your a companion policy stress test. What change in the situation would make you revise it?"
+    ]
   },
   "101": {
     "title": "The invisible-AI museum",

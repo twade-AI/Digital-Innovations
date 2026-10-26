@@ -3,8 +3,8 @@
 /* Three caches so bumping one category doesn't invalidate the others.
    When you change a JS file, bump CODE_CACHE only; fonts and HTML stay
    in place and the user doesn't re-download them. */
-const SHELL_CACHE  = 'di-shell-v31';  // HTML + CSS + fonts — slow to change
-const CODE_CACHE   = 'di-code-v68';   // JS — changes with every feature
+const SHELL_CACHE  = 'di-shell-v32';  // HTML + CSS + fonts — slow to change
+const CODE_CACHE   = 'di-code-v69';   // JS — changes with every feature
 const ASSETS_CACHE = 'di-assets-v5';  // Logos, icons, manifest
 const ALL_CACHES   = [SHELL_CACHE, CODE_CACHE, ASSETS_CACHE];
 
@@ -49,6 +49,7 @@ const CODE_ASSETS = [
   './js/passport-data.js',
   './js/evidence-tasks.js',
   './js/studio-visuals.js',
+  './js/aep-enrichment.js',
   './js/learning-evidence.js',
   './js/revised-curriculum.js',
   './js/slides-critical.js',
@@ -129,7 +130,13 @@ self.addEventListener('fetch', function(e) {
 
   // Cache-first for all course assets; background-update the right bucket
   e.respondWith(
-    caches.match(e.request).then(function(cached) {
+    caches.match(e.request).then(async function(cached) {
+      // Query parameters select a lesson/portfolio in the same static HTML shell.
+      // A previously unseen deep link should still open a cached course offline.
+      if (!cached && e.request.mode === 'navigate' && url.origin === self.location.origin &&
+          /\/(?:index|removes|fluency|revised|portfolio|class|family|labs|verify)\.html$/.test(url.pathname)) {
+        cached = await caches.match(url.origin + url.pathname);
+      }
       var networkFetch = fetch(e.request).then(function(response) {
         if (response && response.status === 200) {
           var clone = response.clone();
