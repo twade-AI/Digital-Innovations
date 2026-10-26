@@ -1,0 +1,36 @@
+{
+  "removes": {
+    "lessons": 40,
+    "slides": 397
+  },
+  "passport": {
+    "lessons": 20,
+    "slides": 199
+  },
+  "projects": {
+    "sessions": 14,
+    "slides": 176
+  },
+  "responsive": [
+    {
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "overflow": false
+    }
+  ],
+  "sharedRevisionNotes": true,
+  "earlierNotesAndExitsPreserved": true,
+  "projectMigration": true,
+  "earlierWorkDownload": true,
+  "legacyRedirect": true,
+  "offline": true,
+  "standalone": true,
+  "errors": []
+}

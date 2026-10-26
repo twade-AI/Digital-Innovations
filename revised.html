@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI and Digital Innovation — Revised lessons</title>
+  <title>AI and Digital Innovation — Project pathways</title>
   <link rel="manifest" href="manifest.json">
-  <meta name="description" content="AI and Digital Innovation — the Removes AI course: 37 revised lessons and project sessions covering AI foundations, study skills, climate innovation and digital productivity for Year 9 pupils.">
+  <meta name="description" content="Two project pathways alongside the 40-lesson Removes course: eight Climate Innovation sessions and six Digital Literacy Project sessions.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Removes AI Course — AI and Digital Innovation">
+  <meta property="og:title" content="Project pathways — AI and Digital Innovation">
   <meta property="og:image" content="assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
@@ -312,14 +312,14 @@
       <button class="gs-back" onclick="window.location.href='index.html'">← Back</button>
       <img class="hby-mark hby-mark--header" src="assets/brand/logo/haileybury-magenta.png" alt="Haileybury" width="22" height="16">
       <span class="gs-brand">AI and Digital Innovation</span>
-      <span class="gs-header-title">Removes 🌱</span>
-      <button class="btn btn-ghost btn-sm" onclick="exportRevisedWork()">Save my work</button>
+      <span class="gs-header-title">Projects</span>
+      <button class="btn btn-ghost btn-sm" onclick="exportRevisedWork()">Download project and earlier work</button>
     </div>
 
     <div class="gs-progress-wrap">
       <div class="gs-progress-label">
         <span>Your progress</span>
-        <span id="gsProgressLabel">0 / 37 lessons</span>
+        <span id="gsProgressLabel">0 / 14 project sessions</span>
       </div>
       <div class="gs-progress-track">
         <div class="gs-progress-fill" id="gsProgressFill" style="width:0%"></div>
@@ -328,8 +328,8 @@
 
     <div class="gs-complete" id="gsComplete">
       <div class="gs-complete-icon">🏆</div>
-      <h2>Course Complete!</h2>
-      <p>You've completed all 37 lessons. Keep your portfolio as evidence of what you can explain and do independently. This records completion, not an externally verified qualification.</p>
+      <h2>Project pathways complete</h2>
+      <p>You've completed all 14 project sessions. Keep your portfolio as evidence of what you can explain and do independently. This records completion, not an externally verified qualification.</p>
       <div class="gs-cert-name-row">
         <label class="gs-cert-name-label" for="gsCertNameInput">Your name (for the certificate)</label>
         <input id="gsCertNameInput" class="gs-cert-name-input" type="text" placeholder="Enter your full name…" oninput="gsUpdateCertName(this.value)" maxlength="60">
@@ -348,8 +348,8 @@
         <div class="gs-cert-presented">This certifies that</div>
         <div class="gs-cert-recipient" id="gsCertRecipient">—</div>
         <div class="gs-cert-course">has successfully completed the</div>
-        <div class="gs-cert-title-main">AI and Digital Innovation — Revised lessons</div>
-        <div class="gs-cert-detail">37 lessons and project sessions · Revised teaching programme</div>
+        <div class="gs-cert-title-main">AI and Digital Innovation — Project pathways</div>
+        <div class="gs-cert-detail">14 project sessions · Two separate pathways</div>
         <div class="gs-cert-divider"></div>
         <div class="gs-cert-footer">
           <div><div class="gs-cert-date" id="gsCertDate"></div><div class="gs-cert-date-label">Date of completion</div></div>
@@ -360,12 +360,12 @@
     </div>
 
     <div class="gs-hero" id="gsHero">
-      <div class="gs-hero-badge">Removes · Revised lessons and projects</div>
+      <div class="gs-hero-badge">Apply your learning · Project pathways</div>
       <h1>AI and Digital Innovation</h1>
-      <p class="gs-hero-sub">The lessons we are developing in class: investigate how AI works, test it as a study partner, build a climate proposal and practise useful digital skills. Choose the sequence you need. <a href="removes.html">Browse the existing 40-lesson course</a>.</p>
+      <p class="gs-hero-sub">Choose a project when you are ready to put your learning to work. Climate Innovation has eight sessions; the Digital Literacy Project has six. These are separate projects alongside the <a href="removes.html">40-lesson Removes course</a>. Foundations, study skills and digital tools are now taught there.</p>
       <div class="gs-hero-stats">
-        <div class="gs-stat"><span class="gs-stat-num">37</span><span class="gs-stat-label">Lessons</span></div>
-        <div class="gs-stat"><span class="gs-stat-num">6</span><span class="gs-stat-label">Units</span></div>
+        <div class="gs-stat"><span class="gs-stat-num">14</span><span class="gs-stat-label">Project sessions</span></div>
+        <div class="gs-stat"><span class="gs-stat-num">2</span><span class="gs-stat-label">Projects</span></div>
         <div class="gs-stat"><span class="gs-stat-num">Self-paced</span><span class="gs-stat-label">Total time</span></div>
       </div>
       <div class="gs-hero-domains" aria-label="AILit Framework domains covered">
@@ -379,10 +379,8 @@
     <div id="gsReviewPanel" class="gs-review-panel" style="display:none"></div>
 
     <section class="gs-course-tools" aria-label="Course navigation">
-      <div class="gs-tools-top"><div><strong>Your next step</strong><p>Explore an idea. Test it. Keep evidence of what you learn.</p></div><button class="btn btn-primary" onclick="gsContinueCourse()">Continue learning →</button></div>
-      <nav class="gs-unit-nav" aria-label="Jump to a unit">
-        <a href="#gs-unit-1">1 · Foundations</a><a href="#gs-unit-2">2 · Learning</a><a href="#gs-unit-3">3 · Creating</a><a href="#gs-unit-4">4 · Trust</a><a href="#gs-unit-5">5 · Responsibility</a><a href="#gs-unit-6">6 · Shaping AI</a><a href="#gs-unit-7">7 · Your future</a>
-      </nav>
+      <div class="gs-tools-top"><div><strong>Choose your project</strong><p>Start with the project your teacher has set, or explore the one that interests you.</p></div><button class="btn btn-primary" onclick="gsContinueCourse()">Continue project work →</button></div>
+      <nav class="gs-unit-nav" aria-label="Jump to a unit"><a href="#gs-unit-1">Climate Innovation · 8 sessions</a><a href="#gs-unit-2">Digital Literacy Project · 6 sessions</a><a href="removes.html">Back to Removes · 40 lessons</a></nav>
       <details class="gs-practical-resources"><summary>Put it into practice: tools and the science project</summary><p>Use these supporting materials when your teacher sets a practical task.</p><a href="https://drive.google.com/drive/folders/1lJhS0YzC_CPSBw-jZCNugcDXvnWrsz8t" target="_blank" rel="noopener">Digital productivity materials ↗</a><a href="https://drive.google.com/drive/folders/1Q7QOyunTflICAwjQ0s9PwuHrEzbCIcPm" target="_blank" rel="noopener">Science project materials ↗</a></details>
     </section>
     <div class="gs-track" id="gsTrack"></div>
@@ -426,7 +424,9 @@
   <script src="js/tts.js" defer></script>
   <script>
   /* ── AI and Digital Innovation Removes — track engine ── */
-  var GS_KEY = 'di_revised_v1';
+  var linkedLesson=Number(new URLSearchParams(location.search).get('lesson'));
+  if(REVISED_LESSON_REDIRECTS[linkedLesson])location.replace('removes.html?lesson='+REVISED_LESSON_REDIRECTS[linkedLesson]);
+  var GS_KEY = 'di_projects_v2';
   var GS_XP_AWARDED_KEY = 'di_revised_xp_awarded_v1';
   var gsDone = new Set();
   var gsCurrentId = null;
@@ -464,7 +464,7 @@
   }
 
   function gsLoadProgress() {
-    try { gsDone = new Set(JSON.parse(localStorage.getItem(GS_KEY)) || []); } catch(e) { gsDone = new Set(); }
+    try { var active=GCSE_UNITS.flatMap(function(u){return u.lessons.map(function(l){return l.id;});});var stored=JSON.parse(localStorage.getItem(GS_KEY)||localStorage.getItem('di_revised_v1')||'[]');gsDone=new Set(Array.isArray(stored)?stored.filter(function(id){return active.includes(id);}):[]); } catch(e) { gsDone = new Set(); }
   }
   function gsSaveProgress() {
     localStorage.setItem(GS_KEY, JSON.stringify([...gsDone]));
@@ -667,33 +667,33 @@
     var fill = document.getElementById('gsProgressFill');
     var label = document.getElementById('gsProgressLabel');
     if (fill) fill.style.width = pct + '%';
-    if (label) label.textContent = done + ' / ' + total + ' lessons';
+    if (label) label.textContent = done + ' / ' + total + ' project sessions';
   }
 
   function gsShowComplete() {
     var el = document.getElementById('gsComplete');
     if (el) el.classList.add('visible');
-    var completedDate = localStorage.getItem('revised_completed_date') || new Date().toISOString().slice(0,10);
+    var completedDate = localStorage.getItem('projects_completed_date') || new Date().toISOString().slice(0,10);
     var dateEl = document.getElementById('gsCertDate');
     if (dateEl) dateEl.textContent = new Date(completedDate).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
-    var certId = localStorage.getItem('revised_cert_id');
+    var certId = localStorage.getItem('projects_cert_id');
     if (!certId) {
       certId = 'DI-REVISED-' + completedDate.replace(/-/g,'') + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
-      localStorage.setItem('revised_cert_id', certId);
+      localStorage.setItem('projects_cert_id', certId);
     }
     var idEl = document.getElementById('gsCertId');
     if (idEl) idEl.textContent = certId;
-    var savedName = localStorage.getItem('revised_cert_name') || '';
+    var savedName = localStorage.getItem('projects_cert_name') || '';
     var inp = document.getElementById('gsCertNameInput');
     if (inp && savedName) inp.value = savedName;
     gsUpdateCertName(savedName);
-    localStorage.setItem('revised_completed_date', completedDate);
+    localStorage.setItem('projects_completed_date', completedDate);
   }
 
   function gsUpdateCertName(val) {
     var el = document.getElementById('gsCertRecipient');
     if (el) el.textContent = val && val.trim() ? val.trim() : '—';
-    if (val && val.trim()) localStorage.setItem('revised_cert_name', val.trim());
+    if (val && val.trim()) localStorage.setItem('projects_cert_name', val.trim());
   }
 
   function gsOpenLesson(id) {
@@ -833,8 +833,8 @@
   var gsSession = { quizRight: 0, quizTotal: 0, streak: 0 };
 
   function gsNextLessonId(id) {
-    var flat = [];
-    GCSE_UNITS.forEach(function(u){ u.lessons.forEach(function(l){ flat.push(l.id); }); });
+    var unit=GCSE_UNITS.find(function(u){return u.lessons.some(function(l){return l.id===id;});});
+    var flat=unit?unit.lessons.map(function(l){return l.id;}):[];
     var i = flat.indexOf(id);
     return (i > -1 && i < flat.length - 1) ? flat[i + 1] : null;
   }
@@ -1443,13 +1443,14 @@
   gsRenderReviewPanel();
   var gsTotal=GCSE_UNITS.reduce(function(s,u){return s+u.lessons.length;},0);
   if(gsDone.size===gsTotal)gsShowComplete();
+  if(gsGetLesson(linkedLesson))gsOpenLesson(linkedLesson);
   initOffline();
   if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function(){});
 </script>
 <script>
 function exportRevisedWork(){
-  var work={course:'AI and Digital Innovation — revised lessons',exportedAt:new Date().toISOString(),data:{}};
-  for(var i=0;i<localStorage.length;i++){var key=localStorage.key(i);if(key.startsWith('di_revised')||/^di_evidence_v1_2[0-9]{2}$/.test(key)||/^di_note_2[0-9]{2}_/.test(key))work.data[key]=localStorage.getItem(key);}
+  var work={course:'AI and Digital Innovation — projects and earlier revised work',exportedAt:new Date().toISOString(),data:{}};
+  for(var i=0;i<localStorage.length;i++){var key=localStorage.key(i);if(key.startsWith('di_revised')||key.startsWith('di_projects')||key.startsWith('projects_')||/^di_evidence_v1_2[0-9]{2}$/.test(key)||/^di_note_2[0-9]{2}_/.test(key))work.data[key]=localStorage.getItem(key);}
   var url=URL.createObjectURL(new Blob([JSON.stringify(work,null,2)],{type:'application/json'}));var a=document.createElement('a');a.href=url;a.download='my-ai-digital-innovation-work.json';a.click();setTimeout(function(){URL.revokeObjectURL(url)},1000);
 }
 </script></body>

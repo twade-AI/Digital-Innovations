@@ -38,6 +38,7 @@ body::before,body::after,.pathway-card::before,.pathway-card::after,.pathway-hea
 .modal.is-fullscreen.di-reading :is(.hook-body,.slide-body,.concept-body,.scenario-situation,.disc-intro,.summary-intro,.example-box p,.concept-bullets li,.slide-bullets li,.slide-steps li,.act-step,.quiz-option,.scenario-choice,.disc-q-text,.slide-disc-q,.sp-text,.check-item,.poll-option,.match-term,.match-def,.scenario-question,.quiz-question,.poll-question,.reflection-prompt,.concept-col ul li) { font-size:1rem; line-height:1.65; }
 .modal.is-fullscreen.di-reading :is(.concept-callout,.slide-callout) { font-size:1rem; line-height:1.6; }
 .modal.is-fullscreen.di-reading .lv-notes-toggle { display:block!important; }
+.modal.is-fullscreen.di-reading .di-slide-canvas .slide-notes { display:block; }
 .modal.is-fullscreen.di-reading .notes-panel { display:flex!important; }
 .modal.is-fullscreen.di-reading .notes-panel[style*="display: none"],.modal.is-fullscreen.di-reading .notes-panel[style*="display:none"] { display:none!important; }
 .modal.is-fullscreen :is(.modal-inner,.modal-content) { background:var(--bg-card); }

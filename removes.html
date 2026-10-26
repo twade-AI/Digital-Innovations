@@ -363,12 +363,11 @@
     <div class="gs-hero" id="gsHero">
       <div class="gs-hero-badge">Removes · Works Offline</div>
       <h1>AI and Digital Innovation</h1>
-      <p><a class="btn btn-secondary" href="revised.html">Open the revised lessons and projects →</a></p>
-      <p class="gs-hero-sub">40 lessons across 7 units, aligned to the OECD/EU AI Literacy Framework. Build genuine AI literacy — from understanding how AI works, to creating and managing it wisely, to shaping it for the better.</p>
+      <p class="gs-hero-sub">One course. 40 lessons. Start with the AI in your day, learn to use it well, then test and redesign it. Each lesson gives you something to make, check and explain.</p>
       <div class="gs-hero-stats">
         <div class="gs-stat"><span class="gs-stat-num">40</span><span class="gs-stat-label">Lessons</span></div>
         <div class="gs-stat"><span class="gs-stat-num">7</span><span class="gs-stat-label">Units</span></div>
-        <div class="gs-stat"><span class="gs-stat-num">~15h</span><span class="gs-stat-label">Total time</span></div>
+        <div class="gs-stat"><span class="gs-stat-num">Self-paced</span><span class="gs-stat-label">Work at your pace</span></div>
       </div>
       <div class="gs-hero-domains" aria-label="AILit Framework domains covered">
         <span class="gs-hero-domain">Engage with AI</span>
@@ -385,7 +384,7 @@
       <nav class="gs-unit-nav" aria-label="Jump to a unit">
         <a href="#gs-unit-1">1 · Foundations</a><a href="#gs-unit-2">2 · Learning</a><a href="#gs-unit-3">3 · Creating</a><a href="#gs-unit-4">4 · Trust</a><a href="#gs-unit-5">5 · Responsibility</a><a href="#gs-unit-6">6 · Shaping AI</a><a href="#gs-unit-7">7 · Your future</a>
       </nav>
-      <details class="gs-practical-resources"><summary>Put it into practice: tools and the science project</summary><p>Use these supporting materials when your teacher sets a practical task.</p><a href="https://drive.google.com/drive/folders/1lJhS0YzC_CPSBw-jZCNugcDXvnWrsz8t" target="_blank" rel="noopener">Digital productivity materials ↗</a><a href="https://drive.google.com/drive/folders/1Q7QOyunTflICAwjQ0s9PwuHrEzbCIcPm" target="_blank" rel="noopener">Science project materials ↗</a></details>
+      <details class="gs-practical-resources"><summary>Project pathways and supporting materials</summary><p>The updated foundations, study and tools content is included in the 40 lessons above. Choose a separate project when you are ready to apply it.</p><a href="revised.html#gs-unit-1">Climate Innovation · 8 sessions →</a><a href="revised.html#gs-unit-2">Digital Literacy Project · 6 sessions →</a><a href="https://drive.google.com/drive/folders/1lJhS0YzC_CPSBw-jZCNugcDXvnWrsz8t" target="_blank" rel="noopener">Digital productivity materials ↗</a><a href="https://drive.google.com/drive/folders/1Q7QOyunTflICAwjQ0s9PwuHrEzbCIcPm" target="_blank" rel="noopener">Science project materials ↗</a></details>
     </section>
     <div class="gs-track" id="gsTrack"></div>
   </div>
@@ -651,7 +650,7 @@
           '<div class="gs-num">' + (done ? '✓' : overall) + '</div>' +
           '<div class="gs-lesson-info">' +
             '<div class="gs-lesson-title">' + lesson.icon + ' ' + lesson.title + '</div>' +
-            '<div class="gs-lesson-meta">' + lesson.time + (done?' · Completed':isNext?' · Up next':'') + '</div>' +
+            '<div class="gs-lesson-meta">' + lesson.time + (lesson.revision?' · Updated lesson':'') + (done?' · Completed':isNext?' · Up next':'') + '</div>' +
           '</div>' +
           (done ? '<span class="gs-lesson-check">✅</span>' : '<span class="gs-lesson-arrow">→</span>') +
         '</div>';
@@ -832,7 +831,7 @@
     // the whole slide render.
     try {
       if (!window.diSlide || !diSlide.notesHTML) throw new Error('diSlide.notesHTML unavailable (stale cache?)');
-      var revision = ({115:'r2',120:'r2',128:'r2'})[gsCurrentId];
+      var revision = gsGetLesson(gsCurrentId).lesson.revision || ({115:'r2',120:'r2',128:'r2'})[gsCurrentId];
       var noteKey = 'di_note_' + gsCurrentId + '_' + (revision ? revision + '_' : '') + gsSlideIdx;
       var savedNote = '';
       try { savedNote = localStorage.getItem(noteKey) || ''; } catch(e) {}
@@ -1341,10 +1340,11 @@
       return '<div class="slide-activity"><span class="slide-badge badge-activity">Interactive</span><div class="slide-title">'+(slide.title||'Interactive')+'</div>'+(slide.intro?'<div class="slide-body">'+slide.intro+'</div>':'')+gsWidgetHTML(slide)+(slide.callout?'<div class="slide-callout">'+slide.callout+'</div>':'')+reveal+sources+'</div>';
     }
     if (type==='exit-ticket') {
-      var key='di_gcse_exit_'+gsCurrentId;
+      var exitRevision=gsGetLesson(gsCurrentId).lesson.revision;
+      var key='di_gcse_exit_'+gsCurrentId+(exitRevision?'_'+exitRevision:'');
       var saved='';
       try{saved=localStorage.getItem(key)||'';}catch(e){}
-      return '<div class="slide-activity"><span class="slide-badge badge-activity">Exit Ticket</span><div class="slide-title">'+(slide.title||'Before you go…')+'</div>'+(slide.body?'<div class="slide-body">'+slide.body+'</div>':'')+'<div class="exit-ticket"><span class="exit-ticket-label">One-sentence commitment</span><div class="exit-ticket-prompt">'+(slide.prompt||'What is one thing you will do differently after this lesson?')+'</div><textarea class="exit-ticket-input" id="gsExitInput" placeholder="Write your commitment here…">'+gsEscape(saved)+'</textarea><div class="exit-ticket-actions"><button class="widget-btn widget-btn-primary" onclick="gsExitSave(\''+key+'\')">Save for later</button><span class="exit-ticket-status'+(saved?' et-saved':'')+'" id="gsExitStatus">'+(saved?'✓ Saved — you can edit and save again':'Saves to this device only')+'</span></div></div>'+sources+'</div>';
+      return '<div class="slide-activity"><span class="slide-badge badge-activity">Exit Ticket</span><div class="slide-title">'+(slide.title||'Before you go…')+'</div>'+(slide.body?'<div class="slide-body">'+slide.body+'</div>':'')+'<div class="exit-ticket"><span class="exit-ticket-label">Your independent answer</span><div class="exit-ticket-prompt">'+(slide.prompt||'What is one thing you will do differently after this lesson?')+'</div><textarea class="exit-ticket-input" id="gsExitInput" placeholder="Write your answer here…">'+gsEscape(saved)+'</textarea><div class="exit-ticket-actions"><button class="widget-btn widget-btn-primary" onclick="gsExitSave(\''+key+'\')">Save for later</button><span class="exit-ticket-status'+(saved?' et-saved':'')+'" id="gsExitStatus">'+(saved?'✓ Saved — you can edit and save again':'Saves to this device only')+'</span></div></div>'+sources+'</div>';
     }
     if (type==='assessment') {
       var aKey='di_gcse_assess_'+gsCurrentId;
