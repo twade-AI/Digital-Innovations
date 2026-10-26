@@ -192,7 +192,7 @@ LABS['pixel-classifier'] = {
             '<div class="lab-mini-card"><strong>1 · You\'ve quietly seen thousands</strong><br>' +
               'A lifetime of examples trained your brain. Nobody ever handed you a rulebook for "cat".</div>' +
             '<div class="lab-mini-card"><strong>2 · Now try to write the exact rule</strong><br>' +
-              '"Pointy ears" — so is a fox a cat? "Has whiskers, fur, four legs, a tail" — true of both. Every hand-written rule breaks on an exception.</div>' +
+              '"Pointy ears" — so is a fox a cat? "Has whiskers, fur, four legs, a tail" — true of both. A simple hand-written rule can fail on an exception; test the scope of the particular rule.</div>' +
             '<div class="lab-mini-card"><strong>3 · So we don\'t write the rule — we show examples</strong><br>' +
               'Hand a computer thousands of labelled photos and let it find the pattern itself. That is machine learning.</div>' +
           '</div>' +
@@ -244,7 +244,7 @@ LABS['pixel-classifier'] = {
           el(uid + '-done').hidden = false;
           el(uid + '-tally').textContent = points + ' pts · ' + right + '/' + PXC_CARDS.length + ' correct';
           el(uid + '-insight').textContent =
-            'Notice the trade you just made: guessing from a blur was worth more but riskier; more pixels meant more certainty for fewer points. A classifier\'s "confidence" works exactly like that — it rises with information, and it can still be wrong.';
+            'Notice the trade you just made: guessing from a blur was worth more but riskier; more pixels meant more certainty for fewer points. A classifier can also be confidently wrong, but its score is not calculated by this game. More information does not always increase confidence.';
         } else { show(); }
         lock = false;
       }, 850);
@@ -625,8 +625,8 @@ var PIPE_STEPS = [
   { p: 'train', ico: '📚', term: 'Training data', text: 'It starts with a vast dataset — billions of human-made examples of text and images. Everything the model will ever "know" has to come from this pile.' },
   { p: 'train', ico: '🧠', term: 'Learning the patterns', text: 'The model reads the data over and over, nudging millions of internal numbers — its <strong>weights</strong> — until it gets good at predicting what comes next. Along the way it builds an <strong>embedding</strong>: a map of meaning where similar tokens sit close together.' },
   { p: 'train', ico: '⭐', term: 'Human feedback (RLHF)', text: 'Then people rate sample answers, and the model is tuned toward responses humans judged helpful, honest and safe. Real people do this labelling work — it is a hidden human supply chain behind every model.' },
-  { p: 'train', ico: '🧊', term: 'The model is frozen', text: 'Training stops. What ships is a fixed set of weights — the distilled patterns, not a copy of the data. When you talk to it, it is no longer learning.' },
-  { p: 'use', ico: '⌨️', term: 'Your prompt', text: 'You type a prompt — say, <em>"Why is the sky blue?"</em>. Nothing new is being learned now; the frozen model simply responds.' },
+  { p: 'train', ico: '🧊', term: 'The model is frozen', text: 'In this simplified pipeline, training produces fixed weights. Responses can still change with context, retrieval or product memory. Memorisation is possible; do not assume training data can never be reproduced.' },
+  { p: 'use', ico: '⌨️', term: 'Your prompt', text: 'You type a prompt — say, <em>"Why is the sky blue?"</em>. The supplied context affects the response without necessarily updating model weights. Retention and later provider training are separate questions.' },
   { p: 'use', ico: '✂️', term: 'Tokenisation', text: 'Your text is chopped into <strong>tokens</strong> — words and word-pieces — and each token is swapped for its ID: its slot in the model\'s vocabulary.' },
   { p: 'use', ico: '📍', term: 'Embedding lookup', text: 'Each ID becomes a <strong>vector</strong> — a list of numbers placing it in the same map of meaning the model built during training.' },
   { p: 'use', ico: '🎲', term: 'Prediction, token by token', text: 'Using its learned weights, the model predicts the most likely next token — then feeds that back in and predicts the next, over and over. Generation is prediction on repeat.' },
@@ -778,7 +778,7 @@ LABS['bland-paste'] = {
         '<div class="lab-slider-row"><label for="' + uid + '-f">Pull toward the average</label>' +
           '<input type="range" id="' + uid + '-f" min="0" max="100" value="8">' +
           '<span class="lab-val" id="' + uid + '-fv"></span></div>' +
-        '<p class="lab-note">A model predicts the <strong>most likely</strong> output — and the most likely thing is, by definition, the average of everything it has seen. Left on defaults, everything drifts smooth, symmetrical and forgettable. Your taste is the outlier — and that\'s the value only you can add.</p>' +
+        '<p class="lab-note">This slider illustrates <strong>visual averaging</strong>. It is an artistic metaphor, not a literal model of generation. The most probable outcome is not the same as the mean. Compare variations against a purpose and explain your choices.</p>' +
       '</div>';
   },
   init: function (uid) {
@@ -969,7 +969,7 @@ var PC_CHECKS = [
     no: '<strong>Ask to understand, not just receive.</strong> Request analogies, worked examples, or commented code you can read.' },
   { re: /(not generic|avoid (the )?(template|clich|generic)|original|distinctive|in my (style|voice)|don.?t (be|sound) (bland|generic)|reject (the )?default)/i,
     yes: '<strong>Pushing against the average.</strong> You\'ve told it not to serve the bland default.',
-    no: '<strong>Defy the default.</strong> Add "avoid generic templates" or "in my own style" — otherwise you get the statistical average.' }
+    no: '<strong>Defy the default.</strong> Add "avoid generic templates" or "in my own style" — then compare outputs against your purpose; specificity alone does not guarantee quality.' }
 ];
 LABS['prompt-coach'] = {
   title: 'The prompt coach',
@@ -1058,8 +1058,8 @@ var GX_STEPS = [
     body: 'A language model doesn\'t store a dictionary. It gives every word — and every fragment of a word — a position in a vast space, like a star in a night sky. The coordinates were learned by reading enormous amounts of text.',
     note: 'Try it: drag the sky around. Every word has a home position before any sentence nudges it.' },
   { no: 'Idea 2 of 4', title: 'Distance is meaning',
-    body: 'Words used in similar ways end up near each other, forming bright clusters: the studio words huddle together while the finance words drift far away. The model doesn\'t understand a word the way you do — it only knows which other stars it tends to sit beside.',
-    note: 'Notice: related words cluster; unrelated ones are light-years apart. Closeness is the whole trick.' },
+    body: 'Words used in similar ways end up near each other, forming bright clusters: the studio words huddle together while the finance words drift far away. This simplified picture illustrates similarity in representations, not the complete model or a proof about understanding.',
+    note: 'Notice: related words cluster; unrelated ones are light-years apart. Closeness illustrates one idea; models also transform representations in context.' },
   { no: 'Idea 3 of 4', title: 'A prompt traces a path',
     body: 'When you write a prompt, you draw a route between stars. Your words tell the model where in the sky to pay attention — and a word\'s position even shifts with its neighbours: "bank" sits somewhere different in "river bank" than in "savings bank". A vague prompt is a faint wandering line; a precise one is a deliberate path.',
     note: 'This is why wording matters: change one word and the path starts in a different region entirely.' },
@@ -2384,10 +2384,10 @@ LABS['peril-promise'] = {
 var AQ_FALLBACK_QS = [
   { question: 'What is the very first thing a model does with your prompt?', options: ['Looks it up in a database', 'Splits the text into tokens', 'Searches the live web'], correct: 1, explanation: 'It tokenises first — the text becomes tokens before anything else happens.' },
   { question: 'A vector is best described as…', options: ['A list of numbers giving a position in meaning-space', 'A word spelled backwards', 'A web link'], correct: 0, explanation: 'A vector is coordinates — a position in the model\'s space of meaning.' },
-  { question: 'Cosine similarity measures…', options: ['Pixel distance between words', 'The angle between two vectors', 'How many letters two words share'], correct: 1, explanation: 'It is the angle — a small angle means similar meaning.' },
+  { question: 'Cosine similarity measures…', options: ['Pixel distance between words', 'The angle between two vectors', 'How many letters two words share'], correct: 1, explanation: 'Cosine similarity is the cosine of the angle between non-zero vectors. Its usefulness for relevance depends on the representation and task.' },
   { question: 'AI bias mainly comes from…', options: ['Random maths errors', 'Patterns in the human data it trained on', 'The programming language used'], correct: 1, explanation: 'Skewed data in, skewed decisions out.' },
   { question: 'A model\'s "knowledge" is really…', options: ['A stored copy of the internet', 'Statistical patterns learned from training data', 'Hand-written rules'], correct: 1, explanation: 'It keeps distilled patterns, not a copy of the data.' },
-  { question: 'Why does AI output often feel samey or generic?', options: ['It predicts the most likely (average) result', 'It is always low-resolution', 'It copies one famous author'], correct: 0, explanation: 'Models drift to the statistical average — the "most likely" output.' },
+  { question: 'Why does AI output often feel samey or generic?', options: ['Familiar prompts and conventions can encourage familiar outputs', 'It is always low-resolution', 'It copies one famous author'], correct: 0, explanation: 'Generic-looking output is not proof that generation computes a literal average. Compare the actual task, prompt and results.' },
   { question: 'An AI states a false fact with total confidence. This is called…', options: ['Overfitting', 'A hallucination', 'Tokenisation'], correct: 1, explanation: 'Hallucination: plausible-sounding, confidently wrong.' },
   { question: 'In training, human feedback (RLHF) is used to…', options: ['Pay the model', 'Steer it toward answers people rated as helpful and safe', 'Delete old data'], correct: 1, explanation: 'People rate sample answers; the model is tuned toward the good ones.' }
 ];

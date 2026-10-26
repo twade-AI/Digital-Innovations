@@ -1,0 +1,75 @@
+{
+  "lessons": 59,
+  "slides": 540,
+  "widgets": 25,
+  "sources": 59,
+  "diagrams": 59,
+  "nativeFullscreen": true,
+  "fullscreenFallback": true,
+  "responsive": [
+    {
+      "width": 1440,
+      "theme": "light",
+      "bodyFont": 16,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "bodyFont": 16,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "theme": "high",
+      "bodyFont": 16,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "bodyFont": 16,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "bodyFont": 16,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "theme": "high",
+      "bodyFont": 16,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "bodyFont": 16,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "bodyFont": 16,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "theme": "high",
+      "bodyFont": 16,
+      "overflow": false
+    }
+  ],
+  "workedAnswerReveal": true,
+  "keyboardNavigation": true,
+  "savedNotesAndReflections": true,
+  "evidenceSavedAndDownloaded": true,
+  "earlierChallengePreserved": true,
+  "aepJsonExport": true,
+  "lateNotesExported": true,
+  "portfolio": true,
+  "offline": true,
+  "errors": []
+}

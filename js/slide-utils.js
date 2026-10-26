@@ -62,7 +62,7 @@
       if (s && s.url) return '<li><a href="' + s.url + '" target="_blank" rel="noopener">' + (s.label || s.url) + '</a></li>';
       return '<li>' + ((s && s.label) || '') + '</li>';
     }).join('');
-    return '<div class="slide-sources"><span class="slide-sources-label">Sources</span><ul>' + items + '</ul></div>';
+    return '<div class="slide-sources"><span class="slide-sources-label">Sources</span><ul>' + items + '</ul>' + (slide.sourceNote ? '<p class="slide-source-note">' + escape(slide.sourceNote) + '</p>' : '') + '</div>';
   }
 
   /* Default reveal toggle — engines that adopt this module can

@@ -88,6 +88,7 @@
     <div id="pfContent"></div>
   </div>
 
+  <script src="js/data.js"></script>
   <script src="js/slides-gcse.js"></script>
   <script src="js/passport-data.js"></script>
   <script src="js/evidence-tasks.js"></script>
@@ -105,10 +106,14 @@
     }
 
     var track = (q('t') || 'removes').toLowerCase();
+    if (!['removes','fluency','aep'].includes(track)) track = 'removes';
     document.body.setAttribute('data-track', track);
+    document.getElementById('pfShareBtn').style.display = track === 'removes' ? '' : 'none';
+    if (track === 'aep') document.querySelector('.pf-sub').firstChild.textContent = 'AEP evidence, notes and reflections for ';
 
     // Identify the pupil's name from the most-recently-set cert-name entries.
-    var name = localStorage.getItem('gs_cert_name')
+    var name = (track === 'aep' ? localStorage.getItem('di_display_name') : '')
+            || localStorage.getItem('gs_cert_name')
             || localStorage.getItem('fl_cert_name')
             || localStorage.getItem('di_display_name')
             || '';
@@ -150,7 +155,7 @@
       { l:133, u:'U7', t:'AI Charter & Career Map' }
     ];
     window.pfExportWork = function () {
-      var pname = (name || '').trim();
+      var pname = (name || (track === 'aep' ? 'learner' : '')).trim();
       if (!pname) {
         pname = (window.prompt('Enter your name for the export:') || '').trim();
         if (pname) { try { localStorage.setItem('gs_cert_name', pname); } catch (e) {} }
@@ -167,6 +172,7 @@
           };
         })
       };
+      if (track === 'aep') data = {v:1,type:'di-aep-portfolio',name:pname,exported:new Date().toISOString(),lessons:items,evidence:Object.fromEntries(UNITS.flatMap(function(u){return u.lessons;}).map(function(l){return [l.id,DI_EVIDENCE.read(l.id)];}).filter(function(e){return e[1].updatedAt;}))};
       var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
       var a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
@@ -208,6 +214,17 @@
           });
         });
       });
+    } else if (track === 'aep') {
+      var aepDone=[],aepDates={};
+      try { var savedDone=JSON.parse(localStorage.getItem('di_progress')||'[]');if(Array.isArray(savedDone))aepDone=savedDone; } catch(e){}
+      try { aepDates=JSON.parse(localStorage.getItem('di_completion_dates')||'{}')||{}; } catch(e){}
+      UNITS.forEach(function(unit){unit.lessons.forEach(function(lesson){
+        var notes=collectNotes(lesson.id),evidence=DI_EVIDENCE.read(lesson.id),prefix='di_reflection_'+lesson.id+'_';
+        var reflections=Object.keys(localStorage).filter(function(k){return k.indexOf(prefix)===0&&/^\d+$/.test(k.slice(prefix.length));}).sort(function(a,b){return Number(a.slice(prefix.length))-Number(b.slice(prefix.length));}).map(function(k){return 'Slide '+(Number(k.slice(prefix.length))+1)+': '+localStorage.getItem(k);}).join('\n\n');
+        var done=aepDone.includes(lesson.id);
+        if(!notes&&!evidence.updatedAt&&!reflections&&!done)return;
+        items.push({unit:unit.title,unitColour:unit.colour,lessonId:lesson.id,title:lesson.title,done:done,completedAt:aepDates[lesson.id]||'',notes:notes,reflections:reflections,evidence:evidence.updatedAt?DI_EVIDENCE.text(lesson.id,evidence):''});
+      });});
     } else if (track === 'fluency') {
       var passportDone=[];try{passportDone=JSON.parse(localStorage.getItem('fl_progress_removes20_v2')||localStorage.getItem('fl_progress_v1')||'[]');}catch(e){}
       PASSPORT_TRACK.forEach(function(lesson){
@@ -220,7 +237,7 @@
 
     var content = document.getElementById('pfContent');
     if (!items.length) {
-      content.innerHTML = '<div class="pf-empty"><h2 style="margin:0 0 10px;font-weight:700;color:var(--text)">No portfolio entries yet.</h2><p style="margin:0;font-size:.9rem">Complete a few lessons — or jot something in the Notes box inside any slide — and it\'ll appear here.</p><div class="pf-empty-actions" style="margin-top:14px"><a class="btn btn-primary btn-sm" href="' + (track === 'fluency' ? 'fluency.html' : 'removes.html') + '">Go to lessons</a></div></div>';
+      content.innerHTML = '<div class="pf-empty"><h2 style="margin:0 0 10px;font-weight:700;color:var(--text)">No portfolio entries yet.</h2><p style="margin:0;font-size:.9rem">Complete a few lessons — or jot something in the Notes box inside any slide — and it\'ll appear here.</p><div class="pf-empty-actions" style="margin-top:14px"><a class="btn btn-primary btn-sm" href="' + (track === 'aep' ? 'index.html' : track === 'fluency' ? 'fluency.html' : 'removes.html') + '">Go to lessons</a></div></div>';
       return;
     }
 
@@ -265,6 +282,7 @@
                     (e.lessonId ? '<div class="pf-l-meta">Lesson #' + esc(String(e.lessonId)) + '</div>' : '') +
                   '</div>';
         if (e.evidence) html += '<div class="pf-assess"><strong>Evidence of learning</strong><br>'+esc(e.evidence)+'</div>';
+        if (e.reflections) html += '<div class="pf-note"><strong>Reflections</strong><br>'+esc(e.reflections)+'</div>';
         if (e.notes) html += '<div class="pf-note">' + esc(e.notes) + '</div>';
         if (e.exit)  html += '<div class="pf-exit"><strong>Exit ticket.</strong> ' + esc(e.exit) + '</div>';
         if (e.assess || e.assessLevel) html += '<div class="pf-assess"><strong>📋 Assessed task.</strong>' + (e.assessLevel ? ' <span class="pf-lvl pf-lvl-' + lvlCls(e.assessLevel) + '">Self-rated: ' + esc(e.assessLevel) + '</span>' : '') + (e.assess ? ' ' + esc(e.assess) : '') + '</div>';

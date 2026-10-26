@@ -1,341 +1,1329 @@
-/* ── Curated Slide Content: Units 1 & 2 (Lessons 1-12) ── */
-
+/* AEP editorial review: 26 October 2026. Lesson IDs and base slide counts retained. */
+var AEP_REVIEWED = true;
 var SLIDES_U1U2 = {
-
-  1: [
-    { type: 'hook', title: 'Your AI Footprint', body: 'Before you even left the house this morning, AI had already made dozens of decisions for you. Your alarm app optimised your wake time, your email sorted itself, your news feed was curated by a recommendation algorithm, and your commute was routed by predictive traffic modelling. A 2025 widely cited estimates suggest the average person interacts with AI-powered systems well over 100 times per day — the vast majority without ever realising it. ChatGPT alone reached 300 million weekly users in early 2025, less than two and a half years after launch.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">100+</span><span class="sl">AI interactions per person per day, by most estimates — nearly all unnoticed</span></div><div class="hook-stat-mini"><span class="sv">300M</span><span class="sl">weekly ChatGPT users as of early 2025</span></div><div class="hook-stat-mini"><span class="sv">$1T+</span><span class="sl">global AI market value, 2025</span></div></div>Today, we map your personal AI ecosystem — and figure out what it means to live inside one.' },
-    { type: 'concept', title: 'What Counts as AI?', body: 'Artificial intelligence is a broad umbrella covering any system that performs tasks normally requiring human intelligence. The term spans an enormous range — from a simple spam filter to a large language model writing poetry. Understanding the distinctions matters because different AI types raise very different ethical questions.', bullets: ['Rule-based systems: spam filters, autocorrect, sat-nav routing — follow explicit programmer-defined rules with no learning', 'Machine learning: Netflix recommendations, Spotify Discover Weekly — learn statistical patterns from data without explicit programming', 'Deep learning: facial recognition, voice assistants, ChatGPT — use layered neural networks to find patterns in raw data', 'Robotics & automation: warehouse robots (Amazon uses 750,000+), surgical systems — AI combined with physical actuation', 'Generative AI: Midjourney, DALL-E, Claude — produce novel text, images, code, or audio from natural language prompts'], callout: 'Most AI you encounter daily is narrow AI — brilliant at one specific task but completely incapable of anything else. A frontier chatbot can pass the bar exam but cannot fold laundry. By 2026, the leading models from OpenAI, Google and Anthropic post scores rivalling strong human test-takers across law, medicine, and coding benchmarks — yet still struggle with basic physical tasks a toddler manages effortlessly.' },
-    { type: 'concept', title: 'Mapping Your AI Ecosystem', body: 'An AI ecosystem map categorises every AI interaction in your life by domain. This audit reveals not just how much AI you use — but how deeply it has been woven into decisions you once considered entirely personal.', bullets: ['Communication: autocomplete, grammar check, spam filtering, real-time translation, email prioritisation (Gmail\'s Smart Compose predicts your next sentence)', 'Entertainment: recommendation engines — TikTok\'s algorithm decides what 1 billion people watch next, shaping culture in real time', 'Education: plagiarism detectors (Turnitin), adaptive learning platforms, AI tutors, automated essay marking pilots in UK schools', 'Health: fitness trackers, sleep analysis, symptom checkers — NHS England piloting AI triage for 111 calls', 'Finance: fraud detection (Visa ML blocks 60 million fraudulent transactions per year), credit scoring, insurance pricing models'], callout: 'When TikTok\'s algorithm decides what you watch next, it is also shaping what you believe, what you buy, and even how you feel about yourself. Recommendation AI is among the most consequential — and least visible — forces in modern life.' },
-    { type: 'scenario', title: 'AI in Your School', situation: 'Your headteacher announces a trial of an AI attention-tracking system: cameras in every classroom monitor eye movement, posture, and facial expressions to detect disengagement. The data will alert teachers in real-time and generate weekly "engagement reports" for parents. The system is provided free by an EdTech company — in exchange for anonymised pupil behaviour data.', question: 'As pupil governor, you have been asked for your official response before the trial begins. What do you do?', choices: [
-      { text: 'Support the trial — better engagement data could genuinely improve teaching and identify struggling pupils earlier.', outcome: 'The system is approved. Three months later, a data breach exposes engagement scores for 400 pupils. Several pupils begin receiving targeted ads for private tutoring based on their "low engagement" profiles. The school had not read the data-sharing clause buried in the contract.' },
-      { text: 'Request a full Privacy Impact Assessment and independent legal review before any rollout.', outcome: 'The review takes six weeks. The legal team discovers that collecting biometric data from minors requires explicit parental consent under GDPR Article 9 — which the school had not planned to obtain. The contract is renegotiated with strict data retention limits, opt-out rights, and a ban on third-party data sharing. The eventual trial is much safer.' },
-      { text: 'Oppose it entirely — biometric surveillance in schools sets a dangerous precedent regardless of the claimed benefits.', outcome: 'The proposal is shelved. The headteacher instead commissions CPD training for teachers on recognising disengagement without algorithmic tools. Pupil trust in the school\'s data practices remains high, and no precedent for facial monitoring of minors is set.' }
-    ]},
-    { type: 'activity', title: 'AI Audit Challenge', instructions: 'You have 15 minutes to audit your AI footprint as thoroughly as possible. The goal: find AI in places you have never thought to look.', steps: ['Open a blank document or use the Skills Audit Template from Resources', 'List every app, device, and service you used in the last 24 hours — be exhaustive', 'For each one, mark whether it uses AI and what type (rule-based, ML, generative)', 'Categorise each: Communication, Entertainment, Education, Health, Finance, Transport, Home, or Other', 'Identify your top 3 most influential AI interactions — the ones that most shape your behaviour or beliefs', 'Write one sentence: What would your day look like without these three systems?'] },
-    { type: 'discussion', title: 'Reflect on Your Footprint', questions: [{ num: 1, text: 'Which AI system in your audit surprised you most — and why had you never consciously noticed it before?' }, { num: 2, text: 'TikTok\'s algorithm is designed to maximise time-on-app, not user wellbeing. Should behaviour-shaping AI require a different kind of transparency than AI that just filters spam?' }, { num: 3, text: 'If you discovered an AI system had been ranking your academic potential, predicting your mental health risk, and shaping your social circle since you were 13 — what would you want to do about it?' }] },
-    { type: 'quiz', question: 'Roughly how many times a day does the average person interact with AI-powered systems?', options: ['About 10 times', 'About 50 times', 'Over 100 times', 'Over 500 times'], correct: 2, explanation: 'Estimates put the figure at well over 100 interactions daily — from email sorting and predictive text to navigation and social media feeds — the vast majority without realising it.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'AI is invisible by design', text: 'The average person interacts with AI 100+ times daily by most estimates; almost all of it unnoticed. Visibility requires deliberate effort.' }, { icon: '▸', label: 'Mapping reveals influence', text: 'Auditing your ecosystem shows how AI shapes not just what you do, but what you believe and who you are' }, { icon: '▸', label: 'Consent requires awareness', text: 'You cannot meaningfully consent to AI influence you have never noticed. Awareness is the precondition for agency.' }] }
-  ],
-
-  2: [
-    { type: 'hook', title: 'The Parrot vs. The Librarian', body: 'In 2023, New York lawyer Steven Schwartz asked ChatGPT to find legal precedents supporting his case. The AI confidently produced six cases — complete with judges, dates, and detailed summaries. Every single case was entirely fabricated. Schwartz submitted them to court without checking. The judge fined him $5,000 and issued a public reprimand. ChatGPT had not lied — it had done exactly what it always does: predicted the most plausible-sounding next word. It had no idea its citations were fiction.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">6</span><span class="sl">hallucinated legal cases submitted to court</span></div><div class="hook-stat-mini"><span class="sv">$5,000</span><span class="sl">fine for the lawyer</span></div><div class="hook-stat-mini"><span class="sv">~20%</span><span class="sl">of AI citations found to be fabricated in studies</span></div></div>The fundamental question: does ChatGPT <em>understand</em> what it writes, or is it the world\'s most sophisticated parrot?' },
-    { type: 'concept', title: 'The Stochastic Parrot', body: 'In a landmark 2021 paper, researchers Emily Bender, Timnit Gebru, Angelina McMillan-Major, and Margaret Mitchell coined the term "stochastic parrot" to describe large language models. Their argument: LLMs are statistical pattern-matchers that predict the most probable next token in a sequence — with no genuine understanding of meaning, truth, or consequence.', bullets: ['LLMs are trained on trillions of text tokens scraped from the internet, books, and code repositories', 'They learn statistical co-occurrence patterns: which words tend to follow which, in which contexts', 'Output is generated by sampling from a probability distribution — not by reasoning or retrieving facts', 'They have no world model, no sensory experience, no concept of truth — only patterns of what text looks like', 'Fluency is not comprehension: a model can write a convincing medical diagnosis with zero understanding of biology'], callout: '"Stochastic" means randomly determined by a probability distribution. When ChatGPT writes a sentence, it is not thinking about what is true — it is predicting what text looks statistically plausible, given everything it has read.' },
-    { type: 'concept', title: 'The Librarian Argument', body: 'Not everyone accepts the stochastic parrot framing. A growing number of AI researchers argue that as models scale up in size and training data, they develop emergent capabilities that look increasingly like genuine reasoning — even if the mechanism differs from human cognition.', bullets: ['Frontier models post scores rivalling strong human test-takers on the bar exam, USMLE medical licensing, and the SAT', 'LLMs demonstrate chain-of-thought reasoning: break complex problems into logical steps when prompted correctly', 'They can solve novel problems — maths puzzles, coding challenges — they were never explicitly trained on', 'Some researchers (Hinton, LeCun) debate whether sufficiently complex pattern-matching becomes functionally equivalent to understanding', 'The Chinese Room (Searle, 1980): a person following translation rules for Chinese produces correct output without understanding a word — is AI any different?'], callout: 'This is genuinely unsettled. Geoffrey Hinton (who won the Nobel Prize for inventing deep learning) now believes LLMs may have developed something like understanding. Yann LeCun (Meta\'s chief AI scientist) completely disagrees. Both have spent their careers building these systems.' },
-    { type: 'scenario', title: 'The Fabricated Citation', situation: 'Your classmate Maya is working on an extended essay about AI regulation for her Politics A-Level. She used ChatGPT to research key court cases and has found six references that perfectly support her argument. She shows you the list. You notice the citations look slightly odd — the case names are plausible but you\'ve never heard of them, and the dates seem off. Maya has three hours until the essay is due.', question: 'What do you advise Maya to do?', choices: [
-      { text: 'Trust the citations — ChatGPT is trained on massive amounts of legal text and is usually accurate on factual information like case names.', outcome: 'Three of the six cases are entirely fabricated. Maya\'s teacher submits the work to Turnitin, which flags the citations as unverifiable. Maya receives a zero for academic integrity violations and must resubmit without the AI-sourced references. The essay grade drops by two letter grades.' },
-      { text: 'Quickly Google each case name to verify it exists before submitting — five minutes per citation is worth the time.', outcome: 'Maya checks all six cases in 25 minutes. She finds three are real, two are slightly misidentified (wrong year, wrong court), and one is completely invented. She fixes the real ones and removes the fabricated citation. The essay is stronger and fully verifiable. The teacher notices the rigour.' },
-      { text: 'Remove all six citations entirely and rewrite the section using only sources Maya can personally verify.', outcome: 'The section is thinner but completely accurate. Maya\'s teacher comments that her sourcing is unusually careful and asks how she verified her references. Maya explains her process — and earns extra credit for source evaluation methodology.' }
-    ]},
-    { type: 'activity', title: 'Test the Parrot', instructions: 'Design prompts that expose the boundary between genuine understanding and sophisticated pattern-matching. You will need access to an LLM.', steps: ['Write a riddle that requires genuine logical reasoning — not something Google could answer from its top result', 'Write a prompt about a physical scenario that requires common sense (e.g. "I pour water into an upside-down glass. What happens?")', 'Ask the AI a question containing a false premise (e.g. "Why did Einstein fail maths at school?") — does it push back or agree?', 'Ask it to cite three recent academic papers on a niche topic — then verify each citation exists', 'Record and classify each response: genuine reasoning, impressive pattern-matching, or clear hallucination', 'Share your most revealing finding with the class — what does it tell us about what LLMs actually are?'] },
-    { type: 'discussion', title: 'Understanding or Imitation?', questions: [{ num: 1, text: 'If an AI produces the same output as a human who genuinely understands, does the distinction matter in practice? When might it matter most?' }, { num: 2, text: 'The lawyer who submitted fake AI citations was fined, not ChatGPT\'s creators. Is that fair? Who should bear responsibility when AI confidently produces false information?' }, { num: 3, text: 'If "understanding" requires consciousness and lived experience, could any machine ever truly understand anything — or is this a bar we invented to exclude machines?' }] },
-    { type: 'quiz', question: 'What does the term "stochastic parrot" suggest about large language models?', options: ['They can mimic any human voice', 'They predict probable next tokens without genuine understanding', 'They are trained exclusively on spoken language', 'They always repeat what users say back to them'], correct: 1, explanation: 'Coined by Bender & Gebru (2021), the term describes LLMs as statistical pattern-matchers that generate text by predicting the most probable next token — producing fluent output without genuine comprehension of meaning or truth.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Fluency ≠ understanding', text: 'LLMs predict statistically plausible text — they have no concept of truth, and hallucinate with total confidence' }, { icon: '▸', label: 'Emergence is real', text: 'At scale, LLMs demonstrate reasoning-like behaviour that even their creators cannot fully explain' }, { icon: '▸', label: 'Always verify', text: 'Adversarial testing reveals the limits of AI capabilities. Never submit AI-sourced facts without checking.' }] }
-  ],
-
-  3: [
-    { type: 'hook', title: 'How a Machine Learns (Unplugged)', body: 'In 2009, Google Flu Trends made headlines: an algorithm trained on search queries could predict flu outbreaks two weeks before the CDC could. It worked brilliantly — until the 2012-13 flu season, when it predicted twice the actual number of cases. What had it learned? Not flu. It had learned that news coverage about flu drives searches — and in mild seasons, media hype still triggers the pattern. The algorithm had found a real statistical correlation. It just was not the one the engineers thought. This is the central insight of supervised machine learning: the model learns exactly what patterns exist in the training data. Whether those patterns represent real causation is a completely different question. Imagine you have never seen a cat. Someone shows you 10,000 photos labelled "cat" and 10,000 labelled "not cat." You start spotting patterns — pointed ears, whiskers, vertical pupils. Show you a new photo, you guess "cat" correctly 95% of the time. That is exactly what a supervised learning algorithm does — a billion times per second, adjusting trillions of parameters after each mistake. In January 2025, DeepSeek released R1 — matching GPT-4\'s performance at a fraction of the cost.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">2×</span><span class="sl">Google Flu Trends overestimated flu cases in 2012-13 — learned news, not flu</span></div><div class="hook-stat-mini"><span class="sv">~$100M</span><span class="sl">estimated cost to train GPT-4 (2023)</span></div><div class="hook-stat-mini"><span class="sv">~$6M</span><span class="sl">cost to train DeepSeek R1 — matching GPT-4 performance (Jan 2025)</span></div><div class="hook-stat-mini"><span class="sv">45TB</span><span class="sl">of text used to train GPT-3 alone</span></div></div>Today, we walk through this process with zero computers — just cards, patterns, and your brain.' },
-    { type: 'video', title: 'What is a Neural Network?', videoId: 'aircAruvnKk', credit: '3Blue1Brown · Deep Learning Series, Chapter 1 · 19 min', intro: 'Before the unplugged activity, watch Grant Sanderson\'s beautiful animation of how a neural network learns to recognise handwritten digits — the exact same process you\'ll simulate with cards. Focus on two things: (1) what "learning" actually means mathematically — adjusting weights to minimise a cost function; and (2) how the network\'s internal representations change as it trains. You\'ll understand the card activity twice as well after watching this.' },
-    { type: 'concept', title: 'Training, Validation & Test Sets', body: 'Supervised learning requires labelled data split into three distinct sets. Each serves a different purpose — confusing them produces models that look great on paper but fail in the real world.', bullets: ['Training set (typically 70-80%): The model sees this data and adjusts its internal weights to reduce prediction error', 'Validation set (10-15%): Used during training to check for overfitting and tune hyperparameters — the model never directly learns from this', 'Test set (10-15%): Held back completely until the very end — the model\'s final exam on data it has never encountered', 'The golden rule: Never evaluate on training data. It is like marking your own homework — the score means nothing', 'ImageNet, the benchmark that launched the deep learning revolution, had 1.2 million training images across 1,000 categories'], callout: 'A model that memorises training data but fails on new data has overfit — it learned the noise, not the signal. The 2012 AlexNet neural network won ImageNet by a margin so large it shocked the field, because it had learned to generalise. That moment triggered the modern AI era.' },
-    { type: 'concept', title: 'Overfitting vs. Generalisation', body: 'The core tension in machine learning: fitting training data closely (low training error) versus performing well on unseen data (low test error). A model that generalises has found the true underlying patterns. A model that overfits has found the quirks in a specific dataset.', bullets: ['Overfitting: The model memorises specific training examples — high training accuracy, poor test accuracy', 'Underfitting: The model is too simple to capture real patterns — poor accuracy everywhere', 'The sweet spot: Complex enough to capture genuine patterns, simple enough not to memorise noise', 'Think of it as revision: memorising past papers word-for-word vs. understanding the underlying concepts', 'Practical solutions: Regularisation (penalise complexity), dropout (randomly disable neurons during training), early stopping (halt training before overfitting begins), more data'], callout: 'A classic — and probably apocryphal — overfitting folk tale, retold because the failure mode is entirely real: a US military AI trained to detect tanks in photographs. It achieved 100% training accuracy — then failed completely on new images. Investigation revealed the training "tank" photos were all taken on sunny days, and the "no tank" photos on cloudy days. It had learned to detect sunshine, not tanks.' },
-    { type: 'scenario', title: 'The Overfit Classifier', situation: 'Your team has built an AI system to automatically flag potentially harmful social media posts for human review. After training on 50,000 labelled examples, it achieves 97% accuracy on the training set. Excited, you run it on your held-out test set: 61% accuracy. Your project deadline is tomorrow and your teacher is expecting a working demo.', question: 'What is the most honest and responsible thing to do?', choices: [
-      { text: 'Present the 97% training accuracy in your demo — it still shows the system works in principle, even if the test score is lower.', outcome: 'Your teacher asks: "What accuracy did you get on the test set?" You have to admit 61%. The teacher explains this is exactly the problem with reporting training accuracy as if it were real-world performance. You lose marks for misrepresenting your model\'s capability.' },
-      { text: 'Be transparent about both scores, explain the overfitting problem clearly, and propose solutions — even though you haven\'t had time to implement them.', outcome: 'Your teacher is impressed. You lose marks for not solving the problem, but gain them back for understanding it deeply, diagnosing it accurately, and proposing valid solutions like regularisation, dropout, and dataset augmentation. This is what professional ML engineers actually do.' },
-      { text: 'Stay up tonight, collect 50,000 more training examples, and retrain the model before tomorrow\'s deadline.', outcome: 'You cannot collect 50,000 verified labelled examples overnight. You spend 6 hours trying, end up with 2,000 unverified examples, and the model performs worse. Your demo crashes during the presentation. More data was the right idea — but the timeline was impossible. Scope and time management matter in AI projects.' }
-    ]},
-    { type: 'activity', title: 'Unplugged Machine Learning', instructions: 'Build a classification model using only cards, rules, and your team\'s reasoning — no technology allowed.', steps: ['Your teacher provides cards with 4 features each (colour, shape, number, border) and a hidden label', 'Split your cards: 16 for training, 4 for validation, 4 for testing — do not peek at the test set yet', 'Study the training cards. Write decision rules that predict the label from the features (e.g. "If red AND round → Class A")', 'Apply your rules to the validation set. If accuracy is below 75%, revise your rules', 'When satisfied, apply rules to the test set once only — record your final accuracy', 'Discuss: What patterns did you find? What would you do with more training cards?'] },
-    { type: 'discussion', title: 'From Cards to Code', questions: [{ num: 1, text: 'When your rules failed on the validation set, how did you adjust them? What does this tell you about how real ML models are tuned?' }, { num: 2, text: 'The tank-detection AI failed because its training data had a hidden confound (weather). What hidden confounds might be lurking in training data for an AI that predicts pupil exam performance?' }, { num: 3, text: 'Why is it essential that the test set is only used once, at the very end? What happens scientifically if you evaluate on it multiple times?' }] },
-    { type: 'quiz', question: 'What is overfitting in machine learning?', options: ['When a model is too simple to learn any patterns', 'When a model memorises training data but fails on new data', 'When a model takes too long to train', 'When a model uses too much electricity'], correct: 1, explanation: 'Overfitting occurs when a model memorises specific training examples rather than learning general patterns. It scores high on training data but poorly on unseen data — like memorising past papers word-for-word instead of understanding the underlying concepts.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Three sacred splits', text: 'Training, validation, and test sets each have distinct roles — conflating them produces dangerously misleading results' }, { icon: '▸', label: 'Generalisation is the only goal', text: 'A model that works on its training data but fails in the world is worthless — and potentially dangerous' }, { icon: '▸', label: 'Scale changes nothing fundamental', text: 'From card sorting to frontier models with hundreds of billions of parameters, the core principles of supervised learning are identical' }] }
-  ],
-
-  4: [
-    { type: 'hook', title: 'The Black Box', body: 'In 2018, Amazon scrapped an AI recruitment tool it had been developing for four years after discovering it systematically downgraded CVs that contained the word "women\'s" — as in "women\'s chess club captain" or "women\'s rugby team." Trained on a decade of hiring decisions (mostly made by men, hiring mostly men), it had learned that being a woman was a negative signal. The engineers could not explain why in detail — because the system was a black box. Amazon had been letting an unexplainable AI screen thousands of job candidates.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">4 yrs</span><span class="sl">Amazon spent developing the tool before scrapping it</span></div><div class="hook-stat-mini"><span class="sv">0%</span><span class="sl">of rejected candidates could get an explanation</span></div><div class="hook-stat-mini"><span class="sv">EU GDPR</span><span class="sl">now grants a legal right to explanation</span></div></div>Black box AI is not just a technical problem. It is an accountability problem.' },
-    { type: 'concept', title: 'What is Interpretability?', body: 'Model interpretability refers to how easily a human can understand the reasoning behind a model\'s predictions. The more parameters a model has, the harder this becomes — creating a direct tension between performance and transparency.', bullets: ['Decision trees: Fully transparent — every branch is a human-readable rule. Poor accuracy on complex tasks.', 'Linear regression: Weights show exactly how much each feature contributes. Fast, interpretable, limited.', 'Random forests: Harder to interpret — hundreds of trees voting together. Moderate transparency via feature importance scores.', 'Deep neural networks: Hundreds of millions of parameters with no human-readable meaning. Requires special XAI techniques.', 'The accuracy-interpretability trade-off: In most domains, the most accurate models (deep nets) are the hardest to explain', 'Explainable AI (XAI) tools: LIME, SHAP, and attention visualisation try to reverse-engineer what models have learned'], callout: 'A radiologist asked to act on an AI cancer-detection result needs to know WHY before treating a patient. "The model gave it a 94% malignancy score" is not a reason — it is a number. Explanation is not optional in high-stakes medicine.' },
-    { type: 'concept', title: 'When Black Boxes Cause Real Harm', body: 'Opacity in AI is not merely philosophically uncomfortable — it has caused documented, measurable harm across multiple sectors. These cases are not edge cases; they are warnings about how AI is deployed at scale.', bullets: ['COMPAS recidivism tool (US courts): Predicted reoffending risk for parole decisions. ProPublica (2016) found Black defendants were twice as likely to be falsely flagged as high-risk. Algorithm was proprietary — defendants had no right to see the logic.', 'NHS stroke risk AI (UK): Several hospitals deployed AI to assess stroke risk before auditing it. One system was found to weight postcode as a major risk factor — effectively penalising patients from deprived areas.', 'IBM Watson for Oncology: Recommended "unsafe and incorrect" cancer treatments according to internal documents. Doctors could not verify the reasoning.', 'University admissions (UK, 2020): A-Level predicted grades algorithm gave higher grades to pupils at independent schools and lower grades to those at state schools — based on institutional history rather than individual ability.', 'EU AI Act — now enforcing: Prohibited AI practices (manipulation, subliminal influence, social scoring) came into force February 2025. GPAI model transparency requirements (training data disclosure) in force from August 2025. Full high-risk AI obligations — mandatory explainability for hiring, credit, and justice systems — must be met by August 2026. Black-box deployment in these domains now has a compliance countdown.'], callout: 'The GDPR Article 22 already gives EU citizens the right to meaningful information about automated decisions that significantly affect them. Many companies are not complying. Knowing your rights is the first step to exercising them.' },
-    { type: 'scenario', title: 'The Unexplained Rejection', situation: 'You apply for a graduate scheme at a major UK bank. Six hundred other graduates applied. The bank\'s AI screening system evaluated all applications in 90 seconds and shortlisted 60 candidates. You were not selected. You receive an automated email: "After careful consideration, your application has not been progressed at this time." When you call HR, they confirm the decision was made by their AI system and they "cannot share the specific factors."', question: 'What are your options under UK and EU data protection law?', choices: [
-      { text: 'Accept the outcome — the bank\'s process is legal and there\'s nothing you can do about algorithmic decisions.', outcome: 'You move on. Later you discover three friends with weaker qualifications were shortlisted. One noticed the system scored heavily on attendance at specific Russell Group universities. Without requesting your data, you have no way to challenge this — and the practice continues for the next intake.' },
-      { text: 'Submit a Subject Access Request under GDPR, demanding the specific data and logic used to evaluate your application.', outcome: 'The bank has 30 days to respond. They provide your application data but cite trade secret exemptions on the algorithmic weighting. You escalate to the ICO. The bank\'s legal team quietly reviews whether their process is GDPR-compliant — your challenge has triggered an internal audit. You may not get the job, but you have forced accountability.' },
-      { text: 'Ask for a human review of your application, invoking your Article 22 GDPR right to not be subject to solely automated decisions with significant effects.', outcome: 'A human recruiter reviews your CV. They shortlist you. It turns out the AI had penalised a gap year you took after sixth form — the human reviewer considers it irrelevant. You progress to the next round. Knowing your rights was the difference.' }
-    ]},
-    { type: 'activity', title: 'Explain That Decision', instructions: 'Experience what it feels like to be affected by an unexplainable AI system — from both sides.', steps: ['Pair up. One person is the "AI decision system," the other is the person affected.', 'The AI secretly writes down 3 decision rules for their scenario (loan, job shortlisting, or university admission)', 'The affected person is told only the outcome (rejected/accepted) and must ask questions to understand why', 'The AI can only answer with: "Based on your profile", "Multiple factors were considered", or "The system determined you did not meet the threshold"', 'After 5 minutes, the AI reveals their rules. Discuss: Were the rules fair? Could the person have guessed them?', 'Together, draft a minimum explanation standard: What should any person rejected by AI have the right to know?'] },
-    { type: 'discussion', title: 'Transparency vs. Performance', questions: [{ num: 1, text: 'The most accurate AI models are often the least explainable. In which domains should we legally require interpretability even at the cost of accuracy?' }, { num: 2, text: 'Banks argue that revealing their credit-scoring algorithms would allow fraudsters to game them. Is this a legitimate justification for opacity — and who should decide?' }, { num: 3, text: 'If an AI system makes a decision that harms someone, and nobody can explain why it decided that way, who should face legal consequences: the developers, the deploying company, or nobody?' }] },
-    { type: 'quiz', question: 'Why was Amazon\'s AI recruitment tool scrapped in 2018?', options: ['It was too expensive to run at scale', 'It could only process English-language CVs', 'It systematically downgraded CVs containing words associated with women', 'It was significantly slower than human reviewers'], correct: 2, explanation: 'Trained on 10 years of CVs (mostly submitted by men, in a male-dominated industry), the tool learned to penalise the word "women\'s." Because it was a black box, engineers could not fully identify or fix all the bias, so Amazon abandoned the project entirely.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Black boxes cause real harm', text: 'From Amazon\'s hiring tool to COMPAS and NHS algorithms — opacity enables bias and blocks accountability' }, { icon: '▸', label: 'The accuracy-transparency trade-off is real', text: 'More complex models are often more accurate but less explainable — society must decide where to draw the line' }, { icon: '▸', label: 'Rights exist — exercise them', text: 'GDPR Article 22 gives you the right to challenge significant automated decisions. Most people never use it.' }] }
-  ],
-
-  5: [
-    { type: 'hook', title: 'Bias In, Bias Out', body: 'In 2015, Google Photos automatically tagged photos of two Black software engineers as "gorillas." Google\'s fix: remove the gorilla category entirely. In 2019, a healthcare algorithm used across hundreds of US hospitals was found to systematically direct less medical care to Black patients than equally sick white patients — affecting an estimated 200 million people over its lifetime. In 2020, the UK A-Level algorithm downgraded 40% of teacher-predicted grades, disproportionately punishing pupils at state schools in disadvantaged areas. These are not glitches. They are the predictable, mathematical consequence of biased training data.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">34.7%</span><span class="sl">facial recognition error rate for dark-skinned women</span></div><div class="hook-stat-mini"><span class="sv">0.8%</span><span class="sl">error rate for light-skinned men</span></div><div class="hook-stat-mini"><span class="sv">200M</span><span class="sl">patients affected by the biased US healthcare algorithm</span></div></div>Bias in, bias out. At scale, AI does not just reflect discrimination — it automates and accelerates it.' },
-    { type: 'video', title: 'How I\'m Fighting Bias in Algorithms', videoId: 'UG_X_7g63rY', credit: 'Joy Buolamwini · TEDxBeaconStreet · 8 min', intro: 'MIT researcher Joy Buolamwini discovered that facial recognition software couldn\'t detect her dark-skinned face — but could detect a white mask she held in front of it. This 8-minute talk introduces the "coded gaze" and launched the Algorithmic Justice League. As you watch, note the specific biases she identifies and the changes she demands from the industry.' },
-    { type: 'concept', title: 'Five Sources of Data Bias', body: 'Bias can enter an AI system at multiple distinct points in the data pipeline — and each entry point requires a different mitigation strategy. Identifying the source is the precondition for fixing it.', bullets: ['Historical bias: Training data encodes past discrimination. A hiring model trained on 1990-2015 CV data learns that successful employees were mostly men — because the data reflects who was hired, not who was qualified.', 'Representation bias: Groups underrepresented in datasets receive worse predictions. Medical AI trained on data from predominantly white patients performs significantly worse on patients of colour.', 'Measurement bias: The proxy used to measure a concept distorts reality. COMPAS used prior arrests as a proxy for criminal risk — but arrest rates reflect policing intensity, not actual crime.', 'Label bias: Human annotators bring their own prejudices to data labelling. Studies show annotators rate the same text as more "toxic" when it contains AAVE (African American Vernacular English).', 'Selection bias: The data collected does not represent the deployment population. Chatbot training data from English-speaking users performs poorly for speakers of other languages.'], callout: 'The healthcare algorithm found by Obermeyer et al. (2019) used healthcare spending as a proxy for health need — seemingly neutral. But it failed to account for the fact that Black patients receive less care for the same conditions, making them appear healthier than they are. The bias was invisible until someone looked.' },
-    { type: 'concept', title: 'Real-World Case Studies', body: 'Theory becomes visceral when you see the actual humans harmed. Each of these cases involves a real system, real decisions, and real people whose lives were affected by a biased model they never knew existed.', bullets: ['Amazon hiring (2018): 4 years of development, then scrapped. The bias was discovered accidentally when engineers noticed the pattern. No candidates were informed they had been scored by a biased AI.', 'COMPAS criminal justice (2016): ProPublica\'s investigation analysed 7,000 defendants. Black defendants labelled "higher risk" reoffended at the same rate as white defendants labelled "lower risk." Different labels, same outcomes.', 'UK A-Level algorithm (2020): 280,000 grades downgraded. Pupils from disadvantaged postcodes and schools with less exam history bore the greatest impact. The algorithm was withdrawn after 10 days of national outcry.', 'MIT Gender Shades (2018): Joy Buolamwini tested 3 commercial facial recognition systems from Microsoft, IBM, and Face++. For dark-skinned women: error rates of 20.8–34.7%. For light-skinned men: 0–0.8%.', 'Healthcare allocation (2019): An algorithm used by major US health systems to prioritise complex care management programmes assigned lower risk scores to Black patients for the same level of illness — meaning millions received less preventive care over years.'], callout: 'The MIT study showed that IBM, Microsoft, and Face++ had all shipped commercial facial recognition products with dramatically different accuracy for different demographic groups — without disclosing this in any documentation. Customers deploying these systems had no idea.' },
-    { type: 'scenario', title: 'The Launch Decision', situation: 'Your team has built an AI hiring tool for a large UK retailer. It screens job applications and produces a shortlist. Overall accuracy on your test set is 91%. Excellent — until your bias audit reveals the model shortlists white applicants at 89% accuracy but applicants with South Asian names at 67% accuracy. The retailer needs the system live in two weeks for a major recruitment drive. They are pressuring you to launch.', question: 'What is the right thing to do?', choices: [
-      { text: 'Launch with the current accuracy — 91% overall is significantly better than the retailer\'s existing process, and you can improve the bias in v2.', outcome: 'Over 6 weeks, the tool screens 12,000 applicants. An estimated 800 qualified applicants with South Asian names are incorrectly rejected. A journalist publishes an investigation after a rejected applicant notices the pattern. The retailer faces an Equality Act 2010 lawsuit and a £4M reputational damage bill. You are named in the article.' },
-      { text: 'Delay the launch and run an emergency bias mitigation sprint — resampling training data and reweighting the model for equitable accuracy across groups.', outcome: 'The retailer is frustrated by the delay. After 3 weeks of intensive work, you achieve 89% accuracy for both groups. The launch is 3 weeks late. The retailer is annoyed but not sued. Your team\'s reputation for rigour leads to two new contracts.' },
-      { text: 'Tell the retailer you cannot deploy a system with this accuracy disparity — full stop. Offer to rebuild with better training data or advise them on a different approach.', outcome: 'The retailer hires a different vendor who deploys without a bias audit. That system is sued 8 months later. Your company becomes known in the industry as one of the few that refused to ship a biased product — and attracts clients specifically because of this stance.' }
-    ]},
-    { type: 'activity', title: 'Bias Detective', instructions: 'Investigate a real AI system for bias using the Ethics Audit Checklist from Resources. The goal is a professional-standard bias report.', steps: ['Choose one case study from above or select a different deployed AI system', 'Identify the specific type(s) of bias — historical, representation, measurement, label, or selection', 'Trace the bias to its source: at what exact stage of the pipeline did it enter?', 'Quantify the harm: who was affected, how many people, and what were the consequences?', 'Propose two concrete mitigation strategies — be specific about what data changes or technical interventions you would make', 'Write a 4-sentence "Responsible Disclosure" statement as if you had just discovered this bias and needed to report it to your organisation\'s leadership'] },
-    { type: 'discussion', title: 'Fairness and Responsibility', questions: [{ num: 1, text: 'When a biased AI causes harm, multiple parties are involved: the data collectors, the developers, the deploying company, and sometimes the regulators who approved it. Who bears primary responsibility — and should it differ based on whether they knew about the bias?' }, { num: 2, text: 'Fairness is mathematically impossible to achieve simultaneously across all demographic groups. If you must choose one definition of "fair" for a criminal risk tool, which would you choose: equal false positive rates, or equal false negative rates? What are the consequences of each?' }, { num: 3, text: 'The COMPAS algorithm\'s creator (Northpointe) argues their tool is not biased — it scores equally within risk groups. ProPublica argues it is biased — it has different false positive rates across racial groups. Both are mathematically correct. What does this tell us about the concept of "fairness"?' }] },
-    { type: 'quiz', question: 'In MIT\'s 2018 Gender Shades study, what was the error rate for dark-skinned women in facial recognition, compared to 0.8% for light-skinned men?', options: ['2.5%', '12.3%', '34.7%', '50.1%'], correct: 2, explanation: 'MIT researchers found error rates of 20.8–34.7% for dark-skinned women versus 0–0.8% for light-skinned men across three major commercial systems — a 40x+ disparity driven entirely by underrepresentation of dark-skinned faces in training data.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Bias is systematic, not accidental', text: 'Biased AI is the predictable result of biased data — not a bug that can be patched. The source must be addressed.' }, { icon: '▸', label: 'Five entry points', text: 'Historical, representation, measurement, label, and selection bias each require distinct mitigation strategies' }, { icon: '▸', label: 'Auditing before deployment is non-negotiable', text: 'Every case study here could have been caught with a pre-launch bias audit. The harm was preventable.' }] }
-  ],
-
-  6: [
-    { type: 'hook', title: 'The Data Harvest', body: 'Every minute: 500 hours of YouTube video uploaded, 6 million Google searches, 1 million TikTok videos viewed, 200 million emails sent. Behind each interaction, data is collected, stored, and sold. In 2023, the global data broker industry was worth over $300 billion — larger than the global music industry. Acxiom, one of the largest data brokers, holds an average of 1,500 data points on every American adult. You have almost certainly never heard of them. They know you very well.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">$300B</span><span class="sl">global data broker industry, 2023</span></div><div class="hook-stat-mini"><span class="sv">1,500</span><span class="sl">data points Acxiom holds on each US adult</span></div><div class="hook-stat-mini"><span class="sv">76 days</span><span class="sl">to read all your privacy policies per year</span></div></div>Your data is not a byproduct of using free services. It is the product.' },
-    { type: 'concept', title: 'The Data Supply Chain', body: 'Personal data flows through an invisible, multi-stage supply chain from the moment you generate it to the moment it influences an AI decision about you. Most people never see any part of this chain.', bullets: ['Collection: Every tap, scroll, search, and purchase is logged. Your phone knows your location to within 5 metres. Fitness apps know your heart rate during an argument.', 'Aggregation: Data brokers like Acxiom, Oracle, and LexisNexis combine data from hundreds of sources — your pharmacy, your loyalty card, your social media — to build unified profiles.', 'Processing and labelling: Data is cleaned, categorised, and enriched. Brokers assign predicted attributes: political leaning, purchase intent, mental health risk, pregnancy probability.', 'Training: AI companies license processed datasets to train and fine-tune models. Your behaviour becomes part of systems you will never see.', 'Deployment: The trained model makes predictions about future users — influenced by patterns learned from your past behaviour, without your knowledge.'], callout: 'In 2012, Target\'s AI predicted a teenager was pregnant from her purchasing patterns and sent baby product coupons to her home address — before she had told her family. Her father discovered the pregnancy from a Target mailer. The algorithm knew before he did.' },
-    { type: 'concept', title: 'The Consent Illusion', body: 'Legally, you have consented to most data collection. In practice, that consent is meaningless — a fiction maintained by impenetrable legal text and deliberately confusing design. This gap between legal consent and genuine informed consent is one of the defining problems of the data economy.', bullets: ['The average privacy policy is 4,000 words and requires a university reading level to understand', 'Reading all policies for services you use would take 76 work days per year — Carnegie Mellon study', 'GDPR (2018): Requires explicit, informed consent; grants rights to access, correct, and erase your data; mandates breach notification within 72 hours', 'Dark patterns: Deliberately confusing UX designed to make opting out harder than opting in. Cookie banners are the most visible example — the "decline" option is often hidden behind three menus.', 'Children\'s data: Under-18s generate enormous amounts of data. UK Age Appropriate Design Code (2021) requires platforms to apply "high privacy" defaults for users under 18 — Instagram changed its defaults for UK teenagers as a result.'], callout: '"I agree" is not meaningful consent if you cannot reasonably understand what you are agreeing to. A contract requires informed agreement. Privacy policies are designed to be agreed to without being read — which is the point.' },
-    { type: 'scenario', title: 'The Free AI Toolkit', situation: 'A new EdTech company is offering your school a free AI-powered learning platform. It provides personalised lesson plans, real-time progress tracking, and homework assistance. In exchange, it collects: all pupil interaction data, essay content, time-on-task metrics, inferred learning difficulty scores, and "engagement patterns." The data is used to train their AI models and shared with "educational research partners." The contract is 47 pages.', question: 'The headteacher asks for your view as a pupil governor. What is your position?', choices: [
-      { text: 'Accept it — the educational benefits are clear and the data is anonymised for research purposes.', outcome: 'The platform is deployed to 800 pupils. Two years later, a Guardian investigation reveals the "research partners" include insurance companies using educational engagement data for risk profiling. Several Year 13 pupils find their provisional mental health risk scores — inferred from homework patterns — in files accessed by a data breach. The platform is withdrawn. The headteacher is called before the governors.' },
-      { text: 'Request an independent data protection impact assessment (DPIA) and legal review of the contract before the school can consider it.', outcome: 'The DPIA takes three weeks. The legal review identifies 12 clauses that conflict with UK GDPR requirements for children\'s data under the Age Appropriate Design Code. The company revises the contract — removing third-party data sharing and committing to delete pupil data after two years. The platform is deployed more safely, and other schools use your school\'s revised contract as a template.' },
-      { text: 'Reject it entirely — no free service is truly free, and pupil data is too sensitive to trade for educational tools.', outcome: 'The school sources a paid platform with a cleaner data contract at £8 per pupil per year. It has fewer features. Some teachers are disappointed. But no pupil data is ever shared outside the school. The governor body commends the decision two years later when the free platform becomes the subject of a national data scandal.' }
-    ]},
-    { type: 'activity', title: 'Data Audit Your Phone', instructions: 'Investigate exactly what data your most-used apps collect, and trace where it goes. Follow these steps precisely — you will need your phone.', steps: ['Pick your 3 most-used apps. On iPhone: Settings → Screen Time → See All Activity. On Android: Settings → Digital Wellbeing. Record the top 3 by usage time', 'Check permissions for each app. iPhone: Settings → Privacy & Security → then check Location Services, Camera, Microphone, Contacts, Tracking. Android: Settings → Apps → [app name] → Permissions. Record every permission each app holds', 'Download your data: Instagram (Settings → Your Activity → Download Your Information), TikTok (Settings → Account → Download Your Data), Google (takeout.google.com). Request a download from at least one service — note how long it says it will take and what categories of data are listed', 'While you wait, find each app\'s privacy policy (usually linked from the app store listing). Search the document for "third party" or "share" — copy the first sentence you find about data sharing. Does it name specific third parties?', 'Complete this table for each app: App name | Permissions held | Data categories collected | Third parties it shares with | Can you delete your data? (yes/no/partial) | How? (link or steps)', 'Write a 4-sentence finding: What surprised you most? What permission did you not expect? Would you change any settings after this audit? What would you tell a Year 7 pupil about this app?'] },
-    { type: 'discussion', title: 'Data Rights and Power', questions: [{ num: 1, text: 'In the scenario, the "free" EdTech platform shared pupil engagement data with insurance companies, who used it for risk profiling. The platform\'s 47-page contract technically disclosed this. The school signed it. Apply the consent framework from this lesson: at what specific point did the system fail — was it the contract length, the school\'s lack of legal review, the platform\'s design, or the law itself?' }, { num: 2, text: 'You completed the Data Audit and found the permissions your apps hold. If you now revoke location access from Instagram, you lose the ability to tag locations in posts and stories. If you revoke microphone access from TikTok, you cannot record videos. The apps are designed so that privacy and functionality are traded against each other. Is this a legitimate design choice or a dark pattern — and how would you tell the difference?' }, { num: 3, text: 'The GDPR gives you the right to request deletion of your data. But Acxiom holds 1,500 data points on the average US adult, assembled from hundreds of sources you never directly interacted with. Even if you delete your Instagram data, your profile persists in the broker ecosystem. Given this, is the right to deletion meaningful — or is it a right that exists on paper but cannot work in practice?' }] },
-    { type: 'quiz', question: 'A school deploys an "AI study assistant" app that requires pupils to log in with their real names. The app\'s privacy policy — buried in a 40-page document — states that engagement data may be shared with "selected partners for research purposes." No parent was informed separately. Under the consent frameworks discussed in this lesson, what is the most fundamental problem?', options: ['The app should not use AI at all in a school setting', 'The privacy policy is too long for meaningful informed consent, and parental consent was not separately obtained for minors\' data', 'The data should only be shared with educational partners, not research partners', 'The school should have negotiated a shorter privacy policy'], correct: 1, explanation: 'The 76-day Carnegie Mellon finding shows that lengthy privacy policies make informed consent practically impossible. For minors, the UK Age Appropriate Design Code and GDPR require transparent data processing and parental consent. Burying data-sharing terms in a long document that no parent was alerted to fails both the "informed" and "consent" requirements simultaneously.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'You are the product', text: 'A $300B data broker industry profits from your behaviour, location, health patterns and predicted future actions' }, { icon: '▸', label: 'Consent is a legal fiction', text: '76 days to read all policies. Dark patterns make opting out harder. "I agree" is not meaningful consent.' }, { icon: '▸', label: 'Rights exist — use them', text: 'GDPR grants access, correction, and erasure rights. The UK Age Appropriate Design Code protects under-18s. Know them.' }] }
-  ],
-
-  7: [
-    { type: 'hook', title: 'The Trolley Problem Goes Digital', body: 'A self-driving car is travelling at 60mph. A group of five pedestrians steps onto the road. The car\'s sensors confirm a collision is unavoidable unless it swerves. Option A: swerve left, hitting one elderly pedestrian. Option B: swerve right, hitting a concrete barrier — likely killing the passenger. Option C: brake hard and hit the group. This is not a philosophy thought experiment any more. It is a real engineering decision embedded in the software of every autonomous vehicle. Mercedes-Benz publicly stated in 2016 that their self-driving cars would be programmed to prioritise passenger safety over pedestrians. The backlash was immediate.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">40M</span><span class="sl">responses to the MIT Moral Machine experiment</span></div><div class="hook-stat-mini"><span class="sv">233</span><span class="sl">countries participated</span></div><div class="hook-stat-mini"><span class="sv">0</span><span class="sl">countries reached a universal moral consensus</span></div></div>Someone has to write the code. That someone might be you.' },
-    { type: 'concept', title: 'Three Ethical Frameworks for AI', body: 'Philosophy has grappled with moral dilemmas for millennia. Three dominant frameworks offer contrasting approaches — and each leads to different conclusions when applied to AI.', bullets: ['Utilitarianism (Bentham, Mill): Choose the action producing the greatest good for the greatest number. Easy to code as a loss function. Uncomfortable implication: it mathematically permits harming one to save five.', 'Deontology (Kant): Follow moral rules regardless of consequences. "Never deliberately harm an innocent person" is an absolute duty. Protects individual rights but can produce worse aggregate outcomes.', 'Virtue ethics (Aristotle): Ask what a person of good character would do. Focuses on values — honesty, care, fairness — rather than rules or calculations. Hardest to formalise in code.', 'Contractualism (Rawls): Design rules that rational people would choose from behind a "veil of ignorance" — not knowing which role they would occupy. Often produces the most equitable outcomes.', 'In practice: AI developers usually maximise a utility metric (utilitarian) while ethicists push for hard constraints (deontological). The tension is never fully resolved.'], callout: 'The MIT Moral Machine experiment collected 40 million ethical judgements from 233 countries. Western, educated, industrialised populations preferred to save more lives (utilitarian). Eastern cultures gave greater weight to saving the elderly. Latin American countries weighted in-group loyalty more heavily. There is no global moral consensus.' },
-    { type: 'concept', title: 'Moral Agency and the Responsibility Gap', body: 'In October 2023, a Cruise robotaxi in San Francisco struck a pedestrian who had been knocked into its path by another car. The robotaxi then dragged the pedestrian 6 metres before stopping — with its tyre pinning her leg. Cruise\'s licence was immediately revoked. But here is the accountability problem: no human driver made the decision. No engineer was at the controls. The company said the software behaved as designed. The victim spent months in hospital. Who faces consequences?', bullets: ['Moral agency requires: consciousness, intention, and understanding of consequences. AI has none of these — yet makes decisions with life-or-death stakes', 'The Cruise case: California suspended Cruise\'s licence. GM paused the entire programme. But no individual was charged — the "driver" was software', 'Waymo\'s record: 1,429 incidents reported to NHTSA between 2021 and 2025. Waymo recalled 1,212 vehicles in May 2025 for a software bug causing collisions with barriers. The company\'s own data suggests its cars are safer than human drivers overall — but the individual incidents reveal edge cases that algorithms still cannot handle', 'The responsibility gap: the developer wrote the code years ago. The AI company says the deploying organisation misused it. The deploying organisation says they trusted the vendor. Nobody is personally accountable', 'The emerging framework: "meaningful human control" — the International Committee of the Red Cross and the EU AI Act both require that high-stakes AI systems have a human who can be held accountable for the outcome'], callout: 'In 2023, a UK judge ruled AI cannot be listed as an inventor on a patent. The same logic will eventually apply to accountability: only humans can bear moral and legal responsibility. But the Cruise case shows how easily that responsibility disappears when no human was ever in the loop.' },
-    { type: 'scenario', title: 'Programme the Car', situation: 'Your engineering team is configuring the emergency decision algorithm for a self-driving car deployed on UK roads. The vehicle knows: its passenger is a 35-year-old adult who signed the terms of service. On the road ahead, an emergency has placed a group of three children in the path of the vehicle with no time to stop. The only alternative is to swerve into a concrete barrier — a 70% chance of killing the passenger.', question: 'Which ethical framework should your algorithm follow?', choices: [
-      { text: 'Utilitarian: swerve into the barrier — three lives outweigh one, mathematically.', outcome: 'Your framework is published. A backlash erupts: "The car you bought will kill you to save strangers." Sales collapse. A competitor announces their car "always protects its passenger." You face a regulatory review questioning whether any manufacturer should be allowed to make this decision unilaterally.' },
-      { text: 'Deontological: brake hard and let the collision occur — the car must never intentionally cause harm to its own passenger.', outcome: 'Three children are killed. An inquest finds the car behaved as programmed. No criminal charges are filed. A civil suit argues the manufacturer knew the algorithm would produce this outcome and had an alternative. The case is eventually settled. Parliament begins drafting legislation requiring manufacturers to disclose their ethical decision logic.' },
-      { text: 'Contractualist: the car should not pre-program this decision at all — emergency behaviour should be randomised or handled by a mandatory government-set framework applied equally to all vehicles.', outcome: 'You publish a white paper calling for national regulation of AV ethical frameworks. The UK Department for Transport begins a consultation. Three years later, a Statutory Instrument requires all AVs to follow a published national ethical framework — removing this decision from individual manufacturers. Your white paper is cited 400 times.' }
-    ]},
-    { type: 'activity', title: 'Programme the Ethics', instructions: 'Your team must write the ethical decision framework for a self-driving car fleet. Every decision must be defensible — in court, in the press, and to the families of anyone harmed.', steps: ['List 5 realistic emergency scenarios your framework must cover (not just the trolley problem — think: brake failure, sudden medical event in passenger, animal on road, etc.)', 'For each scenario, write the rule your car follows — specifying which ethical framework it uses and why', 'Test your rules against each other: do any contradict? Which framework wins when they conflict?', 'Stress test: apply your rules to a scenario where the "correct" utilitarian answer is to kill a child to save five adults. Do you still stand by your framework?', 'Present to another group — they play the role of a public inquiry. They can ask any question about your framework.', 'Vote as a class: Which framework would you want running in the car that drives your family?'] },
-    { type: 'discussion', title: 'Who Decides the Code?', questions: [{ num: 1, text: 'Mercedes said their cars prioritise the passenger. Most people recoiled from this. But if you are the passenger, wouldn\'t you want that? Who should decide — manufacturers, governments, or the public?' }, { num: 2, text: 'The Moral Machine showed different countries have different moral preferences. Should a self-driving car behave differently depending on which country it is in? What are the practical and ethical implications?' }, { num: 3, text: 'If an autonomous vehicle kills someone while following its programming exactly as intended, should the manufacturer face criminal charges? Should the programmer? Is there a meaningful difference?' }] },
-    { type: 'quiz', question: 'A self-driving car\'s AI detects a pedestrian stepping into the road and must choose between swerving into a barrier (risking the passenger) or continuing straight (risking the pedestrian). The car is programmed to minimise total harm. A utilitarian would support this. What would a deontologist most likely argue is wrong with this approach?', options: ['The car should always protect the greater number of people', 'The car is treating the passenger as a means to an end — using one person instrumentally to benefit another violates their dignity', 'The car should not make any ethical decisions at all', 'The car should prioritise the passenger because they paid for the vehicle'], correct: 1, explanation: 'Kant\'s categorical imperative holds that people must never be treated merely as means to an end. A utilitarian "minimise total harm" calculation treats both passenger and pedestrian as interchangeable units — which a deontologist would argue violates the duty to respect each person\'s intrinsic dignity. This is exactly the tension the lesson identified: three frameworks, three different answers, and no universal consensus from the Moral Machine\'s 40 million responses across 233 countries.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Three frameworks, three answers', text: 'Utilitarianism, deontology, and contractualism reach different conclusions — someone must choose which governs AI' }, { icon: '▸', label: 'The responsibility gap is real', text: 'AI makes moral decisions without moral agency — and current law cannot cleanly assign accountability' }, { icon: '▸', label: 'No universal moral code', text: '40 million responses, 233 countries, zero consensus. AI ethics must grapple honestly with cultural variation.' }] }
-  ],
-
-  8: [
-    { type: 'hook', title: 'Human in the Loop', body: 'May 6, 2010, 2:32pm. The Dow Jones Industrial Average begins falling. Within 36 minutes it drops 1,000 points — the largest intraday drop in history. $1 trillion in market value evaporates. Cause: high-frequency trading algorithms, operating with no human oversight, reacting to each other in a feedback loop nobody had programmed and nobody could stop. By 2:45pm, over 20,000 trades had been executed at prices 60% away from their values seconds earlier. A human circuit-breaker eventually paused trading. The market recovered by the close. But the question it raised has never gone away: when should AI operate without a human in the loop — and who bears the cost when it goes wrong?<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">$1T</span><span class="sl">market value lost in 36 minutes, May 2010</span></div><div class="hook-stat-mini"><span class="sv">36 min</span><span class="sl">from start to peak of Flash Crash</span></div><div class="hook-stat-mini"><span class="sv">0</span><span class="sl">humans in the loop when it happened</span></div></div>' },
-    { type: 'concept', title: 'Three Levels of Human Oversight', body: 'The relationship between humans and AI exists on a spectrum — from full human control to full automation. The appropriate level depends on stakes, speed requirements, error reversibility, and the reliability of the AI system.', bullets: ['Human-in-the-loop: AI makes recommendations; a human makes every final decision. Example: AI flags suspicious bank transactions, a fraud investigator approves or rejects each one. Slow, but accountable.', 'Human-on-the-loop: AI acts autonomously; a human monitors and can intervene. Example: autonomous vehicle with override capability. Faster, but studies show humans rarely intervene even when they should.', 'Human-out-of-the-loop: AI operates fully autonomously with no human oversight. Example: high-frequency trading, anti-missile systems. Fastest, but failures can be catastrophic and uncorrectable.', 'Automation bias: even in human-in-the-loop systems, studies show humans defer to AI recommendations 85-90% of the time — effectively turning them into human-on-the-loop systems in practice.', 'The Raytheon Phalanx system (the US Navy\'s autonomous anti-missile cannon) can fire 4,500 rounds per minute — operating entirely without human authorisation. It has shot down its own aircraft.'], callout: 'In a study of radiologists using AI diagnostic tools, those shown an AI recommendation before examining a scan changed their diagnosis to match the AI 39% of the time — even when the AI was deliberately made wrong. Designing human-in-the-loop systems that actually involve human judgement is harder than it sounds.' },
-    { type: 'concept', title: 'Domain-Specific Oversight', body: 'The right level of oversight is not universal — it depends on the specific domain, the consequences of error, and whether mistakes are reversible. Getting this wrong in either direction has serious costs.', bullets: ['Healthcare: Human-in-the-loop is essential — AI assists diagnosis but doctors decide treatment. A 2022 Stanford study found AI matched radiologist accuracy in detecting 14 chest conditions — but doctors still need to explain the reasoning to patients and accept liability.', 'Criminal justice: Judges in some US states use COMPAS risk scores for bail and sentencing decisions. These are algorithmic, but the judge is nominally in the loop. In practice, appeals courts have found judges rarely deviate from the score.', 'Content moderation: Facebook reviews 500,000+ pieces of flagged content daily. Human review of every item is impossible — AI makes the first decision, humans review appeals only. Errors affect millions of posts.', 'Military: The "killer robots" debate. The International Committee of the Red Cross calls for a binding treaty requiring "meaningful human control" over lethal force. The US, UK, and Russia oppose it.', 'Finance: The 2010 Flash Crash was caused by human-out-of-the-loop algorithms. Circuit breakers — automated systems that pause trading when volatility exceeds thresholds — now exist. A machine watching machines.'], callout: 'The EU AI Act (2024) prohibits "general purpose AI systems" from making "high-risk" decisions in healthcare, criminal justice, employment, and critical infrastructure without meaningful human oversight. Defining "meaningful" is now the central battleground.' },
-    { type: 'scenario', title: 'The AI Override', situation: 'You are a radiologist at a busy NHS hospital. Your AI diagnostic tool — 96% accurate, better than the average radiologist — has cleared a chest scan as normal. But something catches your eye: a faint opacity in the lower left lobe that the AI has not flagged. Your clinical instinct says it warrants further investigation. Ordering additional tests means a 3-week wait for the patient and additional NHS cost. Your next patient is already waiting.', question: 'What do you do?', choices: [
-      { text: 'Trust the AI — it has 96% accuracy, it has seen millions of scans, and your instinct might be pattern-matching on noise.', outcome: 'Three months later, the patient returns with stage 3 lung cancer. The opacity you noticed was an early lesion. The AI had been trained predominantly on scans from older patients with different presentation patterns; this patient was 38. You are called to an inquest. The question asked is: "Did you have concerns at the time?" You did.' },
-      { text: 'Order the additional tests — you have the clinical authority to override the AI recommendation, and your instinct has been right before.', outcome: 'The 3-week scan reveals early-stage cancer, caught at a highly treatable stage. The patient undergoes minor surgery and recovers fully. Your department notes you override the AI more often than colleagues — a clinical lead asks you to justify your threshold. You write a note explaining that 96% accuracy means 4% of scans are wrong, and this case fit an underrepresented demographic.' },
-      { text: 'Flag the case for a second human opinion from a colleague before making a final decision.', outcome: 'Your colleague reviews it and agrees the opacity is worth investigating. You jointly order the additional scan. The cancer is caught early. Your hospital uses this case in training: it becomes an example of how peer review can catch cases where both AI and individual clinician instinct might err. A formal second-opinion protocol is introduced for cases where a clinician\'s assessment differs from the AI.' }
-    ]},
-    { type: 'activity', title: 'Design the Oversight Model', instructions: 'For four high-stakes AI deployment scenarios, design the optimal human oversight model and defend it against scrutiny.', steps: ['Read each scenario: (a) AI marking GCSE essays, (b) AI diagnosing skin cancer from photos, (c) AI deciding small business loan applications, (d) AI moderating social media content in real-time', 'For each, choose: human-in-the-loop, human-on-the-loop, or human-out-of-the-loop — and justify with two specific reasons', 'Design the workflow: what exactly does the AI do, at what point does a human see the output, what information do they see, and what power do they have to override?', 'Identify the automation bias risk: what would you build into your design to prevent humans from rubber-stamping AI decisions?', 'Your design is challenged: a cost-cutting executive says human review adds £2M per year. What is your response?', 'Present your strongest design to the class — they play the role of a parliamentary select committee'] },
-    { type: 'discussion', title: 'Trust and Autonomy', questions: [{ num: 1, text: 'Studies show humans in "human-in-the-loop" systems agree with AI recommendations 85-90% of the time regardless of accuracy. Does this mean human oversight is a placebo — and if so, what should we do about it?' }, { num: 2, text: 'As AI surpasses human accuracy in specific tasks (radiology, fraud detection, legal research), the argument for human oversight gets harder to justify on performance grounds. What other grounds remain?' }, { num: 3, text: 'An autonomous AI weapon system kills 12 civilians based on a targeting error. No human approved the strike. Who faces a war crimes tribunal — and is your answer satisfying?' }] },
-    { type: 'quiz', question: 'What is "automation bias" in the context of human-AI decision-making?', options: ['When AI systems develop systematically biased outputs from training data', 'When automated systems fail catastrophically under unexpected load', 'When humans defer to AI recommendations even when they have good reason to disagree', 'When companies automate jobs specifically to reduce wage costs'], correct: 2, explanation: 'Automation bias is the documented tendency to over-trust algorithmic recommendations — even in systems explicitly designed for human oversight. Studies show radiologists change their diagnosis to match AI recommendations 39% of the time, even when the AI is wrong. Designing against this requires more than adding a human to the process.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Three levels of oversight', text: 'In-the-loop, on-the-loop, out-of-the-loop — the right choice depends on stakes, speed, and reversibility' }, { icon: '▸', label: 'Automation bias undermines oversight', text: 'Humans defer to AI 85-90% of the time in practice — "human in the loop" is often a fiction unless actively designed against' }, { icon: '▸', label: 'Out-of-the-loop at scale fails catastrophically', text: '$1 trillion lost in 36 minutes. Autonomous weapons fire on friendlies. The consequences of no oversight can be irreversible.' }] }
-  ],
-
-  9: [
+  "1": [
     {
-      type: 'hook',
-      title: 'Prompt Architecture',
-      body: 'Two pupils open Gemini and submit the same task: write an analysis of quantitative easing for their economics essay. Pupil A types: <em>"Write about QE."</em> They get a 400-word general overview suitable for GCSE. Pupil B types: <em>"You are an experienced A-Level economics examiner. Analyse the impact of quantitative easing on UK inflation between 2009 and 2022. Present your analysis as a structured essay plan with introduction, three analytical paragraphs with named economists, a counter-argument section, and a conclusion. Maximum 600 words. Use UK English. Assume the reader is a Year 13 pupil preparing for AQA."</em> They get a precise, differentiated, directly usable plan — from the same AI, in the same second.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">40%</span><span class="sl">better output quality from iterated prompts vs first drafts</span></div><div class="hook-stat-mini"><span class="sv">@Docs</span><span class="sl">Gemini extensions integrate directly with your Google Workspace</span></div><div class="hook-stat-mini"><span class="sv">Double</span><span class="sl">Check button: Gemini runs search queries to verify its own claims</span></div></div>Gemini, Claude, Copilot—the tool matters less than the instruction. Prompt engineering is not about tricking AI. It is about communicating with precision. The same skill that makes a great legal brief makes a great prompt.'
+      "type": "hook",
+      "title": "Your AI Footprint",
+      "body": "A fictional pupil’s morning includes an alarm, a playlist, a spam filter and a generated revision plan. Which parts involve learned predictions? What can you actually establish from seeing the output?"
     },
     {
-      type: 'concept',
-      title: 'The PTFC Framework in Gemini',
-      body: 'PTFC — Persona, Task, Format, Context — is a four-part structure that transforms vague natural language requests into precise, repeatable instructions. Gemini responds to all four—but Gemini\'s integration with Google Workspace lets you bring in Context dynamically.',
-      bullets: [
-        '<strong>Persona:</strong> Assign Gemini a specific role with relevant expertise. <em>"You are an experienced AQA A-Level Biology examiner"</em> produces very different output from <em>"You are a science writer."</em> The persona shapes tone, vocabulary, and analytical depth.',
-        '<strong>Task:</strong> State exactly what you want done—specific verb, specific subject, specific scope. <em>"Compare and evaluate"</em> is different from <em>"list."</em> Precise task language controls the type of thinking Gemini applies.',
-        '<strong>Format:</strong> Specify structure, length, and presentation. Essay plan / comparison table / numbered steps / markdown. Gemini integrates with Google Docs and can export formatted tables and text directly.',
-        '<strong>Context:</strong> Background information that situates your request. With Google Workspace Extensions enabled, you can type <strong>@Google Drive</strong> or <strong>@Google Docs</strong> followed by a file name to pull your own notes directly into Gemini as context.'
+      "type": "concept",
+      "title": "Classify the job, then investigate the system",
+      "body": "AI can classify, predict, recommend or generate. An app can combine a learned model with ordinary software. The product label alone does not establish how every feature works.",
+      "bullets": [
+        "Separate the input, the operation and the output.",
+        "A fixed timer need not learn from data; a recommender may estimate relevance from behaviour.",
+        "Distinguish what you observed from what you inferred. Mark uncertain cases rather than forcing a label."
       ],
-      callout: 'Gemini\'s \'Double Check\' (the G button) uses Google Search to verify claims in its responses. Clicking it highlights text in green (verified by search) or orange (unverified or contradicted). This is an essential safety feature for research.'
-    },
-    {
-      type: 'concept',
-      title: 'PTFC in Practice: Gemini Worked Examples',
-      body: 'Seeing PTFC as a complete structure clarifies the framework. These prompts are written for Gemini specifically, utilising its extensions and search features.',
-      bullets: [
-        '<strong>Gemini — Biology Revision Tutor:</strong> <em>[P] You are a patient OCR A-Level Biology tutor. [T] Read my class notes in @OCR Biology Notes and explain the light-dependent reactions of photosynthesis. [F] Numbered step-by-step with maximum 2 sentences per step, then 3 self-test questions. [C] I understand basic chemistry but I always confuse Photosystem I and II.</em>',
-        '<strong>Gemini — History Source Analysis:</strong> <em>[P] You are an academic historian. [T] Analyse the draft essay in @History Draft for historical accuracy and check for missing citations. [F] Bulleted list of suggestions sorted by priority, followed by a comparison table of key dates. [C] I am preparing this for my coursework submission under Edexcel guidelines.</em>',
-        '<strong>Pro-tip — Saving your Context:</strong> You can create a custom <strong>Gemini Gem</strong> (in Gemini Advanced) and paste your standing Context (year group, exam boards, weak topics) into the Gem instructions. Every conversation with that Gem will inherit it automatically.'
-      ],
-      callout: 'Compare these to <em>"Explain photosynthesis"</em> or <em>"Check my history draft."</em> The AI\'s capability is identical. The output quality difference is entirely down to the precision of your instruction.'
-    },
-    {
-      type: 'builder',
-      widget: 'ptfc',
-      title: 'Build Your Own PTFC Prompt',
-      hint: 'Fill in all four fields to assemble a real prompt, then copy it straight into Gemini. Click "Load Example" to see a worked biology revision prompt first.'
-    },
-    {
-      type: 'concept',
-      title: 'Iterating for Quality',
-      body: 'The first output from any prompt is a draft, not a deliverable. Systematic iteration — evaluating output against your criteria and refining one element at a time — is where the real skill lies.',
-      bullets: [
-        '<strong>Evaluate first:</strong> Read the output critically. What is accurate? What is too generic? What is missing? What is the wrong tone?',
-        '<strong>Refine one variable at a time:</strong> If you change Persona and Format simultaneously, you cannot tell which change improved the output.',
-        '<strong>Use follow-up prompts:</strong> <em>"Now add a counter-argument in paragraph 2."</em> <em>"Make the tone more formal."</em> <em>"Replace the third point with a reference to Keynes."</em>',
-        '<strong>Chain your prompts:</strong> Output from prompt 1 becomes input to prompt 2. <em>"Here is the outline you generated. Now write a 200-word draft for section 1 using the GCSE mark scheme as a guide."</em>'
-      ],
-      callout: 'A 2023 study found that pupils who iterated prompts 3+ times produced work rated 40% higher by independent markers than pupils who accepted the first output. Iteration is key.'
-    },
-    {
-      type: 'scenario',
-      title: 'The Vague Brief',
-      situation: 'You are a pupil governor and the headteacher asks you to write a summary of pupil feedback on the new school menu. She sends you a raw spreadsheet of feedback comments. You have access to Gemini and Google Docs. You need to produce an executive report by 3pm.',
-      question: 'How do you use PTFC to deliver a professional summary?',
-      choices: [
+      "sources": [
         {
-          text: 'Upload the spreadsheet to Gemini and say: "Summarise this for the headteacher."',
-          outcome: 'Gemini produces a brief, generic list of bullet points like "some pupils want more vegetarian options." It lacks professional tone, structure, or data points. Your headteacher asks for more detail, forcing you to redo the task under time pressure.'
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Draw the decision, not just the app",
+      "body": "An ecosystem map should show what moves between people and systems. For a fictional music app: listening history enters, a ranked list leaves, and the listener chooses what to play.",
+      "bullets": [
+        "The user may want discovery; the service may optimise engagement. Those aims can diverge.",
+        "Identify one choice retained by the user and one choice already shaped by the ranking.",
+        "Ask what a useful non-AI alternative would do. This gives you a comparison."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. Where could your map be wrong? Describe evidence that would change one classification.",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "Map a day without exposing a real person",
+      "instructions": "Working independently. Use an invented day, not screenshots of private accounts.",
+      "steps": [
+        "Draw five encounters as a transport map.",
+        "Label each station with input, output and likely function.",
+        "Add an uncertainty symbol where the method is unknown.",
+        "Redesign one interchange to give the user more control. Explain the benefit and a remaining limitation."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "Where could your map be wrong? Describe evidence that would change one classification."
         },
         {
-          text: 'Open the spreadsheet, copy the text, paste it into Gemini, and say: "You are a data analyst. Summarise this feedback in 3 paragraphs for a school leader. Focus on top complaints and praise."',
-          outcome: 'The response is better structured, but it misses platform integrations. You manually copy and paste the text into a document, which takes extra time, and the summary lacks specific, actionable suggestions.'
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
         },
         {
-          text: 'Link the spreadsheet using @Google Drive. Prompt: "[P] You are a school leadership policy adviser. [T] Analyse the pupil feedback spreadsheet in @School Menu Feedback. [F] A structured memo: Executive Summary (3 sentences), Key Themes (3 headers with data counts), and 3 Recommended Actions. [C] The audience is the headteacher. Keep the tone professional, objective, and constructive."',
-          outcome: 'Gemini directly reads the sheet, counts the occurrences of key complaints, and outputs a perfectly formatted memo. You click \'Export to Google Docs\' to save it directly to your Drive, and email it to the headteacher. She praises your data-driven approach and shares the report with the governors.'
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
         }
       ]
     },
     {
-      type: 'discussion',
-      title: 'The Skill of the Future?',
-      questions: [
-        { num: 1, text: 'Prompt engineering jobs pay up to $300K+ at AI companies. Is this a durable professional skill — or will AI improve to the point where precise prompting is unnecessary?' },
-        { num: 2, text: 'If two pupils submit identical work quality but one used zero AI and one used 20 iterations of PTFC prompting — is the quality equal? Should the mark be equal?' },
-        { num: 3, text: 'Think of the last time you explained something to a person and they misunderstood you. How does improving your prompting make you a better communicator generally?' }
-      ]
-    },
-    {
-      type: 'quiz',
-      question: 'In the PTFC prompt framework, what does the "C" stand for — and why is it the element that makes the biggest difference in output quality?',
-      options: [
-        'Context — background that tells the AI your role, audience, purpose, prior knowledge, and constraints',
-        'Constraints — rules that bound the output and prevent generic responses',
-        'Clarity — a requirement that the output be easy to understand',
-        'Creativity — permission for the AI to be original and inventive'
+      "type": "quiz",
+      "question": "What is the strongest basis for calling a feature AI?",
+      "options": [
+        "Its interface looks futuristic.",
+        "Evidence about the function and how it is produced.",
+        "The company uses AI somewhere else."
       ],
-      correct: 0,
-      explanation: 'Context is the element that transforms a generic response into a targeted one. Providing exam boards, weak topics, and prior knowledge makes the prompt highly effective. Gemini Gems and Claude Projects allow you to save this context permanently so you don\'t have to re-type it.'
+      "correct": 1,
+      "explanation": "Investigate the particular feature. A product can mix learned models and fixed rules."
     },
     {
-      type: 'summary',
-      title: 'Key Takeaways',
-      points: [
-        { icon: '▸', label: 'PTFC transforms output', text: 'Persona + Task + Format + Context. Context is the most powerful element — it is the difference between a response for everyone and one for you.' },
-        { icon: '▸', label: 'Gemini has built-in context tools', text: 'Gemini Gems and @Google Drive extensions save and pull your context automatically, saving time and keeping outputs consistent.' },
-        { icon: '▸', label: 'Iteration is the real skill', text: 'Experts iterate 3–5 times. Pupils who iterate produce work rated 40% higher than those who accept the first output.' }
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Classify the job, then investigate the system",
+          "text": "AI can classify, predict, recommend or generate."
+        },
+        {
+          "icon": "2",
+          "label": "Draw the decision, not just the app",
+          "text": "An ecosystem map should show what moves between people and systems."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Map a fictional day's AI encounters as a transport map. Label data entering each station, decisions leaving it and one place the traveller can intervene."
+        }
       ]
     }
   ],
-
-  10: [
-    { type: 'hook', title: 'Synthetic Creativity & Copyright', body: 'September 2022: Jason Allen enters "Theatre D\'Opera Spatial" into the Colorado State Fair fine art competition. It wins first place. Allen had generated it using Midjourney — an AI image model. Artists were furious: "We should put a red X over all AI art." Allen replied: "I\'m not apologising for using technology." Simultaneously: Getty Images sues Stability AI for scraping 12 million copyrighted photos. The New York Times sues OpenAI for training on its journalism. Universal Music sues AI music generators. The creative industry is in open war with AI companies — and every court case is setting precedent that will shape the arts for decades.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">12M+</span><span class="sl">copyrighted images scraped by Stability AI, per lawsuit</span></div><div class="hook-stat-mini"><span class="sv">$0</span><span class="sl">paid to any artist whose work trained Midjourney</span></div><div class="hook-stat-mini"><span class="sv">2025</span><span class="sl">NYT v. OpenAI and Getty v. Stability AI — training data lawsuits heading to trial</span></div></div>' },
-    { type: 'concept', title: 'Can AI Be Creative?', body: 'Whether AI is truly creative depends entirely on how you define creativity — and that definition has real legal, economic, and philosophical stakes. This is not an academic question: the answer determines who gets paid and who gets sued.', bullets: ['Functional creativity: AI produces novel, surprising, and valuable outputs that nobody has made before. By this definition, Midjourney is creative.', 'Intentional creativity: Genuine creativity requires intention, emotion, and a human desire to express something. AI has none of these — it optimises probability distributions.', 'Remixing vs. creating: All human creativity builds on prior work. Shakespeare borrowed plots. Picasso absorbed Cézanne. Is AI doing anything fundamentally different — or just doing it faster and at greater scale?', 'Margaret Boden\'s three types: combinational (mixing existing ideas), exploratory (working within a style), transformational (breaking the rules of a domain entirely). AI excels at the first two. The third — genuine rule-breaking — remains genuinely contested.', 'Emergent aesthetics: Some AI outputs are judged as beautiful, moving, and original by independent critics without knowing they were AI-generated. Does the judgement of the work depend on knowing its origin?'], callout: 'In 2023, the Sony World Photography Award winner Eldagsen revealed his winning photograph was AI-generated — and refused the prize to make a point about the judges\' inability to detect it. "The awarding of AI images in competitions for human photography is not the right way to deal with the AI revolution," he said. The judges agreed. The award was withdrawn.' },
-    { type: 'concept', title: 'Copyright, Ownership, and the Legal Frontier', body: 'Copyright law was written in an era of human authorship. Every major AI legal case is testing assumptions that have not been challenged for 50 years — and the outcomes will reshape the creative economy.', bullets: ['US Copyright Office (2023): AI-generated images are not copyrightable. Only human authorship qualifies. Thaler v. Vidal — the AI cannot be named as an inventor on a patent or an author on a copyright.', 'The training data question: Getty Images and the New York Times are suing AI companies for training on copyrighted work without permission or payment. In March 2025, a US judge refused to dismiss the core NYT claims, allowing the case toward trial. The US Copyright Office 2024 report found fair use cannot be assumed — whether training qualifies depends on market harm, case by case. This undermines the blanket "transformative use" defence AI companies relied on, and could require licensing frameworks that reshape the entire industry.', 'The output question: If an AI trained on Taylor Swift\'s music produces a song in her style, is that infringement? Courts have not yet ruled definitively.', 'Partial human authorship: The Copyright Office has granted copyright to AI-generated comics where a human selected and arranged the panels. The AI-generated images themselves remain unprotected. Curation is authorship.', 'Economic reality: Adobe Stock now pays contributors whose images are used to train licensed AI models. This "data dividend" model may become the standard — but most AI training happened before any such agreements existed.'], callout: 'If AI-generated content cannot be copyrighted, it enters the public domain immediately. Anyone can copy, sell, and redistribute it. This creates a paradox: the most productive creative tool in history produces outputs that nobody owns. Is that a problem or a liberation?' },
-    { type: 'scenario', title: 'The Client Wants the Copyright', situation: 'You have used Midjourney to generate a series of 12 marketing illustrations for a client\'s rebrand. The brief asked for "original illustrations." The client loves the work and now wants to register copyright in the illustrations as part of their brand IP. They ask you to assign the copyright to them as part of the contract.', question: 'What do you tell the client?', choices: [
-      { text: 'Sign the copyright assignment — you did the creative work of prompting and selecting the images, so the copyright is yours to assign.', outcome: 'The client registers copyright. Three months later, a competitor publishes near-identical images — Midjourney generated them from a similar prompt. The client sues for copyright infringement. During discovery, it emerges that the images were AI-generated and therefore unprotectable. The registration is invalid. The client sues you for misrepresentation and professional negligence. The contract is voided.' },
-      { text: 'Explain honestly that under current UK and US law, purely AI-generated images cannot be copyrighted — the client has a licence to use them, but no exclusive ownership.', outcome: 'The client is initially disappointed. You offer a solution: you will create bespoke human-illustrated brand elements for the core logo and hero imagery, and use AI only for secondary assets. The client agrees. You charge more. The brand IP is legally protected where it matters most.' },
-      { text: 'Add significant human creative elements to each image — recolouring, compositing, adding original drawn elements — to create a defensible case for partial human authorship.', outcome: 'The Copyright Office\'s current guidance suggests that where a human has made "sufficient creative contributions," copyright may attach to those contributions. You document your creative process carefully. The resulting copyright claim is partial but legitimate. The client has meaningful — if not total — IP protection. This hybrid approach becomes your standard methodology for AI illustration work.' }
-    ]},
-    { type: 'activity', title: 'The Copyright Court', instructions: 'Stage a mock tribunal to decide whether AI-generated art should be copyrightable, and whether training on copyrighted data constitutes infringement.', steps: ['Assign roles: Judge, AI Prompt Engineer (claimant), Human Illustrator (opposing), Stability AI Lawyer, New York Times Lawyer, UK Intellectual Property Office representative', 'Each party prepares a 2-minute opening statement — focus on one specific argument, not a general overview', 'The Judge asks each party the toughest question they face (e.g. "If training is fair use, why does it matter that the data was scraped without consent?")', 'Witnesses can be cross-examined: What counts as a "human creative contribution"? Is selection of outputs sufficient?', 'The jury (class) deliberates for 5 minutes and delivers a verdict with a written one-sentence rationale', 'After the verdict: has the law kept pace with the technology? What legislation would you draft?'] },
-    { type: 'discussion', title: 'The Future of Creative Work', questions: [{ num: 1, text: 'A judge rules AI-generated art is beautiful and original but legally unprotectable because it has no human author. Should the law change to protect it — and if so, who would own it?' }, { num: 2, text: 'An artist discovers their signature painting style is now replicable by anyone typing a prompt. They lose 80% of their commercial income. What, if anything, do they deserve by way of remedy or compensation?' }, { num: 3, text: 'If AI makes professional-quality creative work essentially free to produce, what is the future of creative industries — and does it matter if fewer people earn a living from art?' }] },
-    { type: 'quiz', question: 'Under current UK and US copyright law, can purely AI-generated works be copyrighted?', options: ['Yes — the AI company that built the model owns the outputs', 'Yes — the human who wrote the prompt holds copyright', 'No — copyright requires a human author', 'Only if the AI used fully licensed training data'], correct: 2, explanation: 'Both UK and US copyright law require a human author. The US Copyright Office ruled in 2023 that purely AI-generated images cannot be copyrighted — though human-curated or human-modified AI work may qualify for partial protection.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Creativity is genuinely contested', text: 'AI produces valuable, novel outputs — but lacks intention and lived experience. The definition of creativity determines the answer.' }, { icon: '▸', label: 'Copyright law is catching up — slowly', text: 'AI-generated content remains unprotectable. NYT v. OpenAI and Getty v. Stability AI survived dismissal in 2024 and are heading to trial. The 2024 US Copyright Office report found fair use cannot be assumed — outcomes will reshape who pays whom.' }, { icon: '▸', label: 'Adaptation, not just disruption', text: 'AI changes the economics of creative work profoundly — the question is how creators and industries adapt, not whether they must.' }] }
-  ],
-
-  11: [
-    { type: 'hook', title: 'Deep Research & Career Disruption', body: 'In 2023, Goldman Sachs published a report that sent shockwaves through every profession: AI could automate tasks equivalent to 300 million full-time jobs globally. Legal, financial, medical, and media work — not just factories. By 2025, those predictions were already being tested in the real world: AI agents at Klarna replaced 700 customer service staff in 2023 — but by 2025, Klarna reversed course, announcing plans to rehire human agents after customers reported significantly lower satisfaction with AI-handled queries; law firms began using AI to review contracts, cutting junior associate hours by 30-50%. The WEF\'s 2025 Future of Jobs report found 41% of employers plan to reduce headcount in roles where AI can do the work. But 77% also plan to hire more people with AI skills. In practice, disruption is unequal, concentrated, and fast.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">300M</span><span class="sl">jobs Goldman Sachs says AI could automate globally</span></div><div class="hook-stat-mini"><span class="sv">41%</span><span class="sl">of employers plan AI-driven headcount reductions (WEF, 2025)</span></div><div class="hook-stat-mini"><span class="sv">77%</span><span class="sl">of employers also plan to hire more workers with AI skills (WEF, 2025)</span></div></div>Today you research what this means for the career you are planning.' },
-    { type: 'video', title: 'The Rise of the Machines — Why Automation is Different this Time', videoId: 'WSKi8HfcxEk', credit: 'Kurzgesagt – In a Nutshell · 2017 · 12 min', intro: 'Why is this wave of automation different from every previous one? Kurzgesagt argues that for the first time, machines are developing "cognitive muscles" — threatening not just physical labour but intellectual work too. Watch for the key distinction between mechanical and cognitive automation, then apply it to the careers you will research today.' },
-    { type: 'concept', title: 'AI-Assisted Deep Research', body: 'Deep research means going beyond the first search result to find, synthesise, and critically evaluate evidence from multiple independent sources. AI tools transform the speed of this process — but introduce new failure modes that require active mitigation.', bullets: ['AI search tools (Perplexity AI, Consensus, Elicit) can synthesise findings across thousands of academic papers in seconds', 'Hallucination risk: these tools can confidently cite studies that do not exist, misquote real researchers, or conflate separate findings', 'Recency bias: training data has cutoffs — AI tools may not know about research published in the last 6-12 months', 'Triangulation rule: confirm any AI-generated claim against at least three independent sources, including at least one primary source', 'Source hierarchy: peer-reviewed research > government/WHO reports > established journalism > AI synthesis > social media/forums'], callout: 'In 2023, a pupil used Perplexity to research a famous psychology study. The AI confidently stated the study had been replicated 14 times. The study had actually famously failed to replicate — it was one of the most high-profile failures in the replication crisis. The AI had learned from articles describing the original study, not from articles about its subsequent failure. Always go to the primary source.' },
-    { type: 'concept', title: 'Career Disruption Patterns', body: 'AI disrupts careers in predictable patterns based on the nature of the tasks involved. Understanding these patterns early gives you a significant advantage in planning a resilient career.', bullets: ['Most at risk: routine cognitive tasks — data entry, basic financial analysis, standard legal document review, first-line customer service, radiology flagging, standard X-ray reading', 'Partially disrupted: knowledge synthesis — junior research, report writing, basic programming, paralegal work, mid-level journalism. The role survives but requires 50% fewer people.', 'Transformed: expert roles — radiologists still interpret scans, but AI does the initial sweep. Lawyers still advise, but AI reads contracts. The human does harder, more creative, higher-value work.', 'New roles emerging: AI trainers (who label data and evaluate outputs), prompt engineers, AI ethicists, AI product managers, human-AI interaction designers — most did not exist in 2020.', 'The "centaur" finding: chess players who used AI tools beat both pure AI and pure humans. Humans + AI working in tandem consistently outperform either alone.'], callout: 'Two useful reality checks: (1) Geoffrey Hinton predicted in 2016 that AI would replace radiologists within five years — radiology job postings are now at record highs. The role is diagnosing patients, not reading scans. (2) Klarna replaced 700 customer service staff with AI in 2023, then announced rehiring in 2025 after customer satisfaction scores dropped. Disruption is real — but rarely one-directional.' },
-    { type: 'scenario', title: 'The Unverified Statistic', situation: 'You are writing a report for your economics class arguing that AI will create more jobs than it destroys. You ask an AI research tool for supporting evidence and it produces this: "A 2024 Oxford Economics study found that AI creates 3.2 new jobs for every job it automates, with particularly strong job growth in healthcare, education, and renewable energy sectors." The citation looks specific and credible. Your report is due in 2 hours.', question: 'What is the right approach to using this statistic?', choices: [
-      { text: 'Include the citation as-is — the tool synthesises academic papers and the statistic is plausible and specific.', outcome: 'Your teacher marks the report and searches for the Oxford Economics study. It does not exist. She flags the citation as fabricated and deducts marks for academic integrity. You are required to resubmit. The experience teaches you that plausibility is not verification.' },
-      { text: 'Search directly on the Oxford Economics website and in Google Scholar for the specific study before including it.', outcome: 'You find no matching study. You do find a 2023 Oxford Economics report on AI that makes more nuanced predictions — job growth is concentrated in specific sectors and dependent on policy support. This real data is actually more interesting and defensible than the fabricated statistic. Your report is better for the delay.' },
-      { text: 'Rephrase the statistic as "some economists argue that AI creates more jobs than it destroys" without citing the AI-generated figure, and find at least two real sources that support this general claim.', outcome: 'You find the WEF Future of Jobs Report and a peer-reviewed Acemoglu & Restrepo paper that make this argument with proper evidence. Your report cites real research. The WEF data is actually richer than the AI-generated statistic. Your teacher notes your sourcing is unusually strong.' }
-    ]},
-    { type: 'activity', title: 'Research Your Future Career', instructions: 'Use AI research tools to investigate how AI will impact a career you are seriously considering — then verify every key claim.', steps: ['Choose a specific career role (not a broad field — "NHS radiographer" not "healthcare")', 'Ask Perplexity or a similar tool: "What specific tasks in this role can AI currently perform, and what is the evidence?"', 'For every statistic or study cited, spend 3 minutes trying to verify it independently — record whether you could confirm it', 'Research: What new skills or qualifications will this role require in 5 years? Find two different sources.', 'Find one real job posting for this role from the last 6 months — does it mention AI skills? What does it say?', 'Write a 200-word briefing: "If I want to enter this field in 2027, what should I be doing now, and what should I stop assuming about the role?"'] },
-    { type: 'discussion', title: 'The Future of Work', questions: [{ num: 1, text: 'The "centaur" finding suggests human + AI beats both alone. Does this mean the future of work is collaboration — or that humans are temporary until AI no longer needs them?' }, { num: 2, text: 'Is it fair to say that pupils today have a "responsibility to AI-proof their careers" — or does this place the burden of an economic transition on individuals rather than governments and employers?' }, { num: 3, text: 'Radiologists were predicted to be automated away by 2021 — job postings are now at record highs. Klarna replaced 700 agents with AI in 2023, then announced rehiring in 2025 after satisfaction scores dropped. What do these two reversals tell us about the limits of disruption predictions, and how should we weigh alarming statistics about job losses?' }] },
-    { type: 'quiz', question: 'According to Goldman Sachs, how many full-time jobs could AI potentially automate globally?', options: ['30 million', '300 million', '3 billion', '10 billion'], correct: 1, explanation: 'Goldman Sachs estimates 300 million full-time job equivalents could be automated. However, the WEF projects 97 million new roles will emerge — the net effect depends on retraining, policy, and how quickly institutions adapt.' },
-    { type: 'summary', title: 'Key Takeaways', points: [{ icon: '▸', label: 'Disruption is real and unequal', text: '300 million jobs at risk, 97 million new roles emerging — the transition is not neutral and not automatic' }, { icon: '▸', label: 'Always verify AI research', text: 'AI tools hallucinate specific studies and statistics. Triangulate every claim against primary sources.' }, { icon: '▸', label: 'Centaur beats both', text: 'Humans working with AI consistently outperform either alone. The skill is knowing how to collaborate, not just delegate.' }] }
-  ],
-
-  12: [
+  "2": [
     {
-      type: 'hook',
-      title: 'The Revision Loop',
-      body: 'A pupil has drafted an essay on the causes of the French Revolution. They copy and paste it into Gemini and ask: <em>"Rewrite this to make it sound more academic."</em> Gemini outputs a beautifully written essay with sophisticated vocabulary. The pupil copies it and submits. The teacher flags the essay for academic integrity violations: the writing style shifted dramatically from the pupil\'s previous work, and the AI used historical interpretations the class had never covered. The pupil received a zero.<br><br>The issue was not using AI—it was using AI to do the <em>thinking</em> instead of using AI to help <em>refine</em> the thinking. Today, we look at how to use the \'Revision Loop\' to turn Gemini into a Socratic critic, not an author.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">Socratic</span><span class="sl">Ask Gemini to critique, not rewrite. Keep control of the pen.</span></div><div class="hook-stat-mini"><span class="sv">Turnitin</span><span class="sl">AI writing style is highly predictable. AI assistance in editing is allowed; AI authorship is plagiarism.</span></div><div class="hook-stat-mini"><span class="sv">Struggle</span><span class="sl">The cognitive effort of writing is where learning actually happens.</span></div></div>'
+      "type": "hook",
+      "title": "Models, Retrieval and Understanding",
+      "body": "A fictional assistant confidently says a club was founded in 2018. Its source says 2019. Another answer is correct but has no source. Which answer should you trust, and what does either reveal about understanding?"
     },
     {
-      type: 'concept',
-      title: 'The Socratic Revision Partner',
-      body: 'The key to academic integrity in the AI era is maintaining cognitive ownership. This means using Gemini as a feedback partner that guides your writing, rather than a ghostwriter that writes it for you.',
-      bullets: [
-        '<strong>AI as Author (Red tier):</strong> Prompting "Write a paragraph explaining how enzymes lower activation energy." Copying and pasting the output. This is plagiarism, and it deprives your brain of the struggle that builds memory.',
-        '<strong>AI as Critic (Green tier):</strong> Prompting "Here is my paragraph explaining activation energy. Read it and tell me: (1) Is my explanation of the transition state clear? (2) What key term did I omit? (3) How can I improve my structural transition? Do not rewrite it for me."',
-        '<strong>AI as Editor (Amber tier):</strong> AI polishes the wording of a paragraph you wrote yourself — permitted with a one-line disclosure under the school\'s Three-Tier policy. The ideas and argument must remain yours.',
-        '<strong>The Acknowledge rule:</strong> If you use AI to help you outline or edit, standard academic practice is to include an AI disclosure statement detailing the prompts used and how the output shaped your draft.',
-        '<strong>The Style Check:</strong> AI tools have a highly recognisable \'dialect\' (overuse of words like *delve, testament, beacon, pivotal, complex landscape*). If your essay uses these words, it flags AI authorship.'
+      "type": "concept",
+      "title": "A model is not the whole product",
+      "body": "A language model generates outputs from learned parameters and supplied context. A product may also retrieve documents, search the web or run tools. Inspect the complete workflow before describing its capabilities.<details class=\"independent-route\"><summary>Watch and think: 3Blue1Brown: Large Language Models explained briefly</summary><p>Optional: <a href=\"https://www.youtube.com/watch?v=LPZh9BOjkQs\" target=\"_blank\" rel=\"noopener\">Watch on YouTube</a>.</p><p><strong>Text alternative:</strong> A plausible continuation is not a fact-check. Retrieval and tools can add evidence, which still needs checking.</p><p>Explain one idea with your own example. What would test it?</p></details>",
+      "bullets": [
+        "Training changes parameters; a new prompt changes context.",
+        "A retrieved passage can supply evidence, but it may be irrelevant, incomplete or misread.",
+        "Correct performance on a task does not by itself settle philosophical claims about understanding."
       ],
-      callout: 'If you ask Gemini to rewrite your text, it will rewrite it. If you ask Gemini to critique your text, it will teach you how to improve it. Choose the critique. It makes you a better writer; the rewrite makes you dependent.'
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        },
+        {
+          "label": "Google: Gemini Notebook help",
+          "url": "https://support.google.com/gemininotebook/answer/16164461"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
     },
     {
-      type: 'scenario',
-      title: 'The Tempting Rewrite',
-      situation: 'You are writing your English Literature essay on Macbeth. You have a solid draft, but you are worried your analysis of Lady Macbeth\'s guilt is repetitive. You upload your draft to Gemini and ask for feedback. Gemini replies with detailed criticism, but also adds: \'Here is a rewritten version of your third paragraph which is much stronger.\' The rewritten text is beautiful, uses excellent terminology, and flows perfectly. Submission is in two hours.',
-      question: 'What do you do?',
-      choices: [
+      "type": "concept",
+      "title": "Put the metaphors on trial",
+      "body": "The parrot metaphor draws attention to fluent imitation. The librarian metaphor draws attention to finding and organising information. Neither is a complete technical account.",
+      "bullets": [
+        "Ask what each metaphor predicts and where it fails.",
+        "A generated citation can look plausible without referring to a real publication.",
+        "A system using retrieval can still produce an unsupported conclusion. Check claim against passage."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. Design a test that distinguishes retrieval from a plausible guess. What would it leave unresolved?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "Audit a miniature source",
+      "instructions": "Working independently. Fictional source: “The repair club began in 2019. It meets twice each month. The report does not record membership.” Output: “Founded in 2018, the weekly club has 40 members.”",
+      "steps": [
+        "Label each output claim supported, contradicted or not established.",
+        "Repair the sentence without inventing facts.",
+        "Write one museum label using each metaphor.",
+        "Explain one limitation of each label."
+      ],
+      "reveal": "2018 and weekly are contradicted. Forty members is not established. The source supports 2019 and twice each month."
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
         {
-          text: 'Copy and paste the rewritten paragraph directly into your essay. It\'s based on your ideas anyway, so it\'s not plagiarism.',
-          outcome: 'Your English teacher notices that the vocabulary and sentence structures in paragraph 3 are significantly more advanced than the rest of the essay. She runs it through a detection check, which flags it as highly likely AI-generated. You receive a zero, a warning on your academic record, and must resubmit under supervision.'
+          "num": 1,
+          "text": "Design a test that distinguishes retrieval from a plausible guess. What would it leave unresolved?"
         },
         {
-          text: 'Read the rewritten paragraph, identify the specific literary terms it introduced (e.g., \'dramatic irony\', \'somnambulism\'), and rewrite your original paragraph in your own words, incorporating those concepts.',
-          outcome: 'Your paragraph is much stronger. You write a brief footnote: \'I used Gemini to identify gaps in my Lady Macbeth analysis; it suggested incorporating terms like somnambulism, which I then wrote into paragraph 3.\' Your teacher commends both your analytical improvement and your honest disclosure.'
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
         },
         {
-          text: 'Ask Gemini: \'What specific structural errors made my original paragraph repetitive, and how can I resolve them myself?\' then edit it based on that advice.',
-          outcome: 'Gemini explains that you repeated the word \'guilt\' four times and failed to link Lady Macbeth\'s sleepwalking directly to Macbeth\'s actions. You edit the paragraph yourself. You learn how to diagnose repetitive writing, and your essay remains 100% original. Your mark is high.'
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
         }
       ]
     },
     {
-      type: 'activity',
-      title: 'Socratic Critiquing Activity',
-      instructions: 'Practice prompting Gemini as a Socratic critic rather than an editor.',
-      steps: [
-        'Write a short, paragraph-long draft of an answer to a question in your favourite subject. Make it a rough first draft with some minor errors or weak arguments.',
-        'Prompt Gemini: \'I am going to paste my draft paragraph. Act as a Socratic examiner. Do not rewrite my text under any circumstances. Review my draft and provide: (1) Two specific logical flaws or missing points, (2) One key vocabulary word I should include, and (3) A question that forces me to think deeper about my thesis.\'',
-        'Paste your draft. Observe the feedback. Did it refuse to rewrite?',
-        'Edit your paragraph yourself based on Gemini\'s feedback.',
-        'Paste the revised paragraph back to Gemini and ask: \'How does this draft compare to the first? Did I successfully resolve the issues you raised?\'',
-        'Write down your final prompt template for future coursework editing.'
-      ]
-    },
-    {
-      type: 'discussion',
-      title: 'Cognitive Offloading vs. Assistance',
-      questions: [
-        { num: 1, text: 'If you let AI write your sentences, your brain doesn\'t practice the process of translating thoughts into words. What is the long-term cost of this \'cognitive offloading\' on your ability to express yourself in speech and writing?' },
-        { num: 2, text: 'Some argue that AI detectors are unreliable and unfairly flag non-native English speakers. If detectors can be bypassed, why does academic integrity still matter? Who are you hurting when you cheat with AI?' },
-        { num: 3, text: 'How can schools create fair policies that allow pupils to use AI for learning (Green tier) while preventing plagiarism (Red tier)? What role should disclosure play?' }
-      ]
-    },
-    {
-      type: 'quiz',
-      question: 'What is the defining difference between ethical AI assistance (Green tier) and academic plagiarism (Red tier)?',
-      options: [
-        'Green tier uses Claude, while Red tier uses ChatGPT.',
-        'Green tier means the AI acts as a critic and feedback partner while you write the text; Red tier means the AI generates the actual text submitted.',
-        'Green tier is allowed only for homework, while Red tier is allowed for coursework.',
-        'Green tier means using prompts under 50 words; Red tier means using prompts over 50 words.'
+      "type": "quiz",
+      "question": "What does a correct answer without a source establish?",
+      "options": [
+        "That the system consulted the original evidence.",
+        "That this answer is correct, if independently checked.",
+        "That the system understands in every relevant sense."
       ],
-      correct: 1,
-      explanation: 'Ethical use means you maintain cognitive ownership: you do the thinking and the writing, using the AI to identify gaps, suggest vocabulary, or test your arguments. Red tier use means the AI does the writing, which is plagiarism.'
+      "correct": 1,
+      "explanation": "Performance, evidence retrieval and understanding are different claims."
     },
     {
-      type: 'summary',
-      title: 'Key Takeaways',
-      points: [
-        { icon: '▸', label: 'AI is a critic, not an author', text: 'Always ask Gemini to critique, analyse, or suggest improvements to your draft. Never ask it to rewrite or generate text for submission.' },
-        { icon: '▸', label: 'Struggle builds competence', text: 'The cognitive effort of writing is how your brain learns. Offloading the writing to AI prevents learning.' },
-        { icon: '▸', label: 'Disclosure is standard', text: 'Always disclose how you used AI in your assignments. Transparency is the foundation of academic integrity.' }
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "A model is not the whole product",
+          "text": "A language model generates outputs from learned parameters and supplied context."
+        },
+        {
+          "icon": "2",
+          "label": "Put the metaphors on trial",
+          "text": "The parrot metaphor draws attention to fluent imitation."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Create two contrasting museum labels for a fictional chatbot's convincing but false answer. Explain what each analogy illuminates and where it breaks down."
+        }
+      ]
+    }
+  ],
+  "3": [
+    {
+      "type": "hook",
+      "title": "How a Machine Learns",
+      "body": "A fictional creature classifier gets every training example right. On four new creatures it gets only two right. Has it learned a useful rule, and what should you investigate before changing it?"
+    },
+    {
+      "type": "video",
+      "title": "Optional: What is a neural network?",
+      "videoId": "aircAruvnKk",
+      "credit": "3Blue1Brown · introductory explanation",
+      "intro": "Optional viewing. Write one question before watching, then answer it in your own words. The explanation and activity in this lesson work without the video.<p><strong>Text alternative:</strong> Training adjusts model parameters using examples and an objective. A held-out test helps estimate generalisation; it does not guarantee future performance.</p>"
+    },
+    {
+      "type": "concept",
+      "title": "Three different jobs for data",
+      "body": "In supervised learning, examples pair inputs with labels. Training adjusts model parameters; validation helps choose settings; a held-out test estimates performance after those choices. Split proportions depend on the task and available data.",
+      "bullets": [
+        "A hand-written classification rule is a useful analogy, not a miniature neural network.",
+        "If you repeatedly adjust a rule using the test results, those results no longer provide an independent final check.",
+        "Separate related examples together where necessary to avoid information leaking between splits."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "A good score has a boundary",
+      "body": "Generalisation means performing usefully on unseen examples from the relevant setting. It does not establish that a system has discovered causes or will work in every setting.",
+      "bullets": [
+        "Overfitting: fitting training-specific detail that does not generalise well.",
+        "Underfitting: missing useful structure even in the training examples.",
+        "A gap between training and test performance prompts investigation; a tiny test cannot settle the cause.",
+        "Ask whether labels, sampling or the deployment setting differ."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. If your classifier gets four out of four right, what can you still not conclude?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "Train a paper classifier",
+      "instructions": "Working independently. Invent a rule for sorting twelve drawn creatures. Reserve four unseen creatures, test the rule once, and explain one failure without quietly changing the test set.",
+      "steps": [
+        "Draw twelve fictional creatures with features such as wings, stripes and antennae. Give them two class labels.",
+        "Use six examples to write a rule and two to revise it. Reserve the last four until the rule is fixed.",
+        "Run the four tests once and record predicted and actual labels.",
+        "Invent a creature that exposes a weakness. Explain what a larger independent test should include."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "If your classifier gets four out of four right, what can you still not conclude?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "Why reserve a test set?",
+      "options": [
+        "To tune the rule until every test passes.",
+        "To estimate performance on examples not used to choose the rule.",
+        "To prove the rule will work on all future data."
+      ],
+      "correct": 1,
+      "explanation": "A held-out test limits one source of overoptimism; its size and relevance still matter."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Three different jobs for data",
+          "text": "In supervised learning, examples pair inputs with labels."
+        },
+        {
+          "icon": "2",
+          "label": "A good score has a boundary",
+          "text": "Generalisation means performing usefully on unseen examples from the relevant setting."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Invent a rule for sorting twelve drawn creatures. Reserve four unseen creatures, test the rule once, and explain one failure without quietly changing the test set."
+        }
+      ]
+    }
+  ],
+  "4": [
+    {
+      "type": "hook",
+      "title": "The Black Box",
+      "body": "A fictional scholarship tool rejects an application with the message “score below threshold”. The supplier offers a colourful explanation chart. What would make that chart useful to the applicant?"
+    },
+    {
+      "type": "concept",
+      "title": "An explanation has a purpose",
+      "body": "Interpretability concerns how we understand a model’s operation. A decision explanation should answer a particular person’s question. A plausible explanation is not necessarily faithful to the mechanism.",
+      "bullets": [
+        "A developer may need to inspect a failure; an applicant may need to correct data or challenge a decision.",
+        "Feature importance shows a relationship within an explanation method, not automatically a causal effect.",
+        "Ask how an explanation was produced and tested."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Turn explanation into a decision receipt",
+      "body": "Fictional receipt: “Attendance contributed to the score.” That may sound informative while omitting a data error or an unreasonable criterion.",
+      "bullets": [
+        "Show the data used, its date and a correction route.",
+        "Identify the decision-maker and the limits of the model.",
+        "Explain how to obtain review by someone able to change the outcome.",
+        "Compare performance and explanation quality separately; do not assume a universal trade-off."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. Could a faithful explanation reveal that the underlying rule is unacceptable? Defend your answer.",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "Design the inspection hatch",
+      "instructions": "Working independently. Work with the fictional scholarship or loan example.",
+      "steps": [
+        "Draw the receipt a rejected applicant should receive.",
+        "Add an incorrect input and show the correction process.",
+        "Write a test of whether the explanation faithfully reflects the decision.",
+        "Explain one thing that revealing model code alone would not resolve."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "Could a faithful explanation reveal that the underlying rule is unacceptable? Defend your answer."
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "Which change most helps someone challenge a wrong input?",
+      "options": [
+        "Displaying more technical terminology.",
+        "Naming the data used and providing a correction and review route.",
+        "Publishing an unexplained score."
+      ],
+      "correct": 1,
+      "explanation": "The information must support a meaningful action, not merely look transparent."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "An explanation has a purpose",
+          "text": "Interpretability concerns how we understand a model’s operation."
+        },
+        {
+          "icon": "2",
+          "label": "Turn explanation into a decision receipt",
+          "text": "Fictional receipt: “Attendance contributed to the score.” That may sound informative while omitting a data error or an unreasonable criterion."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Design a decision receipt for a fictional loan model. Distinguish information that helps a user challenge a decision from information that merely looks technical."
+        }
+      ]
+    }
+  ],
+  "5": [
+    {
+      "type": "hook",
+      "title": "Bias In, Bias Out",
+      "body": "Two fictional groups each have 20 examples in a test. The classifier gets 19 right in group A and 15 right in group B. The supplier advertises 85% accuracy. What has that headline hidden?"
+    },
+    {
+      "type": "video",
+      "title": "Optional: Training data and bias",
+      "videoId": "x2mRoFNm22g",
+      "credit": "Code.org · introductory explanation",
+      "intro": "Optional viewing. Write one question before watching, then answer it in your own words. The explanation and activity in this lesson work without the video.<p><strong>Text alternative:</strong> An overall score may conceal unequal errors. Investigate the data, labels, test population and consequences rather than assuming the cause of a gap.</p>"
+    },
+    {
+      "type": "concept",
+      "title": "Different questions need different measures",
+      "body": "The combined score is 34/40, or 85%. Group A is 95%; group B is 75%. An overall average can hide unequal performance. These are invented teaching figures, not a product evaluation.",
+      "bullets": [
+        "Check sample size, labels, task and who was included.",
+        "Separate false positives from false negatives: their costs can differ.",
+        "A small test indicates a question to investigate, not a stable estimate for every user."
+      ],
+      "sources": [
+        {
+          "label": "Gender Shades — original 2018 study",
+          "url": "https://proceedings.mlr.press/v81/buolamwini18a.html"
+        },
+        {
+          "label": "NIST: Face recognition evaluation",
+          "url": "https://pages.nist.gov/frvt/html/frvt11.html"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Keep historical evidence in its proper scope",
+      "body": "Gender Shades (2018) evaluated commercial gender classification systems. It was not a current scorecard for every face-recognition product. Its importance here is the method: test performance across relevant groups.",
+      "bullets": [
+        "Representation gaps are one source of problems; labels, objectives and deployment conditions also matter.",
+        "Adding data may help, but cannot by itself decide whether the task or label is appropriate.",
+        "Define the harm and a meaningful comparison before declaring a repair fair."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. Could improving one fairness measure worsen another? Give a clearly hypothetical example.",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "Build a small dataset with a visible gap",
+      "instructions": "Working independently. Invent 12 drawn objects with two features; avoid classifying real pupils.",
+      "steps": [
+        "Write a classification rule and mark which examples it was built from.",
+        "Reserve four new examples for testing.",
+        "Show one representation gap and predict a failure.",
+        "Propose a repair and state what further evidence you need."
+      ],
+      "reveal": "For the opening test: overall 85%, group A 95%, group B 75%. Report the denominators as well as the percentages."
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "Could improving one fairness measure worsen another? Give a clearly hypothetical example."
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "Why is the overall score insufficient?",
+      "options": [
+        "Averages are always wrong.",
+        "It conceals group differences and says little about error costs.",
+        "The larger group must always lose."
+      ],
+      "correct": 1,
+      "explanation": "Inspect disaggregated results and the consequences of each kind of error."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Different questions need different measures",
+          "text": "The combined score is 34/40, or 85%."
+        },
+        {
+          "icon": "2",
+          "label": "Keep historical evidence in its proper scope",
+          "text": "Gender Shades (2018) evaluated commercial gender classification systems."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Build a tiny fictional dataset with a deliberate representation gap. Explain how the gap could affect outcomes, propose a repair and name a new problem the repair might create."
+        }
+      ]
+    }
+  ],
+  "6": [
+    {
+      "type": "hook",
+      "title": "The Data Harvest",
+      "body": "A fictional photo tool asks for an image, a school email and permission to retain uploads. Its notice describes service operation, safety review and optional model improvement separately. What would you check before using it?"
+    },
+    {
+      "type": "concept",
+      "title": "Follow the data through distinct purposes",
+      "body": "Collection, storage, sharing and model training are different operations. Do not assume every upload is used for training, or that a “private” interface means no data is retained.",
+      "bullets": [
+        "Identify the account type and relevant terms.",
+        "Ask who receives the data, why it is needed and how long it is held.",
+        "A deletion request may have limits; read the applicable policy rather than promising a universal right or result."
+      ],
+      "sources": [
+        {
+          "label": "DfE: Generative AI and data protection in schools",
+          "url": "https://www.gov.uk/guidance/data-protection-in-schools/generative-artificial-intelligence-ai-and-data-protection-in-schools"
+        },
+        {
+          "label": "Google: Gemini Notebook help",
+          "url": "https://support.google.com/gemininotebook/answer/16164461"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Permission is more than a tick box",
+      "body": "Schools must consider their data-protection responsibilities and approved tools. Consent is one possible lawful basis, not the only one, and a pupil cannot settle a school’s legal obligations by clicking agree.",
+      "bullets": [
+        "Use fictional material for this exercise.",
+        "Reduce unnecessary data before asking how to protect it.",
+        "Separate a provider’s contractual promise from evidence that a control works."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. What evidence would justify a claim that an upload is excluded from training? What would remain unknown?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "Write a data receipt",
+      "instructions": "Working independently. Use an invented photo with no real people or identifying information.",
+      "steps": [
+        "Draw upload, processing, storage, onward sharing and deletion as separate stages.",
+        "Write one question for each stage.",
+        "Compare a consumer account and a school-managed account without assuming identical terms.",
+        "Recommend the minimum data needed for the task and a non-upload alternative."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "What evidence would justify a claim that an upload is excluded from training? What would remain unknown?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What is the strongest first step when a tool asks for unnecessary personal data?",
+      "options": [
+        "Supply it because the tool is free.",
+        "Reduce the data and check approved use and terms.",
+        "Assume a school email makes every use compliant."
+      ],
+      "correct": 1,
+      "explanation": "Data minimisation and a check of the actual purpose and setting come before convenience."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Follow the data through distinct purposes",
+          "text": "Collection, storage, sharing and model training are different operations."
+        },
+        {
+          "icon": "2",
+          "label": "Permission is more than a tick box",
+          "text": "Schools must consider their data-protection responsibilities and approved tools."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Trace an invented photo from upload to possible model use. Mark collection, permission, transformation and deletion questions; do not assume a service uses every upload for training."
+        }
+      ]
+    }
+  ],
+  "7": [
+    {
+      "type": "hook",
+      "title": "The Trolley Problem Goes Digital",
+      "body": "A fictional delivery robot can take a short route through a crowded courtyard or a longer route that may miss a deadline. Its designers optimise delivery time. Who decides which other values the system must respect?"
+    },
+    {
+      "type": "concept",
+      "title": "Use ethical lenses without pretending they are code",
+      "body": "A thought experiment isolates a question. Real systems operate with uncertain information, technical limits and legal duties. Do not treat a trolley dilemma as a description of how every autonomous vehicle is programmed.",
+      "bullets": [
+        "Consequences: compare likely benefits and harms, including uncertainty and distribution.",
+        "Duties and rights: ask what constraints should protect people even when breaking them would improve a total score.",
+        "Virtue ethics: ask what care, honesty and practical judgement demand of designers and operators.",
+        "Fairness: consider a rule from the position of the person who bears its cost."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Draw the responsibility chain",
+      "body": "A system can distribute decisions across designers, suppliers, deployers and users. Naming an algorithm does not explain who should prevent harm, investigate a failure or provide a remedy.",
+      "bullets": [
+        "Distinguish technical causation, moral responsibility and legal liability.",
+        "Give a named role authority and resources to intervene.",
+        "Record a decision so a later reviewer can reconstruct it.",
+        "A human signature is insufficient if the person cannot understand or change the action."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. Would your rule change if the delivery were urgent medicine? Which facts would matter?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "Two ethics, one decision",
+      "instructions": "Working independently. Storyboard an autonomous-system dilemma twice, once from a consequences-first view and once from a duties-first view. Defend a choice and its cost.",
+      "steps": [
+        "Storyboard the courtyard case using a consequences-first approach.",
+        "Draw a second version using a rule protecting pedestrian access.",
+        "Explain where the versions agree and where they conflict.",
+        "Choose a policy, name its cost and specify who can stop the robot."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "Would your rule change if the delivery were urgent medicine? Which facts would matter?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What does an ethical framework contribute?",
+      "options": [
+        "A guaranteed legal answer.",
+        "A way to expose reasons, values and trade-offs.",
+        "A replacement for testing a system."
+      ],
+      "correct": 1,
+      "explanation": "Ethical reasoning supports scrutiny; it does not replace technical evidence or applicable law."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Use ethical lenses without pretending they are code",
+          "text": "A thought experiment isolates a question."
+        },
+        {
+          "icon": "2",
+          "label": "Draw the responsibility chain",
+          "text": "A system can distribute decisions across designers, suppliers, deployers and users."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Storyboard an autonomous-system dilemma twice, once from a consequences-first view and once from a duties-first view. Defend a choice and its cost."
+        }
+      ]
+    }
+  ],
+  "8": [
+    {
+      "type": "hook",
+      "title": "Human in the Loop",
+      "body": "A fictional appointment assistant moves a booking automatically. A staff member can approve it, but sees only a green tick and has two seconds to respond. Is that meaningful oversight?"
+    },
+    {
+      "type": "concept",
+      "title": "Put oversight where it can change the outcome",
+      "body": "Human-in-the-loop often means approval before an action; on-the-loop often means monitoring with a way to intervene; out-of-the-loop means no routine human intervention at that stage. These labels vary, so describe the actual arrangement.",
+      "bullets": [
+        "What can the person see? Can they inspect the input, evidence and uncertainty?",
+        "What can they do? Can they pause, reject, correct or reverse the action?",
+        "Do they have enough time, authority and training?",
+        "Who helps the affected person challenge a mistake?"
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Match control to consequence",
+      "body": "Oversight should respond to the task’s stakes and reversibility. A draft message and a cancelled appointment need different controls.",
+      "bullets": [
+        "Automation bias means overrelying on a system’s suggestion.",
+        "Rubber-stamping can conceal responsibility rather than exercise it.",
+        "Use logs and spot checks, and test whether warnings attract useful attention.",
+        "Offer a usable fallback when the assistant or reviewer is unavailable."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. What should happen when the person responsible for review is unavailable?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "Design the human handover",
+      "instructions": "Working independently. Draw a three-stage oversight dashboard for a fictional medical scheduling assistant. Show who can inspect, stop and appeal an action, without pretending the exercise is medical advice.",
+      "steps": [
+        "Draw the assistant’s proposed change, the staff review and the user’s appeal route.",
+        "Show the evidence visible at each stage.",
+        "Simulate a mistaken cancellation and trace who can reverse it.",
+        "Remove one unnecessary approval and strengthen one consequential control. Explain both decisions."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "What should happen when the person responsible for review is unavailable?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "Which is the strongest oversight arrangement?",
+      "options": [
+        "A named reviewer with no ability to intervene.",
+        "A reviewer with relevant evidence, time and authority to reject or reverse the action.",
+        "A disclaimer saying humans remain responsible."
+      ],
+      "correct": 1,
+      "explanation": "Responsibility needs practical control and a route to remedy."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Put oversight where it can change the outcome",
+          "text": "Human-in-the-loop often means approval before an action; on-the-loop often means monitoring with a way to intervene; out-of-the-loop means no routine human intervention at that stage."
+        },
+        {
+          "icon": "2",
+          "label": "Match control to consequence",
+          "text": "Oversight should respond to the task’s stakes and reversibility."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Draw a three-stage oversight dashboard for a fictional medical scheduling assistant. Show who can inspect, stop and appeal an action, without pretending the exercise is medical advice."
+        }
+      ]
+    }
+  ],
+  "9": [
+    {
+      "type": "hook",
+      "title": "Prompt Architecture",
+      "body": "A fictional society needs a 90-word invitation. A vague prompt produces a polished message with an invented sponsor and ticket price. Which parts of the brief would have prevented that failure?"
+    },
+    {
+      "type": "concept",
+      "title": "Specify the task and the evidence",
+      "body": "PTFC is a useful planning aid: persona, task, format and context. It is not a guarantee of accuracy or a scientific ranking of which instruction matters most.",
+      "bullets": [
+        "Use a role only when it clarifies the task; a role label does not confer expertise.",
+        "Provide facts, audience, constraints and a success criterion."
+      ],
+      "sources": [
+        {
+          "label": "OpenAI: Reasoning best practices",
+          "url": "https://developers.openai.com/api/docs/guides/reasoning-best-practices"
+        },
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Put it to the test: Specify the task and the evidence",
+      "body": "When would a form or fixed template outperform a generative tool for this task?",
+      "bullets": [
+        "State what to do when information is missing."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "Build and test the prompt",
+      "instructions": "Working independently. Use an approved tool or manually write two possible outputs.",
+      "steps": [
+        "Write the prompt and a test checklist before viewing an answer.",
+        "Test a normal brief and a brief containing two conflicting dates.",
+        "Record one accepted output and one failure.",
+        "Revise the instruction and explain exactly what improved."
+      ]
+    },
+    {
+      "type": "concept",
+      "title": "Keep the comparison fair",
+      "body": "Fictional brief: a repair society event on Friday, 12:45, Room 4; booking is required; price and sponsor are unknown. Draft an invitation without filling the gaps.",
+      "bullets": [
+        "Check date, time, location and length against the brief.",
+        "Change one instruction, then compare outputs against the same criteria.",
+        "A tool can help draft; permission to send or book is a separate decision."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. When would a form or fixed template outperform a generative tool for this task?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "When would a form or fixed template outperform a generative tool for this task?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "Which is a useful missing-information rule?",
+      "options": [
+        "Always make a confident guess.",
+        "Ask or mark the gap instead of inventing a fact.",
+        "Add an expert persona."
+      ],
+      "correct": 1,
+      "explanation": "The response needs a defined way to handle uncertainty."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Specify the task and the evidence",
+          "text": "PTFC is a useful planning aid: persona, task, format and context."
+        },
+        {
+          "icon": "2",
+          "label": "Keep the comparison fair",
+          "text": "Fictional brief: a repair society event on Friday, 12:45, Room 4; booking is required; price and sponsor are unknown."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Draw a prompt as a building plan with purpose, context, constraints and checking. Test its weakest room with an ambiguous user request and redesign it."
+        }
+      ]
+    }
+  ],
+  "10": [
+    {
+      "type": "hook",
+      "title": "Synthetic Creativity and Copyright",
+      "body": "A fictional client asks for “full rights” to a poster combining your layout, a licensed photo and a generated background. Can one sentence about AI ownership settle every part of the request?"
+    },
+    {
+      "type": "concept",
+      "title": "Separate contribution, permission and protection",
+      "body": "A useful creative record identifies what you made, what you borrowed and what a tool generated. Owning a file does not establish permission to reuse every ingredient.",
+      "bullets": [
+        "Check the licence and intended use of each borrowed asset.",
+        "Record your selection, arrangement and editing decisions.",
+        "Distinguish a provider’s contract from the copyright law that applies."
+      ],
+      "sources": [
+        {
+          "label": "UK Government: Copyright and AI report, March 2026",
+          "url": "https://www.gov.uk/government/publications/report-and-impact-assessment-on-copyright-and-artificial-intelligence/report-on-copyright-and-artificial-intelligence"
+        },
+        {
+          "label": "US Copyright Office: AI reports",
+          "url": "https://copyright.gov/policy/artificial-intelligence/"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Name the jurisdiction before making the claim",
+      "body": "The UK and US do not have identical rules. The UK’s computer-generated-works provisions and current reform debate need separate consideration from US human-authorship guidance. A government proposal is not automatically a change in law.",
+      "bullets": [
+        "The UK March 2026 report discusses section 9(3), its uncertainty and possible reform.",
+        "The US Copyright Office distinguishes human contribution from purely generated material.",
+        "For a real commercial commitment, seek appropriate advice; this exercise identifies questions rather than certifying ownership."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. Could an output be lawful to use but difficult to protect exclusively? Explain the distinction.",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "Make the provenance label",
+      "instructions": "Working independently. Create a small poem or poster using original or clearly licensed material.",
+      "steps": [
+        "Label each contribution and any tool used.",
+        "Keep two versions showing a human creative decision.",
+        "Write three questions to resolve before promising exclusive rights.",
+        "Explain which answer could differ between jurisdictions."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "Could an output be lawful to use but difficult to protect exclusively? Explain the distinction."
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "Which statement is defensible?",
+      "options": [
+        "UK and US rules for every AI output are identical.",
+        "The answer depends on contribution, use, jurisdiction and current rules.",
+        "A tool’s download button guarantees exclusive rights."
+      ],
+      "correct": 1,
+      "explanation": "Avoid turning a complex rights question into a universal slogan."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Separate contribution, permission and protection",
+          "text": "A useful creative record identifies what you made, what you borrowed and what a tool generated."
+        },
+        {
+          "icon": "2",
+          "label": "Name the jurisdiction before making the claim",
+          "text": "The UK and US do not have identical rules."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Curate a tiny poem or poster with a complete contribution label: your choices, borrowed sources and any generated material. Identify a rights question you cannot settle from the output alone."
+        }
+      ]
+    }
+  ],
+  "11": [
+    {
+      "type": "hook",
+      "title": "Deep Research and the Future of Work",
+      "body": "A fictional headline says “AI exposure means this career will disappear”. The underlying study assesses tasks within occupations. What changed between evidence and headline?"
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. What evidence would distinguish useful assistance from replacement of an entire role?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "concept",
+      "title": "Tasks are not jobs",
+      "body": "Occupational exposure estimates concern what a technology might affect. They are not counts of people who have lost jobs or a timetable for a career disappearing.",
+      "bullets": [
+        "A role combines tasks, responsibility, relationships and local constraints.",
+        "Adoption depends on cost, reliability, demand, regulation and organisational choices.",
+        "Look for the study’s method, date, population and limitations."
+      ],
+      "sources": [
+        {
+          "label": "ILO: Occupational exposure to generative AI, 2025",
+          "url": "https://www.ilo.org/publications/generative-ai-and-jobs-refined-global-index-occupational-exposure"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Build a claim-to-source chain",
+      "body": "The ILO’s 2025 index evaluates occupational exposure through task-level analysis. Use it as a model of a defined question, not as a forecast that every exposed task will be automated.",
+      "bullets": [
+        "Copy the claim you want to check into your own notes.",
+        "Find the primary report, locate the relevant measure and compare wording.",
+        "Two articles copying the same press release are not independent confirmation."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. What evidence would distinguish useful assistance from replacement of an entire role?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "Edit the career headline",
+      "instructions": "Working independently. Use the fictional headline or a current claim from a named source.",
+      "steps": [
+        "List three tasks in a career, then identify which part of each might change.",
+        "Separate observed adoption, estimated exposure and future predictions.",
+        "Write a 100-word newsroom brief with a source date and a limitation.",
+        "Choose one skill you can practise now and explain how you would demonstrate it."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "What evidence would distinguish useful assistance from replacement of an entire role?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What does a high exposure estimate establish?",
+      "options": [
+        "That the whole occupation will disappear.",
+        "That some tasks may be affected under the study’s method.",
+        "That wages must fall by the same percentage."
+      ],
+      "correct": 1,
+      "explanation": "Exposure is a measure with assumptions, not a direct job-loss forecast."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Tasks are not jobs",
+          "text": "Occupational exposure estimates concern what a technology might affect."
+        },
+        {
+          "icon": "2",
+          "label": "Build a claim-to-source chain",
+          "text": "The ILO’s 2025 index evaluates occupational exposure through task-level analysis."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Choose a claim about AI changing work from the lesson. Turn it into a newsroom brief separating measured task exposure, predicted job change and evidence still needed."
+        }
+      ]
+    }
+  ],
+  "12": [
+    {
+      "type": "hook",
+      "title": "The Revision Loop",
+      "body": "A fictional draft argues that a second lunch queue caused shorter waits. Feedback A asks about different menus; feedback B offers a polished rewrite claiming the trial proved causation. Which suggestion deserves your attention?"
+    },
+    {
+      "type": "concept",
+      "title": "Protect the thinking you are meant to practise",
+      "body": "Assistance should be judged against the learning goal and the actual task instructions. Feedback, rewriting and submitting generated work are different uses. Disclosure does not make prohibited assistance acceptable.<h3>Work from a source you can inspect</h3><p>Fictional trial: one queue averaged six minutes with 120 lunches; two queues averaged four minutes with 100 lunches. Menus differed and each condition ran for five days.</p>",
+      "bullets": [
+        "Attempt the task first.",
+        "Ask for a question or a specific critique before a rewrite.",
+        "Check a suggestion against evidence and explain what you accepted or rejected.",
+        "The recorded average fell by two minutes.",
+        "The evidence does not isolate the effect of the second queue.",
+        "A useful revision qualifies the claim and proposes a more informative comparison."
+      ],
+      "sources": [
+        {
+          "label": "Ofqual: AI malpractice and assessment, 2026",
+          "url": "https://www.gov.uk/government/publications/artificial-intelligence-malpractice-and-assessment-advice-note/artificial-intelligence-malpractice-and-assessment-advice-note-accessible"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. How would the task change if its instructions prohibited AI entirely?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "Keep an audit trail of the revision",
+      "instructions": "Working independently. Use the supplied trial; no chatbot is required.",
+      "steps": [
+        "Write an 80-word recommendation before reviewing the feedback.",
+        "Accept or reject each comment with a reason.",
+        "Revise the argument while retaining a limitation.",
+        "Close the source and explain the difference between a recorded change and a causal claim."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "How would the task change if its instructions prohibited AI entirely?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What makes feedback useful for learning?",
+      "options": [
+        "It removes the need to think.",
+        "It helps you identify and repair a specific weakness you can explain.",
+        "It always gives a predicted grade."
+      ],
+      "correct": 1,
+      "explanation": "The evidence is in the learner’s decisions and independent follow-up, not the fluency of a rewrite."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Protect the thinking you are meant to practise",
+          "text": "Assistance should be judged against the learning goal and the actual task instructions."
+        },
+        {
+          "icon": "2",
+          "label": "Work from a source you can inspect",
+          "text": "Fictional trial: one queue averaged six minutes with 120 lunches; two queues averaged four minutes with 100 lunches."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Keep a first draft, two competing feedback comments and a revised draft. Annotate one accepted suggestion and one rejected suggestion with reasons connected to the writing's purpose."
+        }
       ]
     }
   ]
-
 };

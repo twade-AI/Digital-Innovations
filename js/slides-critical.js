@@ -1,566 +1,635 @@
-/* ── Curated Slide Content: Critical Thinking Lessons (45–48) ── */
-
+/* AEP editorial review: 26 October 2026. Lesson IDs and base slide counts retained. */
 var SLIDES_CRITICAL = {
-
-  // ── L48: Thinking With vs. Thinking For (Unit 5 — Presentations & Reflection) ─
-  48: [
+  "45": [
     {
-      type: 'hook',
-      title: 'Thinking With vs. Thinking For',
-      body: 'In 2024, cognitive scientists documented \'cognitive offloading\'—the tendency to let external devices store and process information instead of our brains. We\'ve done this for decades with phone numbers and GPS. But offloading <em>analysis</em> and <em>reasoning</em> to AI creates a different risk. A study of students preparing for exams found that those who used AI to write summaries of their textbooks scored 15% lower on conceptual questions than those who wrote summaries themselves. The AI-summarised notes were perfectly structured, but because the students hadn\'t done the active work of condensing the material, their brains had not encoded it. The summaries existed on their devices, not in their minds.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">-15%</span><span class="sl">exam performance for students who offloaded summarisation to AI</span></div><div class="hook-stat-mini"><span class="sv">Desirable</span><span class="sl">difficulties: cognitive struggle is the prerequisite for memory encoding</span></div><div class="hook-stat-mini"><span class="sv">3-Tier</span><span class="sl">Academic integrity policy: Green, Amber, Red limits</span></div></div>AI can be a tool to think <em>with</em>—a partner that expands your reasoning. Or it can be a tool to think <em>for</em> you—a crutch that slowly degrades your cognitive independence. Today, we define the line.'
+      "type": "hook",
+      "title": "What Can You Trust?",
+      "body": "Five fictional posts repeat the claim that a study app doubles memory. All link to the same company press release. How many independent pieces of evidence do you have?"
     },
     {
-      type: 'concept',
-      title: 'The Three-Tier AI Usage Policy',
-      body: 'To keep learning active and maintain academic integrity, our school uses a Three-Tier AI Usage Policy. Understanding these tiers is the precondition for using Gemini and Gemini Notebook on your devices.',
-      bullets: [
-        '<strong>🟢 Green Tier (AI-Supported Brainstorming):</strong> Brainstorming essay outlines, asking Gemini to explain difficult concepts, using Gemini Notebook to search your notes, and self-testing. This is active learning and is fully encouraged. No formal disclosure is required.',
-        '<strong>🟡 Amber Tier (AI-Assisted Editing):</strong> Uploading your written draft to Gemini to check for grammar, clarity, or logical flow. This is permitted for coursework but <em>must</em> be disclosed in a brief footnote (e.g., \'I used Gemini to improve the flow of paragraph 2\').',
-        '<strong>🔴 Red Tier (AI-Authored Output):</strong> Generating text paragraphs using Gemini, copying study guides or podcast scripts directly from Gemini Notebook, or submitting AI-generated ideas as your own work. This is plagiarism, and it will result in a zero grade.',
-        '<strong>The autocomplete trap:</strong> Letting AI complete your sentences might feel like a time-saver, but it prevents you from developing your own voice. Avoid using AI autocomplete features when drafting original work.'
+      "type": "concept",
+      "title": "A claim needs a reason to believe it",
+      "body": "Truth, confidence and justification are different. A confident person or system can be wrong; a cautious statement can be well supported. Match confidence to the available evidence.",
+      "bullets": [
+        "Identify the exact claim and its scope.",
+        "Ask what observation would count against it.",
+        "Separate first-hand evidence, interpretation and repetition."
       ],
-      callout: 'Academic integrity is not about rules; it is about trust. If your teachers cannot trust that the work you submit reflects your understanding, they cannot assess your learning or help you improve.'
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
     },
     {
-      type: 'scenario',
-      title: 'The Gemini Notebook Audio Overview Trap',
-      situation: 'You have been assigned to read three long research papers on renewable energy and deliver a 5-minute presentation to your science class. You upload the PDFs to Gemini Notebook and generate a 10-minute \'Audio Overview\'—a highly engaging, conversational podcast where two AI hosts banter about the papers. It makes the papers sound incredibly simple and you understand the big picture. The presentation is tomorrow morning. You have not opened the source PDFs.',
-      question: 'How do you prepare your presentation?',
-      choices: [
+      "type": "concept",
+      "title": "Build a source map",
+      "body": "Fictional evidence: a company tests its app on 12 volunteers, without a comparison group, using a quiz it designed. Five websites repeat its headline.",
+      "bullets": [
+        "The repeated stories are not five independent trials.",
+        "The study may report an observation but cannot by itself establish the claimed cause.",
+        "Look for method, comparison, sample, competing explanations and relevant independent work."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. Can a source be credible on one question and weak on another? Give an example.",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "Make a confidence weather map",
+      "instructions": "Working independently. Use five claims from the fictional app story.",
+      "steps": [
+        "Label each as supported, uncertain or not established.",
+        "Draw where the apparent sources originate.",
+        "Rewrite the headline to fit the evidence.",
+        "Name a result that would raise your confidence and a result that would lower it."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
         {
-          text: 'Write your presentation slides based entirely on the notes you took while listening to the AI podcast. It covers all the main points and is highly engaging.',
-          outcome: 'During your presentation, you speak confidently. However, during the Q&A, your teacher asks: \'Paper 2 mentions a specific limitation in the solar cell efficiency calculation. What was it?\' The AI podcast had skipped this technical detail to keep the audio engaging. You cannot answer the question. The teacher notes that your presentation lacked depth and asks if you read the original sources. You must redo the task.'
+          "num": 1,
+          "text": "Can a source be credible on one question and weak on another? Give an example."
         },
         {
-          text: 'Use the AI podcast to understand the main concepts, then open the source PDFs to read the introductions, conclusions, and key data tables. Write the presentation in your own words, using specific quotes you extracted yourself.',
-          outcome: 'Your presentation is excellent. You use the AI podcast to help you structure the narrative, but you back it up with direct evidence from the papers. When asked about the solar cell efficiency limitations, you answer accurately using the data table you studied. You receive top marks.'
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
         },
         {
-          text: 'Ask Gemini Notebook to generate a presentation outline and speaker notes based on the papers, and read them during the presentation.',
-          outcome: 'The outline is logical, but because you didn\'t read the papers or write the notes, your delivery is stiff and you struggle to explain the slides. The teacher flags the presentation as lacking student voice and schedules a resubmission. The lesson: AI-generated speaker notes do not equal student comprehension.'
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
         }
       ]
     },
     {
-      type: 'scenario',
-      title: 'Two Pupils, One Year On',
-      situation: 'Two pupils take the same Digital Innovations course. Amara uses AI for everything from day one: essay plans, argument structures, slide summaries, first drafts. She produces consistently high-quality submitted work all year. She finds the course comfortable. Jonas uses AI only after attempting tasks himself — he drafts essay plans before asking AI to critique them, attempts summaries before comparing to AI output, struggles with argument structures before using AI to check his reasoning. His submitted work is sometimes weaker than Amara\'s. At the end-of-year viva voce (oral examination), both pupils are asked to explain their thinking and respond to unexpected questions without AI.',
-      question: 'What do you predict happens at the viva — and what does this reveal about the purpose of the course?',
-      choices: [
+      "type": "quiz",
+      "question": "What increases the evidential value of a second source?",
+      "options": [
+        "Using different wording for the same press release.",
+        "Providing independent, relevant evidence with an inspectable method.",
+        "Having a more polished website."
+      ],
+      "correct": 1,
+      "explanation": "Independence is about the evidence, not the number of pages."
+    },
+    {
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
         {
-          text: 'Amara performs just as well — she has absorbed the material through her AI-assisted work and can explain it confidently',
-          outcome: 'Amara discovers a problem she did not anticipate: she can describe the conclusions but struggles to reconstruct the reasoning. When the examiner asks "why does this follow from that?" she finds herself reaching for the AI-generated structures she submitted rather than her own understanding. She passes, but the experience reveals how much of the thinking in her submitted work was not hers. The viva was designed precisely to test this — and it succeeded.'
+          "icon": "1",
+          "label": "A claim needs a reason to believe it",
+          "text": "Truth, confidence and justification are different."
         },
         {
-          text: 'Jonas performs better — his struggle throughout the year built genuine understanding that transfers to novel questions',
-          outcome: 'Jonas finds the viva uncomfortable in a familiar way — it is the same productive struggle he practised all year. When the examiner challenges his argument, he can adapt it in real time because he built the argument himself and understands where it is strong and where it bends. His final grade is higher than his average submitted grade suggested. The desirable difficulties paid off exactly as the research predicts — slower during the year, more capable at the end of it.'
+          "icon": "2",
+          "label": "Build a source map",
+          "text": "Fictional evidence: a company tests its app on 12 volunteers, without a comparison group, using a quiz it designed."
         },
         {
-          text: 'Both perform similarly — the viva tests communication skills as much as understanding, and Amara has practised producing clear, well-structured communication all year',
-          outcome: 'There is genuine truth to this. Amara\'s year of AI-assisted work has made her a clearer communicator, and clear communication is part of what the viva tests. But on the questions specifically designed to probe original reasoning — "What would you do if this assumption were false?" "What evidence would change your mind?" — the gap between the pupils emerges. Preparation for novel thinking cannot be outsourced.'
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Make a forecast-style map of five lesson claims: well supported, uncertain or contested. Explain what evidence would change the forecast for two claims."
+        }
+      ]
+    }
+  ],
+  "46": [
+    {
+      "type": "hook",
+      "title": "Trust, But Verify",
+      "body": "A fictional AI report cites “The 2026 Universal Memory Study” and claims it proves everyone should revise at midnight. The citation has an author and a journal-shaped title, but no traceable record."
+    },
+    {
+      "type": "concept",
+      "title": "Check the chain one link at a time",
+      "body": "A fabricated source, an incorrect number, a misquotation and an unsupported inference are different failures. Your checking method should target the claim.",
+      "bullets": [
+        "Find whether the source exists.",
+        "Read whether the source says what the answer claims.",
+        "Check whether the source’s method supports the conclusion."
+      ],
+      "sources": [
+        {
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "A real source can still be misused",
+      "body": "Fictional source card: “Twenty volunteers completed a short vocabulary test after either one or two practice sessions. The report does not compare times of day or long-term retention.”",
+      "bullets": [
+        "A claim about midnight is not established.",
+        "A claim about every learner exceeds this sample.",
+        "A valid link establishes access to a source, not the truth of every sentence around it."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. When would you reject the whole answer rather than repair individual sentences?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "Build the citation case file",
+      "instructions": "Working independently. Work from the supplied fictional source or a public source you can open.",
+      "steps": [
+        "Record the claim exactly.",
+        "Mark supported, contradicted or not established and cite the relevant passage.",
+        "Write a corrected claim preserving the source’s limits.",
+        "If a source is inaccessible, label the gap rather than saying you verified it."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "When would you reject the whole answer rather than repair individual sentences?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
         }
       ]
     },
     {
-      type: 'activity',
-      title: 'Build Your Cognitive Protocol',
-      instructions: 'Design a personal protocol that ensures you use AI to think with, not think for you.',
-      steps: [
-        'Review your weekly study habits. Where do you spend the most time (reading, writing, memorising, problem-solving)?',
-        'For each habit, assign an AI tier (Green, Amber, Red). Where is AI most helpful? Where is it most dangerous to your learning?',
-        'Write three rules for your personal protocol (e.g., \'Rule 1: I will never copy-paste AI-generated text. Rule 2: I will always read the source PDF before using Gemini Notebook summaries.\')',
-        'Design an AI disclosure template that you can paste at the bottom of your assignments.',
-        'Share your protocol with a partner and identify one area where you might be tempted to slip into cognitive offloading.',
-        'Write your final protocol in your notes—this will guide your use of Gemini and Gemini Notebook when they are deployed.'
-      ]
-    },
-    {
-      type: 'discussion',
-      title: 'The Price of Convenience',
-      questions: [
-        { num: 1, text: 'If you use AI to bypass the struggle of reading difficult texts or writing complex arguments, you save time. But what skills are you failing to develop? What happens when you are in an exam hall without AI?' },
-        { num: 2, text: 'The school\'s Three-Tier Policy relies on trust. Since AI text is increasingly hard to detect, should schools move to oral exams and in-class writing to ensure academic integrity? What would that mean for your study load?' },
-        { num: 3, text: 'What is the difference between asking a parent or tutor to proofread your essay versus asking Gemini? Where does peer feedback end and AI authorship begin?' }
-      ]
-    },
-    {
-      type: 'quiz',
-      question: 'Under the school\'s Three-Tier AI Policy, which of the following is considered an Amber Tier activity that must be disclosed?',
-      options: [
-        'Using Gemini to explain how a vector database works.',
-        'Asking Gemini to write the introduction paragraph of your geography coursework.',
-        'Uploading your essay draft to Gemini to check for logical flow and suggest sentence improvements.',
-        'Using Gemini Notebook to search your uploaded class notes for key terms.'
+      "type": "quiz",
+      "question": "A citation opens a real article. What comes next?",
+      "options": [
+        "Treat the whole output as verified.",
+        "Check the cited passage and whether it supports the precise claim.",
+        "Count the reference as independent confirmation automatically."
       ],
-      correct: 2,
-      explanation: 'Uploading your original draft to check for flow and grammar is an Amber Tier activity (AI-assisted editing). It is permitted, but it must be disclosed in a footnote. Writing the paragraph is Red Tier (plagiarism), and explaining concepts is Green Tier (no disclosure needed).'
+      "correct": 1,
+      "explanation": "Existence, relevance and support are separate checks."
     },
     {
-      type: 'summary',
-      title: 'Key Takeaways',
-      points: [
-        { icon: '▸', label: 'Struggling is learning', text: 'Desirable difficulties are essential for memory encoding. Offloading summaries or writing to AI lowers comprehension.' },
-        { icon: '▸', label: 'Know your tiers', text: 'Green (brainstorming), Amber (editing with disclosure), Red (AI authorship/plagiarism). Always check school guidelines.' },
-        { icon: '▸', label: 'Audio Overviews are previews', text: 'Gemini Notebook\'s podcasts are excellent for overview, but they skip details. Never write presentations or essays based solely on AI audio summaries.' }
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Check the chain one link at a time",
+          "text": "A fabricated source, an incorrect number, a misquotation and an unsupported inference are different failures."
+        },
+        {
+          "icon": "2",
+          "label": "A real source can still be misused",
+          "text": "Fictional source card: “Twenty volunteers completed a short vocabulary test after either one or two practice sessions."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Build a claim-to-source chain for one lesson statement. Record the original wording, the supporting passage and a limit; label inaccessible evidence rather than inventing verification."
+        }
       ]
     }
   ],
-
-  // ── L47: The AI Content Flood (Unit 2 — AI & Society) ───────────────────────
-  47: [
+  "47": [
     {
-      type: 'hook',
-      title: 'The AI Content Flood',
-      body: 'In 2023, researchers at NewsGuard identified over 400 websites publishing entirely AI-generated news articles — with no human editors, no bylines, and no fact-checking. By 2025, that figure had grown to over 1,000 such sites. A 2025 study found that 38% of all content on major social media platforms showed signs of AI generation — more than double the 2024 figure. Amazon\'s Kindle store was flooded with AI-generated books at such scale that legitimate authors reported their names being attached to books they never wrote. By 2026, researchers at the Reuters Institute confirmed that the majority of new content published daily on the public internet is now AI-generated or AI-assisted. We are not approaching an era of AI-generated content. We are inside it — and have been for some time.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">1,000+</span><span class="sl">AI-only news websites identified by NewsGuard by 2025</span></div><div class="hook-stat-mini"><span class="sv">38%</span><span class="sl">of social media content shows signs of AI generation (2025)</span></div><div class="hook-stat-mini"><span class="sv">&gt;50%</span><span class="sl">of new daily internet content is now AI-generated or AI-assisted</span></div></div>The question is no longer "could this be AI-generated?" The question is how you detect it — and what to do when you can\'t.'
+      "type": "hook",
+      "title": "The AI Content Flood",
+      "body": "A fictional essay detector reports a high AI score for a short paragraph. The writer has drafts and can explain every decision. What should a fair review examine?"
     },
     {
-      type: 'concept',
-      title: 'Detecting AI-Generated Text',
-      body: 'No detection method is perfect — but a combination of linguistic signals and tool-based screening catches the majority of AI-generated text. Understanding the "tells" also helps you produce better, more distinctively human writing yourself.',
-      bullets: [
-        '<strong>Linguistic tells:</strong> AI writing often features extreme structural regularity — identical paragraph lengths, uniform sentence complexity, and a specific set of overused phrases: "it\'s worth noting," "delve into," "it\'s important to," "in the realm of," "as a language model." These patterns reflect training data distributions, not individual voice',
-        '<strong>Absence of specificity:</strong> AI writing hedges heavily ("some experts argue," "studies suggest") without naming the expert or citing the study. Real expert writing is specific — named people, dated events, precise figures',
-        '<strong>No personal stake:</strong> AI text lacks genuine opinion, uncertainty, or intellectual risk-taking. It tends toward balanced-sounding both-sides framing even when the evidence is one-sided',
-        '<strong>Detection tools:</strong> GPTZero, Originality.ai, and Copyleaks achieve 80–90% accuracy on longer texts (>500 words). Accuracy drops significantly on shorter texts and on AI-assisted (not fully AI-generated) content',
-        '<strong>Perplexity and burstiness:</strong> Human writing has uneven complexity — simple sentences next to complex ones, predictable phrases next to surprising ones. AI text has unnaturally consistent complexity throughout'
+      "type": "concept",
+      "title": "Style is not proof of authorship",
+      "body": "Generic phrasing, polished grammar or unusual punctuation cannot establish who wrote a text. Detector performance depends on the tool, task and material; errors can harm real people.",
+      "bullets": [
+        "Do not use a detector score as proof on its own.",
+        "Look at the task instructions, process evidence and the writer’s explanation.",
+        "Distinguish a similarity check from a claim that text was generated by AI."
       ],
-      callout: 'No AI detector is reliable enough to be used as sole evidence of AI generation. A pupil with a distinctive, fluid writing style will sometimes trigger false positives. A pupil who carefully edits AI output into their own voice may not trigger any detector at all. Context, comparison with known work, and direct conversation remain essential.'
-    },
-    {
-      type: 'concept',
-      title: 'Beyond Deepfakes — AI-Generated Images in the Wild',
-      body: 'Lesson 13 covered deepfakes — synthetic video. But AI-generated images have saturated a far broader range of contexts: news photography, academic journals, social media, product reviews, and political advertising. Detection requires different skills from video deepfakes.',
-      bullets: [
-        '<strong>Tell-tale artefacts:</strong> Hands are the classic giveaway — AI image generators still struggle with correct finger counts. Look also at teeth (unnaturally uniform), background text (garbled or nonsensical), and ear geometry (asymmetric or structurally impossible)',
-        '<strong>Lighting inconsistencies:</strong> AI composites objects with different light sources seamlessly — a face lit from the left on a background lit from the right. Shadows that do not match. Reflections in eyes that show a different scene',
-        '<strong>Reverse image search:</strong> TinEye and Google Images can identify if an image has no original source — images that appear "from nowhere" with no traceable origin are suspect',
-        '<strong>Metadata examination:</strong> Genuine photographs contain EXIF data: camera model, GPS coordinates, date/time. AI-generated images often have no EXIF data or metadata showing image software rather than a camera',
-        '<strong>C2PA provenance:</strong> The Content Authenticity Initiative (backed by Adobe, Microsoft, Google) is building cryptographic content credentials — a tamper-evident record of where content was created. Adoption is growing but not yet universal'
-      ],
-      callout: 'The "liar\'s dividend" applies to images as well as video: once people know AI images exist, real photographs can be dismissed as AI-generated. In 2024, genuine images of real events were repeatedly labelled as "AI-generated" on social media. Distrust of authentic media is as damaging as acceptance of fake media.'
-    },
-    {
-      type: 'scenario',
-      title: 'The Academic Reference Letter',
-      situation: 'Marcus is applying to university. His teacher, Dr. Okafor, emails him a glowing reference letter. Marcus notices it uses several phrases he has seen flagged as common AI tells: "it is worth noting that Marcus demonstrates," "in the realm of academic achievement," and three paragraphs of almost identical length. He runs it through GPTZero, which returns a 78% AI-probability score. Dr. Okafor is known to be extremely busy and has written 40 reference letters this term.',
-      question: 'How should Marcus respond — and what does this situation reveal about AI detection in practice?',
-      choices: [
+      "sources": [
         {
-          text: 'Say nothing — the letter is positive, getting it flagged could cause problems, and 78% probability is not proof',
-          outcome: 'The university\'s own AI detection system flags the letter during processing. An admissions officer emails Dr. Okafor directly to ask about the letter\'s authenticity. Dr. Okafor confirms he used AI as a drafting tool and provided a substantially revised, personal version. The delay costs Marcus his early application window. By saying nothing, he lost the chance to address the issue proactively.'
+          "label": "NIST: Synthetic content transparency",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-4.pdf"
         },
         {
-          text: 'Speak privately to Dr. Okafor: share the GPTZero result, explain the risk to the application, and ask him to confirm or revise the letter',
-          outcome: 'Dr. Okafor confirms he used AI to draft the structure and heavily edited it — but some AI-typical phrasing survived. He appreciates the heads-up, spends 20 minutes revising with genuinely personal examples, and thanks Marcus for catching it. The revised letter is distinctively personal and far more persuasive. This is the mature, proportionate response: raise the concern with the person who can fix it, not as an accusation but as a practical problem to solve.'
+          "label": "Ofqual: AI malpractice and assessment, 2026",
+          "url": "https://www.gov.uk/government/publications/artificial-intelligence-malpractice-and-assessment-advice-note/artificial-intelligence-malpractice-and-assessment-advice-note-accessible"
         },
         {
-          text: 'Report the letter to the university as potentially AI-generated before submitting',
-          outcome: 'The university flags Dr. Okafor\'s reference for review. An investigation is opened. It finds he used AI as a drafting tool — a practice that is common but not formally addressed in the school\'s AI policy. Dr. Okafor is asked to rewrite 12 letters. He is frustrated. The school\'s AI policy is urgently revised. Marcus\'s relationship with his teacher is damaged for the rest of the year. Escalating without first speaking to the person involved was disproportionate.'
+          "label": "C2PA: Content Credentials explained",
+          "url": "https://c2pa.org/specifications/specifications/2.2/explainer/Explainer.html"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Spend your attention on the claim",
+      "body": "In a content flood, checking everything equally is unrealistic. Prioritise consequential claims and trace their evidence before repeating them.",
+      "bullets": [
+        "Stop before sharing something designed to provoke a reaction.",
+        "Investigate the source and look for relevant independent coverage.",
+        "Trace a quotation, image or claim to its original context. A provenance signal helps with history, not truth by itself."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. How can a verification routine remain practical without turning uncertainty into suspicion of everyone?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "Design an information triage kit",
+      "instructions": "Working independently. Use fictional material; do not accuse a classmate.",
+      "steps": [
+        "Write a three-step routine for a fast-moving claim.",
+        "Add a case where several polished reports copy one weak source.",
+        "Draft a fair response to the essay-detector scenario.",
+        "State when you would postpone a conclusion."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "How can a verification routine remain practical without turning uncertainty into suspicion of everyone?"
+        },
+        {
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
         }
       ]
     },
     {
-      type: 'activity',
-      title: 'Spot the Robot',
-      instructions: 'Develop and test your AI content detection skills across text and images. Work in pairs to challenge each other.',
-      steps: [
-        'Each person: find two real news articles (from BBC, Guardian, Reuters) and create two AI-generated articles on similar topics using ChatGPT or Claude. Mix them up — 4 articles total per pair',
-        'Swap with your partner. For each of their 4 articles: classify as Human or AI, give a confidence score (50–100%), and list 3 specific reasons for your verdict',
-        'Use GPTZero or Originality.ai to check your classifications — compare the tool\'s verdict to your own',
-        'Repeat with images: find 2 real news photographs and generate 2 AI images on similar subjects using a free tool. Swap and classify',
-        'Calculate: your text accuracy rate vs. the tool\'s rate. Your image accuracy rate. Where did you beat the tool? Where did it beat you?',
-        'Discuss: Which signals were most reliable? Which fooled you? What does this tell you about the limits of detection?'
-      ]
-    },
-    {
-      type: 'discussion',
-      title: 'Living in the Flood',
-      questions: [
-        { num: 1, text: 'Now that the majority of new daily internet content is AI-generated or AI-assisted, what happens to collective knowledge? Wikipedia has explicitly banned AI-generated content — but cannot verify compliance. Is an accurate internet even maintainable at this scale?' },
-        { num: 2, text: 'No AI detector is reliable enough for use as legal or academic evidence of AI generation. Should schools and universities stop trying to detect AI and instead change assessment formats entirely? What would that look like?' },
-        { num: 3, text: 'The AI Content Flood is not neutral — it disproportionately targets groups already vulnerable to misinformation: older adults, people in lower-resource information environments, communities where English is a second language. Is this a technology problem or a social justice problem?' }
-      ]
-    },
-    {
-      type: 'quiz',
-      question: 'Why do AI text detectors achieve lower accuracy on shorter texts?',
-      options: [
-        'Short texts are usually written by humans, so detectors are not trained on them',
-        'Shorter texts provide fewer statistical patterns to analyse, reducing the detector\'s confidence',
-        'AI tools cannot generate short pieces of text accurately',
-        'Short texts do not contain the specific vocabulary patterns AI detectors look for'
+      "type": "quiz",
+      "question": "Which is a defensible authorship conclusion from style alone?",
+      "options": [
+        "Formal vocabulary proves AI use.",
+        "A high detector score settles the case.",
+        "Style alone does not establish authorship."
       ],
-      correct: 1,
-      explanation: 'AI detectors work by analysing statistical patterns — consistent complexity, specific phrase distributions, regularity of sentence structure. Shorter texts (under ~200 words) simply do not contain enough data points for reliable statistical analysis. A tweet-length text could plausibly come from either a human or an AI, and no detector can distinguish reliably at that length.'
+      "correct": 2,
+      "explanation": "Use relevant evidence and a fair process rather than an unsupported accusation."
     },
     {
-      type: 'summary',
-      title: 'Key Takeaways',
-      points: [
-        { icon: '▸', label: 'The flood is already here', text: 'AI-generated content is already a majority of new internet content in some domains. Media literacy is not future-proofing — it is a current necessity' },
-        { icon: '▸', label: 'Linguistic and visual tells are real but imperfect', text: 'Identical paragraph lengths, hedged language, missing specificity; wrong fingers, absent metadata, impossible shadows — combine multiple signals before concluding' },
-        { icon: '▸', label: 'Detectors are tools, not verdicts', text: 'No AI detector is reliable enough to be used as sole evidence. Context, comparison with known work, and direct conversation remain essential in high-stakes situations' }
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Style is not proof of authorship",
+          "text": "Generic phrasing, polished grammar or unusual punctuation cannot establish who wrote a text."
+        },
+        {
+          "icon": "2",
+          "label": "Spend your attention on the claim",
+          "text": "In a content flood, checking everything equally is unrealistic."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Design a three-step browsing routine for a fast-moving claim. Add an example where polished writing and several copied reports would still fail your evidence test."
+        }
       ]
     }
   ],
-
-  // ── L46: Trust, But Verify (Unit 1 — Prompt Engineering & Research) ────────
-  46: [
+  "48": [
     {
-      type: 'hook',
-      title: 'Trust, But Verify',
-      body: 'In February 2023, Google unveiled its AI assistant Bard — later rebranded as Gemini — in a live demo. Bard was asked what new discoveries the James Webb Space Telescope had made. It answered confidently — including the claim that Webb had taken the "very first images" of a planet outside our solar system. Astronomers immediately pointed out this was wrong: the first exoplanet image was taken in 2004. The error wiped over $100 billion from Alphabet\'s market value in a single day. Meanwhile, Air Canada\'s chatbot had told a bereaved customer he could apply for bereavement fares retroactively — a policy that did not exist. In February 2024 a tribunal ruled Air Canada liable for its chatbot\'s false promise, in a case now cited across AI liability law.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">$100B</span><span class="sl">lost by Alphabet after one AI factual error in a live demo</span></div><div class="hook-stat-mini"><span class="sv">Fluent</span><span class="sl">AI answers to medical questions repeatedly show significant error rates in evaluations — fluency is not accuracy</span></div><div class="hook-stat-mini"><span class="sv">Liable</span><span class="sl">Air Canada held legally responsible for its chatbot\'s false promise — a landmark 2024 ruling</span></div></div>AI systems produce errors with the same tone, fluency, and confidence as accurate information. The only defence is verification — and you need a system for it.'
+      "type": "hook",
+      "title": "Thinking With, Thinking For",
+      "body": "Two fictional pupils use the same audio overview. One stops after listening; the other closes it, answers new questions and corrects mistakes from the source. What evidence would distinguish their learning?"
     },
     {
-      type: 'concept',
-      title: 'The Four Types of AI Hallucination',
-      body: 'Not all AI errors are the same. Understanding the type of hallucination helps you know where to look when checking. AI researchers classify hallucinations into four main categories — each with a different verification strategy.',
-      bullets: [
-        '<strong>Factual hallucinations:</strong> Plausible-sounding claims that are simply wrong — wrong dates, wrong figures, wrong names, wrong locations. Example: "The UK passed the Online Safety Act in 2021" (it was 2023). Verification: always check dates and numbers against a primary source',
-        '<strong>Citation hallucinations:</strong> Fabricated references to papers, studies, reports, or books that do not exist — or exist but do not say what the AI claims. Example: the NY lawyer case — 6 hallucinated court cases submitted to a federal judge. Verification: look up every citation independently',
-        '<strong>Logical hallucinations:</strong> Valid-seeming reasoning that contains a false premise, a hidden leap, or a category error. The conclusion follows from the argument — but the argument is built on sand. Verification: identify the premises explicitly and check each one',
-        '<strong>Temporal hallucinations:</strong> Outdated information presented as current — AI training data has a cutoff, and the model has no way to know things have changed since. Example: AI describing a company\'s current CEO who resigned a year ago. Verification: check currency for anything time-sensitive'
+      "type": "concept",
+      "title": "An output is not evidence of learning",
+      "body": "Cognitive offloading can be useful, but it can also remove the very effort a task is meant to develop. Judge the assistance against the skill being practised.<h3>Apply the real rules for the task</h3><p>Permitted, prohibited and needs clarification are useful planning categories. They are not a substitute for the school’s current instructions or an awarding body’s assessment rules.</p>",
+      "bullets": [
+        "Planning, recall, reasoning and checking are different parts of a task.",
+        "Listening or reading can support understanding; an unaided response checks what you can do next.",
+        "Do not infer a lasting effect on intelligence from one exercise.",
+        "A tool can be allowed in one activity and prohibited in another.",
+        "Acknowledgement does not make prohibited assistance acceptable.",
+        "Source-grounded study tools can make mistakes; inspect the source before revising from a generated resource."
       ],
-      callout: 'The most dangerous hallucinations are the ones that are 95% accurate. A fully false claim is easy to dismiss. A claim that is correct except for one crucial detail — a wrong statistic, a misattributed quote — passes initial scrutiny and causes the most damage when acted upon.'
-    },
-    {
-      type: 'concept',
-      title: 'The VERIFY Workflow',
-      body: 'Professional fact-checkers, researchers, and journalists use structured verification workflows. The VERIFY method adapts these for AI-assisted work — a six-step habit that takes minutes but catches the errors that matter.',
-      bullets: [
-        '<strong>V — Validate the claim type.</strong> Is this a fact, a statistic, a quote, a date, or an interpretation? Each requires a different verification approach',
-        '<strong>E — Extract the specific claim.</strong> Write out the exact, testable assertion in your own words. Vague claims cannot be fact-checked — make it specific before you search',
-        '<strong>R — Reach for a primary source.</strong> Not another website, not another AI. A primary source: the original study, the official document, the institution\'s own publication, the legislation',
-        '<strong>I — Investigate the numbers.</strong> Statistics are the most commonly hallucinated element. Find the original data set, the methodology, and the exact figure — not a secondary report of it',
-        '<strong>F — Find the counter-evidence.</strong> Search specifically for contradictory information. If an AI claim seems perfectly one-sided, ask what the strongest challenge to it is',
-        '<strong>Y — Your conclusion, in writing.</strong> Write one sentence stating whether you verified the claim, partially verified it, or could not verify it — and why. This becomes your audit trail'
-      ],
-      callout: 'Lateral reading is the fastest verification technique researchers have identified: instead of reading deeply into one source, quickly look at what OTHER credible sources say about it. A claim corroborated by three independent sources from different sectors (academic, journalistic, governmental) is far more reliable than any single detailed source.'
-    },
-    {
-      type: 'scenario',
-      title: 'The Chemistry Coursework',
-      situation: 'Zara is completing an A-Level Chemistry piece on the environmental impact of lithium-ion batteries. She uses Claude to research and gets a detailed response citing "a 2022 Nature Chemistry study finding that lithium extraction produces 15 tonnes of CO₂ per tonne of lithium" and "a 2023 EU directive requiring battery passports for all EVs sold from 2026." Both claims are specific, plausible, and fit her argument perfectly. She has 45 minutes before submission.',
-      question: 'What should Zara do — and what is the minimum acceptable verification standard here?',
-      choices: [
+      "sources": [
         {
-          text: 'Submit as written — both claims are specific enough to be real, and she does not have time to check both',
-          outcome: 'The Nature Chemistry figure is close to reality but significantly overstated — the actual estimate in the cited study is 4–9 tonnes depending on the extraction method. Worse, the "2023 EU directive" conflates two separate pieces of legislation and gets the implementation date wrong. Zara\'s teacher notes both inaccuracies and her score is reduced. The lesson: specificity in a hallucination is not evidence of accuracy — it is a feature of how convincing hallucinations are designed to sound.'
+          "label": "Ofqual: AI malpractice and assessment, 2026",
+          "url": "https://www.gov.uk/government/publications/artificial-intelligence-malpractice-and-assessment-advice-note/artificial-intelligence-malpractice-and-assessment-advice-note-accessible"
         },
         {
-          text: 'Spend 15 minutes verifying the EU directive (easier to find official sources for legislation) and note the Nature Chemistry figure as "approximate" without full citation',
-          outcome: 'The EU Battery Regulation is a real document — Zara finds it in under 3 minutes via the EUR-Lex database and corrects the date. She removes the Nature Chemistry citation and uses the approximate figure with a note that it comes from a range of studies. Her teacher appreciates the honesty and asks her to find a real primary source for the CO₂ figure as an extension task. Partial verification done under time pressure, transparently acknowledged, is far better than false precision.'
+          "label": "Google: Gemini Notebook help",
+          "url": "https://support.google.com/gemininotebook/answer/16164461"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. What part of a learning task would you deliberately make slower? Why?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. What part of a learning task would you deliberately make slower? Why?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "Audit the handover of thinking",
+      "instructions": "Working independently. Use a short explanation from this lesson or your own approved notes.",
+      "steps": [
+        "Map which steps you will do, which a tool could assist and how you will check.",
+        "Make a small study resource manually or with an approved tool.",
+        "Close it and answer a new application question.",
+        "Use your mistake to revise the boundary between assistance and independent work."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "What part of a learning task would you deliberately make slower? Why?"
         },
         {
-          text: 'Use the VERIFY workflow on both claims: find the original Nature Chemistry study and the EUR-Lex source for the directive',
-          outcome: 'Zara finds the EU Battery Regulation immediately. The Nature Chemistry search takes longer — the exact study Claude described does not exist, but she finds a 2021 paper in Nature Communications with similar methodology and a figure of 6.1 tonnes per tonne of lithium. She updates the citation accordingly. The 15-minute investment produces a substantially more accurate and academically credible piece. Her teacher notes the real citation and her mark reflects the care taken.'
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
         }
       ]
     },
     {
-      type: 'activity',
-      title: 'Hallucination Hunt',
-      instructions: 'Deliberately induce AI hallucinations and develop your ability to spot them before they cause damage. Use the Prompt Iteration Log from Resources to track your findings.',
-      steps: [
-        'Choose a topic you know well — a subject you study, a hobby, a local area. This background knowledge will help you spot errors',
-        'Ask an AI tool to produce five specific factual claims with citations about your topic. Use a confident prompt: "Give me five specific, cited facts about [topic] including statistics, dates, and research findings"',
-        'Before checking anything: mark which claims feel most suspicious and why. Note your gut reactions',
-        'Now apply VERIFY to each claim. Record: Claim | Primary source found? | Accurate? | Type of error (if any)',
-        'Calculate: How many were fully accurate? Partially accurate? Hallucinated entirely?',
-        'Reflect: Which errors did your gut pick up? Which ones fooled you? What made the hallucinations convincing?'
-      ]
-    },
-    {
-      type: 'discussion',
-      title: 'Who Is Responsible?',
-      questions: [
-        { num: 1, text: 'Air Canada was held legally liable for its chatbot\'s false promise. Should AI companies be liable when their systems produce harmful false information — or does responsibility always lie with the person who chose to act on it?' },
-        { num: 2, text: 'Medical AI tools are increasingly used by patients to self-diagnose — and evaluations of AI answers to medical questions repeatedly find significant error rates. Who bears responsibility when a patient is harmed by acting on AI medical advice?' },
-        { num: 3, text: 'Professional fact-checkers take 15–20 minutes to verify a single claim thoroughly. In a world where AI produces thousands of claims per second, is systematic verification even scalable? What institutional solutions might work?' }
-      ]
-    },
-    {
-      type: 'quiz',
-      question: 'What is "lateral reading" in the context of fact-checking?',
-      options: [
-        'Reading a document from multiple angles to find hidden meaning',
-        'Quickly checking what multiple independent sources say about a claim, rather than reading one source deeply',
-        'Comparing the left-wing and right-wing perspectives on a news story',
-        'Re-reading an AI output multiple times to check for internal consistency'
+      "type": "quiz",
+      "question": "Which is the best evidence that assistance helped learning?",
+      "options": [
+        "A beautifully formatted revision pack.",
+        "A stronger unaided answer on a new, relevant task.",
+        "Longer time spent with the tool open."
       ],
-      correct: 1,
-      explanation: 'Lateral reading — opening multiple tabs and checking what credible, independent sources say about a claim or its source — is the fastest and most reliable verification technique identified by media literacy researchers. It is how professional fact-checkers work. A claim supported by three independent credible sources is far more reliable than any single detailed account.'
+      "correct": 1,
+      "explanation": "Look for transferable performance, not just a finished resource."
     },
     {
-      type: 'summary',
-      title: 'Key Takeaways',
-      points: [
-        { icon: '▸', label: '4 hallucination types', text: 'Factual, citation, logical, and temporal — each requires a different verification strategy. Statistics and citations are the most commonly fabricated.' },
-        { icon: '▸', label: 'The VERIFY workflow', text: 'Validate the claim type → Extract the specific claim → Reach for a primary source → Investigate the numbers → Find counter-evidence → Your conclusion in writing' },
-        { icon: '▸', label: 'Lateral reading beats deep reading', text: 'Checking what multiple independent sources say about a claim is faster and more reliable than reading any single source deeply' }
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "An output is not evidence of learning",
+          "text": "Cognitive offloading can be useful, but it can also remove the very effort a task is meant to develop."
+        },
+        {
+          "icon": "2",
+          "label": "Apply the real rules for the task",
+          "text": "Permitted, prohibited and needs clarification are useful planning categories."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Map a learning task into steps you did, AI did and you checked. Repeat a small part unaided and use the comparison to decide where assistance helped or displaced learning."
+        }
       ]
     }
   ],
-
-  // ── L45: What Can You Trust? (Unit 0 — Foundations) ──────────────────────
-  45: [
+  "49": [
     {
-      type: 'hook',
-      title: 'What Can You Trust?',
-      body: 'In May 2024, Google launched AI Overviews — an AI-generated summary appearing above all search results. Within days, users discovered it was recommending eating one small rock per day for minerals, suggesting you add glue to pizza to stop the cheese sliding off, and advising that a medical professional would tell you to run with scissors. Google had trained its AI on satirical articles and Reddit jokes — and presented them as factual health advice to millions of users. The AI was not lying. It simply had no concept of what truth is.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">Glue</span><span class="sl">Google AI Overviews told millions: add glue to pizza to stop cheese sliding off (May 2024)</span></div><div class="hook-stat-mini"><span class="sv">Invented</span><span class="sl">AI chatbots routinely fabricate plausible-looking academic citations — always click through to check they exist</span></div><div class="hook-stat-mini"><span class="sv">Hard</span><span class="sl">studies repeatedly show readers struggle to tell AI-generated text from expert writing</span></div></div>If AI can produce confident, fluent, completely false information — how do you know what to trust? The answer starts with understanding how knowledge works.'
+      "type": "hook",
+      "title": "AI and Democracy",
+      "body": "A fictional election message claims that a polling place has changed. It is spreading quickly through a local group. You are asked to design a neutral response that protects access to voting."
     },
     {
-      type: 'concept',
-      title: 'What Is Epistemology?',
-      body: 'Epistemology is the branch of philosophy that asks: what is knowledge, and how do we acquire it? For most of human history, we relied on four sources. AI disrupts every single one of them — not by making knowledge impossible, but by making the question of how you know something far more urgent than it has ever been.',
-      bullets: [
-        'Perception: We trust what we directly observe. AI disrupts this — deepfakes mean seeing is no longer believing; AI-generated images are visually indistinguishable from photographs',
-        'Testimony: We trust what credible people tell us. AI disrupts this — any written testimony can now be fabricated at scale; voice and video of real people can be synthetically generated',
-        'Reason: We trust logical inference from true premises. AI disrupts this — AI outputs mimic valid reasoning structures while containing false premises, making the conclusions seem sound',
-        'Memory: We trust our own recollection. AI disrupts this — AI-generated false content, seen repeatedly, gets encoded as genuine memory (the "illusory truth" effect)',
-        'The result: In an AI-saturated world, your default trust in text, images, voice, and even your own intuitions requires deliberate recalibration'
+      "type": "concept",
+      "title": "Separate persuasive speech from false procedure",
+      "body": "Political opinion and a false claim about how to vote raise different questions. Identify the claim, the affected people and the relevant authority before proposing an intervention.",
+      "bullets": [
+        "Verify procedural information through the official election authority.",
+        "Avoid repeating an unverified claim in a way that gives it a larger audience.",
+        "Design the response to work regardless of which candidate might benefit."
       ],
-      callout: 'This is not a reason to distrust everything. It is a reason to be explicit about WHY you trust something — to move from passive, default trust to active, reasoned trust. That is what this lesson teaches.'
-    },
-    {
-      type: 'concept',
-      title: 'The CRAAP Test — Adapted for AI',
-      body: 'The CRAAP test was developed by librarians at California State University to evaluate sources. In an era of AI-generated content, it needs updating — but its core logic is more relevant than ever. Apply it to any piece of information you encounter, whether the source is human or machine.',
-      bullets: [
-        '<strong>Currency</strong> — When was this produced? AI training data has a cutoff date. Any AI claim about recent events should be treated as potentially out of date or fabricated',
-        '<strong>Relevance</strong> — Does this actually address the question, or does it sound like it does? AI is exceptionally good at producing plausible-sounding tangential content',
-        '<strong>Authority</strong> — Who or what is the original source? "According to studies" or "research shows" in an AI output is not a source — it is a pattern. Demand the specific citation.',
-        '<strong>Accuracy</strong> — Can this be verified against an independent primary source? One independent confirmation is the minimum standard; two is better',
-        '<strong>Purpose</strong> — Why does this content exist? AI-generated content designed to persuade, sell, or mislead uses the same fluency as content designed to inform'
-      ],
-      callout: 'The single most important habit: never accept a claim without a traceable, verifiable source. "The AI told me" is not a source. Neither is "I read it online." A source is an author, a date, a publication, and a claim you can find independently.'
-    },
-    {
-      type: 'scenario',
-      title: 'The Wikipedia Trap',
-      situation: 'Amir is writing a history essay on the causes of the 2008 financial crisis. He asks Claude for a summary and receives a fluent, detailed three-paragraph answer citing "the Federal Reserve\'s 2009 report on mortgage-backed securities," "a 2011 Harvard study showing 73% of subprime loans were issued fraudulently," and "economist Janet Yellen\'s 2008 warning about systemic risk." The essay is due tomorrow. The citations look specific and authoritative. Amir does not have time to check them all.',
-      question: 'What should Amir do, and what does his response reveal about his epistemic habits?',
-      choices: [
+      "sources": [
         {
-          text: 'Use the citations as written — they are specific enough that they must be real, and Claude rarely makes up statistics',
-          outcome: 'Two of the three citations do not exist. The Federal Reserve report cited has a different title and does not contain the claim attributed to it. The "Harvard study" cannot be found. Amir\'s teacher flags the essay for academic integrity review. The experience reveals a critical gap: confidence in an AI\'s tone is not evidence of accuracy.'
+          "label": "C2PA: Content Credentials explained",
+          "url": "https://c2pa.org/specifications/specifications/2.2/explainer/Explainer.html"
         },
         {
-          text: 'Use only the general argument from Claude, remove the specific citations, and find real sources for the key claims independently',
-          outcome: 'Amir spends 30 minutes on Google Scholar and the Federal Reserve website. He finds real sources for two of the three claims — slightly different figures, but credible. The third claim turns out to be more contested than Claude implied. His essay is more accurate and more nuanced as a result. He has used AI as a starting point for thinking, not a substitute for it.'
+          "label": "European Commission: AI Act implementation timeline",
+          "url": "https://ai-act-service-desk.ec.europa.eu/en/ai-act/eu-ai-act-implementation-timeline"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "concept",
+      "title": "Compare safeguards and their costs",
+      "body": "Labels, corrections, reduced distribution and removal have different effects on reach and expression. A rule needs a decision-maker, evidence threshold and appeal process.",
+      "bullets": [
+        "Speed matters, but urgency can produce mistaken moderation.",
+        "A proportionate correction should be clear and easy to find.",
+        "Distinguish a platform rule, a proposed law and a current legal duty in a named jurisdiction."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "A harder case",
+      "instructions": "Working independently. When might a well-intended correction amplify a falsehood? How would you reduce that risk?",
+      "steps": [
+        "Write a first judgement without reopening your notes.",
+        "Use one idea or worked example from this lesson to support or challenge it.",
+        "State the extra evidence needed before acting.",
+        "Keep a first and revised response; explain any change."
+      ]
+    },
+    {
+      "type": "activity",
+      "title": "Build the election information desk",
+      "instructions": "Working independently. Keep the scenario fictional and non-partisan.",
+      "steps": [
+        "Write the question to verify with the official authority.",
+        "Draft a short holding response and a corrected announcement.",
+        "Specify an evidence threshold and a review route for a mistaken action.",
+        "Test your rule against a satirical post and a genuine last-minute change."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "When might a well-intended correction amplify a falsehood? How would you reduce that risk?"
         },
         {
-          text: 'Ask Claude to verify its own citations and accept the answer if it confirms them',
-          outcome: 'Claude confirms all three citations confidently. This is the worst possible outcome — AI cannot verify its own hallucinations. It will produce a plausible-sounding confirmation of a fabricated source with the same fluency as a real one. Self-verification is not verification. An AI telling you its own output is accurate is not evidence.'
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
+        },
+        {
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
         }
       ]
     },
     {
-      type: 'activity',
-      title: 'The Claim Audit',
-      instructions: 'Take five AI-generated claims and trace each one to a primary source — or prove it cannot be verified. This is the core skill of epistemic independence.',
-      steps: [
-        'Ask an AI tool (Claude, Gemini, or ChatGPT) to give you five specific factual claims with citations on any topic you are currently studying',
-        'For each claim, record: the exact claim, the source cited, and your initial confidence that it is true (1–5)',
-        'Attempt to verify each claim independently: search for the specific source, find the exact figure or quote in a primary document',
-        'Classify each: Verified (found the source, claim is accurate) / Partially true (source exists but claim is exaggerated or misrepresented) / Unverifiable (source cannot be found) / False (source exists but says something different)',
-        'Calculate your accuracy rate: how many of the five were fully verified?',
-        'Reflect: Did any claim seem very convincing but turn out to be wrong? What made it convincing?'
-      ]
-    },
-    {
-      type: 'discussion',
-      title: 'Truth in an AI World',
-      questions: [
-        { num: 1, text: 'If AI can produce fluent, confident, wrong information — and humans consistently rate AI writing as credible — what does this mean for the concept of "doing your own research"? Is individual research still meaningful?' },
-        { num: 2, text: 'The "illusory truth" effect shows that simply seeing a claim repeatedly makes people believe it, regardless of its truth. AI generates enormous volumes of content. What are the long-term consequences for shared social knowledge?' },
-        { num: 3, text: 'Some philosophers argue that in practice, all knowledge is social — we rely on testimony from others because we cannot personally verify most things we believe. Does AI make this dependence more dangerous, or just more visible?' }
-      ]
-    },
-    {
-      type: 'quiz',
-      question: 'When an AI system like Claude or ChatGPT produces a fabricated citation, what is the most accurate explanation?',
-      options: [
-        'The AI is deliberately lying to appear more helpful',
-        'The AI has a bug that causes it to occasionally invent sources',
-        'The AI predicts plausible-sounding text with no mechanism for knowing whether it is true',
-        'The AI\'s training data contained false information that it is repeating'
+      "type": "quiz",
+      "question": "Which initial response best protects access to voting?",
+      "options": [
+        "Share the rumour widely so people are warned.",
+        "Check the procedural claim through a known official channel and publish clear verified information.",
+        "Judge the claim by which candidate posted it."
       ],
-      correct: 2,
-      explanation: 'LLMs generate text by predicting statistically probable next tokens — they have no truth-checking mechanism. A fabricated citation sounds exactly like a real one in the probability distribution the model learned from. This is not a bug that will be fixed; it is a fundamental property of how these systems work.'
+      "correct": 1,
+      "explanation": "The response should focus on reliable voting information and apply consistently."
     },
     {
-      type: 'summary',
-      title: 'Key Takeaways',
-      points: [
-        { icon: '▸', label: 'Epistemology is now a practical skill', text: 'Understanding how knowledge is justified — not just what you believe — is essential when AI produces fluent falsehoods at scale' },
-        { icon: '▸', label: 'CRAAP applies to AI outputs', text: 'Currency, Relevance, Authority, Accuracy, Purpose — every claim needs a traceable primary source, not a confident AI assertion' },
-        { icon: '▸', label: 'AI cannot verify itself', text: 'Asking an AI to confirm its own output is not verification. The same mechanism that generated the claim will confirm it with equal confidence' }
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Separate persuasive speech from false procedure",
+          "text": "Political opinion and a false claim about how to vote raise different questions."
+        },
+        {
+          "icon": "2",
+          "label": "Compare safeguards and their costs",
+          "text": "Labels, corrections, reduced distribution and removal have different effects on reach and expression."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Create a neutral response plan for a fictional fabricated election announcement. Specify the original authority to check, a proportionate correction and a free-expression tradeoff."
+        }
       ]
     }
   ],
-
-
-  // ── L50: Mini-Project (Unit 3 — Policy & Governance) ─────────────────────
-  50: [
+  "50": [
     {
-      type: 'hook',
-      title: 'Build Something Small',
-      body: 'Every capstone project that has ever gone badly started the same way: the builder had never built anything before. They encountered their first prompt engineering problem, their first user testing failure, and their first ethical dilemma — all at once, under deadline pressure, with high stakes. This lesson is your safety net. You are going to build something small, imperfect, and low-stakes today — so that when you hit the same problems in the capstone, they feel familiar rather than catastrophic.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">1 lesson</span><span class="sl">to go from idea to working prototype</span></div><div class="hook-stat-mini"><span class="sv">3 phases</span><span class="sl">Design → Build → Test — compressed to 45 minutes</span></div><div class="hook-stat-mini"><span class="sv">Low stakes</span><span class="sl">This does not count for assessment — it counts for learning</span></div></div>The point is not to produce something polished. The point is to learn by building.'
+      "type": "hook",
+      "title": "Build Something Small",
+      "body": "In one lesson, can you design a useful question checker for a fictional revision task? It should identify a missing answer or an unsupported claim. You can build a prompt, a paper workflow or a small interface."
     },
     {
-      type: 'concept',
-      title: 'The Compressed Build Process',
-      body: 'The capstone uses six sprint sessions to do what you are doing today in one lesson. That compression forces you to make fast decisions — which is exactly the point. You will miss things, cut corners, and hit walls. Notice where that happens. Those are the problems you need to solve before the capstone begins.',
-      bullets: [
-        '<strong>Phase 1 — Define (5 minutes):</strong> Choose a problem. Write one sentence: "I am building [what] for [who] that helps them [do what]." Do not spend more than 5 minutes on this.',
-        '<strong>Phase 2 — Design (10 minutes):</strong> Write your core PTFC prompt. Identify one ethical consideration. Sketch the user flow in 3 steps maximum.',
-        '<strong>Phase 3 — Build (20 minutes):</strong> Run your prompt. Iterate at least twice. Get something that works — even if imperfectly.',
-        '<strong>Phase 4 — Test (5 minutes):</strong> Give your tool to one other pupil. Watch them use it without explaining it. Note what confuses them.',
-        '<strong>Phase 5 — Reflect (5 minutes):</strong> Three sentences: What worked? What failed? What would you do differently in 60 minutes?'
+      "type": "concept",
+      "title": "Use a complete small cycle",
+      "body": "Define, design, build, test and reflect. Allocate time to each stage so the task produces evidence, not just an unfinished idea.",
+      "bullets": [
+        "Define: name the user, task and useful outcome.",
+        "Design: state the input, output, limits and one risk.",
+        "Build: create the smallest complete example using an approved tool or paper.",
+        "Test: use a normal case, missing information and a misleading claim.",
+        "Reflect: record what worked, what failed and what the next test should examine."
       ],
-      callout: 'The most valuable output from this lesson is not the tool you build — it is your 3-sentence reflection. Write it honestly. It will directly inform your capstone brief.'
-    },
-    {
-      type: 'activity',
-      title: 'Mini-Build: Your First AI Tool',
-      instructions: 'Build a working AI-powered tool in one lesson. Use Claude, Gemini, or ChatGPT. The tool can be a prompt that produces a useful output — it does not need to be a web app or require coding.',
-      steps: [
-        'DEFINE (5 min): Choose from these starter ideas — or invent your own: (a) A revision question generator for a subject you study; (b) A "explain this to me like I\'m 12" tool for complex concepts; (c) A debate argument generator that argues both sides; (d) A project brief checker that identifies missing elements; (e) Your own idea',
-        'DESIGN (10 min): Write your PTFC prompt in the Prompt Iteration Log. Identify one ethical risk (hallucination? bias? over-reliance?) and note how you will address it',
-        'BUILD (20 min): Run your prompt. Evaluate the output against your goal. Iterate at least twice, each time noting what you changed and why',
-        'TEST (5 min): Ask a classmate to use your tool on a real task of theirs. Do not explain it — just observe. Note: what did they try first? What confused them? What would they find useful?',
-        'REFLECT (5 min): Write 3 sentences: (1) The thing that worked best. (2) The thing that failed. (3) The first thing you would improve with more time'
-      ]
-    },
-    {
-      type: 'discussion',
-      title: 'What Did You Learn?',
-      questions: [
-        { num: 1, text: 'What was the hardest part of the 45-minute build — defining the problem, designing the prompt, or getting a useful output? What does that tell you about where to invest more time in the capstone?' },
-        { num: 2, text: 'When you watched your classmate use your tool, what surprised you most about how they interacted with it? What does this tell you about the gap between building something and designing for someone?' },
-        { num: 3, text: 'You identified an ethical consideration in the design phase. Did the actual build create any new ethical issues you had not anticipated? This is a common pattern — what does it suggest about ethics-by-design vs. ethics-by-audit?' }
-      ]
-    },
-    {
-      type: 'quiz',
-      question: 'In the mini-project build process, why is the "Test" phase specifically structured so you do NOT explain your tool to the user?',
-      options: [
-        'To save time during the lesson',
-        'Because real users will not have an explanation — observing unguided use reveals genuine usability problems',
-        'To test whether the tool is self-explanatory from a marketing perspective',
-        'Because explaining your tool could give away the answer to classmates'
-      ],
-      correct: 1,
-      explanation: 'Unmoderated user testing — watching someone use a product without guidance — reveals the actual mental model users bring to the tool, not the mental model the builder assumed they would have. Explanations mask usability problems. Seeing someone confused without understanding why tells you where the design has failed.'
-    },
-    {
-      type: 'summary',
-      title: 'Key Takeaways',
-      points: [
-        { icon: '▸', label: 'Process over product', text: 'The goal was not a polished tool — it was experiencing the define/design/build/test/reflect cycle under real conditions before the capstone stakes are high' },
-        { icon: '▸', label: 'Watch, don\'t explain', text: 'Unmoderated user testing consistently reveals problems that creator-led demos miss. Your classmate\'s confusion is your most valuable data point' },
-        { icon: '▸', label: 'Your 3-sentence reflection is the deliverable', text: 'What worked, what failed, and what you\'d do differently — keep this somewhere visible when you write your capstone brief' }
-      ]
-    }
-  ],
-
-  // ── L49: AI and Democracy (Unit 2 — AI & Society) ────────────────────────
-  49: [
-    {
-      type: 'hook',
-      title: 'AI and Democracy',
-      body: 'In the 2023 Slovak election, an AI-generated audio clip of opposition leader Michal Šimečka apparently discussing how to rig the vote went viral two days before polling — during the legally mandated silence period when candidates could not respond. Šimečka lost. In New Hampshire, an AI-cloned Biden voice told thousands of Democrats not to vote in the primary; the consultant was fined $6 million by the FCC and faces 26 criminal charges, and the FCC used the case to rule all AI-generated robocalls illegal under federal law. Across the 2024 global super-election year — when 40% of the world\'s population went to the polls — Recorded Future documented AI-generated interference in 38 countries. But here is the finding researchers did not expect: Harvard\'s Ash Center concluded that in the 2024 US election, cheap fakes (crudely edited real footage) were used seven times more often than sophisticated AI-generated content. The threat was real — but it looked different than predicted.<div class="hook-stats-row"><div class="hook-stat-mini"><span class="sv">38</span><span class="sl">countries with documented AI electoral interference (Recorded Future, 2024)</span></div><div class="hook-stat-mini"><span class="sv">$6M</span><span class="sl">FCC fine for Biden deepfake robocall — plus 26 criminal charges</span></div><div class="hook-stat-mini"><span class="sv">7×</span><span class="sl">cheap fakes used more than AI-generated content in 2024 US election (Harvard)</span></div><div class="hook-stat-mini"><span class="sv">40%</span><span class="sl">of world population voted in 2024 — the largest election year in history</span></div></div>Democracy depends on informed citizens making genuine choices. AI is now a direct threat to both conditions — but not always in the ways we expected.'
-    },
-    {
-      type: 'concept',
-      title: 'How AI Is Used in Electoral Influence',
-      body: 'AI-driven electoral interference takes several distinct forms — some illegal, some legal but ethically contested, some simply new. Understanding the taxonomy helps you distinguish a coordinated influence operation from legitimate political communication. Critically, Harvard\'s Ash Center found that in the 2024 US election, cheap fakes (crudely edited real footage) were used seven times more often than sophisticated AI deepfakes — the threat is real, but it does not always look the way headlines suggest.',
-      bullets: [
-        '<strong>Synthetic media:</strong> Deepfake audio and video of real candidates saying things they never said. The 2023 Slovak audio, a deepfake of Keir Starmer endorsing a private investment scheme, a fabricated video of a Bangladeshi opposition leader, and the Biden New Hampshire robocall were all generated with free or low-cost tools. The Biden case became the first big enforcement test — the response-mechanisms slide below picks up what happened next',
-        '<strong>Cheap fakes at scale:</strong> the crude manipulations from the hook\'s Harvard finding — slowed-down video, out-of-context clips, misleading captions on real footage. They require no technical skill and are harder to flag as "AI-generated" because they technically are not',
-        '<strong>AI-generated text at scale:</strong> Automated accounts generating thousands of politically themed posts per hour, seeding narratives across platforms. Stanford Internet Observatory documented networks of 800+ coordinated accounts during the 2024 Taiwan election. Recorded Future identified AI-generated interference content targeting 38 countries',
-        '<strong>Micro-targeting 2.0:</strong> Psychographic profiling using AI to identify voter fears, insecurities and identity threats with unprecedented precision — then tailoring political messaging to exploit them. Over 900 AI-generated political ads ran on Facebook in a single week in US swing states in 2024',
-        '<strong>Personalised political chatbots:</strong> AI assistants trained on party platforms that answer voters\' questions — the risk being that they hallucinate policy positions or selectively present information to convert undecided voters'
-      ],
-      callout: 'The most dangerous form is not the obvious fake — it is the barely-wrong AI summary. A chatbot that accurately describes a candidate\'s position 95% of the time, then slightly misrepresents one key policy to undecided voters, is far more effective than a crude deepfake that gets immediately debunked. And cheap fakes — requiring zero AI expertise — remain far more common than deepfakes.'
-    },
-    {
-      type: 'concept',
-      title: 'What Laws and Platforms Are — and Aren\'t — Doing',
-      body: 'The 2024 elections served as a live experiment in whether existing laws and platform policies were adequate to manage AI-generated electoral content. Some enforcement actions succeeded — the Biden robocall produced criminal charges, fines, and a landmark FCC ruling. But significant gaps remain, and enforcement is almost always slower than the technology.',
-      bullets: [
-        '<strong>FCC ruling (Feb 2024):</strong> Used the Biden robocall case to declare AI-generated voice calls illegal under the existing Telephone Consumer Protection Act — no new legislation required. The consultant received a $6M fine; carrier Lingo Telecom was fined $1M for transmitting the calls. This was the fastest regulatory response to an AI electoral threat in 2024',
-        '<strong>EU AI Act (2024):</strong> Classifies AI systems used in democratic processes — including voter profiling and political micro-targeting — as "high risk," requiring transparency and human oversight. The EU Digital Services Act separately requires labelling of AI-generated political advertising. But both cover EU-based actors; external influence operations are largely outside their reach',
-        '<strong>UK Elections Act (2022):</strong> Requires transparency in political advertising but was drafted before generative AI — it does not specifically address AI-generated content. The Electoral Commission has no clear enforcement mechanism for synthetic media. No UK equivalent of the FCC ruling exists',
-        '<strong>Platform self-regulation:</strong> Meta, Google, and X/Twitter all introduced AI disclosure policies for political ads in 2024. Enforcement was inconsistent — disclosed AI ads ran alongside undisclosed ones on all three platforms. X/Twitter reduced its trust and safety team by over 80% after the Musk acquisition',
-        '<strong>What works:</strong> Pre-bunking (teaching voters to recognise manipulation before it occurs) has shown stronger resistance effects than debunking (correcting after exposure). The Jigsaw/Google programme showed 20% reduction in susceptibility to specific manipulation tactics after a 2-minute pre-bunking video'
-      ],
-      callout: 'There is a structural asymmetry: generating AI-manipulated content takes seconds and costs pennies. Detecting, verifying, and removing it takes hours or days and requires significant resources. The FCC\'s use of existing robocall law to ban AI voice calls shows that creative application of existing regulation can work — but only after the damage is done.'
-    },
-    {
-      type: 'scenario',
-      title: 'The Viral Clip',
-      situation: 'Three days before a UK general election, a 45-second audio clip is shared widely on TikTok. In it, a voice that sounds exactly like the prime ministerial candidate discusses a secret plan to raise taxes by 15% immediately after the election — a policy completely at odds with their public platform. The clip has 4 million views. Audio forensics experts say it is consistent with AI voice cloning. The candidate\'s team denies it is real. Under UK electoral law, there is no rapid takedown mechanism for electoral deepfakes. You are a sixth-form pupil with 2,400 Instagram followers, many of whom are first-time voters.',
-      question: 'What should you do — and what does this situation reveal about the gap between technology and law?',
-      choices: [
+      "sources": [
         {
-          text: 'Share the clip with a caption saying it might be fake — your followers deserve to know it exists and make their own judgement',
-          outcome: 'Your caveat gets stripped as others screenshot and reshare the clip. TikTok\'s algorithm treats the engagement your share generates as a signal to amplify it further. You contributed to 18,000 additional views. Even well-intentioned sharing of potentially false content during an election blackout period amplifies rather than corrects. The clip was later confirmed as AI-generated by GCHQ — two days after the election.'
+          "label": "NIST: Generative AI risk profile",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        }
+      ],
+      "sourceNote": "Reviewed 26 October 2026"
+    },
+    {
+      "type": "activity",
+      "title": "The smallest useful invention",
+      "instructions": "Working independently. Build or sketch a tiny tool for one specific need. Keep the brief, a working example, a failure case and a revision; do not equate an attractive screen with a useful result.",
+      "steps": [
+        "Spend five minutes defining a task and success criterion.",
+        "Sketch the route and make a prompt or paper prototype.",
+        "Test three fictional cases without quietly repairing the inputs.",
+        "Keep one before-and-after change and a three-sentence reflection."
+      ]
+    },
+    {
+      "type": "discussion",
+      "title": "Defend your judgement",
+      "questions": [
+        {
+          "num": 1,
+          "text": "Which difficulty in this build should influence the scope of your capstone?"
         },
         {
-          text: 'Check Full Fact and BBC Verify for coverage before sharing anything; share only the fact-check once it appears',
-          outcome: 'Full Fact posts a preliminary notice within 3 hours noting the clip is under investigation. BBC Verify confirms AI generation within 24 hours. You share the BBC Verify piece, not the original. Your followers get accurate information. You have modelled the correct epistemic behaviour: lateral reading, primary source verification, and patience over speed — especially in the 72-hour window before an election.'
+          "num": 2,
+          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
         },
         {
-          text: 'Report the clip directly to TikTok and the Electoral Commission, and say nothing publicly until official verification',
-          outcome: 'TikTok\'s automated system deprioritises the report as it does not violate specific content rules — there is no electoral deepfake policy in UK law that TikTok is obligated to enforce. The Electoral Commission confirms it has no authority to compel removal. Your silence was responsible; but it also reveals how dependent the current system is on platform goodwill rather than legal obligation. Nothing stops the clip continuing to spread.'
+          "num": 3,
+          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
         }
       ]
     },
     {
-      type: 'activity',
-      title: 'Design the Safeguard',
-      instructions: 'Work in groups to design a policy response to one specific aspect of AI in elections. Your proposal must be specific, enforceable, and address a genuine trade-off.',
-      steps: [
-        'Choose one of the following problems: (A) AI-generated audio/video of candidates; (B) AI micro-targeting using psychographic data; (C) AI-generated fake polls; (D) Political chatbots that hallucinate policy positions',
-        'Define the specific harm your policy targets: Who is harmed? How? What evidence do you have that this is a real problem?',
-        'Research existing approaches: Has any country or platform tried to address this? What happened?',
-        'Draft a policy proposal: Be specific about what is required, who it applies to, how compliance is verified, and what the penalty for violation is',
-        'Identify the trade-off your policy creates: Does it risk over-restricting legitimate political speech? Who might abuse it?',
-        'Present to the class: 2 minutes maximum. Invite one specific challenge question from the audience and prepare your answer'
-      ]
-    },
-    {
-      type: 'discussion',
-      title: 'Democracy in the Age of AI',
-      questions: [
-        { num: 1, text: 'Both enforcement stories in this lesson arrived AFTER the damage: the robocall fine landed once thousands of voters had received the calls, and the Slovak clip spread during a silence period when rebuttal was legally impossible. Is reactive enforcement (punish after the fact) ever fast enough for AI electoral threats, or do we need pre-emptive technical controls — and what would those look like without enabling censorship?' },
-        { num: 2, text: 'Sit with the hook\'s most surprising number: crude, low-tech fakes outnumbered sophisticated AI fakes seven to one. If the bigger threat is low-tech manipulation of real footage, does that change whether AI-specific regulation is the right focus? Or are we regulating the wrong thing?' },
-        { num: 3, text: 'In India, candidates openly used AI avatars to deliver multilingual campaign messages. In Slovakia, a covert deepfake swung an election. The technology is identical — the intent differs. Should electoral AI law regulate the technology itself, or the intent behind its use? How would you distinguish legitimate AI campaign tools from covert manipulation in a statute?' }
-      ]
-    },
-    {
-      type: 'quiz',
-      question: 'The FCC fined the Biden robocall consultant $6M using existing robocall law — but only after thousands of voters had already received the calls. The Slovak deepfake spread during a silence period when rebuttal was impossible. What does this pattern reveal about the core challenge of regulating AI in elections?',
-      options: [
-        'AI regulation is unnecessary because existing laws already cover all cases',
-        'Enforcement is inherently reactive — by the time manipulation is detected and punished, the electoral damage has already occurred',
-        'The problem is purely technical and can be solved by better deepfake detection',
-        'International cooperation would solve the problem completely'
+      "type": "quiz",
+      "question": "What is a useful outcome from a small first build?",
+      "options": [
+        "A claim that the prototype is production-ready.",
+        "A complete narrow example, recorded tests and a clearer next question.",
+        "A long feature list."
       ],
-      correct: 1,
-      explanation: 'Both cases illustrate the same structural problem: AI-generated electoral manipulation achieves its impact in hours or days, but legal enforcement takes weeks or months. The FCC\'s $6M fine was a landmark — but it came long after the New Hampshire primary. The Slovak deepfake was confirmed as fake only after the election. Regulation punishes perpetrators but cannot undo electoral damage already inflicted.'
+      "correct": 1,
+      "explanation": "The build should reduce uncertainty and produce evidence for the capstone."
     },
     {
-      type: 'summary',
-      title: 'Key Takeaways',
-      points: [
-        { icon: '▸', label: 'AI is already reshaping elections', text: 'Recorded Future documented AI interference in 38 countries in 2024 — but Harvard found cheap fakes were 7× more common than AI deepfakes. The threat is real and broader than the headlines suggest.' },
-        { icon: '▸', label: 'Enforcement is possible but reactive', text: 'The FCC banned AI robocalls and fined the Biden deepfake consultant $6M — using existing law. The EU AI Act and DSA require transparency. The UK has no equivalent. Creative use of existing law works, but only after damage is done.' },
-        { icon: '▸', label: 'Pre-bunking beats debunking', text: 'Teaching critical evaluation before encountering manipulation is more effective than correcting afterwards. The asymmetry between generating and verifying AI content will not close soon.' }
+      "type": "summary",
+      "title": "Take it beyond this lesson",
+      "points": [
+        {
+          "icon": "1",
+          "label": "Use a complete small cycle",
+          "text": "Define, design, build, test and reflect."
+        },
+        {
+          "icon": "✓",
+          "label": "Keep the evidence",
+          "text": "Build or sketch a tiny tool for one specific need. Keep the brief, a working example, a failure case and a revision; do not equate an attractive screen with a useful result."
+        }
       ]
     }
-  ],
-
+  ]
 };

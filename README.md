@@ -2,6 +2,7 @@
 
 Haileybury pupil course: 59 AEP lessons, 40 Removes lessons and a 20-lesson Passport selected entirely from Removes.
 
+- [AEP content and fullscreen refresh](review/aep-refresh.html) — 59 lessons, current reference material, creative evidence and an AEP portfolio.
 - [Creative evidence, Passport selection and current design](review/evidence-and-design.html)
 - [Course review and improvement priorities](review/course-review.html)
 - [Removes consolidation](review/removes-consolidation.html) — the newer teaching replaces 19 existing lesson slots; Removes stays at 40 and Passport at 20.
@@ -22,3 +23,5 @@ Browser regression: install Playwright in your test environment, serve a metadat
 News rotation: `node scripts/update-news.mjs` fetches 11 public feeds daily at 06:17 UTC via GitHub Actions, selects up to 12 recent stories with publisher/maker limits, and adds discussion prompts. Run `node tests/news.mjs` for feed parsing and selection checks. The workflow explicitly requests a GitHub Pages rebuild after committing new headlines. The browser fetches published news before falling back to its offline copy; run `node tests/news-cache.cjs` to check this. The source guide is in `review/news-sources.html`.
 
 Curriculum consolidation browser check: run `node tests/removes-browser.cjs` with the same preview/Playwright settings. It checks every slide in Removes, Passport and the two project pathways, saved-work revisions, legacy links, project progress migration and offline reading. Results: `review/removes-consolidation-validation.json`.
+
+AEP refresh checks: `node tests/aep-content.cjs` and `node tests/aep-browser.cjs` (same browser environment settings). The browser sweep covers 59 lessons / 540 slides, native and fallback fullscreen, nine viewport/theme combinations, answer reveals, saved notes and reflections, earlier challenge preservation, AEP portfolio exports and offline deep links. Results: `review/aep-validation.json`. AEP corrections now live in the authored decks; `js/aep-enrichment.js` supplies original diagrams and reviewed lab framing. `js/learning-updates.js` skips its superseded AEP patches when `AEP_REVIEWED` is set.
