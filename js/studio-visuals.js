@@ -2,6 +2,8 @@
    remain readable on phones; decorative arrows are hidden from screen readers. */
 (function(){
   if(typeof SLIDE_VISUALS==='undefined')return;
+  // Replacement decks have new slide positions; discard the old position-based artwork.
+  if(typeof GCSE_UNITS!=='undefined')GCSE_UNITS.forEach(function(u){u.lessons.forEach(function(l){if(l.revision==='r3')Object.keys(SLIDE_VISUALS).forEach(function(k){if(k.split(':')[0]===String(l.id))delete SLIDE_VISUALS[k];});});});
   var lessons={
     101:[['Examples','Adjust parameters','Test the model'],'Training learns patterns. Using a model means applying it to new inputs.'],
     102:[['Context','Predict tokens','Response'],'A plausible continuation is not a fact-check. Check claims against evidence.'],

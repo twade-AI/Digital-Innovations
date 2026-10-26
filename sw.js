@@ -3,8 +3,8 @@
 /* Three caches so bumping one category doesn't invalidate the others.
    When you change a JS file, bump CODE_CACHE only; fonts and HTML stay
    in place and the user doesn't re-download them. */
-const SHELL_CACHE  = 'di-shell-v29';  // HTML + CSS + fonts — slow to change
-const CODE_CACHE   = 'di-code-v66';   // JS — changes with every feature
+const SHELL_CACHE  = 'di-shell-v31';  // HTML + CSS + fonts — slow to change
+const CODE_CACHE   = 'di-code-v68';   // JS — changes with every feature
 const ASSETS_CACHE = 'di-assets-v5';  // Logos, icons, manifest
 const ALL_CACHES   = [SHELL_CACHE, CODE_CACHE, ASSETS_CACHE];
 
@@ -101,6 +101,23 @@ self.addEventListener('activate', function(e) {
 self.addEventListener('fetch', function(e) {
   if (e.request.method !== 'GET') return;
   var url = new URL(e.request.url);
+
+  // Show today's published headlines on the first online visit, with offline fallback.
+  if (url.origin === self.location.origin && url.pathname.endsWith('/js/news-live.js')) {
+    e.respondWith((async function() {
+      var controller = new AbortController();
+      var timer = setTimeout(function() { controller.abort(); }, 8000);
+      try {
+        var response = await fetch(e.request, {cache:'no-cache', signal:controller.signal});
+        if (!response.ok) throw new Error('News request failed');
+        try { var cache = await caches.open(CODE_CACHE); await cache.put(e.request, response.clone()); } catch (_) {}
+        return response;
+      } catch (_) {
+        return (await caches.match(e.request)) || new Response('/* News unavailable offline. */', {status:503, headers:{'Content-Type':'application/javascript'}});
+      } finally { clearTimeout(timer); }
+    })());
+    return;
+  }
 
   // Network-first for Supabase — never serve stale auth/data
   if (url.hostname.includes('supabase')) {

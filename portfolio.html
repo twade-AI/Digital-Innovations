@@ -188,7 +188,7 @@
       GCSE_UNITS.forEach(function (unit) {
         unit.lessons.forEach(function (lesson) {
           var noteText = collectNotes(lesson.id);
-          var exitText = localStorage.getItem('di_gcse_exit_' + lesson.id) || '';
+          var exitText = collectExit(lesson, 'di_gcse_exit_');
           var assessText = localStorage.getItem('di_gcse_assess_' + lesson.id) || '';
           var assessLevel = localStorage.getItem('di_gcse_assess_level_' + lesson.id) || '';
           var evidence=DI_EVIDENCE.read(lesson.id);
@@ -211,7 +211,7 @@
     } else if (track === 'fluency') {
       var passportDone=[];try{passportDone=JSON.parse(localStorage.getItem('fl_progress_removes20_v2')||localStorage.getItem('fl_progress_v1')||'[]');}catch(e){}
       PASSPORT_TRACK.forEach(function(lesson){
-        var notes=collectNotes(lesson.id),evidence=DI_EVIDENCE.read(lesson.id),exit=localStorage.getItem('fl_exit_v2_'+lesson.id)||'';
+        var notes=collectNotes(lesson.id),evidence=DI_EVIDENCE.read(lesson.id),exit=collectExit(lesson,'fl_exit_v2_');
         var done=Array.isArray(passportDone)&&passportDone.includes(lesson.id);
         if(!notes&&!evidence.updatedAt&&!exit&&!done)return;
         items.push({unit:lesson.section,unitColour:'#9b1844',lessonId:lesson.id,title:lesson.title,done:done,notes:notes,exit:exit,evidence:evidence.updatedAt?DI_EVIDENCE.text(lesson.id,evidence):''});
@@ -276,20 +276,22 @@
 
     // Collect all di_note_<id>_<idx> entries for a given lesson id, joined
     // into one readable string grouped by slide index.
+    function collectExit(lesson,prefix){var current=localStorage.getItem(prefix+lesson.id+(lesson.revision?'_'+lesson.revision:''))||'';var old=lesson.revision?localStorage.getItem(prefix+lesson.id)||'':'';return [current,old?'Earlier lesson version: '+old:''].filter(Boolean).join('\n\n');}
     function collectNotes(lessonId) {
       var parts = [];
       var prefix = 'di_note_' + lessonId + '_';
       for (var i = 0; i < localStorage.length; i++) {
         var k = localStorage.key(i);
         if (!k || k.indexOf(prefix) !== 0) continue;
-        var match = /^(?:(r2)_)?(\d+)$/.exec(k.slice(prefix.length));
+        var match = /^(?:(r[0-9]+)_)?(\d+)$/.exec(k.slice(prefix.length));
         if (!match) continue;
         var idx = Number(match[2]);
         var v = (localStorage.getItem(k) || '').trim();
         if (v) parts.push({ idx: idx, text: v, revision: match[1] || '' });
       }
       parts.sort(function (a, b) { return a.idx - b.idx; });
-      return parts.map(function (p) { return (({115:1,120:1,128:1})[lessonId] ? (p.revision ? 'Revised lesson · ' : 'Earlier lesson version · ') : '') + 'Slide ' + (p.idx + 1) + ': ' + p.text; }).join('\n\n');
+      var lesson=GCSE_UNITS.flatMap(function(u){return u.lessons;}).find(function(l){return l.id===lessonId;});var revision=(lesson&&lesson.revision)||({115:'r2',120:'r2',128:'r2'})[lessonId]||'';
+      return parts.map(function(p){return (revision?(p.revision===revision?'Current lesson · ':'Earlier lesson version · '):'')+'Slide '+(p.idx+1)+': '+p.text;}).join('\n\n');
     }
   })();
   </script>

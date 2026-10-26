@@ -1,0 +1,32 @@
+const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const BASE=process.env.COURSE_URL||'http://127.0.0.1:8000',ART=process.env.ARTIFACT_DIR||require('node:os').tmpdir();
+(async()=>{
+ const b=await chromium.launch({...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:{}),args:['--no-sandbox']});
+ const p=await b.newPage({viewport:{width:1440,height:1000}}),errors=[];
+ p.on('pageerror',e=>errors.push(e.message));p.on('console',m=>{if(m.type()==='error'&&/render|Lab init failed/.test(m.text()))errors.push(m.text());});
+ await p.goto(BASE+'/removes.html');
+ assert.equal(await p.locator('.gs-lesson').count(),40);
+ const sweep=await p.evaluate(()=>{let count=0;for(const u of GCSE_UNITS)for(const l of u.lessons){gsOpenLesson(l.id);for(let i=0;i<gsSlides.length;i++){gsSlideIdx=i;gsRenderSlideInner();const text=document.querySelector('#gsSlideArea').textContent;if(!text.trim()||text.includes('[object Object]')||text.includes('Slide failed to render'))throw Error('Bad slide '+l.id+':'+i);count++;}if(gsSlides.at(-1).type!=='evidence')throw Error('Evidence missing '+l.id);}gsCloseLesson();return {lessons:GCSE_UNITS.flatMap(u=>u.lessons).length,slides:count};});
+ await p.evaluate(()=>{localStorage.setItem('di_gcse_v1','[101]');localStorage.setItem('di_note_101_0','EARLIER SLIDE NOTE');localStorage.setItem('di_gcse_exit_101','EARLIER EXIT');localStorage.setItem('di_gcse_exit_101_r3','CURRENT EXIT');localStorage.setItem('di_revised_v1','[201,202,220,260]');localStorage.setItem('di_note_201_0','EARLIER REVISED NOTE');localStorage.setItem('di_evidence_v1_201',JSON.stringify({response:'EARLIER REVISED EVIDENCE'}));});
+ await p.reload();await p.evaluate(()=>gsOpenLesson(101));assert.equal(await p.locator('#gsNotesTa').inputValue(),'');
+ await p.locator('#gsNotesTa').fill('CURRENT SHARED NOTE');await p.waitForFunction(()=>localStorage.getItem('di_note_101_r3_0')==='CURRENT SHARED NOTE');
+ assert.equal(await p.evaluate(()=>localStorage.getItem('di_note_101_0')),'EARLIER SLIDE NOTE');
+ await p.goto(BASE+'/fluency.html');assert.equal(await p.evaluate(()=>FL_TRACK.length),20);
+ const passport=await p.evaluate(()=>{let count=0;for(const l of FL_TRACK){flOpenLesson(l.id);if(!document.querySelector('#lvLessonTitle').textContent.includes(l.title))throw Error('Passport title '+l.id);for(let i=0;i<flCurrentSlides.length;i++){flCurrentSlideIdx=i;flRenderSlide();const text=document.querySelector('#slideArea').textContent;if(!text.trim()||text.includes('[object Object]'))throw Error('Passport slide '+l.id+':'+i);count++;}}flOpenLesson(101);return {lessons:FL_TRACK.length,slides:count};});
+ assert.equal(await p.locator('#flNotesTa').inputValue(),'CURRENT SHARED NOTE');
+ await p.goto(BASE+'/portfolio.html?t=removes');const portfolio=await p.locator('#pfContent').textContent();
+ for(const text of ['Earlier lesson version','EARLIER SLIDE NOTE','CURRENT SHARED NOTE','EARLIER EXIT','CURRENT EXIT'])assert(portfolio.includes(text),text);
+ await p.goto(BASE+'/revised.html');assert.equal(await p.locator('.gs-lesson').count(),14);assert.equal(await p.evaluate(()=>gsDone.size),2);
+ assert.equal(await p.evaluate(()=>gsNextLessonId(227)),null);assert.equal(await p.evaluate(()=>gsNextLessonId(265)),null);
+ const projects=await p.evaluate(()=>{let count=0;for(const u of GCSE_UNITS)for(const l of u.lessons){gsOpenLesson(l.id);for(let i=0;i<gsSlides.length;i++){gsSlideIdx=i;gsRenderSlideInner();const text=document.querySelector('#gsSlideArea').textContent;if(!text.trim()||text.includes('[object Object]'))throw Error('Project slide '+l.id+':'+i);count++;}}gsCloseLesson();gsMarkDone(221);return {sessions:GCSE_UNITS.flatMap(u=>u.lessons).length,slides:count};});
+ assert.equal(await p.evaluate(()=>localStorage.getItem('di_revised_v1')),'[201,202,220,260]');
+ assert.deepEqual(JSON.parse(await p.evaluate(()=>localStorage.getItem('di_projects_v2'))).sort(),[220,221,260]);
+ const downloading=p.waitForEvent('download');await p.evaluate(()=>exportRevisedWork());const download=await downloading;const archived=fs.readFileSync(await download.path(),'utf8');assert(archived.includes('EARLIER REVISED NOTE'));assert(archived.includes('EARLIER REVISED EVIDENCE'));
+ await p.goto(BASE+'/revised.html?lesson=202');await p.waitForURL('**/removes.html?lesson=102');assert.equal(await p.evaluate(()=>gsCurrentId),102);assert((await p.locator('#gsLessonTitle').textContent()).includes('Prediction'));
+ await p.goto(BASE+'/export/ai-fluency-track.html');assert.equal(await p.evaluate(()=>FL_TRACK.length),20);await p.evaluate(()=>flOpenLesson(102));assert(await p.evaluate(()=>flCurrentSlides.some(s=>JSON.stringify(s).includes('Orbitball'))));
+ await p.goto(BASE+'/removes.html');await p.evaluate(()=>navigator.serviceWorker.ready);await p.reload();await p.context().setOffline(true);await p.reload();assert.equal(await p.locator('.gs-lesson').count(),40);await p.evaluate(()=>gsOpenLesson(114));assert(await p.evaluate(()=>gsSlides.some(s=>JSON.stringify(s).includes('=SUM(B2:D2)'))));await p.context().setOffline(false);
+ const responsive=[];for(const width of [1440,768,390]){const q=await b.newPage({viewport:{width,height:1000}});q.on('pageerror',e=>errors.push(e.message));for(const file of ['index.html','removes.html','revised.html']){await q.goto(BASE+'/'+file);assert(await q.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),file+' overflow '+width);}await q.goto(BASE+'/removes.html?lesson=102');await q.evaluate(()=>{gsSlideIdx=3;gsRenderSlideInner();});assert(await q.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await q.screenshot({path:path.join(ART,'removes-consolidated-'+width+'.png')});responsive.push({width,overflow:false});await q.close();}
+ assert.deepEqual(errors,[]);const result={removes:sweep,passport,projects,responsive,sharedRevisionNotes:true,earlierNotesAndExitsPreserved:true,projectMigration:true,earlierWorkDownload:true,legacyRedirect:true,offline:true,standalone:true,errors};
+ fs.writeFileSync(path.join(ART,'removes-consolidation-validation.json'),JSON.stringify(result,null,2));console.log(JSON.stringify(result));await b.close();
+})().catch(e=>{console.error(e);process.exit(1);});

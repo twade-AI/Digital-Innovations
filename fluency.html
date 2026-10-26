@@ -939,7 +939,7 @@
     // Render slide HTML (reuse existing slide types)
     area.innerHTML = flRenderSlideHTML(slide, idx) + diSlide.revealHTML(slide, 'flReveal'+idx, 'diSlide.toggleReveal') + diSlide.sourcesHTML(slide);
     var exitInput=area.querySelector('.fl-exit-input');
-    if(exitInput){var exitKey='fl_exit_v2_'+flCurrentLessonId;try{exitInput.value=localStorage.getItem(exitKey)||'';}catch(e){}exitInput.addEventListener('input',function(){try{localStorage.setItem(exitKey,exitInput.value);}catch(e){}});}
+    if(exitInput){var exitLesson=FL_TRACK.find(function(l){return l.id===flCurrentLessonId;});var exitKey='fl_exit_v2_'+flCurrentLessonId+(exitLesson.revision?'_'+exitLesson.revision:'');try{exitInput.value=localStorage.getItem(exitKey)||'';}catch(e){}exitInput.addEventListener('input',function(){try{localStorage.setItem(exitKey,exitInput.value);}catch(e){}});}
     // Interactive lab widgets wire their events after DOM insertion
     if (slide && slide.type === 'widget' && typeof DI_LABS !== 'undefined' && DI_LABS[slide.widget]) {
       try { DI_LABS[slide.widget].init('fl-lab-' + slide.widget, slide.labData); }
@@ -967,7 +967,9 @@
     // slide-utils.js lacks notesHTML, skip the notes box rather than
     // throwing mid-render.
     if (window.diSlide && diSlide.notesHTML) {
-    var flNoteKey = 'di_note_' + flCurrentLessonId + '_' + idx;
+    var noteLesson=FL_TRACK.find(function(l){return l.id===flCurrentLessonId;});
+    var noteRevision=noteLesson.revision || ({115:'r2',120:'r2',128:'r2'})[flCurrentLessonId];
+    var flNoteKey = 'di_note_' + flCurrentLessonId + '_' + (noteRevision?noteRevision+'_':'') + idx;
     var flSavedNote = localStorage.getItem(flNoteKey) || '';
     var flNotesWrap = document.createElement('div');
     flNotesWrap.className = 'slide-notes';
