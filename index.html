@@ -31,6 +31,9 @@
   <link rel="stylesheet" href="css/editorial.css">
   <link rel="stylesheet" href="css/studio.css">
 <script>var design=new URLSearchParams(location.search).get("design");if(["studio","glass"].includes(design))document.documentElement.dataset.design=design;</script>
+  <link rel="stylesheet" href="css/experience.css">
+  <script src="js/course-catalog.js"></script>
+  <script src="js/site-experience.js"></script>
 </head>
 <body>
   <div id="offlineBanner" class="offline-banner" style="display:none" role="status" aria-live="polite">
@@ -64,7 +67,7 @@
         <a href="#" class="nav-link" data-section="progress" onclick="showSection('progress')">My Progress</a>
         <div class="nav-explore-wrap" id="navExploreWrap">
           <button class="nav-link nav-explore-btn" id="navExploreBtn" onclick="toggleExploreMenu()" aria-haspopup="true" aria-expanded="false">Explore ▾</button>
-          <div class="nav-explore-menu" id="navExploreMenu" role="menu" aria-hidden="true">
+          <div class="nav-explore-menu" id="navExploreMenu" aria-hidden="true">
             <a href="timeline.html" class="nav-explore-item" role="menuitem">🗺️ Learning Journey</a>
             <a href="labs.html" class="nav-explore-item" role="menuitem">🧪 Interactive Labs</a>
             <a href="#" class="nav-explore-item" data-section="exemplars" onclick="showSection('exemplars');closeExploreMenu()">📌 Prompt Gallery</a>
@@ -80,7 +83,7 @@
         <div id="searchResults" class="search-results"></div>
       </div>
       <!-- Auth controls -->
-      <button class="auth-btn" id="authBtn" onclick="openAuthModal('login')" title="Sign in to sync progress across devices">☁️ Sign In</button>
+      <button class="auth-btn" id="authBtn" onclick="openAuthModal('login')" title="Sign in to sync AEP progress. Evidence and notes need a work backup to move devices.">☁️ Sign In</button>
       <div class="user-chip" id="userChip" style="display:none" onclick="openProfileModal()" title="View your profile" role="button" tabindex="0">
         <span class="user-avatar" id="userAvatarChip">👤</span>
         <span id="userDisplayName"></span>
@@ -90,8 +93,8 @@
       <!-- Settings dropdown -->
       <div class="settings-wrap" id="settingsWrap">
         <button class="nav-icon-btn" onclick="openKb()" title="Keyboard shortcuts (?)" aria-label="Keyboard shortcuts">⌨</button>
-        <button class="settings-btn" id="settingsBtn" onclick="toggleSettingsMenu()" aria-label="Settings" title="Settings">⚙</button>
-        <div class="settings-menu" id="settingsMenu" role="menu" aria-hidden="true">
+        <button class="settings-btn" id="settingsBtn" aria-controls="settingsMenu" aria-expanded="false" onclick="toggleSettingsMenu()" aria-label="Settings" title="Settings">⚙</button>
+        <div class="settings-menu" id="settingsMenu" aria-hidden="true">
           <div class="settings-menu-label">Display</div>
           <button class="settings-menu-item" onclick="toggleTheme();updateSettingsIcons()" id="sm-theme">
             <span id="smThemeIcon">☀️</span> Light / Dark mode
@@ -100,10 +103,10 @@
             <span>◐</span> High-contrast mode <span class="sm-badge" id="smContrastBadge" style="display:none">ON</span>
           </button>
           <button class="settings-menu-item" onclick="toggleDyslexiaFont();updateSettingsIcons()" id="sm-dyslexia">
-            <span>Aa</span> Dyslexia-friendly font <span class="sm-badge" id="smDyslexiaBadge" style="display:none">ON</span>
+            <span>Aa</span> Reading font · Lexend <span class="sm-badge" id="smDyslexiaBadge" style="display:none">ON</span>
           </button>
           <div class="settings-menu-divider"></div>
-          <div class="settings-menu-label">View</div>
+          <a class="settings-menu-item" href="work.html">Save or move my work</a><div class="settings-menu-label">View</div>
           <button class="settings-menu-item" onclick="toggleTeacherMode();toggleSettingsMenu()" id="sm-teacher">
             <span>📺</span> Teacher / Presentation mode
           </button>
@@ -117,7 +120,7 @@
   </nav>
 
   <!-- XP Level Strip -->
-  <div class="xp-strip" id="xpStrip">
+  <div class="xp-strip" id="xpStrip" role="region" aria-label="AEP experience points">
     <div id="xpLevelDisplay" class="xp-level-display"></div>
   </div>
 
@@ -259,7 +262,7 @@
   <!-- Units Section -->
   <section id="section-units" class="section">
     <div class="section-header">
-      <h2>Course Units</h2>
+      <h1>AEP · Course units</h1>
       <p>Click any lesson to expand its details. Track your progress as you go.</p>
       <button class="btn btn-secondary section-header-action" onclick="showSection('map')" title="View all 59 lessons as a visual grid">🗺 Course Map</button>
     </div>
@@ -782,6 +785,9 @@
   <script src="js/studio-visuals.js" defer></script>
   <script src="js/aep-enrichment.js" defer></script>
   <script src="js/evidence-tasks.js" defer></script>
+  <script src="js/feedback-cases.js" defer></script>
+  <script src="js/project-source-packs.js" defer></script>
+  <script src="js/learning-feedback.js" defer></script>
   <script src="js/learning-evidence.js" defer></script>
   <script src="js/app.js" defer></script>
   <script src="js/tts.js" defer></script>

@@ -45,6 +45,9 @@
     [data-theme="light"] .lab-ie-transcript{background:#f2f0ec;color:#1e7a45}
   </style>
   <link rel="stylesheet" href="css/editorial.css">
+  <link rel="stylesheet" href="css/experience.css">
+  <script src="js/course-catalog.js"></script>
+  <script src="js/site-experience.js"></script>
 </head>
 <body>
   <a href="#labsMain" class="skip-link">Skip to main content</a>
@@ -222,6 +225,8 @@
       tt.style.opacity = on ? '1' : '';
     });
 
+    document.querySelectorAll('.lab-shell button').forEach(function(b){if(!b.textContent.trim()&&!b.getAttribute('aria-label'))b.textContent=b.id.endsWith('-train')?'Train model':b.id.endsWith('-test')?'Test model':b.id.endsWith('-reset')?'Reset':'Run experiment';});
+    document.querySelectorAll('.lab-shell h4').forEach(function(h){if(!h.textContent.trim())h.textContent='Explore the model';});
     /* initialise each lab the first time it scrolls into view */
     var shells = document.querySelectorAll('.lab-shell');
     function initShell(shell) {

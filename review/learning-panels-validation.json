@@ -1,0 +1,110 @@
+[
+  {
+    "route": "removes.html?lesson=125&evidence=1",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "count": 7
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "route": "removes.html?lesson=125&evidence=1",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "count": 7
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "route": "removes.html?lesson=125&evidence=1",
+    "mode": "high",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "count": 7
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "route": "revised.html?lesson=221&evidence=1",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "count": 7
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "route": "revised.html?lesson=221&evidence=1",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "count": 7
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "route": "revised.html?lesson=221&evidence=1",
+    "mode": "high",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "count": 7
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "route": "work.html",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "count": 4
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "route": "work.html",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "count": 4
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "route": "work.html",
+    "mode": "high",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "count": 3
+      }
+    ],
+    "overflow": false
+  }
+]

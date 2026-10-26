@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://hapgood.us/2019/06/19/sift-the-four-moves/",
+    "status": 200,
+    "finalURL": "https://hapgood.us/2019/06/19/sift-the-four-moves/"
+  },
+  {
+    "url": "https://www.gov.uk/government/collections/government-conversion-factors-for-company-reporting",
+    "status": 200,
+    "finalURL": "https://www.gov.uk/government/collections/government-conversion-factors-for-company-reporting"
+  },
+  {
+    "url": "https://www.gov.uk/government/organisations/intellectual-property-office",
+    "status": 200,
+    "finalURL": "https://www.gov.uk/government/organisations/intellectual-property-office"
+  },
+  {
+    "url": "https://www.gov.uk/service-manual/agile-delivery/how-the-discovery-phase-works",
+    "status": 200,
+    "finalURL": "https://www.gov.uk/service-manual/agile-delivery/how-the-discovery-phase-works"
+  },
+  {
+    "url": "https://www.gov.uk/service-manual/user-research",
+    "status": 200,
+    "finalURL": "https://www.gov.uk/service-manual/user-research"
+  },
+  {
+    "url": "https://www.ipcc.ch/report/ar6/syr/",
+    "status": 200,
+    "finalURL": "https://www.ipcc.ch/report/ar6/syr/"
+  },
+  {
+    "url": "https://www.unep.org/resources/publication/food-waste-index-report-2024",
+    "status": 200,
+    "finalURL": "https://wedocs.unep.org/items/dbe2cd4c-8384-4636-8359-5847f42b9711"
+  },
+  {
+    "url": "https://www.w3.org/WAI/test-evaluate/preliminary/",
+    "status": 200,
+    "finalURL": "https://www.w3.org/WAI/test-evaluate/preliminary/"
+  },
+  {
+    "url": "https://www.zotero.org/support/adding_items_to_zotero",
+    "status": 200,
+    "finalURL": "https://www.zotero.org/support/adding_items_to_zotero"
+  }
+]

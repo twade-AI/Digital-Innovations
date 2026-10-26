@@ -68,6 +68,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/wow.css">
   <link rel="stylesheet" href="css/editorial.css">
+  <link rel="stylesheet" href="css/experience.css">
+  <script src="js/course-catalog.js"></script>
+  <script src="js/site-experience.js"></script>
 </head>
 <body>
   <div class="pf-shell">
@@ -90,9 +93,13 @@
 
   <script src="js/data.js"></script>
   <script src="js/slides-gcse.js"></script>
+  <script src="js/shared-content-review.js"></script>
   <script src="js/aep-curriculum.js"></script>
   <script src="js/passport-data.js"></script>
   <script src="js/evidence-tasks.js"></script>
+  <script src="js/feedback-cases.js"></script>
+  <script src="js/project-source-packs.js"></script>
+  <script src="js/learning-feedback.js"></script>
   <script src="js/learning-evidence.js"></script>
   <script>
   (function () {
@@ -194,7 +201,7 @@
 
       GCSE_UNITS.forEach(function (unit) {
         unit.lessons.forEach(function (lesson) {
-          var noteText = collectNotes(lesson.id);
+          var noteText = collectNotes(lesson.id)+(window.DI_FEEDBACK?DI_FEEDBACK.text(lesson.id):'');
           var exitText = collectExit(lesson, 'di_gcse_exit_');
           var assessText = localStorage.getItem('di_gcse_assess_' + lesson.id) || '';
           var assessLevel = localStorage.getItem('di_gcse_assess_level_' + lesson.id) || '';
@@ -220,7 +227,7 @@
       try { var savedDone=JSON.parse(localStorage.getItem('di_progress')||'[]');if(Array.isArray(savedDone))aepDone=savedDone; } catch(e){}
       try { aepDates=JSON.parse(localStorage.getItem('di_completion_dates')||'{}')||{}; } catch(e){}
       UNITS.forEach(function(unit){unit.lessons.forEach(function(lesson){
-        var source=AEP_SHARED_LESSONS[lesson.id]||lesson.id,notes=collectNotes(source),evidence=DI_EVIDENCE.read(source),prefix='di_reflection_'+lesson.id+'_';
+        var source=AEP_SHARED_LESSONS[lesson.id]||lesson.id,notes=collectNotes(source)+(window.DI_FEEDBACK?DI_FEEDBACK.text(source):''),evidence=DI_EVIDENCE.read(source),prefix='di_reflection_'+lesson.id+'_';
         var earlier=AEP_SHARED_LESSONS[lesson.id]?(collectNotes(lesson.id)+'\n'+(DI_EVIDENCE.read(lesson.id).updatedAt?DI_EVIDENCE.text(lesson.id,DI_EVIDENCE.read(lesson.id)):'' )).trim():'';
         if(earlier)notes+='\n\nEarlier AEP lesson · '+lesson.previousTitle+'\n'+earlier;
         var reflections=Object.keys(localStorage).filter(function(k){return k.indexOf(prefix)===0&&/^\d+$/.test(k.slice(prefix.length));}).sort(function(a,b){return Number(a.slice(prefix.length))-Number(b.slice(prefix.length));}).map(function(k){return 'Slide '+(Number(k.slice(prefix.length))+1)+': '+localStorage.getItem(k);}).join('\n\n');
@@ -231,7 +238,7 @@
     } else if (track === 'fluency') {
       var passportDone=[];try{passportDone=JSON.parse(localStorage.getItem('fl_progress_removes20_v2')||localStorage.getItem('fl_progress_v1')||'[]');}catch(e){}
       PASSPORT_TRACK.forEach(function(lesson){
-        var notes=collectNotes(lesson.id),evidence=DI_EVIDENCE.read(lesson.id),exit=collectExit(lesson,'fl_exit_v2_');
+        var notes=collectNotes(lesson.id)+(window.DI_FEEDBACK?DI_FEEDBACK.text(lesson.id):''),evidence=DI_EVIDENCE.read(lesson.id),exit=collectExit(lesson,'fl_exit_v2_');
         var done=Array.isArray(passportDone)&&passportDone.includes(lesson.id);
         if(!notes&&!evidence.updatedAt&&!exit&&!done)return;
         items.push({unit:lesson.section,unitColour:'#9b1844',lessonId:lesson.id,title:lesson.title,done:done,notes:notes,exit:exit,evidence:evidence.updatedAt?DI_EVIDENCE.text(lesson.id,evidence):''});

@@ -1,0 +1,26 @@
+{
+  "preferences": [
+    "removes.html",
+    "fluency.html",
+    "revised.html",
+    "index.html?lesson=5",
+    "index.html?lesson=57"
+  ],
+  "courseAwareResume": true,
+  "dialogInitialFocusAndInert": true,
+  "tabTrap": true,
+  "sectionHistory": true,
+  "crossCourseSearch": true,
+  "sharedRehearsal": true,
+  "portfolioRehearsal": true,
+  "backupRestoredInFreshBrowser": true,
+  "credentialsExcluded": true,
+  "conflictsPreserved": true,
+  "projectSources": true,
+  "revisedNotesPreserved": true,
+  "projectContinueStaysInPathway": true,
+  "newsPageFreshness": true,
+  "phoneReflow": true,
+  "offlineBackup": true,
+  "errors": []
+}
