@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {FEEDS,parseFeed,selectStories,canonicalUrl,tagFor,decode,MAX_ITEMS} from '../scripts/update-news.mjs';
+const now=new Date('2026-10-26T12:00:00Z');
+const atom=`<feed><entry><title>Robot &amp; &#x1F916; art</title><link rel="self" href="https://example.test/feed/1"/><link rel='alternate' href='https://example.test/story?utm_source=x'/><published>2026-10-25T10:00:00Z</published><updated>2026-10-26T10:00:00Z</updated></entry></feed>`;
+let parsed=parseFeed(atom,{source:'A',kind:'reporting'});assert.equal(parsed[0].url,'https://example.test/story');assert.equal(parsed[0].when.toISOString(),'2026-10-25T10:00:00.000Z');assert.equal(parsed[0].headline,'Robot & 🤖 art');
+assert.equal(canonicalUrl('javascript:alert(1)'), '');assert.equal(canonicalUrl('https://user:password@example.test/'),'');assert.equal(decode('&#99999999;'),'�');
+assert.equal(parseFeed('<rss><item><title>x</title><link>https://example.test</link><pubDate>nope</pubDate></item></rss>',{source:'bad'}).length,0);
+assert.equal(tagFor('Securing our model training environment'),'tools');assert.equal(tagFor('AI carbon emissions and electricity'),'environment');
+const items=[];for(let s=0;s<10;s++)for(let n=0;n<6;n++)items.push({headline:`AI robot design ${s} ${n}`,source:'Source '+s,kind:s>6?'maker':'reporting',url:`https://source${s}.test/${n}`,when:new Date(now-3600000*(s+n))});
+items.push({...items[0],source:'Duplicate',url:'https://duplicate.test/'});items.push({...items[1],when:new Date(now.getTime()+86400000),headline:'Future robot',url:'https://future.test/'});items.push({...items[2],when:new Date('2025-01-01'),headline:'Old robot',url:'https://old.test/'});items.push({...items[3],headline:'AI stock price share giveaways',url:'https://stocks.test/'});
+let result=selectStories(items,now);assert.equal(result.length,MAX_ITEMS);assert(result.filter(i=>i.sourceKind==='maker').length<=2);for(let source of new Set(result.map(i=>i.source)))assert(result.filter(i=>i.source===source).length<=2);assert.equal(new Set(result.slice(0,4).map(i=>i.source)).size,4);assert.equal(new Set(result.map(i=>i.headline)).size,result.length);assert(!result.some(i=>/Future|Old|stock price/.test(i.headline)));assert(result.every(i=>i.question&&i.publishedAt));assert.equal(FEEDS.length,11);
+console.log('RSS/Atom dates, safe URLs, deduplication, freshness, topic classification and source diversity passed.');
