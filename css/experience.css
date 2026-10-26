@@ -48,3 +48,13 @@ a.search-result-item{display:block;text-decoration:none;color:var(--text)}.sr-ti
 [data-contrast=high] .lab-shell{--success:#fff;--danger:#fff;--warning:#fff;--accent:#ff0}
 
 .source-pack a,.work-page a,.gs-hero-sub a{text-decoration:underline;text-underline-offset:3px}
+
+/* Reading guidance remains normal-size flowing text in fullscreen. */
+.teaching-route,.teaching-stage{margin:18px 0 24px;padding:16px 18px;border-left:4px solid var(--accessible-accent);background:var(--bg-card);color:var(--text);text-align:left;font:1rem/1.65 var(--font,system-ui);overflow-wrap:anywhere}
+.teaching-route p,.teaching-stage p,.teaching-example p{margin:8px 0 12px;font-size:1rem;line-height:1.7}
+.teaching-stage summary{cursor:pointer;text-decoration:underline;text-underline-offset:3px;min-height:44px;display:flex;align-items:center;font-weight:600}
+.teaching-example{margin:18px 0;padding:16px 18px;border:1px solid var(--border);border-radius:8px;text-align:left;color:var(--text);background:var(--bg-card);font-size:1rem;line-height:1.7}
+.task-finish{margin:16px 0}.slide-body>p{margin-bottom:14px}
+@media(max-width:650px){.teaching-route,.teaching-stage,.teaching-example{padding:12px 14px}}
+
+.teaching-stage{padding:4px 14px;margin:12px 0 20px}.teaching-stage summary{gap:4px;flex-wrap:wrap;text-decoration:none}.teaching-stage summary span{text-decoration:underline;text-underline-offset:3px}

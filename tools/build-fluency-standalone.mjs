@@ -156,7 +156,7 @@ html = replaceOnce(html,
 
 html = replaceOnce(html, '<script src="js/learning-updates.js"></script>', '<script>\n' + read('js/learning-updates.js') + '\n</script>', 'learning updates');
 
-for (const file of ['js/shared-content-review.js','js/feedback-cases.js','js/project-source-packs.js','js/learning-feedback.js','js/studio-visuals.js','js/evidence-tasks.js','js/learning-evidence.js']) html = replaceOnce(html, '<script src="'+file+'"></script>', '<script>\n'+read(file)+'\n</script>', file);
+for (const file of ['js/shared-content-review.js','js/feedback-cases.js','js/project-source-packs.js','js/learning-feedback.js','js/studio-visuals.js','js/evidence-tasks.js','js/learning-evidence.js','js/teaching-notes.js','js/teaching-guidance.js']) html = replaceOnce(html, '<script src="'+file+'"></script>', '<script>\n'+read(file)+'\n</script>', file);
 
 // No service worker in the standalone bundle
 html = replaceOnce(html,

@@ -429,6 +429,8 @@
   <script src="js/project-source-packs.js"></script>
   <script src="js/learning-feedback.js"></script>
   <script src="js/learning-evidence.js"></script>
+  <script src="js/teaching-notes.js"></script>
+  <script src="js/teaching-guidance.js"></script>
   <script src="js/tts.js" defer></script>
   <script>
   /* ── AI and Digital Innovation Removes — track engine ── */
@@ -805,6 +807,7 @@
     }
     var area = document.getElementById('gsSlideArea');
     area.innerHTML = gsRenderSlideHTML(slide);
+    if(window.DI_TEACHING)DI_TEACHING.decorate(area,slide,gsCurrentId,gsSlideIdx);
     var diagram=typeof SLIDE_VISUALS!=='undefined'?SLIDE_VISUALS[gsCurrentId+':'+gsSlideIdx]:null;if(diagram)area.insertAdjacentHTML('beforeend',diagram);
     if(gsSlideIdx===1&&window.DI_FEEDBACK)area.insertAdjacentHTML('beforeend',DI_FEEDBACK.sourcePack(gsCurrentId));
     if (window.diSlide && diSlide.resetScroll) diSlide.resetScroll(area); else area.scrollTop = 0;
