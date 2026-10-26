@@ -3,9 +3,9 @@
 /* Three caches so bumping one category doesn't invalidate the others.
    When you change a JS file, bump CODE_CACHE only; fonts and HTML stay
    in place and the user doesn't re-download them. */
-const SHELL_CACHE  = 'di-shell-v25';  // HTML + CSS + fonts — slow to change
-const CODE_CACHE   = 'di-code-v62';   // JS — changes with every feature
-const ASSETS_CACHE = 'di-assets-v3';  // Logos, icons, manifest
+const SHELL_CACHE  = 'di-shell-v28';  // HTML + CSS + fonts — slow to change
+const CODE_CACHE   = 'di-code-v65';   // JS — changes with every feature
+const ASSETS_CACHE = 'di-assets-v5';  // Logos, icons, manifest
 const ALL_CACHES   = [SHELL_CACHE, CODE_CACHE, ASSETS_CACHE];
 
 const SHELL_ASSETS = [
@@ -13,6 +13,7 @@ const SHELL_ASSETS = [
   './index.html',
   './fluency.html',
   './removes.html',
+  './revised.html',
   './verify.html',
   './portfolio.html',
   './class.html',
@@ -22,6 +23,8 @@ const SHELL_ASSETS = [
   './css/lesson.css',
   './css/brand.css',
   './css/wow.css',
+  './css/editorial.css',
+  './css/studio.css',
   './css/labs.css',
   './assets/brand/fonts/CallunaSans-Regular.otf',
   './assets/brand/fonts/CallunaSans-Italic.otf',
@@ -41,6 +44,13 @@ const CODE_ASSETS = [
   './js/slides-u1u2.js',
   './js/slides-u3u4.js',
   './js/slides-u5u6.js',
+  './js/slides-companions.js',
+  './js/learning-updates.js',
+  './js/passport-data.js',
+  './js/evidence-tasks.js',
+  './js/studio-visuals.js',
+  './js/learning-evidence.js',
+  './js/revised-curriculum.js',
   './js/slides-critical.js',
   './js/slides-advanced.js',
   './js/slides-gcse.js',
@@ -50,6 +60,7 @@ const CODE_ASSETS = [
 ];
 
 const STATIC_ASSETS = [
+  './assets/studio/creative-object.webp',
   './icon.svg',
   './assets/icons/icon-192.png',
   './assets/icons/icon-512.png',
@@ -111,7 +122,7 @@ self.addEventListener('fetch', function(e) {
         return response;
       }).catch(function() { return null; });
 
-      return cached || networkFetch;
+      return cached || networkFetch.then(function(response) { return response || new Response("This resource is not available offline yet.", {status:503, headers:{"Content-Type":"text/plain"}}); });
     })
   );
 });

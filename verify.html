@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Verify Credential — Digital Innovations</title>
-  <meta name="description" content="Verify a Digital Innovations certificate.">
+  <title>Verify Credential — AI and Digital Innovation</title>
+  <meta name="description" content="Verify a AI and Digital Innovation certificate.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Verify Certificate — Digital Innovations">
+  <meta property="og:title" content="Verify Certificate — AI and Digital Innovation">
   <meta property="og:image" content="assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
@@ -43,6 +43,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/wow.css">
+  <link rel="stylesheet" href="css/editorial.css">
 </head>
 <body>
   <div class="verify-shell" id="verifyRoot">
@@ -83,7 +84,7 @@
     var date = q('date');
 
     if (!certId || !name || !date || (track !== 'removes' && track !== 'fluency')) {
-      root.innerHTML = '<div class="verify-error">This link is incomplete or malformed. Please check the URL and try again.</div><a class="verify-back" href="index.html">Back to Digital Innovations</a>';
+      root.innerHTML = '<div class="verify-error">This link is incomplete or malformed. Please check the URL and try again.</div><a class="verify-back" href="index.html">Back to AI and Digital Innovation</a>';
       return;
     }
 
@@ -93,7 +94,7 @@
 
     var trackMeta = {
       removes: { label: 'Removes Course (Year 9)', count: '40 lessons · 7 units', description: 'Aligned to the OECD/EU AI Literacy Framework — Engage, Create, Manage & Shape AI' },
-      fluency: { label: 'AI Digital Passport', count: '24 lessons', description: 'Self-directed AI literacy pathway · Engage, Create, Manage & Shape AI' }
+      fluency: { label: 'AI Digital Passport', count: certId.indexOf('DI-FL20-')===0 ? '20 Removes lessons' : '24 lessons (legacy Passport)', description: 'Self-directed AI literacy pathway · Engage, Create, Manage & Shape AI' }
     }[track];
 
     // Build a formatted date
@@ -117,20 +118,20 @@
       return m + ' min' + (m !== 1 ? 's' : '');
     }
     var studyMins = null, checksumOk = true;
-    var idParts = /^DI-FL-(\d{8})-([A-Z0-9]{4})-T(\d{4})-([A-Z0-9]{4})$/.exec(certId);
+    var idParts = /^(DI-FL(?:20)?)-(\d{8})-([A-Z0-9]{4})-T(\d{4})-([A-Z0-9]{4})$/.exec(certId);
     if (idParts) {
-      studyMins = parseInt(idParts[3], 10);
-      checksumOk = certHash('DI-FL|' + idParts[1] + '|' + idParts[2] + '|' + idParts[3]) === idParts[4];
+      studyMins = parseInt(idParts[4], 10);
+      checksumOk = certHash(idParts[1]+'|' + idParts[2] + '|' + idParts[3] + '|' + idParts[4]) === idParts[5];
     }
     var allOk = idMatchesDate && checksumOk;
 
     root.innerHTML =
-      '<div class="verify-badge' + (allOk ? '' : ' verify-badge--bad') + '"><span>' + (allOk ? '✓' : '⚠') + '</span> ' + (allOk ? 'Verified credential' : 'Details do not match certificate ID') + '</div>' +
+      '<div class="verify-badge' + (allOk ? '' : ' verify-badge--bad') + '"><span>' + (allOk ? '✓' : '⚠') + '</span> ' + (allOk ? 'Completion record' : 'Details do not match certificate ID') + '</div>' +
       '<div class="verify-cert">' +
         '<div class="verify-watermark">DI</div>' +
         '<div class="verify-header">' +
           '<img class="hby-mark hby-mark--header" src="assets/brand/logo/haileybury-magenta.png" alt="Haileybury" width="22" height="16">' +
-          '<span class="verify-issuer">Haileybury · Digital Innovations</span>' +
+          '<span class="verify-issuer">Haileybury · AI and Digital Innovation</span>' +
         '</div>' +
         '<div class="verify-label">Certificate of Completion</div>' +
         '<div class="verify-presented">Presented to</div>' +
@@ -146,13 +147,13 @@
         '</div>' +
       '</div>' +
       '<div class="verify-meta">' +
-        '<strong>About this credential.</strong> This page displays a credential issued by the Digital Innovations programme at Haileybury. ' +
+        '<strong>About this credential.</strong> This page displays a credential issued by the AI and Digital Innovation programme at Haileybury. ' +
         (idParts
           ? 'The certificate ID encodes the completion date, the recorded active study time, and a checksum; this page recomputes them and checks the details are consistent (' + (allOk ? 'they are' : '<span style="color:#ef4444">they are not</span>') + ').'
           : 'The certificate ID encodes the completion date; this page checks the two match (' + (idMatchesDate ? 'they do' : '<span style="color:#ef4444">they do not</span>') + ').') +
-        ' This is a civility-level verification designed to make credentials shareable — it is not a cryptographic proof. For formal verification, contact the programme lead.' +
+        ' This checks consistency of self-reported details. It does not verify identity, participation or mastery. For formal verification, contact the programme lead.' +
       '</div>' +
-      '<a class="verify-back" href="index.html">Back to Digital Innovations</a>';
+      '<a class="verify-back" href="index.html">Back to AI and Digital Innovation</a>';
 
     function esc(s) {
       return String(s == null ? '' : s)

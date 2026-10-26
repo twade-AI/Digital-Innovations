@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-26",
+  "evidenceBriefs": {
+    "removes": 40,
+    "revised": 37,
+    "aep": 59
+  },
+  "passportLessonCount": 20,
+  "passportAllFromRemoves": true,
+  "passportRenderedSlidesIncludingLabs": 236,
+  "responsiveViewports": [
+    1440,
+    768,
+    390
+  ],
+  "pageErrors": [],
+  "saveReloadAndDownload": true,
+  "escapedPupilText": true,
+  "portfolioIsolation": true,
+  "legacyProgressAndCertificatePreserved": true,
+  "newCertificate20": true,
+  "offlinePassport": true,
+  "standalonePassport": true,
+  "storageFailureRecovery": true,
+  "labIndicesPreserved": true,
+  "highContrastEvidenceVisible": true,
+  "limits": [
+    "Physical Safari/iPad devices not tested",
+    "External tool accounts and video playback not end-to-end tested",
+    "Success criteria are pupil self-checks, not verified assessment"
+  ]
+}

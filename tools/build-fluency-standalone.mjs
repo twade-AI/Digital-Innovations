@@ -5,7 +5,7 @@
    hosted anywhere — or opened straight from disk — with no other files.
 
    What it does:
-     1. Reads the lesson ids from FL_TRACK inside fluency.html.
+     1. Reads the canonical Removes selection from js/passport-data.js.
      2. Evaluates the shared data files (js/data.js, js/slides-*.js,
         js/visuals.js) and filters them down to just those lessons.
      3. Inlines the three stylesheets, js/slide-utils.js, js/tts.js,
@@ -46,10 +46,8 @@ function replaceOnce(html, anchor, replacement, label) {
 
 let html = read('fluency.html');
 
-/* ── 1. Lesson ids, straight from the page ── */
-const flTrackMatch = html.match(/var FL_TRACK = \[[\s\S]*?\];/);
-if (!flTrackMatch) throw new Error('FL_TRACK not found in fluency.html');
-const FL_IDS = vm.runInNewContext(flTrackMatch[0] + ';FL_TRACK', {}).map((t) => t.id);
+/* ── 1. Canonical Passport lesson IDs ── */
+const FL_IDS = vm.runInNewContext(read('js/slides-gcse.js')+'\n'+read('js/passport-data.js')+';PASSPORT_IDS',{});
 const idSet = new Set(FL_IDS);
 
 /* ── 2. Filter shared data to the fluency lessons ── */
@@ -76,7 +74,7 @@ const coveredIds = new Set(slideVars.flatMap(([, s]) => Object.keys(s).map(Numbe
 const missing = FL_IDS.filter((id) => !coveredIds.has(id));
 if (missing.length) throw new Error('No slide deck for lesson id(s): ' + missing.join(', '));
 
-const ALL_VISUALS = evalGlobal('js/visuals.js', 'SLIDE_VISUALS');
+const ALL_VISUALS = vm.runInNewContext(read('js/slides-gcse.js')+'\n'+read('js/visuals.js')+'\n'+read('js/studio-visuals.js')+';SLIDE_VISUALS',{});
 const SLIDE_VISUALS = {};
 for (const key of Object.keys(ALL_VISUALS)) {
   if (idSet.has(Number(key.split(':')[0]))) SLIDE_VISUALS[key] = ALL_VISUALS[key];
@@ -91,6 +89,7 @@ const dataScript =
   '<script>\n/* Course content — filtered to the ' + FL_IDS.length + ' AI Fluency Track lessons.\n' +
   '   Generated from js/data.js, js/slides-*.js and js/visuals.js. */\n' +
   'var UNITS = ' + embedJSON(UNITS) + ';\n' +
+  'var GCSE_UNITS = ' + embedJSON(evalGlobal('js/slides-gcse.js','GCSE_UNITS').map(u=>({...u,lessons:u.lessons.filter(l=>idSet.has(l.id))})).filter(u=>u.lessons.length)) + ';\n' +
   slideVars.map(([name, s]) => 'var ' + name + ' = ' + embedJSON(s) + ';').join('\n') + '\n' +
   'var SLIDE_VISUALS = ' + embedJSON(SLIDE_VISUALS) + ';\n</script>';
 
@@ -107,7 +106,7 @@ html = replaceOnce(html, '<link rel="icon" href="icon.svg" type="image/svg+xml">
   '<link rel="icon" href="' + iconURI + '" type="image/svg+xml">', 'favicon');
 
 // Stylesheets → inline <style> blocks (same order)
-for (const css of ['css/style.css', 'css/lesson.css', 'css/brand.css', 'css/labs.css', 'css/wow.css']) {
+for (const css of ['css/style.css', 'css/lesson.css', 'css/brand.css', 'css/labs.css', 'css/wow.css', 'css/editorial.css', 'css/studio.css']) {
   html = replaceOnce(html, '<link rel="stylesheet" href="' + css + '">',
     '<style>\n/* ── inlined: ' + css + ' ── */\n' + read(css) + '\n</style>', css);
 }
@@ -124,13 +123,13 @@ html = replaceOnce(html, 'src="assets/brand/logo/haileybury-magenta.png"', 'src=
 html = replaceOnce(html,
   '      <button class="fl-print-btn" id="flShareBtn" onclick="flShareCredential()" style="margin-left:8px;background:var(--bg-card);color:var(--track-primary);border:1.5px solid var(--track-primary)">🔗 Copy share link</button>\n', '', 'share button');
 
-// Scope panel: the full-course CTA points at index.html
+// Scope panel: the Removes CTA only works on the full site
 html = replaceOnce(html,
-  '        <a class="fl-scope-cta" href="index.html">Browse the full 59-lesson course →</a>\n', '', 'course CTA');
+  '        <a class="fl-scope-cta" href="removes.html">Browse all 40 Removes lessons →</a>\n', '', 'course CTA');
 
 // Offline banner copy: there is no service worker here, but the page is
 // fully self-contained, so the honest claim is simpler
-html = replaceOnce(html, 'You are offline — all 24 lessons are available from cache',
+html = replaceOnce(html, 'You are offline — all 20 lessons are available from cache',
   'You are offline — this page is self-contained, keep learning', 'offline copy');
 
 // Script tags → inlined sources + filtered data
@@ -144,14 +143,20 @@ html = replaceOnce(html,
   '  <script src="js/slides-critical.js"></script>\n' +
   '  <script src="js/slides-advanced.js"></script>\n' +
   '  <script src="js/slides-gcse.js"></script>\n' +
+  '  <script src="js/passport-data.js"></script>\n' +
   '  <script src="js/quiz-bank.js"></script>\n' +
   '  <script src="js/visuals.js"></script>\n' +
   '  <script src="js/labs.js"></script>',
   '  <!-- Inlined scripts — slide helpers + course content + interactive labs -->\n' +
   '  <script>\n/* ── inlined: js/slide-utils.js ── */\n' + read('js/slide-utils.js') + '\n</script>\n' +
   '  ' + dataScript + '\n' +
+  '<script>'+read('js/passport-data.js')+'</script>\n' +
   '  <script>\n/* ── inlined: js/labs.js ── */\n' + read('js/labs.js') + '\n</script>',
   'script block');
+
+html = replaceOnce(html, '<script src="js/learning-updates.js"></script>', '<script>\n' + read('js/learning-updates.js') + '\n</script>', 'learning updates');
+
+for (const file of ['js/studio-visuals.js','js/evidence-tasks.js','js/learning-evidence.js']) html = replaceOnce(html, '<script src="'+file+'"></script>', '<script>\n'+read(file)+'\n</script>', file);
 
 // No service worker in the standalone bundle
 html = replaceOnce(html,

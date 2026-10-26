@@ -1,0 +1,200 @@
+[
+  {
+    "file": "index.html",
+    "size": {
+      "width": 1440,
+      "height": 900
+    },
+    "errors": [],
+    "fullscreen": true,
+    "reading": true,
+    "areaHeight": 744,
+    "width": 1440,
+    "scrollWidth": 1440,
+    "font": "16px",
+    "canvasWidth": 960,
+    "bodyOverflow": false,
+    "fit": {
+      "width": 1120,
+      "height": 465.578125,
+      "transform": "scale(1)"
+    },
+    "closed": true
+  },
+  {
+    "file": "removes.html",
+    "size": {
+      "width": 1440,
+      "height": 900
+    },
+    "errors": [],
+    "fullscreen": true,
+    "reading": true,
+    "areaHeight": 707,
+    "width": 1440,
+    "scrollWidth": 1440,
+    "font": "16px",
+    "canvasWidth": 960,
+    "bodyOverflow": false,
+    "fit": {
+      "width": 677.768310546875,
+      "height": 705.0189208984375,
+      "transform": "scale(0.60515)"
+    },
+    "closed": true
+  },
+  {
+    "file": "fluency.html",
+    "size": {
+      "width": 1440,
+      "height": 900
+    },
+    "errors": [],
+    "fullscreen": true,
+    "reading": true,
+    "areaHeight": 720,
+    "width": 1440,
+    "scrollWidth": 1440,
+    "font": "16px",
+    "canvasWidth": 960,
+    "bodyOverflow": false,
+    "fit": {
+      "width": 738.43896484375,
+      "height": 717.6703491210938,
+      "transform": "scale(0.65932)"
+    },
+    "closed": true
+  },
+  {
+    "file": "index.html",
+    "size": {
+      "width": 768,
+      "height": 1024
+    },
+    "errors": [],
+    "fullscreen": true,
+    "reading": true,
+    "areaHeight": 864,
+    "width": 768,
+    "scrollWidth": 768,
+    "font": "16px",
+    "canvasWidth": 768,
+    "bodyOverflow": false,
+    "fit": {
+      "width": 766,
+      "height": 318.42218017578125,
+      "transform": "scale(0.683929)"
+    },
+    "closed": true
+  },
+  {
+    "file": "removes.html",
+    "size": {
+      "width": 768,
+      "height": 1024
+    },
+    "errors": [],
+    "fullscreen": true,
+    "reading": true,
+    "areaHeight": 831,
+    "width": 768,
+    "scrollWidth": 768,
+    "font": "16px",
+    "canvasWidth": 768,
+    "bodyOverflow": false,
+    "fit": {
+      "width": 766,
+      "height": 796.7981567382812,
+      "transform": "scale(0.683929)"
+    },
+    "closed": true
+  },
+  {
+    "file": "fluency.html",
+    "size": {
+      "width": 768,
+      "height": 1024
+    },
+    "errors": [],
+    "fullscreen": true,
+    "reading": true,
+    "areaHeight": 844,
+    "width": 768,
+    "scrollWidth": 768,
+    "font": "16px",
+    "canvasWidth": 768,
+    "bodyOverflow": false,
+    "fit": {
+      "width": 766,
+      "height": 744.4562377929688,
+      "transform": "scale(0.683929)"
+    },
+    "closed": true
+  },
+  {
+    "file": "index.html",
+    "size": {
+      "width": 390,
+      "height": 844
+    },
+    "errors": [],
+    "fullscreen": true,
+    "reading": true,
+    "areaHeight": 644,
+    "width": 390,
+    "scrollWidth": 390,
+    "font": "16px",
+    "canvasWidth": 390,
+    "bodyOverflow": false,
+    "fit": {
+      "width": 388,
+      "height": 161.28955078125,
+      "transform": "scale(0.346429)"
+    },
+    "closed": true
+  },
+  {
+    "file": "removes.html",
+    "size": {
+      "width": 390,
+      "height": 844
+    },
+    "errors": [],
+    "fullscreen": true,
+    "reading": true,
+    "areaHeight": 573,
+    "width": 390,
+    "scrollWidth": 390,
+    "font": "16px",
+    "canvasWidth": 390,
+    "bodyOverflow": false,
+    "fit": {
+      "width": 388,
+      "height": 403.60009765625,
+      "transform": "scale(0.346429)"
+    },
+    "closed": true
+  },
+  {
+    "file": "fluency.html",
+    "size": {
+      "width": 390,
+      "height": 844
+    },
+    "errors": [],
+    "fullscreen": true,
+    "reading": true,
+    "areaHeight": 620,
+    "width": 390,
+    "scrollWidth": 390,
+    "font": "16px",
+    "canvasWidth": 390,
+    "bodyOverflow": false,
+    "fit": {
+      "width": 388,
+      "height": 376.3946533203125,
+      "transform": "scale(0.346429)"
+    },
+    "closed": true
+  }
+]

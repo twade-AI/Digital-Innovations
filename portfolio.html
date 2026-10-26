@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Portfolio — Digital Innovations</title>
-  <meta name="description" content="Your Digital Innovations portfolio — lesson progress, badges and certificates.">
+  <title>My Portfolio — AI and Digital Innovation</title>
+  <meta name="description" content="Your AI and Digital Innovation portfolio — lesson progress, badges and certificates.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Portfolio — Digital Innovations">
+  <meta property="og:title" content="Portfolio — AI and Digital Innovation">
   <meta property="og:image" content="assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
@@ -67,10 +67,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/wow.css">
+  <link rel="stylesheet" href="css/editorial.css">
 </head>
 <body>
   <div class="pf-shell">
-    <a class="pf-back" href="index.html">← Back to Digital Innovations</a>
+    <a class="pf-back" href="index.html">← Back to AI and Digital Innovation</a>
     <div class="pf-head">
       <div class="pf-title">
         <h1>My Portfolio</h1>
@@ -88,6 +89,9 @@
   </div>
 
   <script src="js/slides-gcse.js"></script>
+  <script src="js/passport-data.js"></script>
+  <script src="js/evidence-tasks.js"></script>
+  <script src="js/learning-evidence.js"></script>
   <script>
   (function () {
     function q(name) {
@@ -154,6 +158,7 @@
       if (!pname) return;
       var data = {
         v: 1, type: 'di-removes-portfolio', name: pname, exported: new Date().toISOString(),
+        evidence: Object.fromEntries(GCSE_UNITS.flatMap(function(u){return u.lessons;}).map(function(l){return [l.id,DI_EVIDENCE.read(l.id)];}).filter(function(e){return e[1].updatedAt;})),
         tasks: PF_TASKS.map(function (t) {
           return {
             unit: t.u, lesson: t.l, title: t.t,
@@ -186,7 +191,8 @@
           var exitText = localStorage.getItem('di_gcse_exit_' + lesson.id) || '';
           var assessText = localStorage.getItem('di_gcse_assess_' + lesson.id) || '';
           var assessLevel = localStorage.getItem('di_gcse_assess_level_' + lesson.id) || '';
-          if (!noteText && !exitText && !assessText && !assessLevel && !doneIds[lesson.id]) return;
+          var evidence=DI_EVIDENCE.read(lesson.id);
+          if (!noteText && !exitText && !assessText && !assessLevel && !doneIds[lesson.id] && !evidence.updatedAt) return;
           items.push({
             unit: unit.title,
             unitColour: unit.color,
@@ -197,30 +203,19 @@
             notes: noteText,
             exit: exitText,
             assess: assessText,
-            assessLevel: assessLevel
+            assessLevel: assessLevel,
+            evidence: evidence.updatedAt ? DI_EVIDENCE.text(lesson.id,evidence) : ''
           });
         });
       });
     } else if (track === 'fluency') {
-      // Fluency stores notes as di_note_<id>_<idx> and lacks a unit grouping;
-      // scan all di_note_* keys and present them ungrouped with lesson index.
-      for (var i = 0; i < localStorage.length; i++) {
-        var k = localStorage.key(i);
-        if (!k || k.indexOf('di_note_') !== 0) continue;
-        var parts = k.replace('di_note_', '').split('_');
-        if (parts.length < 2) continue;
-        var val = (localStorage.getItem(k) || '').trim();
-        if (!val) continue;
-        items.push({
-          unit: 'AI Digital Passport',
-          unitColour: '#f59e0b',
-          lessonId: parts[0],
-          title: 'Lesson ' + parts[0] + ' · slide ' + (parseInt(parts[1], 10) + 1),
-          done: false,
-          notes: val,
-          exit: ''
-        });
-      }
+      var passportDone=[];try{passportDone=JSON.parse(localStorage.getItem('fl_progress_removes20_v2')||localStorage.getItem('fl_progress_v1')||'[]');}catch(e){}
+      PASSPORT_TRACK.forEach(function(lesson){
+        var notes=collectNotes(lesson.id),evidence=DI_EVIDENCE.read(lesson.id),exit=localStorage.getItem('fl_exit_v2_'+lesson.id)||'';
+        var done=Array.isArray(passportDone)&&passportDone.includes(lesson.id);
+        if(!notes&&!evidence.updatedAt&&!exit&&!done)return;
+        items.push({unit:lesson.section,unitColour:'#9b1844',lessonId:lesson.id,title:lesson.title,done:done,notes:notes,exit:exit,evidence:evidence.updatedAt?DI_EVIDENCE.text(lesson.id,evidence):''});
+      });
     }
 
     var content = document.getElementById('pfContent');
@@ -269,6 +264,7 @@
                     '<div class="pf-l-name">' + esc(e.title) + '</div>' +
                     (e.lessonId ? '<div class="pf-l-meta">Lesson #' + esc(String(e.lessonId)) + '</div>' : '') +
                   '</div>';
+        if (e.evidence) html += '<div class="pf-assess"><strong>Evidence of learning</strong><br>'+esc(e.evidence)+'</div>';
         if (e.notes) html += '<div class="pf-note">' + esc(e.notes) + '</div>';
         if (e.exit)  html += '<div class="pf-exit"><strong>Exit ticket.</strong> ' + esc(e.exit) + '</div>';
         if (e.assess || e.assessLevel) html += '<div class="pf-assess"><strong>📋 Assessed task.</strong>' + (e.assessLevel ? ' <span class="pf-lvl pf-lvl-' + lvlCls(e.assessLevel) + '">Self-rated: ' + esc(e.assessLevel) + '</span>' : '') + (e.assess ? ' ' + esc(e.assess) : '') + '</div>';

@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digital Innovations AEP — Academic Extension Programme</title>
+  <title>AI and Digital Innovation — Think, Make, Question</title>
   <meta name="description" content="Haileybury's AI literacy platform — 100+ lessons across three courses covering how AI works, prompt engineering, ethics, revision skills and a capstone project, for pupils aged 13–18.">
   <link rel="canonical" href="./">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Digital Innovations — Haileybury's AI literacy platform">
+  <meta property="og:title" content="AI and Digital Innovation — Haileybury's AI literacy platform">
   <meta property="og:description" content="Elevate your learning, don't replace your thinking. 100+ lessons on how AI works, prompting, ethics and revision skills for ages 13–18.">
   <meta property="og:image" content="assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -28,6 +28,9 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <!-- Supabase SDK (deferred; auth features degrade gracefully offline) -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js" defer></script>
+  <link rel="stylesheet" href="css/editorial.css">
+  <link rel="stylesheet" href="css/studio.css">
+<script>var design=new URLSearchParams(location.search).get("design");if(["studio","glass"].includes(design))document.documentElement.dataset.design=design;</script>
 </head>
 <body>
   <div id="offlineBanner" class="offline-banner" style="display:none" role="status" aria-live="polite">
@@ -37,7 +40,7 @@
   <!-- Navigation -->
   <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
-      <a href="#" class="nav-brand" onclick="showSection('home')" aria-label="Digital Innovations — home">
+      <a href="#" class="nav-brand" onclick="showSection('home')" aria-label="AI and Digital Innovation — home">
         <svg class="brand-logo" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <circle cx="18" cy="18" r="17" stroke="url(#lg)" stroke-width="2"/>
           <path d="M12 14l4 8 4-6 3 4" stroke="url(#lg2)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -51,7 +54,7 @@
             </linearGradient>
           </defs>
         </svg>
-        <span class="brand-text">Digital <span class="brand-accent">Innovations</span></span>
+        <span class="brand-text">AI and <span class="brand-accent">Digital Innovation</span></span>
         <img class="hby-mark" src="assets/brand/logo/haileybury-magenta.png" alt="Haileybury" width="26" height="18">
       </a>
       <div class="nav-links">
@@ -123,24 +126,30 @@
 
     <!-- Pathway chooser -->
     <div class="pathway-header">
-      <div class="pathway-badge">Digital Innovations</div>
-      <h1 class="pathway-title"><span class="ht-pop">Elevate your learning,</span> don't replace your thinking.</h1>
-      <p class="pathway-sub">A KS3–KS5 AI course covering the technology and ethics of a rapidly changing world.</p>
+      <div class="studio-copy">
+        <div class="pathway-badge">AI and Digital Innovation · Ages 13–18</div>
+        <h1 class="pathway-title">Think bigger.<br>Make things.<br><em>Stay curious.</em></h1>
+        <p class="pathway-sub">Investigate AI. Challenge a convincing answer. Build something useful. Leave every lesson with work you can explain and call your own.</p>
+        <div class="studio-hero-actions"><a class="studio-start" href="removes.html">Explore Removes <span aria-hidden="true"> →</span></a><a href="#choose-course">Find your course ↓</a></div>
+      </div>
+      <figure class="studio-art"><img src="assets/studio/creative-object.webp" width="1536" height="1024" fetchpriority="high" alt="An experimental sculpture of looping chrome, translucent yellow glass and folded blue material."><span class="studio-art-tag" aria-hidden="true">IDEAS<br>IN THE MAKING →</span><figcaption>STUDIO STUDY 001 · AI-GENERATED ARTWORK</figcaption></figure>
     </div>
+    <div class="studio-section-heading" id="choose-course"><h2>Choose your next move.</h2><p>Three courses. Plenty of room for your own ideas.</p></div>
 
     <div class="pathway-cards">
       <!-- Removes Course -->
       <div class="pathway-card pathway-card--gcse" onclick="window.location.href='removes.html'">
         <span class="pc-ribbon pc-ribbon--gcse">Self-paced</span>
-        <div class="pc-icon">🌱</div>
+        <div class="pc-icon">01 /</div><div class="pc-art"><svg viewBox="0 0 240 150" fill="none" aria-hidden="true"><path d="M39 45 109 12 201 58 130 95Z" stroke="currentColor" stroke-width="3"/><path d="M39 65 109 32 201 78 130 115Z" stroke="currentColor" stroke-width="3"/><path d="M39 85 109 52 201 98 130 135Z" fill="currentColor"/><circle cx="159" cy="47" r="15" fill="#d7fa75" stroke="currentColor" stroke-width="3"/></svg></div>
         <div class="pc-badge pc-badge--gcse">Works Offline</div>
         <h2 class="pc-title">Removes course</h2>
-        <p class="pc-desc">40 lessons across 7 units, aligned to the OECD/EU AI Literacy Framework. Covers AI foundations, ethics, revision and exam technique, and a new unit on managing and shaping AI.</p>
+        <p><a class="btn btn-secondary" href="revised.html" onclick="event.stopPropagation()">New classroom lessons and projects →</a></p>
+        <p class="pc-desc">Start with the AI in your everyday life. Learn to question it, use it well and redesign it. Make a case file, a prototype or a new way of explaining an idea.</p>
         <ul class="pc-features">
           <li>40 lessons · 7 units</li>
-          <li>Aligned to the AILit Framework (Engage · Create · Manage · Shape)</li>
-          <li>AI for Study &amp; Revision + Shaping AI units</li>
-          <li>Works fully offline · Completion certificate</li>
+          <li>A creative evidence task in every lesson</li>
+          <li>Study skills, real dilemmas and design challenges</li>
+          <li>Lessons available offline after loading · Videos need internet</li>
         </ul>
         <div class="pc-actions">
           <button class="btn pc-cta pc-cta--gcse">Start Removes course →</button>
@@ -157,11 +166,11 @@
 
       <!-- AEP Full Course -->
       <div class="pathway-card pathway-card--full" onclick="showSection('units')">
-        <span class="pc-ribbon pc-ribbon--full">Flagship</span>
-        <div class="pc-icon">📚</div>
-        <div class="pc-badge pc-badge--full">Classroom Course · AEP</div>
-        <h2 class="pc-title">Digital Innovations<br>AEP</h2>
-        <p class="pc-desc">The complete KS5 programme — 59 lessons across 6 units covering AI foundations, prompt engineering, ethics, policy and a supervised capstone project.</p>
+        <span class="pc-ribbon pc-ribbon--full">Sixth form</span>
+        <div class="pc-icon">02 /</div><div class="pc-art"><svg viewBox="0 0 240 150" fill="none" aria-hidden="true"><path d="M48 110 96 26 150 110Z" stroke="currentColor" stroke-width="3"/><circle cx="140" cy="66" r="42" stroke="currentColor" stroke-width="3"/><path d="M45 124H196M168 24v95M156 36h24M156 101h24" stroke="currentColor" stroke-width="3"/><circle cx="96" cy="81" r="13" fill="currentColor"/></svg></div>
+        <div class="pc-badge pc-badge--full">Independent study · AEP</div>
+        <h2 class="pc-title">Go deeper.<br>AEP</h2>
+        <p class="pc-desc">Work through AI foundations, practical experiments and difficult ethical questions. Then develop a project you can explain and defend.</p>
         <ul class="pc-features">
           <li>59 lessons · 6 units</li>
           <li>Capstone build project</li>
@@ -185,14 +194,14 @@
       <!-- AI Digital Passport -->
       <div class="pathway-card pathway-card--fluency" onclick="window.location.href='fluency.html'">
         <span class="pc-ribbon pc-ribbon--fluency">Certificate</span>
-        <div class="pc-icon">⚡</div>
+        <div class="pc-icon">03 /</div><div class="pc-art"><svg viewBox="0 0 240 150" fill="none" aria-hidden="true"><rect x="55" y="22" width="125" height="108" rx="7" transform="rotate(-8 55 22)" stroke="currentColor" stroke-width="3"/><circle cx="118" cy="67" r="30" stroke="currentColor" stroke-width="2"/><ellipse cx="118" cy="67" rx="13" ry="30" stroke="currentColor" stroke-width="2"/><path d="M88 67h60M96 46h44M96 88h44M79 111h49" stroke="currentColor" stroke-width="2"/><path d="m155 108 9 9 17-22" stroke="currentColor" stroke-width="5"/></svg></div>
         <div class="pc-badge pc-badge--fluency">Self-Directed · Works Offline</div>
         <h2 class="pc-title">AI Digital Passport</h2>
-        <p class="pc-desc">A curated 24-lesson pathway for independent learners, spanning all four AILit domains. No teacher needed — work at your own pace and earn your AI Digital Passport.</p>
+        <p class="pc-desc">20 lessons selected from Removes. A focused route through AI, creativity and critical judgement—with work to make and keep at every step.</p>
         <ul class="pc-features">
-          <li>24 carefully chosen lessons</li>
-          <li>Covers Engage · Create · Manage · Shape AI</li>
-          <li>Works fully offline · No login required</li>
+          <li>20 lessons · all from Removes</li>
+          <li>Shared teaching content and evidence tasks</li>
+          <li>Lessons available offline after loading · No login required</li>
           <li>Completion certificate</li>
         </ul>
         <div class="pc-actions">
@@ -208,6 +217,12 @@
         </div>
       </div>
     </div>
+    <section class="studio-briefs" aria-labelledby="studioBriefTitle"><div class="studio-section-heading"><h2 id="studioBriefTitle">Less scrolling. More making.</h2><p>A taste of what you'll create</p></div><div class="studio-brief-grid">
+      <a class="studio-brief" href="removes.html?lesson=122&amp;evidence=1"><small>01 / INVESTIGATE</small><h3>Open a claim case file.</h3><p>Trace the source. Weigh the evidence. Decide what you can actually say.</p><span>See the brief →</span></a>
+      <a class="studio-brief" href="removes.html?lesson=115&amp;evidence=1"><small>02 / CREATE</small><h3>Curate a tiny exhibition.</h3><p>Make two versions. Show what you changed. Explain where your creativity lives.</p><span>See the brief →</span></a>
+      <a class="studio-brief" href="removes.html?lesson=140&amp;evidence=1"><small>03 / REDESIGN</small><h3>Make AI work for more people.</h3><p>Find an access barrier. Sketch a better tool. Design a test that could prove you wrong.</p><span>See the brief →</span></a>
+    </div></section>
+
 
     <!-- AI News Ticker (inside home section so it doesn't show during lessons) -->
     <div id="newsTicker" class="news-ticker" aria-label="AI news headlines" role="marquee">
@@ -758,6 +773,10 @@
   <script src="js/visuals.js" defer></script>
   <script src="js/slide-utils.js" defer></script>
   <script src="js/labs.js" defer></script>
+  <script src="js/learning-updates.js" defer></script>
+  <script src="js/studio-visuals.js" defer></script>
+  <script src="js/evidence-tasks.js" defer></script>
+  <script src="js/learning-evidence.js" defer></script>
   <script src="js/app.js" defer></script>
   <script src="js/tts.js" defer></script>
   <script src="js/auth.js" defer></script>

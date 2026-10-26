@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Family summary — Digital Innovations</title>
-  <meta name="description" content="A weekly learning summary from the Digital Innovations AI course.">
+  <title>Family summary — AI and Digital Innovation</title>
+  <meta name="description" content="A weekly learning summary from the AI and Digital Innovation AI course.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Family Summary — Digital Innovations">
+  <meta property="og:title" content="Family Summary — AI and Digital Innovation">
   <meta property="og:image" content="assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
@@ -37,6 +37,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/wow.css">
+  <link rel="stylesheet" href="css/editorial.css">
 </head>
 <body>
   <div class="fm-shell">
@@ -63,7 +64,7 @@
 
     var raw = q('s');
     if (!raw) {
-      content.innerHTML = '<div class="fm-error">This link is missing the summary data. Ask the pupil to re-generate the link.</div><a class="fm-back" href="index.html">Back to Digital Innovations</a>';
+      content.innerHTML = '<div class="fm-error">This link is missing the summary data. Ask the pupil to re-generate the link.</div><a class="fm-back" href="index.html">Back to AI and Digital Innovation</a>';
       return;
     }
     var snap;
@@ -73,7 +74,7 @@
       while (b64.length % 4) b64 += '=';
       snap = JSON.parse(decodeURIComponent(escape(atob(b64))));
     } catch (e) {
-      content.innerHTML = '<div class="fm-error">This link is malformed or has been edited. Ask the pupil to re-generate the link.</div><a class="fm-back" href="index.html">Back to Digital Innovations</a>';
+      content.innerHTML = '<div class="fm-error">This link is malformed or has been edited. Ask the pupil to re-generate the link.</div><a class="fm-back" href="index.html">Back to AI and Digital Innovation</a>';
       return;
     }
 
@@ -97,7 +98,7 @@
         '<div class="fm-hdr">' +
           '<div>' +
             '<div class="fm-title">' + esc(snap.name) + '\'s week</div>' +
-            '<div class="fm-title-meta">' + esc(snap.trackLabel || 'Digital Innovations') + ' · snapshot taken ' + esc(prettyGenerated) + '</div>' +
+            '<div class="fm-title-meta">' + esc(snap.trackLabel || 'AI and Digital Innovation') + ' · snapshot taken ' + esc(prettyGenerated) + '</div>' +
           '</div>' +
           '<img class="hby-mark" src="assets/brand/logo/haileybury-magenta.png" alt="Haileybury" width="26" height="18">' +
         '</div>' +
@@ -114,7 +115,7 @@
 
         '<div class="fm-footnote"><strong>A note on the numbers.</strong> Minutes are an approximation (≈ 20 min per lesson, the course design target) — the site doesn\'t track session time. Scores and answers are deliberately not shown: the goal is to let you see engagement, not to grade performance.</div>' +
       '</div>' +
-      '<a class="fm-back" href="index.html">Back to Digital Innovations</a>';
+      '<a class="fm-back" href="index.html">Back to AI and Digital Innovation</a>';
   })();
   </script>
 </body>

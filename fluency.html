@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Digital Passport — Digital Innovations</title>
-  <meta name="description" content="A self-directed 24-lesson AI Digital Passport, aligned to the OECD/EU AI Literacy Framework (Engage · Create · Manage · Shape). No login needed. Works offline.">
+  <title>AI Digital Passport — AI and Digital Innovation</title>
+  <meta name="description" content="A self-directed 20-lesson AI Digital Passport, aligned to the OECD/EU AI Literacy Framework (Engage · Create · Manage · Shape). No login needed. Works offline.">
   <link rel="manifest" href="manifest.json">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="AI Digital Passport — Digital Innovations">
+  <meta property="og:title" content="AI Digital Passport — AI and Digital Innovation">
   <meta property="og:image" content="assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
@@ -324,10 +324,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/wow.css">
+  <link rel="stylesheet" href="css/editorial.css">
+  <link rel="stylesheet" href="css/studio.css">
 </head>
 <body data-track="fluency">
   <div id="offlineBanner" class="offline-banner" style="display:none" role="status" aria-live="polite">
-    You are offline — all 24 lessons are available from cache
+    You are offline — all 20 lessons are available from cache
   </div>
 
   <div class="fl-shell">
@@ -336,7 +338,7 @@
     <div class="fl-header">
       <button class="fl-back" onclick="window.location.href='index.html'">← Back</button>
       <img class="hby-mark hby-mark--header" src="assets/brand/logo/haileybury-magenta.png" alt="Haileybury" width="22" height="16">
-      <span class="fl-header-brand">Digital Innovations</span>
+      <span class="fl-header-brand">AI and Digital Innovation</span>
       <span class="fl-header-title">AI Digital Passport ⚡</span>
       <a class="btn btn-ghost btn-sm" href="portfolio.html?t=fluency" style="margin-left:10px" title="Your notes, exit tickets and progress — save as PDF">📄 Portfolio</a>
     </div>
@@ -345,7 +347,7 @@
     <div class="fl-progress-wrap">
       <div class="fl-progress-label">
         <span>Your progress</span>
-        <span id="flProgressLabel">0 / 24 lessons</span>
+        <span id="flProgressLabel">0 / 20 lessons</span>
       </div>
       <div class="fl-progress-track">
         <div class="fl-progress-fill" id="flProgressFill" style="width:0%"></div>
@@ -356,13 +358,13 @@
     <div class="fl-complete" id="flComplete">
       <div class="fl-complete-icon">🏆</div>
       <h2>AI Digital Passport Achieved!</h2>
-      <p>You've completed all 24 lessons. You can now engage with, create with, manage and shape AI — clearly, critically, and responsibly.</p>
+      <p>You've completed all 20 lessons. Keep your evidence portfolio to show what you can explain and do. Completion is not a teacher-assessed qualification.</p>
       <div class="fl-cert-name-row">
         <label class="fl-cert-name-label" for="flCertNameInput">Your name (for the certificate)</label>
         <input id="flCertNameInput" class="fl-cert-name-input" type="text" placeholder="Enter your full name…" oninput="flUpdateCertName(this.value)" maxlength="60">
       </div>
       <div id="flSpeedWarning" class="fl-speed-warning" style="display:none">
-        ⚠️ <strong>Speed warning:</strong> your recorded active study time is <span id="flSpeedWarningTime"></span>. Working through all 24 lessons properly typically takes around 10 hours. Your study time is encoded into the certificate ID, so your teacher will see it — they may ask you to review the lessons again if it looks too short.
+        ⚠️ <strong>Speed warning:</strong> your recorded active study time is <span id="flSpeedWarningTime"></span>. Reading time alone does not establish learning. Review your evidence against the success criteria. Your study time is encoded into the certificate ID, so your teacher will see it — they may ask you to review the lessons again if it looks too short.
       </div>
       <div class="fl-cert-card" id="flCertCard">
         <div class="fl-cert-watermark" aria-hidden="true">AI</div>
@@ -376,14 +378,14 @@
               <linearGradient id="clg2" x1="12" y1="14" x2="25" y2="22" gradientUnits="userSpaceOnUse"><stop stop-color="var(--track-primary)"/><stop offset="1" stop-color="var(--track-primary-dark)"/></linearGradient>
             </defs>
           </svg>
-          <span class="fl-cert-issuer">Digital Innovations</span>
+          <span class="fl-cert-issuer">AI and Digital Innovation</span>
         </div>
         <div class="fl-cert-label">Certificate of Completion</div>
         <div class="fl-cert-presented">This certifies that</div>
         <div class="fl-cert-recipient" id="flCertRecipient">—</div>
         <div class="fl-cert-course">has successfully completed the</div>
         <div class="fl-cert-title-main">AI Digital Passport</div>
-        <div class="fl-cert-detail">24 lessons · ~10 hours · Aligned to the OECD/EU AI Literacy Framework (Engage · Create · Manage · Shape)</div>
+        <div class="fl-cert-detail">20 lessons from Removes · Creative evidence portfolio</div>
         <div class="fl-cert-divider"></div>
         <div class="fl-cert-footer">
           <div class="fl-cert-date-wrap">
@@ -424,9 +426,9 @@
     <div class="fl-hero" id="flHero">
       <div class="fl-hero-badge">Self-Directed · Offline-capable</div>
       <h1>AI Digital Passport</h1>
-      <p class="fl-hero-sub">24 curated lessons across all four AILit domains. No teacher required. Work at your own pace and build genuine AI literacy — from how LLMs work, to protecting yourself from deepfakes, to managing and shaping AI.</p>
+      <p class="fl-hero-sub">20 lessons selected from Removes across all four AILit domains. Investigate how AI works, make useful things and learn to defend your decisions. Every lesson ends with something you can create, check and keep.</p>
       <div class="fl-hero-stats">
-        <div class="fl-stat"><span class="fl-stat-num">24</span><span class="fl-stat-label">Lessons</span></div>
+        <div class="fl-stat"><span class="fl-stat-num">20</span><span class="fl-stat-label">Lessons</span></div>
         <div class="fl-stat"><span class="fl-stat-num">~10h</span><span class="fl-stat-label">Total time</span></div>
         <div class="fl-stat"><span class="fl-stat-num">0</span><span class="fl-stat-label">Prerequisites</span></div>
       </div>
@@ -442,22 +444,11 @@
     <details class="fl-scope" id="flScope">
       <summary><span class="fl-scope-icon" aria-hidden="true">ℹ️</span> What's in the AI Digital Passport — and what's not</summary>
       <div class="fl-scope-body">
-        <p><strong>The AI Digital Passport</strong> is a 24-lesson pathway aligned to the four domains of the OECD/EU AI Literacy Framework — Engage, Create, Manage and Shape AI. Most lessons are curated from the full course; the closing "Managing &amp; Shaping AI" section is shared with the Removes course. A focused route for learners who want recognised AI literacy without a formal syllabus.</p>
-        <p><strong>Included:</strong></p>
-        <ul>
-          <li>How LLMs actually work · prompting · hallucinations · bias</li>
-          <li>Spotting deepfakes, misinformation and AI-generated content</li>
-          <li>Practical use: writing, research, and when <em>not</em> to use AI</li>
-          <li>A printable certificate when you finish all 24 lessons</li>
-        </ul>
-        <p><strong>Not included (available in the full course):</strong></p>
-        <ul>
-          <li>GCSE Computer Science exam prep and mark-scheme practice</li>
-          <li>Unit assessments, teacher-facing resources, gradebook</li>
-          <li>Deeper technical lessons (transformers internals, RL, training pipelines)</li>
-        </ul>
-        <p><strong>Works offline:</strong> after your first visit, lessons, slides and images are cached to your device. You can open this page with no connection and keep learning. Your progress is saved locally (clearing browser data resets it).</p>
-        <a class="fl-scope-cta" href="index.html">Browse the full 59-lesson course →</a>
+        <p><strong>20 lessons, all drawn from Removes.</strong> The teaching content and evidence tasks are shared. Your Passport completion is tracked separately.</p>
+        <p>Follow six stages: understand AI; learn with it; create and decide; check what you see; consider consequences; test and redesign. Each lesson includes an artefact, success criteria and an unaided challenge.</p>
+        <p>Your notes and evidence stay on this device. Download work you want to keep. Previously completed lessons from the older Passport count only where the exact same Removes lesson is included; older saved work is retained.</p>
+        <p>Cached lessons can be read offline after a successful first load. External videos and AI tools need internet access. A completion certificate records participation, not independently verified mastery.</p>
+        <a class="fl-scope-cta" href="removes.html">Browse all 40 Removes lessons →</a>
       </div>
     </details>
 
@@ -503,43 +494,21 @@
   <script src="js/slides-critical.js"></script>
   <script src="js/slides-advanced.js"></script>
   <script src="js/slides-gcse.js"></script>
+  <script src="js/passport-data.js"></script>
   <script src="js/quiz-bank.js"></script>
   <script src="js/visuals.js"></script>
   <script src="js/labs.js"></script>
+  <script src="js/learning-updates.js"></script>
+  <script src="js/studio-visuals.js"></script>
+  <script src="js/evidence-tasks.js"></script>
+  <script src="js/learning-evidence.js"></script>
   <script>
   /* ── AI Digital Passport — standalone app ── */
 
-  // The 24 curated lessons in order (20 core + 4 Managing & Shaping AI)
-  var FL_TRACK = [
-    { id:1,  section:'Understanding AI',       icon:'🤖', time:'~20 min' },
-    { id:2,  section:'Understanding AI',       icon:'🦜', time:'~25 min' },
-    { id:51, section:'Understanding AI',       icon:'🔢', time:'~25 min' },
-    { id:5,  section:'Understanding AI',       icon:'⚖️', time:'~25 min' },
-    { id:8,  section:'Understanding AI',       icon:'👤', time:'~20 min' },
-    { id:9,  section:'Using AI Effectively',   icon:'✍️', time:'~30 min' },
-    { id:12, section:'Using AI Effectively',   icon:'🔄', time:'~25 min' },
-    { id:52, section:'Using AI Effectively',   icon:'🎯', time:'~25 min' },
-    { id:53, section:'Using AI Effectively',   icon:'📚', time:'~25 min' },
-    { id:45, section:'Thinking Critically',    icon:'🔍', time:'~25 min' },
-    { id:46, section:'Thinking Critically',    icon:'✅', time:'~25 min' },
-    { id:47, section:'Thinking Critically',    icon:'🌊', time:'~25 min' },
-    { id:13, section:'AI & Society',           icon:'🎭', time:'~25 min' },
-    { id:15, section:'AI & Society',           icon:'🌍', time:'~20 min' },
-    { id:54, section:'AI & Society',           icon:'⚡', time:'~25 min' },
-    { id:55, section:'AI & Society',           icon:'⚖️', time:'~25 min' },
-    { id:49, section:'AI & Society',           icon:'🗳️', time:'~25 min' },
-    { id:48, section:'Your AI Future',         icon:'🧠', time:'~25 min' },
-    { id:41, section:'Your AI Future',         icon:'🎓', time:'~20 min' },
-    { id:44, section:'Your AI Future',         icon:'📜', time:'~25 min' },
-    // Managing & Shaping AI — reused from the Removes deck (SLIDES_GCSE) so the
-    // Passport covers all four AILit domains: Engage · Create · Manage · Shape.
-    { id:136, section:'Managing & Shaping AI', icon:'🧭', time:'~25 min', title:'Should I Even Use AI Here?' },
-    { id:138, section:'Managing & Shaping AI', icon:'🔬', time:'~25 min', title:'Looking Inside the Black Box' },
-    { id:139, section:'Managing & Shaping AI', icon:'🧪', time:'~25 min', title:'Does It Actually Work?' },
-    { id:140, section:'Managing & Shaping AI', icon:'🛠️', time:'~25 min', title:'Redesigning AI for Everyone' },
-  ];
+  // Exactly 20 lessons, shared with the Removes curriculum.
+  var FL_TRACK = PASSPORT_TRACK;
 
-  var FL_PROGRESS_KEY = 'fl_progress_v1';
+  var FL_PROGRESS_KEY = 'fl_progress_removes20_v2';
   var flDone = new Set();
   var flCurrentLessonId = null;
   var flCurrentSlideIdx = 0;
@@ -555,10 +524,10 @@
   var flTimerInterval = null;
 
   function flLoadTime() {
-    flTimeSpent = parseInt(localStorage.getItem('fl_time_spent'), 10) || 0;
+    flTimeSpent = parseInt(localStorage.getItem('fl_time_spent_removes20'), 10) || 0;
   }
   function flSaveTime() {
-    localStorage.setItem('fl_time_spent', flTimeSpent);
+    localStorage.setItem('fl_time_spent_removes20', flTimeSpent);
   }
   function flRecordActivity() {
     flLastActivity = Date.now();
@@ -606,13 +575,19 @@
   function flLoadProgress() {
     try {
       var saved = JSON.parse(localStorage.getItem(FL_PROGRESS_KEY)) || [];
-      flDone = new Set(saved);
+      var allowed = new Set(PASSPORT_IDS);
+      if (localStorage.getItem(FL_PROGRESS_KEY) === null) {
+        var legacy = JSON.parse(localStorage.getItem('fl_progress_v1')) || [];
+        saved = Array.isArray(legacy) ? legacy.filter(function(id){return allowed.has(id);}) : [];
+      }
+      flDone = new Set((Array.isArray(saved) ? saved : []).filter(function(id){return allowed.has(id);}));
     } catch(e) { flDone = new Set(); }
   }
   function flSaveProgress() {
     localStorage.setItem(FL_PROGRESS_KEY, JSON.stringify([...flDone]));
   }
   function flMarkDone(id) {
+    if (!PASSPORT_IDS.includes(id)) return;
     flDone.add(id);
     flSaveProgress();
     flSaveTime();
@@ -682,7 +657,7 @@
       var title = item.title || (lessonData ? lessonData.title : 'Lesson ' + item.id);
 
       html +=
-        '<div class="fl-lesson' + (done ? ' fl-done' : '') + (isNext ? ' fl-active' : '') + '" onclick="flOpenLesson(' + item.id + ')" data-fl-id="' + item.id + '">' +
+        '<div role="button" tabindex="0" onkeydown="if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;){event.preventDefault();flOpenLesson(' + item.id + ')}" class="fl-lesson' + (done ? ' fl-done' : '') + (isNext ? ' fl-active' : '') + '" onclick="flOpenLesson(' + item.id + ')" data-fl-id="' + item.id + '">' +
           '<div class="fl-num">' + (done ? '✓' : (idx+1)) + '</div>' +
           '<div class="fl-lesson-info">' +
             '<div class="fl-lesson-title">' + item.icon + ' ' + title + '</div>' +
@@ -717,27 +692,27 @@
     if (el) el.classList.add('visible');
 
     // Date
-    var completedDate = localStorage.getItem('fl_completed_date') || new Date().toISOString().slice(0,10);
+    var completedDate = localStorage.getItem('fl_completed_date_removes20') || new Date().toISOString().slice(0,10);
     var dateEl = document.getElementById('flCertDate');
     if (dateEl) dateEl.textContent = new Date(completedDate).toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
 
     // Freeze the study time at first completion so re-visits don't change it
-    var frozen = localStorage.getItem('fl_frozen_duration');
+    var frozen = localStorage.getItem('fl_frozen_duration_removes20');
 
     // Certificate ID — embeds completion date, active study minutes (TXXXX)
     // and a checksum, so edited share links are detectable on verify.html.
     // IDs issued before time tracking existed (no T segment) stay valid.
-    var certId = localStorage.getItem('fl_cert_id');
+    var certId = localStorage.getItem('fl_cert_id_removes20');
     if (!certId) {
       if (frozen === null) {
         frozen = String(flTimeSpent);
-        localStorage.setItem('fl_frozen_duration', frozen);
+        localStorage.setItem('fl_frozen_duration_removes20', frozen);
       }
       var ymd = completedDate.replace(/-/g, '');
       var rand = (Math.random().toString(36).slice(2, 6) + '0000').slice(0, 4).toUpperCase();
       var mins = ('000' + Math.min(9999, Math.round((parseInt(frozen, 10) || 0) / 60))).slice(-4);
-      certId = 'DI-FL-' + ymd + '-' + rand + '-T' + mins + '-' + flCertHash('DI-FL|' + ymd + '|' + rand + '|' + mins);
-      localStorage.setItem('fl_cert_id', certId);
+      certId = 'DI-FL20-' + ymd + '-' + rand + '-T' + mins + '-' + flCertHash('DI-FL20|' + ymd + '|' + rand + '|' + mins);
+      localStorage.setItem('fl_cert_id_removes20', certId);
     }
     var idEl = document.getElementById('flCertId');
     if (idEl) idEl.textContent = certId;
@@ -771,7 +746,7 @@
     if (pupilEmail) pupilEmail.value = localStorage.getItem('fl_pupil_email') || '';
     if (teacherEmail) teacherEmail.value = localStorage.getItem('fl_teacher_email') || '';
 
-    localStorage.setItem('fl_completed_date', completedDate);
+    localStorage.setItem('fl_completed_date_removes20', completedDate);
   }
 
   function flUpdateCertName(val) {
@@ -782,8 +757,8 @@
 
   function flBuildShareURL() {
     var name = (localStorage.getItem('fl_cert_name') || '').trim();
-    var date = localStorage.getItem('fl_completed_date') || new Date().toISOString().slice(0,10);
-    var id   = localStorage.getItem('fl_cert_id') || '';
+    var date = localStorage.getItem('fl_completed_date_removes20') || new Date().toISOString().slice(0,10);
+    var id   = localStorage.getItem('fl_cert_id_removes20') || '';
     if (!name || !id) return '';
     var base = window.location.href.replace(/fluency\.html.*$/, '');
     return base + 'verify.html?t=fluency&id=' + encodeURIComponent(id) +
@@ -812,9 +787,9 @@
     var pupilEmail = (document.getElementById('flCertEmailInput').value || '').trim();
     var teacherEmail = (document.getElementById('flCertTeacherInput').value || '').trim();
     var name = (localStorage.getItem('fl_cert_name') || '').trim();
-    var date = localStorage.getItem('fl_completed_date') || new Date().toISOString().slice(0,10);
-    var id = localStorage.getItem('fl_cert_id') || '';
-    var frozen = localStorage.getItem('fl_frozen_duration');
+    var date = localStorage.getItem('fl_completed_date_removes20') || new Date().toISOString().slice(0,10);
+    var id = localStorage.getItem('fl_cert_id_removes20') || '';
+    var frozen = localStorage.getItem('fl_frozen_duration_removes20');
 
     if (!name) { alert('Add your name in the field above the certificate first.'); return; }
     if (!pupilEmail || pupilEmail.indexOf('@') === -1) { alert('Please enter a valid email address.'); return; }
@@ -823,7 +798,7 @@
     if (teacherEmail) localStorage.setItem('fl_teacher_email', teacherEmail);
 
     var body = 'Hi,\n\n' +
-      'I have completed the Digital Innovations AI Digital Passport.\n\n' +
+      'I have completed the AI and Digital Innovation AI Digital Passport.\n\n' +
       'Certificate details:\n' +
       '- Name: ' + name + '\n' +
       '- Certificate ID: ' + id + '\n' +
@@ -846,6 +821,7 @@
 
   // ── Lesson modal ─────────────────────────────
   function flOpenLesson(id) {
+    if (!PASSPORT_IDS.includes(id)) return;
     flCurrentLessonId = id;
     flCurrentSlides = flGetSlides(id);
     // Interactive-lab slides (js/labs.js) splice in without mutating the deck
@@ -865,10 +841,11 @@
     var label = document.getElementById('lvUnitLabel');
     var title = document.getElementById('lvLessonTitle');
     if (label) label.textContent = 'AI Digital Passport';
-    if (title) title.textContent = lessonData ? lessonData.title : 'Lesson ' + id;
+    if (title) title.textContent = (FL_TRACK.find(function(l){return l.id===id;}) || {}).title || 'Lesson ' + id;
 
     flRenderSlide();
     document.getElementById('lessonModal').classList.add('open');
+    if (window.diSlide) window.diSlide.fullscreen.request(document.getElementById('lessonModal'));
     document.body.style.overflow = 'hidden';
     // Touch swipe
     var sa = document.getElementById('slideArea');
@@ -960,7 +937,9 @@
     }
 
     // Render slide HTML (reuse existing slide types)
-    area.innerHTML = flRenderSlideHTML(slide, idx);
+    area.innerHTML = flRenderSlideHTML(slide, idx) + diSlide.revealHTML(slide, 'flReveal'+idx, 'diSlide.toggleReveal') + diSlide.sourcesHTML(slide);
+    var exitInput=area.querySelector('.fl-exit-input');
+    if(exitInput){var exitKey='fl_exit_v2_'+flCurrentLessonId;try{exitInput.value=localStorage.getItem(exitKey)||'';}catch(e){}exitInput.addEventListener('input',function(){try{localStorage.setItem(exitKey,exitInput.value);}catch(e){}});}
     // Interactive lab widgets wire their events after DOM insertion
     if (slide && slide.type === 'widget' && typeof DI_LABS !== 'undefined' && DI_LABS[slide.widget]) {
       try { DI_LABS[slide.widget].init('fl-lab-' + slide.widget, slide.labData); }
@@ -1018,6 +997,7 @@
     if (!slide) return '';
     var type = slide.type || 'concept';
 
+    if (type === 'evidence') return DI_EVIDENCE.render(slide);
     if (type === 'hook') {
       return '<div class="slide-hook">' +
         '<span class="slide-badge badge-hook">Hook</span>' +
@@ -1045,6 +1025,8 @@
         (slide.callout ? '<div class="slide-callout">' + slide.callout + '</div>' : '') +
       '</div>';
     }
+    if (type === 'assessment') return '<div class="slide-activity"><span class="slide-badge">Practice brief</span><h2 class="slide-title">'+(slide.title||'')+'</h2><div class="slide-body">'+(slide.brief||slide.body||'')+'</div><ol class="slide-steps">'+(slide.steps||[]).map(function(x){return '<li>'+x+'</li>';}).join('')+'</ol><p>'+(slide.criteria||'')+'</p><p>Use the evidence-of-learning task at the end to record your work.</p></div>';
+    if (type === 'scenario' && slide.choices) return '<div class="slide-scenario"><h2 class="slide-title">'+slide.title+'</h2><div class="slide-body">'+(slide.situation||'')+'</div><p>'+(slide.question||'')+'</p>'+slide.choices.map(function(c){return '<details class="slide-reveal-details"><summary>'+c.text+'</summary><p>'+c.outcome+'</p></details>';}).join('')+'</div>';
     if (type === 'scenario') {
       return '<div class="slide-scenario">' +
         '<span class="slide-badge badge-scenario">Scenario</span>' +
@@ -1058,7 +1040,7 @@
       '</div>';
     }
     if (type === 'activity') {
-      var bodyText = slide.task || slide.instructions || '';
+      var bodyText = slide.instructions || slide.task || '';
       return '<div class="slide-activity">' +
         '<span class="slide-badge badge-activity">Activity</span>' +
         '<div class="slide-title">' + (slide.title || '') + '</div>' +
@@ -1167,6 +1149,8 @@
         clItems +
       '</div>';
     }
+    if (type === 'widget' && slide.widget === 'hallucination') return '<div class="slide-concept"><h2 class="slide-title">'+slide.title+'</h2><p>'+(slide.intro||'')+'</p>'+(slide.snippets||[]).map(function(s){return '<div class="slide-callout">'+s.text+'<details><summary>Compare your judgement</summary><p>'+s.why+'</p></details></div>';}).join('')+'</div>';
+    if (type === 'widget' && slide.widget === 'factcheck') return '<div class="slide-concept"><h2 class="slide-title">'+slide.title+'</h2><div class="slide-body">'+(slide.claim||'')+'</div>'+(slide.steps||[]).map(function(s){return '<p><strong>'+s.question+'</strong></p><details><summary>Hint</summary><p>'+s.hint+'</p></details>';}).join('')+'<details><summary>Compare your verdict</summary><p>'+(slide.verdict||'')+'</p></details></div>';
     if (type === 'widget') {
       return '<div class="slide-concept">' +
         '<span class="slide-badge badge-concept">Activity</span>' +
