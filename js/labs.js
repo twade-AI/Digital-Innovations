@@ -2385,7 +2385,7 @@ var AQ_FALLBACK_QS = [
   { question: 'What is the very first thing a model does with your prompt?', options: ['Looks it up in a database', 'Splits the text into tokens', 'Searches the live web'], correct: 1, explanation: 'It tokenises first — the text becomes tokens before anything else happens.' },
   { question: 'A vector is best described as…', options: ['A list of numbers giving a position in meaning-space', 'A word spelled backwards', 'A web link'], correct: 0, explanation: 'A vector is coordinates — a position in the model\'s space of meaning.' },
   { question: 'Cosine similarity measures…', options: ['Pixel distance between words', 'The angle between two vectors', 'How many letters two words share'], correct: 1, explanation: 'Cosine similarity is the cosine of the angle between non-zero vectors. Its usefulness for relevance depends on the representation and task.' },
-  { question: 'AI bias mainly comes from…', options: ['Random maths errors', 'Patterns in the human data it trained on', 'The programming language used'], correct: 1, explanation: 'Skewed data in, skewed decisions out.' },
+  { question: 'Which factors can contribute to AI bias?', options: ['Random maths errors', 'Data, labels, objectives and deployment choices', 'The programming language used'], correct: 1, explanation: 'Data is one possible route. Investigate labels, objectives, thresholds and deployment as well.' },
   { question: 'A model\'s "knowledge" is really…', options: ['A stored copy of the internet', 'Statistical patterns learned from training data', 'Hand-written rules'], correct: 1, explanation: 'It keeps distilled patterns, not a copy of the data.' },
   { question: 'Why does AI output often feel samey or generic?', options: ['Familiar prompts and conventions can encourage familiar outputs', 'It is always low-resolution', 'It copies one famous author'], correct: 0, explanation: 'Generic-looking output is not proof that generation computes a literal average. Compare the actual task, prompt and results.' },
   { question: 'An AI states a false fact with total confidence. This is called…', options: ['Overfitting', 'A hallucination', 'Tokenisation'], correct: 1, explanation: 'Hallucination: plausible-sounding, confidently wrong.' },
@@ -2672,7 +2672,7 @@ var SK_SKINS = {
     trainBtn: 'Train the detector →', testBtn: 'Test on 12 new pets',
     fixBtn: '⚖️ Collect more cat data & retrain',
     swap: '🔁 Swap scenario: make it loan applications',
-    real: 'Swap "cats" for a group of people and "pet detector" for a CV screener, and this is precisely how the hiring tool that downgraded women\'s CVs went wrong: <strong>skewed data in, skewed decisions out</strong>.'
+    real: 'This toy model illustrates one route from unbalanced examples to unequal errors. It does not reproduce a real hiring system or establish the cause of any particular real-world disparity.'
   },
   loans: {
     a: '🅰️', b: '🅱️', aName: 'Group A', bName: 'Group B',
@@ -3014,8 +3014,8 @@ LABS['misinfo-network'] = {
         var summary = 'Final score: the story reached <strong style="color:#ef5f6e">' + c.cf +
           '</strong> people; the correction reached <strong style="color:#5db8e8">' + c.ct +
           '</strong>. ' + (c.cf > c.ct
-            ? 'The lie won — it had a head start and it travels on outrage, while the correction travels on duty.'
-            : 'The correction caught up — early fact-checking and a lower outrage factor can win.') + youLine;
+            ? 'The false claim reached more nodes under this simulation’s probabilities and starting conditions.'
+            : 'The correction caught up under these simulated conditions. This does not establish its effect in a real population.') + youLine;
         var extra = '';
         if (lastRun && lastRun.seed === seed && youChoice && lastRun.choice && lastRun.choice !== youChoice) {
           extra = '<br><strong>Same network, two endings:</strong> when you ' +
@@ -3605,7 +3605,7 @@ var AL_STEPS = [
 LABS['agent-loop'] = {
   title: 'Inside an AI agent — plan, act, observe, repeat',
   tag: 'Agents',
-  blurb: 'An "agent" is not a smarter model — it\'s a model in a loop with tools. Step through a real task, including the moment the plan fails and the agent recovers.',
+  blurb: 'An "agent" is not a smarter model — it\'s a model in a loop with tools. Step through a simulated task, including the moment the plan fails and the agent recovers.',
   html: function (uid) {
     return '' +
       '<div class="lab" id="' + uid + '">' +
@@ -4301,7 +4301,7 @@ var AQ_PACK_Y9 = [
   { question: '"Training data" means…', options: ['The examples the model learned patterns from', 'The model\'s battery', 'Rules written by programmers'], correct: 0, explanation: 'Everything a model "knows" was distilled from its training examples.' },
   { question: 'An algorithm is…', options: ['A type of robot', 'Step-by-step instructions', 'A social media app'], correct: 1, explanation: 'A recipe of steps — AI\'s twist is that it learns some steps from data.' },
   { question: 'Why do keyword rules make a poor spam filter?', options: ['Keywords are too expensive', 'Spammers adapt and the rules break', 'Rules run too slowly'], correct: 1, explanation: 'FR33 beats "free" — hand-written rules are brittle; learned patterns generalise.' },
-  { question: 'AI bias mostly comes from…', options: ['Evil programmers', 'Lopsided training data', 'Old computers'], correct: 1, explanation: 'Skewed data in, skewed decisions out — no biased rule required.' },
+  { question: 'Which factors can contribute to AI bias?', options: ['Evil programmers', 'Data, labels, objectives and deployment choices', 'Old computers'], correct: 1, explanation: 'Unequal results can have several causes; a small toy model illustrates only one route.' },
   { question: 'A shocking post appears in your feed. Best first move?', options: ['Share it fast before it\'s deleted', 'Check it before sharing anything', 'Screenshot it to a group chat'], correct: 1, explanation: 'Every person who checks first deletes a whole branch of the spread.' },
   { question: 'A filter bubble happens because the algorithm…', options: ['Censors the news', 'Shows you more of whatever you tap', 'Picks posts at random'], correct: 1, explanation: 'Nobody censors anything — your taps train it, and it narrows.' },
   { question: 'While you chat to a model, it is…', options: ['Learning everything about you', 'Frozen — running patterns it learned long ago', 'Asking a human for help'], correct: 1, explanation: 'Training stopped before you arrived; it\'s not learning from your chat.' },
@@ -4434,7 +4434,7 @@ var AQ_PACK_Y9 = [
   add(134, [
     { type: 'widget', widget: 'agent-loop',
       title: 'Inside an AI agent — plan, act, observe, repeat',
-      intro: 'An "agent" isn\'t a smarter chatbot — it\'s a model in a loop with tools. Step through a real task, including the moment the plan fails.',
+      intro: 'An "agent" isn\'t a smarter chatbot — it\'s a model in a loop with tools. Step through a simulated task, including the moment the plan fails.',
       callout: 'The model only ever writes text — plans and tool calls. The loop does the doing. So the safety question for any agent is: which tools did we hand it, and what needs a human\'s sign-off?' }
   ]);
 
@@ -4477,7 +4477,7 @@ var AQ_PACK_Y9 = [
     { type: 'widget', widget: 'skew-trainer',
       title: 'The skewed-data trainer — cause the bias, then measure it',
       intro: 'Now build real bias: choose lopsided training data, train a pet detector, and measure exactly who pays.',
-      callout: 'Nobody wrote a biased rule — you just fed it lopsided data. Swap the pets for people and this is every biased AI story you will ever read: skewed data in, skewed decisions out.' }
+      callout: 'Nobody wrote a biased rule — you just fed it lopsided data. Swap the pets for people and this illustrates one possible route to unequal results. Real systems also depend on labels, objectives, thresholds and deployment.' }
   ]);
   add(127, [
     { type: 'widget', widget: 'motion-field',

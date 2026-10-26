@@ -1,4 +1,4 @@
-/* AEP editorial review: 26 October 2026. Lesson IDs and base slide counts retained. */
+/* AEP specialist lessons, reviewed 26 October 2026. Shared lessons use the Removes source. */
 var SLIDES_U5U6 = {
   "21": [
     {
@@ -2172,111 +2172,6 @@ var SLIDES_U5U6 = {
           "icon": "✓",
           "label": "Keep the evidence",
           "text": "Choose an early idea and a current view. Build a three-part exhibit showing the change, the evidence that caused it and a question you still cannot answer."
-        }
-      ]
-    }
-  ],
-  "44": [
-    {
-      "type": "hook",
-      "title": "The AI Manifesto",
-      "body": "A fictional pupil promises “I will always use AI responsibly”. The next day they face an unsupported citation, a no-AI assessment and a request to upload a friend’s work. Does the promise help them choose?"
-    },
-    {
-      "type": "concept",
-      "title": "Make a principle usable",
-      "body": "A practical commitment names a trigger, an action and a reason. It should survive an inconvenient case, not just a comfortable one.<h3>Give your rules a review process</h3><p>No personal code anticipates every situation. Record what you would do when rules conflict or information is missing.</p>",
-      "bullets": [
-        "Learning: preserve the effort the task is meant to develop.",
-        "Truth: check consequential claims and acknowledge uncertainty.",
-        "Privacy: minimise data and respect permissions.",
-        "Creativity: record contributions and check rights.",
-        "Responsibility: retain meaningful control over actions.",
-        "Ask for clarification when permission is unclear.",
-        "Choose a reversible step while checking a consequential claim.",
-        "Set a review date and identify evidence that would justify changing a rule."
-      ],
-      "sources": [
-        {
-          "label": "Ofqual: AI malpractice and assessment, 2026",
-          "url": "https://www.gov.uk/government/publications/artificial-intelligence-malpractice-and-assessment-advice-note/artificial-intelligence-malpractice-and-assessment-advice-note-accessible"
-        },
-        {
-          "label": "DfE: Generative AI and data protection in schools",
-          "url": "https://www.gov.uk/guidance/data-protection-in-schools/generative-artificial-intelligence-ai-and-data-protection-in-schools"
-        }
-      ],
-      "sourceNote": "Reviewed 26 October 2026"
-    },
-    {
-      "type": "activity",
-      "title": "A harder case",
-      "instructions": "Working independently. When should a personal preference give way to the actual rules of an assessment or service?",
-      "steps": [
-        "Write a first judgement without reopening your notes.",
-        "Use one idea or worked example from this lesson to support or challenge it.",
-        "State the extra evidence needed before acting.",
-        "Keep a first and revised response; explain any change."
-      ]
-    },
-    {
-      "type": "activity",
-      "title": "Write the personal AI constitution",
-      "instructions": "Working independently. Work from the three fictional dilemmas in the opening.",
-      "steps": [
-        "Write five commitments with concrete actions.",
-        "Test each against a difficult example.",
-        "Revise the weakest rule and explain the change.",
-        "Choose one commitment you can demonstrate through work already in your portfolio."
-      ]
-    },
-    {
-      "type": "discussion",
-      "title": "Defend your judgement",
-      "questions": [
-        {
-          "num": 1,
-          "text": "When should a personal preference give way to the actual rules of an assessment or service?"
-        },
-        {
-          "num": 2,
-          "text": "Choose one claim in your work. What supports it, and what does that evidence leave uncertain?"
-        },
-        {
-          "num": 3,
-          "text": "Write the strongest reasonable objection to your conclusion. Answer it or revise your view."
-        }
-      ]
-    },
-    {
-      "type": "quiz",
-      "question": "What makes a manifesto useful?",
-      "options": [
-        "Broad promises that cannot be tested.",
-        "Specific decisions with reasons, limits and a way to revise them.",
-        "A permanent ban on changing your mind."
-      ],
-      "correct": 1,
-      "explanation": "A useful code supports judgement and remains accountable to evidence."
-    },
-    {
-      "type": "summary",
-      "title": "Take it beyond this lesson",
-      "points": [
-        {
-          "icon": "1",
-          "label": "Make a principle usable",
-          "text": "A practical commitment names a trigger, an action and a reason."
-        },
-        {
-          "icon": "2",
-          "label": "Give your rules a review process",
-          "text": "No personal code anticipates every situation."
-        },
-        {
-          "icon": "✓",
-          "label": "Keep the evidence",
-          "text": "Write five practical commitments about learning, truth, privacy, creativity and responsibility. Test each against a difficult fictional example and revise the weakest rule."
         }
       ]
     }

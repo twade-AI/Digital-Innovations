@@ -23,17 +23,6 @@ var AI_NEWS_LIVE = [
     "question": "Where are the human creative decisions—and how would you acknowledge the AI contribution?"
   },
   {
-    "headline": "Retro gaming is being overrun with AI",
-    "source": "The Verge",
-    "date": "Oct 2026",
-    "publishedAt": "2026-10-23T12:00:00.000Z",
-    "tag": "games",
-    "url": "https://www.theverge.com/ai-artificial-intelligence/1015430/ai-retro-games-decomp-recomp-port",
-    "sourceKind": "reporting",
-    "question": "What is being simulated or changed—and what can that tell us about behaviour outside the game?",
-    "access": "Some articles may require a subscription"
-  },
-  {
     "headline": "MIT scientists build a tiny robot that swims using living muscle cells",
     "source": "ScienceDaily",
     "date": "Oct 2026",
@@ -44,17 +33,6 @@ var AI_NEWS_LIVE = [
     "question": "What can the system actually do, and what test would reveal its limits?"
   },
   {
-    "headline": "AI researchers stranded Claude on a virtual desert island. It started to “play.”",
-    "source": "MIT Technology Review",
-    "date": "Oct 2026",
-    "publishedAt": "2026-10-19T09:08:05.000Z",
-    "tag": "games",
-    "url": "https://www.technologyreview.com/2026/10/19/1147095/ai-stranded-claude-virtual-desert-island-play/",
-    "sourceKind": "reporting",
-    "question": "What is being simulated or changed—and what can that tell us about behaviour outside the game?",
-    "access": "May require a subscription"
-  },
-  {
     "headline": "LitPivot: Developing research ideas through dynamic contextualization within the literature landscape",
     "source": "Hugging Face",
     "date": "Oct 2026",
@@ -63,6 +41,17 @@ var AI_NEWS_LIVE = [
     "url": "https://huggingface.co/blog/allenai/litpivot",
     "sourceKind": "maker",
     "question": "What was tested, on what data, and how far can the result reasonably generalise?"
+  },
+  {
+    "headline": "The focus on AI safety disasters ignores everyday harms",
+    "source": "MIT Technology Review",
+    "date": "Oct 2026",
+    "publishedAt": "2026-10-26T09:01:00.000Z",
+    "tag": "ethics",
+    "url": "https://www.technologyreview.com/2026/10/26/1147645/the-focus-on-ai-safety-disasters-ignores-everyday-harms/",
+    "sourceKind": "reporting",
+    "question": "Who could benefit or be harmed, and what would a meaningful safeguard look like?",
+    "access": "May require a subscription"
   },
   {
     "headline": "Cloudflare links vulnerability discovery to defense with OpenAI",
@@ -106,6 +95,17 @@ var AI_NEWS_LIVE = [
     "question": "Who is responsible, and is this an existing rule, a proposal or an opinion?"
   },
   {
+    "headline": "OpenAI now trains its frontier AI models with no internet access",
+    "source": "The Verge",
+    "date": "Oct 2026",
+    "publishedAt": "2026-10-23T21:11:07.000Z",
+    "tag": "tools",
+    "url": "https://www.theverge.com/ai-artificial-intelligence/1018021/openai-training-top-ai-models-no-internet",
+    "sourceKind": "reporting",
+    "question": "Which claim could you test for yourself, and what would count as a failure?",
+    "access": "Some articles may require a subscription"
+  },
+  {
     "headline": "Meet Mori, a Cute Robot Mushroom That Doesn’t Really Say (or Do) Anything",
     "source": "WIRED",
     "date": "Oct 2026",
@@ -117,14 +117,15 @@ var AI_NEWS_LIVE = [
     "access": "May require a subscription"
   },
   {
-    "headline": "OpenAI now trains its frontier AI models with no internet access",
+    "headline": "Jack Dorsey’s Block made an AI model that talks to you like an awkward new friend",
     "source": "The Verge",
     "date": "Oct 2026",
-    "publishedAt": "2026-10-23T21:11:07.000Z",
+    "publishedAt": "2026-10-23T19:32:39.000Z",
     "tag": "tools",
-    "url": "https://www.theverge.com/ai-artificial-intelligence/1018021/openai-training-top-ai-models-no-internet",
+    "url": "https://www.theverge.com/ai-artificial-intelligence/1017906/jack-dorsey-block-dessa-ai-voice-speech",
     "sourceKind": "reporting",
     "question": "Which claim could you test for yourself, and what would count as a failure?",
     "access": "Some articles may require a subscription"
   }
 ];
+var AI_NEWS_STATUS = {"refreshedAt":"2026-10-26T14:43:06.550Z","publishers":10};

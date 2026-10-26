@@ -3,7 +3,7 @@
 (function(){
   if(typeof SLIDE_VISUALS==='undefined')return;
   // Replacement decks have new slide positions; discard the old position-based artwork.
-  if(typeof GCSE_UNITS!=='undefined')GCSE_UNITS.forEach(function(u){u.lessons.forEach(function(l){if(l.revision==='r3')Object.keys(SLIDE_VISUALS).forEach(function(k){if(k.split(':')[0]===String(l.id))delete SLIDE_VISUALS[k];});});});
+  if(typeof GCSE_UNITS!=='undefined')GCSE_UNITS.forEach(function(u){u.lessons.forEach(function(l){if(/^r[34]$/.test(l.revision))Object.keys(SLIDE_VISUALS).forEach(function(k){if(k.split(':')[0]===String(l.id))delete SLIDE_VISUALS[k];});});});
   var lessons={
     101:[['Examples','Adjust parameters','Test the model'],'Training learns patterns. Using a model means applying it to new inputs.'],
     102:[['Context','Predict tokens','Response'],'A plausible continuation is not a fact-check. Check claims against evidence.'],
@@ -11,7 +11,13 @@
     106:[['Try it yourself','Use one hint','Try a new problem'],'The final unaided attempt shows what you can do without the assistant.'],
     109:[['Retrieve','Check & correct','Return later'],'Trying to recall is the work. An attractive quiz is useful only if its answers are accurate.'],
     114:[['Extract the claim','Read the source','Qualify the verdict'],'A real citation can still fail to support a claim. Read the relevant passage.'],
-    125:[['18 / 20 · Group A','12 / 20 · Group B','Ask what differs'],'Fictional results: 90% versus 60%. An accuracy gap calls for investigation; these figures alone do not establish its cause.'],
+    119:[['Check the claim','Trace the origin','Verify the request'],'Authenticity, truth and authority are separate questions.'],
+    121:[['Production','Exposure','Belief or action?'],'Each outcome needs its own evidence. Counting reposts does not count independent sources.'],
+    122:[['Exists?','Relevant?','Supports the claim?'],'A real source can still be misused. Check the method and exact passage.'],
+    126:[['Task exposure','Adoption choices','Observed outcomes'],'An exposure estimate is not a count of jobs lost.'],
+    131:[['User experience','Product design','Evidence and limits'],'Respect the feeling. Investigate the design. Keep human support available.'],
+    134:[['Capabilities','Permissions','Check and recover'],'This is a simplified design model, not a universal architecture.'],
+    125:[['19 / 20 · Group A','15 / 20 · Group B','Ask what differs'],'Fictional results: 95% versus 75%. An accuracy gap calls for investigation; these figures alone do not establish its cause.'],
     127:[['Define the purpose','Minimise the data','Give people control'],'Collect what the task needs. Explain use, access, retention and deletion.'],
     137:[['Hardware','Training','Everyday use'],'Different stages have different impacts. A comparison needs a clear boundary, location and measurement.'],
     138:[['Intended use','Evaluation','Known limits'],'Read all three together. A model card informs a judgement; it does not guarantee performance.'],

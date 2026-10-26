@@ -156,7 +156,7 @@ html = replaceOnce(html,
 
 html = replaceOnce(html, '<script src="js/learning-updates.js"></script>', '<script>\n' + read('js/learning-updates.js') + '\n</script>', 'learning updates');
 
-for (const file of ['js/studio-visuals.js','js/evidence-tasks.js','js/learning-evidence.js']) html = replaceOnce(html, '<script src="'+file+'"></script>', '<script>\n'+read(file)+'\n</script>', file);
+for (const file of ['js/shared-content-review.js','js/feedback-cases.js','js/project-source-packs.js','js/learning-feedback.js','js/studio-visuals.js','js/evidence-tasks.js','js/learning-evidence.js']) html = replaceOnce(html, '<script src="'+file+'"></script>', '<script>\n'+read(file)+'\n</script>', file);
 
 // No service worker in the standalone bundle
 html = replaceOnce(html,
@@ -166,9 +166,14 @@ html = replaceOnce(html,
 html = replaceOnce(html, '<script src="js/tts.js" defer></script>',
   '<script>\n/* ── inlined: js/tts.js ── */\n' + read('js/tts.js') + '\n</script>', 'tts');
 
+html = html.replace('<body', '<body data-standalone="true"');
+html = replaceOnce(html, '<script src="js/course-catalog.js"></script>', '', 'host course catalog');
+html = replaceOnce(html, '<script src="js/site-experience.js"></script>', '<script>\n'+read('js/site-experience.js')+'\n</script>', 'shared experience');
+html = replaceOnce(html, '<link rel="stylesheet" href="css/experience.css">', '<style>\n'+read('css/experience.css')+'\n</style>', 'experience styles');
 /* ── 5. Write + sanity checks ── */
 mkdirSync(join(ROOT, 'export'), { recursive: true });
 const out = join(ROOT, 'export', 'ai-fluency-track.html');
+html=html.replace(/^[ \t]+$/gm,'');
 writeFileSync(out, html);
 
 if (/src="(js|css)\//.test(html) || /href="css\//.test(html)) throw new Error('Export still references local js/ or css/ files');

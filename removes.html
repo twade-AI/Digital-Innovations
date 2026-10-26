@@ -303,6 +303,9 @@
   <link rel="stylesheet" href="css/labs.css">
   <link rel="stylesheet" href="css/editorial.css">
   <link rel="stylesheet" href="css/studio.css">
+  <link rel="stylesheet" href="css/experience.css">
+  <script src="js/course-catalog.js"></script>
+  <script src="js/site-experience.js"></script>
 </head>
 <body data-track="removes">
   <div id="offlineBanner" class="offline-banner" style="display:none" role="status">You are offline — all 40 lessons are available from cache</div>
@@ -418,12 +421,20 @@
 
   <script src="js/slide-utils.js"></script>
   <script src="js/slides-gcse.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/aep-curriculum.js"></script>
   <script src="js/labs.js"></script>
   <script src="js/learning-updates.js"></script>
+  <script src="js/shared-content-review.js"></script>
+  <script>var SLIDE_VISUALS = {};</script>
   <script src="js/studio-visuals.js"></script>
   <script src="js/evidence-tasks.js"></script>
+  <script src="js/feedback-cases.js"></script>
+  <script src="js/project-source-packs.js"></script>
+  <script src="js/learning-feedback.js"></script>
   <script src="js/learning-evidence.js"></script>
   <script src="js/tts.js" defer></script>
+  <script src="js/aep-shared-player.js"></script>
   <script>
   /* ── AI and Digital Innovation Removes — track engine ── */
   var GS_KEY = 'di_gcse_v1';
@@ -725,6 +736,8 @@
   }
 
   function gsOpenLesson(id) {
+    if(window.DI_SITE)DI_SITE.remember("aep"===document.body.dataset.track?"aep":"removes", document.body.dataset.track==='aep'?Number(new URLSearchParams(location.search).get('aep')):id);
+
     var found = gsGetLesson(id);
     if (!found) return;
     gsCurrentId = id;
@@ -821,6 +834,7 @@
     }
     var area = document.getElementById('gsSlideArea');
     area.innerHTML = gsRenderSlideHTML(slide);
+    var diagram=typeof SLIDE_VISUALS!=='undefined'?SLIDE_VISUALS[gsCurrentId+':'+gsSlideIdx]:null;if(diagram)area.insertAdjacentHTML('beforeend',diagram);
     if (window.diSlide && diSlide.resetScroll) diSlide.resetScroll(area); else area.scrollTop = 0;
     // Interactive lab widgets wire their events after DOM insertion
     if (slide && slide.type === 'widget' && typeof DI_LABS !== 'undefined' && DI_LABS[slide.widget]) {
@@ -1466,6 +1480,7 @@
     window.addEventListener('online',u);window.addEventListener('offline',u);u();
   }
 
+  if(typeof initAEPSharedPlayer==='function')initAEPSharedPlayer();
   gsLoadProgress();
   gsRenderTrack();
   gsUpdateProgress();

@@ -1,0 +1,172 @@
+{
+  "date": "2026-10-26",
+  "tool": "axe-core 4.10.3 / Chromium",
+  "routes": [
+    {
+      "name": "Home",
+      "url": "index.html",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 16
+        }
+      ],
+      "passes": 44,
+      "overflow": false,
+      "title": "AI and Digital Innovation \u2014 Think, Make, Question"
+    },
+    {
+      "name": "AEP curriculum",
+      "url": "index.html?section=units",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 49
+        }
+      ],
+      "passes": 41,
+      "overflow": false,
+      "title": "AI and Digital Innovation \u2014 Think, Make, Question"
+    },
+    {
+      "name": "Removes curriculum",
+      "url": "removes.html",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "count": 1
+        },
+        {
+          "id": "color-contrast",
+          "count": 70
+        }
+      ],
+      "passes": 41,
+      "overflow": false,
+      "title": "AI and Digital Innovation \u2014 Removes"
+    },
+    {
+      "name": "Shared AEP lesson",
+      "url": "index.html?lesson=5",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 8
+        }
+      ],
+      "passes": 32,
+      "overflow": false,
+      "title": "AEP \u00b7 AI and Digital Innovation"
+    },
+    {
+      "name": "Specialist AEP lesson",
+      "url": "index.html?lesson=57",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 15
+        }
+      ],
+      "passes": 33,
+      "overflow": false,
+      "title": "AI and Digital Innovation \u2014 Think, Make, Question"
+    },
+    {
+      "name": "Passport",
+      "url": "fluency.html",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "count": 1
+        },
+        {
+          "id": "color-contrast",
+          "count": 42
+        }
+      ],
+      "passes": 41,
+      "overflow": false,
+      "title": "AI Digital Passport \u2014 AI and Digital Innovation"
+    },
+    {
+      "name": "Projects",
+      "url": "revised.html",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "count": 1
+        },
+        {
+          "id": "color-contrast",
+          "count": 35
+        },
+        {
+          "id": "link-in-text-block",
+          "count": 1
+        }
+      ],
+      "passes": 40,
+      "overflow": false,
+      "title": "AI and Digital Innovation \u2014 Project pathways"
+    },
+    {
+      "name": "Labs",
+      "url": "labs.html",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "count": 1
+        },
+        {
+          "id": "color-contrast",
+          "count": 36
+        },
+        {
+          "id": "frame-tested",
+          "count": 1
+        }
+      ],
+      "passes": 43,
+      "overflow": false,
+      "title": "Interactive Labs \u2014 AI and Digital Innovation"
+    },
+    {
+      "name": "AEP portfolio",
+      "url": "portfolio.html?t=aep",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 4
+        }
+      ],
+      "passes": 35,
+      "overflow": false,
+      "title": "My Portfolio \u2014 AI and Digital Innovation"
+    },
+    {
+      "name": "Family guide",
+      "url": "family.html",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 5
+        }
+      ],
+      "passes": 34,
+      "overflow": false,
+      "title": "Family summary \u2014 AI and Digital Innovation"
+    }
+  ],
+  "baseCommit": "cb56f96e320097e66e8664af1c59de427f307110",
+  "testedRevision": "Working tree for the learning quality update"
+}

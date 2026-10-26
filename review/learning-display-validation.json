@@ -1,0 +1,22 @@
+{
+  "initialisedLabs": [],
+  "focusAfterLastControl": {
+    "tag": "SUMMARY",
+    "insideModal": true,
+    "modalStillOpen": true
+  },
+  "themes": [
+    {
+      "theme": "light",
+      "contrastFailures": []
+    },
+    {
+      "theme": "dark",
+      "contrastFailures": []
+    },
+    {
+      "theme": "high",
+      "contrastFailures": []
+    }
+  ]
+}

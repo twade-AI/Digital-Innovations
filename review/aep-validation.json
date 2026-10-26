@@ -1,9 +1,9 @@
 {
   "lessons": 59,
-  "slides": 540,
-  "widgets": 25,
-  "sources": 59,
-  "diagrams": 59,
+  "slides": 344,
+  "widgets": 9,
+  "sources": 40,
+  "diagrams": 40,
   "nativeFullscreen": true,
   "fullscreenFallback": true,
   "responsive": [
@@ -62,7 +62,6 @@
       "overflow": false
     }
   ],
-  "workedAnswerReveal": true,
   "keyboardNavigation": true,
   "savedNotesAndReflections": true,
   "evidenceSavedAndDownloaded": true,

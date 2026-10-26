@@ -1,3 +1,4 @@
+function escapeHtml(value){return String(value==null?'':value).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 /* ── App Logic ── AI and Digital Innovation Course Portal ─────── */
 
 const STORAGE_KEY      = 'di_progress';
@@ -189,7 +190,7 @@ function toggleSettingsMenu() {
   if (!menu) return;
   var open = menu.classList.toggle('open');
   menu.setAttribute('aria-hidden', String(!open));
-  if (btn) btn.classList.toggle('active', open);
+  if (btn) {btn.classList.toggle('active', open);btn.setAttribute('aria-expanded',String(open));}
   if (open) updateSettingsIcons();
 }
 function updateSettingsIcons() {
@@ -210,7 +211,7 @@ document.addEventListener('click', function(e) {
     var menu = document.getElementById('settingsMenu');
     var btn  = document.getElementById('settingsBtn');
     if (menu) { menu.classList.remove('open'); menu.setAttribute('aria-hidden','true'); }
-    if (btn)  btn.classList.remove('active');
+    if (btn) {btn.classList.remove('active');btn.setAttribute('aria-expanded','false');}
   }
 });
 
@@ -242,7 +243,14 @@ function saveQuizScore(lessonId, correct) {
 }
 
 /* ── Navigation ────────────────────────────────── */
-function showSection(name) {
+function showSection(name, fromHistory) {
+  if(window.DI_SITE&&(name==='units'||name==='progress'))DI_SITE.remember('aep');
+  if(!document.getElementById("section-"+name))return;
+  if(!fromHistory){var address=new URL(location.href);address.searchParams.delete("lesson");address.searchParams.delete("evidence");if(name==='home')address.searchParams.delete("section");else address.searchParams.set("section",name);if(address.href!==location.href)history.pushState(null,'',address);}
+  document.querySelectorAll(".section").forEach(function(section){section.removeAttribute("role");});
+  document.getElementById("section-"+name).setAttribute("role","main");
+  var sectionHeading=document.querySelector('#section-'+name+' .section-header h1,#section-'+name+' .section-header h2');if(sectionHeading)sectionHeading.setAttribute('aria-level','1');
+  var skip=document.querySelector(".skip-link");if(skip)skip.href="#section-"+name;
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById('section-' + name)?.classList.add('active');
   var exploreSections = ['exemplars','timeline','news','glossary'];
@@ -302,7 +310,7 @@ function renderUnits() {
       <div class="unit-header" onclick="toggleUnit(${idx})">
         <span class="unit-icon">${unit.icon}</span>
         <div class="unit-meta">
-          <h3>Unit ${idx + 1}: ${unit.title}</h3>
+          <h2>Unit ${idx + 1}: ${unit.title}</h2>
           <p>${unit.lessons.length} lessons &bull; ${unitProgress(unit)} complete</p>
         </div>
         <div class="unit-progress">
@@ -483,6 +491,8 @@ function loadReflection(lessonId, slideIdx) {
 }
 
 function getLessonSlides(id, lesson, unit) {
+  var shared=AEP_SHARED_LESSONS[id];
+  if(shared)return DI_LABS_INJECT(shared,SLIDES_GCSE[shared]);
   // Try curated slides first, then fallback to generated
   var all = Object.assign({}, (typeof SLIDES_U1U2 !== 'undefined' ? SLIDES_U1U2 : {}),
                                (typeof SLIDES_U3U4 !== 'undefined' ? SLIDES_U3U4 : {}),
@@ -526,6 +536,8 @@ function renderResourceLinks(lesson) {
 }
 
 function openLesson(id) {
+  if(window.DI_SITE)DI_SITE.remember("aep",id);
+  if(AEP_SHARED_LESSONS[id]){location.href=aepLessonURL(id,new URLSearchParams(location.search).get("evidence")==="1");return;}
   var found = findLesson(id);
   if (!found) return;
   // Record as reviewed if it was previously completed
@@ -1256,13 +1268,8 @@ function handleSearch(query) {
   if (!query || query.length < 2) { box.classList.remove('open'); box.innerHTML = ''; return; }
   const q = query.toLowerCase();
   const results = [];
-  // Search lessons
-  for (const u of UNITS) {
-    for (const l of u.lessons) {
-      const score = [l.title, l.desc, ...l.tags, ...l.objectives].filter(s => s.toLowerCase().includes(q)).length;
-      if (score > 0) results.push({ type: 'lesson', lesson: l, unit: u, score: score + 10 });
-    }
-  }
+  // Search all course pathways, including the separate project sequences.
+  Object.keys(DI_COURSES).forEach(function(track){var course=DI_COURSES[track];course.lessons.forEach(function(l){var score=[l.title,l.desc,l.unit].filter(function(t){return (t||'').toLowerCase().includes(q);}).length;if(score)results.push({type:'course',track:track,course:course,lesson:l,score:score+10});});});
   // Search glossary
   if (typeof GLOSSARY !== 'undefined') {
     for (const g of GLOSSARY) {
@@ -1281,6 +1288,7 @@ function handleSearch(query) {
     box.innerHTML = '<div class="search-result-item"><div class="sr-title">No results</div></div>';
   } else {
     box.innerHTML = top.map(r => {
+      if(r.type==='course')return '<a class="search-result-item" href="'+DI_SITE.url(r.track,r.lesson.id)+'"><span class="sr-title">'+escapeHtml(r.lesson.title)+'</span><span class="sr-unit">'+escapeHtml(r.course.name+' · '+r.lesson.unit)+'</span></a>';
       if (r.type === 'lesson') {
         return `<div class="search-result-item" onclick="document.getElementById('searchResults').classList.remove('open');document.getElementById('searchInput').value='';showSection('units');setTimeout(()=>openLesson(${r.lesson.id}),150)">
           <div class="sr-title">Lesson ${lessonNum(r.lesson.id)}: ${r.lesson.title}</div>
@@ -1603,7 +1611,7 @@ function updateContinueButton() {
   if (!btn) return;
   var total = UNITS.reduce(function(s, u) { return s + u.lessons.length; }, 0);
   if (completedLessons.size === 0) {
-    btn.textContent = 'Start Learning';
+    btn.textContent = 'Start AEP';
   } else if (completedLessons.size >= total) {
     btn.textContent = 'All Complete — Review';
   } else {
@@ -1614,11 +1622,12 @@ function updateContinueButton() {
 }
 
 function updateFloatContinueLabel() {
+  if(window.DI_SITE){var sharedLabel=document.getElementById('floatContinueLabel');if(sharedLabel)sharedLabel.textContent=DI_SITE.resumeLabel();return;}
   var lbl = document.getElementById('floatContinueLabel');
   if (!lbl) return;
   var total = UNITS.reduce(function(s, u) { return s + u.lessons.length; }, 0);
   if (completedLessons.size === 0) {
-    lbl.textContent = '▶ Start Learning';
+    lbl.textContent = window.DI_SITE?DI_SITE.resumeLabel():'Choose a course';
   } else if (completedLessons.size >= total) {
     lbl.textContent = '★ All Complete — Review';
   } else {
@@ -3591,9 +3600,14 @@ function saveCapstoneData() {
   if (ind) { ind.style.display = 'inline'; setTimeout(function() { ind.style.display = 'none'; }, 2000); }
 }
 function aepSavedNotes(id) {
+  var shared=AEP_SHARED_LESSONS[id];
+  if(shared)return aepSavedNotes(shared).concat(aepSavedNotesOriginal(id).map(function(n){return 'Earlier AEP lesson: '+n;}));
+  return aepSavedNotesOriginal(id);
+}
+function aepSavedNotesOriginal(id) {
   var prefix = 'di_note_' + id + '_';
   return Object.keys(localStorage).filter(function(key) {
-    return key.indexOf(prefix) === 0 && /^\d+$/.test(key.slice(prefix.length));
+    return key.indexOf(prefix) === 0 && /^(?:r[0-9]+_)?\d+$/.test(key.slice(prefix.length));
   }).sort(function(a,b) { return Number(a.slice(prefix.length)) - Number(b.slice(prefix.length)); })
     .map(function(key) { return localStorage.getItem(key); }).filter(function(note) { return note && note.trim(); });
 }
@@ -3647,16 +3661,16 @@ function printCapstone() {
     '.lesson-notes p{font-size:.85rem;color:#475569;margin:0 0 8px;white-space:pre-wrap}' +
     '@media print{button{display:none}}</style></head><body>' +
     '<h1>📋 Capstone Project Portfolio</h1>' +
-    '<h2>Project Title</h2><p>' + (d.capstone_title || '—') + '</p>' +
-    '<h2>Problem Statement</h2><p>' + (d.capstone_problem || '—') + '</p>' +
-    '<h2>Target Audience</h2><p>' + (d.capstone_audience || '—') + '</p>' +
+    '<h2>Project Title</h2><p>' + escapeHtml(d.capstone_title || '—') + '</p>' +
+    '<h2>Problem Statement</h2><p>' + escapeHtml(d.capstone_problem || '—') + '</p>' +
+    '<h2>Target Audience</h2><p>' + escapeHtml(d.capstone_audience || '—') + '</p>' +
     '<h2>PTFC Research Prompt</h2>' +
-    '<div class="ptfc"><span class="lbl">P</span>' + (d.capstone_persona || '—') + '</div>' +
-    '<div class="ptfc"><span class="lbl">T</span>' + (d.capstone_task || '—') + '</div>' +
-    '<div class="ptfc"><span class="lbl">F</span>' + (d.capstone_format || '—') + '</div>' +
-    '<div class="ptfc"><span class="lbl">C</span>' + (d.capstone_context || '—') + '</div>' +
-    '<h2>Key Findings</h2><p>' + ((d.capstone_findings || '—').replace(/\n/g,'<br>')) + '</p>' +
-    '<h2>Self-Reflection</h2><p>' + ((d.capstone_reflection || '—').replace(/\n/g,'<br>')) + '</p>' +
+    '<div class="ptfc"><span class="lbl">P</span>' + escapeHtml(d.capstone_persona || '—') + '</div>' +
+    '<div class="ptfc"><span class="lbl">T</span>' + escapeHtml(d.capstone_task || '—') + '</div>' +
+    '<div class="ptfc"><span class="lbl">F</span>' + escapeHtml(d.capstone_format || '—') + '</div>' +
+    '<div class="ptfc"><span class="lbl">C</span>' + escapeHtml(d.capstone_context || '—') + '</div>' +
+    '<h2>Key Findings</h2><p>' + (escapeHtml(d.capstone_findings || '—').replace(/\n/g,'<br>')) + '</p>' +
+    '<h2>Self-Reflection</h2><p>' + (escapeHtml(d.capstone_reflection || '—').replace(/\n/g,'<br>')) + '</p>' +
     '<h1>📓 Sprint Diary & Build Notes</h1>' +
     notesHtml +
     '<p style="margin-top:40px;color:#999;font-size:.78rem">AI and Digital Innovation AEP — Printed ' + new Date().toLocaleDateString('en-GB') + '</p>' +
@@ -3996,10 +4010,11 @@ document.addEventListener('DOMContentLoaded', () => {
   updateFirstLessonBanner();
   renderSpacedReviewQueue();
   initOfflineBanner();
+  var requestedSection=new URLSearchParams(location.search).get('section');if(requestedSection)showSection(requestedSection,true);
   var requestedLesson = Number(new URLSearchParams(location.search).get('lesson'));
   if (findLesson(requestedLesson)) {
     openLesson(requestedLesson);
-    if (new URLSearchParams(location.search).get('evidence') === '1') jumpToSlide(currentSlides.length - 1);
+    if (!AEP_SHARED_LESSONS[requestedLesson] && new URLSearchParams(location.search).get('evidence') === '1') jumpToSlide(currentSlides.length - 1);
   }
   // Restore avatar on chip
   var savedAvatar = localStorage.getItem('di_avatar');
@@ -4105,3 +4120,5 @@ document.addEventListener('keydown', e => {
     }
   }
 });
+
+window.addEventListener('popstate',function(){showSection(new URLSearchParams(location.search).get('section')||'home',true);});

@@ -326,6 +326,9 @@
   <link rel="stylesheet" href="css/wow.css">
   <link rel="stylesheet" href="css/editorial.css">
   <link rel="stylesheet" href="css/studio.css">
+  <link rel="stylesheet" href="css/experience.css">
+  <script src="js/course-catalog.js"></script>
+  <script src="js/site-experience.js"></script>
 </head>
 <body data-track="fluency">
   <div id="offlineBanner" class="offline-banner" style="display:none" role="status" aria-live="polite">
@@ -499,8 +502,12 @@
   <script src="js/visuals.js"></script>
   <script src="js/labs.js"></script>
   <script src="js/learning-updates.js"></script>
+  <script src="js/shared-content-review.js"></script>
   <script src="js/studio-visuals.js"></script>
   <script src="js/evidence-tasks.js"></script>
+  <script src="js/feedback-cases.js"></script>
+  <script src="js/project-source-packs.js"></script>
+  <script src="js/learning-feedback.js"></script>
   <script src="js/learning-evidence.js"></script>
   <script>
   /* ── AI Digital Passport — standalone app ── */
@@ -821,6 +828,7 @@
 
   // ── Lesson modal ─────────────────────────────
   function flOpenLesson(id) {
+    if(window.DI_SITE)DI_SITE.remember("passport",id);
     if (!PASSPORT_IDS.includes(id)) return;
     flCurrentLessonId = id;
     flCurrentSlides = flGetSlides(id);
@@ -1314,6 +1322,11 @@
   flStartTimer();
   flRenderTrack();
   flUpdateProgress();
+  var flEntryParams=new URLSearchParams(location.search),flEntryLesson=Number(flEntryParams.get('lesson'));
+  if(FL_TRACK.some(function(l){return l.id===flEntryLesson;})){
+    flOpenLesson(flEntryLesson);
+    if(flEntryParams.get('evidence')==='1'){flCurrentSlideIdx=flCurrentSlides.findIndex(function(s){return s.type==='evidence';});if(flCurrentSlideIdx<0)flCurrentSlideIdx=0;flRenderSlide();}
+  }
   if (flDone.size === FL_TRACK.length) flShowComplete();
   initOffline();
 
