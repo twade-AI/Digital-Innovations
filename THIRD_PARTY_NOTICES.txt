@@ -22,3 +22,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+Creative-studio offset hover/shadow adapted from 0xnihilism, Uiverse.io
+Cards/0xnihilism_average-mole-62.html, under the MIT licence above.
+The homepage sculpture is an original AI-generated illustration, not a
+licensed Uiverse asset. Original SVG motifs are authored for this course.

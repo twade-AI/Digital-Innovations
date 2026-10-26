@@ -302,6 +302,7 @@
   <link rel="stylesheet" href="css/wow.css">
   <link rel="stylesheet" href="css/labs.css">
   <link rel="stylesheet" href="css/editorial.css">
+  <link rel="stylesheet" href="css/studio.css">
 </head>
 <body data-track="removes">
   <div id="offlineBanner" class="offline-banner" style="display:none" role="status">You are offline — previously cached lessons remain available; external tools need a connection</div>
@@ -419,6 +420,9 @@
   <script src="js/revised-curriculum.js"></script>
   <script src="js/labs.js"></script>
   <script src="js/learning-updates.js"></script>
+  <script src="js/studio-visuals.js"></script>
+  <script src="js/evidence-tasks.js"></script>
+  <script src="js/learning-evidence.js"></script>
   <script src="js/tts.js" defer></script>
   <script>
   /* ── AI and Digital Innovation Removes — track engine ── */
@@ -623,7 +627,7 @@
     var html = '';
     var overall = 0;
     GCSE_UNITS.forEach(function(unit, unitIndex) {
-      html += '<div id="gs-unit-' + (unitIndex + 1) + '" class="gs-unit-label">' + unit.title +
+      html += '<div id="gs-unit-' + (unitIndex + 1) + '" class="gs-unit-label" data-unit-number="' + String(unitIndex+1).padStart(2,'0') + '">' + unit.title +
         (unit.ailit ? '<span class="gs-unit-domain" title="OECD/EU AILit Framework domain">' + unit.ailit + '</span>' : '') +
         '</div>';
       unit.lessons.forEach(function(lesson, li) {
@@ -1297,6 +1301,7 @@
     var type = slide.type || 'concept';
     var reveal = gsRevealHTML(slide);
     var sources = gsSourcesHTML(slide);
+    if (type==='evidence') return DI_EVIDENCE.render(slide);
     if (type==='video') {
       var vid=(slide.videoId||'').replace(/[^A-Za-z0-9_-]/g,'');
       var src='https://www.youtube-nocookie.com/embed/'+vid+'?rel=0&modestbranding=1';
@@ -1444,7 +1449,7 @@
 <script>
 function exportRevisedWork(){
   var work={course:'AI and Digital Innovation — revised lessons',exportedAt:new Date().toISOString(),data:{}};
-  for(var i=0;i<localStorage.length;i++){var key=localStorage.key(i);if(key.startsWith('di_revised')||/^di_note_2[0-9]{2}_/.test(key))work.data[key]=localStorage.getItem(key);}
+  for(var i=0;i<localStorage.length;i++){var key=localStorage.key(i);if(key.startsWith('di_revised')||/^di_evidence_v1_2[0-9]{2}$/.test(key)||/^di_note_2[0-9]{2}_/.test(key))work.data[key]=localStorage.getItem(key);}
   var url=URL.createObjectURL(new Blob([JSON.stringify(work,null,2)],{type:'application/json'}));var a=document.createElement('a');a.href=url;a.download='my-ai-digital-innovation-work.json';a.click();setTimeout(function(){URL.revokeObjectURL(url)},1000);
 }
 </script></body>

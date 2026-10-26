@@ -94,7 +94,7 @@
 
     var trackMeta = {
       removes: { label: 'Removes Course (Year 9)', count: '40 lessons · 7 units', description: 'Aligned to the OECD/EU AI Literacy Framework — Engage, Create, Manage & Shape AI' },
-      fluency: { label: 'AI Digital Passport', count: '24 lessons', description: 'Self-directed AI literacy pathway · Engage, Create, Manage & Shape AI' }
+      fluency: { label: 'AI Digital Passport', count: certId.indexOf('DI-FL20-')===0 ? '20 Removes lessons' : '24 lessons (legacy Passport)', description: 'Self-directed AI literacy pathway · Engage, Create, Manage & Shape AI' }
     }[track];
 
     // Build a formatted date
@@ -118,15 +118,15 @@
       return m + ' min' + (m !== 1 ? 's' : '');
     }
     var studyMins = null, checksumOk = true;
-    var idParts = /^DI-FL-(\d{8})-([A-Z0-9]{4})-T(\d{4})-([A-Z0-9]{4})$/.exec(certId);
+    var idParts = /^(DI-FL(?:20)?)-(\d{8})-([A-Z0-9]{4})-T(\d{4})-([A-Z0-9]{4})$/.exec(certId);
     if (idParts) {
-      studyMins = parseInt(idParts[3], 10);
-      checksumOk = certHash('DI-FL|' + idParts[1] + '|' + idParts[2] + '|' + idParts[3]) === idParts[4];
+      studyMins = parseInt(idParts[4], 10);
+      checksumOk = certHash(idParts[1]+'|' + idParts[2] + '|' + idParts[3] + '|' + idParts[4]) === idParts[5];
     }
     var allOk = idMatchesDate && checksumOk;
 
     root.innerHTML =
-      '<div class="verify-badge' + (allOk ? '' : ' verify-badge--bad') + '"><span>' + (allOk ? '✓' : '⚠') + '</span> ' + (allOk ? 'Verified credential' : 'Details do not match certificate ID') + '</div>' +
+      '<div class="verify-badge' + (allOk ? '' : ' verify-badge--bad') + '"><span>' + (allOk ? '✓' : '⚠') + '</span> ' + (allOk ? 'Completion record' : 'Details do not match certificate ID') + '</div>' +
       '<div class="verify-cert">' +
         '<div class="verify-watermark">DI</div>' +
         '<div class="verify-header">' +
@@ -151,7 +151,7 @@
         (idParts
           ? 'The certificate ID encodes the completion date, the recorded active study time, and a checksum; this page recomputes them and checks the details are consistent (' + (allOk ? 'they are' : '<span style="color:#ef4444">they are not</span>') + ').'
           : 'The certificate ID encodes the completion date; this page checks the two match (' + (idMatchesDate ? 'they do' : '<span style="color:#ef4444">they do not</span>') + ').') +
-        ' This is a civility-level verification designed to make credentials shareable — it is not a cryptographic proof. For formal verification, contact the programme lead.' +
+        ' This checks consistency of self-reported details. It does not verify identity, participation or mastery. For formal verification, contact the programme lead.' +
       '</div>' +
       '<a class="verify-back" href="index.html">Back to AI and Digital Innovation</a>';
 

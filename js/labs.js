@@ -4279,11 +4279,12 @@ window.DI_LABS_INJECT = function (id, slides) {
     return s.type !== 'widget' || DI_LABS[s.widget];
   });
   if (!extras.length) return slides;
-  var out = slides.slice();
+  var evidence=slides.filter(function(s){return s.type==='evidence';});
+  var out = slides.filter(function(s){return s.type!=='evidence';});
   var at = out.length;
   while (at > 0 && out[at - 1] && /^(summary|exit-ticket)$/.test(out[at - 1].type)) at--;
   extras.forEach(function (s, i) { out.splice(at + i, 0, s); });
-  return out;
+  return out.concat(evidence);
 };
 
 /* ============================================================

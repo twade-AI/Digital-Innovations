@@ -502,10 +502,11 @@ function injectLabSlides(id, slides) {
     return s.type !== 'widget' || DI_LABS[s.widget];
   });
   if (!extras.length) return slides;
-  var out = slides.slice();
+  var evidence=slides.filter(function(s){return s.type==='evidence';});
+  var out=slides.filter(function(s){return s.type!=='evidence';});
   var at = (out.length && out[out.length - 1].type === 'summary') ? out.length - 1 : out.length;
   extras.forEach(function (s, i) { out.splice(at + i, 0, s); });
-  return out;
+  return out.concat(evidence);
 }
 
 function renderResourceLinks(lesson) {
@@ -591,7 +592,9 @@ function renderSlide(index) {
 
   var html = '';
 
-  if (slide.type === 'hook') {
+  if (slide.type === 'evidence') { html = DI_EVIDENCE.render(slide); }
+
+  else if (slide.type === 'hook') {
     var tagHtml = lesson ? lesson.tags.map(function(t) { return '<span class="modal-tag">' + t + '</span>'; }).join('') : '';
     var diffHtml = (lesson && lesson.difficulty) ? diffBadge(lesson.difficulty) : '';
     // Prerequisite nudge

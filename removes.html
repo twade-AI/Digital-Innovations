@@ -302,6 +302,7 @@
   <link rel="stylesheet" href="css/wow.css">
   <link rel="stylesheet" href="css/labs.css">
   <link rel="stylesheet" href="css/editorial.css">
+  <link rel="stylesheet" href="css/studio.css">
 </head>
 <body data-track="removes">
   <div id="offlineBanner" class="offline-banner" style="display:none" role="status">You are offline — all 40 lessons are available from cache</div>
@@ -420,6 +421,9 @@
   <script src="js/slides-gcse.js"></script>
   <script src="js/labs.js"></script>
   <script src="js/learning-updates.js"></script>
+  <script src="js/studio-visuals.js"></script>
+  <script src="js/evidence-tasks.js"></script>
+  <script src="js/learning-evidence.js"></script>
   <script src="js/tts.js" defer></script>
   <script>
   /* ── AI and Digital Innovation Removes — track engine ── */
@@ -624,7 +628,7 @@
     var html = '';
     var overall = 0;
     GCSE_UNITS.forEach(function(unit, unitIndex) {
-      html += '<div id="gs-unit-' + (unitIndex + 1) + '" class="gs-unit-label">' + unit.title +
+      html += '<div id="gs-unit-' + (unitIndex + 1) + '" class="gs-unit-label" data-unit-number="' + String(unitIndex+1).padStart(2,'0') + '">' + unit.title +
         (unit.ailit ? '<span class="gs-unit-domain" title="OECD/EU AILit Framework domain">' + unit.ailit + '</span>' : '') +
         '</div>';
       unit.lessons.forEach(function(lesson, li) {
@@ -1326,6 +1330,7 @@
     var type = slide.type || 'concept';
     var reveal = gsRevealHTML(slide);
     var sources = gsSourcesHTML(slide);
+    if (type==='evidence') return DI_EVIDENCE.render(slide);
     if (type==='video') {
       var vid=(slide.videoId||'').replace(/[^A-Za-z0-9_-]/g,'');
       var src='https://www.youtube-nocookie.com/embed/'+vid+'?rel=0&modestbranding=1';
@@ -1467,6 +1472,11 @@
   gsRenderReviewPanel();
   var gsTotal=GCSE_UNITS.reduce(function(s,u){return s+u.lessons.length;},0);
   if(gsDone.size===gsTotal)gsShowComplete();
+  var entryParams=new URLSearchParams(location.search),entryLesson=Number(entryParams.get('lesson'));
+  if(GCSE_UNITS.some(function(u){return u.lessons.some(function(l){return l.id===entryLesson;});})){
+    gsOpenLesson(entryLesson);
+    if(entryParams.get('evidence')==='1'){gsSlideIdx=gsSlides.findIndex(function(s){return s.type==='evidence';});if(gsSlideIdx<0)gsSlideIdx=0;gsRenderSlide();}
+  }
   initOffline();
   if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function(){});
 </script>
