@@ -3327,7 +3327,7 @@ function renderStreakHeatmap() {
 }
 
 /* ── News Ticker ─────────────────────────────────── */
-/* Merge auto-fetched headlines (js/news-live.js — regenerated weekly
+/* Merge auto-fetched headlines (js/news-live.js — regenerated daily
    by the update-news GitHub Action) into the curated AI_NEWS list.
    Reverse order so the newest live item ends up first. */
 (function mergeLiveNews() {

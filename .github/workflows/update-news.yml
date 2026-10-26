@@ -2,18 +2,24 @@ name: Update AI News
 
 # Refreshes js/news-live.js from public AI news feeds so the
 # "AI in the News" section stays current without manual curation.
-# Runs every Monday morning; can also be triggered by hand from the
+# Runs every morning; can also be triggered by hand from the
 # Actions tab (Run workflow).
 on:
   schedule:
-    - cron: '0 6 * * 1' # Mondays 06:00 UTC
+    - cron: '17 6 * * *' # Daily at 06:17 UTC
   workflow_dispatch:
 
 permissions:
   contents: write
+  pages: write
+
+concurrency:
+  group: update-ai-news
+  cancel-in-progress: false
 
 jobs:
   update-news:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,6 +32,7 @@ jobs:
         run: node scripts/update-news.mjs
 
       - name: Commit if changed
+        id: commit
         run: |
           if git diff --quiet js/news-live.js; then
             echo "News already up to date — nothing to commit."
@@ -36,3 +43,11 @@ jobs:
           git add js/news-live.js
           git commit -m "Auto-update AI news headlines"
           git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      # GITHUB_TOKEN commits do not trigger the legacy Pages build automatically.
+      - name: Rebuild the published site
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"
