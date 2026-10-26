@@ -891,6 +891,7 @@ function renderSlide(index) {
     html += diSlide.sourcesHTML(slide);
   }
   area.innerHTML = html;
+  if(window.DI_TEACHING)DI_TEACHING.decorate(area,slide,currentLessonId,index);
   if (window.diSlide && diSlide.resetScroll) diSlide.resetScroll(area); else area.scrollTop = 0;
 
   // Interactive lab widgets wire their events after DOM insertion

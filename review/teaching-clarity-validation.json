@@ -1,0 +1,153 @@
+{
+  "removes.html": {
+    "lessons": 40,
+    "slides": 397
+  },
+  "fluency.html": {
+    "lessons": 20,
+    "slides": 199
+  },
+  "revised.html": {
+    "lessons": 14,
+    "slides": 176
+  },
+  "index.html": {
+    "lessons": 40,
+    "slides": 344
+  },
+  "checks": [
+    {
+      "route": "removes.html?lesson=106",
+      "theme": "light",
+      "overflow": false,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "count": 5
+          }
+        ]
+      }
+    },
+    {
+      "route": "removes.html?lesson=106",
+      "theme": "dark",
+      "overflow": false,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "count": 5
+          }
+        ]
+      }
+    },
+    {
+      "route": "removes.html?lesson=106",
+      "theme": "high",
+      "overflow": false,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "count": 4
+          }
+        ]
+      }
+    },
+    {
+      "route": "index.html?lesson=53",
+      "theme": "light",
+      "overflow": false,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "count": 8
+          }
+        ]
+      }
+    },
+    {
+      "route": "index.html?lesson=53",
+      "theme": "dark",
+      "overflow": false,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "count": 8
+          }
+        ]
+      }
+    },
+    {
+      "route": "index.html?lesson=53",
+      "theme": "high",
+      "overflow": false,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "count": 7
+          }
+        ]
+      }
+    },
+    {
+      "route": "revised.html?lesson=221",
+      "theme": "light",
+      "overflow": false,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "count": 5
+          }
+        ]
+      }
+    },
+    {
+      "route": "revised.html?lesson=221",
+      "theme": "dark",
+      "overflow": false,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "count": 5
+          }
+        ]
+      }
+    },
+    {
+      "route": "revised.html?lesson=221",
+      "theme": "high",
+      "overflow": false,
+      "axe": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "count": 4
+          }
+        ]
+      }
+    }
+  ],
+  "workedRatio": true,
+  "practiceMaterialPreserved": true,
+  "sharedNotesPreserved": true,
+  "textEnlargementReflow": true,
+  "standalone": true,
+  "offline": true,
+  "errors": []
+}

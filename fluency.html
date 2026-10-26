@@ -509,6 +509,8 @@
   <script src="js/project-source-packs.js"></script>
   <script src="js/learning-feedback.js"></script>
   <script src="js/learning-evidence.js"></script>
+  <script src="js/teaching-notes.js"></script>
+  <script src="js/teaching-guidance.js"></script>
   <script>
   /* ── AI Digital Passport — standalone app ── */
 
@@ -946,6 +948,7 @@
 
     // Render slide HTML (reuse existing slide types)
     area.innerHTML = flRenderSlideHTML(slide, idx) + diSlide.revealHTML(slide, 'flReveal'+idx, 'diSlide.toggleReveal') + diSlide.sourcesHTML(slide);
+    if(window.DI_TEACHING)DI_TEACHING.decorate(area,slide,flCurrentLessonId,idx);
     var exitInput=area.querySelector('.fl-exit-input');
     if(exitInput){var exitLesson=FL_TRACK.find(function(l){return l.id===flCurrentLessonId;});var exitKey='fl_exit_v2_'+flCurrentLessonId+(exitLesson.revision?'_'+exitLesson.revision:'');try{exitInput.value=localStorage.getItem(exitKey)||'';}catch(e){}exitInput.addEventListener('input',function(){try{localStorage.setItem(exitKey,exitInput.value);}catch(e){}});}
     // Interactive lab widgets wire their events after DOM insertion
