@@ -3339,17 +3339,31 @@ function renderStreakHeatmap() {
   }
 })();
 
+function newsText(value) {
+  return String(value == null ? '' : value).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});
+}
+function newsUrl(value) {
+  try {var u=new URL(value);return /^(https?:)$/.test(u.protocol)&&!u.username&&!u.password?newsText(u.href):'';}catch(e){return '';}
+}
+function newsDate(item) {
+  if(item.publishedAt){var exact=new Date(item.publishedAt);if(!isNaN(exact))return exact;}
+  var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var parts=String(item.date||'').split(' '),month=months.indexOf(parts[0]),year=Number(parts[1]);
+  return month>=0&&year>=2000?new Date(Date.UTC(year,month,1)):null;
+}
+function recentNews(item) {var date=newsDate(item);return date&&Date.now()-date.getTime()<=45*86400000&&date.getTime()<=Date.now();}
+
 function renderNewsTicker() {
   var track = document.getElementById('tickerTrack');
   if (!track || typeof AI_NEWS === 'undefined') return;
   var tagColors = { policy:'#9b1844', research:'#009fe3', tools:'#22c55e', industry:'#f59e0b', ethics:'#ef4444', health:'#ec4899' };
   var items = AI_NEWS.map(function(n) {
     var col = tagColors[n.tag] || '#9b1844';
-    var inner = '<span class="ticker-tag" style="background:' + col + '22;color:' + col + '">' + n.tag + '</span>' +
-      n.headline +
-      ' <span class="ticker-source">— ' + n.source + ', ' + n.date + '</span>';
-    if (n.url) {
-      return '<a class="ticker-item ticker-item-link" href="' + n.url + '" target="_blank" rel="noopener" title="Read full article">' + inner + ' ↗</a>';
+    var inner = '<span class="ticker-tag" style="background:' + col + '22;color:' + col + '">' + newsText(n.tag) + '</span>' +
+      newsText(n.headline) +
+      ' <span class="ticker-source">— ' + newsText(n.source) + ', ' + newsText(n.date) + '</span>';
+    if (newsUrl(n.url)) {
+      return '<a class="ticker-item ticker-item-link" href="' + newsUrl(n.url) + '" target="_blank" rel="noopener" title="Read full article">' + inner + ' ↗</a>';
     }
     return '<span class="ticker-item">' + inner + '</span>';
   }).join('');
@@ -3359,28 +3373,22 @@ function renderNewsTicker() {
 var _newsTagFilter = 'all';
 
 function buildNewsCard(n) {
-  var tagColors = { policy:'#9b1844', research:'#009fe3', tools:'#22c55e', industry:'#f59e0b', ethics:'#ef4444', health:'#ec4899' };
-  var col = tagColors[n.tag] || '#9b1844';
-  var card = '<div class="news-card">' +
-    '<div class="news-card-top">' +
-      '<span class="news-card-tag" style="background:' + col + '22;color:' + col + '">' + n.tag + '</span>' +
-      '<span class="news-card-date">' + n.date + '</span>' +
-    '</div>' +
-    '<p class="news-card-headline">' + n.headline + '</p>' +
-    '<div class="news-card-footer">' +
-      '<span class="news-card-source">' + n.source + '</span>';
-  if (n.url) {
-    card += '<a class="news-card-link" href="' + n.url + '" target="_blank" rel="noopener">Read →</a>';
-  }
-  card += '</div></div>';
-  return card;
+  var tagColors={policy:'#9b1844',research:'#009fe3',tools:'#22c55e',industry:'#f59e0b',ethics:'#ef4444',health:'#ec4899',creativity:'#a78bfa',robotics:'#38bdf8',games:'#fb923c',environment:'#84cc16'};
+  var col=tagColors[n.tag]||'#9b1844',url=newsUrl(n.url);
+  var kinds={maker:'Maker / community post',research:'Research source',reporting:'Reporting'};
+  return '<article class="news-card"><div class="news-card-top"><span class="news-card-tag" style="background:'+col+'22;color:'+col+'">'+newsText(n.tag)+'</span><span class="news-card-date">'+newsText(n.publishedAt?new Date(n.publishedAt).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):n.date)+'</span></div><p class="news-card-headline">'+newsText(n.headline)+'</p>'+
+    (n.sourceKind?'<div class="news-source-kind">'+newsText(kinds[n.sourceKind]||n.sourceKind)+'</div>':'')+
+    (n.question?'<details class="news-think"><summary>A question to take into the story</summary><p>'+newsText(n.question)+'</p></details>':'')+
+    '<div class="news-card-footer"><span class="news-card-source">'+newsText(n.source)+'</span>'+(url?'<a class="news-card-link" href="'+url+'" target="_blank" rel="noopener">Read story →</a>':'')+'</div>'+
+    (n.access?'<small class="news-access">'+newsText(n.access)+'</small>':'')+'</article>';
 }
 
 function renderNewsSection() {
   // Home teaser — 4 cards, no filter
   var teaser = document.getElementById('latestNewsGrid');
   if (teaser && typeof AI_NEWS !== 'undefined') {
-    teaser.innerHTML = AI_NEWS.slice(0, 4).map(buildNewsCard).join('');
+    var recent=AI_NEWS.filter(recentNews).slice(0,4);
+    teaser.innerHTML = recent.length?recent.map(buildNewsCard).join(''):'<p>New stories are on their way. Open News to explore earlier coverage.</p>';
   }
   // Full news page
   renderFullNewsGrid();
@@ -3390,7 +3398,10 @@ function renderFullNewsGrid() {
   var el = document.getElementById('fullNewsGrid');
   if (!el || typeof AI_NEWS === 'undefined') return;
   var filtered = _newsTagFilter === 'all' ? AI_NEWS : AI_NEWS.filter(function(n) { return n.tag === _newsTagFilter; });
-  el.innerHTML = filtered.map(buildNewsCard).join('');
+  var current=filtered.filter(recentNews),archive=filtered.filter(function(n){return !recentNews(n);});
+  el.innerHTML = current.length?current.map(buildNewsCard).join(''):'<p>No recent stories in this category. Try another topic or explore the archive.</p>';
+  var archiveGrid=document.getElementById('archiveNewsGrid');if(archiveGrid)archiveGrid.innerHTML=archive.map(buildNewsCard).join('');
+  var archiveCount=document.getElementById('archiveNewsCount');if(archiveCount)archiveCount.textContent=archive.length;
   renderNewsTagFilters();
   renderNewsStaleness();
 }
@@ -3401,7 +3412,7 @@ function renderNewsTagFilters() {
   var tags = ['all'].concat(Array.from(new Set(AI_NEWS.map(function(n) { return n.tag; }))).sort());
   el.innerHTML = tags.map(function(t) {
     var active = t === _newsTagFilter ? ' active' : '';
-    return '<button class="news-tag-btn' + active + '" onclick="setNewsTagFilter(\'' + t + '\')">' + (t === 'all' ? 'All' : t) + '</button>';
+    return '<button class="news-tag-btn' + active + '" data-news-tag="' + newsText(t) + '" onclick="setNewsTagFilter(this.dataset.newsTag)">' + (t === 'all' ? 'All' : newsText(t)) + '</button>';
   }).join('');
 }
 
@@ -3415,18 +3426,8 @@ var _newsLastFetched = null; // set by auth.js after successful Supabase pull
 
 function _parseMostRecentNewsDate() {
   if (typeof AI_NEWS === 'undefined' || !AI_NEWS.length) return null;
-  var MON = { Jan:0, Feb:1, Mar:2, Apr:3, May:4, Jun:5, Jul:6, Aug:7, Sep:8, Oct:9, Nov:10, Dec:11 };
-  var best = null;
-  AI_NEWS.forEach(function(n) {
-    if (!n.date) return;
-    var parts = n.date.split(' ');
-    if (parts.length < 2) return;
-    var mon = MON[parts[0]];
-    var yr  = parseInt(parts[1], 10);
-    if (mon === undefined || isNaN(yr)) return;
-    var d = new Date(yr, mon, 1); // first day of that month
-    if (!best || d > best) best = d;
-  });
+  var best=null;
+  AI_NEWS.forEach(function(n){var d=newsDate(n);if(d&&(!best||d>best))best=d;});
   return best;
 }
 
@@ -3444,10 +3445,10 @@ function renderNewsStaleness() {
   var html = '<div class="news-freshness-bar">';
   if (daysSince > 60) {
     html += '<span class="news-stale-warn"><svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-4a1 1 0 00-1 1v2a1 1 0 002 0V10a1 1 0 00-1-1z"/></svg>' +
-             'Feed may be outdated — most recent article: <strong>' + dateLabel + '</strong>. The weekly auto-update may need attention (Actions → Update AI News).</span>';
+             'Feed may be outdated — most recent article: <strong>' + dateLabel + '</strong>. Check the publisher for newer coverage.</span>';
   } else {
     html += '<span class="news-fresh-ok"><svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>' +
-             'Feed is current — most recent article: <strong>' + dateLabel + '</strong>.</span>';
+             'Most recent article: <strong>' + dateLabel + '</strong>.</span>';
   }
   if (_newsLastFetched) {
     var t = _newsLastFetched.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
