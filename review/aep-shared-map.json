@@ -1,0 +1,116 @@
+[
+  {
+    "aepSlot": 1,
+    "earlierTitle": "Your AI Footprint",
+    "removesLesson": 101,
+    "title": "What is AI?"
+  },
+  {
+    "aepSlot": 2,
+    "earlierTitle": "Models, Retrieval and Understanding",
+    "removesLesson": 105,
+    "title": "Can AI think?"
+  },
+  {
+    "aepSlot": 4,
+    "earlierTitle": "The Black Box",
+    "removesLesson": 138,
+    "title": "Looking Inside the Black Box"
+  },
+  {
+    "aepSlot": 5,
+    "earlierTitle": "Bias In, Bias Out",
+    "removesLesson": 125,
+    "title": "Bias In, Bias Out"
+  },
+  {
+    "aepSlot": 6,
+    "earlierTitle": "The Data Harvest",
+    "removesLesson": 127,
+    "title": "AI & Privacy"
+  },
+  {
+    "aepSlot": 7,
+    "earlierTitle": "The Trolley Problem Goes Digital",
+    "removesLesson": 129,
+    "title": "AI Ethics in Action"
+  },
+  {
+    "aepSlot": 45,
+    "earlierTitle": "What Can You Trust?",
+    "removesLesson": 120,
+    "title": "Can You Trust This Content?"
+  },
+  {
+    "aepSlot": 51,
+    "earlierTitle": "Tokens, Context and Capability",
+    "removesLesson": 102,
+    "title": "How Chatbots Work: Prediction and Evidence"
+  },
+  {
+    "aepSlot": 9,
+    "earlierTitle": "Prompt Architecture",
+    "removesLesson": 113,
+    "title": "Prompting for a Real Audience"
+  },
+  {
+    "aepSlot": 10,
+    "earlierTitle": "Synthetic Creativity and Copyright",
+    "removesLesson": 115,
+    "title": "AI and Creativity: Design to a Brief"
+  },
+  {
+    "aepSlot": 11,
+    "earlierTitle": "Deep Research and the Future of Work",
+    "removesLesson": 126,
+    "title": "Jobs & Automation"
+  },
+  {
+    "aepSlot": 12,
+    "earlierTitle": "The Revision Loop",
+    "removesLesson": 107,
+    "title": "Better questions, better answers"
+  },
+  {
+    "aepSlot": 46,
+    "earlierTitle": "Trust, But Verify",
+    "removesLesson": 122,
+    "title": "Fact-Checking in the AI Age"
+  },
+  {
+    "aepSlot": 13,
+    "earlierTitle": "Deepfakes and Disinformation",
+    "removesLesson": 119,
+    "title": "Deepfakes & Synthetic Media"
+  },
+  {
+    "aepSlot": 15,
+    "earlierTitle": "The Environmental Cost",
+    "removesLesson": 137,
+    "title": "The Environmental Cost of AI"
+  },
+  {
+    "aepSlot": 16,
+    "earlierTitle": "Global Regulation",
+    "removesLesson": 128,
+    "title": "Regulation & Control"
+  },
+  {
+    "aepSlot": 58,
+    "earlierTitle": "AI Companions: Attachment and Responsibility",
+    "removesLesson": 131,
+    "title": "AI Relationships"
+  },
+  {
+    "aepSlot": 48,
+    "earlierTitle": "Thinking With, Thinking For",
+    "removesLesson": 106,
+    "title": "AI as your study partner"
+  },
+  {
+    "aepSlot": 44,
+    "earlierTitle": "The AI Manifesto",
+    "removesLesson": 133,
+    "title": "You & AI"
+  }
+]

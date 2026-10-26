@@ -483,6 +483,8 @@ function loadReflection(lessonId, slideIdx) {
 }
 
 function getLessonSlides(id, lesson, unit) {
+  var shared=AEP_SHARED_LESSONS[id];
+  if(shared)return DI_LABS_INJECT(shared,SLIDES_GCSE[shared]);
   // Try curated slides first, then fallback to generated
   var all = Object.assign({}, (typeof SLIDES_U1U2 !== 'undefined' ? SLIDES_U1U2 : {}),
                                (typeof SLIDES_U3U4 !== 'undefined' ? SLIDES_U3U4 : {}),
@@ -526,6 +528,7 @@ function renderResourceLinks(lesson) {
 }
 
 function openLesson(id) {
+  if(AEP_SHARED_LESSONS[id]){location.href=aepLessonURL(id,new URLSearchParams(location.search).get("evidence")==="1");return;}
   var found = findLesson(id);
   if (!found) return;
   // Record as reviewed if it was previously completed
@@ -3591,9 +3594,14 @@ function saveCapstoneData() {
   if (ind) { ind.style.display = 'inline'; setTimeout(function() { ind.style.display = 'none'; }, 2000); }
 }
 function aepSavedNotes(id) {
+  var shared=AEP_SHARED_LESSONS[id];
+  if(shared)return aepSavedNotes(shared).concat(aepSavedNotesOriginal(id).map(function(n){return 'Earlier AEP lesson: '+n;}));
+  return aepSavedNotesOriginal(id);
+}
+function aepSavedNotesOriginal(id) {
   var prefix = 'di_note_' + id + '_';
   return Object.keys(localStorage).filter(function(key) {
-    return key.indexOf(prefix) === 0 && /^\d+$/.test(key.slice(prefix.length));
+    return key.indexOf(prefix) === 0 && /^(?:r[0-9]+_)?\d+$/.test(key.slice(prefix.length));
   }).sort(function(a,b) { return Number(a.slice(prefix.length)) - Number(b.slice(prefix.length)); })
     .map(function(key) { return localStorage.getItem(key); }).filter(function(note) { return note && note.trim(); });
 }
@@ -3996,10 +4004,11 @@ document.addEventListener('DOMContentLoaded', () => {
   updateFirstLessonBanner();
   renderSpacedReviewQueue();
   initOfflineBanner();
+  if(new URLSearchParams(location.search).get('section')==='units')showSection('units');
   var requestedLesson = Number(new URLSearchParams(location.search).get('lesson'));
   if (findLesson(requestedLesson)) {
     openLesson(requestedLesson);
-    if (new URLSearchParams(location.search).get('evidence') === '1') jumpToSlide(currentSlides.length - 1);
+    if (!AEP_SHARED_LESSONS[requestedLesson] && new URLSearchParams(location.search).get('evidence') === '1') jumpToSlide(currentSlides.length - 1);
   }
   // Restore avatar on chip
   var savedAvatar = localStorage.getItem('di_avatar');

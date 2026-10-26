@@ -770,3 +770,5 @@ var QUIZ_BANK = {
     }
   ]
 };
+
+if(typeof AEP_SHARED_LESSONS!=="undefined")Object.keys(AEP_SHARED_LESSONS).forEach(function(id){delete QUIZ_BANK[id];});

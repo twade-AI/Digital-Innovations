@@ -66,7 +66,7 @@
   var decks=Object.assign({},SLIDES_U1U2,SLIDES_U3U4,SLIDES_U5U6,SLIDES_CRITICAL,SLIDES_ADVANCED,SLIDES_COMPANIONS);
   if(typeof SLIDE_VISUALS!=='undefined'){
     Object.keys(SLIDE_VISUALS).forEach(function(k){if(decks[k.split(':')[0]])delete SLIDE_VISUALS[k];});
-    Object.keys(diagrams).forEach(function(id){var v=diagrams[id],i=decks[id].findIndex(function(s){return s.type==='concept';});
+    Object.keys(diagrams).forEach(function(id){if(!decks[id])return;var v=diagrams[id],i=decks[id].findIndex(function(s){return s.type==='concept';});
       SLIDE_VISUALS[id+':'+i]='<figure class="studio-diagram"><div class="studio-diagram-row">'+v[0].map(function(label,j){return '<div><span class="diagram-step">0'+(j+1)+'</span><strong>'+label+'</strong></div>';}).join('<span class="diagram-arrow" aria-hidden="true">→</span>')+'</div><figcaption>'+v[1]+'</figcaption></figure>';
     });
   }

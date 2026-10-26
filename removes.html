@@ -418,12 +418,16 @@
 
   <script src="js/slide-utils.js"></script>
   <script src="js/slides-gcse.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/aep-curriculum.js"></script>
   <script src="js/labs.js"></script>
   <script src="js/learning-updates.js"></script>
+  <script src="js/shared-content-review.js"></script>
   <script src="js/studio-visuals.js"></script>
   <script src="js/evidence-tasks.js"></script>
   <script src="js/learning-evidence.js"></script>
   <script src="js/tts.js" defer></script>
+  <script src="js/aep-shared-player.js"></script>
   <script>
   /* ── AI and Digital Innovation Removes — track engine ── */
   var GS_KEY = 'di_gcse_v1';
@@ -1466,6 +1470,7 @@
     window.addEventListener('online',u);window.addEventListener('offline',u);u();
   }
 
+  if(typeof initAEPSharedPlayer==='function')initAEPSharedPlayer();
   gsLoadProgress();
   gsRenderTrack();
   gsUpdateProgress();

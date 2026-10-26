@@ -90,6 +90,7 @@
 
   <script src="js/data.js"></script>
   <script src="js/slides-gcse.js"></script>
+  <script src="js/aep-curriculum.js"></script>
   <script src="js/passport-data.js"></script>
   <script src="js/evidence-tasks.js"></script>
   <script src="js/learning-evidence.js"></script>
@@ -172,7 +173,7 @@
           };
         })
       };
-      if (track === 'aep') data = {v:1,type:'di-aep-portfolio',name:pname,exported:new Date().toISOString(),lessons:items,evidence:Object.fromEntries(UNITS.flatMap(function(u){return u.lessons;}).map(function(l){return [l.id,DI_EVIDENCE.read(l.id)];}).filter(function(e){return e[1].updatedAt;}))};
+      if (track === 'aep') data = {v:1,type:'di-aep-portfolio',name:pname,exported:new Date().toISOString(),lessons:items,evidence:Object.fromEntries(UNITS.flatMap(function(u){return u.lessons;}).map(function(l){return [l.id,DI_EVIDENCE.read(AEP_SHARED_LESSONS[l.id]||l.id)];}).filter(function(e){return e[1].updatedAt;})),earlierEvidence:Object.fromEntries(Object.keys(AEP_SHARED_LESSONS).map(function(id){return [id,DI_EVIDENCE.read(id)];}).filter(function(e){return e[1].updatedAt;}))};
       var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
       var a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
@@ -219,11 +220,13 @@
       try { var savedDone=JSON.parse(localStorage.getItem('di_progress')||'[]');if(Array.isArray(savedDone))aepDone=savedDone; } catch(e){}
       try { aepDates=JSON.parse(localStorage.getItem('di_completion_dates')||'{}')||{}; } catch(e){}
       UNITS.forEach(function(unit){unit.lessons.forEach(function(lesson){
-        var notes=collectNotes(lesson.id),evidence=DI_EVIDENCE.read(lesson.id),prefix='di_reflection_'+lesson.id+'_';
+        var source=AEP_SHARED_LESSONS[lesson.id]||lesson.id,notes=collectNotes(source),evidence=DI_EVIDENCE.read(source),prefix='di_reflection_'+lesson.id+'_';
+        var earlier=AEP_SHARED_LESSONS[lesson.id]?(collectNotes(lesson.id)+'\n'+(DI_EVIDENCE.read(lesson.id).updatedAt?DI_EVIDENCE.text(lesson.id,DI_EVIDENCE.read(lesson.id)):'' )).trim():'';
+        if(earlier)notes+='\n\nEarlier AEP lesson · '+lesson.previousTitle+'\n'+earlier;
         var reflections=Object.keys(localStorage).filter(function(k){return k.indexOf(prefix)===0&&/^\d+$/.test(k.slice(prefix.length));}).sort(function(a,b){return Number(a.slice(prefix.length))-Number(b.slice(prefix.length));}).map(function(k){return 'Slide '+(Number(k.slice(prefix.length))+1)+': '+localStorage.getItem(k);}).join('\n\n');
         var done=aepDone.includes(lesson.id);
         if(!notes&&!evidence.updatedAt&&!reflections&&!done)return;
-        items.push({unit:unit.title,unitColour:unit.colour,lessonId:lesson.id,title:lesson.title,done:done,completedAt:aepDates[lesson.id]||'',notes:notes,reflections:reflections,evidence:evidence.updatedAt?DI_EVIDENCE.text(lesson.id,evidence):''});
+        items.push({unit:unit.title,unitColour:unit.colour,lessonId:lesson.id,title:lesson.title,done:done,completedAt:aepDates[lesson.id]||'',notes:notes,reflections:reflections,evidence:evidence.updatedAt?DI_EVIDENCE.text(source,evidence):''});
       });});
     } else if (track === 'fluency') {
       var passportDone=[];try{passportDone=JSON.parse(localStorage.getItem('fl_progress_removes20_v2')||localStorage.getItem('fl_progress_v1')||'[]');}catch(e){}
