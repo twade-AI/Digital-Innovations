@@ -121,9 +121,11 @@
       return '<section class="parent-interactions parent-completion parent-checks" data-parent-lesson="' + esc(id) + '"><h2 class="slide-title">' + esc(slide.title || 'Put it into practice') + '</h2><p class="parent-interaction-intro">' + esc(item.intro || 'Try these three checks. Use the feedback to review your choices and try again.') + '</p>' + list.map(function (q, i) { return formMarkup(q, finalContext, i); }).join('') + '<p class="parent-check-footnote">Check all three answers to finish this lesson. Your choices save on this device.</p></section>';
     }
     if (slide.type !== 'parent-interaction') return '';
-    var hasKey = id != null && Number.isInteger(slide.slideIndex);
+    // Authored practice indices preserve saved responses when teaching slides move.
+    var practiceIndex = Number.isInteger(slide.practiceIndex) ? slide.practiceIndex : slide.slideIndex;
+    var hasKey = id != null && Number.isInteger(practiceIndex);
     var memoryKey = String(id) + ':' + String(slide.slideIndex) + ':' + String(slide.question && slide.question.prompt);
-    var context = {id:id, key:hasKey ? 'di_parent_practice_v1_' + id + '_' + slide.slideIndex : null, memoryKey:memoryKey, list:[slide.question], final:false};
+    var context = {id:id, key:hasKey ? 'di_parent_practice_v1_' + id + '_' + practiceIndex : null, memoryKey:memoryKey, list:[slide.question], final:false};
     return '<section class="parent-interactions"><h2 class="slide-title">' + esc(slide.title || 'Try it for yourself') + '</h2>' + (slide.intro ? '<p class="parent-interaction-intro">' + esc(slide.intro) + '</p>' : '') + formMarkup(slide.question, context, 0) + '</section>';
   }
   function extract(form, question) {

@@ -132,4 +132,5 @@ function initParentPlayer() {
     if (event.key === null || event.key === GS_KEY || /^di_parent_checks_v1_/.test(event.key)) refreshChecks();
   });
   document.addEventListener('parent-checks-changed', refreshChecks);
+  if(typeof initParentQuickStart==='function')initParentQuickStart();
 }

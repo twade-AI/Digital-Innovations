@@ -1,0 +1,184 @@
+{
+  "reviewDate": "2026-11-10",
+  "sourceReview": "https://docs.google.com/document/d/18f3bwPD7xJ-laV3ZK1bPhV3tP4G2yRbIEGbJdi4N-3w/edit",
+  "content": {
+    "lessons": 15,
+    "teachingSlides": 176,
+    "renderedSlides": 191,
+    "inlineInteractions": 23,
+    "finalChecks": 45,
+    "estimatedMinutes": 345
+  },
+  "browser": {
+    "lessons": 15,
+    "renderedSlides": 191,
+    "noVideo": true,
+    "completionGate": true,
+    "noWrittenSubmissions": true,
+    "backupRestore": true,
+    "pupilStatePreserved": true,
+    "resume": true,
+    "keyboardDialog": true,
+    "textReflow": true,
+    "offline": true,
+    "accessibility": [
+      {
+        "theme": "light",
+        "lesson": 303,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "light",
+        "lesson": 309,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "light",
+        "lesson": 315,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "dark",
+        "lesson": 303,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "dark",
+        "lesson": 309,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "dark",
+        "lesson": 315,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "high",
+        "lesson": 303,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "high",
+        "lesson": 309,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "high",
+        "lesson": 315,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      }
+    ],
+    "errors": []
+  },
+  "quickstart": {
+    "canonicalLessonUnchanged": true,
+    "normalLessonRestored": true,
+    "noSavedWorkWrites": true,
+    "resumePreserved": true,
+    "certificateGatePreserved": true,
+    "alreadyCompletedSourceSafe": true,
+    "keyboard": true,
+    "mobileTouch": true,
+    "offline": true,
+    "accessibility": [
+      {
+        "label": "desktop introduction",
+        "violations": []
+      },
+      {
+        "label": "desktop decision",
+        "violations": []
+      },
+      {
+        "label": "desktop summary",
+        "violations": []
+      },
+      {
+        "label": "phone decision",
+        "violations": []
+      }
+    ],
+    "errors": []
+  },
+  "guidance": {
+    "viewport": 320,
+    "textPercent": 200,
+    "expandedYearGroups": 4,
+    "readingSettingsOpen": true,
+    "landingReflow": true,
+    "accessibility": [
+      {
+        "theme": "light",
+        "violations": [],
+        "incomplete": [
+          "aria-prohibited-attr",
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "dark",
+        "violations": [],
+        "incomplete": [
+          "aria-prohibited-attr",
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "high",
+        "violations": [],
+        "incomplete": [
+          "aria-prohibited-attr",
+          "color-contrast"
+        ]
+      }
+    ],
+    "interactions": [
+      {
+        "lesson": 301,
+        "title": "Three-minute activity: test the apple classifier",
+        "kind": "select",
+        "correctFeedback": true,
+        "retryFeedback": true,
+        "noTextArea": true,
+        "reflow": true
+      },
+      {
+        "lesson": 305,
+        "title": "Now change the context",
+        "kind": "choice",
+        "correctFeedback": true,
+        "retryFeedback": true,
+        "noTextArea": true,
+        "reflow": true
+      }
+    ],
+    "errors": []
+  }
+}

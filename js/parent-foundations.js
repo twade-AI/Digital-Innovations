@@ -5,7 +5,7 @@ PARENT_LESSONS.push(
   "id": 301,
   "n": 1,
   "title": "AI in your child’s world",
-  "minutes": 15,
+  "minutes": 20,
   "goal": "Explain three different jobs AI can do, and open a useful conversation about how a young person uses it.",
   "desc": "Start with familiar moments: the feed, the homework question and the convincing chatbot. Work out where your judgement belongs.",
   "slides": [
@@ -13,7 +13,7 @@ PARENT_LESSONS.push(
       "type": "hook",
       "title": "“Everyone is using it.” Where do you start?",
       "body": "<p>A teenager asks a chatbot to explain a science idea. A music app suggests another track. A convincing image appears in a group chat. Each raises a different question about how AI shapes what we learn, choose and believe.</p><p>Start by identifying the job the technology is doing. Then ask what the young person is trying to achieve and where their own judgement comes in. You will practise those conversations through the examples in this lesson.</p>",
-      "callout": "Allow around 15 minutes. Choose your responses on screen, then use the feedback to check your reasoning."
+      "callout": "Allow around 20 minutes, including a three-minute training-data activity. Choose your responses on screen, then use the feedback to check your reasoning."
     },
     {
       "type": "concept",
@@ -26,6 +26,38 @@ PARENT_LESSONS.push(
           "url": "https://www.gov.uk/government/publications/generative-artificial-intelligence-in-education/generative-artificial-intelligence-ai-in-education"
         }
       ]
+    },
+    {
+      "type": "concept",
+      "title": "Training data: which examples did the model see?",
+      "body": "<p>During <strong>training</strong>, a model learns patterns from examples. Those examples are its <strong>training data</strong>. A fruit classifier, for instance, can learn to label pictures as apples or other fruit. The examples selected for training influence the patterns it learns.</p><p>Imagine a training collection whose apple pictures are mostly red apples. In a small test using pictures it has not seen before, the model correctly labels eight out of ten red apples and three out of ten green apples. These are invented results for this activity.</p><p>That uneven performance gives us a problem to investigate. Missing examples can contribute to <strong>bias</strong>: a pattern of poorer results for some kinds of input. We need to check the images and test again to find out whether colour, lighting, camera angle or something else explains the difference.</p>",
+      "callout": "Ask which examples are missing and how you would test whether the model has learned a useful pattern.",
+      "sources": [
+        {
+          "label": "Google Machine Learning Crash Course: data selection and bias",
+          "url": "https://developers.google.com/machine-learning/crash-course/fairness/types-of-bias"
+        }
+      ]
+    },
+    {
+      "type": "parent-interaction",
+      "practiceIndex": 1003,
+      "title": "Three-minute activity: test the apple classifier",
+      "question": {
+        "kind": "select",
+        "prompt": "The model trained with mostly red apple examples. It labelled eight out of ten unseen red apples correctly, but only three out of ten unseen green apples. Select every useful next step for investigating this result.",
+        "options": [
+          "Compare more correctly labelled red and green apple pictures taken under similar lighting and camera angles, keeping them separate from training.",
+          "Conclude that every AI model will mistake green apples because colour alone caused these errors.",
+          "Review the training examples for missing varieties and conditions, add suitable examples where needed, then test the revised model on new pictures it has not learned from.",
+          "Use the same ten green pictures repeatedly for training and testing; improvement on those pictures proves the model recognises all green apples."
+        ],
+        "correct": [
+          0,
+          2
+        ],
+        "explanation": "The first step checks whether the difference persists when other picture conditions are more comparable. The third examines gaps in the training examples and checks improvement on fresh pictures. Reusing the same pictures can reward learning those examples rather than a pattern that works elsewhere. These invented results do not establish that colour caused the errors or that every model would fail. Apply the same question more broadly: whose examples are represented, and for whom have we actually checked the results?"
+      }
     },
     {
       "type": "concept",
@@ -59,6 +91,7 @@ PARENT_LESSONS.push(
     },
     {
       "type": "parent-interaction",
+      "practiceIndex": 4,
       "title": "Which questions fit the situation?",
       "question": {
         "kind": "select",
@@ -252,6 +285,7 @@ PARENT_LESSONS.push(
     },
     {
       "type": "parent-interaction",
+      "practiceIndex": 4,
       "title": "Check the repair-club answer",
       "question": {
         "kind": "select",
@@ -315,6 +349,23 @@ PARENT_LESSONS.push(
       ],
       "correct": 1,
       "explanation": "The dated notice gives a specific exception for this Thursday, which explains the difference. Match the source to the session you are attending. If that remains unclear, check with the organiser."
+    },
+    {
+      "type": "concept",
+      "title": "Inside the Removes course: a convincing voice",
+      "body": "<p>Removes lesson 119 asks pupils to examine a fictional sports-club voice note. It sounds like the organiser and requests an urgent payment to changed bank details, with a request to keep it quiet.</p><p><strong>The teaching aim</strong> is to choose a safe way to verify both the recording and the action requested. <strong>AI’s role in the example</strong> is the possibility of a synthetic voice imitating someone familiar. The task examines that capability; pupils are not asked to clone a person’s voice.</p><p><strong>The pupil’s decision</strong> is what evidence would justify acting. They work out how to confirm the request through a previously trusted contact route, while pausing the payment. This puts the source-checking question into a real decision: does a convincing presentation establish the claim or the person’s authority?</p>",
+      "callout": "Ask: “What would you need to check before acting, and why would that source answer the question?”",
+      "sources": [
+        {
+          "label": "Explore Removes lesson 119: verify a suspicious recording",
+          "url": "removes.html?lesson=119"
+        },
+        {
+          "label": "Haileybury: the school’s approach to AI",
+          "url": "https://www.haileybury.com/innovation-research/artificial-intelligence"
+        }
+      ],
+      "sourceNote": "Example from the Removes curriculum. The club message is a fictional teaching scenario."
     },
     {
       "type": "summary",
@@ -460,6 +511,7 @@ PARENT_LESSONS.push(
     },
     {
       "type": "parent-interaction",
+      "practiceIndex": 6,
       "title": "Choose the suitable practice material",
       "question": {
         "kind": "select",
@@ -598,7 +650,7 @@ PARENT_LESSONS.push(
   "id": 305,
   "n": 5,
   "title": "Help with homework without taking over",
-  "minutes": 15,
+  "minutes": 20,
   "goal": "Choose a useful next-step hint and check whether a learner can use it independently.",
   "desc": "Respond to “I’m stuck” with help that leaves the important thinking with the learner.",
   "slides": [
@@ -606,7 +658,7 @@ PARENT_LESSONS.push(
       "type": "hook",
       "title": "“I’m stuck.” It is tempting to finish it.",
       "body": "<p>It is late. A teenager has spent ten minutes on a question and wants to paste it into a chatbot. A complete answer would finish the question. You would still need to find out what the learner understands.</p><p>Your next question matters. Work out where the learner is stuck, choose help that moves them forward and check what they can do afterwards. We will practise that sequence using a short maths example.</p>",
-      "callout": "Allow around 15 minutes. Choose the response that addresses the difficulty and leaves the next decision with the learner."
+      "callout": "Allow around 20 minutes. Compare two reasonable forms of help, then choose the next step that fits the learner’s difficulty."
     },
     {
       "type": "concept",
@@ -639,6 +691,7 @@ PARENT_LESSONS.push(
     },
     {
       "type": "parent-interaction",
+      "practiceIndex": 4,
       "title": "Which hint leaves the thinking with the learner?",
       "question": {
         "kind": "choice",
@@ -657,6 +710,37 @@ PARENT_LESSONS.push(
       "title": "What if the hint still does not help?",
       "body": "<p>Return to the £60 bag. The learner says: “I still think £6 is the price because that is the number I calculated.” Change the representation so they can see what the number means.</p><p><strong>Parent:</strong> “On a sale label, ‘£6 off’ describes a saving. Draw the original £60 as a bar and mark the £6 being removed. What does the part left over represent?”<br><strong>Learner:</strong> “The amount I still pay.”<br><strong>Parent:</strong> “Now show how you would find that amount.”</p><p>If the difficulty remains, return to a class example or ask the teacher about this particular misunderstanding. If the learner is exhausted, agree when to come back to it.</p>",
       "callout": "Choose the next step from the learner’s response. That might be a clearer example, a break or a specific question for the teacher."
+    },
+    {
+      "type": "scenario",
+      "title": "Two useful options. Which would you try first?",
+      "situation": "<p>A pupil can calculate 10% but confuses the saving with the price they still pay. Their class notes contain a worked bar diagram that labels both amounts, and they have not looked at it yet. The teacher also permits a question-style hint from the approved school AI tool.</p><p>Both routes can provide useful help. Choose the first step you would take, then compare the reasons.</p>",
+      "question": "Which support would you try first in this situation?",
+      "choices": [
+        {
+          "text": "Ask the approved AI tool for one question that helps the pupil distinguish the saving from the sale price.",
+          "outcome": "This can work if the hint addresses that distinction and leaves the calculation with the pupil. Check the response before using it: the tool may supply a full solution instead. Here the class diagram already explains the exact distinction, so opening it is an efficient first step. After either route, ask the pupil to explain what each amount represents and solve a fresh example."
+        },
+        {
+          "text": "Open the class worked example and ask the pupil to point to the saving and the amount left to pay.",
+          "outcome": "This is the stronger first step for the details supplied: an available class example directly addresses the misunderstanding and uses the taught representation. Ask the pupil to explain the two amounts, then close the worked solution and try a different price. If the example leaves a specific question unresolved, a checked, permitted AI hint can provide another route into that question."
+        }
+      ]
+    },
+    {
+      "type": "parent-interaction",
+      "practiceIndex": 1007,
+      "title": "Now change the context",
+      "question": {
+        "kind": "choice",
+        "prompt": "The pupil has now explained the class example correctly. A new problem says a £50 price rises by 10%, and they are unsure how “rises” changes the calculation. The teacher permits a question-style AI hint. The approved tool supplies: “Does the price go up or down? What does 10% represent here?” You have checked that this hint fits the question. Which next step most directly addresses the remaining difficulty?",
+        "options": [
+          "Use the checked hint, let the pupil decide and calculate, then ask them to explain a different price-rise example with agreed support.",
+          "Start again with the same price-reduction example and repeat its steps before letting the pupil consider a rise."
+        ],
+        "correct": 0,
+        "explanation": "The pupil has already explained the reduction example; the remaining difficulty is interpreting a rise. The checked hint targets that decision and leaves the calculation with them. Revisit the class example if its underlying method is still unclear, but repeating it is not the most direct response to the difficulty described here. The pupil should explain that 10% of £50 is £5 and that a rise makes the price £55, then apply the idea to a fresh example. That checks whether the help transferred."
+      }
     },
     {
       "type": "concept",
@@ -840,6 +924,7 @@ PARENT_LESSONS.push(
     },
     {
       "type": "parent-interaction",
+      "practiceIndex": 6,
       "title": "Choose the justified permission decisions",
       "question": {
         "kind": "select",
@@ -1005,6 +1090,7 @@ PARENT_LESSONS.push(
     },
     {
       "type": "parent-interaction",
+      "practiceIndex": 3,
       "title": "Apply the Lantern Club rules",
       "question": {
         "kind": "select",
