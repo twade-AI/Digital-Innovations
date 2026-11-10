@@ -98,3 +98,50 @@ body[data-track="parents"] .parent-check-feedback:focus { outline:2px solid var(
   body[data-track="parents"] .parent-check { padding:16px 12px; }
   body[data-track="parents"] .parent-check-button { width:100%; }
 }
+
+/* Parent entry routes and school guidance. */
+body[data-track="parents"] .parent-entry-routes,
+body[data-track="parents"] .parent-example-grid,
+body[data-track="parents"] .parent-concern-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin:28px 0 18px; text-align:left; }
+body[data-track="parents"] .parent-entry-route,
+body[data-track="parents"] .parent-school-example,
+body[data-track="parents"] .parent-concern-grid article { padding:24px; border:1px solid var(--border); border-radius:16px; background:var(--bg-card); min-width:0; }
+body[data-track="parents"] .parent-entry-route:first-child { border:2px solid var(--track-primary); }
+body[data-track="parents"] .parent-entry-route { display:flex; flex-direction:column; align-items:flex-start; }
+body[data-track="parents"] .parent-entry-route h2 { font-size:1.45rem; line-height:1.2; margin:12px 0; }
+body[data-track="parents"] .parent-entry-route p { flex:1; }
+body[data-track="parents"] .parent-entry-route .btn { margin-top:18px; }
+body[data-track="parents"] .parent-route-label { color:var(--track-primary); font-size:.76rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; }
+body[data-track="parents"] .parent-route-note { max-width:65ch; margin:20px auto; color:var(--text-dim); }
+body[data-track="parents"] .parent-route-links { display:flex; gap:18px; justify-content:center; flex-wrap:wrap; margin:20px 0 28px; }
+body[data-track="parents"] .parent-landing-section { padding:34px 0; border-top:1px solid var(--border); scroll-margin-top:24px; }
+body[data-track="parents"] .parent-landing-section h2,
+body[data-track="parents"] .parent-full-course-heading h2 { font-size:clamp(1.6rem,4vw,2.1rem); line-height:1.15; margin:0 0 16px; }
+body[data-track="parents"] .parent-landing-section h3 { font-size:1.2rem; line-height:1.3; margin:12px 0; }
+body[data-track="parents"] :is(.parent-entry-route,.parent-landing-section,.parent-full-course-heading,.parent-route-note) p { line-height:1.65; margin-block:14px; }
+body[data-track="parents"] .parent-school-example dt { font-weight:700; margin:16px 0 3px; }
+body[data-track="parents"] .parent-school-example dd { margin:0; line-height:1.6; }
+body[data-track="parents"] .parent-source-note { color:var(--text-dim); font-size:.86rem; line-height:1.6; }
+body[data-track="parents"] .parent-year-guides details { border:1px solid var(--border); border-radius:10px; margin:12px 0; padding:0 18px; background:var(--bg-card); }
+body[data-track="parents"] .parent-year-guides summary { cursor:pointer; padding:18px 0; font-weight:700; line-height:1.4; }
+body[data-track="parents"] .parent-text-button { border:0; padding:2px 0; background:none; font:inherit; color:var(--track-primary); text-decoration:underline; cursor:pointer; }
+body[data-track="parents"] .parent-full-course-heading { border-top:1px solid var(--border); padding-top:36px; margin-top:20px; scroll-margin-top:24px; }
+body[data-track="parents"] .parent-full-course-heading .gs-hero-stats { justify-content:flex-start; margin-top:24px; }
+body[data-track="parents"] :is(.parent-entry-routes,.parent-landing-section,.parent-route-links) a { color:var(--track-primary); }
+body[data-track="parents"] :is(.parent-landing-section,.parent-route-links) a:not(.btn) { text-decoration:underline; text-underline-offset:3px; }
+body[data-track="parents"] :is(.parent-entry-routes,.parent-landing-section) :is(p,a,button,dd) { overflow-wrap:anywhere; }
+body[data-track="parents"] :is(.parent-entry-routes,.parent-landing-section) .btn { white-space:normal; text-align:left; line-height:1.4; }
+body[data-track="parents"] :is(.parent-entry-routes,.parent-landing-section,.parent-route-links) :is(a,button,summary):focus-visible { outline:3px solid var(--track-primary); outline-offset:4px; }
+@media(max-width:650px) {
+ body[data-track="parents"] .parent-entry-routes,
+ body[data-track="parents"] .parent-example-grid,
+ body[data-track="parents"] .parent-concern-grid { grid-template-columns:1fr; }
+ body[data-track="parents"] .parent-entry-route,
+ body[data-track="parents"] .parent-school-example,
+ body[data-track="parents"] .parent-concern-grid article { padding:20px; }
+ body[data-track="parents"] .parent-entry-route .btn { width:100%; }
+}
+/* Keep the landing controls within the viewport at enlarged text sizes. */
+body[data-track="parents"] .course-utilities > * { min-width:0; max-width:100%; box-sizing:border-box; }
+body[data-track="parents"] .course-picker select { min-width:0; width:100%; max-width:100%; box-sizing:border-box; }
+body[data-track="parents"] .display-controls summary { overflow-wrap:anywhere; }

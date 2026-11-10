@@ -9,7 +9,7 @@ assert.equal(c.GCSE_UNITS.flatMap(u=>u.lessons).length,40);assert.equal(c.PASSPO
 const lessons=c.PARENT_UNITS.flatMap(u=>u.lessons),ids=Array.from(lessons,l=>l.id);
 assert.deepEqual(ids,Array.from({length:15},(_,i)=>301+i));
 let slides=0,quizzes=0,activities=0,interactions=0;
-function checkQuestion(q){assert(['choice','select','order'].includes(q.kind));assert(q.prompt&&q.explanation?.length>35);assert(q.options.length>=3);const indices=q.kind==='choice'?[q.correct]:Array.from(q.correct);assert(indices.length>0&&new Set(indices).size===indices.length);assert(indices.every(i=>Number.isInteger(i)&&i>=0&&i<q.options.length));if(q.kind==='order')assert.equal(indices.length,q.options.length);}
+function checkQuestion(q){assert(['choice','select','order'].includes(q.kind));assert(q.prompt&&q.explanation?.length>35);assert(q.options.length>=(q.kind==='choice'?2:3));const indices=q.kind==='choice'?[q.correct]:Array.from(q.correct);assert(indices.length>0&&new Set(indices).size===indices.length);assert(indices.every(i=>Number.isInteger(i)&&i>=0&&i<q.options.length));if(q.kind==='order')assert.equal(indices.length,q.options.length);}
 for(const l of c.PARENT_LESSONS){
  assert.equal(l.n,l.id-300);assert(l.goal&&l.desc&&l.title);
  const deck=c.PARENT_SLIDES[l.id];assert(deck.length>=8,`A complete teaching sequence for ${l.id}`);
@@ -21,7 +21,7 @@ for(const l of c.PARENT_LESSONS){
   if(s.type==='quiz'){quizzes++;assert(Number.isInteger(s.correct)&&s.correct>=0&&s.correct<s.options.length);assert(s.explanation?.length>40);}
   if(s.type==='activity')activities++;
   if(s.type==='parent-interaction'){interactions++;checkQuestion(s.question);}
-  for(const source of s.sources||[]){if(source.url)assert(/^https:\/\//.test(source.url));assert(!/docs\.google\.com\/(document|presentation)/.test(source.url||''),'No private source documents in public lesson links');}
+  for(const source of s.sources||[]){if(source.url)assert(/^https:\/\//.test(source.url)||(/^removes\.html\?lesson=\d+$/.test(source.url)&&c.GCSE_UNITS.flatMap(u=>u.lessons).some(l=>l.id===Number(source.url.split('=')[1]))));assert(!/docs\.google\.com\/(document|presentation)/.test(source.url||''),'No private source documents in public lesson links');}
  }
  const completion=c.PARENT_COMPLETION[l.id];assert.equal(completion.questions.length,3);completion.questions.forEach(checkQuestion);assert(completion.questions.some(q=>q.kind!=='choice'));assert.equal(deck.at(-1).type,'parent-completion');assert(!l.evidence&&!l.feedback,'No written evidence assignments');
  assert(/Haileybury/.test(JSON.stringify(deck)),`School approach in lesson ${l.id}`);

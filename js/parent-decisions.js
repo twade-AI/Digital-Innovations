@@ -1,5 +1,5 @@
 /* Parent pathway: decisions, relationships and the family playbook.
-   Original fictional cases; public guidance checked 10 November 2026.
+   Original practice cases; classroom example linked to Haileybury’s public AI overview.
    On-screen learning and completion checks: no written parent assignments. */
 var PARENT_LESSONS = typeof PARENT_LESSONS === 'undefined' ? [] : PARENT_LESSONS;
 PARENT_LESSONS.push(
@@ -89,9 +89,13 @@ PARENT_LESSONS.push(
         {
           "label": "Childline: Report Remove, including AI fakes",
           "url": "https://www.childline.org.uk/info-advice/bullying-abuse-safety/online-mobile-safety/report-remove/"
+        },
+        {
+          "label": "Haileybury: Safeguarding and Child Protection Policy, September 2026, section 4.1",
+          "url": "https://www.haileybury.com/userfiles/haileyburyukmvc/documents/01-about-us/reports-and-policies/Safeguarding-and-Child-Protection-Policy-September-2026.pdf"
         }
       ],
-      "callout": "Start with “Thank you for telling me. Let’s get the right help.” A calm response makes it easier to explain what happened."
+      "callout": "Haileybury safeguarding: <a href=\"mailto:childprotection@haileybury.com\">childprotection@haileybury.com</a>. DSL office: <a href=\"tel:+441992706496\">01992 706496</a>. If someone is in immediate danger, call 999."
     },
     {
       "type": "parent-interaction",
@@ -448,21 +452,17 @@ PARENT_LESSONS.push(
     },
     {
       "type": "scenario",
-      "title": "The bedtime streak",
-      "situation": "Alex says a study app sends evening messages about losing a streak. They are staying up to maintain it and feel anxious about stopping. There is no immediate safety concern.",
-      "question": "Which response makes a manageable next step?",
+      "title": "Continue with a boundary, or pause?",
+      "situation": "Alex, 17, uses an approved chatbot to rehearse a presentation, within the teacher’s instructions. Twice this week, the conversation continued past the usual evening stopping point. Alex says it helps and wants to keep using it until the presentation. You have not yet established whether this was a deliberate extra practice session or whether Alex felt unable to stop. There is no immediate safety concern.",
+      "question": "Both responses below can be reasonable. Which would you start with? Open each response to see what evidence would strengthen or change that decision.",
       "choices": [
         {
-          "text": "“You are addicted. Give me every message you have sent.”",
-          "outcome": "A label and a demand for every message can close the conversation. Ask what the streak means to Alex, discuss its effect on sleep and agree a specific change together."
+          "text": "Agree a short practice session with a clear stopping point, then review how it went.",
+          "outcome": "This fits if Alex can stop comfortably, sleep is protected and the chat serves the permitted presentation task. Ask what the extra time achieved, agree a stopping point and check that Alex can rehearse independently afterwards, keeping agreed access support. If reminders are driving the session or the boundary repeatedly fails, move to a pause and involve a trusted adult. Continued access needs evidence that the arrangement is working."
         },
         {
-          "text": "“It is educational, so the time spent must be worthwhile.”",
-          "outcome": "Look at what the activity is achieving and what it is displacing. An educational app that keeps Alex awake still needs a boundary around its use."
-        },
-        {
-          "text": "“Let us look at what the reminders are asking you to do and agree a time to stop, with reminders off where possible.”",
-          "outcome": "This addresses the design and the actual difficulty. Agree who will help, how to preserve useful study time and when to review the change. Settings may be controlled by the school or account administrator, so check rather than bypass restrictions."
+          "text": "Pause evening chatbot sessions and agree another way to rehearse while you understand what is happening.",
+          "outcome": "This fits if sleep is being lost, leaving feels difficult or the conversation has moved into personal worries. Explain the reason for the pause, offer a way to practise with a person or approved class materials, and agree when to review it. If the extra sessions were deliberate, limited and easy to stop, a shorter bounded session may meet the need. A pause should lead to support and a clear review, rather than an indefinite punishment."
         }
       ]
     },
@@ -521,12 +521,13 @@ PARENT_LESSONS.push(
     },
     {
       "type": "concept",
-      "title": "Keep school support in the picture",
-      "body": "Haileybury’s approach puts human relationships alongside useful technology. The school’s pastoral and safeguarding teams provide support that a learning tool cannot replace. Approval for a learning purpose does not make a tool’s personal advice professional care.<br><br>A revision conversation might gradually become a place to discuss friendship worries. Ask what the young person finds helpful and who they would feel comfortable approaching. A tutor, pastoral colleague or safeguarding contact can help them take the next step. For concerns involving a school-managed tool, account or device, ask school which support route to use.",
-      "callout": "A useful question: “Who would you feel comfortable speaking to, and what would help you start that conversation?”",
+      "title": "Inside a Haileybury philosophy lesson",
+      "body": "Haileybury’s public AI overview describes a Sixth Form philosophy session in which pupils spoke with a chatbot built to test machine friendship. They then argued about whether it should exist.<br><br><strong>The learning focus:</strong> examine machine friendship and judge whether this kind of system should be created. <strong>The tool’s contribution:</strong> a conversation pupils could examine. <strong>The pupils’ contribution:</strong> an argument about whether the system should exist. The conversation gave them material to think about; their reasons were the important work.<br><br>Bring that distinction into a parent conversation. Ask what the tool helped the pupil notice, which claim they questioned and how they reached their own judgement. A school-approved learning activity still has a purpose and boundaries. For personal worries, help the pupil find a trusted adult, including the school’s pastoral or safeguarding team.",
+      "callout": "Ask: “What did the conversation make you think about friendship, and what is your strongest reason for your view?”",
       "sources": [
         {
-          "label": "Haileybury AI Parent Guide, updated 4 November 2026; current full policy available through the School Portal"
+          "label": "Haileybury: Artificial Intelligence — How we’ve embraced it",
+          "url": "https://www.haileybury.com/innovation-research/artificial-intelligence"
         }
       ]
     },
