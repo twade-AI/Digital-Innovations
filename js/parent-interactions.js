@@ -118,7 +118,7 @@
       var item = root.PARENT_COMPLETION && root.PARENT_COMPLETION[id], list = questions(id);
       if (list.length !== 3) return '<section class="parent-interactions"><h2 class="slide-title">Lesson checks</h2><p role="alert">The three lesson checks could not be loaded. Please reload the course.</p></section>';
       var finalContext = {id:id, key:completionKey(id), list:list, final:true};
-      return '<section class="parent-interactions parent-completion parent-checks" data-parent-lesson="' + esc(id) + '"><h2 class="slide-title">' + esc(slide.title || 'Put it into practice') + '</h2><p class="parent-interaction-intro">' + esc(item.intro || 'Try these three short checks. You can change an answer and try again. No writing or uploads are needed.') + '</p>' + list.map(function (q, i) { return formMarkup(q, finalContext, i); }).join('') + '<p class="parent-check-footnote">Check all three answers to finish this lesson. Your choices save on this device. This is a learning check, not an accredited assessment.</p></section>';
+      return '<section class="parent-interactions parent-completion parent-checks" data-parent-lesson="' + esc(id) + '"><h2 class="slide-title">' + esc(slide.title || 'Put it into practice') + '</h2><p class="parent-interaction-intro">' + esc(item.intro || 'Try these three checks. Use the feedback to review your choices and try again.') + '</p>' + list.map(function (q, i) { return formMarkup(q, finalContext, i); }).join('') + '<p class="parent-check-footnote">Check all three answers to finish this lesson. Your choices save on this device.</p></section>';
     }
     if (slide.type !== 'parent-interaction') return '';
     var hasKey = id != null && Number.isInteger(slide.slideIndex);

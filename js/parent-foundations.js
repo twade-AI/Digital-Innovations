@@ -12,13 +12,13 @@ PARENT_LESSONS.push(
     {
       "type": "hook",
       "title": "“Everyone is using it.” Where do you start?",
-      "body": "<p>A teenager asks a chatbot to explain a science idea. A music app suggests another track. A convincing image appears in a group chat. All three may involve AI, but they raise different questions.</p><p>You do not need to become a computer scientist to take an interest. In this lesson you will identify the job the technology is doing, then practise a conversation that helps a young person think for themselves.</p>",
-      "callout": "Allow around 15 minutes. Choose responses on screen and compare the feedback. No writing, account or real family conversation is required."
+      "body": "<p>A teenager asks a chatbot to explain a science idea. A music app suggests another track. A convincing image appears in a group chat. Each raises a different question about how AI shapes what we learn, choose and believe.</p><p>Start by identifying the job the technology is doing. Then ask what the young person is trying to achieve and where their own judgement comes in. You will practise those conversations through the examples in this lesson.</p>",
+      "callout": "Allow around 15 minutes. Choose your responses on screen, then use the feedback to check your reasoning."
     },
     {
       "type": "concept",
-      "title": "AI is a broad name, not one clever machine",
-      "body": "<p>AI describes computer systems designed to carry out tasks such as recognising patterns, making predictions or generating material. Different systems do different jobs. A recommendation system may predict which clip will keep someone watching. Generative AI can produce a new answer, image or sound in response to an instruction.</p><p>That instruction is usually called a <strong>prompt</strong>. Gemini is an example of a generative AI assistant. Its fluent conversation does not establish that it understands your child, knows the answer or has checked the facts.</p>",
+      "title": "What job is the AI doing?",
+      "body": "<p>AI describes computer systems designed to recognise patterns, make predictions or generate material. A recommendation system uses signals about someone’s behaviour to predict what they will want to watch or hear next. Generative AI produces an answer, image or sound in response to an instruction, usually called a <strong>prompt</strong>.</p><p>Gemini is a generative AI assistant. Its conversational style makes it easy to ask a follow-up question. That fluency also makes a mistaken answer sound convincing, so the person using it still needs to check the facts and decide what to do with the response.</p>",
       "callout": "Ask “What job is this system doing here?” before deciding whether it is useful.",
       "sources": [
         {
@@ -30,13 +30,13 @@ PARENT_LESSONS.push(
     {
       "type": "concept",
       "title": "The same technology can support very different purposes",
-      "body": "<p>Consider a fictional pupil, Alex, learning fractions. An explanation using slices of a pizza might help Alex understand why two quarters equal one half. Asking for the finished worksheet may get the page completed while leaving the misunderstanding untouched.</p><p>The important difference is what Alex does with the help. Can Alex explain the idea and use it on another question? Haileybury’s principle <strong>Don’t steal the struggle</strong> asks us to preserve that thinking. A better answer on a screen is not, by itself, evidence of learning.</p>",
-      "callout": "A useful first question: “What are you trying to learn or do?”"
+      "body": "<p>Alex is learning fractions and asks for an explanation of why two quarters equal one half. A diagram of pizza slices gives Alex something to work with: compare the pieces, explain the relationship and try another fraction.</p><p>Now imagine Alex asks for the completed worksheet. The page is finished, but we still need to find out what Alex understands. Haileybury’s principle <strong>Don’t steal the struggle</strong> keeps attention on that learning. After the help, ask Alex to explain the idea and use it on a different question.</p>",
+      "callout": "Begin with: “What are you trying to learn or do?”"
     },
     {
       "type": "concept",
       "title": "Four principles to keep beside you",
-      "body": "<p>The Haileybury AI Parent Guide offers four principles. They are useful starting points for a conversation, not a substitute for the instructions on a particular task.</p>",
+      "body": "<p>The Haileybury AI Parent Guide sets out four principles for using AI well. Apply them alongside the instructions for the task, so the conversation covers the learning, the contribution of the tool and the people affected.</p>",
       "bullets": [
         {
           "term": "Human judgement first",
@@ -55,7 +55,7 @@ PARENT_LESSONS.push(
           "text": "Consider the people whose information, work or feelings could be affected."
         }
       ],
-      "callout": "“Struggle” does not mean leaving someone unsupported. Agreed assistive support stays in place."
+      "callout": "Keep agreed assistive support in place while the pupil does the thinking the task is designed to develop."
     },
     {
       "type": "parent-interaction",
@@ -74,40 +74,40 @@ PARENT_LESSONS.push(
           2,
           3
         ],
-        "explanation": "Sam’s question checks purpose and attention; Ari’s checks learning; Jo’s checks judgement and care. A casual creative task still needs sensible privacy choices. None requires inspecting anyone’s actual account."
+        "explanation": "Sam’s question checks whether the app is serving a deliberate choice. Ari’s checks whether the explanation led to understanding. Jo’s checks the poem’s suitability and the information shared. Each question connects the tool to the person using it."
       }
     },
     {
       "type": "scenario",
       "title": "The conversation at the kitchen table",
-      "situation": "<p>A fictional 15-year-old says, “I used AI on the history homework.” You have not seen the task instructions or what the tool did.</p>",
+      "situation": "<p>A 15-year-old says, “I used AI on the history homework.” You have not seen the task instructions or what the tool did.</p>",
       "question": "Which opening is most likely to give you useful information?",
       "choices": [
         {
           "text": "“Then the homework cannot be yours.”",
-          "outcome": "That reaches a conclusion before you know what happened. There may be a legitimate explanation, a permitted use or a problem to resolve. Start by asking about the task and the contribution."
+          "outcome": "First find out what the task allowed and what the pupil used AI to do. That gives you the information needed to recognise permitted help or address a problem fairly."
         },
         {
           "text": "“What was the task, and what did AI help you with?”",
-          "outcome": "This leaves room for an honest account. Follow with “What did you work out for yourself?” Then check the task instructions together. Curiosity and clear boundaries can work together."
+          "outcome": "Follow this with “What did you work out for yourself?” Then check the task instructions together. You are asking for an honest account and making the boundary clear."
         },
         {
           "text": "“As long as it sounds good, that is fine.”",
-          "outcome": "A polished answer does not tell you whether the use was permitted or whether any learning happened. Ask about the process before accepting the outcome."
+          "outcome": "Ask how the answer was produced and what the pupil can explain. A polished result still needs to meet the task rules and show the pupil’s understanding."
         }
       ]
     },
     {
       "type": "concept",
       "title": "When the answer is “You don’t get it”",
-      "body": "<p>Sometimes a sensible question meets a defensive answer. Try keeping the next step small rather than asking all your questions at once.</p><p><strong>Parent:</strong> “What did the tool help you with?”<br><strong>Teenager:</strong> “You don’t get it. Everyone uses it.”<br><strong>Parent:</strong> “You’re right that I haven’t used it for this task. Show me one useful part. Then we can check what your teacher asked you to do.”<br><strong>Teenager:</strong> “It gave me three arguments.”<br><strong>Parent:</strong> “Which would you choose, and why?”</p><p>The parent does not have to approve the use before understanding it. Asking about one choice creates a starting point; the task rules still need checking.</p>",
-      "callout": "With a younger pupil, explore a school-directed example together. With an older teenager, give them room to explain their process; do not make unrestricted access to private chats the price of the conversation."
+      "body": "<p>Sometimes a sensible question meets a defensive answer. Ask about one choice and give the teenager room to explain it.</p><p><strong>Parent:</strong> “What did the tool help you with?”<br><strong>Teenager:</strong> “You don’t get it. Everyone uses it.”<br><strong>Parent:</strong> “Show me one part that helped. Then let’s look at what your teacher asked you to do.”<br><strong>Teenager:</strong> “It gave me three arguments.”<br><strong>Parent:</strong> “Which would you choose, and why?”</p><p>That last question brings the conversation back to the pupil’s judgement. You can then check the permission and evidence together, with a clearer understanding of what happened.</p>",
+      "callout": "With a younger pupil, explore a school-directed example together. Give an older teenager space to explain their process and choose a relevant example to share."
     },
     {
       "type": "concept",
       "title": "You can be useful without knowing the subject",
-      "body": "<p>A parent can help someone organise a task, name a sticking point or decide when to ask a teacher. You do not need to judge every step of an unfamiliar equation.</p><p>Try: “Show me the bit you understand so far.” Give thinking time. Then ask what kind of help would make the next step possible. With an older teenager, agree how they will show responsible choices rather than requiring access to every conversation.</p><p>If you cannot tell whether an explanation is accurate, say so: “I can follow how you approached it, but we need the class source or your teacher to check that part.” This models honest judgement rather than guessing.</p>",
-      "callout": "Our course activities work with fictional situations. A real family conversation is optional, never a condition of completion.",
+      "body": "<p>Your role is to help the pupil organise the task, identify the difficulty and recognise when to ask a teacher. Start with “Show me the bit you understand so far.” Give them time to answer, then ask what help would make the next step possible.</p><p>When the subject is unfamiliar, use the class source to check the explanation together. Say: “I can follow how you approached it. Let’s check that part against your notes, or ask your teacher.” This shows the pupil how to handle uncertainty honestly and find the right support.</p>",
+      "callout": "Ask the pupil to show where their explanation comes from and what they can now do with it.",
       "sources": [
         {
           "label": "EEF: parental engagement and practical support",
@@ -125,11 +125,11 @@ PARENT_LESSONS.push(
         "Remove every support tool before allowing them to continue."
       ],
       "correct": 1,
-      "explanation": "Permission comes first. Explaining and applying the idea gives evidence of understanding. Confidence tells you little about what the pupil can do. Preserving the thinking does not mean withdrawing agreed assistive support."
+      "explanation": "Check permission first, then ask the pupil to explain and apply the idea. This shows what they understand while agreed assistive support remains available."
     },
     {
       "type": "summary",
-      "title": "Start with interest. Keep the judgement.",
+      "title": "Help them explain their choices",
       "points": [
         {
           "label": "Name the job",
@@ -145,24 +145,24 @@ PARENT_LESSONS.push(
         },
         {
           "label": "Try the conversation",
-          "text": "Choose a useful opening and follow-up in the final on-screen cases. You do not need to write a script."
+          "text": "Use the final cases to choose an opening question and a follow-up that bring the pupil’s thinking into view."
         }
       ]
     }
   ],
   "completion": {
-    "intro": "Apply the four principles to three short decisions. Choose on screen; the explanations will help you revisit anything unclear.",
+    "intro": "Apply the four principles to these three decisions. Check the explanation after each response.",
     "questions": [
       {
         "kind": "choice",
-        "prompt": "A fictional teenager says, “AI gave me arguments for tomorrow’s discussion.” You have not seen the task. Which response best opens a useful conversation?",
+        "prompt": "A teenager says, “AI gave me arguments for tomorrow’s discussion.” You have not seen the task. Which response best opens a useful conversation?",
         "options": [
           "“What was the discussion asking you to consider, which argument would you choose, and what did the tool contribute?”",
           "“If the arguments are accurate, there is no need to ask how you prepared.”",
           "“The number of arguments will show whether you have done enough work.”"
         ],
         "correct": 0,
-        "explanation": "This establishes purpose, contribution and the learner’s own choice. Then check the task instructions and evidence. Accuracy matters, but does not alone establish permission or understanding."
+        "explanation": "The opening establishes the purpose, the tool’s contribution and the pupil’s own choice. Follow up by checking the task instructions and the evidence behind the chosen argument."
       },
       {
         "kind": "select",
@@ -177,7 +177,7 @@ PARENT_LESSONS.push(
           0,
           1
         ],
-        "explanation": "The target is the learner’s thinking, with appropriate access support retained. Removing every aid confuses access with reasoning; unrestricted access to private chats is not the starting condition for a useful conversation."
+        "explanation": "Keep the focus on the pupil’s thinking and retain agreed access support. Asking them to explain a decision gives you useful information; removing every aid or demanding private chats does not establish understanding."
       },
       {
         "kind": "order",
@@ -194,7 +194,7 @@ PARENT_LESSONS.push(
           2,
           0
         ],
-        "explanation": "Start with the learning purpose, establish permission before tool use, use help for that purpose, then inspect the result and check what the learner can do. A tool’s availability is not permission."
+        "explanation": "Identify the learning goal and check permission before using the tool. Then inspect the help and ask the learner to apply the idea. Each step gives the next one a clear purpose."
       }
     ]
   }
@@ -210,13 +210,13 @@ PARENT_LESSONS.push(
     {
       "type": "hook",
       "title": "It sounds certain. Is it?",
-      "body": "<p>A chatbot gives a precise time, a sensible explanation and a neat list of sources. It feels reassuring. But precision and confidence are features of the answer’s presentation, not proof that the answer is right.</p><p>You will practise a small check you can actually use: take one important claim, open the relevant source, and decide what the source establishes. The practice pack is included, so you do not need to search or sign in.</p>",
-      "callout": "Allow around 15 minutes. All practice sources are included. Make your choices on screen; no notes, account or searching are required."
+      "body": "<p>A chatbot gives a precise time, a sensible explanation and a neat list of sources. It feels reassuring. The next question is whether those sources support what the answer says.</p><p>In this lesson, take one claim that matters, read the relevant passage and decide what it establishes. You will use the source cards provided, then practise correcting an answer that goes beyond its evidence.</p>",
+      "callout": "Allow around 15 minutes. Read each source closely before choosing your verdict."
     },
     {
       "type": "concept",
       "title": "How a fluent mistake happens",
-      "body": "<p>A generative language model produces text using patterns learned during training and the information available in the conversation or its connected tools. It can generate a plausible sentence without establishing that the sentence is true. Some systems retrieve information, but retrieval does not guarantee that the final answer represents it correctly.</p><p>An invented fact, quotation or reference is often called a <strong>hallucination</strong>. The practical lesson is simple: do not use the tool’s confident wording as your evidence.</p>",
+      "body": "<p>A generative language model produces text using patterns learned during training and the information available in the conversation or connected tools. It can put together a plausible sentence even when the fact, quotation or reference is wrong. An invented detail presented as fact is often called a <strong>hallucination</strong>.</p><p>Some systems retrieve information from sources. You still need to check that the answer represents those sources accurately: it might overlook a condition, combine two different claims or add a detail the source never supplied. Open the source and find the passage that supports the claim.</p>",
       "sources": [
         {
           "label": "DfE: accuracy and other limitations of generative AI",
@@ -239,16 +239,16 @@ PARENT_LESSONS.push(
         },
         {
           "term": "Not established",
-          "text": "The source does not settle the point. Missing information is not permission to invent an answer."
+          "text": "The source leaves the point unresolved. State what is missing and check elsewhere if it affects your decision."
         }
       ],
-      "callout": "A link beside a sentence is a route to evidence. It is not the evidence check itself."
+      "callout": "Follow the link, then check the passage. A citation only helps when it supports the claim beside it."
     },
     {
       "type": "concept",
       "title": "Worked example: a sentence that says too much",
       "body": "<p><strong>Fictional source:</strong> “The museum’s Saturday model-making session starts at 10 am. Booking is required. Entry to the permanent galleries is free.”</p><p><strong>Generated answer:</strong> “The model-making session is free and you can drop in at 10 am.”</p><p>The start time is supported. “Drop in” conflicts with the booking requirement. The workshop price is not established: free gallery entry does not tell us what the separate session costs. A useful correction is: “The session starts at 10 am and requires booking. Check the session fee before booking.”</p>",
-      "callout": "Notice the narrow correction. We do not need to declare the whole answer true or false."
+      "callout": "Keep the correct start time, fix the booking instruction and check the missing price. Each claim needs its own verdict."
     },
     {
       "type": "parent-interaction",
@@ -275,19 +275,19 @@ PARENT_LESSONS.push(
     {
       "type": "concept",
       "title": "Check more carefully when the consequence matters",
-      "body": "<p>You do not need to investigate every word of a birthday poem. Start with claims that affect a decision: a deadline, a cost, a quotation, a safety instruction or the central evidence for an argument. The more consequential the decision, the stronger the check should be.</p><p>A parent might say: “Which claim are you relying on here? Let’s open that source and find the passage.” Ask the pupil to explain the match, then inspect it together. This keeps the checking with the learner instead of making the parent do all the research.</p><p>Haileybury’s <strong>Human judgement first</strong> means taking responsibility for important claims. If you cannot establish one, you can narrow it, leave it out or ask someone qualified to clarify it.</p>",
-      "callout": "Being careful does not mean treating everything as false. It means being clear about what you know, what you have checked and what remains uncertain."
+      "body": "<p>Begin with claims that affect a decision: a deadline, a cost, a quotation, a safety instruction or the main evidence for an argument. Give these claims more attention than incidental wording. The consequences help you decide how far to check.</p><p>Ask the pupil: “Which claim are you relying on here? Let’s open that source and find the passage.” Let them explain the connection, then inspect it together. They practise the checking, and you can see how they reached their conclusion.</p><p>This is Haileybury’s <strong>Human judgement first</strong> in action. When the evidence falls short, narrow the claim, leave it out or ask someone qualified to clarify it.</p>",
+      "callout": "Be clear about what you know, what you have checked and what still needs an answer."
     },
     {
       "type": "concept",
       "title": "Choose a source that can answer the question",
-      "body": "<p>For a school deadline, use the current school instruction. For a qualification rule, use the relevant awarding body and the school’s guidance. For a health decision, seek an appropriate professional rather than treating a chatbot as a clinician.</p><p>Check the date, author, scope and exact passage. A real page can still be old, concern another country or discuss a different course. Where a claim is disputed or consequential, compare suitable independent evidence. A second chatbot repeating the claim is not an independent verification.</p>",
-      "callout": "Haileybury’s “Human judgement first” means the pupil remains responsible for checking. Naming the AI tool does not make its claims reliable."
+      "body": "<p>Choose a source with responsibility for the question. For a school deadline, use the current school instruction. For a qualification rule, check the relevant awarding body and school guidance. Take a health concern to an appropriate professional.</p><p>Then check the date, author, scope and exact passage. An official page can still refer to another country, course or year. For a disputed or consequential claim, compare suitable independent evidence. Agreement between two chatbots is a reason to investigate the underlying sources, not confirmation that the claim is true.</p>",
+      "callout": "The pupil remains responsible for checking the claims they use and explaining where the evidence comes from."
     },
     {
       "type": "scenario",
       "title": "“But it gave me three references.”",
-      "situation": "<p>A fictional pupil’s paragraph cites three articles. One link works, but the article discusses adults while the paragraph makes a claim about 13-year-olds. You have not checked the other links.</p>",
+      "situation": "<p>A pupil’s paragraph cites three articles. One link works, but the article discusses adults while the paragraph makes a claim about 13-year-olds. You have not checked the other links.</p>",
       "question": "What is the most useful next step?",
       "choices": [
         {
@@ -296,11 +296,11 @@ PARENT_LESSONS.push(
         },
         {
           "text": "Check the relevant passages and revise the claim to match the evidence.",
-          "outcome": "Yes. The adult study may be useful, but it cannot automatically establish the claim about younger pupils. Check the remaining sources and narrow or remove claims they do not support."
+          "outcome": "Read what the adult study actually establishes, then check the remaining sources. Narrow or remove the claim about younger pupils unless relevant evidence supports it."
         },
         {
           "text": "Ask the same chatbot whether its references are genuine and stop there.",
-          "outcome": "That may help locate a problem, but it does not finish the check. The model can give another confident assurance. Open the sources and inspect the relevant evidence yourself."
+          "outcome": "The chatbot can produce another confident assurance. Open the references and inspect the relevant passages to establish what they support."
         }
       ]
     },
@@ -314,11 +314,11 @@ PARENT_LESSONS.push(
         "Average the times and arrive at 4.15 pm."
       ],
       "correct": 1,
-      "explanation": "The dated notice explicitly describes an exception for the relevant session. Its scope explains the difference; this is not simply a rule that the newest page always wins. If the source or intended session is unclear, ask the organiser rather than inventing a compromise."
+      "explanation": "The dated notice gives a specific exception for this Thursday, which explains the difference. Match the source to the session you are attending. If that remains unclear, check with the organiser."
     },
     {
       "type": "summary",
-      "title": "Keep the useful answer. Check the claim.",
+      "title": "Match the answer to the evidence",
       "points": [
         {
           "label": "Be specific",
@@ -340,7 +340,7 @@ PARENT_LESSONS.push(
     }
   ],
   "completion": {
-    "intro": "Use supported, contradicted and not established to decide what the supplied evidence allows. No written answer is needed.",
+    "intro": "Use supported, contradicted and not established to judge the claims in these cases.",
     "questions": [
       {
         "kind": "select",
@@ -357,7 +357,7 @@ PARENT_LESSONS.push(
           2,
           3
         ],
-        "explanation": "The date and booking date are explicit. Lunch and price are not stated. “Any teenager” is too broad: the stated range excludes ages 13 and 19. Do not extend one detail into an unsupported promise."
+        "explanation": "The date and booking date are explicit. Lunch and price are unstated, while “any teenager” extends beyond the listed ages of 14–18. Keep the confirmed details and leave the missing information visible."
       },
       {
         "kind": "choice",
@@ -368,7 +368,7 @@ PARENT_LESSONS.push(
           "Whether another chatbot repeats the same conclusion."
         ],
         "correct": 1,
-        "explanation": "A real source can still concern a different group, task or outcome. Inspect the relevant evidence, then narrow or remove unsupported claims. A second chatbot’s agreement does not supply independent evidence."
+        "explanation": "Inspect who took part, what they did and what was measured. Those details determine whether the study supports a claim about young pupils. Revise the claim to match the evidence you find."
       },
       {
         "kind": "choice",
@@ -379,7 +379,7 @@ PARENT_LESSONS.push(
           "Check the current instructions for the relevant qualification and exam series, including school guidance."
         ],
         "correct": 2,
-        "explanation": "Authority is only one part of suitability. The relevant date, qualification, exam series and local arrangements must match the decision. If they remain unclear, ask school rather than treating an old page as current."
+        "explanation": "Check that the source covers the current qualification, exam series and school arrangements. An old official page can contain accurate information for a different year. Ask school if the relevant deadline remains unclear."
       }
     ]
   }
@@ -395,13 +395,13 @@ PARENT_LESSONS.push(
     {
       "type": "hook",
       "title": "Before you click “upload”",
-      "body": "<p>A parent wants useful revision advice and considers uploading a child’s school report. It seems convenient: the document already explains the difficulties. But it also contains personal information about a young person and possibly other people.</p><p>We can get useful practice without using that document. This lesson helps you separate account permission, information choices and sharing. You will leave with a short check to use before the practical lessons.</p>",
-      "callout": "Allow around 20 minutes. All required choices can be made here without signing in, changing settings or writing anything down."
+      "body": "<p>A parent wants revision advice and considers uploading a child’s school report. The document explains the difficulties, but it also carries personal information about the pupil and other people.</p><p>Before uploading, check the account, the information being sent and who can see the result. We will work through those decisions using an invented learning brief, ready for the practical lessons.</p>",
+      "callout": "Allow around 20 minutes. Use the examples to decide what belongs in a prompt and what should stay out."
     },
     {
       "type": "concept",
-      "title": "An adult account is not permission for a child",
-      "body": "<p>Your own eligible adult account, a child’s personal account and a school-managed account can have different access, settings and protections. A feature available to you may be unavailable or inappropriate for a child. Age, location, account type and school administration all matter.</p><p>Our optional live practicals use your own eligible adult account and fictional material. They do not authorise a child to create an account or use your credentials for schoolwork. If you prefer, use the complete practice examples inside each lesson.</p>",
+      "title": "Check whose account you are using",
+      "body": "<p>An adult’s personal account, a child’s account and a school-managed account can have different access, settings and protections. Check age eligibility, location, account type and school administration before using a feature with a pupil.</p><p>For the live practicals in this course, use your own eligible adult account with the supplied fictional material. The complete worked examples provide another route through the same learning. Pupil schoolwork must follow the school-approved arrangements; sharing your adult login does not provide that permission.</p>",
       "sources": [
         {
           "label": "Google: Gemini sign-in requirements",
@@ -416,14 +416,14 @@ PARENT_LESSONS.push(
     },
     {
       "type": "concept",
-      "title": "Keep school permission separate from product access",
+      "title": "Follow the school-approved route",
       "body": "<p><strong>Haileybury-specific guidance, November 2026 parent guide:</strong> approved arrangements cover Gemini and Gemini Notebook, Canva and teacher-created Brisk Bots. Other AI platforms and personal AI accounts are not permitted for schoolwork.</p><p><strong>Removes to Upper Sixth</strong> may use approved AI for general study support, subject to age limits and teacher direction. <strong>Lower School</strong> pupils may use AI only when explicitly instructed by the school. The ability to open an app is not permission to use it.</p><p>For assessed work, follow the teacher’s task instructions and the qualification rules. If your child attends another school, use that school’s current policy. Lesson 6 explains the assessment categories.</p>",
-      "callout": "This course’s adult practice is separate from pupil schoolwork. Do not use a child’s credentials or alter school-managed controls."
+      "callout": "Keep adult practice and pupil schoolwork separate. Use your own account for this course and leave school-managed controls in place."
     },
     {
       "type": "concept",
-      "title": "Removing a name is only the first question",
-      "body": "<p>A document can identify someone through a combination of details: their year group, unusual circumstances, school, diagnosis or family situation. Replacing a name with initials may leave those clues intact.</p><p>For this course, keep reports, marked pupil work, medical or SEND information, private messages, identifying photographs and school-confidential documents out of AI tools. Use the fictional packs supplied instead. You will still learn the skill without making someone else’s information part of your experiment.</p>",
+      "title": "Look beyond the name",
+      "body": "<p>A document can identify someone through a combination of details: year group, school, an unusual event, a diagnosis or family circumstances. Initials leave many of those clues intact.</p><p>Use the fictional packs for these practicals. Keep school reports, marked pupil work, medical or SEND information, private messages, identifying photographs and confidential school documents out of the exercise. The invented brief gives the tool the context it needs for the skill you are practising.</p>",
       "callout": "Haileybury’s “Dignity and care” applies to the information in a prompt, as well as the answer it produces.",
       "sources": [
         {
@@ -434,8 +434,8 @@ PARENT_LESSONS.push(
     },
     {
       "type": "concept",
-      "title": "Privacy settings deserve a read, not a guess",
-      "body": "<p>In personal Gemini accounts, activity controls, temporary chats, connected apps and feedback can affect how information is handled. Turning off Keep Activity does not mean nothing is stored: Google describes limited retention for future chats and exceptions. Human review can occur.</p><p>Gemini Notebook has its own terms; feedback and account type also matter. Do not assume that an Education account and a personal account receive identical protections. You do not need to master every setting today. Know where the current explanation is, avoid sensitive practice material, and pause when the terms do not fit your purpose.</p>",
+      "title": "Check how the product handles information",
+      "body": "<p>In personal Gemini accounts, activity controls, temporary chats, connected apps and feedback affect how information is handled. Turning off Keep Activity does not mean nothing is stored: Google describes limited retention for future chats and exceptions, and human review can occur.</p><p>Check the terms for the product and account you are using. Gemini Notebook has its own terms, and Education accounts can have different protections from personal accounts. Use the official help pages below to resolve an account question. If the terms do not fit the intended use, keep the information out of the tool.</p>",
       "sources": [
         {
           "label": "Google: Gemini Apps Privacy Hub",
@@ -450,13 +450,13 @@ PARENT_LESSONS.push(
           "url": "https://support.google.com/gemininotebook/answer/16337734"
         }
       ],
-      "sourceNote": "Read against Google guidance checked November 2026; use the current help before changing settings."
+      "sourceNote": "Google guidance checked November 2026. Consult the current product help for account-specific decisions."
     },
     {
       "type": "concept",
-      "title": "Sending to a tool and sharing with people are two decisions",
-      "body": "<p>There are two separate questions. <strong>Input:</strong> what information are you sending to the service when you paste, upload or connect something? <strong>Sharing:</strong> who can see the conversation, source or notebook afterwards?</p><p>Keeping a notebook unshared does not undo sending its contents to the service. Equally, using an approved account does not mean every document is appropriate to upload or every sharing link is appropriate to send. A link may allow a wider audience than you expect; check its access setting before using it.</p><p>For our practicals, both decisions are simple: use the supplied fictional material and keep the work unshared. Do not connect email, calendars or private files. There is no learning benefit from experimenting with a real child’s information.</p>",
-      "callout": "This distinction explains why our before-upload check checks both the information sent and who could see the result."
+      "title": "Check the input and the audience",
+      "body": "<p>Uploading a source sends information to the service. Sharing a link can then give other people access to the conversation, source or notebook. Check both stages.</p><p>A notebook kept private has still received the uploaded information. An approved account still requires an appropriate source and a deliberate sharing choice. Before sending a link, check exactly who can open it.</p><p>For these practicals, use the supplied fictional material and keep the work unshared. Leave email, calendars and private files disconnected. That gives you a clear boundary while you learn how the tool works.</p>",
+      "callout": "Before uploading, ask what you are sending. Before sharing, ask who will be able to see it."
     },
     {
       "type": "parent-interaction",
@@ -475,45 +475,45 @@ PARENT_LESSONS.push(
           1,
           3
         ],
-        "explanation": "Invented briefs and the supplied fictional pack let you practise the skill without disclosing child information. Covering a name does not remove all identifying details. A class list concerns other people; owning a textbook does not automatically permit public redistribution."
+        "explanation": "The invented brief and supplied pack provide the context needed for practice. A covered name can leave identifying details, a class list exposes other people’s information, and owning a textbook does not grant public redistribution rights."
       }
     },
     {
       "type": "concept",
-      "title": "A useful worked check before a practical",
-      "body": "<p>Suppose you want Gemini to help plan a fictional community event. Check four things before continuing.</p>",
+      "title": "Work through a decision before opening the tool",
+      "body": "<p>You want Gemini to help plan a fictional community event. Here is the check that makes the practice appropriate.</p>",
       "bullets": [
         {
           "term": "Account",
-          "text": "I am using my own eligible adult account, or the lesson’s no-account route."
+          "text": "I use my own eligible adult account or work through the supplied examples."
         },
         {
           "term": "Information",
-          "text": "My brief is invented and contains no private family, pupil or school information."
+          "text": "I use the invented event brief and keep private family, pupil and school information out."
         },
         {
           "term": "Permission",
-          "text": "I have the right to use the supplied material and am not confusing adult practice with permission for schoolwork."
+          "text": "I have permission to use the material. Pupil schoolwork follows its own school-approved arrangements."
         },
         {
           "term": "Sharing",
-          "text": "I have kept the practice private, connected no private apps and checked the audience before sharing any result. If unclear, I do not share it."
+          "text": "I keep this practice unshared and private apps disconnected. Before sharing other work, I check the audience."
         }
       ],
-      "callout": "You do not need to connect email, buy a plan or publish anything for this course."
+      "callout": "Use the account, information, permission and sharing checks together whenever you start a new task."
     },
     {
       "type": "activity",
-      "title": "Choose a route you can explain",
-      "instructions": "<p>Consider these findings from the lesson: <strong>(1)</strong> turning activity history off is not a promise of no retention; <strong>(2)</strong> account type and product terms can differ; <strong>(3)</strong> feedback and sharing need their own checks.</p><p>Think about which finding changes the decision to use a real school report. Then reveal the explanation. The current help links are optional further reading; all required checks are on screen.</p>",
+      "title": "Does switching history off settle the decision?",
+      "instructions": "<p>A parent wants to upload a school report and has switched activity history off. Think through three points: the service may still retain information; account protections differ; and the parent still needs permission to use the document.</p><p>Decide whether the setting resolves the concern, then open the explanation.</p>",
       "steps": [
-        "Consider whether switching history off would give permission to upload someone else’s information.",
-        "Choose mentally which practical route suits you: your own eligible adult account with fictional material, or the complete supplied examples.",
-        "Reveal the guidance. Both practical routes allow you to complete the same learning."
+        "Ask which information in the report is actually needed for the practice.",
+        "Compare using the real report with using the invented learning brief supplied in this course.",
+        "Choose your route for the practical: your eligible adult account with fictional material, or the worked examples."
       ],
-      "reveal": "<p>A history setting does not create permission to upload a child’s report or guarantee that information is never retained. The useful choice is to practise with the invented brief. If account eligibility or protections are unclear, use the supplied examples. You can later consult the product’s official help for a real account question without making that investigation a condition of completing this course.</p>",
+      "reveal": "<p>Use the invented brief. Switching history off neither creates permission to upload the report nor guarantees zero retention. The brief provides the learning context while keeping the pupil’s information out of the exercise.</p><p>If account eligibility or protections are unclear, work through the supplied examples and use the official product help to resolve the account question.</p>",
       "revealLabel": "Compare your thinking",
-      "callout": "Optional extension: locate the privacy explanation in your own eligible adult account. No settings changes, screenshots or written notes are required."
+      "callout": "For a closer look at your own account, open its current privacy explanation and connected-app controls."
     },
     {
       "type": "quiz",
@@ -525,7 +525,7 @@ PARENT_LESSONS.push(
         "Yes, if they acknowledge the help."
       ],
       "correct": 1,
-      "explanation": "The November 2026 guide requires explicit school instruction for Lower School use and school-approved account arrangements. Product access and acknowledgement do not grant permission. Older pupils’ general study permission does not override a particular assessment rule either."
+      "explanation": "Haileybury requires explicit school instruction for Lower School use and school-approved account arrangements. Both must be in place. The general study permission for older pupils also remains subject to the rules for each assessed task."
     },
     {
       "type": "summary",
@@ -537,11 +537,11 @@ PARENT_LESSONS.push(
         },
         {
           "label": "Minimise information",
-          "text": "No real child’s information is needed to learn these skills."
+          "text": "Use the supplied fictional brief and include only the information needed for the task."
         },
         {
           "label": "Read the relevant terms",
-          "text": "Product, account type, feedback and sharing affect the picture."
+          "text": "Check the product and account protections, including feedback and sharing."
         },
         {
           "label": "Keep permission explicit",
@@ -551,7 +551,7 @@ PARENT_LESSONS.push(
     }
   ],
   "completion": {
-    "intro": "Decide what is appropriate before information enters a tool. Choose on screen; no upload or account access is required.",
+    "intro": "Apply the account, information, permission and sharing checks to these three cases.",
     "questions": [
       {
         "kind": "choice",
@@ -562,7 +562,7 @@ PARENT_LESSONS.push(
           "Proceed because temporary chat means there can be no retention or review."
         ],
         "correct": 0,
-        "explanation": "Using an invented brief preserves the practice while avoiding unnecessary disclosure. Initials and removed names can leave identifying details. A temporary or history setting does not by itself establish privacy or permission."
+        "explanation": "The invented brief gives you the same practice while protecting the pupil’s information. Removing a name can leave identifying details, and temporary-chat settings do not establish permission or guarantee zero retention."
       },
       {
         "kind": "select",
@@ -578,7 +578,7 @@ PARENT_LESSONS.push(
           2,
           3
         ],
-        "explanation": "Sending information to the service and giving other people access are separate decisions. An unshared notebook reduces one sharing route; it does not settle the rights, data or account questions."
+        "explanation": "Keeping the notebook unshared limits access by other people. You still need to check what is sent to the service, your permission to use it and the relevant account terms."
       },
       {
         "kind": "choice",
@@ -589,7 +589,7 @@ PARENT_LESSONS.push(
           "Adding an AI acknowledgement makes the account and task acceptable."
         ],
         "correct": 1,
-        "explanation": "Product access is not permission. Haileybury’s Lower School instruction requirement and school-approved account arrangements both apply. The adult practice route in this course does not authorise pupil schoolwork."
+        "explanation": "Follow both parts of Haileybury’s guidance: explicit school instruction for Lower School use and school-approved account arrangements. A parent’s personal login does not meet those requirements."
       }
     ]
   }
@@ -605,13 +605,13 @@ PARENT_LESSONS.push(
     {
       "type": "hook",
       "title": "“I’m stuck.” It is tempting to finish it.",
-      "body": "<p>It is late. A fictional teenager has spent ten minutes on a question and wants to paste it into a chatbot. A complete answer would end the argument. It might also hide the exact misunderstanding that needs attention.</p><p>In this lesson you will compare three kinds of help, choose a useful hint and a short check of understanding. You can practise the whole routine without knowing the teenager’s subject, using the small example supplied.</p>",
-      "callout": "Allow around 15 minutes. Choose and compare responses on screen. No account, real homework or written submission is needed."
+      "body": "<p>It is late. A teenager has spent ten minutes on a question and wants to paste it into a chatbot. A complete answer would finish the question. You would still need to find out what the learner understands.</p><p>Your next question matters. Work out where the learner is stuck, choose help that moves them forward and check what they can do afterwards. We will practise that sequence using a short maths example.</p>",
+      "callout": "Allow around 15 minutes. Choose the response that addresses the difficulty and leaves the next decision with the learner."
     },
     {
       "type": "concept",
       "title": "First find the sticking point",
-      "body": "<p>“I can’t do it” can mean several things: I do not understand the instruction; I have forgotten a fact; I cannot choose a method; I know what to say but cannot get it onto the page; or I am too tired to continue usefully.</p><p>Start with “What is the task asking, and which part can you already do?” Then choose a proportionate next step: reread an instruction, look at a class example, take a short break, use agreed support or ask the teacher. AI is one possible source of help when permitted. It is not the automatic answer to every difficulty.</p>",
+      "body": "<p>“I can’t do it” can mean several things: the instruction is unclear, a fact has been forgotten, the method is uncertain, getting ideas onto the page is difficult, or the learner is tired. Each calls for a different response.</p><p>Ask: “What is the task asking, and which part can you already do?” Use the answer to choose the next step. Reread the instruction, look at a class example, take a short break, use agreed support or ask the teacher. Where AI is permitted, give it a specific job that addresses the difficulty you have identified.</p>",
       "sources": [
         {
           "label": "EEF: practical ways parents can support learning",
@@ -622,8 +622,8 @@ PARENT_LESSONS.push(
     {
       "type": "concept",
       "title": "Keep the thinking; make the next step possible",
-      "body": "<p>A useful <strong>scaffold</strong> is temporary support that helps someone do a part they could not yet manage alone. It might be one question, a diagram or a worked example of a different problem. The next important decision still belongs to the learner.</p><p>This is Haileybury’s <strong>Don’t steal the struggle</strong> in practice. It does not mean withholding help or removing agreed assistive tools. If reading aloud enables access to the task, keep that support. Focus the independent check on the knowledge or reasoning being learnt.</p>",
-      "callout": "Ask “What thinking should stay with the learner?” That is more useful than counting how many hints they receive.",
+      "body": "<p>A <strong>scaffold</strong> supports a part of the task the learner cannot yet manage alone. It might be a question, a diagram or a worked example of a different problem. As the idea becomes clearer, the learner takes on more of the task themselves.</p><p>This is Haileybury’s <strong>Don’t steal the struggle</strong> in practice. Keep the decision that develops understanding with the pupil, and give them the support needed to reach it. Agreed assistive tools stay in place: read-aloud, for example, can provide access to a question while the pupil does the reasoning.</p>",
+      "callout": "Ask: “What thinking should stay with the learner, and what would help them take the next step?”",
       "sources": [
         {
           "label": "EEF: metacognition and self-regulated learning",
@@ -635,7 +635,7 @@ PARENT_LESSONS.push(
       "type": "concept",
       "title": "Worked example: three responses to the same problem",
       "body": "<p><strong>Fictional task:</strong> a £40 jacket is reduced by 25%. What is the sale price? The learner says, “I know 25% means a quarter, but I don’t know what to do next.” For this practice example, the teacher has permitted a hint but not a generated solution.</p><p><strong>Response A:</strong> “The sale price is £30.” This completes the calculation without finding out what the learner understands.</p><p><strong>Response B:</strong> “Think harder.” This leaves the sticking point untouched.</p><p><strong>Response C:</strong> “Find one quarter of £40. Is that the amount you pay or the amount taken off?” This uses what the learner already knows and leaves a meaningful decision for them.</p>",
-      "callout": "A good hint is specific enough to help and limited enough to leave something worth doing."
+      "callout": "Response C builds on the learner’s correct step and asks them to decide what the reduction means."
     },
     {
       "type": "parent-interaction",
@@ -649,25 +649,25 @@ PARENT_LESSONS.push(
           "“Start again; you need to concentrate more.”"
         ],
         "correct": 1,
-        "explanation": "The learner has calculated the reduction correctly but confused its meaning. Naming that correct step and asking what it represents leaves the next decision with them. If the hint does not help, use a clearer representation or seek a teacher’s explanation rather than supplying a paragraph to copy."
+        "explanation": "The calculation is correct; its meaning is the sticking point. Recognise the £6 reduction, then ask what it represents. That leaves the learner to decide how to find the sale price. If the hint fails, use a clearer representation or the class explanation."
       }
     },
     {
       "type": "concept",
       "title": "What if the hint still does not help?",
-      "body": "<p>Return to the £60 bag. The learner says: “I still think £6 is the price because that is the number I calculated.” Repeating the hint louder is unlikely to explain the difference.</p><p><strong>Parent:</strong> “On a sale label, ‘£6 off’ describes a saving. Draw the original £60 as a bar and mark the £6 being removed. What does the part left over represent?”<br><strong>Learner:</strong> “The amount I still pay.”<br><strong>Parent:</strong> “Now show how you would find that amount.”</p><p>If the meaning is still unclear, return to a class example or note the sticking point for the teacher. If the learner is exhausted, agree when to return. A parent need not keep inventing explanations until the work is finished.</p>",
-      "callout": "The useful decision is what support is needed next. A pause or a precise question for the teacher can be more helpful than a longer AI answer."
+      "body": "<p>Return to the £60 bag. The learner says: “I still think £6 is the price because that is the number I calculated.” Change the representation so they can see what the number means.</p><p><strong>Parent:</strong> “On a sale label, ‘£6 off’ describes a saving. Draw the original £60 as a bar and mark the £6 being removed. What does the part left over represent?”<br><strong>Learner:</strong> “The amount I still pay.”<br><strong>Parent:</strong> “Now show how you would find that amount.”</p><p>If the difficulty remains, return to a class example or ask the teacher about this particular misunderstanding. If the learner is exhausted, agree when to come back to it.</p>",
+      "callout": "Choose the next step from the learner’s response. That might be a clearer example, a break or a specific question for the teacher."
     },
     {
       "type": "concept",
       "title": "Make the learning check small and useful",
-      "body": "<p>After help, ask for a short explanation or a different example. You are looking for evidence that the idea now makes sense, not setting another exam at the kitchen table.</p><p>If the learner can reproduce the answer but cannot explain the method, the next step may be a clearer example or a teacher’s help. If they can explain and apply it, let them continue. A wrong answer is information about what to revisit, not a reason to add shame or surveillance.</p><p>If the subject is unfamiliar to you, ask the learner to point to the class note that supports their explanation. You can notice a gap without pretending to know the answer. For real Haileybury schoolwork, any AI help must use the approved tool and account and fit the teacher’s task instructions.</p>",
-      "callout": "Haileybury’s “Human judgement first” includes noticing when an AI explanation has failed to help. “Transparent by default” means being able to say what help was used."
+      "body": "<p>After the help, ask for a short explanation or a different example. The response shows whether the learner can use the idea. If they explain and apply it, let them continue. If they repeat the answer but cannot explain it, revisit the point that remains unclear.</p><p>When the subject is unfamiliar to you, ask the learner to point to the class note supporting their explanation. You can help them locate the uncertainty and take it to the teacher.</p><p>For Haileybury schoolwork, AI help must use the approved tool and account and follow the teacher’s task instructions. Ask the pupil to explain what help they used and what they worked out themselves.</p>",
+      "callout": "Human judgement first means checking whether the help worked. Transparent by default means explaining its contribution honestly."
     },
     {
       "type": "scenario",
       "title": "The hint arrives as a full solution",
-      "situation": "<p>A fictional pupil is permitted to use one hint on a practice question. The approved tool ignores the instruction and supplies the whole answer.</p>",
+      "situation": "<p>A pupil is permitted to use one hint on a practice question. The approved tool ignores the instruction and supplies the whole answer.</p>",
       "question": "What should the parent help the pupil do?",
       "choices": [
         {
@@ -676,7 +676,7 @@ PARENT_LESSONS.push(
         },
         {
           "text": "Stop using that answer, record what happened as required and seek a permitted way to continue.",
-          "outcome": "Yes. The pupil can explain that the tool supplied more than requested, ask for guidance where needed and practise a different example. A tool’s mistake does not require hiding its contribution."
+          "outcome": "Explain that the tool supplied more than requested, keep the records the task requires and ask how to continue. A different permitted practice example can help check understanding while the original contribution remains visible."
         },
         {
           "text": "Make the answer sound less polished.",
@@ -694,7 +694,7 @@ PARENT_LESSONS.push(
         "Only if the parent can judge the learner’s diagnosis."
       ],
       "correct": 1,
-      "explanation": "Independence concerns the target learning. Agreed support can remove an access barrier without doing the reasoning for the learner. Parents do not need to disclose or judge a diagnosis to apply this principle."
+      "explanation": "Keep the check focused on the target learning. Read-aloud support provides access to the question while the learner explains the method and does the reasoning."
     },
     {
       "type": "summary",
@@ -731,7 +731,7 @@ PARENT_LESSONS.push(
           "“Because the answer is wrong, no support should be used.”"
         ],
         "correct": 1,
-        "explanation": "This recognises an observation and directs attention to the supplied evidence while leaving the explanation with the pupil. A complete paragraph would replace the contribution the task is meant to elicit."
+        "explanation": "The question recognises the pupil’s observation and directs attention to the class note. The pupil still has to explain the energy transfer. That is the contribution this task is designed to develop."
       },
       {
         "kind": "select",
@@ -746,7 +746,7 @@ PARENT_LESSONS.push(
           0,
           2
         ],
-        "explanation": "A fresh example and an explanation reveal more about the target thinking. Appropriate access support can stay in place. Copying a correct answer does not show what the learner can explain or apply."
+        "explanation": "A fresh example and an explanation show what the learner can apply. Keep agreed access support in place and compare the reasoning with the class source."
       },
       {
         "kind": "order",
@@ -763,7 +763,7 @@ PARENT_LESSONS.push(
           2,
           0
         ],
-        "explanation": "Find the difficulty, offer proportionate help, allow the learner to act, then check what changed. If the idea remains unclear or the learner is exhausted, seek suitable support or agree a return point rather than endlessly adding hints."
+        "explanation": "Find the difficulty, offer specific help, give the learner time to act and check what changed. Use the response to decide whether to continue, revisit the idea or seek further support."
       }
     ]
   }
@@ -779,20 +779,20 @@ PARENT_LESSONS.push(
     {
       "type": "hook",
       "title": "“It was only helping with the wording.”",
-      "body": "<p>A fictional pupil has used AI to rewrite a paragraph. On one task that contribution might be permitted; on another it could replace the skill being assessed. Calling it “help” does not settle the question.</p><p>This lesson gives you a way to read the boundary before the work starts. You will use clearly labelled practice instructions, learn the distinction between permission and acknowledgement, and choose a clear question to school.</p>",
-      "callout": "Allow around 20 minutes. Use the fictional tasks and on-screen choices. No message, written submission or live assessment work is required."
+      "body": "<p>A pupil has used AI to rewrite a paragraph. Whether that is allowed depends on the task: the wording itself may be part of what the teacher is assessing.</p><p>Read the task instructions before using the tool. This lesson shows how Haileybury’s permission levels work, what pupils need to acknowledge and how to ask a clear question when the boundary is uncertain.</p>",
+      "callout": "Allow around 20 minutes. Apply the rules supplied in each case, then check the reasons for your choice."
     },
     {
       "type": "concept",
-      "title": "Start with this task, not last week’s permission",
-      "body": "<p>Different work has different purposes. Personal practice might develop confidence with a method. Teacher-set homework may check what someone can do independently. Assessed coursework may contribute to a qualification and have specific rules about permitted support.</p><p>Before using AI, identify the type of work, the teacher’s instructions, the permitted tool and account, and any qualification requirements. If these are unclear or appear to conflict, ask the teacher before using AI. Permission on a previous task does not automatically carry over.</p>",
+      "title": "Read the instructions for this task",
+      "body": "<p>Start with the purpose of the work. Personal practice develops a skill; homework may check independent understanding; assessed coursework can contribute to a qualification. The permitted help depends on that purpose and the instructions given.</p><p>Check the teacher’s directions, the approved tool and account, and any qualification requirements. If they are unclear or appear to conflict, ask the teacher before using AI. A permission given for last week’s task does not carry over automatically.</p>",
       "callout": "An approved product can still be prohibited for a particular task."
     },
     {
       "type": "concept",
-      "title": "Haileybury’s parent guide: read the boundary carefully",
-      "body": "<p><strong>Haileybury-specific guidance, November 2026 parent guide:</strong> for assessed work, teachers choose one of three AI Scale levels. Read the level alongside the instructions for the particular task.</p>",
-      "callout": "Only expressly permitted AI-generated material may be submitted. Ask first if unsure. GCSE, A-level and IB qualification rules take precedence. Clarify and preserve agreed assistive support.",
+      "title": "Haileybury’s three assessment levels",
+      "body": "<p><strong>Haileybury AI Parent Guide, November 2026:</strong> teachers choose one of three AI Scale levels for assessed work. Read the level and the task instructions together to establish exactly what is allowed.</p>",
+      "callout": "Submit AI-generated material only where expressly permitted. GCSE, A-level and IB qualification rules take precedence; ask the teacher to clarify any uncertainty and confirm the agreed access support.",
       "bullets": [
         {
           "term": "No AI",
@@ -811,13 +811,13 @@ PARENT_LESSONS.push(
     {
       "type": "concept",
       "title": "Year group and purpose both matter",
-      "body": "<p><strong>Haileybury’s general study rule:</strong> Removes to Upper Sixth may use approved AI for general study support, subject to age limits and teacher direction. Lower School pupils may use AI only when explicitly instructed by the school.</p><p>That general permission does not override a teacher’s assessment instruction. A Removes pupil may have permission to use an approved tool for study and still receive a “No AI” assessed task. Likewise, a Lower School pupil cannot assume permission just because an older pupil uses the same tool.</p><p>Use the school-approved arrangements. Personal AI accounts and other AI platforms are not permitted for schoolwork. For another school, check its current rules rather than importing Haileybury’s labels.</p>",
-      "callout": "Age eligibility, year-group permission, task instructions and qualification rules all need to fit. A parent’s adult practice account does not replace the approved school route."
+      "body": "<p><strong>Haileybury’s general study rule:</strong> Removes to Upper Sixth may use approved AI for general study support, subject to age limits and teacher direction. Lower School pupils may use AI only when explicitly instructed by the school.</p><p>Then check the task. A Removes pupil with general study permission can still receive a “No AI” assessment. A Lower School pupil needs explicit school instruction even when an older pupil uses the same tool.</p><p>Use the school-approved arrangements. Personal AI accounts and other AI platforms are not permitted for schoolwork. Families at another school should follow that school’s current rules.</p>",
+      "callout": "Check the year-group rule, the account and the task instruction together. Each has a part in deciding whether the use is permitted."
     },
     {
       "type": "concept",
-      "title": "Permission, acknowledgement and ownership are different",
-      "body": "<p><strong>Permission</strong> asks whether this particular use is allowed. <strong>Acknowledgement</strong> explains the help received in the form required. <strong>The pupil’s contribution</strong> is the thinking and work they can honestly claim and explain. Here we mean authorship and responsibility, not a legal judgement about copyright ownership.</p><p>Writing “I used AI” does not make a prohibited use acceptable. Equally, a permitted use may still require prompts, outputs or other records. Follow the actual task and awarding-body instructions rather than inventing a universal format.</p>",
+      "title": "Permission, acknowledgement and the pupil’s contribution",
+      "body": "<p><strong>Permission</strong> establishes whether the use is allowed. <strong>Acknowledgement</strong> explains the help received in the form required. <strong>The pupil’s contribution</strong> is the thinking and work they can honestly claim and explain.</p><p>Check permission first, then follow the recording requirements. A permitted task may require prompts, outputs or source details alongside the pupil’s explanation. Acknowledging prohibited help does not make it acceptable; the pupil needs to tell the teacher what happened and follow the appropriate process.</p>",
       "sources": [
         {
           "label": "JCQ: current non-examination assessment guidance",
@@ -828,15 +828,15 @@ PARENT_LESSONS.push(
           "url": "https://www.gov.uk/government/publications/artificial-intelligence-malpractice-and-assessment-advice-note/artificial-intelligence-malpractice-and-assessment-advice-note-accessible"
         }
       ],
-      "callout": "JCQ guidance applies within its stated qualifications and scope. It is not the rulebook for every qualification, including IB. Ask school for the applicable guidance."
+      "callout": "Use the guidance for the actual qualification. JCQ documents have a defined scope; school will direct pupils to the relevant rules, including those for IB."
     },
     {
       "type": "concept",
       "title": "Worked example: allowed planning, prohibited drafting",
       "body": "<p><strong>Fictional task instruction:</strong> “You may use the approved school AI tool to suggest three possible research questions. Choose and refine one yourself. Do not ask AI to draft your response. Submit the prompts and suggestions with your chosen question.”</p><p>A pupil asks for three questions, evaluates them and records the exchange: that fits this instruction. Asking for an opening paragraph goes beyond it, even if the pupil later acknowledges the tool.</p><p>A parent’s useful question is: “Show me what the instruction permits and where your own decision begins.”</p>",
-      "callout": "These are invented task instructions for practice. They are not a new school-wide rule.",
-      "revealLabel": "See a transparent record for this fictional task",
-      "reveal": "<p>A short contribution note could say: “I used the school-approved AI tool to suggest three research questions. I compared them, narrowed one myself and wrote the final response. I checked factual suggestions against the class sources. The prompts and suggestions are attached as this task requires.”</p><p>This note explains the contribution; it does not replace the attached record required by the invented instruction. If the real task asks for a tool name, date, original sources or a particular format, include those too. Never claim to have checked or written something you have not.</p>"
+      "callout": "In this practice case, the boundary is clear: AI suggests questions; the pupil refines the choice and writes the response.",
+      "revealLabel": "See how the pupil explains the contribution",
+      "reveal": "<p><strong>Example contribution note:</strong> “I used the school-approved AI tool to suggest three research questions. I compared them, narrowed one myself and wrote the final response. I checked factual suggestions against the class sources. The prompts and suggestions are attached as this task requires.”</p><p>The note explains what happened, and the attached record meets this task’s instruction. For a real assessment, include the tool name, date, sources and other details required by the teacher or awarding body. The record must accurately describe the pupil’s process.</p>"
     },
     {
       "type": "parent-interaction",
@@ -862,13 +862,13 @@ PARENT_LESSONS.push(
     {
       "type": "concept",
       "title": "When work looks different, ask about the process",
-      "body": "<p>An unusually polished paragraph is a reason to be curious, not proof of misconduct. A pupil may have revised carefully, received permitted help or used agreed support. AI detector scores and guesses about style do not establish authorship.</p><p>Ask the pupil to explain their argument and describe their process. Look at relevant drafts or records where appropriate, then follow the school’s process if a concern remains. Avoid uploading the work to an unapproved detector. This protects both accurate judgement and the pupil’s dignity.</p>",
-      "callout": "Haileybury’s “Dignity and care” matters when something may have gone wrong. Honest disclosure should lead to a clear next step, not a public accusation."
+      "body": "<p>When a paragraph looks unusually polished, ask the pupil to explain the argument and how they developed it. Careful revision, permitted help and agreed support can all change the finished work. A change in style or an AI detector score does not establish who wrote it.</p><p>Use the pupil’s explanation and relevant drafts or records to understand the process. If a concern remains, follow the school’s procedure. Keep pupil work out of unapproved detectors so that investigating one concern does not create a further disclosure.</p>",
+      "callout": "Apply dignity and care by asking fairly, handling the concern privately and making the next step clear."
     },
     {
       "type": "scenario",
       "title": "The deadline is tomorrow",
-      "situation": "<p>A fictional pupil admits that AI rewrote a section of assessed work. The task appears to prohibit that help. They suggest changing a few words so no one will notice.</p>",
+      "situation": "<p>A pupil admits that AI rewrote a section of assessed work. The task appears to prohibit that help. They suggest changing a few words so no one will notice.</p>",
       "question": "Which response best supports an honest resolution?",
       "choices": [
         {
@@ -877,7 +877,7 @@ PARENT_LESSONS.push(
         },
         {
           "text": "Stop using the generated section and contact the teacher promptly, explaining what happened.",
-          "outcome": "Yes. Keep any required relevant records and ask how to proceed under the actual assessment rules. Do not promise that deleting a section automatically resolves the issue; school must guide the next step."
+          "outcome": "Tell the teacher what help was used, keep the required records and ask how to proceed under the assessment rules. The school must guide the resolution; deleting or disguising the section does not settle it."
         },
         {
           "text": "Ask a detector whether the passage will be flagged.",
@@ -895,13 +895,13 @@ PARENT_LESSONS.push(
         "Only if the AI contribution is less than half of the work."
       ],
       "correct": 1,
-      "explanation": "Honesty matters, but it does not retrospectively grant permission. There is no universal percentage that makes a contribution acceptable. The task and relevant assessment rules determine what may be used and recorded."
+      "explanation": "Permission sets the boundary; acknowledgement explains the contribution. Honesty matters when something has gone wrong, and the teacher must guide the next step. The rules do not give a universal percentage of acceptable AI assistance."
     },
     {
       "type": "concept",
       "title": "A question the teacher can answer",
-      "body": "<p>A vague “Can we use AI?” may produce an answer too broad for the decision. Name the task and separate the kinds of help.</p><p><strong>Worked draft, not a message to send:</strong> “For the independent presentation, may I use the school-approved tool to explain unfamiliar source vocabulary, or to suggest an outline? Would rewriting my script be outside the permitted level? Which tool/account and records should I use if any help is allowed? Please confirm how my agreed read-aloud support applies.”</p><p>This is specific without attaching private work or demanding a general policy change. An older pupil may ask the question themselves; a parent can help them make it clear. If help has already been used, say what happened honestly rather than presenting it as a future plan.</p>",
-      "callout": "This is a worked example to inspect, not a message you need to write or send. It shows how specific questions can resolve a real uncertainty."
+      "body": "<p>Give the teacher enough detail to answer the actual question. Name the task and distinguish the kinds of help the pupil wants.</p><p><strong>Example:</strong> “For the independent presentation, may I use the school-approved tool to explain unfamiliar source vocabulary or suggest an outline? Is rewriting my script permitted? Which tool/account and records should I use? Please confirm how my agreed read-aloud support applies.”</p><p>An older pupil can ask this directly, with a parent helping them clarify the question. If AI has already been used, explain that contribution honestly so the teacher can advise on what happens next.</p>",
+      "callout": "Notice how the example separates explaining a source, planning a response and rewriting the pupil’s work."
     },
     {
       "type": "summary",
@@ -921,28 +921,28 @@ PARENT_LESSONS.push(
         },
         {
           "label": "Access arrangements",
-          "text": "How should agreed support be used for this task? Do not withdraw it by assumption."
+          "text": "Confirm how the pupil’s agreed support applies to this task."
         }
       ]
     }
   ],
   "completion": {
-    "intro": "Apply Haileybury’s current guide and the precise instructions supplied. These are decisions, not messages to send.",
+    "intro": "Apply Haileybury’s current guide and the instructions supplied in each case.",
     "questions": [
       {
         "kind": "choice",
-        "prompt": "A fictional geography task is independently written. A pupil wants AI to simplify source reading and rewrite the final answer, and has agreed read-aloud support. Which clarification is most useful?",
+        "prompt": "A geography task is independently written. A pupil wants AI to simplify source reading and rewrite the final answer, and has agreed read-aloud support. Which clarification is most useful?",
         "options": [
           "“Can we use AI for geography?”",
           "“May the approved tool simplify the source, may it rewrite the answer, what records are required, and how does the agreed read-aloud support apply?”",
           "“We will acknowledge everything, so please confirm that any AI help is allowed.”"
         ],
         "correct": 1,
-        "explanation": "Separate the contributions so the teacher can answer the actual permission question. Ask about the approved route, required records and agreed support rather than treating “help” as one category or assuming acknowledgement grants permission."
+        "explanation": "The specific question separates source explanation, rewriting, recording and access support. That gives the teacher enough information to clarify each contribution and the approved route."
       },
       {
         "kind": "select",
-        "prompt": "A fictional task permits three AI-generated research questions, requires the pupil to refine one, prohibits AI drafting, and requires prompts and suggestions to be submitted. Which actions fit? Select all that apply.",
+        "prompt": "A practice task permits three AI-generated research questions, requires the pupil to refine one, prohibits AI drafting, and requires prompts and suggestions to be submitted. Which actions fit? Select all that apply.",
         "options": [
           "Keep the required prompts and suggestions.",
           "Explain which question the pupil chose and how they refined it.",
@@ -955,7 +955,7 @@ PARENT_LESSONS.push(
           1,
           3
         ],
-        "explanation": "The contribution and the records must both fit the task. An honest short explanation is useful, but it cannot replace required prompts and outputs or authorise prohibited drafting."
+        "explanation": "Follow both the permission and the recording requirements. The pupil evaluates and refines a question, writes the final response and includes the required prompts and suggestions with an honest explanation of the help."
       },
       {
         "kind": "choice",
@@ -966,7 +966,7 @@ PARENT_LESSONS.push(
           "Change the style and add a general acknowledgement."
         ],
         "correct": 0,
-        "explanation": "Transparency helps school decide the proper next step. Detector scores and stylistic changes do not determine permission or resolve the assessment issue. Do not promise a particular outcome or remove agreed access support by assumption."
+        "explanation": "An accurate account lets school apply the assessment process. Detector scores and changes of wording cannot resolve the permission issue. Follow the teacher’s advice and retain the pupil’s agreed access support."
       }
     ]
   }
@@ -982,14 +982,14 @@ PARENT_LESSONS.push(
     {
       "type": "hook",
       "title": "“I’ve read it three times.” What can you do with it?",
-      "body": "<p>A set of AI-made notes can look excellent. So can a colourful quiz. The useful question is what happens when the learner has to recall an idea, explain it or use it in a different example.</p><p>You will try a tiny revision cycle yourself using an invented system. This is deliberately unfamiliar: nobody needs to be good at a school subject to take part. Then you will check a flawed generated question and plan a sensible follow-up.</p>",
-      "callout": "Allow around 20 minutes. Try the on-screen decisions and inspect the explanations. No account, notes or written submission is needed."
+      "body": "<p>A set of AI-made notes looks excellent, and the learner recognises every point. The next question is what they can recall, explain and apply when a different example appears.</p><p>Work through a short revision cycle using the Lantern Club’s invented parcel rules. You will apply the rules, inspect a flawed AI question and choose practice that addresses a specific misunderstanding.</p>",
+      "callout": "Allow around 20 minutes. Use the on-screen decisions to check the questions as carefully as the answers."
     },
     {
       "type": "concept",
       "title": "Attempt, check, explain, return",
-      "body": "<p>Trying to recall an idea makes a gap visible. Checking against a reliable source gives you a chance to correct it. Explaining a reason or applying the idea tests more than recognising familiar words. Returning later can show what remains available after the first practice.</p><p>These steps need appropriate questions and feedback. A quiz is not automatically a good revision tool because AI generated it. Parents can help organise this routine and notice a sticking point; they do not need to replace the subject teacher.</p>",
-      "callout": "Keep the scale small: one idea, a short attempt and a clear next step.",
+      "body": "<p>Begin with an attempt so the learner can see what they know and where they are stuck. Check the answer against a reliable source, correct the misunderstanding and ask them to explain or apply the idea. A later attempt shows what remains available after the first practice.</p><p>Each step depends on a suitable question and useful feedback. Parents can help organise the routine and notice what needs revisiting. If the difficulty persists, use the class explanation and ask the subject teacher what to practise next.</p>",
+      "callout": "Start with one idea and a question that shows whether the learner understands it.",
       "sources": [
         {
           "label": "EEF: metacognition and self-regulated learning",
@@ -1001,7 +1001,7 @@ PARENT_LESSONS.push(
       "type": "concept",
       "title": "Your source pack: the fictional Lantern Club",
       "body": "<p>Read these invented rules once or twice. You will use them on the next slide.</p><p><strong>Lantern Club dispatch rules:</strong> A parcel is marked <strong>ready</strong> only when it has both a blue label and a recorded weight. A parcel marked ready goes on the <strong>morning van</strong> if it weighs 2 kg or less; a ready parcel over 2 kg goes on the <strong>afternoon van</strong>. A parcel missing either requirement goes to the <strong>checking desk</strong>, whatever its weight.</p><p>Example: a 3 kg parcel with a blue label and recorded weight is ready and goes on the afternoon van. Its weight changes the van, not whether it is ready.</p>",
-      "callout": "This is an original fictional practice pack. It describes no real delivery service."
+      "callout": "Check readiness first, then use the recorded weight to choose a van."
     },
     {
       "type": "parent-interaction",
@@ -1020,7 +1020,7 @@ PARENT_LESSONS.push(
           2,
           3
         ],
-        "explanation": "Check readiness before van choice. Exactly 2 kg is included in “2 kg or less”. Low weight cannot compensate for a missing blue label. The rules are visible here, so this checks applying them, not recalling them from memory."
+        "explanation": "Check readiness before choosing a van. Exactly 2 kg is included in “2 kg or less”, and a missing blue label sends even a light parcel to checking. With the rules visible, this task tests how you apply them."
       }
     },
     {
@@ -1041,24 +1041,24 @@ PARENT_LESSONS.push(
         },
         {
           "text": "“What colour is the label?” followed by ten questions about the names of the vans.",
-          "outcome": "The label colour matters, but these questions do not test checking both readiness requirements before choosing a van. More items are not necessarily more useful practice."
+          "outcome": "These questions check isolated details. To address the misunderstanding, ask the learner to check both readiness requirements before making the van decision."
         },
         {
           "text": "Show ten completed examples and ask whether the learner recognises them.",
-          "outcome": "Worked examples can help, but recognition alone does not show whether the learner can apply the rule. Follow an example with an opportunity to decide and explain."
+          "outcome": "Use a worked example to explain the decision, then give the learner a fresh parcel to sort and explain. That checks whether they can apply what they have seen."
         }
       ]
     },
     {
       "type": "concept",
       "title": "Match the check to what you want to learn",
-      "body": "<p>The previous on-screen task displayed the rules. It checked whether you could apply them; it did not establish that you remembered them without help. That is still useful information.</p><p>If the goal is remembering the rules, a later recall attempt asks something different. If the goal is applying rules to an unfamiliar parcel, keeping the source visible can still leave meaningful reasoning: choosing a relevant rule and explaining the decision. An answer key would do much of that thinking for the learner.</p><p>Decide what you are checking before removing anything. Keep agreed reading or communication support. For real schoolwork, follow the task’s permission and access arrangements. Independent understanding is not measured by how many useful supports you can take away.</p>",
-      "callout": "A parent can ask: “Are we practising remembering the rule, or using it? What should you have available for this attempt?”"
+      "body": "<p>The on-screen task kept the rules visible, so it checked how you applied them. A later question with the rules closed would check recall as well. Both give useful information when you are clear about the learning goal.</p><p>For application, the learner still needs to select the relevant rule, use it on the parcel and explain the decision. An answer key would supply much of that reasoning. Choose the material available during the attempt to match what you are trying to find out.</p><p>Keep agreed reading and communication support in place. For schoolwork, follow the task’s permission and access arrangements so the check focuses on the intended knowledge or skill.</p>",
+      "callout": "Ask: “Are we practising remembering the rule, or using it? What should be available for this attempt?”"
     },
     {
       "type": "concept",
       "title": "Return later; keep the right support",
-      "body": "<p>A later attempt with a fresh example can show whether the learner can still explain the idea. Agree a manageable return point, such as the next suitable study session. Do not claim that one fixed interval is perfect for every learner or subject.</p><p>Keep agreed assistive support. If read-aloud enables access to a question, use it while the learner does the reasoning. Haileybury’s <strong>Don’t steal the struggle</strong> protects the thinking, and <strong>Dignity and care</strong> protects access. If a difficulty persists, ask the teacher what to practise rather than endlessly generating more material.</p>",
+      "body": "<p>Return to the idea at a suitable later study session with a fresh example. Ask the learner to explain the decision, then use the response to decide whether to move on or revisit a particular point. Choose the timing around the learner, topic and study plan.</p><p>Keep agreed assistive support. Read-aloud can provide access to the question while the learner does the reasoning. Haileybury’s <strong>Don’t steal the struggle</strong> protects that thinking, and <strong>Dignity and care</strong> protects access. Ask the teacher for targeted practice if the same difficulty keeps appearing.</p>",
       "sources": [
         {
           "label": "CAST: access to assistive technologies",
@@ -1066,7 +1066,7 @@ PARENT_LESSONS.push(
         }
       ],
       "revealLabel": "See a manageable later check",
-      "reveal": "<p>At the next suitable session, use two fresh cases: <strong>A</strong> has a blue label and recorded weight of 1.5 kg; <strong>B</strong> has a recorded weight of 3 kg but no blue label. Ask where each goes and why. A goes on the morning van; B goes to the checking desk, not the afternoon van.</p><p>If both reasons are clear, move on rather than adding questions for their own sake. If B still goes on a van, revisit the readiness decision with one contrasting pair. For a real subject, use the class source and ask the teacher about persistent difficulties.</p>"
+      "reveal": "<p>At the next suitable session, use two fresh cases: <strong>A</strong> has a blue label and recorded weight of 1.5 kg; <strong>B</strong> has a recorded weight of 3 kg but no blue label. Ask where each goes and why. A goes on the morning van; B goes to the checking desk because it is missing a readiness requirement.</p><p>If both reasons are clear, move on. If B is still assigned to a van, compare two parcels with the same weight but different readiness. Ask the learner to explain why the missing requirement changes the decision. For a school subject, use the class source and seek the teacher’s guidance on a persistent difficulty.</p>"
     },
     {
       "type": "quiz",
@@ -1078,7 +1078,7 @@ PARENT_LESSONS.push(
         "Generate a longer answer key."
       ],
       "correct": 1,
-      "explanation": "Correct answers with the key available show supported performance. A fresh question and explanation give more information about understanding. Check permission and preserve agreed support; the aim is to see what the pupil can now do, not remove access."
+      "explanation": "The answer key supported that performance. Give the learner a fresh permitted question and ask for the reasoning, keeping agreed access support. Compare it with the source to find out what they understand."
     },
     {
       "type": "summary",
@@ -1104,7 +1104,7 @@ PARENT_LESSONS.push(
     }
   ],
   "completion": {
-    "intro": "Test a revision decision, repair a question and choose a sensible learning cycle. Make all responses on screen.",
+    "intro": "Choose the correction, the useful question and the revision sequence that make understanding visible.",
     "questions": [
       {
         "kind": "choice",
@@ -1130,7 +1130,7 @@ PARENT_LESSONS.push(
           0,
           2
         ],
-        "explanation": "The first and third questions ask for explanation and evidence limits. The note does not prove universal prosperity. The date question can check recall, but does not by itself test explanation or application."
+        "explanation": "The first and third questions ask the learner to explain a possible effect and identify the evidence still needed. The note gives the opening date and shorter route; universal prosperity goes beyond it. Recalling the date checks a different part of the learning."
       },
       {
         "kind": "order",
@@ -1147,7 +1147,7 @@ PARENT_LESSONS.push(
           2,
           0
         ],
-        "explanation": "Attempt, check and correct, apply, then return. The cycle makes a gap visible and checks reasoning. It does not promise mastery from one quiz or require a fixed interval for every learner."
+        "explanation": "Begin with an attempt, use feedback to correct the misunderstanding, apply the idea and return later. Keep the timing and next question responsive to what the learner needs."
       }
     ]
   }
