@@ -36,7 +36,7 @@ function initParentPlayer() {
       if (studio) {
         var message = studio.querySelector('.parent-completion-message');
         if (!message) { message = document.createElement('div'); message.className = 'parent-completion-message'; message.setAttribute('role','alert'); message.tabIndex = -1; studio.prepend(message); }
-        message.innerHTML = '<strong>Before you record this lesson as complete</strong><p>Try the remaining lesson checks:</p><ul>' + remaining.map(function(item) { return '<li>' + gsEscape(item.label) + '</li>'; }).join('') + '</ul><p>Choose your answers and use Check answer for each question. Read the feedback and try again if you need to. There is nothing to write or upload.</p>';
+        message.innerHTML = '<strong>Finish the lesson checks</strong><p>Try the remaining lesson checks:</p><ul>' + remaining.map(function(item) { return '<li>' + gsEscape(item.label) + '</li>'; }).join('') + '</ul><p>Choose your answers and use Check answer for each question. Use the feedback to review your choices and try again.</p>';
         message.focus({preventScroll:true}); message.scrollIntoView({block:'start',behavior:'instant'});
       }
       return false;
@@ -60,7 +60,7 @@ function initParentPlayer() {
   };
   gsShowResults = function(wasDone) {
     var area = document.getElementById('gsSlideArea'), nextId = gsNextLessonId(gsCurrentId);
-    area.innerHTML = '<section class="parent-results"><span class="gs-hero-badge">Put into practice</span><h2 class="slide-title">' + (wasDone ? 'A useful return visit.' : 'Lesson complete.') + '</h2><p>You have worked through the lesson checks and their feedback. Think about one idea you could use at home. You can revisit the examples whenever you need them.</p><p><strong>' + gsDone.size + ' of ' + ids.length + ' lessons complete.</strong> This records course completion, not an accredited qualification.</p><div class="parent-result-actions"><button class="btn btn-primary" id="diResultsPrimary" type="button">' + (nextId ? 'Next lesson →' : 'Back to course') + '</button><button class="btn btn-secondary" id="parentReviewWork" type="button">Review the checks</button><button class="btn btn-secondary" type="button" id="parentBackToCourse">Back to course</button></div></section>';
+    area.innerHTML = '<section class="parent-results"><span class="gs-hero-badge">Put into practice</span><h2 class="slide-title">' + (wasDone ? 'A useful return visit.' : 'Lesson complete.') + '</h2><p>You have worked through the lesson checks and their feedback. Choose one idea to try at home. Return to the examples whenever you need them.</p><p><strong>' + gsDone.size + ' of ' + ids.length + ' lessons complete.</strong></p><div class="parent-result-actions"><button class="btn btn-primary" id="diResultsPrimary" type="button">' + (nextId ? 'Next lesson →' : 'Back to course') + '</button><button class="btn btn-secondary" id="parentReviewWork" type="button">Review the checks</button><button class="btn btn-secondary" type="button" id="parentBackToCourse">Back to course</button></div></section>';
     if (window.diSlide && diSlide.resetScroll) diSlide.resetScroll(area);
     document.getElementById('diResultsPrimary').onclick = nextId ? function() { gsOpenLesson(nextId); } : gsCloseLesson;
     document.getElementById('parentReviewWork').onclick = function() { document.getElementById('gsNextBtn').style.visibility='visible'; gsRenderSlide(); };

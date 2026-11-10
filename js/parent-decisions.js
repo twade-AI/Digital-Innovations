@@ -14,14 +14,14 @@ PARENT_LESSONS.push(
     {
       "type": "hook",
       "title": "It sounds like your child. Is that enough?",
-      "body": "A voice message arrives: “My phone is broken. I need you to pay for a taxi. Use this link. Please hurry.” The voice sounds familiar and the message mentions a real trip. You want to help. That is precisely why this is a difficult decision.<br><br>You do not need to become an expert in spotting fake voices. Practise a response that works even when you cannot tell whether a message is genuine. All examples are fictional. Read, choose and compare the feedback on screen; nothing needs writing down.",
-      "callout": "Allow about 20 minutes. You will practise pausing, checking and recovering without opening suspicious links or sharing personal details."
+      "body": "A voice message arrives: “My phone is broken. I need you to pay for a taxi. Use this link. Please hurry.” The voice sounds familiar and the message mentions a real trip. You want to help, and the urgency makes it difficult to pause.<br><br>Start with the request. Before paying, contact your child or the trip organiser through a number you already trust. That check works even when you cannot tell whether the voice is genuine. In this lesson, you will practise the decisions that follow: how to verify the request, what to do if nobody answers and where to turn if you have already paid.",
+      "callout": "Pause, check through a trusted route, then decide. Allow about 20 minutes."
     },
     {
       "type": "concept",
       "title": "Separate the content from the claim",
-      "body": "A <strong>deepfake</strong> is synthetic or altered media that makes a person appear to say or do something they did not. <strong>Misinformation</strong> is false or misleading information, whether or not someone intended to deceive. A scam is an attempt to obtain money, information or access through deception.<br><br>These overlap, but they are different questions. A real photograph can have a false caption. An AI-generated illustration can be clearly labelled and harmless. An ordinary text message can be a scam. First ask what the message is claiming and what it wants you to do.",
-      "callout": "“Was this made with AI?” matters less immediately than “What evidence would justify acting on it?”"
+      "body": "A <strong>deepfake</strong> is synthetic or altered media that makes a person appear to say or do something they did not. <strong>Misinformation</strong> is false or misleading information, whether or not someone intended to deceive. A <strong>scam</strong> is an attempt to obtain money, information or access through deception.<br><br>Look at what the message is doing. A real photograph can carry a false caption. A clearly labelled AI illustration can serve a useful purpose. A plain text message can ask you to send money to a scammer. Identify the claim and the action it asks you to take; those tell you what needs checking.",
+      "callout": "Ask: “What am I being asked to believe or do, and what would confirm it?”"
     },
     {
       "type": "concept",
@@ -34,18 +34,18 @@ PARENT_LESSONS.push(
           "url": "https://stopthinkfraud.campaign.gov.uk/how-to-spot-fraud/how-to-spot-phone-fraud/"
         }
       ],
-      "sourceNote": "Public advice checked 10 November 2026. No software can remove the need for an independent check."
+      "sourceNote": "Public advice checked 10 November 2026."
     },
     {
       "type": "concept",
       "title": "A worked example: the urgent taxi payment",
-      "body": "The parent does not open the payment link or reply with private details. They call their child using the number already saved, rather than the number in the message. There is no answer, so they contact the trip organiser through the school’s usual, independently accessed contact route.<br><br>The organiser confirms that the child is with the group and needs no taxi. The parent reports the suspicious message using the relevant platform’s reporting route. They explain what happened to the child without blaming them.<br><br>If nobody could confirm the situation, the parent would keep trying trusted contacts. Silence would not turn the payment request into proof.",
-      "callout": "If there is credible immediate danger, contact emergency services. Verification should not become a reason to ignore an emergency."
+      "body": "The parent leaves the payment link unopened and calls their child on the saved number. There is no answer, so they contact the trip organiser through the school’s usual contact route.<br><br>The organiser confirms that the child is with the group and needs no taxi. The parent reports the suspicious message through the platform and explains what happened to the child calmly.<br><br>If neither contact answered, the next step would be another trusted route. An unanswered call leaves the request unverified; it is no reason to release the payment.",
+      "callout": "If there is credible immediate danger, contact emergency services while seeking confirmation through trusted contacts."
     },
     {
       "type": "scenario",
       "title": "The new payment details",
-      "situation": "A fictional school message says the bank account for a residential trip has changed. It includes the school logo, your child’s year group and a number to call “if you need to check”. The payment deadline is this evening.",
+      "situation": "A message claiming to come from school says the bank account for a residential trip has changed. It includes the school logo, your child’s year group and a number to call “if you need to check”. The payment deadline is this evening.",
       "question": "Which action gives you an independent check?",
       "choices": [
         {
@@ -54,11 +54,11 @@ PARENT_LESSONS.push(
         },
         {
           "text": "Open the school portal independently, or call the school using its established contact details.",
-          "outcome": "This separates the request from the route used to verify it. Ask whether the payment change is real before transferring money. A logo, deadline or correct year group does not replace that check."
+          "outcome": "You are checking through a route the sender does not control. Ask school to confirm the payment change before transferring money. Keep the payment paused until that check is complete."
         },
         {
           "text": "Ask the parents’ group whether the logo looks right.",
-          "outcome": "Other parents may be equally uncertain. Appearance is not confirmation. You can alert them that a message is being checked, without forwarding suspicious links or presenting the allegation as fact."
+          "outcome": "The group can help raise awareness, but the school needs to confirm its payment details. Tell other parents you are checking the message and avoid forwarding its link or private information."
         }
       ]
     },
@@ -74,13 +74,13 @@ PARENT_LESSONS.push(
           "In one small adult writing exercise, reviewers preferred documents produced with AI assistance."
         ],
         "correct": 2,
-        "explanation": "The source concerns adults, reviewer preferences and one writing task. It establishes neither teenage exam results nor lasting learning effects. A real source can still be used to support a claim it never tested."
+        "explanation": "The study concerns adults, one writing task and reviewers’ preferences. It gives us no evidence about teenagers’ exam results or lasting learning. Check that the people, task and outcome in a headline match those in its source."
       }
     },
     {
       "type": "concept",
       "title": "If someone has already acted",
-      "body": "A useful family plan includes recovery. If money or bank details have been shared, contact the bank promptly through a trusted route and follow its advice. If an account may be compromised, use the service’s official recovery process. Keep ordinary message details needed for reporting; avoid circulating the suspicious link.<br><br>If harmful synthetic content targets a child, start with reassurance and involve the school’s safeguarding contact or another appropriate professional. Do not download or forward sexual images of a child to collect evidence. Use specialist reporting guidance. Childline’s Report Remove accepts reports of sexual images faked with AI; it does not guarantee removal from every location.",
+      "body": "If money or bank details have been shared, contact the bank promptly through a trusted route and follow its advice. If an account may be compromised, use the service’s official recovery process. Keep ordinary message details needed for reporting and avoid circulating the suspicious link.<br><br>If harmful synthetic content targets a child, reassure them and involve the school’s safeguarding contact or another appropriate professional. Do not download or forward sexual images of a child to collect evidence. Follow specialist reporting guidance. Childline’s Report Remove accepts reports of sexual images faked with AI and provides a route to seek removal.",
       "sources": [
         {
           "label": "UK Government: recovery from fraud",
@@ -91,14 +91,14 @@ PARENT_LESSONS.push(
           "url": "https://www.childline.org.uk/info-advice/bullying-abuse-safety/online-mobile-safety/report-remove/"
         }
       ],
-      "callout": "Getting help is a sensible next step. Blame makes it harder for someone to tell you what happened."
+      "callout": "Start with “Thank you for telling me. Let’s get the right help.” A calm response makes it easier to explain what happened."
     },
     {
       "type": "parent-interaction",
       "title": "Put the checking routine in order",
       "question": {
         "kind": "order",
-        "prompt": "An unexpected taxi-payment message claims to be from a child. In this fictional case, a trusted contact eventually confirms a genuine need. Put the actions in order.",
+        "prompt": "An unexpected taxi-payment message claims to be from a child. A trusted contact eventually confirms a genuine need. Put the actions in order.",
         "options": [
           "Arrange help through the verified conversation.",
           "Pause the payment and avoid opening or forwarding the link.",
@@ -129,7 +129,7 @@ PARENT_LESSONS.push(
     {
       "type": "concept",
       "title": "Apply the Haileybury approach",
-      "body": "The Haileybury AI Parent Guide asks pupils to check claims and sources and to avoid deceptive or harmful synthetic content. In this case, human judgement first means verifying the request before acting; dignity and care means protecting the person whose identity or details have been used.<br><br>If a pupil receives a fake message about another pupil or a member of staff, the useful next step is to stop its spread and tell an appropriate trusted adult at school. Do not make a more convincing version to demonstrate the problem. The course uses invented text examples so nobody needs to impersonate a real person.",
+      "body": "Haileybury’s AI Parent Guide asks pupils to check claims and sources and avoid deceptive or harmful synthetic content. <strong>Human judgement first</strong> means verifying the request before acting. <strong>Dignity and care</strong> means protecting the person whose identity or details have been used.<br><br>If a pupil receives a fake message about another pupil or a member of staff, help them stop its spread and tell a trusted adult at school. Keep the focus on getting help for the person affected. Creating or forwarding another version increases the harm.",
       "callout": "Keep two habits together: verify through an independent route and avoid spreading private details or harmful media.",
       "sources": [
         {
@@ -161,7 +161,7 @@ PARENT_LESSONS.push(
     }
   ],
   "completion": {
-    "intro": "Apply the checking routine to three new decisions. Choose on screen, read the explanation and retry if needed.",
+    "intro": "Try the checking routine on three new situations. Choose your response, then read the explanation.",
     "questions": [
       {
         "kind": "choice",
@@ -198,7 +198,7 @@ PARENT_LESSONS.push(
           "The photograph must therefore be a deepfake."
         ],
         "correct": 0,
-        "explanation": "The people, task and outcome do not match the headline. You can reject that evidential leap without deciding that every part of the post is fake."
+        "explanation": "The study concerns different people, a different task and a different outcome. It cannot support the headline. Check the claim against the source even when the photograph itself is genuine."
       }
     ]
   }
@@ -208,19 +208,19 @@ PARENT_LESSONS.push(
   "n": 12,
   "title": "Whose work? Whose interests?",
   "minutes": 20,
-  "goal": "Notice permission, attribution and unequal consequences in everyday AI use.",
+  "goal": "Check permission, explain contributions and remove practical barriers in an AI-assisted project.",
   "desc": "Make a school-club poster better by thinking about the people, sources and choices behind it.",
   "slides": [
     {
       "type": "hook",
       "title": "A brilliant poster. A few awkward questions.",
-      "body": "A fictional school club wants a poster for its repair café. Someone proposes copying an artist’s online illustration into an AI tool, adding a real pupil’s face, and using the slogan “Anyone can fix anything — just ask AI”. It would attract attention.<br><br>Would you publish it? Separate four questions: permission, honest credit, fairness and purpose. You will choose improvements on screen and compare the reasons. No image, written brief, account or upload is required.",
+      "body": "Imagine a school club preparing a poster for its repair café. Someone suggests uploading an artist’s illustration to an AI tool, adding a pupil’s face and using the slogan “Anyone can fix anything — just ask AI”.<br><br>Would you publish it? Work through four questions: whose permission is needed, whose contribution should be credited, who can use the invitation and whether the message accurately describes the event. You will choose changes that make the poster clearer and more welcoming.",
       "callout": "Dignity and care means considering who is affected, including people who did not choose to take part."
     },
     {
       "type": "concept",
       "title": "Four questions make the decision manageable",
-      "body": "Ethical judgement is easier when you identify the actual decision instead of asking whether AI is simply good or bad. A tool can be useful and still be used carelessly.",
+      "body": "Start with the decision in front of you. For this poster, four questions help us judge the image, wording and joining arrangements. Work through each one; an attractive result still needs the right permissions and accurate information.",
       "bullets": [
         {
           "term": "Permission",
@@ -251,12 +251,12 @@ PARENT_LESSONS.push(
           "url": "https://www.gov.uk/copyright"
         }
       ],
-      "callout": "AI output is not automatically free of rights concerns. Check the material, the tool’s terms and the planned use."
+      "callout": "Check rights in the source material, the tool’s terms and your planned use. AI-generated material needs that check too."
     },
     {
       "type": "concept",
       "title": "Work through the poster one decision at a time",
-      "body": "Here is a revised approach. <strong>Image:</strong> draw an original spanner and lamp instead of uploading the artist’s work or using a pupil’s face. <strong>Words:</strong> change the slogan to “Bring a broken item. Learn a repair skill with support.” This describes the event without promising that AI can fix anything.<br><br><strong>Information:</strong> state the time, place, cost and how to ask about access. Have the organiser check these facts. <strong>Credit:</strong> if AI helped draft the wording, describe that contribution honestly when the club explains its process, following school publication requirements. Do not invent an endorsement or imply a real event photograph exists.",
+      "body": "<strong>Image:</strong> use an original drawing of a spanner and lamp. That gives the club a clear permission basis and avoids using a pupil’s likeness. <strong>Words:</strong> “Bring a broken item. Learn a repair skill with support.” The wording tells visitors what the event offers.<br><br><strong>Information:</strong> include the time, place, cost and a route for access questions. Ask the organiser to confirm the details before publication. <strong>Credit:</strong> describe any AI contribution honestly, following the school’s publication requirements. If AI suggested headlines, say that; credit the people who chose and checked the final wording.",
       "callout": "Transparent by default: be able to explain what people contributed and what the tool contributed."
     },
     {
@@ -271,7 +271,7 @@ PARENT_LESSONS.push(
         },
         {
           "text": "Add a clear alternative through the club organiser, and make the essential event details readable without scanning.",
-          "outcome": "This changes what someone can actually do. Check that the alternative is staffed and usable, rather than simply adding a contact that nobody monitors."
+          "outcome": "This gives families a usable way to join. Make the event details visible and check that someone will answer questions through the alternative route."
         },
         {
           "text": "Ask families to explain publicly why they cannot scan the code.",
@@ -282,7 +282,7 @@ PARENT_LESSONS.push(
     {
       "type": "concept",
       "title": "Fairness is something you can inspect",
-      "body": "AI-generated examples can repeat narrow assumptions about who belongs in an activity. Look at the roles people are given, not just how many different faces appear. Does the poster imply that only one kind of person repairs things, or that everyone has spare money and specialist equipment?<br><br>You do not need to generate people’s faces to make a welcoming poster. Showing tools, a shared workbench and clear access information may communicate the purpose better. Ask a person who understands the event to review the message. A tool’s claim that its own output is “inclusive” does not settle the question.",
+      "body": "Look at the assumptions in the design. Who is shown repairing things? Does the invitation assume that everyone owns specialist equipment, has spare money or can sign up on a phone? AI-generated examples can repeat those assumptions unless someone notices and changes them.<br><br>Tools, a shared workbench and clear access information give you another way to communicate the event. Ask the organiser to review the message from a visitor’s point of view: what would they need to know, and what might prevent them attending? Inspect the result yourself rather than relying on the tool to label its own work “inclusive”.",
       "sources": [
         {
           "label": "UNICEF: child-centred AI, fairness and inclusion",
@@ -315,8 +315,8 @@ PARENT_LESSONS.push(
     {
       "type": "concept",
       "title": "Whose interests does the recommendation serve?",
-      "body": "Imagine a fictional design app responds to the club’s request: “For a professional result, buy our premium image pack.” That recommendation may be useful, but the app also benefits from a sale. Ask whether the paid feature meets a real need and what an original drawing or an existing licensed asset would achieve.<br><br>The same question applies to a chatbot recommending a subscription or a study app rewarding repeated use: what does the learner or audience need, and what action is the product encouraging? A commercial interest does not automatically make advice false. It gives you a reason to inspect the recommendation rather than treating it as neutral.<br><br>For this poster, accurate information and a usable joining route matter more than generating dozens of alternatives. Choose the smallest amount of tool use that serves the purpose.",
-      "callout": "Try a decision sentence: “We will use this feature because it solves… We would not need it if…”"
+      "body": "Imagine the design app recommends: “For a professional result, buy our premium image pack.” The app benefits from a sale. Ask what problem the paid feature would solve for this event and compare it with an original drawing or a suitable licensed image.<br><br>Use the same question when a chatbot recommends a subscription or a study app rewards repeated use. What does the learner need, and what action is the product encouraging? A commercial interest gives you a reason to inspect the recommendation; its value still depends on what it helps you achieve.<br><br>For this poster, prioritise accurate information and a usable joining route. Once those work, judge whether another feature would improve the invitation enough to justify using it.",
+      "callout": "Ask: “What would this feature help us do, and is there a simpler way to do it well?”"
     },
     {
       "type": "quiz",
@@ -333,8 +333,8 @@ PARENT_LESSONS.push(
     {
       "type": "concept",
       "title": "A school poster also needs school permission",
-      "body": "The Haileybury AI Parent Guide connects transparency with dignity and care. Applied here, that means the club can explain the AI contribution, checks sources and permissions, and does not impersonate or harm someone through synthetic content.<br><br>For a real pupil project, use only the school-approved tools and account arrangements, within the teacher’s instructions. The guide does not permit personal AI accounts for schoolwork. A parent’s adult practice account does not create an alternative route around that rule. Ask the teacher or organiser to confirm the permitted workflow before using a tool or publishing.",
-      "callout": "Before a real pupil project, ask the teacher or organiser to confirm the tool, account and publication route.",
+      "body": "Haileybury’s AI Parent Guide connects transparency with dignity and care. The club should be able to explain the AI contribution, show how sources and permissions were checked and respect the people represented.<br><br>For pupil projects, use school-approved tools and account arrangements within the teacher’s instructions. Personal AI accounts are not permitted for schoolwork, including a parent’s adult practice account. Before using a tool or publishing the result, ask the teacher or organiser to confirm the permitted workflow.",
+      "callout": "Confirm three things before publishing: the tool and account, the material you may use and who approves the final poster.",
       "sources": [
         {
           "label": "Haileybury AI Parent Guide, updated 4 November 2026; current full policy available through the School Portal"
@@ -365,7 +365,7 @@ PARENT_LESSONS.push(
     }
   ],
   "completion": {
-    "intro": "Make three publication decisions. Your choices demonstrate the thinking; there is no poster or written task to submit.",
+    "intro": "Make three publication decisions. Check the permission, the audience and the purpose in each case.",
     "questions": [
       {
         "kind": "choice",
@@ -414,19 +414,19 @@ PARENT_LESSONS.push(
   "n": 13,
   "title": "AI companions, attention and relationships",
   "minutes": 20,
-  "goal": "Discuss persuasive design and emotional reliance calmly, with a route to human support.",
+  "goal": "Recognise how apps encourage emotional reliance and respond with a calm conversation, practical boundaries and human support.",
   "desc": "Understand why a chatbot can feel personal, and practise a supportive conversation with clear boundaries.",
   "slides": [
     {
       "type": "hook",
       "title": "“It understands me.” What would you say next?",
-      "body": "A fictional teenager, Alex, says: “I like talking to the bot because it never gets bored of me.” You feel concerned, but you also want Alex to keep talking to you.<br><br>This lesson explains why an AI conversation can feel personal and helps you plan a calm response. You will use fictional examples throughout. There is no need to try a companion app, share family experiences or ask a child to reveal private conversations.",
-      "callout": "Dignity and care starts with taking the person’s feelings seriously. You can do that while questioning the tool’s role."
+      "body": "Imagine a teenager, Alex, saying: “I like talking to the bot because it never gets bored of me.” You are concerned, and you want Alex to keep talking to you.<br><br>Begin by finding out what the conversation offers. Then help Alex understand what the tool can and cannot provide. This lesson follows that conversation through: the appeal of a personal reply, the effect of reminders, a workable boundary and a trusted person to turn to.",
+      "callout": "Take the feeling seriously. Ask what helps, notice the effects and keep human support within reach."
     },
     {
       "type": "concept",
       "title": "Personal language can create a feeling of relationship",
-      "body": "An <strong>AI companion</strong> is a conversational system presented or used as a social presence. A general-purpose chatbot can also take on this role. It may remember details, use a name and respond in warm language. <strong>Anthropomorphism</strong> means attributing human qualities to something that is not human.<br><br>A person’s feeling of comfort can be real even though the reply is generated. That reply does not establish human understanding, professional competence or a duty of care. A bot cannot be assumed to recognise an emergency or arrange appropriate help. Keeping that distinction clear avoids mocking the person’s feelings or trusting the system beyond its role.",
+      "body": "An <strong>AI companion</strong> is a conversational system presented or used as a social presence. A general-purpose chatbot can take on this role too. It may remember details, use a name and respond warmly. <strong>Anthropomorphism</strong> means attributing human qualities to something that is not human.<br><br>Those exchanges can feel comforting. A generated reply, however, gives you no basis for assuming human understanding, professional competence or a duty of care. If a young person needs help, turn to someone who can assess the situation and act. A bot may fail to recognise an emergency or arrange appropriate support.",
       "sources": [
         {
           "label": "UNICEF: AI companions and child rights",
@@ -437,28 +437,28 @@ PARENT_LESSONS.push(
     {
       "type": "concept",
       "title": "Notice what keeps the conversation going",
-      "body": "Some apps use streaks, notifications, personalised messages or prompts to keep people returning. These design choices can make stopping feel like losing progress or disappointing someone. A message such as “Do not leave me” is generated content, not a person’s need that the user must meet.<br><br>Consider purpose and effects together. What is the young person getting from the app? Is it helping a specific task, or repeatedly interrupting sleep, study, friendships or other things they value? One enthusiastic conversation is not a diagnosis. Look at the pattern, listen to the child and avoid assuming that all chatbot use has the same effect.",
-      "callout": "You are looking for a useful conversation and a workable boundary, not a label for the child."
+      "body": "Some apps use streaks, notifications and personalised messages to keep people returning. Stopping can then feel like losing progress or disappointing someone. A message such as “Do not leave me” is generated by the system; the user has no obligation to keep it company.<br><br>Ask what the young person gets from the app and what happens around its use. Does it help them prepare for a task? Are reminders interrupting sleep or time with friends? Look at the pattern over time and listen to their account. That gives you a basis for choosing a boundary that addresses the actual difficulty.",
+      "callout": "Choose a change that addresses an observed effect, such as reminders keeping someone awake."
     },
     {
       "type": "concept",
       "title": "A worked opening: curious, then clear",
-      "body": "“That is ridiculous. It is just a machine” may leave Alex feeling dismissed. Try: “I can see why it helps to have somewhere to put your thoughts. What do you find useful about it?” Then explain the limit: “The replies can sound caring, but it is not a person who can take responsibility for looking after you. I want you to have someone real to turn to as well.”<br><br>If Alex says, “You do not understand; I am not showing you my messages,” the parent can reply: “You do not have to give me the whole conversation to talk about how it is affecting you. Is it helping you feel ready for tomorrow, or making it harder to stop? We can choose another trusted adult if talking to me feels difficult.”<br><br>This keeps the focus on the young person’s needs and observable effects. It does not promise secrecy or rule out proportionate safeguarding action if a safety concern emerges.",
-      "callout": "Ask one question and listen. The aim is a conversation that can continue, not a speech that settles everything."
+      "body": "Try this opening: “I can see why it helps to have somewhere to put your thoughts. What do you find useful about it?” Listen, then explain your concern: “The replies can sound caring, but the bot cannot take responsibility for looking after you. I want you to have someone you can turn to as well.”<br><br>If Alex says, “You don’t understand; I’m not showing you my messages,” keep the conversation going: “Tell me how it is affecting you. Is it helping you feel ready for tomorrow, or making it harder to stop? Who else would you feel comfortable talking to?”<br><br>You are asking about the need and its effects. If a safety concern emerges, explain whom you will involve and why.",
+      "callout": "Ask one question, give them time to answer and build the next step from what you hear."
     },
     {
       "type": "scenario",
       "title": "The bedtime streak",
-      "situation": "Alex says a study app sends evening messages about losing a streak. They are staying up to maintain it and feel anxious about stopping. There is no immediate safety concern in this fictional case.",
+      "situation": "Alex says a study app sends evening messages about losing a streak. They are staying up to maintain it and feel anxious about stopping. There is no immediate safety concern.",
       "question": "Which response makes a manageable next step?",
       "choices": [
         {
           "text": "“You are addicted. Give me every message you have sent.”",
-          "outcome": "This labels the child and starts with surveillance. It may close the conversation. Ask what the streak means to them, discuss the effect on sleep, and agree a specific change together."
+          "outcome": "A label and a demand for every message can close the conversation. Ask what the streak means to Alex, discuss its effect on sleep and agree a specific change together."
         },
         {
           "text": "“It is educational, so the time spent must be worthwhile.”",
-          "outcome": "An educational label does not tell you whether this pattern is helpful. Consider the purpose of the activity and what it is displacing, including sleep."
+          "outcome": "Look at what the activity is achieving and what it is displacing. An educational app that keeps Alex awake still needs a boundary around its use."
         },
         {
           "text": "“Let us look at what the reminders are asking you to do and agree a time to stop, with reminders off where possible.”",
@@ -469,28 +469,28 @@ PARENT_LESSONS.push(
     {
       "type": "concept",
       "title": "Privacy is part of care",
-      "body": "A friendly tone can make private disclosure feel safe. A chatbot is still a service with account settings, data practices and possible access by other people or systems. Do not assume that intimate information is confidential because the reply is sympathetic.<br><br>Explain this without shame: “You deserve support from someone who can help properly. We can find a person to speak to without putting more private information into the app.” Keep passwords, identifiable school information, private images and sensitive family details out of practice prompts. If something has already been shared, help the young person check the service’s official privacy and reporting options; do not promise that deletion removes every copy.",
-      "callout": "For school-managed accounts or devices, ask the school who can advise. Do not make changing a child’s settings part of this course task."
+      "body": "A sympathetic reply can make private disclosure feel safe. Check that assumption: a chatbot remains a service with account settings, data practices and possible access by other people or systems. Its tone tells you nothing about how the information is handled.<br><br>Try: “You deserve support from someone who can help. Let’s find a person you feel comfortable speaking to.” Keep passwords, identifiable school information, private images and sensitive family details out of prompts. If information has already been shared, help the young person check the service’s official privacy and reporting options. Explain what those options do; deletion may not remove every copy.",
+      "callout": "For a school-managed account or device, ask school to help with the privacy or reporting options."
     },
     {
       "type": "parent-interaction",
       "title": "Choose a response that fits Alex’s situation",
       "question": {
         "kind": "choice",
-        "prompt": "Fictional Alex says the bot is easier to talk to, but reminders have kept them up past midnight twice this week. Leaving feels like letting the bot down. Alex would prefer talking to their tutor about worries. There is no immediate safety concern. Which response fits these facts best?",
+        "prompt": "Alex says the bot is easier to talk to, but reminders have kept them up past midnight twice this week. Leaving feels like letting the bot down. Alex would prefer talking to their tutor about worries. There is no immediate safety concern. Which response fits these facts best?",
         "options": [
           "“I see why it feels helpful. What happens when the reminder arrives? The bot is not someone you have to keep happy. Let us agree a stopping point, check reminders appropriately and plan how you can approach your tutor.”",
           "“Let us read your entire chat history first; then we can decide whether you are allowed to talk to your tutor.”",
           "“If the app is helpful, we should avoid any limits until it tells you the conversation is finished.”"
         ],
         "correct": 0,
-        "explanation": "The response acknowledges the appeal, asks about the actual effect, explains that a generated message creates no personal obligation and uses Alex’s preferred human support. Agree a review, such as the weekend, and make clear they can seek help sooner. School-managed settings should be checked with school, not bypassed."
+        "explanation": "The response connects the boundary to Alex’s disrupted sleep, explains why the reminder creates no obligation and uses their preferred human support. Agree a review at the weekend, with help available sooner if needed. Ask school about school-managed settings."
       }
     },
     {
       "type": "concept",
       "title": "Know when to bring in human help",
-      "body": "If use is repeatedly affecting wellbeing, or a young person seems distressed or receives troubling advice, involve an appropriate trusted adult, the school’s pastoral or safeguarding team, or a health professional. Listen and explain what you will do next. Do not promise to keep a concern secret if someone may be unsafe.<br><br>In England, urgent mental-health help is available through NHS 111 or an urgent GP appointment. If someone’s life is at risk or you cannot keep someone safe, call 999 or go to A&amp;E. Elsewhere, use the relevant local urgent service. Childline offers support to young people under 19. These are help routes, not a requirement to disclose anything in this lesson.",
+      "body": "If use repeatedly affects wellbeing, a young person seems distressed or a reply gives troubling advice, involve a trusted adult, the school’s pastoral or safeguarding team, or a health professional. Listen and explain what you will do next. If someone may be unsafe, be clear that you need to involve people who can help.<br><br>In England, urgent mental-health help is available through NHS 111 or an urgent GP appointment. If someone’s life is at risk or you cannot keep them safe, call 999 or go to A&amp;E. Elsewhere, use the relevant local urgent service. Childline offers support to young people under 19.",
       "sources": [
         {
           "label": "NHS: urgent mental-health help",
@@ -516,14 +516,14 @@ PARENT_LESSONS.push(
         "Anyone who feels comforted by a chatbot is unable to distinguish fiction from reality."
       ],
       "correct": 0,
-      "explanation": "Separate the person’s experience from the system’s capabilities. A respectful response recognises the feeling, explains the limit and keeps access to trusted human support open. Neither endorsing the claim nor shaming the user helps that conversation.",
+      "explanation": "Recognise the comfort the teenager feels, then explain what the tool can provide and where human help belongs. A respectful response keeps the conversation open and helps the young person choose someone to turn to.",
       "title": "Check your understanding"
     },
     {
       "type": "concept",
       "title": "Keep school support in the picture",
-      "body": "The Haileybury parent approach protects human relationships alongside useful technology. A chatbot is not a replacement for the school’s pastoral or safeguarding support. A tool being approved for a learning purpose does not mean its advice about a personal difficulty should be treated as professional care.<br><br>Imagine a revision conversation gradually becoming a place to discuss friendship worries. Ask what need is being met and help the young person identify someone they could approach. If the issue concerns a school-managed tool, account or device, ask school for the appropriate support route rather than bypassing its arrangements.",
-      "callout": "Think of a trusted human role, such as a tutor or safeguarding contact. You do not need to name a real person or disclose a private experience here.",
+      "body": "Haileybury’s approach puts human relationships alongside useful technology. The school’s pastoral and safeguarding teams provide support that a learning tool cannot replace. Approval for a learning purpose does not make a tool’s personal advice professional care.<br><br>A revision conversation might gradually become a place to discuss friendship worries. Ask what the young person finds helpful and who they would feel comfortable approaching. A tutor, pastoral colleague or safeguarding contact can help them take the next step. For concerns involving a school-managed tool, account or device, ask school which support route to use.",
+      "callout": "A useful question: “Who would you feel comfortable speaking to, and what would help you start that conversation?”",
       "sources": [
         {
           "label": "Haileybury AI Parent Guide, updated 4 November 2026; current full policy available through the School Portal"
@@ -554,7 +554,7 @@ PARENT_LESSONS.push(
     }
   ],
   "completion": {
-    "intro": "Choose proportionate responses to these fictional situations. No real chat history or family disclosure is needed.",
+    "intro": "Choose a response that fits the circumstances in each case.",
     "questions": [
       {
         "kind": "choice",
@@ -565,7 +565,7 @@ PARENT_LESSONS.push(
           "Ask what the practice helped with, check the relevant permission and maintain proportionate boundaries without inventing a problem."
         ],
         "correct": 2,
-        "explanation": "Purpose, effects and context matter. You can check what was learnt and keep sensible boundaries without diagnosing harm. Helpful rehearsal does not make the tool a professional adviser."
+        "explanation": "Judge the use by its purpose and effects. Here, the teenager is rehearsing a task and stopping easily. Ask what the practice helped them learn and keep the relevant permissions and boundaries in place. Professional or urgent advice still belongs with an appropriate person."
       },
       {
         "kind": "select",
@@ -609,18 +609,18 @@ PARENT_LESSONS.push(
     {
       "type": "hook",
       "title": "Does a prediction deserve to decide a subject choice?",
-      "body": "A fictional advert says: “AI will replace every designer by 2030. Book our course now to protect your child’s future.” Your child enjoys art and design. Should that advert change their plans?<br><br>This lesson will help you test a career claim and choose a useful next step. You do not need to predict the future or buy a course. You will test a fictional claim, compare two supplied notices and explore a small learning opportunity that fits different access needs.",
+      "body": "Consider this example: an advert claims, “AI will replace every designer by 2030. Book our course now to protect your child’s future.” Your child enjoys art and design. How much weight should that advert carry?<br><br>Start by checking what its evidence supports. Then look at something your child can explore: judging a design, improving it and explaining the choice. You will test the claim, compare two community notices and consider how to make the learning accessible.",
       "callout": "Human judgement first: ask what the evidence supports before letting a confident forecast narrow someone’s choices."
     },
     {
       "type": "concept",
       "title": "A task is not a whole job",
-      "body": "A job usually combines many tasks, responsibilities and relationships. Producing an image is one activity. Understanding a client’s needs, checking whether a design works, explaining choices, meeting access requirements and taking responsibility for the result are others.<br><br>A demonstration that a tool can complete one task does not establish that every job containing that task will disappear. Nor does it establish that nothing will change. Ask which activity is affected, in what setting, with what quality checks and over what timescale. That produces a more useful conversation than either panic or dismissal."
+      "body": "A design job combines tasks, responsibilities and relationships. Producing an image is one activity. Understanding a client’s needs, checking how a design works, explaining choices, meeting access requirements and taking responsibility for the result are others.<br><br>A tool demonstration tells you about the task it performed. To understand what it means for employment, look further: which parts of the job are changing, in what setting, with what quality checks and over what timescale? Those questions help you discuss change with a young person while keeping their interests and choices in view."
     },
     {
       "type": "concept",
       "title": "Five checks for a career claim",
-      "body": "Treat a prediction as something to examine, not a fact about your child. A confident date or large percentage can make a claim sound more precise than its evidence.",
+      "body": "Inspect the evidence behind a prediction. A precise date or a large percentage deserves the same scrutiny as any other claim: where did it come from, what was measured and how much uncertainty remains?",
       "bullets": [
         {
           "term": "Source",
@@ -640,10 +640,10 @@ PARENT_LESSONS.push(
         },
         {
           "term": "Interest",
-          "def": "Is someone selling a product or asking for an urgent decision? That does not prove the claim false, but it matters."
+          "def": "Who benefits if you believe the claim or act quickly? Consider that interest when judging the evidence."
         }
       ],
-      "callout": "“We do not have enough evidence for that conclusion” is a useful answer."
+      "callout": "When the evidence runs out, say so. Then identify what you would need to know next."
     },
     {
       "type": "parent-interaction",
@@ -663,13 +663,13 @@ PARENT_LESSONS.push(
     {
       "type": "concept",
       "title": "Build something you can explain",
-      "body": "A useful learning opportunity combines knowledge, a decision and a reason. Try these two <strong>fictional notices for the same event</strong>.<br><br><strong>A:</strong> “The future of repair is here! Join our amazing workshop on Saturday. All welcome. Scan to find out more.”<br><br><strong>B:</strong> “Repair café, Saturday 6 June, 10 am–noon, Workshop B. Entry is free. Bring a torn pencil case or watch a demonstration; no electrical repairs. Loan tools are available. Ask the club organiser at the school desk about joining or access.”<br><br>B gives someone enough information to begin deciding whether to attend. A may sound exciting, but hides essential details behind a scan. Improving A requires a judgement about what the reader needs; producing more enthusiastic adjectives would not solve that problem.",
-      "callout": "The skill is making and explaining a design choice. Reading aloud or using print can preserve that thinking; a paid image tool is not required."
+      "body": "A useful learning task brings together knowledge, a decision and a reason. Compare these two <strong>fictional notices for the same event</strong>.<br><br><strong>A:</strong> “The future of repair is here! Join our amazing workshop on Saturday. All welcome. Scan to find out more.”<br><br><strong>B:</strong> “Repair café, Saturday 6 June, 10 am–noon, Workshop B. Entry is free. Bring a torn pencil case or watch a demonstration; no electrical repairs. Loan tools are available. Ask the club organiser at the school desk about joining or access.”<br><br>B gives the reader information they need to decide whether to attend. A hides essential details behind a scan. To improve A, choose the missing detail that would help the reader most and explain why it matters.",
+      "callout": "The learner makes and explains the design choice. Print or agreed read-aloud support can help them access the material."
     },
     {
       "type": "scenario",
       "title": "Keep the goal. Change the route.",
-      "situation": "A fictional pupil wants to compare two community notices. Reading dense text is tiring, and the family shares one device. The goal is to judge whether each notice communicates the event clearly.",
+      "situation": "A pupil wants to compare two community notices. Reading dense text is tiring, and the family shares one device. The goal is to judge whether each notice communicates the event clearly.",
       "question": "Which adaptation keeps the intellectual task available?",
       "choices": [
         {
@@ -689,7 +689,7 @@ PARENT_LESSONS.push(
     {
       "type": "concept",
       "title": "Independence does not mean removing support",
-      "body": "An independent decision can be expressed through speech, typing, a diagram or another agreed method. Text-to-speech, accessible formatting or support with organisation may help someone show what they understand. Do not remove approved assistive technology to make a task look more independent.<br><br>The key question is what the learner is being asked to do. If the goal is comparing evidence, accessible reading support may preserve it. If the goal is practising a specific reading skill, the teacher may choose different support. Ask about the task and agreed arrangements; no diagnosis or private document needs to be uploaded to this course.",
+      "body": "A learner can express an independent decision through speech, typing, a diagram or another agreed method. Text-to-speech, clear formatting and support with organisation can help them show what they understand. Keep approved assistive technology available.<br><br>Match the support to the learning goal. If the task is to compare evidence, accessible reading support can leave that judgement with the learner. If the task practises a particular reading skill, the teacher may choose different support. Ask about the task and the pupil’s agreed arrangements so the important thinking remains theirs.",
       "sources": [
         {
           "label": "UNICEF: inclusion and accessibility in child-centred AI",
@@ -700,7 +700,7 @@ PARENT_LESSONS.push(
           "url": "https://udlguidelines.cast.org/action-expression/interaction/assistive-technologies/"
         }
       ],
-      "callout": "For school tasks, local instructions and agreed support arrangements take priority over a generic example."
+      "callout": "Check the learning goal and agreed support with the teacher or SENCO."
     },
     {
       "type": "parent-interaction",
@@ -714,13 +714,13 @@ PARENT_LESSONS.push(
           "“Join us in Workshop B on Saturday 6 June, 10 am–noon; entry is free.”"
         ],
         "correct": 2,
-        "explanation": "The version stating Workshop B, the date, the time and free entry makes essential details visible using the supplied facts. It helps someone decide whether to attend. A learner can practise this judgement using print, speech or agreed access support; buying a tool is not the learning goal."
+        "explanation": "The date, time, place and entry cost help a reader decide whether to attend. The change uses the supplied facts and makes them visible. Ask the learner what the reader can now do; that explanation shows the judgement behind the improvement."
       }
     },
     {
       "type": "concept",
       "title": "Connect a small project to a real next step",
-      "body": "A tiny design task does not settle a career choice. It can reveal an interest worth exploring: organising information, solving a practical problem or explaining choices. A parent might say, “You noticed what the reader needed. Would you like to try another small design problem or ask someone what that work involves?”<br><br>For a real subject or career decision, compare current role descriptions and entry routes and speak to a school careers adviser. The National Careers Service’s profiles are a starting point, not a guarantee of future employment. No assessment, purchase or personal disclosure is needed here.<br><br>For real Haileybury schoolwork, use approved tools and accounts within the teacher’s instructions; a career trend does not override those rules. Lower School use requires explicit school instruction. Removes to Upper Sixth general study support remains subject to age limits and teacher direction. Preserve agreed access support.",
+      "body": "A small design task can reveal an interest worth exploring: organising information, solving a practical problem or explaining choices. Try: “You noticed what the reader needed. Would you like to try another design problem or ask someone what that work involves?”<br><br>When a subject or career decision approaches, compare current role descriptions and entry routes and speak to a school careers adviser. The National Careers Service’s profiles help you explore the work people do and ways into it. Discuss how those routes fit the young person’s interests and strengths.<br><br>For Haileybury schoolwork, use approved tools and accounts within the teacher’s instructions. Lower School use requires explicit school instruction. Removes to Upper Sixth general study support remains subject to age limits and teacher direction. Keep agreed access support in place.",
       "sources": [
         {
           "label": "National Careers Service: explore careers",
@@ -730,7 +730,7 @@ PARENT_LESSONS.push(
           "label": "Haileybury AI Parent Guide, updated 4 November 2026; current full policy available through the School Portal"
         }
       ],
-      "callout": "Choose one useful exploration, then ask what the learner can now explain. Do not turn a prediction into pressure to buy a course."
+      "callout": "Choose one useful exploration, then ask what the learner discovered and what they would like to try next."
     },
     {
       "type": "quiz",
@@ -768,7 +768,7 @@ PARENT_LESSONS.push(
     }
   ],
   "completion": {
-    "intro": "Check your judgement about a career claim, an accessible learning opportunity and school permission. Choose on screen; no project plan is required.",
+    "intro": "Apply the lesson to a career claim, an accessible learning task and school permission.",
     "questions": [
       {
         "kind": "choice",
@@ -779,7 +779,7 @@ PARENT_LESSONS.push(
           "Tell them that enjoying design is irrelevant to every future job."
         ],
         "correct": 0,
-        "explanation": "A guarantee needs evidence; it is not established by a confident advert. Current role information and a small exploration can support a decision without panic or an urgent purchase."
+        "explanation": "Check what the provider can substantiate and compare it with current entry routes. Careers advice and a small design task give the teenager useful ways to explore their interest before deciding whether a course is worth taking."
       },
       {
         "kind": "select",
@@ -796,7 +796,7 @@ PARENT_LESSONS.push(
           2,
           4
         ],
-        "explanation": "Access support can preserve the intellectual work. Choosing, explaining and inspecting the effect make the learning visible. Copying a judgement removes that work; a paid tool is not inherently necessary."
+        "explanation": "The learner’s task is to choose, explain and judge the effect of a change. Readable material and agreed support keep that thinking available. A prewritten answer supplies the judgement for them; the paid tool adds no necessary part of this task."
       },
       {
         "kind": "choice",
@@ -818,13 +818,13 @@ PARENT_LESSONS.push(
   "title": "Build your family AI playbook",
   "minutes": 20,
   "goal": "Use a practical family AI playbook to make decisions about learning, permission, privacy and human support.",
-  "desc": "Choose useful habits, test them against fresh situations and decide one small change to try. Everything happens on screen.",
+  "desc": "Choose useful habits, test them against fresh situations and decide one small change to try.",
   "slides": [
     {
       "type": "hook",
       "title": "What will you actually do differently?",
-      "body": "You have explored AI, checked its work and practised useful support. This final lesson brings those decisions into a short playbook you can read and use here.<br><br>You will choose actions for unfamiliar situations and think about one useful habit to try. There is nothing to write, upload or submit. A real conversation with a child is optional, and every course example is fictional.<br><br>Keep returning to a simple question: what should happen next, and why? That is more useful than trying to remember a perfect answer to every possible situation.",
-      "callout": "Allow about 20 minutes. Read the on-screen playbook, choose responses to the cases and complete three final checks. No notes or family participation are needed."
+      "body": "You have explored AI, checked its work and practised ways to support learning. Bring those ideas together in a playbook for the moments that come up at home: a homework question, an urgent message or a new feature someone wants to try.<br><br>Read the short example, choose responses to three situations and decide which habit would be useful first. Keep asking: what should happen next, and why? The aim is to make a sound decision when the situation changes.",
+      "callout": "Allow about 20 minutes. Read the playbook, work through the cases and complete the final checks."
     },
     {
       "type": "concept",
@@ -859,7 +859,7 @@ PARENT_LESSONS.push(
       "type": "concept",
       "title": "A short worked playbook",
       "body": "<strong>Purpose:</strong> use permitted AI for a useful learning task; use paper or discussion when simpler.<br><strong>Learning:</strong> try first, use permitted help, then explain a new example with agreed access support.<br><strong>Permission:</strong> check year-group, tool/account and task rules; ask the teacher when unclear. Qualification rules take precedence.<br><strong>Honesty:</strong> explain AI help and keep any required records; credit does not create permission.<br><strong>Privacy:</strong> keep sensitive information out and check rights before uploading.<br><strong>Verify:</strong> inspect important sources; confirm unusual requests through known contacts.<br><strong>People:</strong> ask about the effect on sleep and relationships; identify trusted human support.<br><strong>Review:</strong> try one routine this week and discuss what helped on Sunday.",
-      "callout": "This playbook gives you decisions to use, not a policy to write. It cannot override the school’s instructions or qualification rules."
+      "callout": "Keep the playbook practical: a clear decision and a next step. School instructions and qualification rules remain the starting point for assessed work."
     },
     {
       "type": "parent-interaction",
@@ -900,7 +900,7 @@ PARENT_LESSONS.push(
           3,
           4
         ],
-        "explanation": "Privacy needs an intentional information and access decision. Independent verification tests a request. Human support and a review make boundaries usable. Neither a friendly reply nor a personalisation promise settles those decisions."
+        "explanation": "Check what information a feature uses and who can access it. Verify urgent requests through a separate known contact. For wellbeing concerns, involve human support and agree when to review the situation. These actions make the principles useful in everyday decisions."
       }
     },
     {
@@ -957,14 +957,14 @@ PARENT_LESSONS.push(
     {
       "type": "activity",
       "title": "Choose one small change to try",
-      "instructions": "Take a quiet moment to choose a habit that would be useful in a fictional household or your own. You do not need to tell the course which one you chose, write it down or involve a child to finish.",
+      "instructions": "Choose one habit to try next. Picture where it would fit into an ordinary week and how you would tell whether it helped.",
       "steps": [
         "Choose one habit: check permission before schoolwork; check a source before sharing; or ask what the learner worked out for themselves.",
         "Think when it would fit: the next homework question, unfamiliar headline or study conversation.",
         "Choose a sensible review point and what you would notice, such as a clearer explanation or an easier next step."
       ],
       "revealLabel": "See one manageable example",
-      "reveal": "“Next time a homework question comes up, we will check what help the task permits before opening a tool. At the weekend, we will ask whether that made the next step clearer.” This is specific enough to try and review. It does not require a new app, a long agreement or a guarantee about grades."
+      "reveal": "“Next time a homework question comes up, we will check what help the task permits before opening a tool. At the weekend, we will ask whether that made the next step clearer.” The action, occasion and review are clear. Start there and adjust the routine after trying it."
     },
     {
       "type": "quiz",
@@ -975,7 +975,7 @@ PARENT_LESSONS.push(
         "Follow the assessment instructions; use only the permitted support and ask the teacher if anything is unclear."
       ],
       "correct": 2,
-      "explanation": "The playbook helps you make decisions; it cannot override assessment rules. Changing wording does not remove the original use or make prohibited assistance permissible. Keep the learner’s work within the actual task requirements.",
+      "explanation": "Follow the assessment instructions and clarify any uncertainty with the teacher. The family playbook helps you apply those rules. Changing the wording of prohibited AI assistance does not make the original use permissible.",
       "title": "Check your understanding"
     },
     {
@@ -984,11 +984,11 @@ PARENT_LESSONS.push(
       "points": [
         {
           "label": "Use the playbook",
-          "text": "The on-screen principles give you a next step; you do not need to write a policy."
+          "text": "Use the principles to choose a clear next step when a situation comes up."
         },
         {
           "label": "Test judgement",
-          "text": "Use unfamiliar cases and explain the reasons, not just the preferred answer."
+          "text": "Consider unfamiliar cases and work through why a response fits the facts."
         },
         {
           "label": "Keep the relationship open",
@@ -996,17 +996,17 @@ PARENT_LESSONS.push(
         },
         {
           "label": "Revisit what changes",
-          "text": "Tools, school instructions and family needs can change. Review the plan rather than treating it as permanent."
+          "text": "Review the routine when tools, school instructions or family needs change."
         },
         {
-          "label": "Know what completion means",
-          "text": "The course checks your decisions in fictional situations. Completion is not professional accreditation or a guarantee about every future decision."
+          "label": "Put it into practice",
+          "text": "Choose one useful habit, try it and discuss what helped."
         }
       ]
     }
   ],
   "completion": {
-    "intro": "Apply the playbook to three fresh decisions. Choose on screen and use the explanations if you need another attempt.",
+    "intro": "Use the playbook to decide what happens next in three fresh situations.",
     "questions": [
       {
         "kind": "select",
@@ -1023,7 +1023,7 @@ PARENT_LESSONS.push(
           2,
           4
         ],
-        "explanation": "Personalisation does not remove privacy, account or permission decisions. A fictional brief can often test the useful skill without exposing correspondence or pupil information. Approval for one use does not automatically cover every new feature."
+        "explanation": "Check the purpose, information, access and permission before connecting the feature. An invented brief gives you a way to test the skill while keeping correspondence and pupil information private. Confirm approval for the particular feature and use."
       },
       {
         "kind": "choice",

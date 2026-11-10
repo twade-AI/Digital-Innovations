@@ -859,7 +859,7 @@ var DI_COURSES = {
       {
         "id": 304,
         "title": "Gemini practical: ask, inspect, improve",
-        "desc": "Plan a fictional family games session. Test the answer against the details, then make it work. Use Gemini or the complete practice responses provided here.",
+        "desc": "Plan a family games session with Gemini. Check the numbers, improve the rules and decide whether the plan works. Supplied examples let you try every check here too.",
         "unit": "Understand and try"
       },
       {
@@ -889,7 +889,7 @@ var DI_COURSES = {
       {
         "id": 309,
         "title": "Gemini Notebook practical: start with sources",
-        "desc": "Use two short fictional club notices to check a time change, inspect citations and recognise a question the sources cannot answer. A complete no-account route is included.",
+        "desc": "Check a time change in two fictional club notices. Follow the citations and decide what the documents tell you—and what you still need to ask.",
         "unit": "Keep the learning with your child"
       },
       {
@@ -925,7 +925,7 @@ var DI_COURSES = {
       {
         "id": 315,
         "title": "Build your family AI playbook",
-        "desc": "Choose useful habits, test them against fresh situations and decide one small change to try. Everything happens on screen.",
+        "desc": "Choose useful habits, test them against fresh situations and decide one small change to try.",
         "unit": "Make good decisions together"
       }
     ]

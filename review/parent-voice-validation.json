@@ -1,0 +1,102 @@
+{
+  "reviewed": "2026-11-10",
+  "scope": "Parent-course voice edit",
+  "preserved": [
+    "15 lesson IDs",
+    "171 teaching slides",
+    "21 inline interactions",
+    "45 completion checks",
+    "question options and answer keys",
+    "source URLs",
+    "copyable practice prompts",
+    "lesson timing estimates"
+  ],
+  "browser": {
+    "lessons": 15,
+    "renderedSlides": 186,
+    "noVideo": true,
+    "completionGate": true,
+    "noWrittenSubmissions": true,
+    "backupRestore": true,
+    "pupilStatePreserved": true,
+    "resume": true,
+    "keyboardDialog": true,
+    "textReflow": true,
+    "offline": true,
+    "accessibility": [
+      {
+        "theme": "light",
+        "lesson": 303,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "light",
+        "lesson": 309,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "light",
+        "lesson": 315,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "dark",
+        "lesson": 303,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "dark",
+        "lesson": 309,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "dark",
+        "lesson": 315,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "high",
+        "lesson": 303,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "high",
+        "lesson": 309,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "high",
+        "lesson": 315,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      }
+    ],
+    "errors": []
+  }
+}
