@@ -832,5 +832,102 @@ var DI_COURSES = {
         "unit": ""
       }
     ]
+  },
+  "parents": {
+    "name": "AI at Home · Parents",
+    "url": "parents.html",
+    "key": "di_parent_v1",
+    "lessons": [
+      {
+        "id": 301,
+        "title": "AI in your child’s world",
+        "desc": "Start with familiar moments: the feed, the homework question and the convincing chatbot. Work out where your judgement belongs.",
+        "unit": "Understand and try"
+      },
+      {
+        "id": 302,
+        "title": "Why a convincing answer can still be wrong",
+        "desc": "Put a confident answer on trial. Learn to check what matters without becoming suspicious of everything.",
+        "unit": "Understand and try"
+      },
+      {
+        "id": 303,
+        "title": "Accounts, privacy and sensible boundaries",
+        "desc": "Make the important decisions before the first practical: whose account, which information and what permission?",
+        "unit": "Understand and try"
+      },
+      {
+        "id": 304,
+        "title": "Gemini practical: ask, inspect, improve",
+        "desc": "Plan a fictional family games session. Test the answer against the details, then make it work. Use Gemini or the complete practice responses provided here.",
+        "unit": "Understand and try"
+      },
+      {
+        "id": 305,
+        "title": "Help with homework without taking over",
+        "desc": "Respond to “I’m stuck” with help that leaves the important thinking with the learner.",
+        "unit": "Keep the learning with your child"
+      },
+      {
+        "id": 306,
+        "title": "School rules, honesty and assessed work",
+        "desc": "Know what is allowed, what needs recording and when to ask. Practise the decisions before the deadline.",
+        "unit": "Keep the learning with your child"
+      },
+      {
+        "id": 307,
+        "title": "Gemini practical: a study coach, one step at a time",
+        "desc": "Try a small problem, ask for the smallest useful hint, then tackle a changed problem independently. Practise with Gemini or a complete coaching transcript.",
+        "unit": "Keep the learning with your child"
+      },
+      {
+        "id": 308,
+        "title": "Revision that builds independent understanding",
+        "desc": "Try the difference between recognising a tidy summary and being able to explain and use the idea yourself.",
+        "unit": "Keep the learning with your child"
+      },
+      {
+        "id": 309,
+        "title": "Gemini Notebook practical: start with sources",
+        "desc": "Use two short fictional club notices to check a time change, inspect citations and recognise a question the sources cannot answer. A complete no-account route is included.",
+        "unit": "Keep the learning with your child"
+      },
+      {
+        "id": 310,
+        "title": "Gemini Notebook practical: make resources, then test the learning",
+        "desc": "Build a tiny study pack from invented game rules, catch a planted error and use the rules with the resource closed. Choose a live tool or the complete simulated pack.",
+        "unit": "Keep the learning with your child"
+      },
+      {
+        "id": 311,
+        "title": "Deepfakes, misinformation and family scams",
+        "desc": "Practise what to do when a familiar voice, a convincing message or a widely shared story asks you to act quickly.",
+        "unit": "Make good decisions together"
+      },
+      {
+        "id": 312,
+        "title": "Whose work? Whose interests?",
+        "desc": "Make a school-club poster better by thinking about the people, sources and choices behind it.",
+        "unit": "Make good decisions together"
+      },
+      {
+        "id": 313,
+        "title": "AI companions, attention and relationships",
+        "desc": "Understand why a chatbot can feel personal, and practise a supportive conversation with clear boundaries.",
+        "unit": "Make good decisions together"
+      },
+      {
+        "id": 314,
+        "title": "Your child’s future: skills, access and independence",
+        "desc": "Move from alarming predictions to a realistic opportunity that builds knowledge, judgement and confidence.",
+        "unit": "Make good decisions together"
+      },
+      {
+        "id": 315,
+        "title": "Build your family AI playbook",
+        "desc": "Choose useful habits, test them against fresh situations and decide one small change to try. Everything happens on screen.",
+        "unit": "Make good decisions together"
+      }
+    ]
   }
 };

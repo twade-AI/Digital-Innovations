@@ -1,0 +1,195 @@
+{
+  "reviewed": "2026-11-10",
+  "parent": {
+    "lessons": 15,
+    "renderedSlides": 186,
+    "noVideo": true,
+    "completionGate": true,
+    "noWrittenSubmissions": true,
+    "backupRestore": true,
+    "pupilStatePreserved": true,
+    "resume": true,
+    "keyboardDialog": true,
+    "textReflow": true,
+    "offline": true,
+    "accessibility": [
+      {
+        "theme": "light",
+        "lesson": 303,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "light",
+        "lesson": 309,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "light",
+        "lesson": 315,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "dark",
+        "lesson": 303,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "dark",
+        "lesson": 309,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "dark",
+        "lesson": 315,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "high",
+        "lesson": 303,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "high",
+        "lesson": 309,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "high",
+        "lesson": 315,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      }
+    ],
+    "errors": []
+  },
+  "certificate": {
+    "pdf": {
+      "bytes": 142853,
+      "pages": 1,
+      "landscapeA4": true,
+      "originalFonts": true,
+      "unicodeText": true
+    },
+    "oldWrittenWorkRejected": true,
+    "wrongAnswersRejected": true,
+    "duplicateAndUnknownIDsRejected": true,
+    "asyncRevocation": true,
+    "crossTabRevocation": true,
+    "reloadRevocation": true,
+    "longNames": true,
+    "unsupportedGlyphsExplained": true,
+    "offline": true,
+    "pupilStateUnchanged": true,
+    "accessibility": [
+      {
+        "label": "desktop",
+        "violations": []
+      },
+      {
+        "label": "phone",
+        "violations": []
+      }
+    ],
+    "errors": []
+  },
+  "navigation": {
+    "preferences": [
+      "removes.html",
+      "fluency.html",
+      "revised.html",
+      "index.html?lesson=5",
+      "index.html?lesson=57"
+    ],
+    "courseAwareResume": true,
+    "dialogInitialFocusAndInert": true,
+    "tabTrap": true,
+    "sectionHistory": true,
+    "crossCourseSearch": true,
+    "sharedRehearsal": true,
+    "portfolioRehearsal": true,
+    "backupRestoredInFreshBrowser": true,
+    "credentialsExcluded": true,
+    "conflictsPreserved": true,
+    "projectSources": true,
+    "revisedNotesPreserved": true,
+    "projectContinueStaysInPathway": true,
+    "newsPageFreshness": true,
+    "phoneReflow": true,
+    "offlineBackup": true,
+    "errors": []
+  },
+  "removesAndPassport": {
+    "removes": {
+      "lessons": 40,
+      "slides": 397
+    },
+    "passport": {
+      "lessons": 20,
+      "slides": 199
+    },
+    "projects": {
+      "sessions": 14,
+      "slides": 176
+    },
+    "responsive": [
+      {
+        "width": 1440,
+        "overflow": false
+      },
+      {
+        "width": 768,
+        "overflow": false
+      },
+      {
+        "width": 390,
+        "overflow": false
+      }
+    ],
+    "sharedRevisionNotes": true,
+    "earlierNotesAndExitsPreserved": true,
+    "projectMigration": true,
+    "earlierWorkDownload": true,
+    "legacyRedirect": true,
+    "offline": true,
+    "standalone": true,
+    "errors": []
+  },
+  "sharedAEP": {
+    "sharedLessons": 19,
+    "sharedSlides": 194,
+    "canonicalParity": true,
+    "phoneOverflow": false,
+    "sequenceAndBack": true,
+    "separateCourseProgress": true,
+    "sharedEvidence": true,
+    "earlierWorkPreserved": true,
+    "offline": true,
+    "errors": []
+  }
+}
