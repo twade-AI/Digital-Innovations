@@ -3476,11 +3476,11 @@ function renderNewsStaleness() {
 
 /* ── Onboarding Tour ──────────────────────────────── */
 var OB_STEPS = [
-  { title: 'Welcome to AI and Digital Innovation! 👋', text: 'Explore AI, ethics, prompt engineering and more across 59 lessons. Let\'s take a 60-second tour.' },
-  { title: 'Pick a lesson 📚', text: 'Go to <strong>Units</strong> to browse all 6 units. Click any lesson to open the slide viewer — slides, quizzes and activities are all inside.' },
-  { title: 'Test yourself ⚡', text: 'The <strong>⚡ Quiz Me</strong> button gives you a quick quiz on lessons you\'ve completed. Great for spaced revision.' },
-  { title: 'Track your progress 📊', text: 'Head to <strong>My Progress</strong> to see your streak calendar, XP level, badges, and quiz scores — all saved locally.' },
-  { title: 'Ready? Start with Lesson 1 🚀', text: '<strong>Your AI Footprint</strong> is the perfect starting point — audit your daily AI interactions. No prior knowledge needed.', cta: true },
+  { title: 'Welcome to AI and Digital Innovation! 👋', text: 'Four courses for pupils, parents and carers: <strong>Removes</strong>, <strong>AEP</strong>, <strong>AI Digital Passport</strong> and <strong>AI at Home</strong>. Find the route that fits you.' },
+  { title: 'Choose your course 📚', text: '<strong>Removes</strong> builds AI and study skills across 40 lessons. <strong>AEP</strong> goes deeper across 59 lessons. The <strong>AI Digital Passport</strong> is a focused 20-lesson selection from Removes.' },
+  { title: 'Learning for parents, too 💬', text: '<strong>AI at Home</strong> has 15 lessons for parents and carers, with on-screen scenarios, interactive checks and optional Gemini practice. No written assignments. Complete every lesson to unlock your personalised Haileybury certificate.' },
+  { title: 'Learn at your own pace', text: 'Open any lesson, use the reading settings and return when you are ready. Progress is saved in this browser. Use <strong>Save or move my work</strong> to back it up before changing devices or clearing browser data.' },
+  { title: 'Find your next step →', text: 'Explore all four courses on the homepage. You can also continue your current course or choose an additional Climate Innovation or Digital Productivity project.', cta: true },
 ];
 var obStep = 0;
 function checkOnboarding() { if (!localStorage.getItem('di_onboarded')) setTimeout(startOnboarding, 1400); }
@@ -3495,7 +3495,7 @@ function renderObStep() {
     '<p class="ob-text">' + s.text + '</p>' +
     '<div class="ob-actions">' +
       (isLast
-        ? '<button class="btn btn-primary" onclick="closeOnboarding();openLesson(1)">Start Lesson 1 →</button>'
+        ? '<button class="btn btn-primary" onclick="closeOnboarding();showSection(\'home\');document.getElementById(\'choose-course\').scrollIntoView()">Choose your course →</button>'
         : '<button class="btn btn-primary" onclick="nextObStep()">Next →</button>') +
       '<button class="btn btn-secondary" onclick="closeOnboarding()">Skip</button>' +
     '</div>' +
