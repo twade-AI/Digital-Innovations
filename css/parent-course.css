@@ -1,0 +1,100 @@
+/* Parent-only refinements of the existing editorial lesson design. */
+body[data-track="parents"] { --track-primary:#83d4b6; --track-primary-rgb:131,212,182; --track-primary-dark:#5eb89a; }
+[data-theme="light"] body[data-track="parents"] { --track-primary:#245d4e; --track-primary-rgb:36,93,78; --track-primary-dark:#194c3e; }
+body[data-track="parents"] .gs-hero { padding-top:28px; }
+body[data-track="parents"] .gs-hero h1 { font-size:clamp(2rem,5vw,3.4rem); line-height:1.06; letter-spacing:-.045em; max-width:760px; }
+body[data-track="parents"] .gs-hero-sub { margin-top:22px; font-size:1.08rem; }
+body[data-track="parents"] .gs-header { flex-wrap:wrap; padding-bottom:18px; }
+body[data-track="parents"] .gs-header a { white-space:normal; }
+body[data-track="parents"] .gs-unit-domain { max-width:100%; white-space:normal; }
+body[data-track="parents"] .gs-lesson-title { line-height:1.4; }
+body[data-track="parents"] .gs-lesson-info { min-width:0; }
+body[data-track="parents"] .gs-practical-resources p { max-width:70ch; }
+body[data-track="parents"] .gs-practical-resources p a { display:inline; margin:0; }
+body[data-track="parents"] .parent-evidence-help { padding:18px; border-left:3px solid var(--track-primary); background:var(--bg); font-size:1rem; line-height:1.65; }
+body[data-track="parents"] .parent-completion-message { padding:20px; border:2px solid var(--track-primary); border-radius:8px; background:var(--bg); margin-bottom:20px; scroll-margin-top:20px; }
+body[data-track="parents"] .parent-completion-message ul { padding-left:24px; }
+body[data-track="parents"] .parent-results { padding:clamp(20px,4vw,44px); max-width:760px; margin:auto; }
+body[data-track="parents"] .parent-results p { line-height:1.7; margin-block:20px; }
+body[data-track="parents"] .parent-result-actions { display:flex; flex-wrap:wrap; gap:12px; }
+body[data-track="parents"] .gs-cert-card p { line-height:1.6; }
+body[data-track="parents"] .slide-body table { width:100%; border-collapse:collapse; }
+body[data-track="parents"] .slide-body :is(th,td) { padding:12px; border:1px solid var(--border); text-align:left; overflow-wrap:anywhere; }
+body[data-track="parents"] .slide-area :is(pre,code) { white-space:pre-wrap; overflow-wrap:anywhere; }
+body[data-track="parents"] .slide-area :is(p,li,td,a) { overflow-wrap:anywhere; }
+@media(max-width:600px) {
+  body[data-track="parents"] .gs-header-title { margin-left:0; }
+  body[data-track="parents"] .gs-brand { flex:1; min-width:150px; }
+  body[data-track="parents"] .gs-hero-stats { gap:20px; }
+  body[data-track="parents"] .gs-unit-label { flex-wrap:wrap; gap:8px; }
+  body[data-track="parents"] .gs-unit-domain { margin-left:0; }
+  body[data-track="parents"] .parent-result-actions .btn { width:100%; }
+}
+@media print {
+  body[data-track="parents"] .gs-complete:not(.visible) { display:none!important; }
+  body[data-track="parents"] .gs-complete > a { display:none; }
+  body[data-track="parents"] .gs-cert-card { color:#172b26; }
+}
+
+/* Both screen preview and PDF use brand magenta for readable small text;
+   grey is reserved for the decorative inner border. The certificate uses
+   the supplied 2018 primary palette and Calluna Sans.
+   Its artwork keeps its original proportions, with generous clear space. */
+body[data-track="parents"] .parent-certificate-section { display:block; text-align:left; padding:24px; border-color:var(--border); }
+body[data-track="parents"] .parent-certificate-section.visible { border-color:var(--track-primary); }
+body[data-track="parents"] .parent-certificate-section [hidden] { display:none!important; }
+body[data-track="parents"] #parentCertificateForm { margin:24px 0; }
+body[data-track="parents"] #parentCertificateForm label { display:block; font-weight:700; margin-bottom:8px; }
+body[data-track="parents"] #parentCertificateName { width:100%; box-sizing:border-box; padding:13px; border:1px solid var(--border); border-radius:5px; background:var(--bg); color:var(--text); font:inherit; }
+body[data-track="parents"] #parentCertificateNameHelp { margin:10px 0 18px; line-height:1.6; }
+body[data-track="parents"] #parentCertificateStatus { margin-top:16px; min-height:1.5em; }
+body[data-track="parents"] .parent-certificate-preview { container-type:inline-size; aspect-ratio:841.89/595.28; width:100%; position:relative; background:#fff; margin-top:24px; color:#9b1844; }
+body[data-track="parents"] .parent-certificate-sheet { position:absolute; inset:0; font-family:'Calluna Sans',sans-serif; font-weight:300; text-align:center; }
+body[data-track="parents"] .parent-certificate-sheet::before,
+body[data-track="parents"] .parent-certificate-sheet::after { content:''; position:absolute; inset:5.04% 3.56%; border:1px solid #9b1844; pointer-events:none; }
+body[data-track="parents"] .parent-certificate-sheet::after { inset:6.22% 4.4%; border-color:#d8d8d8; border-width:.5px; }
+body[data-track="parents"] .parent-cert-logo { position:absolute; top:9.96%; width:16.16%; height:auto; left:41.92%; }
+body[data-track="parents"] .parent-cert-heading { position:absolute; top:26.5%; width:100%; font-size:3.56cqw; line-height:1.2; }
+body[data-track="parents"] .parent-cert-rule { position:absolute; top:33.8%; width:19%; left:40.5%; border-top:1px solid #e1bac7; }
+body[data-track="parents"] .parent-cert-presented { position:absolute; top:35.4%; width:100%; font-size:1.43cqw; color:#9b1844; }
+body[data-track="parents"] .parent-cert-name { position:absolute; top:40%; left:9.6%; width:80.8%; height:15.3%; display:flex; justify-content:center; align-items:center; font-size:5cqw; line-height:1.06; overflow-wrap:anywhere; }
+body[data-track="parents"] .parent-cert-completed { position:absolute; top:55.6%; width:100%; font-size:1.54cqw; color:#9b1844; }
+body[data-track="parents"] .parent-cert-course { position:absolute; top:59.4%; width:100%; font-size:3.44cqw; }
+body[data-track="parents"] .parent-cert-purpose { position:absolute; top:67.2%; width:100%; font-size:1.78cqw; line-height:1.4; color:#9b1844; }
+body[data-track="parents"] .parent-cert-date { position:absolute; top:78%; width:100%; font-size:1.43cqw; color:#9b1844; font-weight:700; }
+body[data-track="parents"] .parent-cert-issuer { position:absolute; top:82.4%; width:100%; font-size:1.43cqw; font-weight:700; }
+body[data-track="parents"] .parent-cert-footnote { position:absolute; top:88.3%; width:100%; font-size:1.07cqw; color:#9b1844; }
+body[data-track="parents"] .parent-certificate-caption { margin:12px 0 24px; line-height:1.6; }
+@media print {
+  body[data-track="parents"] .parent-certificate-section { display:none!important; }
+}
+
+/* Native, parent-only question controls: no written submissions required. */
+body[data-track="parents"] .parent-interactions { max-width:800px; margin:auto; padding:clamp(18px,4vw,38px); }
+body[data-track="parents"] .parent-interaction-intro,
+body[data-track="parents"] .parent-check-footnote { line-height:1.7; margin:16px 0 24px; }
+body[data-track="parents"] .parent-check { margin:24px 0; padding:clamp(16px,3vw,24px); border:1px solid var(--border); border-radius:12px; background:var(--surface,var(--bg)); }
+body[data-track="parents"] .parent-check fieldset { border:0; padding:0; margin:0; min-width:0; }
+body[data-track="parents"] .parent-check legend { font-size:1.13rem; font-weight:700; line-height:1.5; padding:0; width:100%; overflow-wrap:anywhere; }
+body[data-track="parents"] .parent-check-number { display:block; color:var(--track-primary); font-size:.82rem; letter-spacing:.05em; text-transform:uppercase; margin-bottom:10px; }
+body[data-track="parents"] .parent-check-help { line-height:1.6; margin:12px 0 18px; }
+body[data-track="parents"] .parent-choice-options { display:grid; gap:10px; }
+body[data-track="parents"] .parent-choice-option { display:flex; align-items:flex-start; gap:12px; padding:14px; border:1px solid var(--border); border-radius:8px; cursor:pointer; line-height:1.55; min-height:48px; box-sizing:border-box; }
+body[data-track="parents"] .parent-choice-option:has(input:checked) { border-color:var(--track-primary); box-shadow:inset 0 0 0 1px var(--track-primary); }
+body[data-track="parents"] .parent-choice-option input { flex:none; margin:4px 0 0; width:20px; height:20px; accent-color:var(--track-primary); }
+body[data-track="parents"] .parent-choice-option span { min-width:0; overflow-wrap:anywhere; }
+body[data-track="parents"] .parent-order-options { display:grid; gap:14px; }
+body[data-track="parents"] .parent-order-options label { display:grid; gap:8px; font-weight:600; }
+body[data-track="parents"] .parent-order-options select { display:block; width:100%; min-width:0; min-height:48px; padding:12px; background:var(--bg); color:var(--text); font:inherit; border:1px solid var(--border); border-radius:6px; }
+body[data-track="parents"] .parent-check-button { margin-top:20px; min-height:48px; white-space:normal; }
+body[data-track="parents"] .parent-check :is(input,select,button):focus-visible { outline:3px solid var(--track-primary); outline-offset:4px; }
+body[data-track="parents"] .parent-check-feedback { margin-top:16px; line-height:1.7; overflow-wrap:anywhere; }
+body[data-track="parents"] .parent-check-feedback:not(:empty) { padding:14px; border-left:3px solid var(--border); background:var(--bg); }
+body[data-track="parents"] .parent-check-feedback.is-correct { border-left-color:var(--track-primary); }
+body[data-track="parents"] .parent-check-feedback.is-error { border-left-color:currentColor; font-weight:600; }
+body[data-track="parents"] .parent-check-feedback:focus { outline:2px solid var(--track-primary); outline-offset:3px; }
+@media(max-width:600px) {
+  body[data-track="parents"] .parent-interactions { padding:16px 8px; }
+  body[data-track="parents"] .parent-check { padding:16px 12px; }
+  body[data-track="parents"] .parent-check-button { width:100%; }
+}

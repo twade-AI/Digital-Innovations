@@ -1270,7 +1270,7 @@ function handleSearch(query) {
   const q = query.toLowerCase();
   const results = [];
   // Search all course pathways, including the separate project sequences.
-  Object.keys(DI_COURSES).forEach(function(track){var course=DI_COURSES[track];course.lessons.forEach(function(l){var score=[l.title,l.desc,l.unit].filter(function(t){return (t||'').toLowerCase().includes(q);}).length;if(score)results.push({type:'course',track:track,course:course,lesson:l,score:score+10});});});
+  Object.keys(DI_COURSES).forEach(function(track){var course=DI_COURSES[track];course.lessons.forEach(function(l){var score=[l.title,l.desc,l.unit,course.name].filter(function(t){return (t||'').toLowerCase().includes(q);}).length;if(score)results.push({type:'course',track:track,course:course,lesson:l,score:score+10});});});
   // Search glossary
   if (typeof GLOSSARY !== 'undefined') {
     for (const g of GLOSSARY) {

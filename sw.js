@@ -3,8 +3,8 @@
 /* Three caches so bumping one category doesn't invalidate the others.
    When you change a JS file, bump CODE_CACHE only; fonts and HTML stay
    in place and the user doesn't re-download them. */
-const SHELL_CACHE  = 'di-shell-v35';  // HTML + CSS + fonts — slow to change
-const CODE_CACHE   = 'di-code-v72';   // JS — changes with every feature
+const SHELL_CACHE  = 'di-shell-v37';  // HTML + CSS + fonts — slow to change
+const CODE_CACHE   = 'di-code-v75';   // JS — changes with every feature
 const ASSETS_CACHE = 'di-assets-v5';  // Logos, icons, manifest
 const ALL_CACHES   = [SHELL_CACHE, CODE_CACHE, ASSETS_CACHE];
 
@@ -16,6 +16,8 @@ const SHELL_ASSETS = [
   './css/experience.css',
   './fluency.html',
   './removes.html',
+  './parents.html',
+  './css/parent-course.css',
   './revised.html',
   './verify.html',
   './portfolio.html',
@@ -39,6 +41,16 @@ const SHELL_ASSETS = [
 
 const CODE_ASSETS = [
   './js/app.js',
+  './js/course-player.js',
+  './js/parent-player.js',
+  './js/parent-certificate.js',
+  './js/parent-interactions.js',
+  './js/vendor/pdf-lib.min.js',
+  './js/vendor/fontkit.umd.min.js',
+  './js/parent-foundations.js',
+  './js/parent-practicals.js',
+  './js/parent-decisions.js',
+  './js/parent-curriculum.js',
   './js/auth.js',
   './js/data.js',
   './js/news-live.js',
@@ -76,6 +88,7 @@ const CODE_ASSETS = [
 
 const STATIC_ASSETS = [
   './assets/studio/creative-object.webp',
+  './assets/brand/logo/haileybury-certificate.png',
   './icon.svg',
   './assets/icons/icon-192.png',
   './assets/icons/icon-512.png',
@@ -148,7 +161,7 @@ self.addEventListener('fetch', function(e) {
       // Query parameters select a lesson/portfolio in the same static HTML shell.
       // A previously unseen deep link should still open a cached course offline.
       if (!cached && e.request.mode === 'navigate' && url.origin === self.location.origin &&
-          /\/(?:index|removes|fluency|revised|portfolio|class|family|labs|verify)\.html$/.test(url.pathname)) {
+          /\/(?:index|removes|parents|fluency|revised|portfolio|class|family|labs|verify)\.html$/.test(url.pathname)) {
         cached = await caches.match(url.origin + url.pathname);
       }
       var networkFetch = fetch(e.request).then(function(response) {

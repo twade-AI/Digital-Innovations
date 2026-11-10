@@ -27,3 +27,15 @@ Creative-studio offset hover/shadow adapted from 0xnihilism, Uiverse.io
 Cards/0xnihilism_average-mole-62.html, under the MIT licence above.
 The homepage sculpture is an original AI-generated illustration, not a
 licensed Uiverse asset. Original SVG motifs are authored for this course.
+
+
+Parent-certificate PDF generation (locally bundled, no CDN):
+pdf-lib 1.17.1 — MIT; copyright Andrew Dillon.
+https://github.com/Hopding/pdf-lib — full licence: js/vendor/pdf-lib.LICENSE.md
+@pdf-lib/fontkit 1.1.1 — MIT; based on fontkit by Devon Govett.
+https://github.com/Hopding/fontkit — full licence: js/vendor/fontkit.LICENSE
+
+The certificate brandmark is an unaltered rendering of the supplied Haileybury
+Brand Guidelines for staff, Issue 1.1, September 2018, page 6 (section 2.1).
+The existing licensed Haileybury Calluna Sans assets are embedded for certificate
+typography. Brand assets remain Haileybury material, not MIT-licensed UI assets.

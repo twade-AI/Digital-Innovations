@@ -2,6 +2,14 @@
 
 Haileybury pupil course: 59 AEP lessons, 40 Removes lessons and a 20-lesson Passport selected entirely from Removes.
 
+[AI at Home: A Parent’s Guide](parents.html) adds a separate 15-lesson parent pathway, with four Gemini/Gemini Notebook workshops, complete written teaching and supplied-example alternatives. No video is required. Haileybury’s approach follows the **November 2026 Parent Guide**, including the three assessment levels; the older policy draft is not the parent-course authority. Current task instructions and qualification requirements take precedence.
+
+Parent content is authored in `js/parent-foundations.js`, `js/parent-practicals.js` and `js/parent-decisions.js`, assembled by `js/parent-curriculum.js`. IDs 301–315 keep parent progress separate from pupil work. There are no written assignments: each lesson has on-screen activities and three final choice, selection or ordering checks. `js/parent-interactions.js` validates saved answers against the authored keys under `di_parent_checks_v1_301`–`315` (revision `parent-v2`). Progress uses `di_parent_v1`. Removes and parents share `js/course-player.js`; parent completion and presentation are configured in `js/parent-player.js`. [Work backup](work.html) restores interactive answers and progress, with conflict handling. Gemini practice uses a separate tab or split-screen window, with copyable fictional prompts and complete supplied-example alternatives.
+
+The personalised Haileybury certificate uses `js/parent-certificate.js`, original brand artwork and Calluna Sans fonts. It generates a landscape A4 PDF locally after all 15 specific lessons and their interactive checks are complete, rechecking eligibility before download. This is a completion record, not a tamper-proof or accredited qualification. Names stay in the browser; unsupported font characters produce a clear message without changing the name.
+
+Run `node tests/parent-content.cjs`, `node tests/parent-browser.cjs` and `node tests/parent-certificate.cjs` after serving the site locally. Browser settings are described below; `AXE_PATH` enables automated accessibility checks. Regenerate the catalog with `node tools/build-course-catalog.cjs` and the standalone Passport with `node tools/build-fluency-standalone.mjs` after shared-asset edits. [Full review and improvements](review/parent-course-review.html), [additional sources](review/parent-content-sources.html) and [optional future recording suggestions](review/parent-recording-plan.html) are separate from the learner journey. Timings are estimates; actual signed-in Google account routes and parent usability still need a human pilot before claims about learning effectiveness.
+
 - [AEP content and fullscreen refresh](review/aep-refresh.html) — 59 lessons, current reference material, creative evidence and an AEP portfolio.
 - [Creative evidence, Passport selection and current design](review/evidence-and-design.html)
 - [Course review and improvement priorities](review/course-review.html)
@@ -16,7 +24,7 @@ Haileybury pupil course: 59 AEP lessons, 40 Removes lessons and a 20-lesson Pass
 
 Serve a copy of the site (excluding `.git`) on localhost for browser tests. Review evidence is in `review/`. External videos require internet access; offline support requires a successful initial cache installation.
 
-Every authored lesson has a creative evidence brief in `js/evidence-tasks.js`. `js/learning-evidence.js` appends it without shifting existing slide indices and stores work by lesson ID. Removes and Passport share evidence; Passport completion uses versioned storage. Run `node tests/learning-evidence.cjs` for curriculum, storage and export regression checks.
+Every authored pupil lesson has a creative evidence brief in `js/evidence-tasks.js`. `js/learning-evidence.js` appends it without shifting existing slide indices and stores work by lesson ID. Removes and Passport share evidence; Passport completion uses versioned storage. Run `node tests/learning-evidence.cjs` for curriculum, storage and export regression checks.
 
 Browser regression: install Playwright in your test environment, serve a metadata-free copy of the site, then run `node tests/studio-browser.cjs`. Optional `COURSE_URL`, `CHROMIUM_PATH`, `PLAYWRIGHT_MODULE` and `ARTIFACT_DIR` configure the preview, browser and screenshot destination. The script checks responsive layout, Passport rendering, progress migration, evidence persistence/export, portfolio isolation, offline reading and the standalone export.
 
