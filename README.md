@@ -1,6 +1,6 @@
 # AI and Digital Innovation
 
-Haileybury pupil course: 59 AEP lessons, 40 Removes lessons and a 20-lesson Passport selected entirely from Removes.
+Four Haileybury AI courses for pupils, parents and carers: Removes (40 lessons), AEP (59 lessons), AI Digital Passport (20 lessons selected entirely from Removes) and AI at Home (15 parent lessons). The Climate Innovation and Digital Productivity projects remain additional pathways.
 
 [AI at Home: A Parent’s Guide](parents.html) adds a separate 15-lesson parent pathway, with four Gemini/Gemini Notebook workshops, complete written teaching and supplied-example alternatives. No video is required. Haileybury’s approach follows the **November 2026 Parent Guide**, including the three assessment levels; the older policy draft is not the parent-course authority. Current task instructions and qualification requirements take precedence.
 
