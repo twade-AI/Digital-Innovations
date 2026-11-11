@@ -76,12 +76,16 @@ function initParentPlayer() {
   };
   var html = gsRenderSlideHTML;
   gsRenderSlideHTML = function(slide) {
+    if (slide.type === 'parent-model-lab' && window.DI_PARENT_MODEL) return DI_PARENT_MODEL.render(slide) + window.diSlide.sourcesHTML(slide);
+    if (slide.type === 'parent-design-lab' && window.DI_PARENT_DESIGN) return DI_PARENT_DESIGN.render(slide) + window.diSlide.sourcesHTML(slide);
     if (slide.type === 'parent-completion' || slide.type === 'parent-interaction') return DI_PARENT_INTERACTIONS.render(Object.assign({},slide,{lessonId:gsCurrentId,slideIndex:gsSlideIdx}));
     return html(slide);
   };
   var render = gsRenderSlideInner;
   gsRenderSlideInner = function() {
     render();
+    if (window.DI_PARENT_MODEL && DI_PARENT_MODEL.mount) DI_PARENT_MODEL.mount(document.getElementById('gsSlideArea'));
+    if (window.DI_PARENT_DESIGN && DI_PARENT_DESIGN.mount) DI_PARENT_DESIGN.mount(document.getElementById('gsSlideArea'));
     var next = document.getElementById('gsNextBtn');
     if (gsSlideIdx === gsSlides.length - 1) next.textContent = gsDone.has(gsCurrentId) ? 'Review completion →' : 'Finish lesson ✓';
     var badge = document.querySelector('#gsSlideArea .slide-badge.badge-hook');
@@ -115,6 +119,7 @@ function initParentPlayer() {
   var track = gsRenderTrack;
   gsRenderTrack = function() {
     track();
+    if (window.DI_PARENT_FAMILY) DI_PARENT_FAMILY.mount();
     document.getElementById('gsHero').style.display = '';
     document.querySelectorAll('.gs-lesson-meta').forEach(function(label){label.textContent=label.textContent.replace(' · Updated lesson','');});
     document.querySelectorAll('.gs-unit-domain').forEach(function(label) { label.removeAttribute('title'); });

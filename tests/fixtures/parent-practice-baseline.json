@@ -1,0 +1,266 @@
+{
+  "description": "Parent course saved-answer compatibility baseline before family activities, commit e279a7dad548ef7ec669e345832eadd2565bcfd6. Retired practice keys remain reserved. Final checks are unchanged.",
+  "lessons": [
+    {
+      "id": 301,
+      "completionHash": "acd5a7c3c45eebf2ed6d2c373f14bc1d5b65763240c52e47313a08d60f5323e3",
+      "practice": [
+        {
+          "keyIndex": 1003,
+          "questionHash": "86093d52569ea4e86e9b4e1990fc69c408de69883cb9bd1a3249e4649bd4c634",
+          "correct": [
+            0,
+            2
+          ]
+        },
+        {
+          "keyIndex": 4,
+          "questionHash": "5054b9aa5df1b2c8a06e50a140d757b4f41cdf25326d7129d8e2b18437aec622",
+          "correct": [
+            0,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": 302,
+      "completionHash": "b9a5411a6eb3b993ea6dd65a12f787de0534dc98071fe6451a4b51780197a4a0",
+      "practice": [
+        {
+          "keyIndex": 4,
+          "questionHash": "8a3f7ee0fd789f956575a1a663e20730e177eaa0fa842314cc942bad863494de",
+          "correct": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": 303,
+      "completionHash": "f1ea966811c2716fa50716dfde342bc5f5a712b0790d941e5021d8eceea3b604",
+      "practice": [
+        {
+          "keyIndex": 6,
+          "questionHash": "bbc5454d7f32b687bd2b78cd077c41d521d4dd93cd7a1d2e84604296bd71cec2",
+          "correct": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": 305,
+      "completionHash": "9aba072db64b09b337813d66c1029a5ec17491bcdac4268ef42707f5ada9b90a",
+      "practice": [
+        {
+          "keyIndex": 4,
+          "questionHash": "da436e0ef1282a9ad5a598d313eb8953f368de55312b722105c8d6f13f9ccd1b",
+          "correct": 1
+        },
+        {
+          "keyIndex": 1007,
+          "questionHash": "1baa293c9390b57196c334f93657393e18f546fbfbcd4f4a834f9969605bd055",
+          "correct": 0
+        }
+      ]
+    },
+    {
+      "id": 306,
+      "completionHash": "4909b47b6705494dc7f1aa3a02099acfc74d97eca4b55c6c6987371159966d56",
+      "practice": [
+        {
+          "keyIndex": 6,
+          "questionHash": "ee971b9d8612e620ca62b66ccd8f3783eb8fa1dc0d13ca364ea8c9917a77df73",
+          "correct": [
+            0,
+            1,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": 308,
+      "completionHash": "af187d74bf51b69554e9172673efda36a23427c7f23880bc838b7d1ccc4e9776",
+      "practice": [
+        {
+          "keyIndex": 3,
+          "questionHash": "3641a8820df3cb3635620a7df2783fa28e628a0ead17307b5b2542788e9b10a8",
+          "correct": [
+            0,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": 304,
+      "completionHash": "39332b2aea294f7122f1ee2c44c6d2a0fd53d074fa51bac2ca98a4a4de69f21e",
+      "practice": [
+        {
+          "keyIndex": 6,
+          "questionHash": "08ad0686472e92da0f74cbcae5be7100c89f7c97d9021d89f307155a8822c1fb",
+          "correct": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "id": 307,
+      "completionHash": "12de2bbd1d6d20955a2063e49c62e399e2f9ee3700c5b86f91458d5008dcad0a",
+      "practice": [
+        {
+          "keyIndex": 7,
+          "questionHash": "6cea027c314629b48f93b7309ef1331ce461507c41b6ec158f13162910071024",
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "id": 309,
+      "completionHash": "7e44333aa9687c84919728371e08628dc5495b87634aa429e165b3b9184498af",
+      "practice": [
+        {
+          "keyIndex": 6,
+          "questionHash": "bfb91234da27d7cde3ff02bdac06babc5347be7292d758ddc80d18ef392de41e",
+          "correct": [
+            0,
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": 310,
+      "completionHash": "e6d1b515cea589e00ea7a4b23e4d8b2f76d28ee6dde588594c744ba4e6538720",
+      "practice": [
+        {
+          "keyIndex": 4,
+          "questionHash": "ae94c676762652e20fedcb33db350ef38e4f0365b2c77f143eaaa59fe23f84f5",
+          "correct": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": 311,
+      "completionHash": "d29ec3eae6312ffb15a87599b476fe5090bcd80b9f6c82eb8209e62ec6bdc089",
+      "practice": [
+        {
+          "keyIndex": 5,
+          "questionHash": "256733b6aa831de21397a866a7174b89dfb86444063157e6db2bec52ef62fa4c",
+          "correct": 2
+        },
+        {
+          "keyIndex": 7,
+          "questionHash": "7fd7cad3da7cd77a6004cd03a6e6043e6f143be2ac10455340075fb6a47bca53",
+          "correct": [
+            1,
+            2,
+            3,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "id": 312,
+      "completionHash": "83497deda709ad57357cb6c39337f32e75c4a47d79c25a6054294358e301f313",
+      "practice": [
+        {
+          "keyIndex": 6,
+          "questionHash": "a3d9df05eb1978106a84f8af6e6d1cb550c2c9a7ab63b02eab64a9a889102848",
+          "correct": [
+            0,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": 313,
+      "completionHash": "86756375272e14cefbf392622e67086cb0f8513679a7b9046171de4104ee99fe",
+      "practice": [
+        {
+          "keyIndex": 6,
+          "questionHash": "d534abe17938556b4eb78c3503e602a7e8925ead21f0ba59c0ef018ef8e52e0b",
+          "correct": 0
+        }
+      ]
+    },
+    {
+      "id": 314,
+      "completionHash": "b68ed95dcfc4acb13231db1a1aa68d200c25c2a70b44a6b5b6fbf951408c2508",
+      "practice": [
+        {
+          "keyIndex": 3,
+          "questionHash": "245bda5318e6c9e65927cdf51ea18228cbad4a4933a625710d38e5f54ec5269e",
+          "correct": 0
+        },
+        {
+          "keyIndex": 7,
+          "questionHash": "bda38d6b0b49180c49fafb4e8c6ddeb14981d23836734fee530436bd1bcdb9c5",
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "id": 315,
+      "completionHash": "bb783ff9e234333db0e3e9b66daee0e9c409855d3f98fcbb51ef2d2ed3c36a48",
+      "practice": [
+        {
+          "keyIndex": 3,
+          "questionHash": "171a02d69a27857bd72bbe243d28bf516ea404dd8277e692885c1711b18a0104",
+          "correct": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "keyIndex": 4,
+          "questionHash": "493958febcfb74ff02e9f9bc547256eeaced5a5bdf0b53b60f825fa9b5832006",
+          "correct": [
+            1,
+            3,
+            4
+          ]
+        },
+        {
+          "keyIndex": 5,
+          "questionHash": "287833bfc0cbd03b2d9bc56dbf49e0e0ffb8750ed527384b200b813829d80b79",
+          "correct": 0
+        },
+        {
+          "keyIndex": 6,
+          "questionHash": "8c076bb35bbc23ec0f379dc2cb9f4f5890656a3e128c420452f6dc4d48795ab6",
+          "correct": [
+            0,
+            2,
+            3
+          ]
+        },
+        {
+          "keyIndex": 7,
+          "questionHash": "b3daeec773247b467ce52f8b94163e2a3ab44db5656a5c770f577fa2426e5174",
+          "correct": 1
+        }
+      ]
+    }
+  ]
+}
