@@ -1,0 +1,327 @@
+{
+  "reviewDate": "2026-11-11",
+  "content": {
+    "parentLessons": 15,
+    "renderedSlides": 197,
+    "teachingSlides": 182,
+    "quizzes": 11,
+    "activities": 16,
+    "interactions": 24,
+    "interactiveLabs": 2,
+    "estimatedMinutes": 380,
+    "completionQuestions": 45,
+    "pupilCountsPreserved": [
+      40,
+      20,
+      59
+    ],
+    "videoDependencies": 0,
+    "isolatedIds": true
+  },
+  "continuity": {
+    "restoredLegacyResponses": 18,
+    "reservedRetiredKeys": 5,
+    "newQuestionsIsolated": 6,
+    "unchangedCompletionSets": 15,
+    "originalRecordsUntouched": true,
+    "positionalFallback": true,
+    "finalChecksStillRequired": true
+  },
+  "modelLogic": {
+    "allowedSplitsVerified": 625,
+    "deterministic": true,
+    "trainingTestDisjoint": true,
+    "freshBatches": true,
+    "missingGroupsExplicit": true,
+    "noGuaranteedImprovement": true,
+    "countsConserved": true,
+    "defensiveStateSnapshots": true,
+    "storageTouches": 0,
+    "awards": 0
+  },
+  "designLogic": {
+    "stateTestsPassed": true,
+    "markupTestPassed": true,
+    "test": "tests/parent-design-lab.cjs"
+  },
+  "parentBrowser": {
+    "lessons": 15,
+    "renderedSlides": 197,
+    "noVideo": true,
+    "completionGate": true,
+    "noWrittenSubmissions": true,
+    "backupRestore": true,
+    "pupilStatePreserved": true,
+    "resume": true,
+    "keyboardDialog": true,
+    "textReflow": true,
+    "offline": true,
+    "accessibility": [
+      {
+        "theme": "light",
+        "lesson": 303,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "light",
+        "lesson": 309,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "light",
+        "lesson": 315,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "dark",
+        "lesson": 303,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "dark",
+        "lesson": 309,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "dark",
+        "lesson": 315,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "high",
+        "lesson": 303,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "high",
+        "lesson": 309,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "theme": "high",
+        "lesson": 315,
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      }
+    ],
+    "errors": []
+  },
+  "quickstart": {
+    "canonicalLessonUnchanged": true,
+    "normalLessonRestored": true,
+    "noSavedWorkWrites": true,
+    "resumePreserved": true,
+    "certificateGatePreserved": true,
+    "alreadyCompletedSourceSafe": true,
+    "keyboard": true,
+    "mobileTouch": true,
+    "offline": true,
+    "accessibility": [
+      {
+        "label": "desktop introduction",
+        "violations": []
+      },
+      {
+        "label": "desktop decision",
+        "violations": []
+      },
+      {
+        "label": "desktop summary",
+        "violations": []
+      },
+      {
+        "label": "phone decision",
+        "violations": []
+      }
+    ],
+    "errors": []
+  },
+  "familyBrowser": {
+    "familyCards": 3,
+    "ageRoutes": 9,
+    "newNativeInteractions": 6,
+    "modelPredictionAndRetest": true,
+    "heldOutSeparation": true,
+    "modelTransferAndReset": true,
+    "designFailureRepairPlayTransfer": true,
+    "sixthFormVariant": true,
+    "keyboard": true,
+    "sessionReset": true,
+    "bothLabsOffline": true,
+    "noLessonOrCertificateAward": true,
+    "oldStateUnchanged": true,
+    "reflow": [
+      "expanded family cards 320px/200%",
+      "new choice 301/7",
+      "new choice 303/7",
+      "new choice 303/10",
+      "new choice 306/6",
+      "new choice 308/3",
+      "new choice 308/5",
+      "two feed screens 320px/200%",
+      "model prediction 320px/200%",
+      "model allocation 320px/200%",
+      "model results 320px/200%",
+      "design reasoning board 320px/200%",
+      "design summary 320px/200%",
+      "Sixth Form design prompt 320px/200%"
+    ],
+    "accessibility": [
+      {
+        "label": "family cards",
+        "theme": "light",
+        "violations": [],
+        "incomplete": [
+          "aria-prohibited-attr",
+          "color-contrast"
+        ]
+      },
+      {
+        "label": "family cards",
+        "theme": "dark",
+        "violations": [],
+        "incomplete": [
+          "aria-prohibited-attr",
+          "color-contrast"
+        ]
+      },
+      {
+        "label": "family cards",
+        "theme": "high",
+        "violations": [],
+        "incomplete": [
+          "aria-prohibited-attr",
+          "color-contrast"
+        ]
+      },
+      {
+        "label": "model allocation",
+        "theme": "light",
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "label": "model allocation",
+        "theme": "dark",
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "label": "model allocation",
+        "theme": "high",
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "label": "model results",
+        "theme": "light",
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "label": "model results",
+        "theme": "dark",
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "label": "model results",
+        "theme": "high",
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "label": "design board",
+        "theme": "light",
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "label": "design board",
+        "theme": "dark",
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "label": "design board",
+        "theme": "high",
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "label": "design summary",
+        "theme": "light",
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "label": "design summary",
+        "theme": "dark",
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      },
+      {
+        "label": "design summary",
+        "theme": "high",
+        "violations": [],
+        "incomplete": [
+          "color-contrast"
+        ]
+      }
+    ],
+    "errors": []
+  },
+  "limits": [
+    "Live signed-in Gemini responses were not tested; supplied routes were tested.",
+    "Automated accessibility checks do not replace manual assistive-technology review.",
+    "Parent learning outcomes require a usability pilot."
+  ]
+}

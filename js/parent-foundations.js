@@ -5,7 +5,7 @@ PARENT_LESSONS.push(
   "id": 301,
   "n": 1,
   "title": "AI in your child’s world",
-  "minutes": 20,
+  "minutes": 30,
   "goal": "Explain three different jobs AI can do, and open a useful conversation about how a young person uses it.",
   "desc": "Start with familiar moments: the feed, the homework question and the convincing chatbot. Work out where your judgement belongs.",
   "slides": [
@@ -13,7 +13,7 @@ PARENT_LESSONS.push(
       "type": "hook",
       "title": "“Everyone is using it.” Where do you start?",
       "body": "<p>A teenager asks a chatbot to explain a science idea. A music app suggests another track. A convincing image appears in a group chat. Each raises a different question about how AI shapes what we learn, choose and believe.</p><p>Start by identifying the job the technology is doing. Then ask what the young person is trying to achieve and where their own judgement comes in. You will practise those conversations through the examples in this lesson.</p>",
-      "callout": "Allow around 20 minutes, including a three-minute training-data activity. Choose your responses on screen, then use the feedback to check your reasoning."
+      "callout": "Allow around 30 minutes. Compare the fictional feeds, try the model-testing simulation and use the on-screen feedback to check your reasoning."
     },
     {
       "type": "concept",
@@ -30,34 +30,16 @@ PARENT_LESSONS.push(
     {
       "type": "concept",
       "title": "Training data: which examples did the model see?",
-      "body": "<p>During <strong>training</strong>, a model learns patterns from examples. Those examples are its <strong>training data</strong>. A fruit classifier, for instance, can learn to label pictures as apples or other fruit. The examples selected for training influence the patterns it learns.</p><p>Imagine a training collection whose apple pictures are mostly red apples. In a small test using pictures it has not seen before, the model correctly labels eight out of ten red apples and three out of ten green apples. These are invented results for this activity.</p><p>That uneven performance gives us a problem to investigate. Missing examples can contribute to <strong>bias</strong>: a pattern of poorer results for some kinds of input. We need to check the images and test again to find out whether colour, lighting, camera angle or something else explains the difference.</p>",
-      "callout": "Ask which examples are missing and how you would test whether the model has learned a useful pattern.",
-      "sources": [
-        {
-          "label": "Google Machine Learning Crash Course: data selection and bias",
-          "url": "https://developers.google.com/machine-learning/crash-course/fairness/types-of-bias"
-        }
-      ]
+      "body": "<p>During <strong>training</strong>, a model learns patterns from examples. Those examples are its <strong>training data</strong>. An image classifier can learn to label a picture as an apple or a tomato. The examples selected for training influence the patterns it learns.</p><p>Imagine a collection containing red apples and red tomatoes, with different shapes and sizes, but no green apples or yellow tomatoes. The model might learn useful shape cues, rely on a misleading cue, or combine several features. We cannot tell exactly how it will behave just by looking at the list of examples.</p><p>The next activity lets you predict, inspect a simulated result and decide how to investigate. You will choose examples for further training and keep separate pictures for testing. A <strong>test set</strong> is held back from training so it can check how the revised model handles examples it has not learned from.</p>",
+      "callout": "Look for gaps in the examples, then test whether they affect performance. Missing examples are a reason to investigate, not proof of a particular error.",
+      "sources": [{"label": "Experience AI: Bias in, bias out", "url": "https://experience-ai.org/en/units/understanding-ai-11-14/lessons/15"}]
     },
     {
-      "type": "parent-interaction",
-      "practiceIndex": 1003,
-      "title": "Three-minute activity: test the apple classifier",
-      "question": {
-        "kind": "select",
-        "prompt": "The model trained with mostly red apple examples. It labelled eight out of ten unseen red apples correctly, but only three out of ten unseen green apples. Select every useful next step for investigating this result.",
-        "options": [
-          "Compare more correctly labelled red and green apple pictures taken under similar lighting and camera angles, keeping them separate from training.",
-          "Conclude that every AI model will mistake green apples because colour alone caused these errors.",
-          "Review the training examples for missing varieties and conditions, add suitable examples where needed, then test the revised model on new pictures it has not learned from.",
-          "Use the same ten green pictures repeatedly for training and testing; improvement on those pictures proves the model recognises all green apples."
-        ],
-        "correct": [
-          0,
-          2
-        ],
-        "explanation": "The first step checks whether the difference persists when other picture conditions are more comparable. The third examines gaps in the training examples and checks improvement on fresh pictures. Reusing the same pictures can reward learning those examples rather than a pattern that works elsewhere. These invented results do not establish that colour caused the errors or that every model would fail. Apply the same question more broadly: whose examples are represented, and for whom have we actually checked the results?"
-      }
+      "type": "parent-model-lab",
+      "title": "Predict, test and improve a model",
+      "lessonId": 301,
+      "labId": "fruit",
+      "sources": [{"label": "Activity inspiration: Experience AI’s classifier lesson", "url": "https://experience-ai.org/en/units/understanding-ai-11-14/lessons/15"}]
     },
     {
       "type": "concept",
@@ -90,24 +72,38 @@ PARENT_LESSONS.push(
       "callout": "Keep agreed assistive support in place while the pupil does the thinking the task is designed to develop."
     },
     {
+      "type": "concept",
+      "title": "Who is choosing what appears next?",
+      "familyActivity": "family-feed",
+      "body": "<p>Sam opens a fictional video app and sees Screen 1. Sam then watches two football clips to the end and replays a goal. Later, Screen 2 appears. Compare the two feeds: what has become more prominent, and what has disappeared?</p><div style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:12px\"><section class=\"slide-callout\"><h3>Screen 1 · A mixed feed</h3><ol><li>Football: a last-minute goal</li><li>Science: why soap makes bubbles</li><li>Music: build a beat</li><li>Cooking: three sandwich ideas</li><li>Art: sketch a moving figure</li><li>Comedy: a pet with perfect timing</li></ol></section><section class=\"slide-callout\"><h3>Screen 2 · Later recommendations</h3><ol><li>Football: five great saves</li><li>Football: learn a footwork move</li><li>Football: a match-day reaction</li><li>Science: the shape of a bubble</li><li>Football: a transfer rumour</li><li>Football: another last-minute goal</li></ol></section></div><p>Watch time, replays, likes and searches are possible recommendation signals. These screens show a changing pattern, not the workings of a real platform’s algorithm. More football might suit Sam’s interests while crowding out music, art and other discoveries.</p>",
+      "callout": "Take five minutes to compare the feeds and choose a deliberate next step. Keep both Sam’s interests and the service’s interests in view.",
+      "sources": [
+        {
+          "label": "Teaching inspiration: Common Sense Media and Day of AI family toolkit",
+          "url": "https://www.commonsense.org/education/families-ai-literacy-toolkit"
+        }
+      ],
+      "sourceNote": "Original fictional activity inspired by the toolkit’s family discussion of recommendations."
+    },
+    {
       "type": "parent-interaction",
-      "practiceIndex": 4,
-      "title": "Which questions fit the situation?",
+      "practiceIndex": 2001,
+      "title": "Choose a deliberate next step",
       "question": {
         "kind": "select",
-        "prompt": "Sam’s app recommends clips; Jo uses a chatbot to make a birthday poem; Ari asks it to explain a maths method. Select every question that checks something useful about these uses.",
+        "prompt": "Sam’s feed changed from one football recommendation out of six to five out of six after watching and replaying football. Which statements or actions make sense? Select all that apply.",
         "options": [
-          "For Sam: “Are you choosing what to watch, or continuing because another clip keeps appearing?”",
-          "For Jo: “Because it is only a birthday poem, can we assume private details are safe to include?”",
-          "For Ari: “Can you use the explanation on a different example yourself, keeping agreed support?”",
-          "For Jo: “Have you checked the poem suits the person and kept their private details out?”"
+          "Football has become more prominent, while music, cooking, art and comedy are absent from the second screen.",
+          "These two screens prove the service uses watch time as its only signal and knows everything Sam enjoys.",
+          "Replays and time spent watching are possible signals to investigate; the service may benefit from longer visits, even when Sam intended a short break.",
+          "Sam could choose an art search or a saved music item, or stop at an agreed point, instead of automatically watching the next football clip."
         ],
         "correct": [
           0,
           2,
           3
         ],
-        "explanation": "Sam’s question checks whether the app is serving a deliberate choice. Ari’s checks whether the explanation led to understanding. Jo’s checks the poem’s suitability and the information shared. Each question connects the tool to the person using it."
+        "explanation": "The visible change is clear; its exact cause is not. The service could use several signals and have other reasons for the recommendations. Sam can enjoy football while choosing what to see next and when to stop. For an ad-funded service, longer visits can create more advertising opportunities; services have different business models. Ask whether the next recommendation serves the purpose Sam chose."
       }
     },
     {
@@ -439,7 +435,7 @@ PARENT_LESSONS.push(
   "id": 303,
   "n": 3,
   "title": "Accounts, privacy and sensible boundaries",
-  "minutes": 20,
+  "minutes": 25,
   "goal": "Choose an appropriate practice route and explain what should stay out of an AI prompt or upload.",
   "desc": "Make the important decisions before the first practical: whose account, which information and what permission?",
   "slides": [
@@ -447,7 +443,7 @@ PARENT_LESSONS.push(
       "type": "hook",
       "title": "Before you click “upload”",
       "body": "<p>A parent wants revision advice and considers uploading a child’s school report. The document explains the difficulties, but it also carries personal information about the pupil and other people.</p><p>Before uploading, check the account, the information being sent and who can see the result. We will work through those decisions using an invented learning brief, ready for the practical lessons.</p>",
-      "callout": "Allow around 20 minutes. Use the examples to decide what belongs in a prompt and what should stay out."
+      "callout": "Allow around 25 minutes, including the privacy-card sort and the prompt choice. Use the examples to decide what belongs in a request and what should stay out."
     },
     {
       "type": "concept",
@@ -510,25 +506,61 @@ PARENT_LESSONS.push(
       "callout": "Before uploading, ask what you are sending. Before sharing, ask who will be able to see it."
     },
     {
+      "type": "concept",
+      "title": "Which cards belong in a revision request?",
+      "familyActivity": "family-privacy",
+      "body": "<p>An imaginary learner wants practice with equivalent fractions before Friday. Inspect the cards below. Choose information that helps with that task and keep unnecessary personal context out.</p><dl><dt><strong>A · Learning goal</strong></dt><dd>Understand why two quarters and one half represent the same amount.</dd><dt><strong>B · Deadline and time available</strong></dt><dd>Two 20-minute sessions before Friday.</dd><dt><strong>C · School report</strong></dt><dd>A document containing a pupil’s name, marks and comments about support needs.</dd><dt><strong>D · Invented practice question</strong></dt><dd>Explain why 2/4 = 1/2, then offer a different example.</dd><dt><strong>E · Private chat</strong></dt><dd>A friend’s messages about worries over schoolwork.</dd><dt><strong>F · Medical detail</strong></dt><dd>Information about a diagnosis and treatment.</dd><dt><strong>G · Context to think about</strong></dt><dd>A learning-support note says to give instructions in short steps.</dd></dl>",
+      "callout": "Allow five to eight minutes for the sort and the final prompt choice. These are fictional cards, not requests for family information.",
+      "sources": [
+        {
+          "label": "Teaching inspiration: Common Sense Media and Day of AI family toolkit",
+          "url": "https://www.commonsense.org/education/families-ai-literacy-toolkit"
+        }
+      ],
+      "sourceNote": "Original fictional activity inspired by the toolkit’s privacy-sorting approach."
+    },
+    {
       "type": "parent-interaction",
-      "practiceIndex": 6,
-      "title": "Choose the suitable practice material",
+      "practiceIndex": 2002,
+      "title": "Choose the useful information",
       "question": {
         "kind": "select",
-        "prompt": "You want to practise asking for a revision plan. Which materials fit this course’s practice? Select all that apply.",
+        "prompt": "For the equivalent-fractions practice, select the cards that can go directly into this fictional request. Leave the school-support note for the next decision.",
         "options": [
-          "A real school report with the name covered.",
-          "An invented brief about fractions, percentages and ratio, with two imaginary study sessions.",
-          "A photograph of the class list to make the answer more realistic.",
-          "The course’s supplied fictional learning pack.",
-          "A purchased textbook extract published in a publicly shared notebook without checking rights."
+          "A: the learning goal.",
+          "B: two 20-minute sessions before Friday.",
+          "C: the full school report.",
+          "D: the invented equivalent-fractions question.",
+          "E: the friend’s private chat.",
+          "F: medical information."
         ],
         "correct": [
+          0,
           1,
           3
         ],
-        "explanation": "The invented brief and supplied pack provide the context needed for practice. A covered name can leave identifying details, a class list exposes other people’s information, and owning a textbook does not grant public redistribution rights."
+        "explanation": "The goal, available time and invented question give the tool enough context to propose suitable practice. The report, chat and medical detail disclose information that this task does not need. A deadline is useful here because it shapes the schedule; a precise location, school or pupil identity would add nothing to that purpose."
       }
+    },
+    {
+      "type": "scenario",
+      "title": "Keep the useful adjustment; leave the document out",
+      "situation": "<p>Card G says a school learning-support note recommends short instructions. Short steps would suit the proposed practice. The note itself contains personal educational information.</p>",
+      "question": "How would you use this context in the practice request?",
+      "choices": [
+        {
+          "text": "Upload the whole support note so the tool can decide what to use.",
+          "outcome": "The tool does not need the document to follow a formatting instruction. Keep the note out and state the useful adjustment directly."
+        },
+        {
+          "text": "Ask for short, numbered steps without including the note, a diagnosis or an explanation of who needs them.",
+          "outcome": "This preserves the useful adjustment while minimising information. The request can simply say “Use short, numbered steps.” For real schoolwork, follow the approved tool, account and agreed support arrangements."
+        },
+        {
+          "text": "Remove every request for support because mentioning a preference is always too private.",
+          "outcome": "A general formatting instruction can make the resource more accessible without identifying anyone. Consider what the task needs and the permission for that context; avoid turning data minimisation into removal of support."
+        }
+      ]
     },
     {
       "type": "concept",
@@ -555,17 +587,20 @@ PARENT_LESSONS.push(
       "callout": "Use the account, information, permission and sharing checks together whenever you start a new task."
     },
     {
-      "type": "activity",
-      "title": "Does switching history off settle the decision?",
-      "instructions": "<p>A parent wants to upload a school report and has switched activity history off. Think through three points: the service may still retain information; account protections differ; and the parent still needs permission to use the document.</p><p>Decide whether the setting resolves the concern, then open the explanation.</p>",
-      "steps": [
-        "Ask which information in the report is actually needed for the practice.",
-        "Compare using the real report with using the invented learning brief supplied in this course.",
-        "Choose your route for the practical: your eligible adult account with fictional material, or the worked examples."
-      ],
-      "reveal": "<p>Use the invented brief. Switching history off neither creates permission to upload the report nor guarantees zero retention. The brief provides the learning context while keeping the pupil’s information out of the exercise.</p><p>If account eligibility or protections are unclear, work through the supplied examples and use the official product help to resolve the account question.</p>",
-      "revealLabel": "Compare your thinking",
-      "callout": "For a closer look at your own account, open its current privacy explanation and connected-app controls."
+      "type": "parent-interaction",
+      "practiceIndex": 2003,
+      "title": "Choose the finished minimal request",
+      "question": {
+        "kind": "choice",
+        "prompt": "Choose the request assembled from the useful cards and the short-step adjustment.",
+        "options": [
+          "“Use this pupil’s report, their friend’s messages and their medical history to tell me why they struggle.”",
+          "“For an imaginary learner, plan two 20-minute sessions before Friday to practise equivalent fractions. Use short, numbered steps. Begin with why 2/4 = 1/2, then give a fresh example to try before revealing its answer.”",
+          "“Make everything about maths easier. Use any personal information available to tailor it.”"
+        ],
+        "correct": 1,
+        "explanation": "The second request contains the learning goal, time limit, practice example and presentation preference. It also leaves a fresh attempt for the learner. No school report, private chat or medical information is needed. You have assembled a purposeful prompt by deciding what information contributes to the task."
+      }
     },
     {
       "type": "quiz",
@@ -856,7 +891,7 @@ PARENT_LESSONS.push(
   "id": 306,
   "n": 6,
   "title": "School rules, honesty and assessed work",
-  "minutes": 20,
+  "minutes": 25,
   "goal": "Apply the stated rules for a task, distinguish permission from acknowledgement and ask a clear question when the boundary is unclear.",
   "desc": "Know what is allowed, what needs recording and when to ask. Practise the decisions before the deadline.",
   "slides": [
@@ -864,7 +899,7 @@ PARENT_LESSONS.push(
       "type": "hook",
       "title": "“It was only helping with the wording.”",
       "body": "<p>A pupil has used AI to rewrite a paragraph. Whether that is allowed depends on the task: the wording itself may be part of what the teacher is assessing.</p><p>Read the task instructions before using the tool. This lesson shows how Haileybury’s permission levels work, what pupils need to acknowledge and how to ask a clear question when the boundary is uncertain.</p>",
-      "callout": "Allow around 20 minutes. Apply the rules supplied in each case, then check the reasons for your choice."
+      "callout": "Allow around 25 minutes, including the classroom-decision comparison. Apply the instructions supplied in each case, then check the reasons for your choice."
     },
     {
       "type": "concept",
@@ -916,32 +951,42 @@ PARENT_LESSONS.push(
     },
     {
       "type": "concept",
-      "title": "Worked example: allowed planning, prohibited drafting",
-      "body": "<p><strong>Fictional task instruction:</strong> “You may use the approved school AI tool to suggest three possible research questions. Choose and refine one yourself. Do not ask AI to draft your response. Submit the prompts and suggestions with your chosen question.”</p><p>A pupil asks for three questions, evaluates them and records the exchange: that fits this instruction. Asking for an opening paragraph goes beyond it, even if the pupil later acknowledges the tool.</p><p>A parent’s useful question is: “Show me what the instruction permits and where your own decision begins.”</p>",
-      "callout": "In this practice case, the boundary is clear: AI suggests questions; the pupil refines the choice and writes the response.",
-      "revealLabel": "See how the pupil explains the contribution",
-      "reveal": "<p><strong>Example contribution note:</strong> “I used the school-approved AI tool to suggest three research questions. I compared them, narrowed one myself and wrote the final response. I checked factual suggestions against the class sources. The prompts and suggestions are attached as this task requires.”</p><p>The note explains what happened, and the attached record meets this task’s instruction. For a real assessment, include the tool name, date, sources and other details required by the teacher or awarding body. The record must accurately describe the pupil’s process.</p>"
+      "title": "Why would a teacher set this boundary?",
+      "familyActivity": "family-classroom",
+      "body": "<p><strong>Verified curriculum context:</strong> in Removes lesson 119, pupils examine a fictional sports-club voice note requesting an urgent payment. The learning aim is to choose a safe way to verify the recording and the action requested. The pupil decides what evidence would justify acting and which independent contact route to use.</p><p><strong>Illustrative teacher instruction for our activity:</strong> “Use the supplied case and class sources to decide your own verification route. Do not ask generative AI to produce that response. Keep your agreed read-aloud support.” This permission card is invented to explore the teaching decision; it is not a claim about the actual lesson’s AI permission.</p><p>The boundary keeps the verification decision with the pupil. Afterwards, a teacher can change the message and ask the pupil to explain which source would establish its authority.</p>",
+      "callout": "Take five minutes to compare this aim with the next task. An approved tool still needs an appropriate purpose and task permission.",
+      "sources": [
+        {
+          "label": "Removes lesson 119: verify a suspicious recording",
+          "url": "removes.html?lesson=119"
+        },
+        {
+          "label": "Haileybury: how AI is used in learning",
+          "url": "https://www.haileybury.com/innovation-research/artificial-intelligence"
+        }
+      ],
+      "sourceNote": "The curriculum task is verified. The two permission cards in this family activity are expressly illustrative."
     },
     {
       "type": "parent-interaction",
-      "practiceIndex": 6,
-      "title": "Choose the justified permission decisions",
+      "practiceIndex": 2006,
+      "title": "Change the learning aim, then check the permission",
       "question": {
         "kind": "select",
-        "prompt": "Three fictional instructions: A allows AI ideas only, but the pupil wants a final AI-written answer. B says no generative AI and explicitly retains agreed read-aloud support. C says “prepare independently” without explaining AI use, and the pupil wants AI rewriting. Select every justified decision.",
+        "prompt": "New illustrative task: the aim is to evaluate an AI-generated verification checklist. The teacher instructs pupils to use the approved school tool to produce a checklist from the supplied fictional case, test its steps against class sources and explain their own judgement. Which decisions fit this changed task? Select all that apply.",
         "options": [
-          "A: the final AI-written answer is not permitted by this instruction.",
-          "B: the explicitly retained read-aloud support is permitted.",
-          "C: ask the teacher before using AI to rewrite.",
-          "C: permission from another teacher last week settles this task.",
-          "A: acknowledgement would make final AI drafting acceptable."
+          "Use the approved school tool as directed, then identify which suggested steps actually verify the request.",
+          "Assume the earlier “do not generate a response” instruction prevents AI use on this different task, despite the new explicit direction.",
+          "Ask the teacher which prompts, outputs and sources must be retained or acknowledged in the final work.",
+          "Treat the generated checklist itself as proof that every step is trustworthy.",
+          "Check understanding with a changed message and ask the pupil why their chosen route supplies independent evidence."
         ],
         "correct": [
           0,
-          1,
-          2
+          2,
+          4
         ],
-        "explanation": "A allows ideas, not final drafting. B explicitly preserves the support described. C needs clarification before use. Neither a credit nor another task’s permission changes these instructions."
+        "explanation": "The new aim is judging generated advice, so the teacher explicitly permits that material as something to evaluate. The pupil still tests the steps and explains the decision. That differs from the first task’s independent construction of a verification route. Ask about required records and acknowledgement; permission for this activity does not extend to unrelated work."
       }
     },
     {
@@ -985,8 +1030,8 @@ PARENT_LESSONS.push(
     {
       "type": "concept",
       "title": "A question the teacher can answer",
-      "body": "<p>Give the teacher enough detail to answer the actual question. Name the task and distinguish the kinds of help the pupil wants.</p><p><strong>Example:</strong> “For the independent presentation, may I use the school-approved tool to explain unfamiliar source vocabulary or suggest an outline? Is rewriting my script permitted? Which tool/account and records should I use? Please confirm how my agreed read-aloud support applies.”</p><p>An older pupil can ask this directly, with a parent helping them clarify the question. If AI has already been used, explain that contribution honestly so the teacher can advise on what happens next.</p>",
-      "callout": "Notice how the example separates explaining a source, planning a response and rewriting the pupil’s work."
+      "body": "<p>Start with the task’s learning aim and ask about the specific contribution you are considering. For the checklist activity, a useful question is: <strong>“Which parts should the AI produce, which decisions must I explain myself, and what prompts, outputs and sources must I acknowledge or keep?”</strong></p><p>A transparent contribution note for this illustrative task could say: “The approved tool suggested the checklist. I checked its steps against the class sources, rejected the step that relied on the suspicious message’s own contact details, and explained my independent verification route.” Attach whatever records the teacher requires.</p><p>An older pupil can ask directly, with a parent helping them clarify the question. If AI has already been used, explain the contribution honestly so the teacher can advise on the next step.</p>",
+      "callout": "The question connects permission to the learning, then makes the contribution and recording requirements clear."
     },
     {
       "type": "summary",
@@ -1060,15 +1105,15 @@ PARENT_LESSONS.push(
   "id": 308,
   "n": 8,
   "title": "Revision that builds independent understanding",
-  "minutes": 20,
+  "minutes": 25,
   "goal": "Choose accurate revision questions, check the reasoning and select a later attempt that tests understanding.",
   "desc": "Try the difference between recognising a tidy summary and being able to explain and use the idea yourself.",
   "slides": [
     {
       "type": "hook",
       "title": "“I’ve read it three times.” What can you do with it?",
-      "body": "<p>A set of AI-made notes looks excellent, and the learner recognises every point. The next question is what they can recall, explain and apply when a different example appears.</p><p>Work through a short revision cycle using the Lantern Club’s invented parcel rules. You will apply the rules, inspect a flawed AI question and choose practice that addresses a specific misunderstanding.</p>",
-      "callout": "Allow around 20 minutes. Use the on-screen decisions to check the questions as carefully as the answers."
+      "body": "<p>A set of AI-made notes looks excellent, and the learner recognises every point. The next question is what they can recall, explain and apply when a different example appears.</p><p>Work through a short learning cycle using an invented club-booking rule. Make a first decision, use a hint and try a fresh case. Then choose the next question that would reveal what still needs teaching.</p>",
+      "callout": "Allow around 25 minutes, including the eight-minute booking activity. Try each decision before opening the feedback."
     },
     {
       "type": "concept",
@@ -1084,61 +1129,85 @@ PARENT_LESSONS.push(
     },
     {
       "type": "concept",
-      "title": "Your source pack: the fictional Lantern Club",
-      "body": "<p>Read these invented rules once or twice. You will use them on the next slide.</p><p><strong>Lantern Club dispatch rules:</strong> A parcel is marked <strong>ready</strong> only when it has both a blue label and a recorded weight. A parcel marked ready goes on the <strong>morning van</strong> if it weighs 2 kg or less; a ready parcel over 2 kg goes on the <strong>afternoon van</strong>. A parcel missing either requirement goes to the <strong>checking desk</strong>, whatever its weight.</p><p>Example: a 3 kg parcel with a blue label and recorded weight is ready and goes on the afternoon van. Its weight changes the van, not whether it is ready.</p>",
-      "callout": "Check readiness first, then use the recorded weight to choose a van."
+      "title": "A booking needs two things",
+      "body": "<p>Here is the invented club’s complete booking rule: a booking is <strong>confirmed when both the form and payment have arrived</strong>. If either is missing, the booking is <strong>pending</strong>. There are no other conditions in this activity.</p><p>Try the first case, then compare the feedback. Notice which part of the rule you used. After a short hint, a changed case will test whether the same reasoning still works.</p>",
+      "callout": "Keep agreed reading or communication support available. The learning goal is applying both conditions, rather than reading quickly.",
+      "sources": [
+        {
+          "label": "Teaching inspiration: Common Sense Media and Day of AI — learning before, during and after help",
+          "url": "https://www.commonsensemedia.org/using-ai-wisely-for-school-success"
+        }
+      ]
     },
     {
       "type": "parent-interaction",
-      "practiceIndex": 3,
-      "title": "Apply the Lantern Club rules",
+      "practiceIndex": 2004,
+      "familyActivity": "family-booking",
+      "title": "First case: has the booking been confirmed?",
       "question": {
-        "kind": "select",
-        "prompt": "A ready parcel needs both a blue label and a recorded weight. Ready parcels of 2 kg or less use the morning van; heavier ready parcels use the afternoon van. Missing either requirement means the checking desk. Select every correct decision.",
+        "kind": "choice",
+        "prompt": "The club confirms a booking when both the form and payment have arrived. Jo’s payment has arrived, but the form has not. What is Jo’s booking status?",
         "options": [
-          "Blue label and recorded weight exactly 2 kg: morning van.",
-          "Recorded weight 1 kg but no blue label: morning van.",
-          "Blue label but no recorded weight: checking desk.",
-          "Blue label and recorded weight 3 kg: afternoon van."
+          "Confirmed, because payment is the important part.",
+          "Pending, because the form is still missing.",
+          "Confirmed if Jo intends to send the form later."
         ],
-        "correct": [
-          0,
-          2,
-          3
-        ],
-        "explanation": "Check readiness before choosing a van. Exactly 2 kg is included in “2 kg or less”, and a missing blue label sends even a light parcel to checking. With the rules visible, this task tests how you apply them."
+        "correct": 1,
+        "explanation": "Payment meets one condition. The form is still missing, so the booking remains pending. If you focused on payment first, the next slide gives a way to keep both conditions in view."
       }
     },
     {
       "type": "concept",
-      "title": "Worked example: catch a bad AI quiz item",
-      "body": "<p><strong>Generated question:</strong> “A 1 kg parcel has no blue label. Which van should it go on?” <strong>Generated answer key:</strong> “Morning, because it is under 2 kg.”</p><p>The question wrongly assumes that the parcel belongs on a van. The answer key ignores the readiness rule. If a parent trusted the key, a correct learner could be told they were wrong.</p><p>A repair is: “Where should a 1 kg parcel without a blue label go, and why?” The correct answer is the checking desk. Check both the question and its explanation against the source before using generated practice.</p>",
-      "callout": "Haileybury’s “Human judgement first” applies to the answer key as well as the pupil’s answer."
+      "title": "A hint that leaves a decision to make",
+      "body": "<p>Imagine the learner chose “confirmed” because the payment had arrived. A useful hint is: <strong>“Point to the word ‘both’. Which two things must have arrived, and which one is still missing?”</strong></p><p>The hint directs attention to the condition without completing every future case. Give the learner time to reconsider, then change the details. In the next case the form has arrived; watch whether the learner checks payment as well.</p>",
+      "callout": "A corrected answer shows a useful first step. Applying the rule when the details change tells you more about what the help achieved."
+    },
+    {
+      "type": "parent-interaction",
+      "practiceIndex": 2005,
+      "title": "Fresh case: the details have changed",
+      "question": {
+        "kind": "choice",
+        "prompt": "The same club requires both form and payment to have arrived. Ari’s form has arrived. Ari says payment will be made tomorrow, but none has arrived yet. Which answer applies the rule accurately?",
+        "options": [
+          "Confirmed: the form arrived and payment is promised.",
+          "Pending: the form meets one condition, but a promise is not received payment.",
+          "It is impossible to decide unless we know what happened to Jo."
+        ],
+        "correct": 1,
+        "explanation": "Ari’s booking is pending. This time the form is present and the payment is missing; the rule is the same. Explaining the missing condition in both cases is stronger evidence of understanding than remembering that Jo’s answer was “pending”."
+      }
     },
     {
       "type": "scenario",
-      "title": "Choose practice that addresses the misunderstanding",
-      "situation": "<p>An imaginary learner keeps choosing a van before checking readiness. You want a short, useful practice sequence using the Lantern Club rules.</p>",
-      "question": "Which pair best tests the decision they are missing?",
+      "title": "Choose the next useful question",
+      "situation": "<p>The learner answered “pending” for both Jo and Ari. You want to check whether they understand the two conditions, rather than always choosing “pending”.</p>",
+      "question": "Which question would you ask next?",
       "choices": [
         {
-          "text": "“What two things make a parcel ready?” followed by “A parcel has a blue label but no recorded weight. Where does it go, and why?”",
-          "outcome": "This recalls the condition and then tests its application. The second parcel goes to the checking desk because the recorded weight is missing. The sequence targets the specific misunderstanding."
+          "text": "“Lee’s form and payment have both arrived. What is the status, and what makes this case different?”",
+          "outcome": "This is the strongest next check. The status is confirmed because both conditions are met. Ask the learner to point out what was missing in the earlier cases and what is now present."
         },
         {
-          "text": "“What colour is the label?” followed by ten questions about the names of the vans.",
-          "outcome": "These questions check isolated details. To address the misunderstanding, ask the learner to check both readiness requirements before making the van decision."
+          "text": "“Jo is still waiting for the same form. Is the booking still pending?”",
+          "outcome": "That repeats a case the learner has just seen. It checks consistency, but tells you less about whether they recognise when a booking can be confirmed."
         },
         {
-          "text": "Show ten completed examples and ask whether the learner recognises them.",
-          "outcome": "Use a worked example to explain the decision, then give the learner a fresh parcel to sort and explain. That checks whether they can apply what they have seen."
+          "text": "“How many times have you read the rule?”",
+          "outcome": "Reading time does not establish whether the learner can apply both conditions. Give them a changed case and listen to the reason for their decision."
         }
       ]
     },
     {
       "type": "concept",
+      "title": "Worked example: catch a bad AI quiz item",
+      "body": "<p>A separate fictional example shows why the answer key needs checking. In the Lantern Club, a parcel needs <strong>both a blue label and a recorded weight</strong> before it is ready for a van. Any parcel missing a requirement goes to the checking desk. Ready parcels weighing 2 kg or less use the morning van.</p><p><strong>Generated question:</strong> “A 1 kg parcel has no blue label. Which van should it go on?” <strong>Generated key:</strong> “Morning, because it is under 2 kg.”</p><p>The question assumes a van is appropriate and the key skips readiness. Repair it to “Where should this parcel go, and why?” The answer is the checking desk. Inspect the question’s assumptions as well as its answer.</p>",
+      "callout": "Haileybury’s “Human judgement first” applies to the answer key as well as the pupil’s answer."
+    },
+    {
+      "type": "concept",
       "title": "Match the check to what you want to learn",
-      "body": "<p>The on-screen task kept the rules visible, so it checked how you applied them. A later question with the rules closed would check recall as well. Both give useful information when you are clear about the learning goal.</p><p>For application, the learner still needs to select the relevant rule, use it on the parcel and explain the decision. An answer key would supply much of that reasoning. Choose the material available during the attempt to match what you are trying to find out.</p><p>Keep agreed reading and communication support in place. For schoolwork, follow the task’s permission and access arrangements so the check focuses on the intended knowledge or skill.</p>",
+      "body": "<p>The booking questions kept the rule visible, so they checked how you applied it. Asking the learner to recall the rule later would check something different. Both are useful when they match the learning goal.</p><p>For application, the learner must identify the relevant conditions and connect them to the facts of a new case. An answer key would do much of that work for them. Keep the support that gives access to the question while leaving the decision and explanation with the learner.</p><p>For schoolwork, follow the task’s permission and agreed access arrangements. Use the learner’s explanation to decide whether to move on or revisit a particular condition.</p>",
       "callout": "Ask: “Are we practising remembering the rule, or using it? What should be available for this attempt?”"
     },
     {
@@ -1151,8 +1220,8 @@ PARENT_LESSONS.push(
           "url": "https://udlguidelines.cast.org/action-expression/interaction/assistive-technologies/"
         }
       ],
-      "revealLabel": "See a manageable later check",
-      "reveal": "<p>At the next suitable session, use two fresh cases: <strong>A</strong> has a blue label and recorded weight of 1.5 kg; <strong>B</strong> has a recorded weight of 3 kg but no blue label. Ask where each goes and why. A goes on the morning van; B goes to the checking desk because it is missing a readiness requirement.</p><p>If both reasons are clear, move on. If B is still assigned to a van, compare two parcels with the same weight but different readiness. Ask the learner to explain why the missing requirement changes the decision. For a school subject, use the class source and seek the teacher’s guidance on a persistent difficulty.</p>"
+      "revealLabel": "Try an older-teen argument",
+      "reveal": "<p><strong>Optional argument:</strong> “Everyone on this list has paid, so every booking is confirmed.” What assumption is hidden here?</p><p>The argument assumes that every form has also arrived. Payment alone does not establish confirmation under this club’s rule. Ask what evidence would settle the missing condition. This extends the same reasoning from individual cases to an argument about a group.</p>"
     },
     {
       "type": "quiz",

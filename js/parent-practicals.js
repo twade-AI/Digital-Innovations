@@ -5,7 +5,7 @@ PARENT_LESSONS.push(
   "id": 304,
   "n": 4,
   "title": "Gemini practical: ask, inspect, improve",
-  "minutes": 30,
+  "minutes": 40,
   "goal": "Give a clear brief, inspect a response and make a purposeful revision.",
   "desc": "Plan a family games session with Gemini. Check the numbers, improve the rules and decide whether the plan works. Supplied examples let you try every check here too.",
   "slides": [
@@ -110,6 +110,7 @@ PARENT_LESSONS.push(
     {
       "type": "parent-interaction",
       "title": "Put this answer on trial · 4 minutes",
+      "practiceIndex": 6,
       "question": {
         "kind": "select",
         "prompt": "The brief allows 12 people, 24 counters and 20 minutes, with no extra equipment or elimination. A simulated response proposes the details below. Select every detail that breaks the brief.",
@@ -148,6 +149,11 @@ PARENT_LESSONS.push(
       "callout": "Check it: 3 × 4 = 12 people; 3 × 8 = 24 counters; 3 + 12 + 5 = 20 minutes. No extra equipment. The four roles rotate so each person participates.",
       "revealLabel": "What still needs your judgement?",
       "reveal": "The numbers fit. Now consider whether the game offers the right challenge for the group. The first task gives two rows of four. Other equal groupings include one group of eight, four groups of two and eight groups of one. Different layouts can represent the same grouping, giving you something useful to discuss with the players."
+    },
+    {
+      "type": "parent-design-lab",
+      "title": "A fresh brief: choose, test and improve",
+      "sources": [{"label": "Activity inspiration: Vanderbilt University’s public course outline", "url": "https://www.coursera.org/learn/generative-ai-for-kids/"}]
     },
     {
       "type": "concept",
